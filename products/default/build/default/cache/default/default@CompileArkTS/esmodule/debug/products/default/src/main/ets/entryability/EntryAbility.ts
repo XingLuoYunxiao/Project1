@@ -5,9 +5,11 @@ import hilog from "@ohos:hilog";
 import type window from "@ohos:window";
 import type { BusinessError } from "@ohos:base";
 const TAG: string = 'EntryAbility';
+const name = 'appEntryStore';
 export default class EntryAbility extends UIAbility {
     onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+        //PreferenceUtil.loadPreference(this.context, name)
     }
     onDestroy(): void {
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onDestroy');
@@ -16,7 +18,7 @@ export default class EntryAbility extends UIAbility {
         // Main window is created, set main page for this ability
         hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
         requestFullScreen(windowStage, this.context);
-        windowStage.loadContent('pages/Index', (err, data) => {
+        windowStage.loadContent('pages/LauncherPage', (err, data) => {
             if (err.code) {
                 hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
                 return;

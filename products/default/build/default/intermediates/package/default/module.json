@@ -18,6 +18,9 @@
 		"labelId":	16777216
 	},
 	"module":	{
+		"requestPermissions":	[{
+				"name":	"ohos.permission.INTERNET"
+			}],
 		"name":	"default",
 		"type":	"entry",
 		"description":	"$string:module_desc",

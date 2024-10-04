@@ -1,0 +1,466 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚ'[if (!("finalizeConstruction" in ViewPU.prototype)) {
+    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
+}
+import { Attraction } from "../model/Attraction";
+//è¥¿å®‰é™„è¿‘çš„æ™¯ç‚¹ï¼Œè¦æœ‰ç®€ä»‹
+const nearbyAttractions = [
+    new Attraction(4, "ç§¦å§‹çš‡å…µé©¬ä¿‘åšç‰©é¦†", { "id": 83886092, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "quickstart" }, "ç§¦å§‹çš‡å…µé©¬ä¿‘åšç‰©é¦†ä½äºé™•è¥¿çœè¥¿å®‰å¸‚ï¼Œæ˜¯ä¸­å›½æœ€è‘—åçš„è€ƒå¤é—å€ä¹‹ä¸€ï¼Œå±•ç¤ºäº†ç§¦å§‹çš‡çš„é™µå¢“åŠå…¶å£®è§‚çš„å…µé©¬ä¿‘å†›é˜Ÿã€‚"),
+    new Attraction(5, "å¤§é›å¡”", { "id": 83886093, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "quickstart" }, "å¤§é›å¡”æ˜¯å”ä»£è‘—åçš„ä½›å¡”ï¼Œä½äºé™•è¥¿çœè¥¿å®‰å¸‚ï¼Œæ˜¯ç„å¥˜æ³•å¸ˆä¸ºä¿å­˜ä»å°åº¦å¸¦å›çš„ä½›ç»è€Œå»ºã€‚"),
+    new Attraction(6, "è¥¿å®‰åŸå¢™", { "id": 83886097, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "quickstart" }, "è¥¿å®‰åŸå¢™æ˜¯ä¸­å›½ç°å­˜è§„æ¨¡æœ€å¤§ã€ä¿å­˜æœ€å®Œæ•´çš„å¤ä»£åŸå£ï¼Œæ˜¯æ˜ä»£åˆå¹´åœ¨å”é•¿å®‰åŸçš„åŸºç¡€ä¸Šæ‰©å»ºè€Œæˆçš„ã€‚"),
+    new Attraction(7, "é’Ÿæ¥¼", { "id": 83886094, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "quickstart" }, "é’Ÿæ¥¼ä½äºè¥¿å®‰å¸‚ä¸­å¿ƒï¼Œæ˜¯æ˜ä»£å»ºç­‘çš„å…¸èŒƒï¼Œå†å²ä¸Šç”¨äºæ™¨é’Ÿæš®é¼“ï¼Œç°åœ¨æ˜¯è¥¿å®‰çš„æ ‡å¿—æ€§å»ºç­‘ä¹‹ä¸€ã€‚"),
+    new Attraction(3, "å¤§å”ä¸å¤œåŸ", { "id": 83886081, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "quickstart" }, "å¤§å”ä¸å¤œåŸä½äºé™•è¥¿çœè¥¿å®‰å¸‚ï¼Œæ˜¯ä¸€ä¸ªé›†æ–‡åŒ–ã€æ—…æ¸¸ã€å•†ä¸šäºä¸€ä½“çš„ç»¼åˆæ€§æ—…æ¸¸æ™¯åŒºï¼Œä»¥å”ä»£çš‡å®¶å›­æ—ä¸ºä¸»é¢˜ï¼Œå±•ç°äº†ç››å”æ—¶æœŸçš„ç¹è£æ™¯è±¡ã€‚"),
+];
+//å®šä¹‰ä¸€ä¸ªæ™¯ç‚¹è·ç¦»æ•°ç»„
+const distances = [
+    12.2, 5.1, 36.6, 17.2, 49.8
+];
+export class NearbyAttraction extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+    }
+    aboutToBeDeleted() {
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.debugLine("features/quickstart/src/main/ets/view/NearbyAttraction.ets(21:5)", "quickstart");
+            Column.alignItems(HorizontalAlign.Start);
+            Column.width('100%');
+            Column.height('100%');
+            Column.layoutWeight(1);
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('é™„è¿‘æ™¯ç‚¹');
+            Text.debugLine("features/quickstart/src/main/ets/view/NearbyAttraction.ets(22:7)", "quickstart");
+            Text.fontSize(18);
+            Text.padding({ top: 10 });
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            /*List() {
+      
+            }
+            .edgeEffect(EdgeEffect.Spring, {alwaysEnabled:true})
+            .scrollBar(BarState.Off)
+            .width('100%')
+            .height('100%')
+            .listDirection(Axis.Vertical)
+            .layoutWeight(1)*/
+            Scroll.create();
+            Scroll.debugLine("features/quickstart/src/main/ets/view/NearbyAttraction.ets(34:7)", "quickstart");
+            /*List() {
+      
+            }
+            .edgeEffect(EdgeEffect.Spring, {alwaysEnabled:true})
+            .scrollBar(BarState.Off)
+            .width('100%')
+            .height('100%')
+            .listDirection(Axis.Vertical)
+            .layoutWeight(1)*/
+            Scroll.scrollable(ScrollDirection.Vertical);
+            /*List() {
+      
+            }
+            .edgeEffect(EdgeEffect.Spring, {alwaysEnabled:true})
+            .scrollBar(BarState.Off)
+            .width('100%')
+            .height('100%')
+            .listDirection(Axis.Vertical)
+            .layoutWeight(1)*/
+            Scroll.scrollBar(BarState.Off);
+            /*List() {
+      
+            }
+            .edgeEffect(EdgeEffect.Spring, {alwaysEnabled:true})
+            .scrollBar(BarState.Off)
+            .width('100%')
+            .height('100%')
+            .listDirection(Axis.Vertical)
+            .layoutWeight(1)*/
+            Scroll.width('100%');
+            /*List() {
+      
+            }
+            .edgeEffect(EdgeEffect.Spring, {alwaysEnabled:true})
+            .scrollBar(BarState.Off)
+            .width('100%')
+            .height('100%')
+            .listDirection(Axis.Vertical)
+            .layoutWeight(1)*/
+            Scroll.layoutWeight(1);
+        }, Scroll);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.debugLine("features/quickstart/src/main/ets/view/NearbyAttraction.ets(35:9)", "quickstart");
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            ForEach.create();
+            const forEachItemGenFunction = (_item, index) => {
+                const item = _item;
+                {
+                    const itemCreation = (elmtId, isInitialRender) => {
+                        ViewStackProcessor.StartGetAccessRecordingFor(elmtId);
+                        itemCreation2(elmtId, isInitialRender);
+                        if (!isInitialRender) {
+                            ListItem.pop();
+                        }
+                        ViewStackProcessor.StopGetAccessRecording();
+                    };
+                    const itemCreation2 = (elmtId, isInitialRender) => {
+                        ListItem.create(deepRenderFunction, true);
+                        ListItem.debugLine("features/quickstart/src/main/ets/view/NearbyAttraction.ets(37:13)", "quickstart");
+                    };
+                    const deepRenderFunction = (elmtId, isInitialRender) => {
+                        itemCreation(elmtId, isInitialRender);
+                        this.NearbyItem.bind(this)(item, distances[index]);
+                        ListItem.pop();
+                    };
+                    this.observeComponentCreation2(itemCreation2, ListItem);
+                    ListItem.pop();
+                }
+            };
+            this.forEachUpdateFunction(elmtId, nearbyAttractions, forEachItemGenFunction, undefined, true, false);
+        }, ForEach);
+        ForEach.pop();
+        Column.pop();
+        /*List() {
+  
+        }
+        .edgeEffect(EdgeEffect.Spring, {alwaysEnabled:true})
+        .scrollBar(BarState.Off)
+        .width('100%')
+        .height('100%')
+        .listDirection(Axis.Vertical)
+        .layoutWeight(1)*/
+        Scroll.pop();
+        Column.pop();
+    }
+    NearbyItem(attraction, index, parent = null) {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.debugLine("features/quickstart/src/main/ets/view/NearbyAttraction.ets(57:5)", "quickstart");
+            Row.borderRadius(10);
+            Row.backgroundColor(Color.White);
+            Row.height(100);
+            Row.width('100%');
+            Row.padding(10);
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.debugLine("features/quickstart/src/main/ets/view/NearbyAttraction.ets(58:7)", "quickstart");
+            Column.width('40%');
+            Column.padding(8);
+            Column.alignItems(HorizontalAlign.Center);
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Image.create(attraction.image);
+            Image.debugLine("features/quickstart/src/main/ets/view/NearbyAttraction.ets(59:9)", "quickstart");
+            Image.width('100%');
+            Image.height(60);
+        }, Image);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create(attraction.name);
+            Text.debugLine("features/quickstart/src/main/ets/view/NearbyAttraction.ets(62:9)", "quickstart");
+            Text.fontSize(14);
+            Text.padding({ top: 5 });
+            Text.fontColor(Color.Black);
+            Text.fontWeight(500);
+        }, Text);
+        Text.pop();
+        Column.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.debugLine("features/quickstart/src/main/ets/view/NearbyAttraction.ets(72:7)", "quickstart");
+            Column.layoutWeight(1);
+            Column.alignItems(HorizontalAlign.End);
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create(`è·ç¦» ${index}km`);
+            Text.debugLine("features/quickstart/src/main/ets/view/NearbyAttraction.ets(73:9)", "quickstart");
+            Text.fontSize(16);
+        }, Text);
+        Text.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create(attraction.description);
+            Text.debugLine("features/quickstart/src/main/ets/view/NearbyAttraction.ets(75:9)", "quickstart");
+            Text.fontSize(14);
+            Text.padding({ top: 5 });
+            Text.fontColor(Color.Gray);
+            Text.textOverflow({ overflow: TextOverflow.Ellipsis });
+            Text.maxLines(3);
+        }, Text);
+        Text.pop();
+        Column.pop();
+        Row.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+}
+//# sourceMappingURL=NearbyAttraction.js.mapÂ‘ÙOD:\HuaWei\Apps\IctProject\features\quickstart\src\main\ets\model\Attraction.etsÙTD:\HuaWei\Apps\IctProject\features\quickstart\src\main\ets\view\NearbyAttraction.etsÔrBš°belongModulePathªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo¯hostModulesInfoÙ-D:\HuaWei\Apps\IctProject\features\quickstartªquickstartÃÂÙ-D:\HuaWei\Apps\IctProject\features\quickstart¹D:\HuaWei\Apps\IctProjectªquickstart¥1.0.0Ô  ‘ÔrC’²hostDependencyName®hostModuleName¸../view/NearbyAttractionªquickstartÃÚimport { Attraction } from "../model/Attraction"
+
+//è¥¿å®‰é™„è¿‘çš„æ™¯ç‚¹ï¼Œè¦æœ‰ç®€ä»‹
+const nearbyAttractions: Attraction[] = [
+  new Attraction(4, "ç§¦å§‹çš‡å…µé©¬ä¿‘åšç‰©é¦†", $r("app.media.nearby_1"), "ç§¦å§‹çš‡å…µé©¬ä¿‘åšç‰©é¦†ä½äºé™•è¥¿çœè¥¿å®‰å¸‚ï¼Œæ˜¯ä¸­å›½æœ€è‘—åçš„è€ƒå¤é—å€ä¹‹ä¸€ï¼Œå±•ç¤ºäº†ç§¦å§‹çš‡çš„é™µå¢“åŠå…¶å£®è§‚çš„å…µé©¬ä¿‘å†›é˜Ÿã€‚"),
+  new Attraction(5, "å¤§é›å¡”", $r("app.media.nearby_2"), "å¤§é›å¡”æ˜¯å”ä»£è‘—åçš„ä½›å¡”ï¼Œä½äºé™•è¥¿çœè¥¿å®‰å¸‚ï¼Œæ˜¯ç„å¥˜æ³•å¸ˆä¸ºä¿å­˜ä»å°åº¦å¸¦å›çš„ä½›ç»è€Œå»ºã€‚"),
+  new Attraction(6, "è¥¿å®‰åŸå¢™", $r("app.media.nearby_4"), "è¥¿å®‰åŸå¢™æ˜¯ä¸­å›½ç°å­˜è§„æ¨¡æœ€å¤§ã€ä¿å­˜æœ€å®Œæ•´çš„å¤ä»£åŸå£ï¼Œæ˜¯æ˜ä»£åˆå¹´åœ¨å”é•¿å®‰åŸçš„åŸºç¡€ä¸Šæ‰©å»ºè€Œæˆçš„ã€‚"),
+  new Attraction(7, "é’Ÿæ¥¼", $r("app.media.nearby_3"), "é’Ÿæ¥¼ä½äºè¥¿å®‰å¸‚ä¸­å¿ƒï¼Œæ˜¯æ˜ä»£å»ºç­‘çš„å…¸èŒƒï¼Œå†å²ä¸Šç”¨äºæ™¨é’Ÿæš®é¼“ï¼Œç°åœ¨æ˜¯è¥¿å®‰çš„æ ‡å¿—æ€§å»ºç­‘ä¹‹ä¸€ã€‚"),
+  new Attraction(3, "å¤§å”ä¸å¤œåŸ", $r("app.media.attraction_3"), "å¤§å”ä¸å¤œåŸä½äºé™•è¥¿çœè¥¿å®‰å¸‚ï¼Œæ˜¯ä¸€ä¸ªé›†æ–‡åŒ–ã€æ—…æ¸¸ã€å•†ä¸šäºä¸€ä½“çš„ç»¼åˆæ€§æ—…æ¸¸æ™¯åŒºï¼Œä»¥å”ä»£çš‡å®¶å›­æ—ä¸ºä¸»é¢˜ï¼Œå±•ç°äº†ç››å”æ—¶æœŸçš„ç¹è£æ™¯è±¡ã€‚"),
+]
+
+//å®šä¹‰ä¸€ä¸ªæ™¯ç‚¹è·ç¦»æ•°ç»„
+const distances: number[] = [
+  12.2, 5.1, 36.6, 17.2, 49.8
+]
+
+
+@Component
+export struct NearbyAttraction {
+  build() {
+    Column(){
+      Text('é™„è¿‘æ™¯ç‚¹')
+        .fontSize(18)
+        .padding({top:10})
+      /*List() {
+
+      }
+      .edgeEffect(EdgeEffect.Spring, {alwaysEnabled:true})
+      .scrollBar(BarState.Off)
+      .width('100%')
+      .height('100%')
+      .listDirection(Axis.Vertical)
+      .layoutWeight(1)*/
+      Scroll(){
+        Column(){
+          ForEach(nearbyAttractions, (item: Attraction, index) => {
+            ListItem(){
+              this.NearbyItem(item, distances[index])
+            }
+          })
+        }
+      }
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.Off)
+      .width('100%')
+      .layoutWeight(1)
+    }
+    .alignItems(HorizontalAlign.Start)
+    .width('100%')
+    .height('100%')
+    .layoutWeight(1)
+
+  }
+
+  @Builder
+  NearbyItem(attraction: Attraction, index:number){
+    Row(){
+      Column(){
+        Image(attraction.image)
+          .width('100%')
+          .height(60)
+        Text(attraction.name)
+          .fontSize(14)
+          .padding({top:5})
+          .fontColor(Color.Black)
+          .fontWeight(500)
+      }
+      .width('40%')
+      .padding(8)
+      .alignItems(HorizontalAlign.Center)
+
+      Column(){
+        Text(`è·ç¦» ${index}km`)
+          .fontSize(16)
+        Text(attraction.description)
+          .fontSize(14)
+          .padding({top:5})
+          .fontColor(Color.Gray)
+          .textOverflow({overflow: TextOverflow.Ellipsis})
+          .maxLines(3)
+      }
+      .layoutWeight(1)
+      .alignItems(HorizontalAlign.End)
+
+    }
+    .borderRadius(10)
+    .backgroundColor(Color.White)
+    .height(100)
+    .width('100%')
+    .padding(10)
+
+  }
+}ÔrD•§version¨mappings¥names§sources®sourcesContentÜ Õ‘”    ‘”   ‘”   ‘”  ‘”  ‘”  ‘”  ‘”  ‘”   ‘”   ‘”  ‘”   ‘”   ‘”  ‘”  ‘”  ‘”  ‘”  ‘”  ‘”   ‘”  ‘”   ‘”  !‘”  ‘”   ‘”  !‘”  ‘”   ‘”  ‘”   ‘”  ‘”   ‘”  4‘”  8‘”  9‘”  =‘”  =‘”  ÌG‘”  ÌJ‘”  ÌJ‘”  Ì[‘ÙTD:\HuaWei\Apps\IctProject\features\quickstart\src\main\ets\view\NearbyAttraction.ets‘Úimport { Attraction } from "../model/Attraction"
+
+//è¥¿å®‰é™„è¿‘çš„æ™¯ç‚¹ï¼Œè¦æœ‰ç®€ä»‹
+const nearbyAttractions: Attraction[] = [
+  new Attraction(4, "ç§¦å§‹çš‡å…µé©¬ä¿‘åšç‰©é¦†", $r("app.media.nearby_1"), "ç§¦å§‹çš‡å…µé©¬ä¿‘åšç‰©é¦†ä½äºé™•è¥¿çœè¥¿å®‰å¸‚ï¼Œæ˜¯ä¸­å›½æœ€è‘—åçš„è€ƒå¤é—å€ä¹‹ä¸€ï¼Œå±•ç¤ºäº†ç§¦å§‹çš‡çš„é™µå¢“åŠå…¶å£®è§‚çš„å…µé©¬ä¿‘å†›é˜Ÿã€‚"),
+  new Attraction(5, "å¤§é›å¡”", $r("app.media.nearby_2"), "å¤§é›å¡”æ˜¯å”ä»£è‘—åçš„ä½›å¡”ï¼Œä½äºé™•è¥¿çœè¥¿å®‰å¸‚ï¼Œæ˜¯ç„å¥˜æ³•å¸ˆä¸ºä¿å­˜ä»å°åº¦å¸¦å›çš„ä½›ç»è€Œå»ºã€‚"),
+  new Attraction(6, "è¥¿å®‰åŸå¢™", $r("app.media.nearby_4"), "è¥¿å®‰åŸå¢™æ˜¯ä¸­å›½ç°å­˜è§„æ¨¡æœ€å¤§ã€ä¿å­˜æœ€å®Œæ•´çš„å¤ä»£åŸå£ï¼Œæ˜¯æ˜ä»£åˆå¹´åœ¨å”é•¿å®‰åŸçš„åŸºç¡€ä¸Šæ‰©å»ºè€Œæˆçš„ã€‚"),
+  new Attraction(7, "é’Ÿæ¥¼", $r("app.media.nearby_3"), "é’Ÿæ¥¼ä½äºè¥¿å®‰å¸‚ä¸­å¿ƒï¼Œæ˜¯æ˜ä»£å»ºç­‘çš„å…¸èŒƒï¼Œå†å²ä¸Šç”¨äºæ™¨é’Ÿæš®é¼“ï¼Œç°åœ¨æ˜¯è¥¿å®‰çš„æ ‡å¿—æ€§å»ºç­‘ä¹‹ä¸€ã€‚"),
+  new Attraction(3, "å¤§å”ä¸å¤œåŸ", $r("app.media.attraction_3"), "å¤§å”ä¸å¤œåŸä½äºé™•è¥¿çœè¥¿å®‰å¸‚ï¼Œæ˜¯ä¸€ä¸ªé›†æ–‡åŒ–ã€æ—…æ¸¸ã€å•†ä¸šäºä¸€ä½“çš„ç»¼åˆæ€§æ—…æ¸¸æ™¯åŒºï¼Œä»¥å”ä»£çš‡å®¶å›­æ—ä¸ºä¸»é¢˜ï¼Œå±•ç°äº†ç››å”æ—¶æœŸçš„ç¹è£æ™¯è±¡ã€‚"),
+]
+
+//å®šä¹‰ä¸€ä¸ªæ™¯ç‚¹è·ç¦»æ•°ç»„
+const distances: number[] = [
+  12.2, 5.1, 36.6, 17.2, 49.8
+]
+
+
+@Component
+export struct NearbyAttraction {
+  build() {
+    Column(){
+      Text('é™„è¿‘æ™¯ç‚¹')
+        .fontSize(18)
+        .padding({top:10})
+      /*List() {
+
+      }
+      .edgeEffect(EdgeEffect.Spring, {alwaysEnabled:true})
+      .scrollBar(BarState.Off)
+      .width('100%')
+      .height('100%')
+      .listDirection(Axis.Vertical)
+      .layoutWeight(1)*/
+      Scroll(){
+        Column(){
+          ForEach(nearbyAttractions, (item: Attraction, index) => {
+            ListItem(){
+              this.NearbyItem(item, distances[index])
+            }
+          })
+        }
+      }
+      .scrollable(ScrollDirection.Vertical)
+      .scrollBar(BarState.Off)
+      .width('100%')
+      .layoutWeight(1)
+    }
+    .alignItems(HorizontalAlign.Start)
+    .width('100%')
+    .height('100%')
+    .layoutWeight(1)
+
+  }
+
+  @Builder
+  NearbyItem(attraction: Attraction, index:number){
+    Row(){
+      Column(){
+        Image(attraction.image)
+          .width('100%')
+          .height(60)
+        Text(attraction.name)
+          .fontSize(14)
+          .padding({top:5})
+          .fontColor(Color.Black)
+          .fontWeight(500)
+      }
+      .width('40%')
+      .padding(8)
+      .alignItems(HorizontalAlign.Center)
+
+      Column(){
+        Text(`è·ç¦» ${index}km`)
+          .fontSize(16)
+        Text(attraction.description)
+          .fontSize(14)
+          .padding({top:5})
+          .fontColor(Color.Gray)
+          .textOverflow({overflow: TextOverflow.Ellipsis})
+          .maxLines(3)
+      }
+      .layoutWeight(1)
+      .alignItems(HorizontalAlign.End)
+
+    }
+    .borderRadius(10)
+    .backgroundColor(Color.White)
+    .height(100)
+    .width('100%')
+    .padding(10)
+
+  }
+}ÔrE‘³../model/AttractionÔrF—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÂÙOD:\HuaWei\Apps\IctProject\features\quickstart\src\main\ets\model\Attraction.etsAÃªoh-resolveÂÂÔ  ÔrG”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache‘ÔrH–¤type¥start£end«declarationªspecifiers¦source¶ExportNamedDeclarationÍÍ$ãÔrI–¤type¥start£end¢idªsuperClass¤body°ClassDeclarationÍÍ$ãÔrJ”¤type¥start£end¤nameªIdentifierÍ!Í1°NearbyAttractionJªIdentifierÍ:Í@¦ViewPUÔrK”¤type¥start£end¤body©ClassBodyÍAÍ$ã˜ÔrL˜¤type¥start£end¦static¨computed£key¤kind¥value°MethodDefinitionÍHÍ±ÂÂJªIdentifierÍHÍS«constructor«constructorÔrM™¤type¥start£end¢idªexpression©generator¥async¦params¤body²FunctionExpressionÍSÍ±ÀÂÂÂ–JªIdentifierÍTÍZ¦parentJªIdentifierÍ\Íb¦paramsJªIdentifierÍdÍr®__localStorageÔrN•¤type¥start£end¤left¥right±AssignmentPatternÍtÍJªIdentifierÍtÍz¦elmtIdÔrO–¤type¥start£end¨operator¦prefix¨argument¯UnaryExpressionÍ}Í¡-ÃÔrP•¤type¥start£end¥value£raw§LiteralÍ~Í¡1N±AssignmentPatternÍÍ™JªIdentifierÍÍ¬paramsLambdaJªIdentifierÍÍ™©undefinedJªIdentifierÍ›Í¤©extraInfoK®BlockStatementÍ¦Í±”ÔrQ”¤type¥start£endªexpression³ExpressionStatementÍ±ÍâÔrR–¤type¥start£end¦callee©arguments¨optional®CallExpressionÍ±ÍáÔrS“¤type¥start£end¥SuperÍ±Í¶”JªIdentifierÍ·Í½¦parentJªIdentifierÍ¿ÍÍ®__localStorageJªIdentifierÍÏÍÕ¦elmtIdJªIdentifierÍ×Íà©extraInfoÂÔrT–¤type¥start£end¤testªconsequent©alternate«IfStatementÍìÍSÔrU–¤type¥start£end¤left¨operator¥right°BinaryExpressionÍğÍO¯UnaryExpressionÍğÍ¦typeofÃJªIdentifierÍ÷Í¬paramsLambda£===P§LiteralÍÍ¨functionª"function"K®BlockStatementÍÍS‘Q³ExpressionStatementÍ#ÍHÔrV–¤type¥start£end¨operator¤left¥right´AssignmentExpressionÍ#ÍG¡=ÔrW—¤type¥start£end¦object¨property¨computed¨optional°MemberExpressionÍ#Í8S®ThisExpressionÍ#Í'JªIdentifierÍ(Í8°paramsGenerator_ÂÂJªIdentifierÍ;ÍG¬paramsLambdaÀQ³ExpressionStatementÍ]Í„R®CallExpressionÍ]ÍƒW°MemberExpressionÍ]Í{S®ThisExpressionÍ]ÍaJªIdentifierÍbÍ{¹setInitiallyProvidedValueÂÂ‘JªIdentifierÍ|Í‚¦paramsÂQ³ExpressionStatementÍÍªR®CallExpressionÍÍ©W°MemberExpressionÍÍ§S®ThisExpressionÍÍ’JªIdentifierÍ“Í§´finalizeConstructionÂÂÂL°MethodDefinitionÍ·ÍáÂÂJªIdentifierÍ·ÍĞ¹setInitiallyProvidedValue¦methodM²FunctionExpressionÍĞÍáÀÂÂÂ‘JªIdentifierÍÑÍ×¦paramsK®BlockStatementÍÙÍáL°MethodDefinitionÍçÍÂÂJªIdentifierÍçÍö¯updateStateVars¦methodM²FunctionExpressionÍöÍÀÂÂÂ‘JªIdentifierÍ÷Íı¦paramsK®BlockStatementÍÿÍL°MethodDefinitionÍÍAÂÂJªIdentifierÍÍ.Ù!purgeVariableDependenciesOnElmtId¦methodM²FunctionExpressionÍ.ÍAÀÂÂÂ‘JªIdentifierÍ/Í7¨rmElmtIdK®BlockStatementÍ9ÍAL°MethodDefinitionÍGÍÂÂÂJªIdentifierÍGÍW°aboutToBeDeleted¦methodM²FunctionExpressionÍWÍÂÀÂÂÂK®BlockStatementÍZÍÂ’Q³ExpressionStatementÍeÍ‘R®CallExpressionÍeÍW°MemberExpressionÍeÍƒR®CallExpressionÍeÍ|W°MemberExpressionÍeÍzJªIdentifierÍeÍv±SubscriberManagerJªIdentifierÍwÍz£GetÂÂÂJªIdentifierÍ}Íƒ¦deleteÂÂ‘R®CallExpressionÍ„ÍW°MemberExpressionÍ„ÍS®ThisExpressionÍ„ÍˆJªIdentifierÍ‰Í¤id__ÂÂÂÂQ³ExpressionStatementÍ›Í»R®CallExpressionÍ›ÍºW°MemberExpressionÍ›Í¸S®ThisExpressionÍ›ÍŸJªIdentifierÍ Í¸¸aboutToBeDeletedInternalÂÂÂL°MethodDefinitionÍÈÍÂÂJªIdentifierÍÈÍÕ­initialRender¦methodM²FunctionExpressionÍÕÍÀÂÂÂK®BlockStatementÍØÍšQ³ExpressionStatementÍãÍ	gR®CallExpressionÍãÍ	fW°MemberExpressionÍãÍS®ThisExpressionÍãÍçJªIdentifierÍèÍ¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍÍ	]ÀÂÂÂ’JªIdentifierÍÍ	¦elmtIdJªIdentifierÍÍ¯isInitialRenderK®BlockStatementÍÍ	]–Q³ExpressionStatementÍ.Í>R®CallExpressionÍ.Í=W°MemberExpressionÍ.Í;JªIdentifierÍ.Í4¦ColumnJªIdentifierÍ5Í;¦createÂÂÂQ³ExpressionStatementÍLÍ¯R®CallExpressionÍLÍ®W°MemberExpressionÍLÍ\JªIdentifierÍLÍR¦ColumnJªIdentifierÍSÍ\©debugLineÂÂ’P§LiteralÍ]ÍŸÙ@features/quickstart/src/main/ets/view/NearbyAttraction.ets(21:5)ÙB"features/quickstart/src/main/ets/view/NearbyAttraction.ets(21:5)"P§LiteralÍ¡Í­ªquickstart¬"quickstart"ÂQ³ExpressionStatementÍ½ÍæR®CallExpressionÍ½ÍåW°MemberExpressionÍ½ÍÎJªIdentifierÍ½ÍÃ¦ColumnJªIdentifierÍÄÍÎªalignItemsÂÂ‘W°MemberExpressionÍÏÍäJªIdentifierÍÏÍŞ¯HorizontalAlignJªIdentifierÍßÍä¥StartÂÂÂQ³ExpressionStatementÍôÍ		R®CallExpressionÍôÍ	W°MemberExpressionÍôÍ	 JªIdentifierÍôÍú¦ColumnJªIdentifierÍûÍ	 ¥widthÂÂ‘P§LiteralÍ	Í	¤100%¦'100%'ÂQ³ExpressionStatementÍ	Í	-R®CallExpressionÍ	Í	,W°MemberExpressionÍ	Í	$JªIdentifierÍ	Í	¦ColumnJªIdentifierÍ	Í	$¦heightÂÂ‘P§LiteralÍ	%Í	+¤100%¦'100%'ÂQ³ExpressionStatementÍ	;Í	RR®CallExpressionÍ	;Í	QW°MemberExpressionÍ	;Í	NJªIdentifierÍ	;Í	A¦ColumnJªIdentifierÍ	BÍ	N¬layoutWeightÂÂ‘P§LiteralÍ	OÍ	P¡1ÂJªIdentifierÍ	_Í	e¦ColumnÂQ³ExpressionStatementÍ	qÍ
+šR®CallExpressionÍ	qÍ
+™W°MemberExpressionÍ	qÍ	S®ThisExpressionÍ	qÍ	uJªIdentifierÍ	vÍ	¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ	Í
+’ÀÂÂÂ’JªIdentifierÍ	‘Í	—¦elmtIdJªIdentifierÍ	™Í	¨¯isInitialRenderK®BlockStatementÍ	­Í
+’”Q³ExpressionStatementÍ	¼Í	ĞR®CallExpressionÍ	¼Í	ÏW°MemberExpressionÍ	¼Í	ÇJªIdentifierÍ	¼Í	À¤TextJªIdentifierÍ	ÁÍ	Ç¦createÂÂ‘P§LiteralÍ	ÈÍ	Î¬é™„è¿‘æ™¯ç‚¹®'é™„è¿‘æ™¯ç‚¹'ÂQ³ExpressionStatementÍ	ŞÍ
+?R®CallExpressionÍ	ŞÍ
+>W°MemberExpressionÍ	ŞÍ	ìJªIdentifierÍ	ŞÍ	â¤TextJªIdentifierÍ	ãÍ	ì©debugLineÂÂ’P§LiteralÍ	íÍ
+/Ù@features/quickstart/src/main/ets/view/NearbyAttraction.ets(22:7)ÙB"features/quickstart/src/main/ets/view/NearbyAttraction.ets(22:7)"P§LiteralÍ
+1Í
+=ªquickstart¬"quickstart"ÂQ³ExpressionStatementÍ
+MÍ
+_R®CallExpressionÍ
+MÍ
+^W°MemberExpressionÍ
+MÍ
+ZJªIdentifierÍ
+MÍ
+Q¤TextJªIdentifierÍ
+RÍ
+Z¨fontSizeÂÂ‘P§LiteralÍ
+[Í
+]¢18ÂQ³ExpressionStatementÍ
+mÍ
+‡R®CallExpressionÍ
+mÍ
+†W°MemberExpressionÍ
+mÍ
+yJªIdentifierÍ
+mÍ
+q¤TextJªIdentifierÍ
+rÍ
+y§paddingÂÂ‘ÔrX”¤type¥start£endªproperties°ObjectExpressionÍ
+zÍ
+…‘ÔrY™¤type¥start£end¦method©shorthand¨computed£key¥value¤kind¨PropertyÍ
+|Í
+ƒÂÂÂJªIdentifierÍ
+|Í
+£topP§LiteralÍ
+Í
+ƒ
+¢10¤initÂJªIdentifierÍ
+”Í
+˜¤TextÂQ³ExpressionStatementÍ
+¤Í
+¯R®CallExpressionÍ
+¤Í
+®W°MemberExpressionÍ
+¤Í
+¬JªIdentifierÍ
+¤Í
+¨¤TextJªIdentifierÍ
+©Í
+¬£popÂÂÂQ³ExpressionStatementÍ
+¹ÍĞR®CallExpressionÍ
+¹ÍÏW°MemberExpressionÍ
+¹Í
+×S®ThisExpressionÍ
+¹Í
+½JªIdentifierÍ
+¾Í
+×¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ
+ØÍÆÀÂÂÂ’JªIdentifierÍ
+ÙÍ
+ß¦elmtIdJªIdentifierÍ
+áÍ
+ğ¯isInitialRenderK®BlockStatementÍ
+õÍÆ–Q³ExpressionStatementÍÍ/R®CallExpressionÍÍ.W°MemberExpressionÍÍ,JªIdentifierÍÍ%¦ScrollJªIdentifierÍ&Í,¦createÂÂÂQ³ExpressionStatementÍ=Í R®CallExpressionÍ=ÍŸW°MemberExpressionÍ=ÍMJªIdentifierÍ=ÍC¦ScrollJªIdentifierÍDÍM©debugLineÂÂ’P§LiteralÍNÍÙ@features/quickstart/src/main/ets/view/NearbyAttraction.ets(34:7)ÙB"features/quickstart/src/main/ets/view/NearbyAttraction.ets(34:7)"P§LiteralÍ’Íªquickstart¬"quickstart"ÂQ³ExpressionStatementÍÉÍõR®CallExpressionÍÉÍôW°MemberExpressionÍÉÍÚJªIdentifierÍÉÍÏ¦ScrollJªIdentifierÍĞÍÚªscrollableÂÂ‘W°MemberExpressionÍÛÍóJªIdentifierÍÛÍê¯ScrollDirectionJªIdentifierÍëÍó¨VerticalÂÂÂQ³ExpressionStatementÍÍ=R®CallExpressionÍÍ<W°MemberExpressionÍÍ.JªIdentifierÍÍ$¦ScrollJªIdentifierÍ%Í.©scrollBarÂÂ‘W°MemberExpressionÍ/Í;JªIdentifierÍ/Í7¨BarStateJªIdentifierÍ8Í;£OffÂÂÂQ³ExpressionStatementÍfÍ{R®CallExpressionÍfÍzW°MemberExpressionÍfÍrJªIdentifierÍfÍl¦ScrollJªIdentifierÍmÍr¥widthÂÂ‘P§LiteralÍsÍy¤100%¦'100%'ÂQ³ExpressionStatementÍ¤Í»R®CallExpressionÍ¤ÍºW°MemberExpressionÍ¤Í·JªIdentifierÍ¤Íª¦ScrollJªIdentifierÍ«Í·¬layoutWeightÂÂ‘P§LiteralÍ¸Í¹¡1ÂJªIdentifierÍÈÍÎ¦ScrollÂQ³ExpressionStatementÍÚÍ»R®CallExpressionÍÚÍºW°MemberExpressionÍÚÍøS®ThisExpressionÍÚÍŞJªIdentifierÍßÍø¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍùÍ±ÀÂÂÂ’JªIdentifierÍúÍ ¦elmtIdJªIdentifierÍÍ¯isInitialRenderK®BlockStatementÍÍ±’Q³ExpressionStatementÍ%Í5R®CallExpressionÍ%Í4W°MemberExpressionÍ%Í2JªIdentifierÍ%Í+¦ColumnJªIdentifierÍ,Í2¦createÂÂÂQ³ExpressionStatementÍCÍ¦R®CallExpressionÍCÍ¥W°MemberExpressionÍCÍSJªIdentifierÍCÍI¦ColumnJªIdentifierÍJÍS©debugLineÂÂ’P§LiteralÍTÍ–Ù@features/quickstart/src/main/ets/view/NearbyAttraction.ets(35:9)ÙB"features/quickstart/src/main/ets/view/NearbyAttraction.ets(35:9)"P§LiteralÍ˜Í¤ªquickstart¬"quickstart"ÂJªIdentifierÍ³Í¹¦ColumnÂQ³ExpressionStatementÍÅÍ­R®CallExpressionÍÅÍ¬W°MemberExpressionÍÅÍãS®ThisExpressionÍÅÍÉJªIdentifierÍÊÍã¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍäÍ¢ÀÂÂÂ’JªIdentifierÍåÍë¦elmtIdJªIdentifierÍíÍü¯isInitialRenderK®BlockStatementÍÍ¢“Q³ExpressionStatementÍÍ!R®CallExpressionÍÍ W°MemberExpressionÍÍJªIdentifierÍÍ§ForEachJªIdentifierÍÍ¦createÂÂÂÔrZ•¤type¥start£end¬declarations¤kind³VariableDeclarationÍ/Í#‘Ôr[•¤type¥start£end¢id¤init²VariableDeclaratorÍ5Í"JªIdentifierÍ5ÍK¶forEachItemGenFunctionM·ArrowFunctionExpressionÍNÍ"ÀÂÂÂ’JªIdentifierÍOÍT¥_itemJªIdentifierÍVÍ[¥indexK®BlockStatementÍ`Í"’Z³VariableDeclarationÍsÍ†‘[²VariableDeclaratorÍyÍ…JªIdentifierÍyÍ}¤itemJªIdentifierÍ€Í…¥_item¥constK®BlockStatementÍ˜Í•Z³VariableDeclarationÍ¯ÍJ‘[²VariableDeclaratorÍµÍIJªIdentifierÍµÍÁ¬itemCreationM·ArrowFunctionExpressionÍÄÍIÀÂÂÂ’JªIdentifierÍÅÍË¦elmtIdJªIdentifierÍÍÍÜ¯isInitialRenderK®BlockStatementÍáÍI”Q³ExpressionStatementÍüÍ2R®CallExpressionÍüÍ1W°MemberExpressionÍüÍ)JªIdentifierÍüÍ²ViewStackProcessorJªIdentifierÍÍ)ºStartGetAccessRecordingForÂÂ‘JªIdentifierÍ*Í0¦elmtIdÂQ³ExpressionStatementÍLÍsR®CallExpressionÍLÍrJªIdentifierÍLÍY­itemCreation2’JªIdentifierÍZÍ`¦elmtIdJªIdentifierÍbÍq¯isInitialRenderÂT«IfStatementÍÍìO¯UnaryExpressionÍ‘Í¡¡!ÃJªIdentifierÍ’Í¡¯isInitialRenderK®BlockStatementÍ£Íì‘Q³ExpressionStatementÍÂÍÑR®CallExpressionÍÂÍĞW°MemberExpressionÍÂÍÎJªIdentifierÍÂÍÊ¨ListItemJªIdentifierÍËÍÎ£popÂÂÂÀQ³ExpressionStatementÍÍ2R®CallExpressionÍÍ1W°MemberExpressionÍÍ/JªIdentifierÍÍ²ViewStackProcessorJªIdentifierÍÍ/¶StopGetAccessRecordingÂÂÂ¥constZ³VariableDeclarationÍ`Íp‘[²VariableDeclaratorÍfÍoJªIdentifierÍfÍs­itemCreation2M·ArrowFunctionExpressionÍvÍoÀÂÂÂ’JªIdentifierÍwÍ}¦elmtIdJªIdentifierÍÍ¯isInitialRenderK®BlockStatementÍ“Ío’Q³ExpressionStatementÍ®ÍØR®CallExpressionÍ®Í×W°MemberExpressionÍ®Í½JªIdentifierÍ®Í¶¨ListItemJªIdentifierÍ·Í½¦createÂÂ’JªIdentifierÍ¾ÍĞ²deepRenderFunctionP§LiteralÍÒÍÖÃ¤trueÂQ³ExpressionStatementÍòÍXR®CallExpressionÍòÍWW°MemberExpressionÍòÍJªIdentifierÍòÍú¨ListItemJªIdentifierÍûÍ©debugLineÂÂ’P§LiteralÍÍHÙAfeatures/quickstart/src/main/ets/view/NearbyAttraction.ets(37:13)ÙC"features/quickstart/src/main/ets/view/NearbyAttraction.ets(37:13)"P§LiteralÍJÍVªquickstart¬"quickstart"Â¥constZ³VariableDeclarationÍ†Í‘[²VariableDeclaratorÍŒÍŒJªIdentifierÍŒÍ²deepRenderFunctionM·ArrowFunctionExpressionÍ¡ÍŒÀÂÂÂ’JªIdentifierÍ¢Í¨¦elmtIdJªIdentifierÍªÍ¹¯isInitialRenderK®BlockStatementÍ¾ÍŒ“Q³ExpressionStatementÍÙÍÿR®CallExpressionÍÙÍşJªIdentifierÍÙÍå¬itemCreation’JªIdentifierÍæÍì¦elmtIdJªIdentifierÍîÍı¯isInitialRenderÂQ³ExpressionStatementÍÍLR®CallExpressionÍÍKR®CallExpressionÍÍ3W°MemberExpressionÍÍ-W°MemberExpressionÍÍ(S®ThisExpressionÍÍJªIdentifierÍÍ(ªNearbyItemÂÂJªIdentifierÍ)Í-¤bindÂÂ‘S®ThisExpressionÍ.Í2Â’JªIdentifierÍ4Í8¤itemW°MemberExpressionÍ:ÍJJªIdentifierÍ:ÍC©distancesJªIdentifierÍDÍI¥indexÃÂÂQ³ExpressionStatementÍfÍuR®CallExpressionÍfÍtW°MemberExpressionÍfÍrJªIdentifierÍfÍn¨ListItemJªIdentifierÍoÍr£popÂÂÂ¥constQ³ExpressionStatementÍ£ÍÛR®CallExpressionÍ£ÍÚW°MemberExpressionÍ£ÍÁS®ThisExpressionÍ£Í§JªIdentifierÍ¨ÍÁ¹observeComponentCreation2ÂÂ’JªIdentifierÍÂÍÏ­itemCreation2JªIdentifierÍÑÍÙ¨ListItemÂQ³ExpressionStatementÍñÍ R®CallExpressionÍñÍÿW°MemberExpressionÍñÍıJªIdentifierÍñÍù¨ListItemJªIdentifierÍúÍı£popÂÂÂ¥constQ³ExpressionStatementÍ1Í—R®CallExpressionÍ1Í–W°MemberExpressionÍ1ÍKS®ThisExpressionÍ1Í5JªIdentifierÍ6ÍKµforEachUpdateFunctionÂÂ–JªIdentifierÍLÍR¦elmtIdJªIdentifierÍTÍe±nearbyAttractionsJªIdentifierÍgÍ}¶forEachItemGenFunctionJªIdentifierÍÍˆ©undefinedP§LiteralÍŠÍÃ¤trueP§LiteralÍÍ•Â¥falseÂJªIdentifierÍ¤Í«§ForEachÂQ³ExpressionStatementÍ·ÍÅR®CallExpressionÍ·ÍÄW°MemberExpressionÍ·ÍÂJªIdentifierÍ·Í¾§ForEachJªIdentifierÍ¿ÍÂ£popÂÂÂQ³ExpressionStatementÍÏÍÜR®CallExpressionÍÏÍÛW°MemberExpressionÍÏÍÙJªIdentifierÍÏÍÕ¦ColumnJªIdentifierÍÖÍÙ£popÂÂÂQ³ExpressionStatementÍİÍêR®CallExpressionÍİÍéW°MemberExpressionÍİÍçJªIdentifierÍİÍã¦ScrollJªIdentifierÍäÍç£popÂÂÂQ³ExpressionStatementÍôÍR®CallExpressionÍôÍ W°MemberExpressionÍôÍşJªIdentifierÍôÍú¦ColumnJªIdentifierÍûÍş£popÂÂÂL°MethodDefinitionÍÍ$¢ÂÂJªIdentifierÍÍªNearbyItem¦methodM²FunctionExpressionÍÍ$¢ÀÂÂÂ“JªIdentifierÍÍ#ªattractionJªIdentifierÍ%Í*¥indexN±AssignmentPatternÍ,Í9JªIdentifierÍ,Í2¦parentP§LiteralÍ5Í9À¤nullK®BlockStatementÍ;Í$¢Q³ExpressionStatementÍFÍÌR®CallExpressionÍFÍËW°MemberExpressionÍFÍdS®ThisExpressionÍFÍJJªIdentifierÍKÍd¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍeÍÅÀÂÂÂ’JªIdentifierÍfÍl¦elmtIdJªIdentifierÍnÍ}¯isInitialRenderK®BlockStatementÍ‚ÍÅ—Q³ExpressionStatementÍ‘ÍR®CallExpressionÍ‘ÍW°MemberExpressionÍ‘Í›JªIdentifierÍ‘Í”£RowJªIdentifierÍ•Í›¦createÂÂÂQ³ExpressionStatementÍ¬ÍR®CallExpressionÍ¬ÍW°MemberExpressionÍ¬Í¹JªIdentifierÍ¬Í¯£RowJªIdentifierÍ°Í¹©debugLineÂÂ’P§LiteralÍºÍüÙ@features/quickstart/src/main/ets/view/NearbyAttraction.ets(57:5)ÙB"features/quickstart/src/main/ets/view/NearbyAttraction.ets(57:5)"P§LiteralÍşÍ
+ªquickstart¬"quickstart"ÂQ³ExpressionStatementÍÍ/R®CallExpressionÍÍ.W°MemberExpressionÍÍ*JªIdentifierÍÍ£RowJªIdentifierÍÍ*¬borderRadiusÂÂ‘P§LiteralÍ+Í-
+¢10ÂQ³ExpressionStatementÍ=Í^R®CallExpressionÍ=Í]W°MemberExpressionÍ=ÍPJªIdentifierÍ=Í@£RowJªIdentifierÍAÍP¯backgroundColorÂÂ‘W°MemberExpressionÍQÍ\JªIdentifierÍQÍV¥ColorJªIdentifierÍWÍ\¥WhiteÂÂÂQ³ExpressionStatementÍlÍ|R®CallExpressionÍlÍ{W°MemberExpressionÍlÍvJªIdentifierÍlÍo£RowJªIdentifierÍpÍv¦heightÂÂ‘P§LiteralÍwÍzÌd£100ÂQ³ExpressionStatementÍŠÍœR®CallExpressionÍŠÍ›W°MemberExpressionÍŠÍ“JªIdentifierÍŠÍ£RowJªIdentifierÍÍ“¥widthÂÂ‘P§LiteralÍ”Íš¤100%¦'100%'ÂQ³ExpressionStatementÍªÍºR®CallExpressionÍªÍ¹W°MemberExpressionÍªÍµJªIdentifierÍªÍ­£RowJªIdentifierÍ®Íµ§paddingÂÂ‘P§LiteralÍ¶Í¸
+¢10ÂJªIdentifierÍÇÍÊ£RowÂQ³ExpressionStatementÍÖÍ1R®CallExpressionÍÖÍ0W°MemberExpressionÍÖÍôS®ThisExpressionÍÖÍÚJªIdentifierÍÛÍô¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍõÍ'ÀÂÂÂ’JªIdentifierÍöÍü¦elmtIdJªIdentifierÍşÍ¯isInitialRenderK®BlockStatementÍÍ'•Q³ExpressionStatementÍ!Í1R®CallExpressionÍ!Í0W°MemberExpressionÍ!Í.JªIdentifierÍ!Í'¦ColumnJªIdentifierÍ(Í.¦createÂÂÂQ³ExpressionStatementÍ?Í¢R®CallExpressionÍ?Í¡W°MemberExpressionÍ?ÍOJªIdentifierÍ?ÍE¦ColumnJªIdentifierÍFÍO©debugLineÂÂ’P§LiteralÍPÍ’Ù@features/quickstart/src/main/ets/view/NearbyAttraction.ets(58:7)ÙB"features/quickstart/src/main/ets/view/NearbyAttraction.ets(58:7)"P§LiteralÍ”Í ªquickstart¬"quickstart"ÂQ³ExpressionStatementÍ°ÍÄR®CallExpressionÍ°ÍÃW°MemberExpressionÍ°Í¼JªIdentifierÍ°Í¶¦ColumnJªIdentifierÍ·Í¼¥widthÂÂ‘P§LiteralÍ½ÍÂ£40%¥'40%'ÂQ³ExpressionStatementÍÒÍäR®CallExpressionÍÒÍãW°MemberExpressionÍÒÍàJªIdentifierÍÒÍØ¦ColumnJªIdentifierÍÙÍà§paddingÂÂ‘P§LiteralÍáÍâ¡8ÂQ³ExpressionStatementÍòÍR®CallExpressionÍòÍW°MemberExpressionÍòÍJªIdentifierÍòÍø¦ColumnJªIdentifierÍùÍªalignItemsÂÂ‘W°MemberExpressionÍÍJªIdentifierÍÍ¯HorizontalAlignJªIdentifierÍÍ¦CenterÂÂÂJªIdentifierÍ)Í/¦ColumnÂQ³ExpressionStatementÍ;ÍjR®CallExpressionÍ;ÍiW°MemberExpressionÍ;ÍYS®ThisExpressionÍ;Í?JªIdentifierÍ@ÍY¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍZÍaÀÂÂÂ’JªIdentifierÍ[Ía¦elmtIdJªIdentifierÍcÍr¯isInitialRenderK®BlockStatementÍwÍa”Q³ExpressionStatementÍ†Í¥R®CallExpressionÍ†Í¤W°MemberExpressionÍ†Í’JªIdentifierÍ†Í‹¥ImageJªIdentifierÍŒÍ’¦createÂÂ‘W°MemberExpressionÍ“Í£JªIdentifierÍ“ÍªattractionJªIdentifierÍÍ£¥imageÂÂÂQ³ExpressionStatementÍ³ÍR®CallExpressionÍ³ÍW°MemberExpressionÍ³ÍÂJªIdentifierÍ³Í¸¥ImageJªIdentifierÍ¹ÍÂ©debugLineÂÂ’P§LiteralÍÃÍÙ@features/quickstart/src/main/ets/view/NearbyAttraction.ets(59:9)ÙB"features/quickstart/src/main/ets/view/NearbyAttraction.ets(59:9)"P§LiteralÍÍªquickstart¬"quickstart"ÂQ³ExpressionStatementÍ#Í7R®CallExpressionÍ#Í6W°MemberExpressionÍ#Í.JªIdentifierÍ#Í(¥ImageJªIdentifierÍ)Í.¥widthÂÂ‘P§LiteralÍ/Í5¤100%¦'100%'ÂQ³ExpressionStatementÍEÍVR®CallExpressionÍEÍUW°MemberExpressionÍEÍQJªIdentifierÍEÍJ¥ImageJªIdentifierÍKÍQ¦heightÂÂ‘P§LiteralÍRÍT<¢60ÂJªIdentifierÍcÍh¥ImageÂQ³ExpressionStatementÍtÍòR®CallExpressionÍtÍñW°MemberExpressionÍtÍ’S®ThisExpressionÍtÍxJªIdentifierÍyÍ’¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ“ÍêÀÂÂÂ’JªIdentifierÍ”Íš¦elmtIdJªIdentifierÍœÍ«¯isInitialRenderK®BlockStatementÍ°Íê–Q³ExpressionStatementÍ¿ÍÜR®CallExpressionÍ¿ÍÛW°MemberExpressionÍ¿ÍÊJªIdentifierÍ¿ÍÃ¤TextJªIdentifierÍÄÍÊ¦createÂÂ‘W°MemberExpressionÍËÍÚJªIdentifierÍËÍÕªattractionJªIdentifierÍÖÍÚ¤nameÂÂÂQ³ExpressionStatementÍêÍKR®CallExpressionÍêÍJW°MemberExpressionÍêÍøJªIdentifierÍêÍî¤TextJªIdentifierÍïÍø©debugLineÂÂ’P§LiteralÍùÍ;Ù@features/quickstart/src/main/ets/view/NearbyAttraction.ets(62:9)ÙB"features/quickstart/src/main/ets/view/NearbyAttraction.ets(62:9)"P§LiteralÍ=ÍIªquickstart¬"quickstart"ÂQ³ExpressionStatementÍYÍkR®CallExpressionÍYÍjW°MemberExpressionÍYÍfJªIdentifierÍYÍ]¤TextJªIdentifierÍ^Íf¨fontSizeÂÂ‘P§LiteralÍgÍi¢14ÂQ³ExpressionStatementÍyÍ’R®CallExpressionÍyÍ‘W°MemberExpressionÍyÍ…JªIdentifierÍyÍ}¤TextJªIdentifierÍ~Í…§paddingÂÂ‘X°ObjectExpressionÍ†Í‘Y¨PropertyÍˆÍÂÂÂJªIdentifierÍˆÍ‹£topP§LiteralÍÍ¡5¤initÂQ³ExpressionStatementÍ Í¼R®CallExpressionÍ Í»W°MemberExpressionÍ Í®JªIdentifierÍ Í¤¤TextJªIdentifierÍ¥Í®©fontColorÂÂ‘W°MemberExpressionÍ¯ÍºJªIdentifierÍ¯Í´¥ColorJªIdentifierÍµÍº¥BlackÂÂÂQ³ExpressionStatementÍÊÍßR®CallExpressionÍÊÍŞW°MemberExpressionÍÊÍÙJªIdentifierÍÊÍÎ¤TextJªIdentifierÍÏÍÙªfontWeightÂÂ‘P§LiteralÍÚÍİÍô£500ÂJªIdentifierÍìÍğ¤TextÂQ³ExpressionStatementÍüÍ R®CallExpressionÍüÍ W°MemberExpressionÍüÍ JªIdentifierÍüÍ  ¤TextJªIdentifierÍ Í £popÂÂÂQ³ExpressionStatementÍ Í R®CallExpressionÍ Í W°MemberExpressionÍ Í JªIdentifierÍ Í ¦ColumnJªIdentifierÍ Í £popÂÂÂQ³ExpressionStatementÍ (Í!cR®CallExpressionÍ (Í!bW°MemberExpressionÍ (Í FS®ThisExpressionÍ (Í ,JªIdentifierÍ -Í F¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ GÍ!YÀÂÂÂ’JªIdentifierÍ HÍ N¦elmtIdJªIdentifierÍ PÍ _¯isInitialRenderK®BlockStatementÍ dÍ!Y”Q³ExpressionStatementÍ sÍ ƒR®CallExpressionÍ sÍ ‚W°MemberExpressionÍ sÍ €JªIdentifierÍ sÍ y¦ColumnJªIdentifierÍ zÍ €¦createÂÂÂQ³ExpressionStatementÍ ‘Í ôR®CallExpressionÍ ‘Í óW°MemberExpressionÍ ‘Í ¡JªIdentifierÍ ‘Í —¦ColumnJªIdentifierÍ ˜Í ¡©debugLineÂÂ’P§LiteralÍ ¢Í äÙ@features/quickstart/src/main/ets/view/NearbyAttraction.ets(72:7)ÙB"features/quickstart/src/main/ets/view/NearbyAttraction.ets(72:7)"P§LiteralÍ æÍ òªquickstart¬"quickstart"ÂQ³ExpressionStatementÍ!Í!R®CallExpressionÍ!Í!W°MemberExpressionÍ!Í!JªIdentifierÍ!Í!¦ColumnJªIdentifierÍ!	Í!¬layoutWeightÂÂ‘P§LiteralÍ!Í!¡1ÂQ³ExpressionStatementÍ!'Í!NR®CallExpressionÍ!'Í!MW°MemberExpressionÍ!'Í!8JªIdentifierÍ!'Í!-¦ColumnJªIdentifierÍ!.Í!8ªalignItemsÂÂ‘W°MemberExpressionÍ!9Í!LJªIdentifierÍ!9Í!H¯HorizontalAlignJªIdentifierÍ!IÍ!L£EndÂÂÂJªIdentifierÍ![Í!a¦ColumnÂQ³ExpressionStatementÍ!mÍ"wR®CallExpressionÍ!mÍ"vW°MemberExpressionÍ!mÍ!‹S®ThisExpressionÍ!mÍ!qJªIdentifierÍ!rÍ!‹¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ!ŒÍ"oÀÂÂÂ’JªIdentifierÍ!Í!“¦elmtIdJªIdentifierÍ!•Í!¤¯isInitialRenderK®BlockStatementÍ!©Í"o“Q³ExpressionStatementÍ!¸Í!ÕR®CallExpressionÍ!¸Í!ÔW°MemberExpressionÍ!¸Í!ÃJªIdentifierÍ!¸Í!¼¤TextJªIdentifierÍ!½Í!Ã¦createÂÂ‘Ôr\•¤type¥start£end«expressions¦quasis¯TemplateLiteralÍ!ÄÍ!Ó‘JªIdentifierÍ!ÊÍ!Ï¥index’Ôr]•¤type¥start£end¥value¤tail¯TemplateElementÍ!ÅÍ!ÈÔr^’£raw¦cooked§è·ç¦» §è·ç¦» Â]¯TemplateElementÍ!ĞÍ!Ò^¢km¢kmÃÂQ³ExpressionStatementÍ!ãÍ"DR®CallExpressionÍ!ãÍ"CW°MemberExpressionÍ!ãÍ!ñJªIdentifierÍ!ãÍ!ç¤TextJªIdentifierÍ!èÍ!ñ©debugLineÂÂ’P§LiteralÍ!òÍ"4Ù@features/quickstart/src/main/ets/view/NearbyAttraction.ets(73:9)ÙB"features/quickstart/src/main/ets/view/NearbyAttraction.ets(73:9)"P§LiteralÍ"6Í"Bªquickstart¬"quickstart"ÂQ³ExpressionStatementÍ"RÍ"dR®CallExpressionÍ"RÍ"cW°MemberExpressionÍ"RÍ"_JªIdentifierÍ"RÍ"V¤TextJªIdentifierÍ"WÍ"_¨fontSizeÂÂ‘P§LiteralÍ"`Í"b¢16ÂJªIdentifierÍ"qÍ"u¤TextÂQ³ExpressionStatementÍ"Í"ŒR®CallExpressionÍ"Í"‹W°MemberExpressionÍ"Í"‰JªIdentifierÍ"Í"…¤TextJªIdentifierÍ"†Í"‰£popÂÂÂQ³ExpressionStatementÍ"–Í$[R®CallExpressionÍ"–Í$ZW°MemberExpressionÍ"–Í"´S®ThisExpressionÍ"–Í"šJªIdentifierÍ"›Í"´¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ"µÍ$SÀÂÂÂ’JªIdentifierÍ"¶Í"¼¦elmtIdJªIdentifierÍ"¾Í"Í¯isInitialRenderK®BlockStatementÍ"ÒÍ$S—Q³ExpressionStatementÍ"áÍ#R®CallExpressionÍ"áÍ#W°MemberExpressionÍ"áÍ"ìJªIdentifierÍ"áÍ"å¤TextJªIdentifierÍ"æÍ"ì¦createÂÂ‘W°MemberExpressionÍ"íÍ#JªIdentifierÍ"íÍ"÷ªattractionJªIdentifierÍ"øÍ#«descriptionÂÂÂQ³ExpressionStatementÍ#Í#tR®CallExpressionÍ#Í#sW°MemberExpressionÍ#Í#!JªIdentifierÍ#Í#¤TextJªIdentifierÍ#Í#!©debugLineÂÂ’P§LiteralÍ#"Í#dÙ@features/quickstart/src/main/ets/view/NearbyAttraction.ets(75:9)ÙB"features/quickstart/src/main/ets/view/NearbyAttraction.ets(75:9)"P§LiteralÍ#fÍ#rªquickstart¬"quickstart"ÂQ³ExpressionStatementÍ#‚Í#”R®CallExpressionÍ#‚Í#“W°MemberExpressionÍ#‚Í#JªIdentifierÍ#‚Í#†¤TextJªIdentifierÍ#‡Í#¨fontSizeÂÂ‘P§LiteralÍ#Í#’¢14ÂQ³ExpressionStatementÍ#¢Í#»R®CallExpressionÍ#¢Í#ºW°MemberExpressionÍ#¢Í#®JªIdentifierÍ#¢Í#¦¤TextJªIdentifierÍ#§Í#®§paddingÂÂ‘X°ObjectExpressionÍ#¯Í#¹‘Y¨PropertyÍ#±Í#·ÂÂÂJªIdentifierÍ#±Í#´£topP§LiteralÍ#¶Í#·¡5¤initÂQ³ExpressionStatementÍ#ÉÍ#äR®CallExpressionÍ#ÉÍ#ãW°MemberExpressionÍ#ÉÍ#×JªIdentifierÍ#ÉÍ#Í¤TextJªIdentifierÍ#ÎÍ#×©fontColorÂÂ‘W°MemberExpressionÍ#ØÍ#âJªIdentifierÍ#ØÍ#İ¥ColorJªIdentifierÍ#ŞÍ#â¤GrayÂÂÂQ³ExpressionStatementÍ#òÍ$)R®CallExpressionÍ#òÍ$(W°MemberExpressionÍ#òÍ$JªIdentifierÍ#òÍ#ö¤TextJªIdentifierÍ#÷Í$¬textOverflowÂÂ‘X°ObjectExpressionÍ$Í$'‘Y¨PropertyÍ$Í$%ÂÂÂJªIdentifierÍ$Í$¨overflowW°MemberExpressionÍ$Í$%JªIdentifierÍ$Í$¬TextOverflowJªIdentifierÍ$Í$%¨EllipsisÂÂ¤initÂQ³ExpressionStatementÍ$7Í$HR®CallExpressionÍ$7Í$GW°MemberExpressionÍ$7Í$DJªIdentifierÍ$7Í$;¤TextJªIdentifierÍ$<Í$D¨maxLinesÂÂ‘P§LiteralÍ$EÍ$F¡3ÂJªIdentifierÍ$UÍ$Y¤TextÂQ³ExpressionStatementÍ$eÍ$pR®CallExpressionÍ$eÍ$oW°MemberExpressionÍ$eÍ$mJªIdentifierÍ$eÍ$i¤TextJªIdentifierÍ$jÍ$m£popÂÂÂQ³ExpressionStatementÍ$zÍ$‡R®CallExpressionÍ$zÍ$†W°MemberExpressionÍ$zÍ$„JªIdentifierÍ$zÍ$€¦ColumnJªIdentifierÍ$Í$„£popÂÂÂQ³ExpressionStatementÍ$‘Í$›R®CallExpressionÍ$‘Í$šW°MemberExpressionÍ$‘Í$˜JªIdentifierÍ$‘Í$”£RowJªIdentifierÍ$•Í$˜£popÂÂÂL°MethodDefinitionÍ$¨Í$àÂÂJªIdentifierÍ$¨Í$°¨rerender¦methodM²FunctionExpressionÍ$°Í$àÀÂÂÂK®BlockStatementÍ$³Í$à‘Q³ExpressionStatementÍ$¾Í$ÙR®CallExpressionÍ$¾Í$ØW°MemberExpressionÍ$¾Í$ÖS®ThisExpressionÍ$¾Í$ÂJªIdentifierÍ$ÃÍ$Ö³updateDirtyElementsÂÂÂÀ‘Ôr_•¤type¥start£endªspecifiers¦source±ImportDeclarationÌ€Ì±‘Ôr`•¤type¥start£end¨imported¥local¯ImportSpecifierÌ‰Ì“JªIdentifierÌ‰Ì“ªAttractionJªIdentifierÌ‰Ì“ªAttractionP§LiteralÌ›Ì°³../model/Attractionµ"../model/Attraction"
