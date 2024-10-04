@@ -1,0 +1,15 @@
+{
+  "products\\default\\src\\main\\ets\\entrybackupability\\EntryBackupAbility.ets": [
+    "ohos.hilog",
+    "ohos.application.BackupExtensionAbility"
+  ],
+  "products\\default\\src\\main\\ets\\entryability\\EntryAbility.ets": [
+    "ohos.app.ability.UIAbility",
+    "ohos.app.ability.AbilityConstant",
+    "ohos.app.ability.Want",
+    "ohos.hilog"
+  ],
+  "features\\quickstart\\src\\main\\ets\\util\\BufferUtil.ets": [
+    "ohos.util"
+  ]
+}

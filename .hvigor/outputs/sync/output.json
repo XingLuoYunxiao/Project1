@@ -1,0 +1,580 @@
+{
+  "ohos-module-default": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build",
+    "DEPENDENCY_INFO": {
+      "learning": "D:\\HuaWei\\Apps\\IctProject\\features\\learning",
+      "map": "D:\\HuaWei\\Apps\\IctProject\\features\\map",
+      "quickstart": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart",
+      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
+      "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents"
+    },
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main",
+        "RESOURCES_PATH": [
+          "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      },
+      "ohosTest": {
+        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\ohosTest",
+        "RESOURCES_PATH": [
+          "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\ohosTest\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\outputs\\ohosTest",
+          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\ohosTest",
+          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out_lite\\ohosTest",
+          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\res\\ohosTest",
+          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader\\ohosTest\\loader.json",
+          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\manifest\\ohosTest",
+          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\hap_metadata\\ohosTest\\output_metadata.json"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      }
+    },
+    "BUILD_OPTION": {
+      "default-default": {
+        "debuggable": true,
+        "copyFrom": "default",
+        "name": "debug"
+      }
+    },
+    "BUILD_PROFILE_OPT": {
+      "apiType": "stageMode",
+      "buildOption": {},
+      "buildOptionSet": [
+        {
+          "name": "release",
+          "arkOptions": {
+            "obfuscation": {
+              "ruleOptions": {
+                "enable": true,
+                "files": [
+                  "./obfuscation-rules.txt"
+                ]
+              }
+            }
+          }
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "debug"
+        }
+      ],
+      "targets": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "ohosTest"
+        }
+      ]
+    }
+  },
+  "ohos-module-map": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build",
+    "DEPENDENCY_INFO": {
+      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
+      "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents"
+    },
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\src\\main",
+        "RESOURCES_PATH": [
+          "D:\\HuaWei\\Apps\\IctProject\\features\\map\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      }
+    },
+    "BUILD_OPTION": {
+      "default-default": {
+        "debuggable": true,
+        "copyFrom": "default",
+        "name": "debug"
+      }
+    },
+    "BUILD_PROFILE_OPT": {
+      "apiType": "stageMode",
+      "buildOption": {},
+      "buildOptionSet": [
+        {
+          "name": "release",
+          "arkOptions": {
+            "obfuscation": {
+              "ruleOptions": {
+                "enable": true,
+                "files": [
+                  "./obfuscation-rules.txt"
+                ]
+              },
+              "consumerFiles": [
+                "./consumer-rules.txt"
+              ]
+            }
+          }
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "debug"
+        }
+      ],
+      "targets": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "ohosTest"
+        }
+      ]
+    }
+  },
+  "ohos-module-learning": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build",
+    "DEPENDENCY_INFO": {
+      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
+      "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents"
+    },
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\src\\main",
+        "RESOURCES_PATH": [
+          "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      }
+    },
+    "BUILD_OPTION": {
+      "default-default": {
+        "debuggable": true,
+        "copyFrom": "default",
+        "name": "debug"
+      }
+    },
+    "BUILD_PROFILE_OPT": {
+      "apiType": "stageMode",
+      "buildOption": {},
+      "buildOptionSet": [
+        {
+          "name": "release",
+          "arkOptions": {
+            "obfuscation": {
+              "ruleOptions": {
+                "enable": true,
+                "files": [
+                  "./obfuscation-rules.txt"
+                ]
+              },
+              "consumerFiles": [
+                "./consumer-rules.txt"
+              ]
+            }
+          }
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "debug"
+        }
+      ],
+      "targets": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "ohosTest"
+        }
+      ]
+    }
+  },
+  "ohos-module-quickstart": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build",
+    "DEPENDENCY_INFO": {
+      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
+      "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents"
+    },
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main",
+        "RESOURCES_PATH": [
+          "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      }
+    },
+    "BUILD_OPTION": {
+      "default-default": {
+        "debuggable": true,
+        "copyFrom": "default",
+        "name": "debug"
+      }
+    },
+    "BUILD_PROFILE_OPT": {
+      "apiType": "stageMode",
+      "buildOption": {},
+      "buildOptionSet": [
+        {
+          "name": "release",
+          "arkOptions": {
+            "obfuscation": {
+              "ruleOptions": {
+                "enable": true,
+                "files": [
+                  "./obfuscation-rules.txt"
+                ]
+              },
+              "consumerFiles": [
+                "./consumer-rules.txt"
+              ]
+            }
+          }
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "debug"
+        }
+      ],
+      "targets": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "ohosTest"
+        }
+      ]
+    }
+  },
+  "ohos-module-utils": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build",
+    "DEPENDENCY_INFO": {},
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main",
+        "RESOURCES_PATH": [
+          "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      }
+    },
+    "BUILD_OPTION": {
+      "default-default": {
+        "debuggable": true,
+        "copyFrom": "default",
+        "name": "debug"
+      }
+    },
+    "BUILD_PROFILE_OPT": {
+      "apiType": "stageMode",
+      "buildOption": {},
+      "buildOptionSet": [
+        {
+          "name": "release",
+          "arkOptions": {
+            "obfuscation": {
+              "ruleOptions": {
+                "enable": true,
+                "files": [
+                  "./obfuscation-rules.txt"
+                ]
+              },
+              "consumerFiles": [
+                "./consumer-rules.txt"
+              ]
+            }
+          }
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "debug"
+        }
+      ],
+      "targets": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "ohosTest"
+        }
+      ]
+    }
+  },
+  "ohos-module-uicomponents": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build",
+    "DEPENDENCY_INFO": {},
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\src\\main",
+        "RESOURCES_PATH": [
+          "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      }
+    },
+    "BUILD_OPTION": {
+      "default-default": {
+        "debuggable": true,
+        "copyFrom": "default",
+        "name": "debug"
+      }
+    },
+    "BUILD_PROFILE_OPT": {
+      "apiType": "stageMode",
+      "buildOption": {},
+      "buildOptionSet": [
+        {
+          "name": "release",
+          "arkOptions": {
+            "obfuscation": {
+              "ruleOptions": {
+                "enable": true,
+                "files": [
+                  "./obfuscation-rules.txt"
+                ]
+              },
+              "consumerFiles": [
+                "./consumer-rules.txt"
+              ]
+            }
+          }
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "debug"
+        }
+      ],
+      "targets": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "ohosTest"
+        }
+      ]
+    }
+  },
+  "ohos-project": {
+    "SELECT_PRODUCT_NAME": "default",
+    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\build",
+    "BUNDLE_NAME": "com.example.ictproject",
+    "BUILD_PATH": {
+      "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\build\\outputs\\default"
+    },
+    "MODULES": [
+      {
+        "name": "default",
+        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\products\\default",
+        "targets": [
+          {
+            "name": "default",
+            "applyToProducts": [
+              "default"
+            ]
+          }
+        ],
+        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+      },
+      {
+        "name": "map",
+        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\map",
+        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+      },
+      {
+        "name": "learning",
+        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\learning",
+        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+      },
+      {
+        "name": "quickstart",
+        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart",
+        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+      },
+      {
+        "name": "utils",
+        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
+        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+      },
+      {
+        "name": "uicomponents",
+        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents",
+        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+      }
+    ],
+    "PROFILE_OPT": {
+      "app": {
+        "signingConfigs": [],
+        "products": [
+          {
+            "name": "default",
+            "signingConfig": "default",
+            "compatibleSdkVersion": "5.0.0(12)",
+            "runtimeOS": "HarmonyOS"
+          }
+        ],
+        "buildModeSet": [
+          {
+            "name": "debug"
+          },
+          {
+            "name": "release"
+          }
+        ]
+      },
+      "modules": [
+        {
+          "name": "default",
+          "srcPath": "./products/default",
+          "targets": [
+            {
+              "name": "default",
+              "applyToProducts": [
+                "default"
+              ]
+            }
+          ]
+        },
+        {
+          "name": "map",
+          "srcPath": "./features/map"
+        },
+        {
+          "name": "learning",
+          "srcPath": "./features/learning"
+        },
+        {
+          "name": "quickstart",
+          "srcPath": "./features/quickstart"
+        },
+        {
+          "name": "utils",
+          "srcPath": "./commons/utils"
+        },
+        {
+          "name": "uicomponents",
+          "srcPath": "./commons/uicomponents"
+        }
+      ]
+    },
+    "CONFIG_PROPERTIES": {
+      "enableSignTask": true,
+      "skipNativeIncremental": false,
+      "hvigor.keepDependency": true
+    },
+    "OVERALL_PROJECT_PATHS": [
+      "D:\\HuaWei\\Apps\\IctProject"
+    ]
+  },
+  "version": 1
+}
