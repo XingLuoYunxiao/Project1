@@ -1,40 +1,336 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="620bf813-76fc-4e24-8f6e-1d33a52f1bf1" name="更改" comment="" />
+    <list default="true" id="620bf813-76fc-4e24-8f6e-1d33a52f1bf1" name="更改" comment="">
+      <change beforePath="$PROJECT_DIR$/.hvigor/cache/file-cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/cache/file-cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/cache/task-cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/cache/task-cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/dependencyMap/default/oh-package.json5" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/dependencyMap/default/oh-package.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/dependencyMap/dependencyMap.json5" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/dependencyMap/dependencyMap.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/dependencyMap/quickstart/oh-package.json5" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/dependencyMap/quickstart/oh-package.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/outputs/build-logs/build.log" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/outputs/build-logs/build.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/outputs/logs/details/details.json" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/outputs/logs/details/details.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/outputs/sync/fileCache.json" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/outputs/sync/fileCache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/outputs/sync/output.json" beforeDir="false" afterPath="$PROJECT_DIR$/.hvigor/outputs/sync/output.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/report/report-202410041249515560.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.hvigor/report/report-202410041253019760.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.deveco/module/utils.cache.json" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.deveco/module/utils.cache.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules/IctProject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules/IctProject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build-profile.json5" beforeDir="false" afterPath="$PROJECT_DIR$/build-profile.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/uicomponents/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/commons/uicomponents/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/uicomponents/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/commons/uicomponents/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/utils/BuildProfile.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/utils/Index.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/utils/build-profile.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/utils/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/utils/consumer-rules.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/utils/hvigorfile.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/utils/obfuscation-rules.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/utils/oh-package.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/utils/src/main/module.json5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/utils/src/main/resources/base/element/string.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/utils/src/main/resources/en_US/element/string.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/commons/utils/src/main/resources/zh_CN/element/string.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/uicomponents/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/uicomponents/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/uicomponents/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/uicomponents/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/Index.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/Index.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/build-profile.json5" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/build-profile.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/hvigorfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/hvigorfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/obfuscation-rules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/obfuscation-rules.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/src/main/resources/base/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/src/main/resources/base/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/src/main/resources/en_US/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/src/main/resources/en_US/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/src/main/resources/zh_CN/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/learning/oh_modules/@ohos/utils/src/main/resources/zh_CN/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/oh_modules/@ohos/uicomponents/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/oh_modules/@ohos/uicomponents/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/oh_modules/@ohos/uicomponents/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/oh_modules/@ohos/uicomponents/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/Index.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/Index.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/build-profile.json5" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/build-profile.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/hvigorfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/hvigorfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/obfuscation-rules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/obfuscation-rules.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/src/main/resources/base/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/src/main/resources/base/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/src/main/resources/en_US/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/src/main/resources/en_US/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/src/main/resources/zh_CN/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/map/oh_modules/@ohos/utils/src/main/resources/zh_CN/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh-package-lock.json5" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh-package-lock.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh-package.json5" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh-package.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/uicomponents/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/uicomponents/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/uicomponents/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/uicomponents/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/Index.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/Index.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/build-profile.json5" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/build-profile.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/hvigorfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/hvigorfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/obfuscation-rules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/obfuscation-rules.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/src/main/resources/base/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/src/main/resources/base/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/src/main/resources/en_US/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/src/main/resources/en_US/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/src/main/resources/zh_CN/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/oh_modules/@ohos/utils/src/main/resources/zh_CN/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/ets/model/ArticleClass.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/ets/model/BannerClass.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/ets/pages/QuickStartPage.ets" beforeDir="false" afterPath="$PROJECT_DIR$/features/quickstart/src/main/ets/pages/QuickStartPage.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/ets/util/BufferUtil.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/ets/view/Banner.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/ets/view/EnablementView.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/ets/view/TutorialView.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/banner_pic0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/banner_pic1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/banner_pic2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/banner_pic3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/banner_pic4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/banner_pic5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/enablement_pic1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/enablement_pic2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/enablement_pic3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/enablement_pic4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/enablement_pic5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/enablement_pic6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/enablement_pic7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/enablement_pic8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/tutorial_pic1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/tutorial_pic10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/tutorial_pic11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/tutorial_pic12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/tutorial_pic2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/tutorial_pic3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/tutorial_pic4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/tutorial_pic5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/tutorial_pic6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/tutorial_pic7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/tutorial_pic8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/features/quickstart/src/main/resources/base/media/tutorial_pic9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/.ts_checker_cache" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/.ts_checker_cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/.tsbuildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/.tsbuildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/.tsbuildinfo.linter" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/.tsbuildinfo.linter" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/D%%HuaWei%Apps%IctProject%features%quickstart%src%main%ets%pages%QuickStartPage.ets.msgpack" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/D%%HuaWei%Apps%IctProject%features%quickstart%src%main%ets%pages%QuickStartPage.ets.msgpack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/D%%HuaWei%Apps%IctProject%features%quickstart%src%main%ets%util%BufferUtil.ets.msgpack" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/D%%HuaWei%Apps%IctProject%features%quickstart%src%main%ets%view%Banner.ets.msgpack" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/D%%HuaWei%Apps%IctProject%features%quickstart%src%main%ets%view%EnablementView.ets.msgpack" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/D%%HuaWei%Apps%IctProject%features%quickstart%src%main%ets%view%TutorialView.ets.msgpack" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/D%%HuaWei%Apps%IctProject%products%default%src%main%ets%entryability%EntryAbility.ets.msgpack" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/D%%HuaWei%Apps%IctProject%products%default%src%main%ets%entryability%EntryAbility.ets.msgpack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/D%%HuaWei%Apps%IctProject%products%default%src%main%ets%entrybackupability%EntryBackupAbility.ets.msgpack" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/D%%HuaWei%Apps%IctProject%products%default%src%main%ets%entrybackupability%EntryBackupAbility.ets.msgpack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/D%%HuaWei%Apps%IctProject%products%default%src%main%ets%pages%Index.ets.msgpack" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/modules/D%%HuaWei%Apps%IctProject%products%default%src%main%ets%pages%Index.ets.msgpack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/plugins/plugins.msgpack" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/compiler.cache/plugins/plugins.msgpack" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/component_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/component_collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/dep_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/dep_info.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/Index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/Index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/pages/QuickStartPage.protoBin" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/pages/QuickStartPage.protoBin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/pages/QuickStartPage.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/pages/QuickStartPage.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/util/BufferUtil.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/util/BufferUtil.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/view/Banner.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/view/Banner.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/view/EnablementView.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/view/EnablementView.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/view/TutorialView.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/view/TutorialView.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/filesInfo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/filesInfo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/module_collection.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/module_collection.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/modules.cache" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/modules.cache" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/npmEntries.txt" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/npmEntries.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/products/default/src/main/ets/entryability/EntryAbility.protoBin" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/products/default/src/main/ets/entryability/EntryAbility.protoBin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/products/default/src/main/ets/entryability/EntryAbility.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/products/default/src/main/ets/entryability/EntryAbility.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/products/default/src/main/ets/entrybackupability/EntryBackupAbility.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/products/default/src/main/ets/entrybackupability/EntryBackupAbility.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/products/default/src/main/ets/pages/Index.protoBin" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/products/default/src/main/ets/pages/Index.protoBin" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/products/default/src/main/ets/pages/Index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/products/default/src/main/ets/pages/Index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/sourceMaps.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/sourceMaps.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/generated/profile/default/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/generated/profile/default/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/generated/r/default/ResourceTable.h" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/generated/r/default/ResourceTable.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/hap_metadata/default/output_metadata.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/hap_metadata/default/output_metadata.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/loader/default/loader.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/loader/default/loader.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/loader_out/default/ets/modules.abc" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/loader_out/default/ets/modules.abc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/loader_out/default/ets/sourceMaps.map" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/loader_out/default/ets/sourceMaps.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/package/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/package/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/process_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/process_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/ResourceTable.txt" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/ResourceTable.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/ids_map/id_defined.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/ids_map/id_defined.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/opt-compression.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/opt-compression.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resConfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resConfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources.index" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources.index" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/banner_pic0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/banner_pic1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/banner_pic2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/banner_pic3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/banner_pic4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/banner_pic5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/enablement_pic1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/enablement_pic2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/enablement_pic3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/enablement_pic4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/enablement_pic5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/enablement_pic6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/enablement_pic7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/enablement_pic8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/layered_image.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/layered_image.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/tutorial_pic1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/tutorial_pic10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/tutorial_pic11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/tutorial_pic12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/tutorial_pic2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/tutorial_pic3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/tutorial_pic4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/tutorial_pic5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/tutorial_pic6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/tutorial_pic7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/tutorial_pic8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/media/tutorial_pic9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/profile/main_pages.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/intermediates/res/default/resources/base/profile/main_pages.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/outputs/default/default-default-unsigned.hap" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/outputs/default/default-default-unsigned.hap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/outputs/default/mapping/sourceMaps.map" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/outputs/default/mapping/sourceMaps.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/build/default/outputs/default/pack.info" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/build/default/outputs/default/pack.info" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh-package-lock.json5" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh-package-lock.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh-package.json5" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh-package.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/uicomponents/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/uicomponents/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/uicomponents/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/uicomponents/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/Index.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/Index.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/build-profile.json5" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/build-profile.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/hvigorfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/hvigorfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/obfuscation-rules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/obfuscation-rules.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/src/main/resources/base/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/src/main/resources/base/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/src/main/resources/en_US/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/src/main/resources/en_US/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/src/main/resources/zh_CN/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/learning/oh_modules/@ohos/utils/src/main/resources/zh_CN/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/uicomponents/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/uicomponents/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/uicomponents/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/uicomponents/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/Index.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/Index.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/build-profile.json5" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/build-profile.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/hvigorfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/hvigorfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/obfuscation-rules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/obfuscation-rules.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/src/main/resources/base/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/src/main/resources/base/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/src/main/resources/en_US/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/src/main/resources/en_US/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/src/main/resources/zh_CN/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/map/oh_modules/@ohos/utils/src/main/resources/zh_CN/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh-package-lock.json5" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh-package-lock.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh-package.json5" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh-package.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/uicomponents/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/uicomponents/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/uicomponents/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/uicomponents/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/BuildProfile.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/BuildProfile.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/Index.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/Index.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/build-profile.json5" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/build-profile.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/build/default/intermediates/merge_profile/default/module.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/build/default/intermediates/merge_profile/default/module.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/hvigorfile.ts" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/hvigorfile.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/obfuscation-rules.txt" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/obfuscation-rules.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/src/main/resources/base/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/src/main/resources/base/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/src/main/resources/en_US/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/src/main/resources/en_US/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/src/main/resources/zh_CN/element/string.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/oh_modules/@ohos/utils/src/main/resources/zh_CN/element/string.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/ets/model/ArticleClass.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/ets/model/BannerClass.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/ets/pages/QuickStartPage.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/ets/pages/QuickStartPage.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/ets/util/BufferUtil.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/ets/view/Banner.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/ets/view/EnablementView.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/ets/view/TutorialView.ets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/banner_pic0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/banner_pic1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/banner_pic2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/banner_pic3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/banner_pic4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/banner_pic5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/enablement_pic1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/enablement_pic2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/enablement_pic3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/enablement_pic4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/enablement_pic5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/enablement_pic6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/enablement_pic7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/enablement_pic8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/tutorial_pic1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/tutorial_pic10.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/tutorial_pic11.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/tutorial_pic12.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/tutorial_pic2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/tutorial_pic3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/tutorial_pic4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/tutorial_pic5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/tutorial_pic6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/tutorial_pic7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/tutorial_pic8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/oh_modules/@ohos/quickstart/src/main/resources/base/media/tutorial_pic9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/src/main/ets/entryability/EntryAbility.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/src/main/ets/entryability/EntryAbility.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/src/main/ets/pages/Index.ets" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/src/main/ets/pages/Index.ets" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/src/main/module.json5" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/src/main/module.json5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/default/src/main/resources/base/profile/main_pages.json" beforeDir="false" afterPath="$PROJECT_DIR$/products/default/src/main/resources/base/profile/main_pages.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 4
-}]]></component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="ArkTS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HiLogStateProjectLevelPreference">
+    <panelStates>
+      <hilogPanelState>
+        <option name="logPanelType" value="ONLINE" />
+        <option name="processName" value="com.example.ictproject" />
+      </hilogPanelState>
+    </panelStates>
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2mxTNawEVrJOj9qnawaOHvMx1xJ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "127.0.0.1:5555": "5374083881728049550841",
+    "Application.default.executor": "Run",
+    "MODULE_HAP_TIME": "{\"127.0.0.1:5555default\":\"2024-10-04T13:58:27.610855200Z\"}",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ace.nodejs.version": "18.20.1",
-    "last_opened_file_path": "D:/HuaWei/Apps/IctProject/entry",
-    "settings.editor.selected.configurable": "com.huawei.deveco.sdkmanager.ohos.idea.ui.OhSdkConfigProvider"
+    "last_opened_file_path": "D:/HuaWei/Apps/IctProject/features/Login/src/main/ets/pages",
+    "settings.editor.selected.configurable": "Code Search"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\HuaWei\Apps\IctProject\entry" />
-      <recent name="D:\HuaWei\Apps\IctProject" />
+      <recent name="D:\HuaWei\Apps\IctProject\features\Login\src\main\ets\pages" />
+      <recent name="D:\HuaWei\Apps\IctProject\features\quickstart\src\main\resources\base\media" />
+      <recent name="D:\HuaWei\Apps\IctProject\features\Login\src\main\resources\base\media" />
+      <recent name="D:\HuaWei\Apps\IctProject\commons\utils\src\main\ets\utils" />
+      <recent name="D:\HuaWei\Apps\IctProject\features\Login\src\main" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\HuaWei\Apps\IctProject\features\Login\src\main\ets\pages" />
+      <recent name="D:\HuaWei\Apps\IctProject\products\default\src\main\ets\pages" />
+      <recent name="D:\HuaWei\Apps\IctProject\commons\utils\src\main\ets\utils" />
+      <recent name="D:\HuaWei\Apps\IctProject\features\quickstart\src\main\ets\pages" />
       <recent name="D:\HuaWei\Apps\IctProject\products" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.entry">
-    <configuration name="entry" type="HotReLoadTask" factoryName="Hot Reload">
+  <component name="RunManager" selected="Application.default">
+    <configuration name="default" type="HotReLoadTask" factoryName="Hot Reload">
       <MODULE_NAME />
       <REINSTALL_APPLICATION>true</REINSTALL_APPLICATION>
       <ENVIRONMENT_VARIABLES>[]</ENVIRONMENT_VARIABLES>
@@ -57,13 +353,20 @@
       <TSAN_ENABLE_DATA>false</TSAN_ENABLE_DATA>
       <ERROR_INFO_ENHANCE_ENABLE_DATA>false</ERROR_INFO_ENHANCE_ENABLE_DATA>
       <MULTI_THREAD_CHECK_SELECTED_DATA>false</MULTI_THREAD_CHECK_SELECTED_DATA>
-      <HOT_RELOAD_MODULE_NAME>entry</HOT_RELOAD_MODULE_NAME>
+      <HOT_RELOAD_MODULE_NAME>default</HOT_RELOAD_MODULE_NAME>
       <method v="2">
         <option name="Build.Hvigor.HotReloadBeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="entry" type="OhosDebugTask" factoryName="OpenHarmony App">
-      <MODULE_NAME>entry</MODULE_NAME>
+    <configuration name="IctProject [assembleDevHqf]" type="HvigorRunConfiguration" factoryName="HvigorRunConfiguration" temporary="true">
+      <option name="applicationParameters" value="--mode module -p module=default@default -p product=default -p requiredDeviceType=phone assembleDevHqf --analyze=normal --parallel --incremental" />
+      <option name="nodeInterpreter" value="$APPLICATION_HOME_DIR$\tools\node" />
+      <option name="scriptFile" value="$APPLICATION_HOME_DIR$\tools\hvigor\bin\hvigorw.js" />
+      <option name="workingDir" value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="default" type="OhosDebugTask" factoryName="OpenHarmony App">
+      <MODULE_NAME>default</MODULE_NAME>
       <REINSTALL_APPLICATION>true</REINSTALL_APPLICATION>
       <ENVIRONMENT_VARIABLES>[]</ENVIRONMENT_VARIABLES>
       <DEBUG_LINE_ENABLE_DATA>false</DEBUG_LINE_ENABLE_DATA>
@@ -89,6 +392,28 @@
         <option name="Build.Hvigor.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Hvigor.IctProject [assembleDevHqf]" />
+        <item itemvalue="Hvigor.IctProject [assembleDevHqf]" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用级" UseSingleDictionary="true" transferred="true" />
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="JavaScript">
+          <url>file://$PROJECT_DIR$/products/default/src/main/ets/pages/AdvertisingPage.ets</url>
+          <line>14</line>
+          <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="JavaScript">
+          <url>file://$PROJECT_DIR$/products/default/src/main/ets/pages/AdvertisingPage.ets</url>
+          <line>47</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
 </project>

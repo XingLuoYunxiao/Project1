@@ -6,6 +6,7 @@
       "learning": "D:\\HuaWei\\Apps\\IctProject\\features\\learning",
       "map": "D:\\HuaWei\\Apps\\IctProject\\features\\map",
       "quickstart": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart",
+      "login": "D:\\HuaWei\\Apps\\IctProject\\features\\Login",
       "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
       "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents"
     },
@@ -251,7 +252,8 @@
     "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build",
     "DEPENDENCY_INFO": {
       "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-      "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents"
+      "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents",
+      "login": "D:\\HuaWei\\Apps\\IctProject\\features\\Login"
     },
     "TARGETS": {
       "default": {
@@ -365,7 +367,7 @@
           "arkOptions": {
             "obfuscation": {
               "ruleOptions": {
-                "enable": true,
+                "enable": false,
                 "files": [
                   "./obfuscation-rules.txt"
                 ]
@@ -465,6 +467,80 @@
       ]
     }
   },
+  "ohos-module-Login": {
+    "SELECT_TARGET": "default",
+    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build",
+    "DEPENDENCY_INFO": {
+      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils"
+    },
+    "TARGETS": {
+      "default": {
+        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main",
+        "RESOURCES_PATH": [
+          "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\resources"
+        ],
+        "BUILD_PATH": {
+          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+        },
+        "BUILD_OPTION": {
+          "debuggable": true
+        }
+      }
+    },
+    "BUILD_OPTION": {
+      "default-default": {
+        "debuggable": true,
+        "copyFrom": "default",
+        "name": "debug"
+      }
+    },
+    "BUILD_PROFILE_OPT": {
+      "apiType": "stageMode",
+      "buildOption": {},
+      "buildOptionSet": [
+        {
+          "name": "release",
+          "arkOptions": {
+            "obfuscation": {
+              "ruleOptions": {
+                "enable": false,
+                "files": [
+                  "./obfuscation-rules.txt"
+                ]
+              },
+              "consumerFiles": [
+                "./consumer-rules.txt"
+              ]
+            }
+          }
+        },
+        {
+          "name": "default"
+        },
+        {
+          "name": "debug"
+        }
+      ],
+      "targets": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "ohosTest"
+        }
+      ]
+    }
+  },
   "ohos-project": {
     "SELECT_PRODUCT_NAME": "default",
     "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\build",
@@ -509,6 +585,11 @@
       {
         "name": "uicomponents",
         "srcPath": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents",
+        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+      },
+      {
+        "name": "Login",
+        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\Login",
         "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
       }
     ],
@@ -564,6 +645,10 @@
         {
           "name": "uicomponents",
           "srcPath": "./commons/uicomponents"
+        },
+        {
+          "name": "Login",
+          "srcPath": "./features/Login"
         }
       ]
     },

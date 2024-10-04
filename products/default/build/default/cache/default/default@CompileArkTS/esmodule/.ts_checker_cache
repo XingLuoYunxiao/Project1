@@ -66,7 +66,8 @@
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.application.d.ts"
       ],
       "parent": [
-        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\entryability\\EntryAbility.ets"
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\entryability\\EntryAbility.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\pages\\LauncherPage.ets"
       ],
       "error": false
     },
@@ -156,7 +157,10 @@
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.arkui.advanced.DownloadFileButton.d.ets"
       ],
       "parent": [
-        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\entryability\\EntryAbility.ets"
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\entryability\\EntryAbility.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\pages\\LauncherPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\LoginPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoPage.ets"
       ],
       "error": false
     },
@@ -199,12 +203,13 @@
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\entryability\\EntryAbility.ets": {
-      "mtimeMs": 1728017452018.1567,
+      "mtimeMs": 1728034324035.8833,
       "children": [
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.AbilityKit.d.ts",
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.PerformanceAnalysisKit.d.ts",
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkUI.d.ts",
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.BasicServicesKit.d.ts"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.BasicServicesKit.d.ts",
+        "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\Index.ets"
       ],
       "parent": [],
       "error": false
@@ -1123,7 +1128,17 @@
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\pattern_lock.d.ts",
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts",
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts",
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cryptoFramework.d.ts"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cryptoFramework.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.preferences.d.ts",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\AccountUtil.ets",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\MessageUtil.ets",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.distributedDataObject.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.distributedKVStore.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.relationalStore.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.sendablePreferences.d.ets"
       ],
       "error": false
     },
@@ -1143,7 +1158,8 @@
       ],
       "parent": [
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\ability\\dataAbilityHelper.d.ts",
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\ability\\dataAbilityOperation.d.ts"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\ability\\dataAbilityOperation.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts"
       ],
       "error": false
     },
@@ -1251,7 +1267,12 @@
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.app.ability.common.d.ts",
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.rdb.d.ts",
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.PiPWindow.d.ts",
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.request.d.ts"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.request.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.preferences.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.distributedDataObject.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.distributedKVStore.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.relationalStore.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.sendablePreferences.d.ets"
       ],
       "error": false
     },
@@ -1509,7 +1530,13 @@
       ],
       "parent": [
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.arkui.UIContext.d.ts",
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkUI.d.ts"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkUI.d.ts",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\InfoMessage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\CustomDialogComponent.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\pages\\AdvertisingPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoMessage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoMessagePage.ets"
       ],
       "error": false
     },
@@ -1961,7 +1988,8 @@
       "parent": [
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.arkui.dragController.d.ts",
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.pasteboard.d.ts",
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\common.d.ts"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\common.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts"
       ],
       "error": false
     },
@@ -2321,7 +2349,9 @@
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\SendableContext.d.ets",
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkTS.d.ts",
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\arkts\\@arkts.utils.d.ets",
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\arkts\\@arkts.collections.d.ets"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\arkts\\@arkts.collections.d.ets",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.sendableRelationalStore.d.ets",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.sendablePreferences.d.ets"
       ],
       "error": false
     },
@@ -2365,7 +2395,8 @@
       "mtimeMs": 1727368072000,
       "children": [],
       "parent": [
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.PerformanceAnalysisKit.d.ts"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.PerformanceAnalysisKit.d.ts",
+        "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main\\ets\\utils\\Logger.ts"
       ],
       "error": false
     },
@@ -3844,7 +3875,7 @@
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\entrybackupability\\EntryBackupAbility.ets": {
-      "mtimeMs": 1728017451966.5156,
+      "mtimeMs": 1728022500154.116,
       "children": [
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.PerformanceAnalysisKit.d.ts",
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.CoreFileKit.d.ts"
@@ -4011,7 +4042,7 @@
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\Index.ets": {
-      "mtimeMs": 1727358284402.7378,
+      "mtimeMs": 1728022499743.5574,
       "children": [
         "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets"
       ],
@@ -4021,19 +4052,21 @@
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\pages\\Index.ets": {
-      "mtimeMs": 1728017451960.999,
+      "mtimeMs": 1728048430470.817,
       "children": [
-        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\Index.ets"
+        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\Index.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\Index.ets"
       ],
       "parent": [],
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets": {
-      "mtimeMs": 1727358284533.4207,
+      "mtimeMs": 1728049220791.9414,
       "children": [
-        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\TutorialView.ets",
-        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\Banner.ets",
-        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\EnablementView.ets"
+        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\model\\Attraction.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\Classficiation.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\NearbyAttraction.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\SearchHeader.ets"
       ],
       "parent": [
         "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\Index.ets"
@@ -4041,7 +4074,7 @@
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\TutorialView.ets": {
-      "mtimeMs": 1727358284610.7988,
+      "mtimeMs": 1728022499787.6365,
       "children": [
         "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\util\\BufferUtil.ets",
         "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\model\\ArticleClass.ets"
@@ -4052,7 +4085,7 @@
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\Banner.ets": {
-      "mtimeMs": 1727358284578.929,
+      "mtimeMs": 1728022499786.5557,
       "children": [
         "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\model\\BannerClass.ets",
         "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\util\\BufferUtil.ets"
@@ -4063,7 +4096,7 @@
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\EnablementView.ets": {
-      "mtimeMs": 1727358284595.2688,
+      "mtimeMs": 1728022499786.5557,
       "children": [
         "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\model\\ArticleClass.ets",
         "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\util\\BufferUtil.ets"
@@ -4074,7 +4107,7 @@
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\util\\BufferUtil.ets": {
-      "mtimeMs": 1727359969735.9526,
+      "mtimeMs": 1728022499785.5566,
       "children": [
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkTS.d.ts"
       ],
@@ -4086,7 +4119,7 @@
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\model\\ArticleClass.ets": {
-      "mtimeMs": 1727358284493.2131,
+      "mtimeMs": 1728022499782.556,
       "children": [],
       "parent": [
         "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\TutorialView.ets",
@@ -4128,7 +4161,8 @@
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\arkts\\@arkts.math.Decimal.d.ets"
       ],
       "parent": [
-        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\util\\BufferUtil.ets"
+        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\util\\BufferUtil.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\util\\BufferUtil.ets"
       ],
       "error": false
     },
@@ -4332,7 +4366,8 @@
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\arkts\\@arkts.lang.d.ets"
       ],
       "parent": [
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkTS.d.ts"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkTS.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.sendableRelationalStore.d.ets"
       ],
       "error": false
     },
@@ -4345,7 +4380,7 @@
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\model\\BannerClass.ets": {
-      "mtimeMs": 1727358284508.3748,
+      "mtimeMs": 1728022499783.5554,
       "children": [],
       "parent": [
         "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\Banner.ets"
@@ -4364,7 +4399,8 @@
       "mtimeMs": 1727368072000,
       "children": [],
       "parent": [
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\common.d.ts"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\common.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts"
       ],
       "error": false
     },
@@ -4639,7 +4675,8 @@
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.netErrorList.d.ts"
       ],
       "parent": [
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\web.d.ts"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\build-tools\\ets-loader\\declarations\\web.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkWeb.d.ts"
       ],
       "error": false
     },
@@ -4658,7 +4695,8 @@
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cryptoFramework.d.ts"
       ],
       "parent": [
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts"
       ],
       "error": false
     },
@@ -4666,7 +4704,8 @@
       "mtimeMs": 1727368072000,
       "children": [],
       "parent": [
-        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts"
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkWeb.d.ts"
       ],
       "error": false
     },
@@ -4677,6 +4716,576 @@
       ],
       "parent": [
         "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\Index.ets": {
+      "mtimeMs": 1728022500067.613,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\pages\\Index.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets": {
+      "mtimeMs": 1728022500110.7505,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\view\\TutorialView.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\view\\Banner.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\view\\EnablementView.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\Index.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\view\\TutorialView.ets": {
+      "mtimeMs": 1728022500113.7588,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\util\\BufferUtil.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\model\\ArticleClass.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\view\\Banner.ets": {
+      "mtimeMs": 1728022500112.7505,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\model\\BannerClass.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\util\\BufferUtil.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\view\\EnablementView.ets": {
+      "mtimeMs": 1728022500113.7588,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\model\\ArticleClass.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\util\\BufferUtil.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\util\\BufferUtil.ets": {
+      "mtimeMs": 1728022500111.7507,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkTS.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\view\\TutorialView.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\view\\Banner.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\view\\EnablementView.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\model\\ArticleClass.ets": {
+      "mtimeMs": 1728022500108.7507,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\view\\TutorialView.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\view\\EnablementView.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\model\\BannerClass.ets": {
+      "mtimeMs": 1728022500108.7507,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\oh_modules\\@ohos\\quickstart\\src\\main\\ets\\view\\Banner.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\Index.ets": {
+      "mtimeMs": 1728035912775.961,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoMessagePage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\CustomDialogComponent.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\pages\\Index.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\pages\\LauncherPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\InfoMessage.ets": {
+      "mtimeMs": 1728028527895.254,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\Index.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\CustomDialogComponent.ets": {
+      "mtimeMs": 1728043725357.3347,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\Index.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\pages\\AdvertisingPage.ets": {
+      "mtimeMs": 1728034355792.3308,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts"
+      ],
+      "parent": [],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\Index.ets": {
+      "mtimeMs": 1728030635473.3772,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main\\ets\\utils\\PreferenceUtil.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\pages\\LauncherPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\entryability\\EntryAbility.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\pages\\LauncherPage.ets": {
+      "mtimeMs": 1728030874329.9702,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkUI.d.ts",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\Index.ets",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.AbilityKit.d.ts",
+        "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\Index.ets"
+      ],
+      "parent": [],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main\\ets\\utils\\PreferenceUtil.ts": {
+      "mtimeMs": 1728030855201.59,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main\\ets\\utils\\Logger.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.preferences.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\Index.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main\\ets\\utils\\Logger.ts": {
+      "mtimeMs": 1721783824000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.hilog.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main\\ets\\utils\\PreferenceUtil.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.preferences.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\BaseContext.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main\\ets\\utils\\PreferenceUtil.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\LoginPage.ets": {
+      "mtimeMs": 1728032151225.3103,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkWeb.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkUI.d.ts",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\AccountUtil.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\MessageUtil.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\Index.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoPage.ets": {
+      "mtimeMs": 1728032142646.24,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\CommonUtil.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\common\\CommonConstants.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\TextInputWidget.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\TextCommonWidget.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\CustomDialogWidget.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\DBUtil.ets",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkUI.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\Index.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkWeb.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.webview.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.web.netErrorList.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\LoginPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\AccountUtil.ets": {
+      "mtimeMs": 1723190732430.1245,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\viewmodel\\UserInfoItem.ets",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\LoginPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\MessageUtil.ets": {
+      "mtimeMs": 1723191765774.3655,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\viewmodel\\UserInfoItem.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\LoginPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\AccountUtil.ets",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\MessageUtil.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\viewmodel\\UserInfoItem.ets": {
+      "mtimeMs": 1723116714936.0757,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\AccountUtil.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\MessageUtil.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.http.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.socket.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.security.cert.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.net.connection.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\CommonUtil.ets": {
+      "mtimeMs": 1723192543288.485,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\common\\CommonConstants.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\viewmodel\\HobbyItem.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\CustomDialogWidget.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\common\\CommonConstants.ets": {
+      "mtimeMs": 1722067026000,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\CommonUtil.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\TextInputWidget.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\TextCommonWidget.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\CustomDialogWidget.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\TextInputWidget.ets": {
+      "mtimeMs": 1723193306116.3047,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\common\\CommonConstants.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\TextCommonWidget.ets": {
+      "mtimeMs": 1723193221535.4487,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\common\\CommonConstants.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\CustomDialogWidget.ets": {
+      "mtimeMs": 1723195644893.6072,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\viewmodel\\HobbyItem.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\CommonUtil.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\common\\CommonConstants.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\DBUtil.ets": {
+      "mtimeMs": 1724598849914.8755,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\viewmodel\\PersonInfo.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\viewmodel\\HobbyItem.ets": {
+      "mtimeMs": 1722047700000,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\CommonUtil.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\view\\CustomDialogWidget.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.cloudData.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.cloudExtension.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.commonType.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.dataAbility.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.dataSharePredicates.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.distributedDataObject.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.distributedKVStore.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.preferences.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.relationalStore.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.unifiedDataChannel.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.uniformTypeDescriptor.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.uniformDataStruct.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.ValuesBucket.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.sendablePreferences.d.ets",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.sendableRelationalStore.d.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\DBUtil.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\viewmodel\\PersonInfo.ets": {
+      "mtimeMs": 1724595241331.063,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\utils\\DBUtil.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.cloudData.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.commonType.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.cloudExtension.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.commonType.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.cloudData.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.distributedDataObject.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.dataSharePredicates.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.ValuesBucket.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.distributedDataObject.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\BaseContext.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.commonType.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.distributedKVStore.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\BaseContext.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.relationalStore.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\BaseContext.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.sendableRelationalStore.d.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.sendableRelationalStore.d.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.uniformDataStruct.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.ValuesBucket.d.ts": {
+      "mtimeMs": 1727368072000,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.dataSharePredicates.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.sendablePreferences.d.ets": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.base.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\application\\BaseContext.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\arkts\\@arkts.lang.d.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.sendableRelationalStore.d.ets": {
+      "mtimeMs": 1727368072000,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\arkts\\@arkts.collections.d.ets",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\arkts\\@arkts.lang.d.ets",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.relationalStore.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\kits\\@kit.ArkData.d.ts",
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.data.relationalStore.d.ts"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoMessage.ets": {
+      "mtimeMs": 1728032740220.967,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\Index.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\ets\\pages\\InfoMessagePage.ets": {
+      "mtimeMs": 1728036204048.6748,
+      "children": [
+        "D:\\HuaWei\\DevEco Studio\\sdk\\default\\openharmony\\ets\\api\\@ohos.router.d.ts"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\Index.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\model\\Attraction.ets": {
+      "mtimeMs": 1728044716791.2827,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\NearbyAttraction.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\Classficiation.ets": {
+      "mtimeMs": 1728048978826.8323,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\SearchHeader.ets": {
+      "mtimeMs": 1728038829335.568,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\NearbyAttraction.ets": {
+      "mtimeMs": 1728050623882.1885,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\model\\Attraction.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets"
       ],
       "error": false
     }

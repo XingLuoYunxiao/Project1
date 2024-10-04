@@ -1,7 +1,6 @@
 {
   "app": {
     "signingConfigs": [
-
     ],
     "products": [
       {
@@ -52,6 +51,10 @@
     {
       "name": "uicomponents",
       "srcPath": "./commons/uicomponents"
-    }
+    },
+    {
+      "name": "Login",
+      "srcPath": "./features/Login",
+    },
   ]
 }

@@ -5,7 +5,8 @@
     "learning": "D:\\HuaWei\\Apps\\IctProject\\features\\learning",
     "quickstart": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart",
     "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-    "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents"
+    "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents",
+    "Login": "D:\\HuaWei\\Apps\\IctProject\\features\\Login"
   },
   "compileMode": "esmodule",
   "projectRootPath": "D:\\HuaWei\\Apps\\IctProject",

@@ -8,6 +8,8 @@
   "dependencies": {
     "@ohos/learning": "file:../../features/learning",
     "@ohos/map": "file:../../features/map",
-    "@ohos/quickstart": "file:../../features/quickstart"
+    "@ohos/quickstart": "file:../../features/quickstart",
+    "@ohos/login": "file:../../features/Login",
+    "@ohos/utils": "file:../../commons/utils"
   }
 }
