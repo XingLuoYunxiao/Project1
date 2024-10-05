@@ -1,62 +1,92 @@
 {
-  "quickstart|quickstart|1.0.0|src/main/ets/pages/QuickStartPage.js": {
+  "travel|travel|1.0.0|src/main/ets/pages/FamousPlacePage.js": {
     "version": 3,
-    "file": "QuickStartPage.ets",
+    "file": "FamousPlacePage.ets",
     "sources": [
-      "features/quickstart/src/main/ets/pages/QuickStartPage.ets"
+      "features/Travel/src/main/ets/pages/FamousPlacePage.ets"
     ],
     "names": [],
-    "mappings": ";;;AAAA;AACA;AACA;AACA;AAEA;AACE;AACA;AACA;;AAOF;AAFA;;;;;;;AAHC;;;;;;;;;;;AAOC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAQU;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAgBH;AACA;;;;;;;;;;;;;;;;;;;AAMN;AAGD;;;;AACE;;AAAA;;AAAA;;;;;;;;;;;;;AAME;;AAAA;;;;AAYH;;;;;;;;;",
-    "entry-package-info": "quickstart|1.0.0"
+    "mappings": ";;;AAAA;AAGA;AACA;AASA;AADA;;;;;;;;;AAFC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAQG;;AAKF;;;;AAEI;;AAAA;;;;;;;;;AACE;AAII;;;;AAEJ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAmBY;;;;AACA;;;;;;;;;;;;;;;;;AAYV;;;;;;AAGA;;;;;;AAGA;;;;;;AAML;;;;AACF;;;;;AAIC;;;;;;;;;;AACE;;;;;;;;;;;;;AAUA;AAAA;;;;;;;;;;AACE;;;;;;;;;;;AAKA;;;;;;AACE;;;;;;;AASF;;;;;;;;AAMA;;;AACE;;AAAA;;;;;;;;;;;;;;;;AAKI;;;;;;;;;;;;;;;;;;AAQA;;;;;;;;AAIF;;;;;;;AAKF;AAAA;;;;;AACE;;AAAA;;AAAA;AAAA;AAAA;AAMI;AACE;;;;;;;;;;;AAwBf;;;;;",
+    "entry-package-info": "travel|1.0.0"
   },
-  "quickstart|quickstart|1.0.0|src/main/ets/view/NearbyAttraction.js": {
+  "travel|travel|1.0.0|src/main/ets/util/Loading.js": {
     "version": 3,
-    "file": "NearbyAttraction.ets",
+    "file": "Loading.ets",
     "sources": [
-      "features/quickstart/src/main/ets/view/NearbyAttraction.ets"
+      "features/Travel/src/main/ets/util/Loading.ets"
     ],
     "names": [],
-    "mappings": ";;;AAAA;AAEA;AACA;AACE;AACA;AACA;AACA;AACA;;AAGF;AACA;AACE;;AAKF;AADA;;;;;;;AAHC;;;;;;;;;;;AAKC;;;;AACE;;;;;;AACE;;;AAAA;;;;AAGA;;;;;;;;AAQkB;;;AARlB;;;;;;;;AAQkB;AAClB;AATA;;;;;;;;AAQkB;AAClB;AATA;;;;;;;;AAQkB;;AARlB;;;;;;;;AAQkB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AARlB;;;;;;;;AAQkB;;;AAoBrB;;;;;;AAIC;;;;;;;;;;AACE;;;;;;;;;;;;AAIE;AAAA;;;;;;;;;AAUF;;;;;;;;;;;;AAGE;AAAA;;;;;;;AAiBL;;;;;",
-    "entry-package-info": "quickstart|1.0.0"
+    "mappings": ";;;AAGA;AADA;;;;;;;AAI4B;AACG;;;AAPuB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAYlD;AACA;;;AAGG;AAAM;AACL;AACA;AACD;AACH;;;AAIA;;AAGF;;;;;;;;AAEI;;AAAA;AAAA;;;AACE;AACE;AACA;;AAED;;;;;AAJD;AAAA;;;;;;AAWA;;;;;;;;;AAEI;;;AAAA;;;AAKD;AAAM;;;;;;;AACL;;;AAID;;;;;;;AACD;AAAA;;;;;;AAgBL;;;;AACF;;;;;",
+    "entry-package-info": "travel|1.0.0"
   },
-  "quickstart|quickstart|1.0.0|src/main/ets/model/Attraction.js": {
+  "travel|travel|1.0.0|src/main/ets/model/Attraction.js": {
     "version": 3,
     "file": "Attraction.ets",
     "sources": [
-      "features/quickstart/src/main/ets/model/Attraction.ets"
+      "features/Travel/src/main/ets/model/Attraction.ets"
     ],
     "names": [],
-    "mappings": "AAAA;AAOE;AACE;AACA;AACA;AACA;;AAEH;",
-    "entry-package-info": "quickstart|1.0.0"
+    "mappings": "AAAA;AAOE;AACE;AACA;AACA;AACA;;AAEH;AAED;AACE;AACA;AACA;AACA;AACA;AACA;AACA;;AAWF;AACA;;;;;;;;;",
+    "entry-package-info": "travel|1.0.0"
   },
-  "quickstart|quickstart|1.0.0|src/main/ets/view/Classficiation.js": {
+  "travel|travel|1.0.0|src/main/ets/pages/TravelStartPage.js": {
+    "version": 3,
+    "file": "TravelStartPage.ets",
+    "sources": [
+      "features/Travel/src/main/ets/pages/TravelStartPage.ets"
+    ],
+    "names": [],
+    "mappings": ";;;AAAA;AACA;AACA;AACA;AACA;AACA;AACA;AAEA;AACE;AACA;AACA;;AAMF;AADA;;;;;AAG8D;;;;AAN7D;;;;;;;;;;;;;;;;;;;;;;AAQC;;;;AACE;;AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AASU;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAmBH;AACA;;;;;;;;;;;;;;;;;;;;;;AAWR;AAGD;;;;;;;;;;;;;;;;;;;;;AAGG;;;;;;;;;;;;;;;;;;;AAEA;;;;;;;;;;;;;;;;;;;AAEA;;;;AAAA;;;AACF;AAGD;;;;AACE;;AAAA;;AAAA;;;;;;;;;;;;;AAME;;AAAA;;;;AAYH;;;;;",
+    "entry-package-info": "travel|1.0.0"
+  },
+  "travel|travel|1.0.0|src/main/ets/view/Classficiation.js": {
     "version": 3,
     "file": "Classficiation.ets",
     "sources": [
-      "features/quickstart/src/main/ets/view/Classficiation.ets"
+      "features/Travel/src/main/ets/view/Classficiation.ets"
     ],
     "names": [],
-    "mappings": ";;;AASA;AACE;;AAEC;AACD;AACE;AACD;AACD;;AAEC;AACD;;AAEC;AACD;AACE;AACD;;AAGH;AACE;AACE;AACA;AACD;AACD;AACE;AACA;AACD;AACD;AACE;AACA;AACD;AACD;AACE;AACA;AACD;AACD;AACE;AACA;AACD;;AAIH;AADA;;;;;;;AAFC;;;;;;;;;;;AAIC;;;;;;;;;;AAEE;;;;;;;;;;;;;;;;;;;;;AAGM;;;;;;;;;;;;AAOP;;;AAGC;;AAAA;AAAA;;;;;;;AACE;AAAA;;;;;;;;;;;;;;;;;;;;;;AAqBH;;;;;",
-    "entry-package-info": "quickstart|1.0.0"
+    "mappings": ";;;AAUA;AACE;;AAEC;AACD;AACE;AACD;AACD;;AAEC;AACD;;AAEC;AACD;AACE;AACD;;AAGH;AACE;AACE;AACA;AACA;AACD;AACD;AACE;AACA;AACA;AACD;AACD;AACE;AACA;AACA;AACD;AACD;AACE;AACA;AACA;AACD;AACD;AACE;AACA;AACA;AACD;;AAIH;AADA;;;;;;;;AAFE;;;;;;;;;;;;;;;;;;;AAMA;;;;;;;;;;AAEE;;;;;;;;;;;;;;;;;AAEI;AAIE;;;;;;AAHA;;;;;;;;;;;;AAUP;;;AAGC;;AAAA;AAAA;;;;;;;AACE;AAAA;;;;;;;;;;;;;;;;;;;;;;AAqBH;;;;;",
+    "entry-package-info": "travel|1.0.0"
   },
-  "quickstart|quickstart|1.0.0|src/main/ets/view/SearchHeader.js": {
+  "travel|travel|1.0.0|src/main/ets/view/SearchHeader.js": {
     "version": 3,
     "file": "SearchHeader.ets",
     "sources": [
-      "features/quickstart/src/main/ets/view/SearchHeader.ets"
+      "features/Travel/src/main/ets/view/SearchHeader.ets"
     ],
     "names": [],
     "mappings": ";;;AAEA;AADA;;;;;;;AADA;;;;;;;;;;;AAGE;;AACE;;AAAA;;;;;;;;;;;AAIE;;;;;;;;;;;;;;;;;AAWH;;;;;",
-    "entry-package-info": "quickstart|1.0.0"
+    "entry-package-info": "travel|1.0.0"
   },
-  "quickstart|quickstart|1.0.0|src/main/ets/pages/test.js": {
+  "travel|travel|1.0.0|src/main/ets/view/NearbyAttraction.js": {
     "version": 3,
-    "file": "test.ets",
+    "file": "NearbyAttraction.ets",
     "sources": [
-      "features/quickstart/src/main/ets/pages/test.ets"
+      "features/Travel/src/main/ets/view/NearbyAttraction.ets"
     ],
     "names": [],
-    "mappings": ";;;;;AACA;;;;;AAGyB;;;;AAJzB;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAOE;;AACE;;;;;AAAA;;;;;;;;AAEI;;;;;;AAAA;;;;;;;AAMA;;;;;;;;;;;;;;;;;;;;;;;AAGM;;;;;;;;;AACE;;;;;;;;;;;;;;;;;;;AAgBV;;AAAA;AAEI;;;;;;AAGP;;;;;;;;;",
-    "entry-package-info": "quickstart|1.0.0"
+    "mappings": ";;;AAAA;AAEA;AACA;AACE;AACA;AACA;AACA;AACA;;AAGF;AACA;AACE;;AAKF;AADA;;;;;;;AAHC;;;;;;;;;;;AAKC;;;;AACE;;;;;;;;;;;AAEI;;;AAAA;;;;;;;;;;;;;;;;;AAKE;;;AAIA;;;;;;;;;;;AAQJ;;;AAAA;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAsBH;;;;;;AAIC;;;;;;;;;;AACE;;;;;;;;;;;;AAIE;AAAA;;;;;;;;;AAUF;;;;;;;;;;;;AAGE;AAAA;;;;;;;AAiBL;;;;;",
+    "entry-package-info": "travel|1.0.0"
+  },
+  "travel|travel|1.0.0|src/main/ets/pages/AttractionDetailPage.js": {
+    "version": 3,
+    "file": "AttractionDetailPage.ets",
+    "sources": [
+      "features/Travel/src/main/ets/pages/AttractionDetailPage.ets"
+    ],
+    "names": [],
+    "mappings": ";;;AAAA;AAGA;AADA;;;;;AAEkC;;;;AAJe;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAQ7C;;AAGF;;;;;;;;;;;;;AAGM;;;;;;;AACE;AAII;;;;;;;AAEJ;;;AACE;;;AAAA;AAAA;;;;;;;AAgBP;;;;AACF;;;;;",
+    "entry-package-info": "travel|1.0.0"
+  },
+  "travel|travel|1.0.0|src/main/ets/util/avatar.js": {
+    "version": 3,
+    "file": "avatar.ets",
+    "sources": [
+      "features/Travel/src/main/ets/util/avatar.ets"
+    ],
+    "names": [],
+    "mappings": ";;;AAEA;AAFA;;;;;;;AAKsC;;;AALtC;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAQI;;;;;AAMA;;;;;;AAQF;;AACE;;;;;;;;;;;;;;;;AAEE;;;;;;;;;;;AAOA;;;;;;;;;;;;;AAOA;;;;;;;;;;;AAEE;;;;;;;;;;;AAMA;;AAAA;;;;;AAYL;;;;;;;;;",
+    "entry-package-info": "travel|1.0.0"
   }
 }

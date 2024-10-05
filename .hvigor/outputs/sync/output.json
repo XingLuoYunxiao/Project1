@@ -5,7 +5,7 @@
     "DEPENDENCY_INFO": {
       "learning": "D:\\HuaWei\\Apps\\IctProject\\features\\learning",
       "map": "D:\\HuaWei\\Apps\\IctProject\\features\\map",
-      "quickstart": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart",
+      "travel": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel",
       "login": "D:\\HuaWei\\Apps\\IctProject\\features\\Login",
       "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
       "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents"
@@ -247,9 +247,9 @@
       ]
     }
   },
-  "ohos-module-quickstart": {
+  "ohos-module-Travel": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build",
+    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build",
     "DEPENDENCY_INFO": {
       "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
       "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents",
@@ -257,22 +257,22 @@
     },
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main",
+        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\resources"
+          "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -573,8 +573,8 @@
         "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
       },
       {
-        "name": "quickstart",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart",
+        "name": "Travel",
+        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel",
         "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
       },
       {
@@ -635,8 +635,8 @@
           "srcPath": "./features/learning"
         },
         {
-          "name": "quickstart",
-          "srcPath": "./features/quickstart"
+          "name": "Travel",
+          "srcPath": "./features/Travel"
         },
         {
           "name": "utils",

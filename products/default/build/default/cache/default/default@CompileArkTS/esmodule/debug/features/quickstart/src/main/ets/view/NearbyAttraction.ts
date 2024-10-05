@@ -41,8 +41,12 @@ export class NearbyAttraction extends ViewPU {
             Column.alignItems(HorizontalAlign.Start);
             Column.width('100%');
             Column.height('100%');
-            Column.layoutWeight(1);
         }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+            Row.width('100%');
+            Row.height(30);
+        }, Row);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Text.create('附近景点');
             Text.fontSize(18);
@@ -50,13 +54,32 @@ export class NearbyAttraction extends ViewPU {
         }, Text);
         Text.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Blank.create();
+        }, Blank);
+        Blank.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Row.create();
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Image.create({ "id": 33554543, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" });
+            Image.width(20);
+            Image.height(20);
+            Image.margin({ right: 5 });
+        }, Image);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create('西安');
+            Text.fontSize(14);
+            Text.fontWeight(500);
+        }, Text);
+        Text.pop();
+        Row.pop();
+        Row.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
             List.create();
-            List.edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true });
             List.scrollBar(BarState.Off);
             List.width('100%');
-            List.height('100%');
+            List.height(300);
             List.listDirection(Axis.Vertical);
-            List.layoutWeight(1);
         }, List);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             ForEach.create();
@@ -87,6 +110,12 @@ export class NearbyAttraction extends ViewPU {
         }, ForEach);
         ForEach.pop();
         List.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.width('100%');
+            Column.height(200);
+        }, Column);
+        Column.pop();
         Column.pop();
     }
     NearbyItem(attraction: Attraction, index: number, parent = null) {

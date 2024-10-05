@@ -1,1 +1,1 @@
-{"app":{"bundleName":"com.example.ictproject","versionCode":1000000,"versionName":"1.0.0","patchVersionCode":3000001,"patchVersionName":"3000001"},"module":{"name":"default","type":"patch","deviceTypes":["phone","tablet","2in1"],"originalModuleHash":""}}
+{"app":{"bundleName":"com.example.ictproject","versionCode":1000000,"versionName":"1.0.0","patchVersionCode":3000003,"patchVersionName":"3000003"},"module":{"name":"default","type":"patch","deviceTypes":["phone","tablet","2in1"],"originalModuleHash":""}}

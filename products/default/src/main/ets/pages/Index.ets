@@ -1,4 +1,4 @@
-import { QuickStartPage } from '@ohos/quickstart';
+import { TravelStartPage } from '@ohos/quickstart';
 import { InfoMessagePage } from '@ohos/login';
 
 @Entry
@@ -34,7 +34,7 @@ struct Index {
   build() {
     Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
       TabContent() {
-        QuickStartPage()
+        TravelStartPage()
       }
       .tabBar(this.tabBarBuilder('旅游', 0, $r('app.media.ic_01_on'), $r('app.media.ic_01_off')))
 

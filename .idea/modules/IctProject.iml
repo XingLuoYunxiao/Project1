@@ -47,18 +47,18 @@
       <excludeFolder url="file://$MODULE_DIR$/../../features/map/build" />
       <excludeFolder url="file://$MODULE_DIR$/../../features/map/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/../../features/map/oh_modules" />
-      <excludeFolder url="file://$MODULE_DIR$/../../features/quickstart/.cxx" />
-      <excludeFolder url="file://$MODULE_DIR$/../../features/quickstart/.preview" />
-      <excludeFolder url="file://$MODULE_DIR$/../../features/quickstart/.test" />
-      <excludeFolder url="file://$MODULE_DIR$/../../features/quickstart/build" />
-      <excludeFolder url="file://$MODULE_DIR$/../../features/quickstart/node_modules" />
-      <excludeFolder url="file://$MODULE_DIR$/../../features/quickstart/oh_modules" />
       <excludeFolder url="file://$MODULE_DIR$/../../products/default/.cxx" />
       <excludeFolder url="file://$MODULE_DIR$/../../products/default/.preview" />
       <excludeFolder url="file://$MODULE_DIR$/../../products/default/.test" />
       <excludeFolder url="file://$MODULE_DIR$/../../products/default/build" />
       <excludeFolder url="file://$MODULE_DIR$/../../products/default/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/../../products/default/oh_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/Travel/.cxx" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/Travel/.preview" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/Travel/.test" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/Travel/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/Travel/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/Travel/oh_modules" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="" scope="PROVIDED">
