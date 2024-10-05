@@ -5,7 +5,7 @@ interface Index_Params {
     currentIndex?: number;
     tabsController?: TabsController;
 }
-import { QuickStartPage } from "@bundle:com.example.ictproject/default@quickstart/Index";
+import { TravelStartPage } from "@bundle:com.example.ictproject/default@Travel/Index";
 import { InfoMessagePage } from "@bundle:com.example.ictproject/default@Login/Index";
 class Index extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
@@ -90,7 +90,7 @@ class Index extends ViewPU {
                 {
                     this.observeComponentCreation2((elmtId, isInitialRender) => {
                         if (isInitialRender) {
-                            let componentCall = new QuickStartPage(this, {}, undefined, elmtId, () => { }, { page: "products/default/src/main/ets/pages/Index.ets", line: 37, col: 9 });
+                            let componentCall = new TravelStartPage(this, {}, undefined, elmtId, () => { }, { page: "products/default/src/main/ets/pages/Index.ets", line: 37, col: 9 });
                             ViewPU.create(componentCall);
                             let paramsLambda = () => {
                                 return {};
@@ -100,7 +100,7 @@ class Index extends ViewPU {
                         else {
                             this.updateStateVarsOfChildByElmtId(elmtId, {});
                         }
-                    }, { name: "QuickStartPage" });
+                    }, { name: "TravelStartPage" });
                 }
             });
             TabContent.tabBar({ builder: () => {

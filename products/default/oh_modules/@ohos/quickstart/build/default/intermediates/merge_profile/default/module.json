@@ -13,14 +13,14 @@
 		"bundleType": "app"
 	},
 	"module": {
-		"name": "quickstart",
+		"name": "Travel",
 		"type": "har",
 		"deviceTypes": [
 			"default",
 			"tablet",
 			"2in1"
 		],
-		"packageName": "quickstart",
+		"packageName": "travel",
 		"installationFree": false
 	}
 }

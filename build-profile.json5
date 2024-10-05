@@ -41,8 +41,8 @@
       "srcPath": "./features/learning"
     },
     {
-      "name": "quickstart",
-      "srcPath": "./features/quickstart"
+      "name": "Travel",
+      "srcPath": "./features/Travel"
     },
     {
       "name": "utils",

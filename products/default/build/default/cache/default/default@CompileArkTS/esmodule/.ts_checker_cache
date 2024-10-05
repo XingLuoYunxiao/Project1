@@ -4052,9 +4052,9 @@
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\pages\\Index.ets": {
-      "mtimeMs": 1728048430470.817,
+      "mtimeMs": 1728112283650.993,
       "children": [
-        "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\Index.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\Index.ets",
         "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\Index.ets"
       ],
       "parent": [],
@@ -5280,12 +5280,109 @@
       "error": false
     },
     "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\view\\NearbyAttraction.ets": {
-      "mtimeMs": 1728050623882.1885,
+      "mtimeMs": 1728111986473.6116,
       "children": [
         "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\model\\Attraction.ets"
       ],
       "parent": [
         "D:\\HuaWei\\Apps\\IctProject\\features\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\Index.ets": {
+      "mtimeMs": 1728112264368.6506,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\TravelStartPage.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\ets\\pages\\Index.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\TravelStartPage.ets": {
+      "mtimeMs": 1728132177284.7847,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\model\\Attraction.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\util\\Loading.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\view\\Classficiation.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\view\\NearbyAttraction.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\view\\SearchHeader.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\AttractionDetailPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\FamousPlacePage.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\Index.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\model\\Attraction.ets": {
+      "mtimeMs": 1728121517021.7036,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\TravelStartPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\view\\NearbyAttraction.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\FamousPlacePage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\AttractionDetailPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\view\\Classficiation.ets": {
+      "mtimeMs": 1728114478200.15,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\TravelStartPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\view\\NearbyAttraction.ets": {
+      "mtimeMs": 1728111986473.6116,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\model\\Attraction.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\TravelStartPage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\view\\SearchHeader.ets": {
+      "mtimeMs": 1728038829335.568,
+      "children": [],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\TravelStartPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\FamousPlacePage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\FamousPlacePage.ets": {
+      "mtimeMs": 1728136170285.1162,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\model\\Attraction.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\util\\Loading.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\TravelStartPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\util\\Loading.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\util\\Loading.ets": {
+      "mtimeMs": 1728132321275.088,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\FamousPlacePage.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\TravelStartPage.ets",
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\FamousPlacePage.ets"
+      ],
+      "error": false
+    },
+    "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\AttractionDetailPage.ets": {
+      "mtimeMs": 1728138242792.5479,
+      "children": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\model\\Attraction.ets"
+      ],
+      "parent": [
+        "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\ets\\pages\\TravelStartPage.ets"
       ],
       "error": false
     }

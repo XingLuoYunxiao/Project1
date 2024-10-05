@@ -1,0 +1,324 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚ#Éif (!("finalizeConstruction" in ViewPU.prototype)) {
+    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
+}
+import { Attraction } from "../model/Attraction";
+const myMap = new Map();
+export class AttractionDetailPage extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.__attraction = new ObservedPropertyObjectPU(new Attraction(1, "null", { "id": 33554531, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" }), this, "attraction");
+        this.__travelPathStack = this.initializeConsume('travelPathStack', "travelPathStack");
+        this.__myScale = new ObservedPropertySimplePU(1, this, "myScale");
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.attraction !== undefined) {
+            this.attraction = params.attraction;
+        }
+        if (params.myScale !== undefined) {
+            this.myScale = params.myScale;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.__attraction.purgeDependencyOnElmtId(rmElmtId);
+        this.__travelPathStack.purgeDependencyOnElmtId(rmElmtId);
+        this.__myScale.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.__attraction.aboutToBeDeleted();
+        this.__travelPathStack.aboutToBeDeleted();
+        this.__myScale.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get attraction() {
+        return this.__attraction.get();
+    }
+    set attraction(newValue) {
+        this.__attraction.set(newValue);
+    }
+    get travelPathStack() {
+        return this.__travelPathStack.get();
+    }
+    set travelPathStack(newValue) {
+        this.__travelPathStack.set(newValue);
+    }
+    get myScale() {
+        return this.__myScale.get();
+    }
+    set myScale(newValue) {
+        this.__myScale.set(newValue);
+    }
+    aboutToAppear() {
+        myMap.set("æ•…å®«", "åˆé—¨è¿›å…¥ â†’ å¤ªå’Œé—¨å¹¿åœº â†’ å¤ªå’Œæ®¿ï¼ˆé‡‘éŠ®æ®¿ï¼‰â†’ ä¸­å’Œæ®¿ï¼ˆçš‡å¸æ›´è¡£å¤„ï¼‰â†’ ä¿å’Œæ®¿ï¼ˆå®´ä¼šå’Œç§‘ä¸¾è€ƒåœºï¼‰â†’ ä¹¾æ¸…å®«ï¼ˆçš‡å¸å¯å®«ï¼‰â†’ äº¤æ³°æ®¿ï¼ˆçš‡åç”Ÿæ—¥åº†å…¸ï¼‰â†’ å¤å®å®«ï¼ˆçš‡åå¯å®«ï¼‰â†’ å¾¡èŠ±å›­ï¼ˆçš‡å®¶å›­æ—ï¼‰â†’ çå®é¦†ï¼ˆå±•ç¤ºçš‡å®¶çå®ï¼‰â†’ å¤©ç©¹å®æ®¿ â†’ å®å¯¿å®«ï¼ˆä¹¾éš†é€€ä½åå±…ä½ï¼‰â†’ ç¥æ­¦é—¨å‡º");
+        myMap.set("ç§¦å§‹çš‡é™µ", "é™µå›­å…¥å£ â†’ 1å·å…µé©¬ä¿‘å‘ï¼ˆè§„æ¨¡æœ€å¤§ï¼‰â†’ 2å·å…µé©¬ä¿‘å‘ï¼ˆæˆ˜è½¦é™ˆåˆ—ï¼‰â†’ 3å·å…µé©¬ä¿‘å‘ï¼ˆæŒ‡æŒ¥ä¸­å¿ƒï¼‰â†’ é“œè½¦é©¬å±•å…ï¼ˆå±•ç¤ºä¸¤è¾†é’é“œé©¬è½¦ï¼‰â†’ ç§¦å§‹çš‡é™µå°åœŸå †è¿œè§‚ â†’ ä¸½å±±å›­ï¼ˆæ¨¡æ‹Ÿè€ƒå¤åŒºï¼‰");
+        myMap.set("é•¿åŸ", "å…¥å£ â†’ ç®­æ¥¼ï¼ˆå…³å£ï¼‰â†’ åŒ—ä¸€æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äºŒæ¥¼ï¼ˆçƒ½ç«å°ï¼Œè§‚èµé•¿åŸå…¨æ™¯ï¼‰â†’ åŒ—ä¸‰æ¥¼ï¼ˆçƒ½ç«å°ï¼Œè¾ƒä¸ºé™¡å³­ï¼‰â†’ åŒ—å››æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äº”æ¥¼ï¼ˆçƒ½ç«å°ï¼Œé‡è¦å†›äº‹ä½ç½®ï¼‰â†’ åŒ—å…­æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—ä¸ƒæ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—å…«æ¥¼ï¼ˆæœ€é«˜ç‚¹ï¼Œå¥½æ±‰å¡ï¼‰â†’ è¿”å›é€”ä¸­å¯é€‰çˆ¬å—é•¿åŸ");
+        myMap.set("æ•¦ç…Œè«é«˜çªŸ", "æ•°å­—å±•ç¤ºä¸­å¿ƒï¼ˆè§‚çœ‹ä»‹ç»å½±ç‰‡ï¼‰â†’ ä¹˜åæ™¯åŒºäº¤é€šè½¦ â†’ è«é«˜çªŸçªŸåŒº â†’ å‚è§‚ä¸»è¦æ´çªŸï¼ˆå¦‚96çªŸã€130çªŸã€148çªŸï¼‰â†’ ç‰¹çªŸå‚è§‚ï¼ˆéœ€é¢å¤–è´­ç¥¨ï¼‰â†’ è—ç»æ´ï¼ˆå‘ç°å¤§é‡æ–‡çŒ®çš„åœ°æ–¹ï¼‰â†’ è«é«˜çªŸåšç‰©é¦†ï¼ˆäº†è§£è«é«˜çªŸçš„å†å²å’Œè‰ºæœ¯ï¼‰");
+        myMap.set("ä¹å±±å¤§ä½›", "å±±é—¨ â†’ é’Ÿé¼“æ¥¼ â†’ å‡Œäº‘å¯ºï¼ˆä½›æ•™åœ£åœ°ï¼‰â†’ ä¹æ›²æ ˆé“ï¼ˆä¸‹è‡³å¤§ä½›è„šéƒ¨ï¼Œé€”ä¸­å¯æ¬£èµå£é›•ï¼‰â†’ å¤§ä½›è„šéƒ¨å¹³å°ï¼ˆè¿‘è·ç¦»è§‚èµå¤§ä½›ï¼‰â†’ é‡æ–°æ²¿ä¹æ›²æ ˆé“è¿”å› â†’ è‹å›­ï¼ˆæ±Ÿå—å›­æ—é£æ ¼ï¼‰â†’ ä¹Œå°¤å¯ºï¼ˆè§‚èµä¹å±±å…¨æ™¯ï¼‰");
+        myMap.set("é¢å’Œå›­", "ä¸œå®«é—¨è¿›å…¥ â†’ è‹å·è¡—ï¼ˆæ¨¡ä»¿æ±Ÿå—æ°´ä¹¡ï¼‰â†’ ä¹°å–è¡—ï¼ˆå¤å•†ä¸šè¡—ï¼‰â†’ é•¿å»Šï¼ˆç”»å»Šï¼Œæ¬£èµå£ç”»ï¼‰â†’ æ’äº‘æ®¿ï¼ˆæ…ˆç¦§ç¥å¯¿çš„åœ°æ–¹ï¼‰â†’ ä½›é¦™é˜ï¼ˆä¿¯ç°æ•´ä¸ªå›­æ—ï¼‰â†’ å®œèŠ¸é¦†ï¼ˆçš‡å®¶ä¹¦å±‹ï¼‰â†’ å¾·å’Œå›­ï¼ˆå¤§æˆæ¥¼ï¼‰â†’ æ˜†æ˜æ¹–ï¼ˆåˆ’èˆ¹æˆ–ç¯æ¹–æ•£æ­¥ï¼‰â†’ åä¸ƒå­”æ¡¥ï¼ˆè¿æ¥ä¸œå²¸å’Œå—æ¹–å²›ï¼‰â†’ é“œç‰›ï¼ˆæ˜†æ˜æ¹–ç•”çš„é“œåƒï¼‰");
+        myMap.set("å¤©å›", "å—é—¨è¿›å…¥ â†’ åœœä¸˜å›ï¼ˆå†¬è‡³ç¥­å¤©çš„åœ°æ–¹ï¼‰â†’ å›éŸ³å£ï¼ˆå£°å­¦å¥‡è¿¹ï¼‰â†’ ç¥ˆå¹´æ®¿ï¼ˆç¥ˆæ±‚ä¸°æ”¶çš„åœ°æ–¹ï¼‰â†’ ç¥ˆå¹´é—¨ â†’ é•¿å»Šï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡ï¼‰â†’ ä¸¹é™›æ¡¥ï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡çš„ç –çŸ³æ¡¥ï¼‰â†’ æ–‹å®«ï¼ˆçš‡å¸ç¥­å¤©å‰æ–‹æˆ’çš„åœ°æ–¹ï¼‰â†’ åŒ—é—¨å‡º");
+        this.attraction = this.travelPathStack.getParamByName('AttractionDetailPage')[0];
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            NavDestination.create(() => {
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Column.create();
+                    Column.width('95%');
+                    Column.height('100%');
+                }, Column);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Row.create();
+                    Row.width('100%');
+                    Row.justifyContent(FlexAlign.Start);
+                }, Row);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Image.create({ "id": 16777257, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" });
+                    Image.width(30);
+                    Image.height(30);
+                    Image.onClick(() => {
+                        this.travelPathStack.pop();
+                    });
+                }, Image);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Row.create();
+                    Row.layoutWeight(1);
+                    Row.justifyContent(FlexAlign.Center);
+                }, Row);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Text.create(this.attraction.name);
+                    Text.fontSize(20);
+                    Text.fontWeight(FontWeight.Bold);
+                    Text.margin({ right: 15 });
+                }, Text);
+                Text.pop();
+                Row.pop();
+                Row.pop();
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Image.create({ "id": 50331659, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" });
+                    Image.width('100%');
+                    Image.height(300);
+                }, Image);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Column.create();
+                    Column.alignItems(HorizontalAlign.Start);
+                    Column.backgroundColor(Color.White);
+                }, Column);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Text.create('è·¯å¾„è§„åˆ’');
+                    Text.fontSize(24);
+                    Text.fontColor(Color.White);
+                    Text.backgroundColor(Color.Orange);
+                    Text.borderRadius(10);
+                    Text.padding(5);
+                    Text.margin({ top: 10 });
+                }, Text);
+                Text.pop();
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Text.create(myMap.get(this.attraction.name));
+                    Text.fontSize(18);
+                    Text.width('90%');
+                    Text.margin({ top: 5 });
+                    Text.backgroundColor(Color.White);
+                }, Text);
+                Text.pop();
+                Column.pop();
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Column.create();
+                    Column.position({ x: 270, y: 550 });
+                }, Column);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Image.create({ "id": 50331658, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" });
+                    Image.width(100);
+                    Image.height(150);
+                    Image.objectFit(ImageFit.Contain);
+                    Image.opacity(0.8);
+                    Image.scale({ x: this.myScale, y: this.myScale });
+                }, Image);
+                Column.pop();
+                Column.pop();
+            }, { moduleName: "default", pagePath: "features/Travel/src/main/ets/pages/AttractionDetailPage" });
+            NavDestination.hideTitleBar(true);
+        }, NavDestination);
+        NavDestination.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+}
+//# sourceMappingURL=AttractionDetailPage.js.mapÂ‘ÙKD:\HuaWei\Apps\IctProject\features\Travel\src\main\ets\model\Attraction.etsÙUD:\HuaWei\Apps\IctProject\features\Travel\src\main\ets\pages\AttractionDetailPage.etsÔrBš°belongModulePathªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo¯hostModulesInfoÙ)D:\HuaWei\Apps\IctProject\features\Travel¦TravelÃÂÙ)D:\HuaWei\Apps\IctProject\features\Travel¹D:\HuaWei\Apps\IctProject¦travel¥1.0.0ÔrC’§pkgNameªpkgVersion¦travel¥1.0.0‘ÔrD’²hostDependencyName®hostModuleName¶./AttractionDetailPage¦TravelÃÚ¸import { Attraction } from "../model/Attraction";
+
+
+const  myMap: Map<string,string> = new Map();
+
+
+
+@Component
+export struct AttractionDetailPage {
+  @State attraction: Attraction = new Attraction(1, "null", $r("app.media.attraction_1"));
+  @Consume('travelPathStack') travelPathStack: NavPathStack;
+  @State  myScale: number = 1
+
+
+  aboutToAppear(): void {
+    myMap.set("æ•…å®«", "åˆé—¨è¿›å…¥ â†’ å¤ªå’Œé—¨å¹¿åœº â†’ å¤ªå’Œæ®¿ï¼ˆé‡‘éŠ®æ®¿ï¼‰â†’ ä¸­å’Œæ®¿ï¼ˆçš‡å¸æ›´è¡£å¤„ï¼‰â†’ ä¿å’Œæ®¿ï¼ˆå®´ä¼šå’Œç§‘ä¸¾è€ƒåœºï¼‰â†’ ä¹¾æ¸…å®«ï¼ˆçš‡å¸å¯å®«ï¼‰â†’ äº¤æ³°æ®¿ï¼ˆçš‡åç”Ÿæ—¥åº†å…¸ï¼‰â†’ å¤å®å®«ï¼ˆçš‡åå¯å®«ï¼‰â†’ å¾¡èŠ±å›­ï¼ˆçš‡å®¶å›­æ—ï¼‰â†’ çå®é¦†ï¼ˆå±•ç¤ºçš‡å®¶çå®ï¼‰â†’ å¤©ç©¹å®æ®¿ â†’ å®å¯¿å®«ï¼ˆä¹¾éš†é€€ä½åå±…ä½ï¼‰â†’ ç¥æ­¦é—¨å‡º");
+    myMap.set("ç§¦å§‹çš‡é™µ", "é™µå›­å…¥å£ â†’ 1å·å…µé©¬ä¿‘å‘ï¼ˆè§„æ¨¡æœ€å¤§ï¼‰â†’ 2å·å…µé©¬ä¿‘å‘ï¼ˆæˆ˜è½¦é™ˆåˆ—ï¼‰â†’ 3å·å…µé©¬ä¿‘å‘ï¼ˆæŒ‡æŒ¥ä¸­å¿ƒï¼‰â†’ é“œè½¦é©¬å±•å…ï¼ˆå±•ç¤ºä¸¤è¾†é’é“œé©¬è½¦ï¼‰â†’ ç§¦å§‹çš‡é™µå°åœŸå †è¿œè§‚ â†’ ä¸½å±±å›­ï¼ˆæ¨¡æ‹Ÿè€ƒå¤åŒºï¼‰");
+    myMap.set("é•¿åŸ", "å…¥å£ â†’ ç®­æ¥¼ï¼ˆå…³å£ï¼‰â†’ åŒ—ä¸€æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äºŒæ¥¼ï¼ˆçƒ½ç«å°ï¼Œè§‚èµé•¿åŸå…¨æ™¯ï¼‰â†’ åŒ—ä¸‰æ¥¼ï¼ˆçƒ½ç«å°ï¼Œè¾ƒä¸ºé™¡å³­ï¼‰â†’ åŒ—å››æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äº”æ¥¼ï¼ˆçƒ½ç«å°ï¼Œé‡è¦å†›äº‹ä½ç½®ï¼‰â†’ åŒ—å…­æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—ä¸ƒæ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—å…«æ¥¼ï¼ˆæœ€é«˜ç‚¹ï¼Œå¥½æ±‰å¡ï¼‰â†’ è¿”å›é€”ä¸­å¯é€‰çˆ¬å—é•¿åŸ");
+    myMap.set("æ•¦ç…Œè«é«˜çªŸ", "æ•°å­—å±•ç¤ºä¸­å¿ƒï¼ˆè§‚çœ‹ä»‹ç»å½±ç‰‡ï¼‰â†’ ä¹˜åæ™¯åŒºäº¤é€šè½¦ â†’ è«é«˜çªŸçªŸåŒº â†’ å‚è§‚ä¸»è¦æ´çªŸï¼ˆå¦‚96çªŸã€130çªŸã€148çªŸï¼‰â†’ ç‰¹çªŸå‚è§‚ï¼ˆéœ€é¢å¤–è´­ç¥¨ï¼‰â†’ è—ç»æ´ï¼ˆå‘ç°å¤§é‡æ–‡çŒ®çš„åœ°æ–¹ï¼‰â†’ è«é«˜çªŸåšç‰©é¦†ï¼ˆäº†è§£è«é«˜çªŸçš„å†å²å’Œè‰ºæœ¯ï¼‰");
+    myMap.set("ä¹å±±å¤§ä½›", "å±±é—¨ â†’ é’Ÿé¼“æ¥¼ â†’ å‡Œäº‘å¯ºï¼ˆä½›æ•™åœ£åœ°ï¼‰â†’ ä¹æ›²æ ˆé“ï¼ˆä¸‹è‡³å¤§ä½›è„šéƒ¨ï¼Œé€”ä¸­å¯æ¬£èµå£é›•ï¼‰â†’ å¤§ä½›è„šéƒ¨å¹³å°ï¼ˆè¿‘è·ç¦»è§‚èµå¤§ä½›ï¼‰â†’ é‡æ–°æ²¿ä¹æ›²æ ˆé“è¿”å› â†’ è‹å›­ï¼ˆæ±Ÿå—å›­æ—é£æ ¼ï¼‰â†’ ä¹Œå°¤å¯ºï¼ˆè§‚èµä¹å±±å…¨æ™¯ï¼‰");
+    myMap.set("é¢å’Œå›­", "ä¸œå®«é—¨è¿›å…¥ â†’ è‹å·è¡—ï¼ˆæ¨¡ä»¿æ±Ÿå—æ°´ä¹¡ï¼‰â†’ ä¹°å–è¡—ï¼ˆå¤å•†ä¸šè¡—ï¼‰â†’ é•¿å»Šï¼ˆç”»å»Šï¼Œæ¬£èµå£ç”»ï¼‰â†’ æ’äº‘æ®¿ï¼ˆæ…ˆç¦§ç¥å¯¿çš„åœ°æ–¹ï¼‰â†’ ä½›é¦™é˜ï¼ˆä¿¯ç°æ•´ä¸ªå›­æ—ï¼‰â†’ å®œèŠ¸é¦†ï¼ˆçš‡å®¶ä¹¦å±‹ï¼‰â†’ å¾·å’Œå›­ï¼ˆå¤§æˆæ¥¼ï¼‰â†’ æ˜†æ˜æ¹–ï¼ˆåˆ’èˆ¹æˆ–ç¯æ¹–æ•£æ­¥ï¼‰â†’ åä¸ƒå­”æ¡¥ï¼ˆè¿æ¥ä¸œå²¸å’Œå—æ¹–å²›ï¼‰â†’ é“œç‰›ï¼ˆæ˜†æ˜æ¹–ç•”çš„é“œåƒï¼‰");
+    myMap.set("å¤©å›", "å—é—¨è¿›å…¥ â†’ åœœä¸˜å›ï¼ˆå†¬è‡³ç¥­å¤©çš„åœ°æ–¹ï¼‰â†’ å›éŸ³å£ï¼ˆå£°å­¦å¥‡è¿¹ï¼‰â†’ ç¥ˆå¹´æ®¿ï¼ˆç¥ˆæ±‚ä¸°æ”¶çš„åœ°æ–¹ï¼‰â†’ ç¥ˆå¹´é—¨ â†’ é•¿å»Šï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡ï¼‰â†’ ä¸¹é™›æ¡¥ï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡çš„ç –çŸ³æ¡¥ï¼‰â†’ æ–‹å®«ï¼ˆçš‡å¸ç¥­å¤©å‰æ–‹æˆ’çš„åœ°æ–¹ï¼‰â†’ åŒ—é—¨å‡º");
+
+    this.attraction = this.travelPathStack.getParamByName('AttractionDetailPage')[0] as Attraction;
+  }
+
+  build() {
+    NavDestination(){
+      Column() {
+        Row(){
+          Image($r('app.media.ic_back'))
+            .width(30)
+            .height(30)
+            .onClick( () => {
+              this.travelPathStack.pop();
+            })
+          Row(){
+            Text(this.attraction.name)
+              .fontSize(20)
+              .fontWeight(FontWeight.Bold)
+              .margin({right:15})
+          }
+          .layoutWeight(1)
+          .justifyContent(FlexAlign.Center)
+        }
+        .width('100%')
+        .justifyContent(FlexAlign.Start)
+
+        Image($r('app.media.gugong_map'))
+          .width('100%')
+          .height(300)
+
+        Column(){
+          Text('è·¯å¾„è§„åˆ’')
+            .fontSize(24)
+            .fontColor(Color.White)
+            .backgroundColor(Color.Orange)
+            .borderRadius(10)
+            .padding(5)
+            .margin({top:10})
+          Text(myMap.get(this.attraction.name))
+            .fontSize(18)
+            .width('90%')
+            .margin({top:5})
+            .backgroundColor(Color.White)
+        }
+        .alignItems(HorizontalAlign.Start)
+        .backgroundColor(Color.White)
+
+
+        Column(){
+          Image($r('app.media.avator'))
+            .width(100)
+            .height(150)
+            .objectFit(ImageFit.Contain)
+            .opacity(0.8)
+            .scale({ x: this.myScale, y: this.myScale })
+        }
+        .position({x:270, y:550})
+      }
+      .width('95%')
+      .height('100%')
+      //.backgroundColor('#ffdee7ee')
+    }
+    .hideTitleBar(true)
+  }
+}
+ÀÔrE‘³../model/AttractionÔrF—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÂÙKD:\HuaWei\Apps\IctProject\features\Travel\src\main\ets\model\Attraction.etsAÃªoh-resolveÂ’ÔrG–§version¤fileªsourceRoot§sources¥names¨mappings·AttractionDetailPage.js ‘¸AttractionDetailPage.etsÜ –˜”    ”  ”	  	”  ”  ”  ”0  0”1  1˜”   ” ” ” #” '” *” ,” -””   ” ” ”! "‘”  ˜”9 	"”= 	&”ÌG 	0”ÌH 	1”ÌI 	2”ÌK 	4”ÌQ 	:”ÌÂ 	ÌY’”8 
+”ÌI 
+’”6 ”7 ‘” -’” 		” 	’” 		” 	’” 
+” 
+-’” 
+” 
+-’” 
+” ’” 
+” ’” ” š” ” 	” 
+” ” ” ” ”Ì¡ Ì”Ì¢ Ì”Ì£ ÌŸš” ” 	” 
+” ” ” ” ”Ìt Ìp”Ìu Ìq”Ìv Ìrš” ” 	” 
+” ” ” ” ”Ì˜ Ì””Ì™ Ì•”Ìš Ì–š” ” 	” 
+” ” ” ” ”Ì‡ Ìƒ”Ìˆ Ì„”Ì‰ Ì…š” ” 	” 
+” ” ” ” ”Ì| Ìx”Ì} Ìy”Ì~ Ìzš” ” 	” 
+” ” ” ” ”Ì¡ Ì”Ì¢ Ì”Ì£ ÌŸš” ” 	” 
+” ” ” ” ”Ì„ Ì€”Ì… Ì”Ì† Ì‚Ü ” ” ” 	” ” ” ” ”. *”/ +”= 9”> :”ÌT ÌP”ÌU ÌQ”ÌV ÌR”ÌW ÌS”ÌX Ìb”ÌY Ìc’” ” ‘” ’” ” –” ” ” ÌP”  ÌP”! ÌP”& ÌP–” ” ” ÌQ”! ÌQ”" ÌQ”( ÌQ’” ” –” ” ” -	” -” -”$ -˜” ” ” .	”& .”' .”0 .!”1 ."”6 .'’” 
+” –” 
+” ” ” ”  ”" –” 
+” ”  ”   ”!  ”#  —” 
+” ” !”! !”" !”% !”' !˜” "” "” "”, ""”- "#”0 "&”2 "(”3 ")’” #” #’” $
+” $–” $
+” $” *”$ *”% *”& *˜” $
+” $” +”& +”' +”0 +#”1 +$”7 +*˜” %” %”  %”$ %”% %”/ % ”0 %!”4 %%–” %” %” &”! &”" &”$ &˜” %” %” '”# '”$ '”. '$”/ '%”3 ')š” %” %” (” (”  (”" (”' (”) (”+ (”- ( ’” %” %’” $
+” $’” ” ’” 0” 0–” 0” 0” 1” 1”  1”& 1–” 0” 0” 2”  2”! 2”$ 2’” 4” 4˜” 4” 4” ÌB	”% ÌB”& ÌB”5 ÌB#”6 ÌB$”; ÌB)˜” 4” 4” ÌC	”* ÌC”+ ÌC”0 ÌC”1 ÌC”6 ÌC$”” 5
+” 5”  5”& 5–” 5
+” 5” 6”! 6”" 6”$ 6˜” 5
+” 5” 7”" 7”# 7”( 7”) 7”. 7"˜” 5
+” 5” 8”( 8”) 8”. 8"”/ 8#”5 8)–” 5
+” 5” 9”% 9”& 9”( 9–” 5
+” 5” :”  :”! :”" :š” 5
+” 5” ;” ;”  ;”" ;”% ;”' ;”) ;”+ ;’” 5
+” 5” <
+” <”  <”% <”& <”) <”* <”. <”/ <”9 <(”: <)”> <-”? <.–” <
+” <” =”! =”" =”$ =–” <
+” <” >” >” >”$ >š” <
+” <” ?” ?”  ?”" ?”% ?”' ?”( ?”* ?˜” <
+” <” Ì@”( Ì@”) Ì@”. Ì@"”/ Ì@#”4 Ì@(’” <
+” <’” 4” 4’” ÌF” ÌF” ÌF” ÌF” ÌN	”# ÌN”$ ÌN”& ÌN”' ÌN”) ÌN”, ÌN”. ÌN”/ ÌN”1 ÌN”4 ÌN”6 ÌN ’” ÌG
+” ÌG–” ÌG
+” ÌG” ÌH” ÌH”  ÌH”# ÌH–” ÌG
+” ÌG” ÌI”  ÌI”! ÌI”$ ÌI˜” ÌG
+” ÌG” ÌJ”# ÌJ”$ ÌJ”, ÌJ”- ÌJ ”4 ÌJ'–” ÌG
+” ÌG” ÌK”! ÌK”" ÌK”% ÌKÜ ” ÌG
+” ÌG” ÌL” ÌL”  ÌL”" ÌL”# ÌL”% ÌL”) ÌL”* ÌL”1 ÌL$”3 ÌL&”4 ÌL'”6 ÌL)”: ÌL-”; ÌL.”ÌB ÌL5”ÌD ÌL7’” ÌF” ÌF’” ” ”” ÌT”' ÌT”( ÌT”, ÌT‘” ÌUÔrH–§version¤file§sources®sourcesContent¥names¨mappingsÀ‘À‘ÀÜ ›‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
+ ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ÂÔ  ÔrI”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache‘ÔrJ–¤type¥start£end«declarationªspecifiers¦source¶ExportNamedDeclarationÌÍÍİÔrK–¤type¥start£end¢idªsuperClass¤body°ClassDeclarationÌÔÍİÔrL”¤type¥start£end¤nameªIdentifierÌÚÌî´AttractionDetailPageLªIdentifierÌ÷Ìı¦ViewPUÔrM”¤type¥start£end¤body©ClassBodyÌşÍİÔrN˜¤type¥start£end¦static¨computed£key¤kind¥value°MethodDefinitionÍÍôÂÂLªIdentifierÍÍ«constructor«constructorÔrO™¤type¥start£end¢idªexpression©generator¥async¦params¤body²FunctionExpressionÍÍôÀÂÂÂ–LªIdentifierÍÍ¦parentLªIdentifierÍÍ¦paramsLªIdentifierÍ!Í/®__localStorageÔrP•¤type¥start£end¤left¥right±AssignmentPatternÍ1Í<LªIdentifierÍ1Í7¦elmtIdÔrQ–¤type¥start£end¨operator¦prefix¨argument¯UnaryExpressionÍ:Í<¡-ÃÔrR•¤type¥start£end¥value£raw§LiteralÍ;Í<¡1P±AssignmentPatternÍ>ÍVLªIdentifierÍ>ÍJ¬paramsLambdaLªIdentifierÍMÍV©undefinedLªIdentifierÍXÍa©extraInfoM®BlockStatementÍcÍô—ÔrS”¤type¥start£endªexpression³ExpressionStatementÍnÍŸÔrT–¤type¥start£end¦callee©arguments¨optional®CallExpressionÍnÍÔrU“¤type¥start£end¥SuperÍnÍs”LªIdentifierÍtÍz¦parentLªIdentifierÍ|ÍŠ®__localStorageLªIdentifierÍŒÍ’¦elmtIdLªIdentifierÍ”Í©extraInfoÂÔrV–¤type¥start£end¤testªconsequent©alternate«IfStatementÍ©ÍÔrW–¤type¥start£end¤left¨operator¥right°BinaryExpressionÍ­ÍÏQ¯UnaryExpressionÍ­ÍÀ¦typeofÃLªIdentifierÍ´ÍÀ¬paramsLambda£===R§LiteralÍÅÍÏ¨functionª"function"M®BlockStatementÍÑÍ‘S³ExpressionStatementÍàÍÔrX–¤type¥start£end¨operator¤left¥right´AssignmentExpressionÍàÍ¡=ÔrY—¤type¥start£end¦object¨property¨computed¨optional°MemberExpressionÍàÍõU®ThisExpressionÍàÍäLªIdentifierÍåÍõ°paramsGenerator_ÂÂLªIdentifierÍøÍ¬paramsLambdaÀS³ExpressionStatementÍÍêX´AssignmentExpressionÍÍé¡=Y°MemberExpressionÍÍ+U®ThisExpressionÍÍLªIdentifierÍÍ+¬__attractionÂÂÔrZ•¤type¥start£end¦callee©arguments­NewExpressionÍ.ÍéLªIdentifierÍ2ÍJ¸ObservedPropertyObjectPU“Z­NewExpressionÍKÍÔLªIdentifierÍOÍYªAttraction“R§LiteralÍZÍ[¡1R§LiteralÍ]Íc¤null¦"null"Ôr[”¤type¥start£endªproperties°ObjectExpressionÍeÍÓ•Ôr\™¤type¥start£end¦method©shorthand¨computed£key¥value¤kind¨PropertyÍgÍuÂÂÂR§LiteralÍgÍk¢id¤"id"R§LiteralÍmÍuÎ  c¨33554531¤init\¨PropertyÍwÍ„ÂÂÂR§LiteralÍwÍ}¤type¦"type"R§LiteralÍÍ„ÍN ¥20000¤init\¨PropertyÍ†ÍÂÂÂLªIdentifierÍ†ÍŒ¦paramsÔr]”¤type¥start£end¨elements¯ArrayExpressionÍÍ¤init\¨PropertyÍ’Í¸ÂÂÂR§LiteralÍ’ÍªbundleName¬"bundleName"R§LiteralÍ Í¸¶com.example.ictproject¸"com.example.ictproject"¤init\¨PropertyÍºÍÑÂÂÂR§LiteralÍºÍÆªmoduleName¬"moduleName"R§LiteralÍÈÍÑ§default©"default"¤initU®ThisExpressionÍÖÍÚR§LiteralÍÜÍèªattraction¬"attraction"S³ExpressionStatementÍôÍJX´AssignmentExpressionÍôÍI¡=Y°MemberExpressionÍôÍ
+U®ThisExpressionÍôÍøLªIdentifierÍùÍ
+±__travelPathStackÂÂT®CallExpressionÍÍIY°MemberExpressionÍÍ#U®ThisExpressionÍÍLªIdentifierÍÍ#±initializeConsumeÂÂ’R§LiteralÍ$Í5¯travelPathStack±'travelPathStack'R§LiteralÍ7ÍH¯travelPathStack±"travelPathStack"ÂS³ExpressionStatementÍTÍ–X´AssignmentExpressionÍTÍ•¡=Y°MemberExpressionÍTÍbU®ThisExpressionÍTÍXLªIdentifierÍYÍb©__myScaleÂÂZ­NewExpressionÍeÍ•LªIdentifierÍiÍ¸ObservedPropertySimplePU“R§LiteralÍ‚Íƒ¡1U®ThisExpressionÍ…Í‰R§LiteralÍ‹Í”§myScale©"myScale"S³ExpressionStatementÍ ÍÇT®CallExpressionÍ ÍÆY°MemberExpressionÍ Í¾U®ThisExpressionÍ Í¤LªIdentifierÍ¥Í¾¹setInitiallyProvidedValueÂÂ‘LªIdentifierÍ¿ÍÅ¦paramsÂS³ExpressionStatementÍÑÍíT®CallExpressionÍÑÍìY°MemberExpressionÍÑÍêU®ThisExpressionÍÑÍÕLªIdentifierÍÖÍê´finalizeConstructionÂÂÂN°MethodDefinitionÍúÍõÂÂLªIdentifierÍúÍ¹setInitiallyProvidedValue¦methodO²FunctionExpressionÍÍõÀÂÂÂ‘LªIdentifierÍÍ¦paramsM®BlockStatementÍÍõ’V«IfStatementÍ'ÍŠW°BinaryExpressionÍ+ÍJY°MemberExpressionÍ+Í<LªIdentifierÍ+Í1¦paramsLªIdentifierÍ2Í<ªattractionÂÂ£!==LªIdentifierÍAÍJ©undefinedM®BlockStatementÍLÍŠ‘S³ExpressionStatementÍ[ÍX´AssignmentExpressionÍ[Í~¡=Y°MemberExpressionÍ[ÍjU®ThisExpressionÍ[Í_LªIdentifierÍ`ÍjªattractionÂÂY°MemberExpressionÍmÍ~LªIdentifierÍmÍs¦paramsLªIdentifierÍtÍ~ªattractionÂÂÀV«IfStatementÍ”ÍîW°BinaryExpressionÍ˜Í´Y°MemberExpressionÍ˜Í¦LªIdentifierÍ˜Í¦paramsLªIdentifierÍŸÍ¦§myScaleÂÂ£!==LªIdentifierÍ«Í´©undefinedM®BlockStatementÍ¶Íî‘S³ExpressionStatementÍÅÍãX´AssignmentExpressionÍÅÍâ¡=Y°MemberExpressionÍÅÍÑU®ThisExpressionÍÅÍÉLªIdentifierÍÊÍÑ§myScaleÂÂY°MemberExpressionÍÔÍâLªIdentifierÍÔÍÚ¦paramsLªIdentifierÍÛÍâ§myScaleÂÂÀN°MethodDefinitionÍûÍÂÂLªIdentifierÍûÍ
+¯updateStateVars¦methodO²FunctionExpressionÍ
+ÍÀÂÂÂ‘LªIdentifierÍÍ¦paramsM®BlockStatementÍÍN°MethodDefinitionÍ!ÍÂÂLªIdentifierÍ!ÍBÙ!purgeVariableDependenciesOnElmtId¦methodO²FunctionExpressionÍBÍÀÂÂÂ‘LªIdentifierÍCÍK¨rmElmtIdM®BlockStatementÍMÍ“S³ExpressionStatementÍXÍŒT®CallExpressionÍXÍ‹Y°MemberExpressionÍXÍY°MemberExpressionÍXÍiU®ThisExpressionÍXÍ\LªIdentifierÍ]Íi¬__attractionÂÂLªIdentifierÍjÍ·purgeDependencyOnElmtIdÂÂ‘LªIdentifierÍ‚ÍŠ¨rmElmtIdÂS³ExpressionStatementÍ–ÍÏT®CallExpressionÍ–ÍÎY°MemberExpressionÍ–ÍÄY°MemberExpressionÍ–Í¬U®ThisExpressionÍ–ÍšLªIdentifierÍ›Í¬±__travelPathStackÂÂLªIdentifierÍ­ÍÄ·purgeDependencyOnElmtIdÂÂ‘LªIdentifierÍÅÍÍ¨rmElmtIdÂS³ExpressionStatementÍÙÍ
+T®CallExpressionÍÙÍ	Y°MemberExpressionÍÙÍÿY°MemberExpressionÍÙÍçU®ThisExpressionÍÙÍİLªIdentifierÍŞÍç©__myScaleÂÂLªIdentifierÍèÍÿ·purgeDependencyOnElmtIdÂÂ‘LªIdentifierÍ Í¨rmElmtIdÂN°MethodDefinitionÍÍ!ÂÂLªIdentifierÍÍ'°aboutToBeDeleted¦methodO²FunctionExpressionÍ'Í!ÀÂÂÂM®BlockStatementÍ*Í!•S³ExpressionStatementÍ5ÍZT®CallExpressionÍ5ÍYY°MemberExpressionÍ5ÍWY°MemberExpressionÍ5ÍFU®ThisExpressionÍ5Í9LªIdentifierÍ:ÍF¬__attractionÂÂLªIdentifierÍGÍW°aboutToBeDeletedÂÂÂS³ExpressionStatementÍdÍT®CallExpressionÍdÍY°MemberExpressionÍdÍ‹Y°MemberExpressionÍdÍzU®ThisExpressionÍdÍhLªIdentifierÍiÍz±__travelPathStackÂÂLªIdentifierÍ{Í‹°aboutToBeDeletedÂÂÂS³ExpressionStatementÍ˜ÍºT®CallExpressionÍ˜Í¹Y°MemberExpressionÍ˜Í·Y°MemberExpressionÍ˜Í¦U®ThisExpressionÍ˜ÍœLªIdentifierÍÍ¦©__myScaleÂÂLªIdentifierÍ§Í·°aboutToBeDeletedÂÂÂS³ExpressionStatementÍÄÍğT®CallExpressionÍÄÍïY°MemberExpressionÍÄÍâT®CallExpressionÍÄÍÛY°MemberExpressionÍÄÍÙLªIdentifierÍÄÍÕ±SubscriberManagerLªIdentifierÍÖÍÙ£GetÂÂÂLªIdentifierÍÜÍâ¦deleteÂÂ‘T®CallExpressionÍãÍîY°MemberExpressionÍãÍìU®ThisExpressionÍãÍçLªIdentifierÍèÍì¤id__ÂÂÂÂS³ExpressionStatementÍúÍT®CallExpressionÍúÍY°MemberExpressionÍúÍU®ThisExpressionÍúÍşLªIdentifierÍÿÍ¸aboutToBeDeletedInternalÂÂÂN°MethodDefinitionÍ'ÍiÂÂLªIdentifierÍ+Í5ªattraction£getO²FunctionExpressionÍ5ÍiÀÂÂÂM®BlockStatementÍ8Íi‘Ôr^”¤type¥start£end¨argument¯ReturnStatementÍCÍbT®CallExpressionÍJÍaY°MemberExpressionÍJÍ_Y°MemberExpressionÍJÍ[U®ThisExpressionÍJÍNLªIdentifierÍOÍ[¬__attractionÂÂLªIdentifierÍ\Í_£getÂÂÂN°MethodDefinitionÍoÍºÂÂLªIdentifierÍsÍ}ªattraction£setO²FunctionExpressionÍ}ÍºÀÂÂÂ‘LªIdentifierÍ~Í†¨newValueM®BlockStatementÍˆÍº‘S³ExpressionStatementÍ“Í³T®CallExpressionÍ“Í²Y°MemberExpressionÍ“Í¨Y°MemberExpressionÍ“Í¤U®ThisExpressionÍ“Í—LªIdentifierÍ˜Í¤¬__attractionÂÂLªIdentifierÍ¥Í¨£setÂÂ‘LªIdentifierÍ©Í±¨newValueÂN°MethodDefinitionÍÀÍÂÂLªIdentifierÍÄÍÓ¯travelPathStack£getO²FunctionExpressionÍÓÍÀÂÂÂM®BlockStatementÍÖÍ‘^¯ReturnStatementÍáÍT®CallExpressionÍèÍY°MemberExpressionÍèÍY°MemberExpressionÍèÍşU®ThisExpressionÍèÍìLªIdentifierÍíÍş±__travelPathStackÂÂLªIdentifierÍÿÍ£getÂÂÂN°MethodDefinitionÍÍgÂÂLªIdentifierÍÍ%¯travelPathStack£setO²FunctionExpressionÍ%ÍgÀÂÂÂ‘LªIdentifierÍ&Í.¨newValueM®BlockStatementÍ0Íg‘S³ExpressionStatementÍ;Í`T®CallExpressionÍ;Í_Y°MemberExpressionÍ;ÍUY°MemberExpressionÍ;ÍQU®ThisExpressionÍ;Í?LªIdentifierÍ@ÍQ±__travelPathStackÂÂLªIdentifierÍRÍU£setÂÂ‘LªIdentifierÍVÍ^¨newValueÂN°MethodDefinitionÍmÍ©ÂÂLªIdentifierÍqÍx§myScale£getO²FunctionExpressionÍxÍ©ÀÂÂÂM®BlockStatementÍ{Í©‘^¯ReturnStatementÍ†Í¢T®CallExpressionÍÍ¡Y°MemberExpressionÍÍŸY°MemberExpressionÍÍ›U®ThisExpressionÍÍ‘LªIdentifierÍ’Í›©__myScaleÂÂLªIdentifierÍœÍŸ£getÂÂÂN°MethodDefinitionÍ¯ÍôÂÂLªIdentifierÍ³Íº§myScale£setO²FunctionExpressionÍºÍôÀÂÂÂ‘LªIdentifierÍ»ÍÃ¨newValueM®BlockStatementÍÅÍô‘S³ExpressionStatementÍĞÍíT®CallExpressionÍĞÍìY°MemberExpressionÍĞÍâY°MemberExpressionÍĞÍŞU®ThisExpressionÍĞÍÔLªIdentifierÍÕÍŞ©__myScaleÂÂLªIdentifierÍßÍâ£setÂÂ‘LªIdentifierÍãÍë¨newValueÂN°MethodDefinitionÍúÍ^ÂÂLªIdentifierÍúÍ	­aboutToAppear¦methodO²FunctionExpressionÍ	Í^ÀÂÂÂM®BlockStatementÍ	
+Í^˜S³ExpressionStatementÍ	Í	°T®CallExpressionÍ	Í	¯Y°MemberExpressionÍ	Í	LªIdentifierÍ	Í	¥myMapLªIdentifierÍ	Í	£setÂÂ’R§LiteralÍ	Í	#¦æ•…å®«¨"æ•…å®«"R§LiteralÍ	%Í	®Úwåˆé—¨è¿›å…¥ â†’ å¤ªå’Œé—¨å¹¿åœº â†’ å¤ªå’Œæ®¿ï¼ˆé‡‘éŠ®æ®¿ï¼‰â†’ ä¸­å’Œæ®¿ï¼ˆçš‡å¸æ›´è¡£å¤„ï¼‰â†’ ä¿å’Œæ®¿ï¼ˆå®´ä¼šå’Œç§‘ä¸¾è€ƒåœºï¼‰â†’ ä¹¾æ¸…å®«ï¼ˆçš‡å¸å¯å®«ï¼‰â†’ äº¤æ³°æ®¿ï¼ˆçš‡åç”Ÿæ—¥åº†å…¸ï¼‰â†’ å¤å®å®«ï¼ˆçš‡åå¯å®«ï¼‰â†’ å¾¡èŠ±å›­ï¼ˆçš‡å®¶å›­æ—ï¼‰â†’ çå®é¦†ï¼ˆå±•ç¤ºçš‡å®¶çå®ï¼‰â†’ å¤©ç©¹å®æ®¿ â†’ å®å¯¿å®«ï¼ˆä¹¾éš†é€€ä½åå±…ä½ï¼‰â†’ ç¥æ­¦é—¨å‡ºÚy"åˆé—¨è¿›å…¥ â†’ å¤ªå’Œé—¨å¹¿åœº â†’ å¤ªå’Œæ®¿ï¼ˆé‡‘éŠ®æ®¿ï¼‰â†’ ä¸­å’Œæ®¿ï¼ˆçš‡å¸æ›´è¡£å¤„ï¼‰â†’ ä¿å’Œæ®¿ï¼ˆå®´ä¼šå’Œç§‘ä¸¾è€ƒåœºï¼‰â†’ ä¹¾æ¸…å®«ï¼ˆçš‡å¸å¯å®«ï¼‰â†’ äº¤æ³°æ®¿ï¼ˆçš‡åç”Ÿæ—¥åº†å…¸ï¼‰â†’ å¤å®å®«ï¼ˆçš‡åå¯å®«ï¼‰â†’ å¾¡èŠ±å›­ï¼ˆçš‡å®¶å›­æ—ï¼‰â†’ çå®é¦†ï¼ˆå±•ç¤ºçš‡å®¶çå®ï¼‰â†’ å¤©ç©¹å®æ®¿ â†’ å®å¯¿å®«ï¼ˆä¹¾éš†é€€ä½åå±…ä½ï¼‰â†’ ç¥æ­¦é—¨å‡º"ÂS³ExpressionStatementÍ	ºÍ
+(T®CallExpressionÍ	ºÍ
+'Y°MemberExpressionÍ	ºÍ	ÃLªIdentifierÍ	ºÍ	¿¥myMapLªIdentifierÍ	ÀÍ	Ã£setÂÂ’R§LiteralÍ	ÄÍ	Ê¬ç§¦å§‹çš‡é™µ®"ç§¦å§‹çš‡é™µ"R§LiteralÍ	ÌÍ
+&Ùòé™µå›­å…¥å£ â†’ 1å·å…µé©¬ä¿‘å‘ï¼ˆè§„æ¨¡æœ€å¤§ï¼‰â†’ 2å·å…µé©¬ä¿‘å‘ï¼ˆæˆ˜è½¦é™ˆåˆ—ï¼‰â†’ 3å·å…µé©¬ä¿‘å‘ï¼ˆæŒ‡æŒ¥ä¸­å¿ƒï¼‰â†’ é“œè½¦é©¬å±•å…ï¼ˆå±•ç¤ºä¸¤è¾†é’é“œé©¬è½¦ï¼‰â†’ ç§¦å§‹çš‡é™µå°åœŸå †è¿œè§‚ â†’ ä¸½å±±å›­ï¼ˆæ¨¡æ‹Ÿè€ƒå¤åŒºï¼‰Ùô"é™µå›­å…¥å£ â†’ 1å·å…µé©¬ä¿‘å‘ï¼ˆè§„æ¨¡æœ€å¤§ï¼‰â†’ 2å·å…µé©¬ä¿‘å‘ï¼ˆæˆ˜è½¦é™ˆåˆ—ï¼‰â†’ 3å·å…µé©¬ä¿‘å‘ï¼ˆæŒ‡æŒ¥ä¸­å¿ƒï¼‰â†’ é“œè½¦é©¬å±•å…ï¼ˆå±•ç¤ºä¸¤è¾†é’é“œé©¬è½¦ï¼‰â†’ ç§¦å§‹çš‡é™µå°åœŸå †è¿œè§‚ â†’ ä¸½å±±å›­ï¼ˆæ¨¡æ‹Ÿè€ƒå¤åŒºï¼‰"ÂS³ExpressionStatementÍ
+2Í
+ÄT®CallExpressionÍ
+2Í
+ÃY°MemberExpressionÍ
+2Í
+;LªIdentifierÍ
+2Í
+7¥myMapLªIdentifierÍ
+8Í
+;£setÂÂ’R§LiteralÍ
+<Í
+@¦é•¿åŸ¨"é•¿åŸ"R§LiteralÍ
+BÍ
+ÂÚdå…¥å£ â†’ ç®­æ¥¼ï¼ˆå…³å£ï¼‰â†’ åŒ—ä¸€æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äºŒæ¥¼ï¼ˆçƒ½ç«å°ï¼Œè§‚èµé•¿åŸå…¨æ™¯ï¼‰â†’ åŒ—ä¸‰æ¥¼ï¼ˆçƒ½ç«å°ï¼Œè¾ƒä¸ºé™¡å³­ï¼‰â†’ åŒ—å››æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äº”æ¥¼ï¼ˆçƒ½ç«å°ï¼Œé‡è¦å†›äº‹ä½ç½®ï¼‰â†’ åŒ—å…­æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—ä¸ƒæ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—å…«æ¥¼ï¼ˆæœ€é«˜ç‚¹ï¼Œå¥½æ±‰å¡ï¼‰â†’ è¿”å›é€”ä¸­å¯é€‰çˆ¬å—é•¿åŸÚf"å…¥å£ â†’ ç®­æ¥¼ï¼ˆå…³å£ï¼‰â†’ åŒ—ä¸€æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äºŒæ¥¼ï¼ˆçƒ½ç«å°ï¼Œè§‚èµé•¿åŸå…¨æ™¯ï¼‰â†’ åŒ—ä¸‰æ¥¼ï¼ˆçƒ½ç«å°ï¼Œè¾ƒä¸ºé™¡å³­ï¼‰â†’ åŒ—å››æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äº”æ¥¼ï¼ˆçƒ½ç«å°ï¼Œé‡è¦å†›äº‹ä½ç½®ï¼‰â†’ åŒ—å…­æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—ä¸ƒæ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—å…«æ¥¼ï¼ˆæœ€é«˜ç‚¹ï¼Œå¥½æ±‰å¡ï¼‰â†’ è¿”å›é€”ä¸­å¯é€‰çˆ¬å—é•¿åŸ"ÂS³ExpressionStatementÍ
+ÎÍOT®CallExpressionÍ
+ÎÍNY°MemberExpressionÍ
+ÎÍ
+×LªIdentifierÍ
+ÎÍ
+Ó¥myMapLªIdentifierÍ
+ÔÍ
+×£setÂÂ’R§LiteralÍ
+ØÍ
+ß¯æ•¦ç…Œè«é«˜çªŸ±"æ•¦ç…Œè«é«˜çªŸ"R§LiteralÍ
+áÍMÚæ•°å­—å±•ç¤ºä¸­å¿ƒï¼ˆè§‚çœ‹ä»‹ç»å½±ç‰‡ï¼‰â†’ ä¹˜åæ™¯åŒºäº¤é€šè½¦ â†’ è«é«˜çªŸçªŸåŒº â†’ å‚è§‚ä¸»è¦æ´çªŸï¼ˆå¦‚96çªŸã€130çªŸã€148çªŸï¼‰â†’ ç‰¹çªŸå‚è§‚ï¼ˆéœ€é¢å¤–è´­ç¥¨ï¼‰â†’ è—ç»æ´ï¼ˆå‘ç°å¤§é‡æ–‡çŒ®çš„åœ°æ–¹ï¼‰â†’ è«é«˜çªŸåšç‰©é¦†ï¼ˆäº†è§£è«é«˜çªŸçš„å†å²å’Œè‰ºæœ¯ï¼‰Ú "æ•°å­—å±•ç¤ºä¸­å¿ƒï¼ˆè§‚çœ‹ä»‹ç»å½±ç‰‡ï¼‰â†’ ä¹˜åæ™¯åŒºäº¤é€šè½¦ â†’ è«é«˜çªŸçªŸåŒº â†’ å‚è§‚ä¸»è¦æ´çªŸï¼ˆå¦‚96çªŸã€130çªŸã€148çªŸï¼‰â†’ ç‰¹çªŸå‚è§‚ï¼ˆéœ€é¢å¤–è´­ç¥¨ï¼‰â†’ è—ç»æ´ï¼ˆå‘ç°å¤§é‡æ–‡çŒ®çš„åœ°æ–¹ï¼‰â†’ è«é«˜çªŸåšç‰©é¦†ï¼ˆäº†è§£è«é«˜çªŸçš„å†å²å’Œè‰ºæœ¯ï¼‰"ÂS³ExpressionStatementÍYÍÏT®CallExpressionÍYÍÎY°MemberExpressionÍYÍbLªIdentifierÍYÍ^¥myMapLªIdentifierÍ_Íb£setÂÂ’R§LiteralÍcÍi¬ä¹å±±å¤§ä½›®"ä¹å±±å¤§ä½›"R§LiteralÍkÍÍÚå±±é—¨ â†’ é’Ÿé¼“æ¥¼ â†’ å‡Œäº‘å¯ºï¼ˆä½›æ•™åœ£åœ°ï¼‰â†’ ä¹æ›²æ ˆé“ï¼ˆä¸‹è‡³å¤§ä½›è„šéƒ¨ï¼Œé€”ä¸­å¯æ¬£èµå£é›•ï¼‰â†’ å¤§ä½›è„šéƒ¨å¹³å°ï¼ˆè¿‘è·ç¦»è§‚èµå¤§ä½›ï¼‰â†’ é‡æ–°æ²¿ä¹æ›²æ ˆé“è¿”å› â†’ è‹å›­ï¼ˆæ±Ÿå—å›­æ—é£æ ¼ï¼‰â†’ ä¹Œå°¤å¯ºï¼ˆè§‚èµä¹å±±å…¨æ™¯ï¼‰Ú"å±±é—¨ â†’ é’Ÿé¼“æ¥¼ â†’ å‡Œäº‘å¯ºï¼ˆä½›æ•™åœ£åœ°ï¼‰â†’ ä¹æ›²æ ˆé“ï¼ˆä¸‹è‡³å¤§ä½›è„šéƒ¨ï¼Œé€”ä¸­å¯æ¬£èµå£é›•ï¼‰â†’ å¤§ä½›è„šéƒ¨å¹³å°ï¼ˆè¿‘è·ç¦»è§‚èµå¤§ä½›ï¼‰â†’ é‡æ–°æ²¿ä¹æ›²æ ˆé“è¿”å› â†’ è‹å›­ï¼ˆæ±Ÿå—å›­æ—é£æ ¼ï¼‰â†’ ä¹Œå°¤å¯ºï¼ˆè§‚èµä¹å±±å…¨æ™¯ï¼‰"ÂS³ExpressionStatementÍÙÍtT®CallExpressionÍÙÍsY°MemberExpressionÍÙÍâLªIdentifierÍÙÍŞ¥myMapLªIdentifierÍßÍâ£setÂÂ’R§LiteralÍãÍè©é¢å’Œå›­«"é¢å’Œå›­"R§LiteralÍêÍrÚ|ä¸œå®«é—¨è¿›å…¥ â†’ è‹å·è¡—ï¼ˆæ¨¡ä»¿æ±Ÿå—æ°´ä¹¡ï¼‰â†’ ä¹°å–è¡—ï¼ˆå¤å•†ä¸šè¡—ï¼‰â†’ é•¿å»Šï¼ˆç”»å»Šï¼Œæ¬£èµå£ç”»ï¼‰â†’ æ’äº‘æ®¿ï¼ˆæ…ˆç¦§ç¥å¯¿çš„åœ°æ–¹ï¼‰â†’ ä½›é¦™é˜ï¼ˆä¿¯ç°æ•´ä¸ªå›­æ—ï¼‰â†’ å®œèŠ¸é¦†ï¼ˆçš‡å®¶ä¹¦å±‹ï¼‰â†’ å¾·å’Œå›­ï¼ˆå¤§æˆæ¥¼ï¼‰â†’ æ˜†æ˜æ¹–ï¼ˆåˆ’èˆ¹æˆ–ç¯æ¹–æ•£æ­¥ï¼‰â†’ åä¸ƒå­”æ¡¥ï¼ˆè¿æ¥ä¸œå²¸å’Œå—æ¹–å²›ï¼‰â†’ é“œç‰›ï¼ˆæ˜†æ˜æ¹–ç•”çš„é“œåƒï¼‰Ú~"ä¸œå®«é—¨è¿›å…¥ â†’ è‹å·è¡—ï¼ˆæ¨¡ä»¿æ±Ÿå—æ°´ä¹¡ï¼‰â†’ ä¹°å–è¡—ï¼ˆå¤å•†ä¸šè¡—ï¼‰â†’ é•¿å»Šï¼ˆç”»å»Šï¼Œæ¬£èµå£ç”»ï¼‰â†’ æ’äº‘æ®¿ï¼ˆæ…ˆç¦§ç¥å¯¿çš„åœ°æ–¹ï¼‰â†’ ä½›é¦™é˜ï¼ˆä¿¯ç°æ•´ä¸ªå›­æ—ï¼‰â†’ å®œèŠ¸é¦†ï¼ˆçš‡å®¶ä¹¦å±‹ï¼‰â†’ å¾·å’Œå›­ï¼ˆå¤§æˆæ¥¼ï¼‰â†’ æ˜†æ˜æ¹–ï¼ˆåˆ’èˆ¹æˆ–ç¯æ¹–æ•£æ­¥ï¼‰â†’ åä¸ƒå­”æ¡¥ï¼ˆè¿æ¥ä¸œå²¸å’Œå—æ¹–å²›ï¼‰â†’ é“œç‰›ï¼ˆæ˜†æ˜æ¹–ç•”çš„é“œåƒï¼‰"ÂS³ExpressionStatementÍ~ÍüT®CallExpressionÍ~ÍûY°MemberExpressionÍ~Í‡LªIdentifierÍ~Íƒ¥myMapLªIdentifierÍ„Í‡£setÂÂ’R§LiteralÍˆÍŒ¦å¤©å›¨"å¤©å›"R§LiteralÍÍúÚ*å—é—¨è¿›å…¥ â†’ åœœä¸˜å›ï¼ˆå†¬è‡³ç¥­å¤©çš„åœ°æ–¹ï¼‰â†’ å›éŸ³å£ï¼ˆå£°å­¦å¥‡è¿¹ï¼‰â†’ ç¥ˆå¹´æ®¿ï¼ˆç¥ˆæ±‚ä¸°æ”¶çš„åœ°æ–¹ï¼‰â†’ ç¥ˆå¹´é—¨ â†’ é•¿å»Šï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡ï¼‰â†’ ä¸¹é™›æ¡¥ï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡çš„ç –çŸ³æ¡¥ï¼‰â†’ æ–‹å®«ï¼ˆçš‡å¸ç¥­å¤©å‰æ–‹æˆ’çš„åœ°æ–¹ï¼‰â†’ åŒ—é—¨å‡ºÚ,"å—é—¨è¿›å…¥ â†’ åœœä¸˜å›ï¼ˆå†¬è‡³ç¥­å¤©çš„åœ°æ–¹ï¼‰â†’ å›éŸ³å£ï¼ˆå£°å­¦å¥‡è¿¹ï¼‰â†’ ç¥ˆå¹´æ®¿ï¼ˆç¥ˆæ±‚ä¸°æ”¶çš„åœ°æ–¹ï¼‰â†’ ç¥ˆå¹´é—¨ â†’ é•¿å»Šï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡ï¼‰â†’ ä¸¹é™›æ¡¥ï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡çš„ç –çŸ³æ¡¥ï¼‰â†’ æ–‹å®«ï¼ˆçš‡å¸ç¥­å¤©å‰æ–‹æˆ’çš„åœ°æ–¹ï¼‰â†’ åŒ—é—¨å‡º"ÂS³ExpressionStatementÍÍWX´AssignmentExpressionÍÍV¡=Y°MemberExpressionÍÍU®ThisExpressionÍÍ
+LªIdentifierÍÍªattractionÂÂY°MemberExpressionÍÍVT®CallExpressionÍÍSY°MemberExpressionÍÍ;Y°MemberExpressionÍÍ,U®ThisExpressionÍÍLªIdentifierÍÍ,¯travelPathStackÂÂLªIdentifierÍ-Í;®getParamByNameÂÂ‘R§LiteralÍ<ÍR´AttractionDetailPage¶'AttractionDetailPage'ÂR§LiteralÍTÍU ¡0ÃÂN°MethodDefinitionÍdÍœÂÂLªIdentifierÍdÍq­initialRender¦methodO²FunctionExpressionÍqÍœÀÂÂÂM®BlockStatementÍtÍœ’S³ExpressionStatementÍÍvT®CallExpressionÍÍuY°MemberExpressionÍÍU®ThisExpressionÍÍƒLªIdentifierÍ„Í¹observeComponentCreation2ÂÂ’O·ArrowFunctionExpressionÍÍdÀÂÂÂ’LªIdentifierÍŸÍ¥¦elmtIdLªIdentifierÍ§Í¶¯isInitialRenderM®BlockStatementÍ»Íd’S³ExpressionStatementÍÊÍ)T®CallExpressionÍÊÍ(Y°MemberExpressionÍÊÍßLªIdentifierÍÊÍØ®NavDestinationLªIdentifierÍÙÍß¦createÂÂ’O·ArrowFunctionExpressionÍàÍÇÀÂÂÂM®BlockStatementÍæÍÇÜ S³ExpressionStatementÍùÍÏT®CallExpressionÍùÍÎY°MemberExpressionÍùÍU®ThisExpressionÍùÍıLªIdentifierÍşÍ¹observeComponentCreation2ÂÂ’O·ArrowFunctionExpressionÍÍÅÀÂÂÂ’LªIdentifierÍÍ¦elmtIdLªIdentifierÍ!Í0¯isInitialRenderM®BlockStatementÍ5ÍÅ“S³ExpressionStatementÍLÍ\T®CallExpressionÍLÍ[Y°MemberExpressionÍLÍYLªIdentifierÍLÍR¦ColumnLªIdentifierÍSÍY¦createÂÂÂS³ExpressionStatementÍrÍ†T®CallExpressionÍrÍ…Y°MemberExpressionÍrÍ~LªIdentifierÍrÍx¦ColumnLªIdentifierÍyÍ~¥widthÂÂ‘R§LiteralÍÍ„£95%¥'95%'ÂS³ExpressionStatementÍœÍ²T®CallExpressionÍœÍ±Y°MemberExpressionÍœÍ©LªIdentifierÍœÍ¢¦ColumnLªIdentifierÍ£Í©¦heightÂÂ‘R§LiteralÍªÍ°¤100%¦'100%'ÂLªIdentifierÍÇÍÍ¦ColumnÂS³ExpressionStatementÍáÍ½T®CallExpressionÍáÍ¼Y°MemberExpressionÍáÍÿU®ThisExpressionÍáÍåLªIdentifierÍæÍÿ¹observeComponentCreation2ÂÂ’O·ArrowFunctionExpressionÍ Í¶ÀÂÂÂ’LªIdentifierÍÍ¦elmtIdLªIdentifierÍ	Í¯isInitialRenderM®BlockStatementÍÍ¶“S³ExpressionStatementÍ4ÍAT®CallExpressionÍ4Í@Y°MemberExpressionÍ4Í>LªIdentifierÍ4Í7£RowLªIdentifierÍ8Í>¦createÂÂÂS³ExpressionStatementÍWÍiT®CallExpressionÍWÍhY°MemberExpressionÍWÍ`LªIdentifierÍWÍZ£RowLªIdentifierÍ[Í`¥widthÂÂ‘R§LiteralÍaÍg¤100%¦'100%'ÂS³ExpressionStatementÍÍ£T®CallExpressionÍÍ¢Y°MemberExpressionÍÍ‘LªIdentifierÍÍ‚£RowLªIdentifierÍƒÍ‘®justifyContentÂÂ‘Y°MemberExpressionÍ’Í¡LªIdentifierÍ’Í›©FlexAlignLªIdentifierÍœÍ¡¥StartÂÂÂLªIdentifierÍ¸Í»£RowÂS³ExpressionStatementÍÏÍT®CallExpressionÍÏÍ€Y°MemberExpressionÍÏÍíU®ThisExpressionÍÏÍÓLªIdentifierÍÔÍí¹observeComponentCreation2ÂÂ’O·ArrowFunctionExpressionÍîÍxÀÂÂÂ’LªIdentifierÍïÍõ¦elmtIdLªIdentifierÍ÷Í¯isInitialRenderM®BlockStatementÍÍx”S³ExpressionStatementÍ"ÍŸT®CallExpressionÍ"ÍY°MemberExpressionÍ"Í.LªIdentifierÍ"Í'¥ImageLªIdentifierÍ(Í.¦createÂÂ‘[°ObjectExpressionÍ/Í•\¨PropertyÍ1Í?ÂÂÂR§LiteralÍ1Í5¢id¤"id"R§LiteralÍ7Í?Î  )¨16777257¤init\¨PropertyÍAÍNÂÂÂR§LiteralÍAÍG¤type¦"type"R§LiteralÍIÍNÍN ¥20000¤init\¨PropertyÍPÍZÂÂÂLªIdentifierÍPÍV¦params]¯ArrayExpressionÍXÍZ¤init\¨PropertyÍ\Í‚ÂÂÂR§LiteralÍ\ÍhªbundleName¬"bundleName"R§LiteralÍjÍ‚¶com.example.ictproject¸"com.example.ictproject"¤init\¨PropertyÍ„Í›ÂÂÂR§LiteralÍ„ÍªmoduleName¬"moduleName"R§LiteralÍ’Í›§default©"default"¤initÂS³ExpressionStatementÍµÍÅT®CallExpressionÍµÍÄY°MemberExpressionÍµÍÀLªIdentifierÍµÍº¥ImageLªIdentifierÍ»ÍÀ¥widthÂÂ‘R§LiteralÍÁÍÃ¢30ÂS³ExpressionStatementÍÛÍìT®CallExpressionÍÛÍëY°MemberExpressionÍÛÍçLªIdentifierÍÛÍà¥ImageLªIdentifierÍáÍç¦heightÂÂ‘R§LiteralÍèÍê¢30ÂS³ExpressionStatementÍÍeT®CallExpressionÍÍdY°MemberExpressionÍÍLªIdentifierÍÍ¥ImageLªIdentifierÍÍ§onClickÂÂ‘O·ArrowFunctionExpressionÍÍcÀÂÂÂM®BlockStatementÍÍc‘S³ExpressionStatementÍ1ÍLT®CallExpressionÍ1ÍKY°MemberExpressionÍ1ÍIY°MemberExpressionÍ1ÍEU®ThisExpressionÍ1Í5LªIdentifierÍ6ÍE¯travelPathStackÂÂLªIdentifierÍFÍI£popÂÂÂÂLªIdentifierÍzÍ¥ImageÂS³ExpressionStatementÍ“ÍrT®CallExpressionÍ“ÍqY°MemberExpressionÍ“Í±U®ThisExpressionÍ“Í—LªIdentifierÍ˜Í±¹observeComponentCreation2ÂÂ’O·ArrowFunctionExpressionÍ²ÍkÀÂÂÂ’LªIdentifierÍ³Í¹¦elmtIdLªIdentifierÍ»ÍÊ¯isInitialRenderM®BlockStatementÍÏÍk“S³ExpressionStatementÍæÍóT®CallExpressionÍæÍòY°MemberExpressionÍæÍğLªIdentifierÍæÍé£RowLªIdentifierÍêÍğ¦createÂÂÂS³ExpressionStatementÍ	ÍT®CallExpressionÍ	ÍY°MemberExpressionÍ	ÍLªIdentifierÍ	Í£RowLªIdentifierÍÍ¬layoutWeightÂÂ‘R§LiteralÍÍ¡1ÂS³ExpressionStatementÍ3ÍXT®CallExpressionÍ3ÍWY°MemberExpressionÍ3ÍELªIdentifierÍ3Í6£RowLªIdentifierÍ7ÍE®justifyContentÂÂ‘Y°MemberExpressionÍFÍVLªIdentifierÍFÍO©FlexAlignLªIdentifierÍPÍV¦CenterÂÂÂLªIdentifierÍmÍp£RowÂS³ExpressionStatementÍ„Í¤T®CallExpressionÍ„Í£Y°MemberExpressionÍ„Í¢U®ThisExpressionÍ„ÍˆLªIdentifierÍ‰Í¢¹observeComponentCreation2ÂÂ’O·ArrowFunctionExpressionÍ£ÍœÀÂÂÂ’LªIdentifierÍ¤Íª¦elmtIdLªIdentifierÍ¬Í»¯isInitialRenderM®BlockStatementÍÀÍœ”S³ExpressionStatementÍ×ÍùT®CallExpressionÍ×ÍøY°MemberExpressionÍ×ÍâLªIdentifierÍ×ÍÛ¤TextLªIdentifierÍÜÍâ¦createÂÂ‘Y°MemberExpressionÍãÍ÷Y°MemberExpressionÍãÍòU®ThisExpressionÍãÍçLªIdentifierÍèÍòªattractionÂÂLªIdentifierÍóÍ÷¤nameÂÂÂS³ExpressionStatementÍÍ!T®CallExpressionÍÍ Y°MemberExpressionÍÍLªIdentifierÍÍ¤TextLªIdentifierÍÍ¨fontSizeÂÂ‘R§LiteralÍÍ¢20ÂS³ExpressionStatementÍ7ÍXT®CallExpressionÍ7ÍWY°MemberExpressionÍ7ÍFLªIdentifierÍ7Í;¤TextLªIdentifierÍ<ÍFªfontWeightÂÂ‘Y°MemberExpressionÍGÍVLªIdentifierÍGÍQªFontWeightLªIdentifierÍRÍV¤BoldÂÂÂS³ExpressionStatementÍnÍ‰T®CallExpressionÍnÍˆY°MemberExpressionÍnÍyLªIdentifierÍnÍr¤TextLªIdentifierÍsÍy¦marginÂÂ‘[°ObjectExpressionÍzÍ‡‘\¨PropertyÍ|Í…ÂÂÂLªIdentifierÍ|Í¥rightR§LiteralÍƒÍ…¢15¤initÂLªIdentifierÍÍ¢¤TextÂS³ExpressionStatementÍ¶ÍÁT®CallExpressionÍ¶ÍÀY°MemberExpressionÍ¶Í¾LªIdentifierÍ¶Íº¤TextLªIdentifierÍ»Í¾£popÂÂÂS³ExpressionStatementÍÓÍİT®CallExpressionÍÓÍÜY°MemberExpressionÍÓÍÚLªIdentifierÍÓÍÖ£RowLªIdentifierÍ×ÍÚ£popÂÂÂS³ExpressionStatementÍïÍùT®CallExpressionÍïÍøY°MemberExpressionÍïÍöLªIdentifierÍïÍò£RowLªIdentifierÍóÍö£popÂÂÂS³ExpressionStatementÍÍIT®CallExpressionÍÍHY°MemberExpressionÍÍ)U®ThisExpressionÍÍLªIdentifierÍÍ)¹observeComponentCreation2ÂÂ’O·ArrowFunctionExpressionÍ*Í@ÀÂÂÂ’LªIdentifierÍ+Í1¦elmtIdLªIdentifierÍ3ÍB¯isInitialRenderM®BlockStatementÍGÍ@“S³ExpressionStatementÍ^ÍÛT®CallExpressionÍ^ÍÚY°MemberExpressionÍ^ÍjLªIdentifierÍ^Íc¥ImageLªIdentifierÍdÍj¦createÂÂ‘[°ObjectExpressionÍkÍÙ•\¨PropertyÍmÍ{ÂÂÂR§LiteralÍmÍq¢id¤"id"R§LiteralÍsÍ{Î  ¨50331659¤init\¨PropertyÍ}ÍŠÂÂÂR§LiteralÍ}Íƒ¤type¦"type"R§LiteralÍ…ÍŠÍN ¥20000¤init\¨PropertyÍŒÍ–ÂÂÂLªIdentifierÍŒÍ’¦params]¯ArrayExpressionÍ”Í–¤init\¨PropertyÍ˜Í¾ÂÂÂR§LiteralÍ˜Í¤ªbundleName¬"bundleName"R§LiteralÍ¦Í¾¶com.example.ictproject¸"com.example.ictproject"¤init\¨PropertyÍÀÍ×ÂÂÂR§LiteralÍÀÍÌªmoduleName¬"moduleName"R§LiteralÍÎÍ×§default©"default"¤initÂS³ExpressionStatementÍñÍT®CallExpressionÍñÍY°MemberExpressionÍñÍüLªIdentifierÍñÍö¥ImageLªIdentifierÍ÷Íü¥widthÂÂ‘R§LiteralÍıÍ¤100%¦'100%'ÂS³ExpressionStatementÍÍ-T®CallExpressionÍÍ,Y°MemberExpressionÍÍ'LªIdentifierÍÍ ¥ImageLªIdentifierÍ!Í'¦heightÂÂ‘R§LiteralÍ(Í+Í,£300ÂLªIdentifierÍBÍG¥ImageÂS³ExpressionStatementÍ[ÍTT®CallExpressionÍ[ÍSY°MemberExpressionÍ[ÍyU®ThisExpressionÍ[Í_LªIdentifierÍ`Íy¹observeComponentCreation2ÂÂ’O·ArrowFunctionExpressionÍzÍJÀÂÂÂ’LªIdentifierÍ{Í¦elmtIdLªIdentifierÍƒÍ’¯isInitialRenderM®BlockStatementÍ—ÍJ“S³ExpressionStatementÍ®Í¾T®CallExpressionÍ®Í½Y°MemberExpressionÍ®Í»LªIdentifierÍ®Í´¦ColumnLªIdentifierÍµÍ»¦createÂÂÂS³ExpressionStatementÍÔÍıT®CallExpressionÍÔÍüY°MemberExpressionÍÔÍåLªIdentifierÍÔÍÚ¦ColumnLªIdentifierÍÛÍåªalignItemsÂÂ‘Y°MemberExpressionÍæÍûLªIdentifierÍæÍõ¯HorizontalAlignLªIdentifierÍöÍû¥StartÂÂÂS³ExpressionStatementÍÍ7T®CallExpressionÍÍ6Y°MemberExpressionÍÍ)LªIdentifierÍÍ¦ColumnLªIdentifierÍÍ)¯backgroundColorÂÂ‘Y°MemberExpressionÍ*Í5LªIdentifierÍ*Í/¥ColorLªIdentifierÍ0Í5¥WhiteÂÂÂLªIdentifierÍLÍR¦ColumnÂS³ExpressionStatementÍfÍüT®CallExpressionÍfÍûY°MemberExpressionÍfÍ„U®ThisExpressionÍfÍjLªIdentifierÍkÍ„¹observeComponentCreation2ÂÂ’O·ArrowFunctionExpressionÍ…ÍôÀÂÂÂ’LªIdentifierÍ†ÍŒ¦elmtIdLªIdentifierÍÍ¯isInitialRenderM®BlockStatementÍ¢Íô—S³ExpressionStatementÍ¹ÍÍT®CallExpressionÍ¹ÍÌY°MemberExpressionÍ¹ÍÄLªIdentifierÍ¹Í½¤TextLªIdentifierÍ¾ÍÄ¦createÂÂ‘R§LiteralÍÅÍË¬è·¯å¾„è§„åˆ’®'è·¯å¾„è§„åˆ’'ÂS³ExpressionStatementÍãÍõT®CallExpressionÍãÍôY°MemberExpressionÍãÍğLªIdentifierÍãÍç¤TextLªIdentifierÍèÍğ¨fontSizeÂÂ‘R§LiteralÍñÍó¢24ÂS³ExpressionStatementÍÍ'T®CallExpressionÍÍ&Y°MemberExpressionÍÍLªIdentifierÍÍ¤TextLªIdentifierÍÍ©fontColorÂÂ‘Y°MemberExpressionÍÍ%LªIdentifierÍÍ¥ColorLªIdentifierÍ Í%¥WhiteÂÂÂS³ExpressionStatementÍ=Í`T®CallExpressionÍ=Í_Y°MemberExpressionÍ=ÍQLªIdentifierÍ=ÍA¤TextLªIdentifierÍBÍQ¯backgroundColorÂÂ‘Y°MemberExpressionÍRÍ^LªIdentifierÍRÍW¥ColorLªIdentifierÍXÍ^¦OrangeÂÂÂS³ExpressionStatementÍvÍŒT®CallExpressionÍvÍ‹Y°MemberExpressionÍvÍ‡LªIdentifierÍvÍz¤TextLªIdentifierÍ{Í‡¬borderRadiusÂÂ‘R§LiteralÍˆÍŠ
+¢10ÂS³ExpressionStatementÍ¢Í²T®CallExpressionÍ¢Í±Y°MemberExpressionÍ¢Í®LªIdentifierÍ¢Í¦¤TextLªIdentifierÍ§Í®§paddingÂÂ‘R§LiteralÍ¯Í°¡5ÂS³ExpressionStatementÍÈÍáT®CallExpressionÍÈÍàY°MemberExpressionÍÈÍÓLªIdentifierÍÈÍÌ¤TextLªIdentifierÍÍÍÓ¦marginÂÂ‘[°ObjectExpressionÍÔÍß‘\¨PropertyÍÖÍİÂÂÂLªIdentifierÍÖÍÙ£topR§LiteralÍÛÍİ
+¢10¤initÂLªIdentifierÍöÍú¤TextÂS³ExpressionStatementÍÍT®CallExpressionÍÍY°MemberExpressionÍÍLªIdentifierÍÍ¤TextLªIdentifierÍÍ£popÂÂÂS³ExpressionStatementÍ+Í|T®CallExpressionÍ+Í{Y°MemberExpressionÍ+ÍIU®ThisExpressionÍ+Í/LªIdentifierÍ0ÍI¹observeComponentCreation2ÂÂ’O·ArrowFunctionExpressionÍJÍtÀÂÂÂ’LªIdentifierÍKÍQ¦elmtIdLªIdentifierÍSÍb¯isInitialRenderM®BlockStatementÍgÍt•S³ExpressionStatementÍ~Í«T®CallExpressionÍ~ÍªY°MemberExpressionÍ~Í‰LªIdentifierÍ~Í‚¤TextLªIdentifierÍƒÍ‰¦createÂÂ‘T®CallExpressionÍŠÍ©Y°MemberExpressionÍŠÍ“LªIdentifierÍŠÍ¥myMapLªIdentifierÍÍ“£getÂÂ‘Y°MemberExpressionÍ”Í¨Y°MemberExpressionÍ”Í£U®ThisExpressionÍ”Í˜LªIdentifierÍ™Í£ªattractionÂÂLªIdentifierÍ¤Í¨¤nameÂÂÂÂS³ExpressionStatementÍÁÍÓT®CallExpressionÍÁÍÒY°MemberExpressionÍÁÍÎLªIdentifierÍÁÍÅ¤TextLªIdentifierÍÆÍÎ¨fontSizeÂÂ‘R§LiteralÍÏÍÑ¢18ÂS³ExpressionStatementÍéÍûT®CallExpressionÍéÍúY°MemberExpressionÍéÍóLªIdentifierÍéÍí¤TextLªIdentifierÍîÍó¥widthÂÂ‘R§LiteralÍôÍù£90%¥'90%'ÂS³ExpressionStatementÍÍ)T®CallExpressionÍÍ(Y°MemberExpressionÍÍLªIdentifierÍÍ¤TextLªIdentifierÍÍ¦marginÂÂ‘[°ObjectExpressionÍÍ'‘\¨PropertyÍÍ%ÂÂÂLªIdentifierÍÍ"£topR§LiteralÍ$Í%¡5¤initÂS³ExpressionStatementÍ?ÍaT®CallExpressionÍ?Í`Y°MemberExpressionÍ?ÍSLªIdentifierÍ?ÍC¤TextLªIdentifierÍDÍS¯backgroundColorÂÂ‘Y°MemberExpressionÍTÍ_LªIdentifierÍTÍY¥ColorLªIdentifierÍZÍ_¥WhiteÂÂÂLªIdentifierÍvÍz¤TextÂS³ExpressionStatementÍÍ™T®CallExpressionÍÍ˜Y°MemberExpressionÍÍ–LªIdentifierÍÍ’¤TextLªIdentifierÍ“Í–£popÂÂÂS³ExpressionStatementÍ«Í¸T®CallExpressionÍ«Í·Y°MemberExpressionÍ«ÍµLªIdentifierÍ«Í±¦ColumnLªIdentifierÍ²Íµ£popÂÂÂS³ExpressionStatementÍÊÍ„T®CallExpressionÍÊÍƒY°MemberExpressionÍÊÍèU®ThisExpressionÍÊÍÎLªIdentifierÍÏÍè¹observeComponentCreation2ÂÂ’O·ArrowFunctionExpressionÍéÍzÀÂÂÂ’LªIdentifierÍêÍğ¦elmtIdLªIdentifierÍòÍ¯isInitialRenderM®BlockStatementÍÍz’S³ExpressionStatementÍÍ-T®CallExpressionÍÍ,Y°MemberExpressionÍÍ*LªIdentifierÍÍ#¦ColumnLªIdentifierÍ$Í*¦createÂÂÂS³ExpressionStatementÍCÍgT®CallExpressionÍCÍfY°MemberExpressionÍCÍRLªIdentifierÍCÍI¦ColumnLªIdentifierÍJÍR¨positionÂÂ‘[°ObjectExpressionÍSÍe’\¨PropertyÍUÍ[ÂÂÂLªIdentifierÍUÍV¡xR§LiteralÍXÍ[Í£270¤init\¨PropertyÍ]ÍcÂÂÂLªIdentifierÍ]Í^¡yR§LiteralÍ`ÍcÍ&£550¤initÂLªIdentifierÍ|Í‚¦ColumnÂS³ExpressionStatementÍ–ÍzT®CallExpressionÍ–ÍyY°MemberExpressionÍ–Í´U®ThisExpressionÍ–ÍšLªIdentifierÍ›Í´¹observeComponentCreation2ÂÂ’O·ArrowFunctionExpressionÍµÍqÀÂÂÂ’LªIdentifierÍ¶Í¼¦elmtIdLªIdentifierÍ¾ÍÍ¯isInitialRenderM®BlockStatementÍÒÍq–S³ExpressionStatementÍéÍfT®CallExpressionÍéÍeY°MemberExpressionÍéÍõLªIdentifierÍéÍî¥ImageLªIdentifierÍïÍõ¦createÂÂ‘[°ObjectExpressionÍöÍd•\¨PropertyÍøÍÂÂÂR§LiteralÍøÍü¢id¤"id"R§LiteralÍşÍÎ  
+¨50331658¤init\¨PropertyÍÍÂÂÂR§LiteralÍÍ¤type¦"type"R§LiteralÍÍÍN ¥20000¤init\¨PropertyÍÍ!ÂÂÂLªIdentifierÍÍ¦params]¯ArrayExpressionÍÍ!¤init\¨PropertyÍ#ÍIÂÂÂR§LiteralÍ#Í/ªbundleName¬"bundleName"R§LiteralÍ1ÍI¶com.example.ictproject¸"com.example.ictproject"¤init\¨PropertyÍKÍbÂÂÂR§LiteralÍKÍWªmoduleName¬"moduleName"R§LiteralÍYÍb§default©"default"¤initÂS³ExpressionStatementÍ|ÍT®CallExpressionÍ|ÍŒY°MemberExpressionÍ|Í‡LªIdentifierÍ|Í¥ImageLªIdentifierÍ‚Í‡¥widthÂÂ‘R§LiteralÍˆÍ‹Ìd£100ÂS³ExpressionStatementÍ£ÍµT®CallExpressionÍ£Í´Y°MemberExpressionÍ£Í¯LªIdentifierÍ£Í¨¥ImageLªIdentifierÍ©Í¯¦heightÂÂ‘R§LiteralÍ°Í³Ì–£150ÂS³ExpressionStatementÍËÍíT®CallExpressionÍËÍìY°MemberExpressionÍËÍÚLªIdentifierÍËÍĞ¥ImageLªIdentifierÍÑÍÚ©objectFitÂÂ‘Y°MemberExpressionÍÛÍëLªIdentifierÍÛÍã¨ImageFitLªIdentifierÍäÍë§ContainÂÂÂS³ExpressionStatementÍÍT®CallExpressionÍÍY°MemberExpressionÍÍLªIdentifierÍÍ¥ImageLªIdentifierÍ	Í§opacityÂÂ‘R§LiteralÍÍË?é™™™™™š£0.8ÂS³ExpressionStatementÍ,Í^T®CallExpressionÍ,Í]Y°MemberExpressionÍ,Í7LªIdentifierÍ,Í1¥ImageLªIdentifierÍ2Í7¥scaleÂÂ‘[°ObjectExpressionÍ8Í\’\¨PropertyÍ:ÍIÂÂÂLªIdentifierÍ:Í;¡xY°MemberExpressionÍ=ÍIU®ThisExpressionÍ=ÍALªIdentifierÍBÍI§myScaleÂÂ¤init\¨PropertyÍKÍZÂÂÂLªIdentifierÍKÍL¡yY°MemberExpressionÍNÍZU®ThisExpressionÍNÍRLªIdentifierÍSÍZ§myScaleÂÂ¤initÂLªIdentifierÍsÍx¥ImageÂS³ExpressionStatementÍŒÍ™T®CallExpressionÍŒÍ˜Y°MemberExpressionÍŒÍ–LªIdentifierÍŒÍ’¦ColumnLªIdentifierÍ“Í–£popÂÂÂS³ExpressionStatementÍ«Í¸T®CallExpressionÍ«Í·Y°MemberExpressionÍ«ÍµLªIdentifierÍ«Í±¦ColumnLªIdentifierÍ²Íµ£popÂÂÂ[°ObjectExpressionÍÉÍ'’\¨PropertyÍËÍàÂÂÂLªIdentifierÍËÍÕªmoduleNameR§LiteralÍ×Íà§default©"default"¤init\¨PropertyÍâÍ%ÂÂÂLªIdentifierÍâÍê¨pagePathR§LiteralÍìÍ%Ù7features/Travel/src/main/ets/pages/AttractionDetailPageÙ9"features/Travel/src/main/ets/pages/AttractionDetailPage"¤initÂS³ExpressionStatementÍ7ÍYT®CallExpressionÍ7ÍXY°MemberExpressionÍ7ÍRLªIdentifierÍ7ÍE®NavDestinationLªIdentifierÍFÍR¬hideTitleBarÂÂ‘R§LiteralÍSÍWÃ¤trueÂLªIdentifierÍfÍt®NavDestinationÂS³ExpressionStatementÍ€Í•T®CallExpressionÍ€Í”Y°MemberExpressionÍ€Í’LªIdentifierÍ€Í®NavDestinationLªIdentifierÍÍ’£popÂÂÂN°MethodDefinitionÍ¢ÍÚÂÂLªIdentifierÍ¢Íª¨rerender¦methodO²FunctionExpressionÍªÍÚÀÂÂÂM®BlockStatementÍ­ÍÚ‘S³ExpressionStatementÍ¸ÍÓT®CallExpressionÍ¸ÍÒY°MemberExpressionÍ¸ÍĞU®ThisExpressionÍ¸Í¼LªIdentifierÍ½ÍĞ³updateDirtyElementsÂÂÂÀ‘Ôr_•¤type¥start£endªspecifiers¦source±ImportDeclarationÌ€Ì±‘Ôr`•¤type¥start£end¨imported¥local¯ImportSpecifierÌ‰Ì“LªIdentifierÌ‰Ì“ªAttractionLªIdentifierÌ‰Ì“ªAttractionR§LiteralÌ›Ì°³../model/Attractionµ"../model/Attraction"

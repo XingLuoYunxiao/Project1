@@ -10,14 +10,16 @@
     "Tabs",
     "TabContent"
   ],
-  "features\\quickstart\\src\\main\\ets\\pages\\QuickStartPage.ets": [
+  "features\\Login\\src\\main\\ets\\pages\\InfoMessagePage.ets": [
     "Column",
-    "Swiper",
-    "ForEach",
-    "ListItem",
-    "Stack",
+    "Row",
     "Image",
-    "Text"
+    "Text",
+    "Blank",
+    "List",
+    "ListItem",
+    "Divider",
+    "If"
   ],
   "features\\Login\\src\\main\\ets\\view\\CustomDialogComponent.ets": [
     "CustomDialogController",
@@ -40,18 +42,18 @@
     "Image",
     "If"
   ],
-  "features\\Login\\src\\main\\ets\\pages\\InfoMessagePage.ets": [
+  "features\\Travel\\src\\main\\ets\\pages\\TravelStartPage.ets": [
+    "Navigation",
     "Column",
-    "Row",
+    "Swiper",
+    "ForEach",
+    "ListItem",
+    "Stack",
     "Image",
     "Text",
-    "Blank",
-    "List",
-    "ListItem",
-    "Divider",
     "If"
   ],
-  "features\\quickstart\\src\\main\\ets\\view\\Classficiation.ets": [
+  "features\\Travel\\src\\main\\ets\\view\\Classficiation.ets": [
     "Row",
     "ForEach",
     "ListItem",
@@ -59,19 +61,54 @@
     "Image",
     "Text"
   ],
-  "features\\quickstart\\src\\main\\ets\\view\\SearchHeader.ets": [
+  "features\\Travel\\src\\main\\ets\\view\\NearbyAttraction.ets": [
+    "Column",
+    "Row",
+    "Text",
+    "Blank",
+    "Image",
+    "List",
+    "ForEach",
+    "ListItem"
+  ],
+  "features\\Travel\\src\\main\\ets\\view\\SearchHeader.ets": [
     "Row",
     "Image",
     "Search",
     "Badge"
   ],
-  "features\\quickstart\\src\\main\\ets\\view\\NearbyAttraction.ets": [
+  "features\\Travel\\src\\main\\ets\\pages\\FamousPlacePage.ets": [
+    "NavDestination",
+    "Row",
+    "Image",
+    "Search",
+    "Badge",
+    "Tabs",
+    "TabContent",
     "Column",
-    "Text",
     "List",
     "ForEach",
     "ListItem",
+    "Divider",
+    "Text",
+    "Span",
+    "Button"
+  ],
+  "features\\Travel\\src\\main\\ets\\util\\Loading.ets": [
+    "NavDestination",
+    "Column",
+    "Progress",
     "Row",
-    "Image"
+    "LoadingProgress",
+    "Image",
+    "Text",
+    "If"
+  ],
+  "features\\Travel\\src\\main\\ets\\pages\\AttractionDetailPage.ets": [
+    "NavDestination",
+    "Column",
+    "Row",
+    "Image",
+    "Text"
   ]
 }
