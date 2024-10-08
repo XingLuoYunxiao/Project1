@@ -1,0 +1,20 @@
+{
+	"module":	{
+		"pages":	"$profile:main_pages",
+		"name":	"Travel",
+		"compileMode":	"esmodule"
+	},
+	"app":	{
+		"bundleName":	"com.example.ictproject",
+		"debug":	true,
+		"versionCode":	1000000,
+		"versionName":	"1.0.0",
+		"minAPIVersion":	50000012,
+		"targetAPIVersion":	50000012,
+		"apiReleaseType":	"Release",
+		"compileSdkVersion":	"5.0.0.70",
+		"compileSdkType":	"HarmonyOS",
+		"appEnvironments":	[],
+		"bundleType":	"app"
+	}
+}

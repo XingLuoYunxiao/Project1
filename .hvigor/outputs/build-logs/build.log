@@ -21178,3 +21178,13 @@
 [2024-10-08T19:14:17.657] [DEBUG] debug-file - Update task default:default@SignHap input file:E:\ohomDemos\ICT\IctProject\products\default\build\default\outputs\default\default-default-unsigned.hap cache from map.
 [2024-10-08T19:14:17.657] [DEBUG] debug-file - Update task default:default@SignHap output file:E:\ohomDemos\ICT\IctProject\products\default\build\default\outputs\default\default-default-signed.hap cache.
 [2024-10-08T19:14:17.657] [DEBUG] debug-file - Incremental task default:default@SignHap post-execution cost:1 ms .
+[2024-10-08T19:14:17.694] [DEBUG] debug-file - Cleanup worker 18.
+[2024-10-08T19:14:17.694] [DEBUG] debug-file - Worker 18 has been cleaned up.
+[2024-10-08T19:14:17.694] [DEBUG] debug-file - Current idle worker size: 1.
+[2024-10-08T19:14:17.694] [DEBUG] debug-file - Current resident worker size: 2.
+[2024-10-08T19:14:17.696] [DEBUG] debug-file - hvigor build process will be closed.
+[2024-10-08T19:14:17.699] [DEBUG] debug-file - session manager: send message to worker process.
+[2024-10-08T19:14:17.699] [DEBUG] debug-file - session manager: send message to worker process.
+[2024-10-08T19:14:17.699] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2024-10-08T19:14:17.700] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2024-10-08T19:14:17.704] [DEBUG] debug-file - worker[18] exits with exit code 1.
