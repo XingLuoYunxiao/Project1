@@ -198,6 +198,7 @@
 		}, {
 			"type":	"media",
 			"name":	"nearby_4",
+<<<<<<< HEAD:products/default/.preview/default/intermediates/res/default/ids_map/id_defined.json
 			"id":	"0x03000031"
 		}, {
 			"type":	"media",
@@ -623,5 +624,68 @@
 			"type":	"media",
 			"name":	"ic_close",
 			"id":	"0x0300009B"
+=======
+			"id":	"0x0200006E"
+		}, {
+			"type":	"media",
+			"name":	"location_icon",
+			"id":	"0x0200006F"
+		}, {
+			"type":	"media",
+			"name":	"gugong",
+			"id":	"0x03000000"
+		}, {
+			"type":	"media",
+			"name":	"leshandafo",
+			"id":	"0x03000001"
+		}, {
+			"type":	"media",
+			"name":	"mogao",
+			"id":	"0x03000002"
+		}, {
+			"type":	"media",
+			"name":	"qinshihuanglin",
+			"id":	"0x03000003"
+		}, {
+			"type":	"media",
+			"name":	"tiantan",
+			"id":	"0x03000004"
+		}, {
+			"type":	"media",
+			"name":	"yiheyuan",
+			"id":	"0x03000005"
+		}, {
+			"type":	"media",
+			"name":	"guide_icon",
+			"id":	"0x03000006"
+		}, {
+			"type":	"media",
+			"name":	"hotel_icon",
+			"id":	"0x03000007"
+		}, {
+			"type":	"media",
+			"name":	"check",
+			"id":	"0x03000008"
+		}, {
+			"type":	"media",
+			"name":	"load_background",
+			"id":	"0x03000009"
+		}, {
+			"type":	"media",
+			"name":	"avator",
+			"id":	"0x0300000A"
+		}, {
+			"type":	"media",
+			"name":	"gugong_map",
+			"id":	"0x0300000B"
+		}, {
+			"type":	"media",
+			"name":	"avatar1",
+			"id":	"0x0300000C"
+		}, {
+			"type":	"media",
+			"name":	"avatar2",
+			"id":	"0x0300000D"
+>>>>>>> origin/zmx:products/default/build/default/intermediates/res/default/ids_map/id_defined.json
 		}]
 }

@@ -1,0 +1,242 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚif (!("finalizeConstruction" in ViewPU.prototype)) {
+    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
+}
+import { TravelStartPage } from '@ohos/Travel';
+import { InfoMessagePage } from '@ohos/login';
+import { CulturalHeritageStartPage } from '@ohos/Culture';
+class Index extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.__currentIndex = new ObservedPropertySimplePU(0, this, "currentIndex");
+        this.tabsController = new TabsController();
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.currentIndex !== undefined) {
+            this.currentIndex = params.currentIndex;
+        }
+        if (params.tabsController !== undefined) {
+            this.tabsController = params.tabsController;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.__currentIndex.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.__currentIndex.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get currentIndex() {
+        return this.__currentIndex.get();
+    }
+    set currentIndex(newValue) {
+        this.__currentIndex.set(newValue);
+    }
+    tabBarBuilder(title, targetIndex, selectedIcon, unselectIcon, parent = null) {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.width('100%');
+            Column.height('100%');
+            Column.justifyContent(FlexAlign.Center);
+            Column.alignItems(HorizontalAlign.Center);
+            Column.onClick(() => {
+                this.currentIndex = targetIndex;
+                this.tabsController.changeIndex(targetIndex);
+            });
+        }, Column);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Image.create(this.currentIndex === targetIndex ? selectedIcon : unselectIcon);
+            Image.width(24);
+            Image.height(24);
+        }, Image);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Text.create(title);
+            Text.fontFamily('HarmonyHeiTi-Medium');
+            Text.fontSize(10);
+            Text.fontColor(this.currentIndex === targetIndex ? '#0A59F7' : 'rgba(0,0,0,0.60)');
+            Text.textAlign(TextAlign.Center);
+            Text.lineHeight(14);
+            Text.fontWeight(500);
+        }, Text);
+        Text.pop();
+        Column.pop();
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Tabs.create({ barPosition: BarPosition.End, controller: this.tabsController });
+            Tabs.vertical(false);
+            Tabs.divider({
+                strokeWidth: 0.5,
+                color: '#0D182431'
+            });
+            Tabs.scrollable(false);
+            Tabs.backgroundColor('#F1F3F5');
+            Tabs.padding({ top: 36, bottom: 28 });
+        }, Tabs);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        if (isInitialRender) {
+                            let componentCall = new TravelStartPage(this, {}, undefined, elmtId, () => { }, { page: "products/default/src/main/ets/pages/Index.ets", line: 39, col: 9 });
+                            ViewPU.create(componentCall);
+                            let paramsLambda = () => {
+                                return {};
+                            };
+                            componentCall.paramsGenerator_ = paramsLambda;
+                        }
+                        else {
+                            this.updateStateVarsOfChildByElmtId(elmtId, {});
+                        }
+                    }, { name: "TravelStartPage" });
+                }
+            });
+            TabContent.tabBar({ builder: () => {
+                    this.tabBarBuilder.call(this, 'æ—…æ¸¸', 0, { "id": 67108874, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" }, { "id": 67108873, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" });
+                } });
+        }, TabContent);
+        TabContent.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        if (isInitialRender) {
+                            let componentCall = new CulturalHeritageStartPage(this, {}, undefined, elmtId, () => { }, { page: "products/default/src/main/ets/pages/Index.ets", line: 44, col: 9 });
+                            ViewPU.create(componentCall);
+                            let paramsLambda = () => {
+                                return {};
+                            };
+                            componentCall.paramsGenerator_ = paramsLambda;
+                        }
+                        else {
+                            this.updateStateVarsOfChildByElmtId(elmtId, {});
+                        }
+                    }, { name: "CulturalHeritageStartPage" });
+                }
+            });
+            TabContent.tabBar({ builder: () => {
+                    this.tabBarBuilder.call(this, 'éé—', 1, { "id": 67108876, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" }, { "id": 67108875, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" });
+                } });
+        }, TabContent);
+        TabContent.pop();
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            TabContent.create(() => {
+                {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        if (isInitialRender) {
+                            let componentCall = new InfoMessagePage(this, {}, undefined, elmtId, () => { }, { page: "products/default/src/main/ets/pages/Index.ets", line: 49, col: 9 });
+                            ViewPU.create(componentCall);
+                            let paramsLambda = () => {
+                                return {};
+                            };
+                            componentCall.paramsGenerator_ = paramsLambda;
+                        }
+                        else {
+                            this.updateStateVarsOfChildByElmtId(elmtId, {});
+                        }
+                    }, { name: "InfoMessagePage" });
+                }
+            });
+            TabContent.tabBar({ builder: () => {
+                    this.tabBarBuilder.call(this, 'æˆ‘çš„', 2, { "id": 67108878, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" }, { "id": 67108877, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" });
+                } });
+        }, TabContent);
+        TabContent.pop();
+        Tabs.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+    static getEntryName() {
+        return "Index";
+    }
+}
+registerNamedRoute(() => new Index(undefined, {}), "", { bundleName: "com.example.ictproject", moduleName: "default", pagePath: "pages/Index", pageFullPath: "products/default/src/main/ets/pages/Index", integratedHsp: "false" });
+//# sourceMappingURL=Index.js.mapÂ“Ù3D:\HuaWei\Apps\IctProject\features\Travel\Index.etsÙ2D:\HuaWei\Apps\IctProject\features\Login\Index.etsÙ4D:\HuaWei\Apps\IctProject\features\Culture\Index.etsÙGD:\HuaWei\Apps\IctProject\products\default\src\main\ets\pages\Index.etsÔrBš°belongModulePathªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo¯hostModulesInfoÙ*D:\HuaWei\Apps\IctProject\products\default§defaultÃÂÙ*D:\HuaWei\Apps\IctProject\products\default¹D:\HuaWei\Apps\IctProject§default¥1.0.0Ô  ÃÚEimport { TravelStartPage } from '@ohos/Travel';
+import { InfoMessagePage } from '@ohos/login';
+import { CulturalHeritageStartPage } from '@ohos/Culture';
+
+@Entry
+@Component
+struct Index {
+  @State currentIndex: number = 0;
+  private tabsController: TabsController = new TabsController();
+
+
+  @Builder
+  tabBarBuilder(title: string, targetIndex: number, selectedIcon: Resource, unselectIcon: Resource) {
+    Column() {
+      Image(this.currentIndex === targetIndex ? selectedIcon : unselectIcon)
+        .width(24)
+        .height(24)
+      Text(title)
+        .fontFamily('HarmonyHeiTi-Medium')
+        .fontSize(10)
+        .fontColor(this.currentIndex === targetIndex ? '#0A59F7' : 'rgba(0,0,0,0.60)')
+        .textAlign(TextAlign.Center)
+        .lineHeight(14)
+        .fontWeight(500)
+    }
+    .width('100%')
+    .height('100%')
+    .justifyContent(FlexAlign.Center)
+    .alignItems(HorizontalAlign.Center)
+    .onClick(() => {
+      this.currentIndex = targetIndex;
+      this.tabsController.changeIndex(targetIndex);
+    })
+  }
+
+  build() {
+    Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
+      TabContent() {
+        TravelStartPage()
+      }
+      .tabBar(this.tabBarBuilder('æ—…æ¸¸', 0, $r('app.media.ic_01_on'), $r('app.media.ic_01_off')))
+
+      TabContent() {
+        CulturalHeritageStartPage()
+      }
+      .tabBar(this.tabBarBuilder('éé—', 1, $r('app.media.ic_02_on'), $r('app.media.ic_02_off')))
+
+      TabContent() {
+        InfoMessagePage()
+      }
+      .tabBar(this.tabBarBuilder('æˆ‘çš„', 2, $r('app.media.ic_03_on'), $r('app.media.ic_03_off')))
+    }
+    .vertical(false)
+    .divider({
+      strokeWidth: 0.5,
+      color: '#0D182431'
+    })
+    .scrollable(false)
+    .backgroundColor('#F1F3F5')
+    .padding({ top: 36, bottom: 28 })
+  }
+}ÀÔrC“¬@ohos/Travel­@ohos/Culture«@ohos/loginÔrD—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÂÙ3D:\HuaWei\Apps\IctProject\features\Travel\Index.etsAÃªoh-resolveÂDAÂÙ4D:\HuaWei\Apps\IctProject\features\Culture\Index.etsAÃªoh-resolveÂDAÂÙ2D:\HuaWei\Apps\IctProject\features\Login\Index.etsAÃªoh-resolveÂ’ÔrE–§version¤fileªsourceRoot§sources¥names¨mappings¨Index.js ‘©Index.etsÜ ™˜”    ”  ”	  	”  ”  ”    ”.  .”/  /˜”   ” ”	 	” ” ”   ”- -”. .˜”   ” ”	 	”" "”$ $”* *”9 9”: :’” ” ‘”  ’”;  ”< !”” +”" /”0 =”2 ?‘” :’” 	” ’” 	” š” ” ” ” ” ”$ 2”& 4”2 ÌJ”4 ÌL”Ì@ Ìb’” ” 
+–” ” 
+” ” 
+” ” –” ” 
+” ” ” ”  ˜” ” 
+” ”! ”" ”+ ”, ”2 $˜” ” 
+” ” ” ”- ”.  ”4 &—” ” 
+” ” ” ” ”  —” ” 
+” ”! ”$ ”/ %”0 &š” ” 
+” ”# ”$ ”/ %”0 &”; 1”< 2”= 3’”  ”  Ü ” ” ” ” ” ”* ”/ "”: -”; .”< /”= 0”ÌI <”ÌJ =”ÌK >”ÌL ?”ÌX ÌK–” ” ” 	” ” ” –” ” ” 	” ” ” ”” ” 
+” ” –” ” 
+” 	” ” ”1 )–” ” 
+” 	” ” ” Ü ” ” 
+” 	” ” ” ”  ”, $”1 )”< 4”= 5”> 6”? 7”ÌH Ì@”ÌI ÌA”ÌJ ÌB”ÌK ÌC”Ì] ÌU˜” ” 
+” 	” ” ”$ ”% ”+ #–” ” 
+” 	” ” ” –” ” 
+” 	” ” ” ’” ” 
+’” ” 
+‘” !‘” #Ü ” $” $” $	” $”% $”' $”2 $#”3 $$”6 $'”8 $)”ÌB $3”ÌD $5”ÌH $9”ÌI $:”ÌW $ÌH”ÌY $ÌJ–” $” $” 4” 4” 4” 4•” $” $” 5” 5” 5”” 6” 6” 6”  6”” 7” 7” 7”" 7‘” 8–” $” $” 9” 9” 9”! 9–” $” $” :”  :”! :”* :” $” $” ;” ;” ;” ;” ;”  ;”" ;”$ ;”* ;”, ; ”. ;"”0 ;$’”4 &”ÌC &’” (” (˜” (” (” (”& ( ”2 (!”6 (%”8 ('”9 ((’”4 +”ÌM +!’” -” -˜” -” -” -”& - ”2 -!”6 -%”8 -'”9 -(’”4 0”ÌC 0’” 2” 2˜” 2” 2” 2”& 2 ”2 2!”6 2%”8 2'”9 2(’” $” $‘” <ÔrF–§version¤file§sources®sourcesContent¥names¨mappingsÀ‘À‘ÀÜ ¢‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
+ ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ‘”  Ì› ‘”  Ìœ ‘”  Ì ‘”  Ì ‘”  ÌŸ ‘”  Ì  ‘”  Ì¡ ÂÔ  ÔrG”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache“ÔrH•¤type¥start£endªspecifiers¦source±ImportDeclarationÌ€Ì¯‘ÔrI•¤type¥start£end¨imported¥local¯ImportSpecifierÌ‰Ì˜ÔrJ”¤type¥start£end¤nameªIdentifierÌ‰Ì˜¯TravelStartPageJªIdentifierÌ‰Ì˜¯TravelStartPageÔrK•¤type¥start£end¥value£raw§LiteralÌ Ì®¬@ohos/Travel®'@ohos/Travel'H±ImportDeclarationÌ±Ìß‘I¯ImportSpecifierÌºÌÉJªIdentifierÌºÌÉ¯InfoMessagePageJªIdentifierÌºÌÉ¯InfoMessagePageK§LiteralÌÑÌŞ«@ohos/login­'@ohos/login'H±ImportDeclarationÌáÍ‘I¯ImportSpecifierÌêÍJªIdentifierÌêÍ¹CulturalHeritageStartPageJªIdentifierÌêÍ¹CulturalHeritageStartPageK§LiteralÍÍ­@ohos/Culture¯'@ohos/Culture'

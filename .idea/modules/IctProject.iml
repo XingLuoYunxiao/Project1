@@ -59,6 +59,12 @@
       <excludeFolder url="file://$MODULE_DIR$/../../features/Travel/build" />
       <excludeFolder url="file://$MODULE_DIR$/../../features/Travel/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/../../features/Travel/oh_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/Culture/.cxx" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/Culture/.preview" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/Culture/.test" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/Culture/build" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/Culture/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/../../features/Culture/oh_modules" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module-library" exported="" scope="PROVIDED">

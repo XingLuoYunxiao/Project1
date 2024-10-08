@@ -1,5 +1,6 @@
 {
   "modulePathMap": {
+<<<<<<< HEAD:products/default/.preview/default/intermediates/loader/default/loader.json
     "default": "D:\\HuaWei\\Apps\\IctProject\\products\\default",
     "map": "D:\\HuaWei\\Apps\\IctProject\\features\\map",
     "learning": "D:\\HuaWei\\Apps\\IctProject\\features\\learning",
@@ -11,6 +12,19 @@
   "compileMode": "esmodule",
   "projectRootPath": "D:\\HuaWei\\Apps\\IctProject",
   "nodeModulesPath": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\.preview\\default\\intermediates\\loader_out\\default\\node_modules",
+=======
+    "default": "E:\\ohomDemos\\ICT\\IctProject\\products\\default",
+    "map": "E:\\ohomDemos\\ICT\\IctProject\\features\\map",
+    "learning": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning",
+    "Travel": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel",
+    "utils": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils",
+    "uicomponents": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents",
+    "Login": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login"
+  },
+  "compileMode": "esmodule",
+  "projectRootPath": "E:\\ohomDemos\\ICT\\IctProject",
+  "nodeModulesPath": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\default\\node_modules",
+>>>>>>> origin/zmx:products/default/build/default/intermediates/loader/default/loader.json
   "byteCodeHarInfo": {},
   "declarationEntry": [],
   "moduleName": "default",
@@ -22,7 +36,15 @@
   "dynamicImportLibInfo": {},
   "routerMap": [],
   "hspResourcesMap": {},
+<<<<<<< HEAD:products/default/.preview/default/intermediates/loader/default/loader.json
   "anBuildOutPut": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\.preview\\default\\intermediates\\loader_out\\default\\an\\arm64-v8a",
   "anBuildMode": "type",
   "buildConfigPath": ".preview\\config\\buildConfig.json"
+=======
+  "anBuildOutPut": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\default\\an\\arm64-v8a",
+  "anBuildMode": "type",
+  "patchConfig": {
+    "changedFileList": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\patch\\default\\changedFileList.json"
+  }
+>>>>>>> origin/zmx:products/default/build/default/intermediates/loader/default/loader.json
 }

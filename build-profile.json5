@@ -33,14 +33,6 @@
       ]
     },
     {
-      "name": "map",
-      "srcPath": "./features/map"
-    },
-    {
-      "name": "learning",
-      "srcPath": "./features/learning"
-    },
-    {
       "name": "Travel",
       "srcPath": "./features/Travel"
     },
@@ -56,5 +48,9 @@
       "name": "Login",
       "srcPath": "./features/Login",
     },
+    {
+      "name": "Culture",
+      "srcPath": "./features/Culture",
+    }
   ]
 }

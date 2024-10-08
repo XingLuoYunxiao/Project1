@@ -4,7 +4,7 @@ import router from '@ohos.router'
 export struct InfoMessagePage {
   @StorageProp('readCount') readCount: number = 0
   @StorageProp('bookCount') bookCount: number = 0
-  @StorageProp('personName') personName: string = ''
+  @StorageProp('personName') personName: string = '星落'
 
   build() {
     Column({ space: 10 }) {
@@ -42,6 +42,10 @@ export struct InfoMessagePage {
 
       Row() {
         Row() {
+          Image($r('app.media.collection'))
+            .width(30)
+            .height(30)
+            .margin({left:5})
           Text('收藏')
             .fontSize(16)
             .margin({left:10,right:20})
@@ -62,6 +66,10 @@ export struct InfoMessagePage {
         .padding({top:10,bottom:10,left:5})
 
         Row() {
+          Image($r('app.media.achievement'))
+            .width(30)
+            .height(30)
+            .margin({left:5})
           Text('成就')
             .fontSize(16)
             .margin({left:10,right:20})
@@ -98,7 +106,7 @@ export struct InfoMessagePage {
             this.myListItem($r('app.media.attraction'), "当前景点")
           }
           ListItem() {
-            this.myListItem($r('app.media.read'), "历史记录")
+            this.myListItem($r('app.media.record'), "历史记录")
           }
           ListItem() {
             this.myListItem($r('app.media.setting'), "设置")

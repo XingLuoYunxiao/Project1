@@ -45,7 +45,10 @@ export class NearbyAttraction extends ViewPU {
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Row.create();
+<<<<<<< HEAD:products/default/.preview/default/cache/default/default@PreviewArkTS/esmodule/debug/features/Travel/src/main/ets/view/NearbyAttraction.ts
             Row.debugLine("features/Travel/src/main/ets/view/NearbyAttraction.ets(22:7)", "travel");
+=======
+>>>>>>> origin/zmx:products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/view/NearbyAttraction.ts
             Row.width('100%');
             Row.height(30);
         }, Row);
@@ -58,23 +61,35 @@ export class NearbyAttraction extends ViewPU {
         Text.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Blank.create();
+<<<<<<< HEAD:products/default/.preview/default/cache/default/default@PreviewArkTS/esmodule/debug/features/Travel/src/main/ets/view/NearbyAttraction.ts
             Blank.debugLine("features/Travel/src/main/ets/view/NearbyAttraction.ets(26:9)", "travel");
+=======
+>>>>>>> origin/zmx:products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/view/NearbyAttraction.ts
         }, Blank);
         Blank.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Row.create();
+<<<<<<< HEAD:products/default/.preview/default/cache/default/default@PreviewArkTS/esmodule/debug/features/Travel/src/main/ets/view/NearbyAttraction.ts
             Row.debugLine("features/Travel/src/main/ets/view/NearbyAttraction.ets(27:9)", "travel");
         }, Row);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Image.create({ "id": 50331699, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" });
             Image.debugLine("features/Travel/src/main/ets/view/NearbyAttraction.ets(28:11)", "travel");
+=======
+        }, Row);
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Image.create({ "id": 33554543, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" });
+>>>>>>> origin/zmx:products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/view/NearbyAttraction.ts
             Image.width(20);
             Image.height(20);
             Image.margin({ right: 5 });
         }, Image);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Text.create('西安');
+<<<<<<< HEAD:products/default/.preview/default/cache/default/default@PreviewArkTS/esmodule/debug/features/Travel/src/main/ets/view/NearbyAttraction.ts
             Text.debugLine("features/Travel/src/main/ets/view/NearbyAttraction.ets(32:11)", "travel");
+=======
+>>>>>>> origin/zmx:products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/view/NearbyAttraction.ts
             Text.fontSize(14);
             Text.fontWeight(500);
         }, Text);
@@ -83,7 +98,10 @@ export class NearbyAttraction extends ViewPU {
         Row.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             List.create();
+<<<<<<< HEAD:products/default/.preview/default/cache/default/default@PreviewArkTS/esmodule/debug/features/Travel/src/main/ets/view/NearbyAttraction.ts
             List.debugLine("features/Travel/src/main/ets/view/NearbyAttraction.ets(40:7)", "travel");
+=======
+>>>>>>> origin/zmx:products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/view/NearbyAttraction.ts
             List.scrollBar(BarState.Off);
             List.width('100%');
             List.height(300);
@@ -121,7 +139,10 @@ export class NearbyAttraction extends ViewPU {
         List.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create();
+<<<<<<< HEAD:products/default/.preview/default/cache/default/default@PreviewArkTS/esmodule/debug/features/Travel/src/main/ets/view/NearbyAttraction.ts
             Column.debugLine("features/Travel/src/main/ets/view/NearbyAttraction.ets(53:7)", "travel");
+=======
+>>>>>>> origin/zmx:products/default/build/default/cache/default/default@CompileArkTS/esmodule/debug/features/quickstart/src/main/ets/view/NearbyAttraction.ts
             Column.width('100%');
             Column.height(200);
         }, Column);
