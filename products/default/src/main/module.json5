@@ -52,6 +52,12 @@
           }
         ],
       }
-    ]
+    ],
+    "metadata": [
+      {
+        "name": "client_id",
+        "value": "112219945"  // 配置为获取的Client ID
+      }
+    ],
   }
 }

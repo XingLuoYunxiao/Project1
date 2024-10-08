@@ -45,12 +45,16 @@
 			"id":	"0x0200000A"
 		}, {
 			"type":	"media",
-			"name":	"img",
-			"id":	"0x0200000B"
-		}, {
-			"type":	"media",
 			"name":	"gugong_map",
 			"id":	"0x0200000C"
+		}, {
+			"type":	"media",
+			"name":	"voice_open",
+			"id":	"0x0200000D"
+		}, {
+			"type":	"media",
+			"name":	"voice_close",
+			"id":	"0x0200000E"
 		}, {
 			"type":	"media",
 			"name":	"attraction_2",

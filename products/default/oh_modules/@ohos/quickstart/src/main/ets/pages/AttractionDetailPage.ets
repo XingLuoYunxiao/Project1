@@ -10,6 +10,9 @@ export struct AttractionDetailPage {
   @State attraction: Attraction = new Attraction(1, "null", $r("app.media.attraction_1"));
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @State  myScale: number = 1
+  @State voice: boolean = false;
+
+
 
 
   aboutToAppear(): void {
@@ -39,6 +42,25 @@ export struct AttractionDetailPage {
               .fontSize(20)
               .fontWeight(FontWeight.Bold)
               .margin({right:15})
+            Blank()
+            if( this.voice === false){
+              Image($r('app.media.voice_close'))
+                .width(30)
+                .height(30)
+                .margin({left:15})
+                .onClick( () => {
+                  this.voice = true;
+                })
+            }else{
+              Image($r('app.media.voice_open'))
+                .width(30)
+                .height(30)
+                .margin({left:15})
+                .onClick( () => {
+                  this.voice = false;
+                })
+            }
+
           }
           .layoutWeight(1)
           .justifyContent(FlexAlign.Center)
@@ -49,6 +71,10 @@ export struct AttractionDetailPage {
         Image($r('app.media.gugong_map'))
           .width('100%')
           .height(300)
+          .borderRadius(10)
+          .onClick( () => {
+            this.travelPathStack.pushPathByName('MapDemo', true);
+          })
 
         Column(){
           Text('路径规划')
@@ -68,7 +94,7 @@ export struct AttractionDetailPage {
         .backgroundColor(Color.White)
 
 
-        Column(){
+        /*Column(){
           Image($r('app.media.avator'))
             .width(100)
             .height(150)
@@ -76,7 +102,7 @@ export struct AttractionDetailPage {
             .opacity(0.8)
             .scale({ x: this.myScale, y: this.myScale })
         }
-        .position({x:270, y:550})
+        .position({x:270, y:550})*/
       }
       .width('95%')
       .height('100%')

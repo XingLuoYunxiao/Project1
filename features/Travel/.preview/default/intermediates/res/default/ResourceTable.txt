@@ -105,7 +105,6 @@ media ic_open 0x05000020
 media ic_public_email 0x0500000f
 media ic_sex 0x0500005e
 media ic_signature 0x05000086
-media img 0x0200000b
 media launcher 0x05000066
 media layered_image 0x05000060
 media leshandafo 0x02000004
@@ -136,6 +135,8 @@ media swiper3 0x05000051
 media swiper4 0x05000085
 media swiper5 0x05000058
 media tiantan 0x02000006
+media voice_close 0x0200000e
+media voice_open 0x0200000d
 media yiheyuan 0x02000002
 profile backup_config 0x05000087
 profile main_pages 0x05000054

@@ -99,6 +99,7 @@ export class FamousPlacePage extends ViewPU {
                         this.observeComponentCreation2((elmtId, isInitialRender) => {
                             List.create();
                             List.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(48:13)", "travel");
+                            List.scrollBar(BarState.Off);
                             List.width('100%');
                         }, List);
                         this.observeComponentCreation2((elmtId, isInitialRender) => {
@@ -152,13 +153,13 @@ export class FamousPlacePage extends ViewPU {
                 this.observeComponentCreation2((elmtId, isInitialRender) => {
                     TabContent.create();
                     TabContent.tabBar('跟团');
-                    TabContent.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(66:9)", "travel");
+                    TabContent.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(67:9)", "travel");
                 }, TabContent);
                 TabContent.pop();
                 this.observeComponentCreation2((elmtId, isInitialRender) => {
                     TabContent.create();
                     TabContent.tabBar('自由行');
-                    TabContent.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(69:9)", "travel");
+                    TabContent.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(70:9)", "travel");
                 }, TabContent);
                 TabContent.pop();
                 Tabs.pop();
@@ -171,7 +172,7 @@ export class FamousPlacePage extends ViewPU {
     FamousItem(attraction, index, parent = null) {
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Row.create();
-            Row.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(82:5)", "travel");
+            Row.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(83:5)", "travel");
             Row.backgroundColor(Color.White);
             Row.height(250);
             Row.width('100%');
@@ -179,14 +180,14 @@ export class FamousPlacePage extends ViewPU {
         }, Row);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create();
-            Column.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(83:7)", "travel");
+            Column.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(84:7)", "travel");
             Column.width('40%');
             Column.padding(8);
             Column.alignItems(HorizontalAlign.Center);
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Image.create(attraction.image);
-            Image.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(84:9)", "travel");
+            Image.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(85:9)", "travel");
             Image.width('100%');
             Image.borderRadius(10);
             Image.height(210);
@@ -194,7 +195,7 @@ export class FamousPlacePage extends ViewPU {
         Column.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create();
-            Column.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(93:7)", "travel");
+            Column.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(94:7)", "travel");
             Column.justifyContent(FlexAlign.Start);
             Column.alignItems(HorizontalAlign.Start);
             Column.height(230);
@@ -203,7 +204,7 @@ export class FamousPlacePage extends ViewPU {
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Text.create(attraction.name);
-            Text.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(94:9)", "travel");
+            Text.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(95:9)", "travel");
             Text.fontSize(20);
             Text.padding({ top: 5, bottom: 10 });
             Text.fontColor(Color.Black);
@@ -212,7 +213,7 @@ export class FamousPlacePage extends ViewPU {
         Text.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Text.create();
-            Text.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(99:9)", "travel");
+            Text.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(100:9)", "travel");
             Text.backgroundColor('#ff52bdd7');
             Text.fontSize(14);
             Text.padding(5);
@@ -221,14 +222,14 @@ export class FamousPlacePage extends ViewPU {
         }, Text);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Span.create(scoreList[index].toFixed(1) + '分');
-            Span.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(100:11)", "travel");
+            Span.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(101:11)", "travel");
             Span.fontSize(16);
             Span.fontColor(Color.White);
         }, Span);
         Text.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Text.create(attraction.description);
-            Text.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(109:9)", "travel");
+            Text.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(110:9)", "travel");
             Text.fontSize(14);
             Text.fontColor(Color.Gray);
             Text.textOverflow({ overflow: TextOverflow.Ellipsis });
@@ -237,27 +238,27 @@ export class FamousPlacePage extends ViewPU {
         Text.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Row.create();
-            Row.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(115:9)", "travel");
+            Row.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(116:9)", "travel");
             Row.margin({ top: 8 });
         }, Row);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create({ space: 8 });
-            Column.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(116:11)", "travel");
+            Column.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(117:11)", "travel");
             Column.alignItems(HorizontalAlign.Start);
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Row.create();
-            Row.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(117:13)", "travel");
+            Row.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(118:13)", "travel");
         }, Row);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Image.create({ "id": 33554435, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "Travel" });
-            Image.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(118:15)", "travel");
+            Image.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(119:15)", "travel");
             Image.width(16);
             Image.height(16);
         }, Image);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Text.create(`【${otherItemList[index].hotel}】`);
-            Text.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(121:15)", "travel");
+            Text.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(122:15)", "travel");
             Text.fontSize(14);
             Text.fontColor(Color.Gray);
         }, Text);
@@ -265,17 +266,17 @@ export class FamousPlacePage extends ViewPU {
         Row.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Row.create();
-            Row.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(125:13)", "travel");
+            Row.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(126:13)", "travel");
         }, Row);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Image.create({ "id": 33554439, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "Travel" });
-            Image.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(126:15)", "travel");
+            Image.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(127:15)", "travel");
             Image.width(16);
             Image.height(16);
         }, Image);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Text.create(`【${otherItemList[index].guide}】`);
-            Text.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(129:15)", "travel");
+            Text.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(130:15)", "travel");
             Text.fontSize(14);
             Text.fontColor(Color.Gray);
         }, Text);
@@ -283,7 +284,7 @@ export class FamousPlacePage extends ViewPU {
         Row.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Text.create(`${otherItemList[index].people}人出行`);
-            Text.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(133:13)", "travel");
+            Text.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(134:13)", "travel");
             Text.fontSize(14);
             Text.fontColor(Color.Gray);
         }, Text);
@@ -291,7 +292,7 @@ export class FamousPlacePage extends ViewPU {
         Column.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Column.create();
-            Column.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(138:11)", "travel");
+            Column.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(139:11)", "travel");
             Column.alignItems(HorizontalAlign.End);
             Column.justifyContent(FlexAlign.End);
             Column.height(80);
@@ -299,7 +300,7 @@ export class FamousPlacePage extends ViewPU {
         }, Column);
         this.observeComponentCreation2((elmtId, isInitialRender) => {
             Button.createWithLabel('AI导游');
-            Button.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(139:13)", "travel");
+            Button.debugLine("features/Travel/src/main/ets/pages/FamousPlacePage.ets(140:13)", "travel");
             Button.type(ButtonType.Capsule);
             Button.fontSize(16);
             Button.backgroundColor(Color.Orange);

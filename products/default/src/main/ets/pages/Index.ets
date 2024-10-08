@@ -7,6 +7,7 @@ struct Index {
   @State currentIndex: number = 0;
   private tabsController: TabsController = new TabsController();
 
+
   @Builder
   tabBarBuilder(title: string, targetIndex: number, selectedIcon: Resource, unselectIcon: Resource) {
     Column() {

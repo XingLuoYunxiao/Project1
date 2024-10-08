@@ -69,8 +69,8 @@ media attraction_1 0x0500008e
 media attraction_2 0x05000000
 media attraction_3 0x05000001
 media avatar_icon 0x05000053
+media avator 0x02000009
 media background 0x05000050
-media body 0x0200000c
 media card 0x0500008b
 media check 0x02000008
 media class_1 0x05000003
@@ -89,8 +89,8 @@ media geren 0x0500005c
 media geren_sel 0x05000088
 media guanggao 0x05000083
 media gugong 0x02000000
+media gugong_map 0x0200000c
 media guide_icon 0x02000007
-media head 0x0200000b
 media hotel_icon 0x02000003
 media ic_AI_read_normal 0x05000007
 media ic_AI_read_on 0x05000004
@@ -114,8 +114,6 @@ media location_icon 0x05000010
 media logo 0x05000006
 media miaosha 0x05000059
 media mogao 0x02000005
-media mouth_closed 0x0200000d
-media mouth_open 0x0200000e
 media nearby_1 0x0500000c
 media nearby_2 0x0500000d
 media nearby_3 0x0500000e
@@ -137,6 +135,8 @@ media swiper3 0x05000051
 media swiper4 0x05000085
 media swiper5 0x05000058
 media tiantan 0x02000006
+media voice_close 0x0200000e
+media voice_open 0x0200000d
 media yiheyuan 0x02000002
 profile backup_config 0x05000087
 profile main_pages 0x05000054

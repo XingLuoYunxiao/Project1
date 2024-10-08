@@ -5,6 +5,7 @@ import { NearbyAttraction } from '../view/NearbyAttraction';
 import { SearchHeader } from '../view/SearchHeader';
 import { AttractionDetailPage } from './AttractionDetailPage';
 import { FamousPlacePage } from './FamousPlacePage';
+import { MapDemo } from './MapDemo';
 
 export const attractions: Attraction[] = [
   new Attraction(1, "长城", $r("app.media.attraction_1")),
@@ -70,6 +71,8 @@ export struct TravelStartPage {
       LoadingAnimation()
     }else if( path === 'AttractionDetailPage'){
       AttractionDetailPage()
+    }else if( path === 'MapDemo'){
+      MapDemo()
     }
   }
 
