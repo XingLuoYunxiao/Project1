@@ -1,4 +1,4 @@
-import {Attraction} from '../model/Attraction'
+import { Attraction } from '../model/Attraction'
 import { LoadingAnimation } from '../util/Loading';
 import { Classification } from '../view/Classficiation';
 import { NearbyAttraction } from '../view/NearbyAttraction';
@@ -16,19 +16,18 @@ export const attractions: Attraction[] = [
 
 @Component
 export struct TravelStartPage {
-
   @Provide('travelPathStack') travelPathStack: NavPathStack = new NavPathStack();
 
   build() {
-    Navigation(this.travelPathStack){
+    Navigation(this.travelPathStack) {
       Column() {
         //搜索栏
         SearchHeader()
 
         //轮播图
         Swiper() {
-          ForEach(attractions, ( item: Attraction) => {
-            ListItem(){
+          ForEach(attractions, (item: Attraction) => {
+            ListItem() {
               this.AttractionItem(item)
             }
             .width('100%')
@@ -43,7 +42,7 @@ export struct TravelStartPage {
 
         //旅游分类
         Classification()
-          .padding({top:10,bottom:10})
+          .padding({ top: 10, bottom: 10 })
 
 
         //附近景点
@@ -63,18 +62,18 @@ export struct TravelStartPage {
   }
 
   @Builder
-  travelStartRouter(path: string){
-    if( path === 'FamousPlacePage'){
+  travelStartRouter(path: string) {
+    if (path === 'FamousPlacePage') {
       FamousPlacePage()
-    }else if( path === 'LoadingAnimation'){
+    } else if (path === 'LoadingAnimation') {
       LoadingAnimation()
-    }else if( path === 'AttractionDetailPage'){
+    } else if (path === 'AttractionDetailPage') {
       AttractionDetailPage()
     }
   }
 
   @Builder
-  AttractionItem(attraction: Attraction){
+  AttractionItem(attraction: Attraction) {
     Stack() {
 
       Image(attraction.image)
@@ -83,7 +82,7 @@ export struct TravelStartPage {
         .borderRadius(10)
       Text(attraction.name)
         .fontSize(18)
-        .padding({top:5})
+        .padding({ top: 5 })
         .padding(5)
         .fontColor(Color.White)
     }
@@ -92,6 +91,6 @@ export struct TravelStartPage {
     .width('100%')
     .backgroundColor(Color.White)
     .borderRadius(10)
-    .margin({top:10})
+    .margin({ top: 10 })
   }
 }

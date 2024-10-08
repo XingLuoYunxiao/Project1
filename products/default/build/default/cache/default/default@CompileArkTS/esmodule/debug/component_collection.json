@@ -10,6 +10,101 @@
     "Tabs",
     "TabContent"
   ],
+  "features\\Travel\\src\\main\\ets\\pages\\TravelStartPage.ets": [
+    "Navigation",
+    "Column",
+    "Swiper",
+    "ForEach",
+    "ListItem",
+    "Stack",
+    "Image",
+    "Text",
+    "If"
+  ],
+  "features\\Travel\\src\\main\\ets\\util\\Loading.ets": [
+    "NavDestination",
+    "Column",
+    "Progress",
+    "Row",
+    "LoadingProgress",
+    "Image",
+    "Text",
+    "If"
+  ],
+  "features\\Travel\\src\\main\\ets\\pages\\FamousPlacePage.ets": [
+    "NavDestination",
+    "Row",
+    "Image",
+    "Search",
+    "Badge",
+    "Tabs",
+    "TabContent",
+    "Column",
+    "List",
+    "ForEach",
+    "ListItem",
+    "Divider",
+    "Text",
+    "Span",
+    "Button"
+  ],
+  "features\\Travel\\src\\main\\ets\\view\\Classficiation.ets": [
+    "Row",
+    "ForEach",
+    "ListItem",
+    "Column",
+    "Image",
+    "Text"
+  ],
+  "features\\Travel\\src\\main\\ets\\view\\NearbyAttraction.ets": [
+    "Column",
+    "Row",
+    "Text",
+    "Blank",
+    "Image",
+    "List",
+    "ForEach",
+    "ListItem"
+  ],
+  "features\\Travel\\src\\main\\ets\\view\\SearchHeader.ets": [
+    "Row",
+    "Image",
+    "Search",
+    "Badge"
+  ],
+  "features\\Travel\\src\\main\\ets\\pages\\AttractionDetailPage.ets": [
+    "NavDestination",
+    "Column",
+    "Row",
+    "Image",
+    "Text"
+  ],
+  "features\\Travel\\src\\main\\ets\\pages\\FlyingFlowerOrderPage.ets": [
+    "Navigation",
+    "Column",
+    "Row",
+    "Text",
+    "List",
+    "ForEach",
+    "ListItem",
+    "Image",
+    "TextArea",
+    "Button",
+    "If"
+  ],
+  "features\\Travel\\src\\main\\ets\\pages\\CulturalHeritageStartPage.ets": [
+    "Navigation",
+    "Column",
+    "Row",
+    "Text",
+    "Blank",
+    "Grid",
+    "ForEach",
+    "GridItem",
+    "Image",
+    "Stack",
+    "If"
+  ],
   "features\\Login\\src\\main\\ets\\pages\\InfoMessagePage.ets": [
     "Column",
     "Row",
@@ -41,74 +136,5 @@
     "Column",
     "Image",
     "If"
-  ],
-  "features\\Travel\\src\\main\\ets\\pages\\TravelStartPage.ets": [
-    "Navigation",
-    "Column",
-    "Swiper",
-    "ForEach",
-    "ListItem",
-    "Stack",
-    "Image",
-    "Text",
-    "If"
-  ],
-  "features\\Travel\\src\\main\\ets\\view\\Classficiation.ets": [
-    "Row",
-    "ForEach",
-    "ListItem",
-    "Column",
-    "Image",
-    "Text"
-  ],
-  "features\\Travel\\src\\main\\ets\\view\\NearbyAttraction.ets": [
-    "Column",
-    "Row",
-    "Text",
-    "Blank",
-    "Image",
-    "List",
-    "ForEach",
-    "ListItem"
-  ],
-  "features\\Travel\\src\\main\\ets\\view\\SearchHeader.ets": [
-    "Row",
-    "Image",
-    "Search",
-    "Badge"
-  ],
-  "features\\Travel\\src\\main\\ets\\pages\\FamousPlacePage.ets": [
-    "NavDestination",
-    "Row",
-    "Image",
-    "Search",
-    "Badge",
-    "Tabs",
-    "TabContent",
-    "Column",
-    "List",
-    "ForEach",
-    "ListItem",
-    "Divider",
-    "Text",
-    "Span",
-    "Button"
-  ],
-  "features\\Travel\\src\\main\\ets\\util\\Loading.ets": [
-    "NavDestination",
-    "Column",
-    "Progress",
-    "Row",
-    "LoadingProgress",
-    "Image",
-    "Text",
-    "If"
-  ],
-  "features\\Travel\\src\\main\\ets\\pages\\AttractionDetailPage.ets": [
-    "NavDestination",
-    "Column",
-    "Row",
-    "Image",
-    "Text"
   ]
 }

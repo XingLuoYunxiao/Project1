@@ -7,6 +7,7 @@ interface Index_Params {
 }
 import { TravelStartPage } from "@bundle:com.example.ictproject/default@Travel/Index";
 import { InfoMessagePage } from "@bundle:com.example.ictproject/default@Login/Index";
+import { CulturalHeritageStartPage } from "@bundle:com.example.ictproject/default@Travel/Index";
 class Index extends ViewPU {
     constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
         super(parent, __localStorage, elmtId, extraInfo);
@@ -90,7 +91,7 @@ class Index extends ViewPU {
                 {
                     this.observeComponentCreation2((elmtId, isInitialRender) => {
                         if (isInitialRender) {
-                            let componentCall = new TravelStartPage(this, {}, undefined, elmtId, () => { }, { page: "products/default/src/main/ets/pages/Index.ets", line: 37, col: 9 });
+                            let componentCall = new TravelStartPage(this, {}, undefined, elmtId, () => { }, { page: "products/default/src/main/ets/pages/Index.ets", line: 38, col: 9 });
                             ViewPU.create(componentCall);
                             let paramsLambda = () => {
                                 return {};
@@ -109,7 +110,23 @@ class Index extends ViewPU {
         }, TabContent);
         TabContent.pop();
         this.observeComponentCreation2((elmtId, isInitialRender) => {
-            TabContent.create();
+            TabContent.create(() => {
+                {
+                    this.observeComponentCreation2((elmtId, isInitialRender) => {
+                        if (isInitialRender) {
+                            let componentCall = new CulturalHeritageStartPage(this, {}, undefined, elmtId, () => { }, { page: "products/default/src/main/ets/pages/Index.ets", line: 43, col: 9 });
+                            ViewPU.create(componentCall);
+                            let paramsLambda = () => {
+                                return {};
+                            };
+                            componentCall.paramsGenerator_ = paramsLambda;
+                        }
+                        else {
+                            this.updateStateVarsOfChildByElmtId(elmtId, {});
+                        }
+                    }, { name: "CulturalHeritageStartPage" });
+                }
+            });
             TabContent.tabBar({ builder: () => {
                     this.tabBarBuilder.call(this, '非遗', 1, { "id": 16777227, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" }, { "id": 16777226, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "default" });
                 } });
@@ -120,7 +137,7 @@ class Index extends ViewPU {
                 {
                     this.observeComponentCreation2((elmtId, isInitialRender) => {
                         if (isInitialRender) {
-                            let componentCall = new InfoMessagePage(this, {}, undefined, elmtId, () => { }, { page: "products/default/src/main/ets/pages/Index.ets", line: 46, col: 9 });
+                            let componentCall = new InfoMessagePage(this, {}, undefined, elmtId, () => { }, { page: "products/default/src/main/ets/pages/Index.ets", line: 48, col: 9 });
                             ViewPU.create(componentCall);
                             let paramsLambda = () => {
                                 return {};

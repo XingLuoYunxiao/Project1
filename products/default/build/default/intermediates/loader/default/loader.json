@@ -1,16 +1,16 @@
 {
   "modulePathMap": {
-    "default": "D:\\HuaWei\\Apps\\IctProject\\products\\default",
-    "map": "D:\\HuaWei\\Apps\\IctProject\\features\\map",
-    "learning": "D:\\HuaWei\\Apps\\IctProject\\features\\learning",
-    "Travel": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel",
-    "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-    "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents",
-    "Login": "D:\\HuaWei\\Apps\\IctProject\\features\\Login"
+    "default": "E:\\ohomDemos\\ICT\\IctProject\\products\\default",
+    "map": "E:\\ohomDemos\\ICT\\IctProject\\features\\map",
+    "learning": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning",
+    "Travel": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel",
+    "utils": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils",
+    "uicomponents": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents",
+    "Login": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login"
   },
   "compileMode": "esmodule",
-  "projectRootPath": "D:\\HuaWei\\Apps\\IctProject",
-  "nodeModulesPath": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\default\\node_modules",
+  "projectRootPath": "E:\\ohomDemos\\ICT\\IctProject",
+  "nodeModulesPath": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\default\\node_modules",
   "byteCodeHarInfo": {},
   "declarationEntry": [],
   "moduleName": "default",
@@ -22,9 +22,9 @@
   "dynamicImportLibInfo": {},
   "routerMap": [],
   "hspResourcesMap": {},
-  "anBuildOutPut": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\default\\an\\arm64-v8a",
+  "anBuildOutPut": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\default\\an\\arm64-v8a",
   "anBuildMode": "type",
   "patchConfig": {
-    "changedFileList": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\patch\\default\\changedFileList.json"
+    "changedFileList": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\patch\\default\\changedFileList.json"
   }
 }

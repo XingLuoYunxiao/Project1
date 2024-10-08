@@ -615,5 +615,13 @@
 			"type":	"media",
 			"name":	"gugong_map",
 			"id":	"0x0300000B"
+		}, {
+			"type":	"media",
+			"name":	"avatar1",
+			"id":	"0x0300000C"
+		}, {
+			"type":	"media",
+			"name":	"avatar2",
+			"id":	"0x0300000D"
 		}]
 }

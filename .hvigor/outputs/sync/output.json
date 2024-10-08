@@ -1,55 +1,55 @@
 {
   "ohos-module-default": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build",
+    "MODULE_BUILD_DIR": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build",
     "DEPENDENCY_INFO": {
-      "learning": "D:\\HuaWei\\Apps\\IctProject\\features\\learning",
-      "map": "D:\\HuaWei\\Apps\\IctProject\\features\\map",
-      "travel": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel",
-      "login": "D:\\HuaWei\\Apps\\IctProject\\features\\Login",
-      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-      "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents"
+      "learning": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning",
+      "map": "E:\\ohomDemos\\ICT\\IctProject\\features\\map",
+      "travel": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel",
+      "login": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login",
+      "utils": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils",
+      "uicomponents": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents"
     },
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main",
+        "SOURCE_ROOT": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\resources"
+          "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
         }
       },
       "ohosTest": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\ohosTest",
+        "SOURCE_ROOT": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\src\\ohosTest",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\ohosTest\\resources"
+          "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\src\\ohosTest\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\outputs\\ohosTest",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\ohosTest",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out_lite\\ohosTest",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\res\\ohosTest",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader\\ohosTest\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\manifest\\ohosTest",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\hap_metadata\\ohosTest\\output_metadata.json"
+          "OUTPUT_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\outputs\\ohosTest",
+          "INTERMEDIA_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\ohosTest",
+          "JS_LITE_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out_lite\\ohosTest",
+          "RES_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\res\\ohosTest",
+          "RES_PROFILE_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileJS\\jsbundle",
+          "WORKER_LOADER": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\loader\\ohosTest\\loader.json",
+          "MANIFEST_JSON": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\manifest\\ohosTest",
+          "OUTPUT_METADATA_JSON": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\hap_metadata\\ohosTest\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -99,29 +99,29 @@
   },
   "ohos-module-map": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build",
+    "MODULE_BUILD_DIR": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\build",
     "DEPENDENCY_INFO": {
-      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-      "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents"
+      "utils": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils",
+      "uicomponents": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents"
     },
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\src\\main",
+        "SOURCE_ROOT": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\features\\map\\src\\main\\resources"
+          "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\map\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "E:\\ohomDemos\\ICT\\IctProject\\features\\map\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -174,29 +174,29 @@
   },
   "ohos-module-learning": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build",
+    "MODULE_BUILD_DIR": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\build",
     "DEPENDENCY_INFO": {
-      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-      "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents"
+      "utils": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils",
+      "uicomponents": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents"
     },
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\src\\main",
+        "SOURCE_ROOT": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\src\\main\\resources"
+          "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\learning\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -249,30 +249,30 @@
   },
   "ohos-module-Travel": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build",
+    "MODULE_BUILD_DIR": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\build",
     "DEPENDENCY_INFO": {
-      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-      "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents",
-      "login": "D:\\HuaWei\\Apps\\IctProject\\features\\Login"
+      "utils": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils",
+      "uicomponents": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents",
+      "login": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login"
     },
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main",
+        "SOURCE_ROOT": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\resources"
+          "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -325,26 +325,26 @@
   },
   "ohos-module-utils": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build",
+    "MODULE_BUILD_DIR": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\build",
     "DEPENDENCY_INFO": {},
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main",
+        "SOURCE_ROOT": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main\\resources"
+          "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -397,26 +397,26 @@
   },
   "ohos-module-uicomponents": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build",
+    "MODULE_BUILD_DIR": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build",
     "DEPENDENCY_INFO": {},
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\src\\main",
+        "SOURCE_ROOT": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\src\\main\\resources"
+          "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -469,28 +469,28 @@
   },
   "ohos-module-Login": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build",
+    "MODULE_BUILD_DIR": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build",
     "DEPENDENCY_INFO": {
-      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils"
+      "utils": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils"
     },
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main",
+        "SOURCE_ROOT": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\resources"
+          "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -543,15 +543,15 @@
   },
   "ohos-project": {
     "SELECT_PRODUCT_NAME": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\build",
+    "MODULE_BUILD_DIR": "E:\\ohomDemos\\ICT\\IctProject\\build",
     "BUNDLE_NAME": "com.example.ictproject",
     "BUILD_PATH": {
-      "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\build\\outputs\\default"
+      "OUTPUT_PATH": "E:\\ohomDemos\\ICT\\IctProject\\build\\outputs\\default"
     },
     "MODULES": [
       {
         "name": "default",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\products\\default",
+        "srcPath": "E:\\ohomDemos\\ICT\\IctProject\\products\\default",
         "targets": [
           {
             "name": "default",
@@ -560,37 +560,37 @@
             ]
           }
         ],
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "belongProjectPath": "E:\\ohomDemos\\ICT\\IctProject"
       },
       {
         "name": "map",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\map",
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "srcPath": "E:\\ohomDemos\\ICT\\IctProject\\features\\map",
+        "belongProjectPath": "E:\\ohomDemos\\ICT\\IctProject"
       },
       {
         "name": "learning",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\learning",
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "srcPath": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning",
+        "belongProjectPath": "E:\\ohomDemos\\ICT\\IctProject"
       },
       {
         "name": "Travel",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel",
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "srcPath": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel",
+        "belongProjectPath": "E:\\ohomDemos\\ICT\\IctProject"
       },
       {
         "name": "utils",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "srcPath": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils",
+        "belongProjectPath": "E:\\ohomDemos\\ICT\\IctProject"
       },
       {
         "name": "uicomponents",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents",
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "srcPath": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents",
+        "belongProjectPath": "E:\\ohomDemos\\ICT\\IctProject"
       },
       {
         "name": "Login",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\Login",
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "srcPath": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login",
+        "belongProjectPath": "E:\\ohomDemos\\ICT\\IctProject"
       }
     ],
     "PROFILE_OPT": {
@@ -658,7 +658,7 @@
       "hvigor.keepDependency": true
     },
     "OVERALL_PROJECT_PATHS": [
-      "D:\\HuaWei\\Apps\\IctProject"
+      "E:\\ohomDemos\\ICT\\IctProject"
     ]
   },
   "version": 1

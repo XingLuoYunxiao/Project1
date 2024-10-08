@@ -70,6 +70,8 @@ media attraction 0x0200004d
 media attraction_1 0x02000063
 media attraction_2 0x02000064
 media attraction_3 0x02000065
+media avatar1 0x0300000c
+media avatar2 0x0300000d
 media avatar_icon 0x0200003c
 media avator 0x0300000a
 media background 0x01000006

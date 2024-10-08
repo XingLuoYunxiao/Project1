@@ -1,5 +1,6 @@
 import { TravelStartPage } from '@ohos/quickstart';
 import { InfoMessagePage } from '@ohos/login';
+import { CulturalHeritageStartPage } from '@ohos/quickstart';
 
 @Entry
 @Component
@@ -39,6 +40,7 @@ struct Index {
       .tabBar(this.tabBarBuilder('旅游', 0, $r('app.media.ic_01_on'), $r('app.media.ic_01_off')))
 
       TabContent() {
+        CulturalHeritageStartPage()
       }
       .tabBar(this.tabBarBuilder('非遗', 1, $r('app.media.ic_02_on'), $r('app.media.ic_02_off')))
 

@@ -67,7 +67,7 @@ export class TravelStartPage extends ViewPU {
                 if (isInitialRender) {
                     let componentCall = new 
                     //搜索栏
-                    SearchHeader(this, {}, undefined, elmtId, () => { }, { page: "features/Travel/src/main/ets/pages/TravelStartPage.ets", line: 26, col: 9 });
+                    SearchHeader(this, {}, undefined, elmtId, () => { }, { page: "features/Travel/src/main/ets/pages/TravelStartPage.ets", line: 25, col: 9 });
                     ViewPU.create(componentCall);
                     let paramsLambda = () => {
                         return {};
@@ -132,7 +132,7 @@ export class TravelStartPage extends ViewPU {
                 if (isInitialRender) {
                     let componentCall = new 
                     //旅游分类
-                    Classification(this, {}, undefined, elmtId, () => { }, { page: "features/Travel/src/main/ets/pages/TravelStartPage.ets", line: 45, col: 9 });
+                    Classification(this, {}, undefined, elmtId, () => { }, { page: "features/Travel/src/main/ets/pages/TravelStartPage.ets", line: 44, col: 9 });
                     ViewPU.create(componentCall);
                     let paramsLambda = () => {
                         return {};
@@ -155,7 +155,7 @@ export class TravelStartPage extends ViewPU {
                 if (isInitialRender) {
                     let componentCall = new 
                     //附近景点
-                    NearbyAttraction(this, {}, undefined, elmtId, () => { }, { page: "features/Travel/src/main/ets/pages/TravelStartPage.ets", line: 50, col: 9 });
+                    NearbyAttraction(this, {}, undefined, elmtId, () => { }, { page: "features/Travel/src/main/ets/pages/TravelStartPage.ets", line: 49, col: 9 });
                     ViewPU.create(componentCall);
                     let paramsLambda = () => {
                         return {};
@@ -179,7 +179,7 @@ export class TravelStartPage extends ViewPU {
                     {
                         this.observeComponentCreation2((elmtId, isInitialRender) => {
                             if (isInitialRender) {
-                                let componentCall = new FamousPlacePage(this, {}, undefined, elmtId, () => { }, { page: "features/Travel/src/main/ets/pages/TravelStartPage.ets", line: 68, col: 7 });
+                                let componentCall = new FamousPlacePage(this, {}, undefined, elmtId, () => { }, { page: "features/Travel/src/main/ets/pages/TravelStartPage.ets", line: 67, col: 7 });
                                 ViewPU.create(componentCall);
                                 let paramsLambda = () => {
                                     return {};
@@ -198,7 +198,7 @@ export class TravelStartPage extends ViewPU {
                     {
                         this.observeComponentCreation2((elmtId, isInitialRender) => {
                             if (isInitialRender) {
-                                let componentCall = new LoadingAnimation(this, {}, undefined, elmtId, () => { }, { page: "features/Travel/src/main/ets/pages/TravelStartPage.ets", line: 70, col: 7 });
+                                let componentCall = new LoadingAnimation(this, {}, undefined, elmtId, () => { }, { page: "features/Travel/src/main/ets/pages/TravelStartPage.ets", line: 69, col: 7 });
                                 ViewPU.create(componentCall);
                                 let paramsLambda = () => {
                                     return {};
@@ -217,7 +217,7 @@ export class TravelStartPage extends ViewPU {
                     {
                         this.observeComponentCreation2((elmtId, isInitialRender) => {
                             if (isInitialRender) {
-                                let componentCall = new AttractionDetailPage(this, {}, undefined, elmtId, () => { }, { page: "features/Travel/src/main/ets/pages/TravelStartPage.ets", line: 72, col: 7 });
+                                let componentCall = new AttractionDetailPage(this, {}, undefined, elmtId, () => { }, { page: "features/Travel/src/main/ets/pages/TravelStartPage.ets", line: 71, col: 7 });
                                 ViewPU.create(componentCall);
                                 let paramsLambda = () => {
                                     return {};

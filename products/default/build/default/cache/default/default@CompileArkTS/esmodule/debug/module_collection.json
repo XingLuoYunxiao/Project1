@@ -1,1 +1,5 @@
-{}
+{
+  "features\\Travel\\src\\main\\ets\\pages\\FlyingFlowerOrderPage.ets": [
+    "ohos.inputMethod"
+  ]
+}
