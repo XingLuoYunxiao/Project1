@@ -11,6 +11,7 @@ export struct LoadingAnimation {
 
   aboutToAppear() {
     let object = this.travelPathStack.getParamByName('LoadingAnimation')[0] as LoadParams
+
     this.intervalID = setInterval(() => {
       if (this.currentStep < this.steps.length - 1) {
         this.currentStep++

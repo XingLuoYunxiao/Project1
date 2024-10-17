@@ -6,6 +6,7 @@ import { CulturalHeritageStartPage } from '@ohos/Culture';
 @Component
 struct Index {
   @State currentIndex: number = 0;
+  @StorageLink('isHideToolBar') isHideToolBar: boolean = false;
   private tabsController: TabsController = new TabsController();
 
 
