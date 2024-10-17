@@ -1,7 +1,6 @@
 {
   "app": {
     "signingConfigs": [
-
     ],
     "products": [
       {
@@ -34,16 +33,8 @@
       ]
     },
     {
-      "name": "map",
-      "srcPath": "./features/map"
-    },
-    {
-      "name": "learning",
-      "srcPath": "./features/learning"
-    },
-    {
-      "name": "quickstart",
-      "srcPath": "./features/quickstart"
+      "name": "Travel",
+      "srcPath": "./features/Travel"
     },
     {
       "name": "utils",
@@ -52,6 +43,14 @@
     {
       "name": "uicomponents",
       "srcPath": "./commons/uicomponents"
+    },
+    {
+      "name": "Login",
+      "srcPath": "./features/Login",
+    },
+    {
+      "name": "Culture",
+      "srcPath": "./features/Culture",
     }
   ]
 }

@@ -1,0 +1,140 @@
+{
+  "float": [
+    {
+      "name": "arrow_right_distance",
+      "value": "20"
+    },
+    {
+      "name": "text_image_size",
+      "value": "50"
+    },
+    {
+      "name": "text_size",
+      "value": "20"
+    },
+    {
+      "name": "content_left_distance",
+      "value": "20"
+    },
+    {
+      "name": "content_right_distance",
+      "value": "20"
+    },
+    {
+      "name": "row_top_distance",
+      "value": "20"
+    },
+    {
+      "name": "arrow_image_width",
+      "value": "40"
+    },
+    {
+      "name": "arrow_image_height",
+      "value": "40"
+    },
+    {
+      "name": "input_image_size",
+      "value": "28"
+    },
+    {
+      "name": "input_text_size",
+      "value": "40"
+    },
+    {
+      "name": "input_left_inside",
+      "value": "20"
+    },
+    {
+      "name": "input_right_inside",
+      "value": "20"
+    },
+    {
+      "name": "text_input_height",
+      "value": "50"
+    },
+    {
+      "name": "input_row_top",
+      "value": "20"
+    },
+    {
+      "name": "input_row_height",
+      "value": "65"
+    },
+    {
+      "name": "input_row_radius",
+      "value": "30"
+    },
+    {
+      "name": "avatar_size",
+      "value": "60"
+    },
+    {
+      "name": "personal_font_size",
+      "value": "15"
+    },
+    {
+      "name": "title_hobbies_size",
+      "value": "40"
+    },
+    {
+      "name": "title_left_distance",
+      "value": "10"
+    },
+    {
+      "name": "label_size",
+      "value": "50"
+    },
+    {
+      "name": "label_left_distance",
+      "value": "10"
+    },
+    {
+      "name": "toggle_size",
+      "value": "40"
+    },
+    {
+      "name": "toggle_right_distance",
+      "value": "10"
+    },
+    {
+      "name": "options_height",
+      "value": "40"
+    },
+    {
+      "name": "options_top_distance",
+      "value": "10"
+    },
+    {
+      "name": "options_bottom_distance",
+      "value": "10"
+    },
+    {
+      "name": "list_top_distance",
+      "value": "10"
+    },
+    {
+      "name": "list_bottom_distance",
+      "value": "10"
+    },
+    {
+      "name": "options_list_height",
+      "value": "50"
+    },
+    {
+      "name": "blank_width",
+      "value": "40"
+    },
+    {
+      "name": "dialog_top_distance",
+      "value": "10"
+    },
+    {
+      "name": "dialog_bottom_distance",
+      "value": "10"
+    },
+    {
+      "name": "dialog_radius",
+      "value": "10"
+    }
+  ]
+}

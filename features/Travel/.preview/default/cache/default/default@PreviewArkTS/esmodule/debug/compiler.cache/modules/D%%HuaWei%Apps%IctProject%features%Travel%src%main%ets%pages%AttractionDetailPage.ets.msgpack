@@ -1,0 +1,506 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚ/ïif (!("finalizeConstruction" in ViewPU.prototype)) {
+    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
+}
+import { Attraction } from "../model/Attraction";
+const myMap = new Map();
+export class AttractionDetailPage extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.__attraction = new ObservedPropertyObjectPU(new Attraction(1, "null", { "id": 83886222, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "Travel" }), this, "attraction");
+        this.__travelPathStack = this.initializeConsume('travelPathStack', "travelPathStack");
+        this.__myScale = new ObservedPropertySimplePU(1, this, "myScale");
+        this.__voice = new ObservedPropertySimplePU(false, this, "voice");
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.attraction !== undefined) {
+            this.attraction = params.attraction;
+        }
+        if (params.myScale !== undefined) {
+            this.myScale = params.myScale;
+        }
+        if (params.voice !== undefined) {
+            this.voice = params.voice;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.__attraction.purgeDependencyOnElmtId(rmElmtId);
+        this.__travelPathStack.purgeDependencyOnElmtId(rmElmtId);
+        this.__myScale.purgeDependencyOnElmtId(rmElmtId);
+        this.__voice.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.__attraction.aboutToBeDeleted();
+        this.__travelPathStack.aboutToBeDeleted();
+        this.__myScale.aboutToBeDeleted();
+        this.__voice.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get attraction() {
+        return this.__attraction.get();
+    }
+    set attraction(newValue) {
+        this.__attraction.set(newValue);
+    }
+    get travelPathStack() {
+        return this.__travelPathStack.get();
+    }
+    set travelPathStack(newValue) {
+        this.__travelPathStack.set(newValue);
+    }
+    get myScale() {
+        return this.__myScale.get();
+    }
+    set myScale(newValue) {
+        this.__myScale.set(newValue);
+    }
+    get voice() {
+        return this.__voice.get();
+    }
+    set voice(newValue) {
+        this.__voice.set(newValue);
+    }
+    aboutToAppear() {
+        myMap.set("æ•…å®«", "åˆé—¨è¿›å…¥ â†’ å¤ªå’Œé—¨å¹¿åœº â†’ å¤ªå’Œæ®¿ï¼ˆé‡‘éŠ®æ®¿ï¼‰â†’ ä¸­å’Œæ®¿ï¼ˆçš‡å¸æ›´è¡£å¤„ï¼‰â†’ ä¿å’Œæ®¿ï¼ˆå®´ä¼šå’Œç§‘ä¸¾è€ƒåœºï¼‰â†’ ä¹¾æ¸…å®«ï¼ˆçš‡å¸å¯å®«ï¼‰â†’ äº¤æ³°æ®¿ï¼ˆçš‡åç”Ÿæ—¥åº†å…¸ï¼‰â†’ å¤å®å®«ï¼ˆçš‡åå¯å®«ï¼‰â†’ å¾¡èŠ±å›­ï¼ˆçš‡å®¶å›­æ—ï¼‰â†’ çå®é¦†ï¼ˆå±•ç¤ºçš‡å®¶çå®ï¼‰â†’ å¤©ç©¹å®æ®¿ â†’ å®å¯¿å®«ï¼ˆä¹¾éš†é€€ä½åå±…ä½ï¼‰â†’ ç¥æ­¦é—¨å‡º");
+        myMap.set("ç§¦å§‹çš‡é™µ", "é™µå›­å…¥å£ â†’ 1å·å…µé©¬ä¿‘å‘ï¼ˆè§„æ¨¡æœ€å¤§ï¼‰â†’ 2å·å…µé©¬ä¿‘å‘ï¼ˆæˆ˜è½¦é™ˆåˆ—ï¼‰â†’ 3å·å…µé©¬ä¿‘å‘ï¼ˆæŒ‡æŒ¥ä¸­å¿ƒï¼‰â†’ é“œè½¦é©¬å±•å…ï¼ˆå±•ç¤ºä¸¤è¾†é’é“œé©¬è½¦ï¼‰â†’ ç§¦å§‹çš‡é™µå°åœŸå †è¿œè§‚ â†’ ä¸½å±±å›­ï¼ˆæ¨¡æ‹Ÿè€ƒå¤åŒºï¼‰");
+        myMap.set("é•¿åŸ", "å…¥å£ â†’ ç®­æ¥¼ï¼ˆå…³å£ï¼‰â†’ åŒ—ä¸€æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äºŒæ¥¼ï¼ˆçƒ½ç«å°ï¼Œè§‚èµé•¿åŸå…¨æ™¯ï¼‰â†’ åŒ—ä¸‰æ¥¼ï¼ˆçƒ½ç«å°ï¼Œè¾ƒä¸ºé™¡å³­ï¼‰â†’ åŒ—å››æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äº”æ¥¼ï¼ˆçƒ½ç«å°ï¼Œé‡è¦å†›äº‹ä½ç½®ï¼‰â†’ åŒ—å…­æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—ä¸ƒæ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—å…«æ¥¼ï¼ˆæœ€é«˜ç‚¹ï¼Œå¥½æ±‰å¡ï¼‰â†’ è¿”å›é€”ä¸­å¯é€‰çˆ¬å—é•¿åŸ");
+        myMap.set("æ•¦ç…Œè«é«˜çªŸ", "æ•°å­—å±•ç¤ºä¸­å¿ƒï¼ˆè§‚çœ‹ä»‹ç»å½±ç‰‡ï¼‰â†’ ä¹˜åæ™¯åŒºäº¤é€šè½¦ â†’ è«é«˜çªŸçªŸåŒº â†’ å‚è§‚ä¸»è¦æ´çªŸï¼ˆå¦‚96çªŸã€130çªŸã€148çªŸï¼‰â†’ ç‰¹çªŸå‚è§‚ï¼ˆéœ€é¢å¤–è´­ç¥¨ï¼‰â†’ è—ç»æ´ï¼ˆå‘ç°å¤§é‡æ–‡çŒ®çš„åœ°æ–¹ï¼‰â†’ è«é«˜çªŸåšç‰©é¦†ï¼ˆäº†è§£è«é«˜çªŸçš„å†å²å’Œè‰ºæœ¯ï¼‰");
+        myMap.set("ä¹å±±å¤§ä½›", "å±±é—¨ â†’ é’Ÿé¼“æ¥¼ â†’ å‡Œäº‘å¯ºï¼ˆä½›æ•™åœ£åœ°ï¼‰â†’ ä¹æ›²æ ˆé“ï¼ˆä¸‹è‡³å¤§ä½›è„šéƒ¨ï¼Œé€”ä¸­å¯æ¬£èµå£é›•ï¼‰â†’ å¤§ä½›è„šéƒ¨å¹³å°ï¼ˆè¿‘è·ç¦»è§‚èµå¤§ä½›ï¼‰â†’ é‡æ–°æ²¿ä¹æ›²æ ˆé“è¿”å› â†’ è‹å›­ï¼ˆæ±Ÿå—å›­æ—é£æ ¼ï¼‰â†’ ä¹Œå°¤å¯ºï¼ˆè§‚èµä¹å±±å…¨æ™¯ï¼‰");
+        myMap.set("é¢å’Œå›­", "ä¸œå®«é—¨è¿›å…¥ â†’ è‹å·è¡—ï¼ˆæ¨¡ä»¿æ±Ÿå—æ°´ä¹¡ï¼‰â†’ ä¹°å–è¡—ï¼ˆå¤å•†ä¸šè¡—ï¼‰â†’ é•¿å»Šï¼ˆç”»å»Šï¼Œæ¬£èµå£ç”»ï¼‰â†’ æ’äº‘æ®¿ï¼ˆæ…ˆç¦§ç¥å¯¿çš„åœ°æ–¹ï¼‰â†’ ä½›é¦™é˜ï¼ˆä¿¯ç°æ•´ä¸ªå›­æ—ï¼‰â†’ å®œèŠ¸é¦†ï¼ˆçš‡å®¶ä¹¦å±‹ï¼‰â†’ å¾·å’Œå›­ï¼ˆå¤§æˆæ¥¼ï¼‰â†’ æ˜†æ˜æ¹–ï¼ˆåˆ’èˆ¹æˆ–ç¯æ¹–æ•£æ­¥ï¼‰â†’ åä¸ƒå­”æ¡¥ï¼ˆè¿æ¥ä¸œå²¸å’Œå—æ¹–å²›ï¼‰â†’ é“œç‰›ï¼ˆæ˜†æ˜æ¹–ç•”çš„é“œåƒï¼‰");
+        myMap.set("å¤©å›", "å—é—¨è¿›å…¥ â†’ åœœä¸˜å›ï¼ˆå†¬è‡³ç¥­å¤©çš„åœ°æ–¹ï¼‰â†’ å›éŸ³å£ï¼ˆå£°å­¦å¥‡è¿¹ï¼‰â†’ ç¥ˆå¹´æ®¿ï¼ˆç¥ˆæ±‚ä¸°æ”¶çš„åœ°æ–¹ï¼‰â†’ ç¥ˆå¹´é—¨ â†’ é•¿å»Šï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡ï¼‰â†’ ä¸¹é™›æ¡¥ï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡çš„ç –çŸ³æ¡¥ï¼‰â†’ æ–‹å®«ï¼ˆçš‡å¸ç¥­å¤©å‰æ–‹æˆ’çš„åœ°æ–¹ï¼‰â†’ åŒ—é—¨å‡º");
+        this.attraction = this.travelPathStack.getParamByName('AttractionDetailPage')[0];
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            NavDestination.create(() => {
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Column.create();
+                    Column.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(30:7)", "travel");
+                    Column.width('95%');
+                    Column.height('100%');
+                }, Column);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Row.create();
+                    Row.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(31:9)", "travel");
+                    Row.width('100%');
+                    Row.justifyContent(FlexAlign.Start);
+                }, Row);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Image.create({ "id": 83886088, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "Travel" });
+                    Image.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(32:11)", "travel");
+                    Image.width(30);
+                    Image.height(30);
+                    Image.onClick(() => {
+                        this.travelPathStack.pop();
+                    });
+                }, Image);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Row.create();
+                    Row.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(38:11)", "travel");
+                    Row.layoutWeight(1);
+                    Row.justifyContent(FlexAlign.Center);
+                }, Row);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Text.create(this.attraction.name);
+                    Text.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(39:13)", "travel");
+                    Text.fontSize(20);
+                    Text.fontWeight(FontWeight.Bold);
+                    Text.margin({ right: 15 });
+                }, Text);
+                Text.pop();
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Blank.create();
+                    Blank.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(43:13)", "travel");
+                }, Blank);
+                Blank.pop();
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    If.create();
+                    if (this.voice === false) {
+                        this.ifElseBranchUpdateFunction(0, () => {
+                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                Image.create({ "id": 33554446, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "Travel" });
+                                Image.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(45:15)", "travel");
+                                Image.width(30);
+                                Image.height(30);
+                                Image.margin({ left: 15 });
+                                Image.onClick(() => {
+                                    this.voice = true;
+                                });
+                            }, Image);
+                        });
+                    }
+                    else {
+                        this.ifElseBranchUpdateFunction(1, () => {
+                            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                                Image.create({ "id": 33554445, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "Travel" });
+                                Image.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(53:15)", "travel");
+                                Image.width(30);
+                                Image.height(30);
+                                Image.margin({ left: 15 });
+                                Image.onClick(() => {
+                                    this.voice = false;
+                                });
+                            }, Image);
+                        });
+                    }
+                }, If);
+                If.pop();
+                Row.pop();
+                Row.pop();
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Image.create({ "id": 33554444, "type": 20000, params: [], "bundleName": "com.example.ictproject", "moduleName": "Travel" });
+                    Image.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(69:9)", "travel");
+                    Image.width('100%');
+                    Image.height(300);
+                    Image.borderRadius(10);
+                }, Image);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Column.create();
+                    Column.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(74:9)", "travel");
+                    Column.alignItems(HorizontalAlign.Start);
+                    Column.backgroundColor(Color.White);
+                }, Column);
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Text.create('è·¯å¾„è§„åˆ’');
+                    Text.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(75:11)", "travel");
+                    Text.fontSize(24);
+                    Text.fontColor(Color.White);
+                    Text.backgroundColor(Color.Orange);
+                    Text.borderRadius(10);
+                    Text.padding(5);
+                    Text.margin({ top: 10 });
+                }, Text);
+                Text.pop();
+                this.observeComponentCreation2((elmtId, isInitialRender) => {
+                    Text.create(myMap.get(this.attraction.name));
+                    Text.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(82:11)", "travel");
+                    Text.fontSize(18);
+                    Text.width('90%');
+                    Text.margin({ top: 5 });
+                    Text.backgroundColor(Color.White);
+                }, Text);
+                Text.pop();
+                Column.pop();
+                Column.pop();
+            }, { moduleName: "Travel", pagePath: "features/Travel/src/main/ets/pages/AttractionDetailPage" });
+            NavDestination.hideTitleBar(true);
+            NavDestination.debugLine("features/Travel/src/main/ets/pages/AttractionDetailPage.ets(29:5)", "travel");
+        }, NavDestination);
+        NavDestination.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+}
+//# sourceMappingURL=AttractionDetailPage.js.mapÂ‘ÙKD:\HuaWei\Apps\IctProject\features\Travel\src\main\ets\model\Attraction.etsÙUD:\HuaWei\Apps\IctProject\features\Travel\src\main\ets\pages\AttractionDetailPage.etsÔrBš°belongModulePathªmoduleName±isLocalDependency¯isNodeEntryFile§pkgPath±belongProjectPath§pkgNameªpkgVersion±dependencyPkgInfo¯hostModulesInfoÙ)D:\HuaWei\Apps\IctProject\features\Travel¦TravelÃÂÙ)D:\HuaWei\Apps\IctProject\features\Travel¹D:\HuaWei\Apps\IctProject¦travel¥1.0.0Ô  ‘ÔrC’²hostDependencyName®hostModuleName¶./AttractionDetailPage¦TravelÃÚ5import { Attraction } from "../model/Attraction";
+
+
+const  myMap: Map<string,string> = new Map();
+
+
+
+@Component
+export struct AttractionDetailPage {
+  @State attraction: Attraction = new Attraction(1, "null", $r("app.media.attraction_1"));
+  @Consume('travelPathStack') travelPathStack: NavPathStack;
+  @State  myScale: number = 1
+  @State voice: boolean = false;
+
+
+  aboutToAppear(): void {
+    myMap.set("æ•…å®«", "åˆé—¨è¿›å…¥ â†’ å¤ªå’Œé—¨å¹¿åœº â†’ å¤ªå’Œæ®¿ï¼ˆé‡‘éŠ®æ®¿ï¼‰â†’ ä¸­å’Œæ®¿ï¼ˆçš‡å¸æ›´è¡£å¤„ï¼‰â†’ ä¿å’Œæ®¿ï¼ˆå®´ä¼šå’Œç§‘ä¸¾è€ƒåœºï¼‰â†’ ä¹¾æ¸…å®«ï¼ˆçš‡å¸å¯å®«ï¼‰â†’ äº¤æ³°æ®¿ï¼ˆçš‡åç”Ÿæ—¥åº†å…¸ï¼‰â†’ å¤å®å®«ï¼ˆçš‡åå¯å®«ï¼‰â†’ å¾¡èŠ±å›­ï¼ˆçš‡å®¶å›­æ—ï¼‰â†’ çå®é¦†ï¼ˆå±•ç¤ºçš‡å®¶çå®ï¼‰â†’ å¤©ç©¹å®æ®¿ â†’ å®å¯¿å®«ï¼ˆä¹¾éš†é€€ä½åå±…ä½ï¼‰â†’ ç¥æ­¦é—¨å‡º");
+    myMap.set("ç§¦å§‹çš‡é™µ", "é™µå›­å…¥å£ â†’ 1å·å…µé©¬ä¿‘å‘ï¼ˆè§„æ¨¡æœ€å¤§ï¼‰â†’ 2å·å…µé©¬ä¿‘å‘ï¼ˆæˆ˜è½¦é™ˆåˆ—ï¼‰â†’ 3å·å…µé©¬ä¿‘å‘ï¼ˆæŒ‡æŒ¥ä¸­å¿ƒï¼‰â†’ é“œè½¦é©¬å±•å…ï¼ˆå±•ç¤ºä¸¤è¾†é’é“œé©¬è½¦ï¼‰â†’ ç§¦å§‹çš‡é™µå°åœŸå †è¿œè§‚ â†’ ä¸½å±±å›­ï¼ˆæ¨¡æ‹Ÿè€ƒå¤åŒºï¼‰");
+    myMap.set("é•¿åŸ", "å…¥å£ â†’ ç®­æ¥¼ï¼ˆå…³å£ï¼‰â†’ åŒ—ä¸€æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äºŒæ¥¼ï¼ˆçƒ½ç«å°ï¼Œè§‚èµé•¿åŸå…¨æ™¯ï¼‰â†’ åŒ—ä¸‰æ¥¼ï¼ˆçƒ½ç«å°ï¼Œè¾ƒä¸ºé™¡å³­ï¼‰â†’ åŒ—å››æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äº”æ¥¼ï¼ˆçƒ½ç«å°ï¼Œé‡è¦å†›äº‹ä½ç½®ï¼‰â†’ åŒ—å…­æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—ä¸ƒæ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—å…«æ¥¼ï¼ˆæœ€é«˜ç‚¹ï¼Œå¥½æ±‰å¡ï¼‰â†’ è¿”å›é€”ä¸­å¯é€‰çˆ¬å—é•¿åŸ");
+    myMap.set("æ•¦ç…Œè«é«˜çªŸ", "æ•°å­—å±•ç¤ºä¸­å¿ƒï¼ˆè§‚çœ‹ä»‹ç»å½±ç‰‡ï¼‰â†’ ä¹˜åæ™¯åŒºäº¤é€šè½¦ â†’ è«é«˜çªŸçªŸåŒº â†’ å‚è§‚ä¸»è¦æ´çªŸï¼ˆå¦‚96çªŸã€130çªŸã€148çªŸï¼‰â†’ ç‰¹çªŸå‚è§‚ï¼ˆéœ€é¢å¤–è´­ç¥¨ï¼‰â†’ è—ç»æ´ï¼ˆå‘ç°å¤§é‡æ–‡çŒ®çš„åœ°æ–¹ï¼‰â†’ è«é«˜çªŸåšç‰©é¦†ï¼ˆäº†è§£è«é«˜çªŸçš„å†å²å’Œè‰ºæœ¯ï¼‰");
+    myMap.set("ä¹å±±å¤§ä½›", "å±±é—¨ â†’ é’Ÿé¼“æ¥¼ â†’ å‡Œäº‘å¯ºï¼ˆä½›æ•™åœ£åœ°ï¼‰â†’ ä¹æ›²æ ˆé“ï¼ˆä¸‹è‡³å¤§ä½›è„šéƒ¨ï¼Œé€”ä¸­å¯æ¬£èµå£é›•ï¼‰â†’ å¤§ä½›è„šéƒ¨å¹³å°ï¼ˆè¿‘è·ç¦»è§‚èµå¤§ä½›ï¼‰â†’ é‡æ–°æ²¿ä¹æ›²æ ˆé“è¿”å› â†’ è‹å›­ï¼ˆæ±Ÿå—å›­æ—é£æ ¼ï¼‰â†’ ä¹Œå°¤å¯ºï¼ˆè§‚èµä¹å±±å…¨æ™¯ï¼‰");
+    myMap.set("é¢å’Œå›­", "ä¸œå®«é—¨è¿›å…¥ â†’ è‹å·è¡—ï¼ˆæ¨¡ä»¿æ±Ÿå—æ°´ä¹¡ï¼‰â†’ ä¹°å–è¡—ï¼ˆå¤å•†ä¸šè¡—ï¼‰â†’ é•¿å»Šï¼ˆç”»å»Šï¼Œæ¬£èµå£ç”»ï¼‰â†’ æ’äº‘æ®¿ï¼ˆæ…ˆç¦§ç¥å¯¿çš„åœ°æ–¹ï¼‰â†’ ä½›é¦™é˜ï¼ˆä¿¯ç°æ•´ä¸ªå›­æ—ï¼‰â†’ å®œèŠ¸é¦†ï¼ˆçš‡å®¶ä¹¦å±‹ï¼‰â†’ å¾·å’Œå›­ï¼ˆå¤§æˆæ¥¼ï¼‰â†’ æ˜†æ˜æ¹–ï¼ˆåˆ’èˆ¹æˆ–ç¯æ¹–æ•£æ­¥ï¼‰â†’ åä¸ƒå­”æ¡¥ï¼ˆè¿æ¥ä¸œå²¸å’Œå—æ¹–å²›ï¼‰â†’ é“œç‰›ï¼ˆæ˜†æ˜æ¹–ç•”çš„é“œåƒï¼‰");
+    myMap.set("å¤©å›", "å—é—¨è¿›å…¥ â†’ åœœä¸˜å›ï¼ˆå†¬è‡³ç¥­å¤©çš„åœ°æ–¹ï¼‰â†’ å›éŸ³å£ï¼ˆå£°å­¦å¥‡è¿¹ï¼‰â†’ ç¥ˆå¹´æ®¿ï¼ˆç¥ˆæ±‚ä¸°æ”¶çš„åœ°æ–¹ï¼‰â†’ ç¥ˆå¹´é—¨ â†’ é•¿å»Šï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡ï¼‰â†’ ä¸¹é™›æ¡¥ï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡çš„ç –çŸ³æ¡¥ï¼‰â†’ æ–‹å®«ï¼ˆçš‡å¸ç¥­å¤©å‰æ–‹æˆ’çš„åœ°æ–¹ï¼‰â†’ åŒ—é—¨å‡º");
+
+    this.attraction = this.travelPathStack.getParamByName('AttractionDetailPage')[0] as Attraction;
+  }
+
+  build() {
+    NavDestination(){
+      Column() {
+        Row(){
+          Image($r('app.media.ic_back'))
+            .width(30)
+            .height(30)
+            .onClick( () => {
+              this.travelPathStack.pop();
+            })
+          Row(){
+            Text(this.attraction.name)
+              .fontSize(20)
+              .fontWeight(FontWeight.Bold)
+              .margin({right:15})
+            Blank()
+            if( this.voice === false){
+              Image($r('app.media.voice_close'))
+                .width(30)
+                .height(30)
+                .margin({left:15})
+                .onClick( () => {
+                  this.voice = true;
+                })
+            }else{
+              Image($r('app.media.voice_open'))
+                .width(30)
+                .height(30)
+                .margin({left:15})
+                .onClick( () => {
+                  this.voice = false;
+                })
+            }
+
+          }
+          .layoutWeight(1)
+          .justifyContent(FlexAlign.Center)
+        }
+        .width('100%')
+        .justifyContent(FlexAlign.Start)
+
+        Image($r('app.media.gugong_map'))
+          .width('100%')
+          .height(300)
+          .borderRadius(10)
+
+        Column(){
+          Text('è·¯å¾„è§„åˆ’')
+            .fontSize(24)
+            .fontColor(Color.White)
+            .backgroundColor(Color.Orange)
+            .borderRadius(10)
+            .padding(5)
+            .margin({top:10})
+          Text(myMap.get(this.attraction.name))
+            .fontSize(18)
+            .width('90%')
+            .margin({top:5})
+            .backgroundColor(Color.White)
+        }
+        .alignItems(HorizontalAlign.Start)
+        .backgroundColor(Color.White)
+
+
+        /*Column(){
+          Image($r('app.media.avator'))
+            .width(100)
+            .height(150)
+            .objectFit(ImageFit.Contain)
+            .opacity(0.8)
+            .scale({ x: this.myScale, y: this.myScale })
+        }
+        .position({x:270, y:550})*/
+      }
+      .width('95%')
+      .height('100%')
+      //.backgroundColor('#ffdee7ee')
+    }
+    .hideTitleBar(true)
+  }
+}
+ÔrD•§version¨mappings¥names§sources®sourcesContentÜ Ê‘”    ‘”   ‘”   ‘”   ‘”  	"‘”  -‘”  ‘”  ‘”  ‘”  ‘”  ‘”  ‘”  ‘”  ‘”  ‘”  ‘”  
+‘”  #‘”  %
+‘”  &‘”  &‘”  &‘”  +‘”  ,‘”  ,‘”  1‘”  3‘”  3‘”  4‘”  4‘”  9‘”  ;‘”  ÌI‘”  ÌI‘”  ÌJ
+‘”  ÌJ
+‘”  ÌJ
+‘”  ÌJ
+‘”  ÌQ
+‘”  ÌQ
+‘”  Ìi‘”  Ìj‘ÙUD:\HuaWei\Apps\IctProject\features\Travel\src\main\ets\pages\AttractionDetailPage.ets‘Ú5import { Attraction } from "../model/Attraction";
+
+
+const  myMap: Map<string,string> = new Map();
+
+
+
+@Component
+export struct AttractionDetailPage {
+  @State attraction: Attraction = new Attraction(1, "null", $r("app.media.attraction_1"));
+  @Consume('travelPathStack') travelPathStack: NavPathStack;
+  @State  myScale: number = 1
+  @State voice: boolean = false;
+
+
+  aboutToAppear(): void {
+    myMap.set("æ•…å®«", "åˆé—¨è¿›å…¥ â†’ å¤ªå’Œé—¨å¹¿åœº â†’ å¤ªå’Œæ®¿ï¼ˆé‡‘éŠ®æ®¿ï¼‰â†’ ä¸­å’Œæ®¿ï¼ˆçš‡å¸æ›´è¡£å¤„ï¼‰â†’ ä¿å’Œæ®¿ï¼ˆå®´ä¼šå’Œç§‘ä¸¾è€ƒåœºï¼‰â†’ ä¹¾æ¸…å®«ï¼ˆçš‡å¸å¯å®«ï¼‰â†’ äº¤æ³°æ®¿ï¼ˆçš‡åç”Ÿæ—¥åº†å…¸ï¼‰â†’ å¤å®å®«ï¼ˆçš‡åå¯å®«ï¼‰â†’ å¾¡èŠ±å›­ï¼ˆçš‡å®¶å›­æ—ï¼‰â†’ çå®é¦†ï¼ˆå±•ç¤ºçš‡å®¶çå®ï¼‰â†’ å¤©ç©¹å®æ®¿ â†’ å®å¯¿å®«ï¼ˆä¹¾éš†é€€ä½åå±…ä½ï¼‰â†’ ç¥æ­¦é—¨å‡º");
+    myMap.set("ç§¦å§‹çš‡é™µ", "é™µå›­å…¥å£ â†’ 1å·å…µé©¬ä¿‘å‘ï¼ˆè§„æ¨¡æœ€å¤§ï¼‰â†’ 2å·å…µé©¬ä¿‘å‘ï¼ˆæˆ˜è½¦é™ˆåˆ—ï¼‰â†’ 3å·å…µé©¬ä¿‘å‘ï¼ˆæŒ‡æŒ¥ä¸­å¿ƒï¼‰â†’ é“œè½¦é©¬å±•å…ï¼ˆå±•ç¤ºä¸¤è¾†é’é“œé©¬è½¦ï¼‰â†’ ç§¦å§‹çš‡é™µå°åœŸå †è¿œè§‚ â†’ ä¸½å±±å›­ï¼ˆæ¨¡æ‹Ÿè€ƒå¤åŒºï¼‰");
+    myMap.set("é•¿åŸ", "å…¥å£ â†’ ç®­æ¥¼ï¼ˆå…³å£ï¼‰â†’ åŒ—ä¸€æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äºŒæ¥¼ï¼ˆçƒ½ç«å°ï¼Œè§‚èµé•¿åŸå…¨æ™¯ï¼‰â†’ åŒ—ä¸‰æ¥¼ï¼ˆçƒ½ç«å°ï¼Œè¾ƒä¸ºé™¡å³­ï¼‰â†’ åŒ—å››æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äº”æ¥¼ï¼ˆçƒ½ç«å°ï¼Œé‡è¦å†›äº‹ä½ç½®ï¼‰â†’ åŒ—å…­æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—ä¸ƒæ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—å…«æ¥¼ï¼ˆæœ€é«˜ç‚¹ï¼Œå¥½æ±‰å¡ï¼‰â†’ è¿”å›é€”ä¸­å¯é€‰çˆ¬å—é•¿åŸ");
+    myMap.set("æ•¦ç…Œè«é«˜çªŸ", "æ•°å­—å±•ç¤ºä¸­å¿ƒï¼ˆè§‚çœ‹ä»‹ç»å½±ç‰‡ï¼‰â†’ ä¹˜åæ™¯åŒºäº¤é€šè½¦ â†’ è«é«˜çªŸçªŸåŒº â†’ å‚è§‚ä¸»è¦æ´çªŸï¼ˆå¦‚96çªŸã€130çªŸã€148çªŸï¼‰â†’ ç‰¹çªŸå‚è§‚ï¼ˆéœ€é¢å¤–è´­ç¥¨ï¼‰â†’ è—ç»æ´ï¼ˆå‘ç°å¤§é‡æ–‡çŒ®çš„åœ°æ–¹ï¼‰â†’ è«é«˜çªŸåšç‰©é¦†ï¼ˆäº†è§£è«é«˜çªŸçš„å†å²å’Œè‰ºæœ¯ï¼‰");
+    myMap.set("ä¹å±±å¤§ä½›", "å±±é—¨ â†’ é’Ÿé¼“æ¥¼ â†’ å‡Œäº‘å¯ºï¼ˆä½›æ•™åœ£åœ°ï¼‰â†’ ä¹æ›²æ ˆé“ï¼ˆä¸‹è‡³å¤§ä½›è„šéƒ¨ï¼Œé€”ä¸­å¯æ¬£èµå£é›•ï¼‰â†’ å¤§ä½›è„šéƒ¨å¹³å°ï¼ˆè¿‘è·ç¦»è§‚èµå¤§ä½›ï¼‰â†’ é‡æ–°æ²¿ä¹æ›²æ ˆé“è¿”å› â†’ è‹å›­ï¼ˆæ±Ÿå—å›­æ—é£æ ¼ï¼‰â†’ ä¹Œå°¤å¯ºï¼ˆè§‚èµä¹å±±å…¨æ™¯ï¼‰");
+    myMap.set("é¢å’Œå›­", "ä¸œå®«é—¨è¿›å…¥ â†’ è‹å·è¡—ï¼ˆæ¨¡ä»¿æ±Ÿå—æ°´ä¹¡ï¼‰â†’ ä¹°å–è¡—ï¼ˆå¤å•†ä¸šè¡—ï¼‰â†’ é•¿å»Šï¼ˆç”»å»Šï¼Œæ¬£èµå£ç”»ï¼‰â†’ æ’äº‘æ®¿ï¼ˆæ…ˆç¦§ç¥å¯¿çš„åœ°æ–¹ï¼‰â†’ ä½›é¦™é˜ï¼ˆä¿¯ç°æ•´ä¸ªå›­æ—ï¼‰â†’ å®œèŠ¸é¦†ï¼ˆçš‡å®¶ä¹¦å±‹ï¼‰â†’ å¾·å’Œå›­ï¼ˆå¤§æˆæ¥¼ï¼‰â†’ æ˜†æ˜æ¹–ï¼ˆåˆ’èˆ¹æˆ–ç¯æ¹–æ•£æ­¥ï¼‰â†’ åä¸ƒå­”æ¡¥ï¼ˆè¿æ¥ä¸œå²¸å’Œå—æ¹–å²›ï¼‰â†’ é“œç‰›ï¼ˆæ˜†æ˜æ¹–ç•”çš„é“œåƒï¼‰");
+    myMap.set("å¤©å›", "å—é—¨è¿›å…¥ â†’ åœœä¸˜å›ï¼ˆå†¬è‡³ç¥­å¤©çš„åœ°æ–¹ï¼‰â†’ å›éŸ³å£ï¼ˆå£°å­¦å¥‡è¿¹ï¼‰â†’ ç¥ˆå¹´æ®¿ï¼ˆç¥ˆæ±‚ä¸°æ”¶çš„åœ°æ–¹ï¼‰â†’ ç¥ˆå¹´é—¨ â†’ é•¿å»Šï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡ï¼‰â†’ ä¸¹é™›æ¡¥ï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡çš„ç –çŸ³æ¡¥ï¼‰â†’ æ–‹å®«ï¼ˆçš‡å¸ç¥­å¤©å‰æ–‹æˆ’çš„åœ°æ–¹ï¼‰â†’ åŒ—é—¨å‡º");
+
+    this.attraction = this.travelPathStack.getParamByName('AttractionDetailPage')[0] as Attraction;
+  }
+
+  build() {
+    NavDestination(){
+      Column() {
+        Row(){
+          Image($r('app.media.ic_back'))
+            .width(30)
+            .height(30)
+            .onClick( () => {
+              this.travelPathStack.pop();
+            })
+          Row(){
+            Text(this.attraction.name)
+              .fontSize(20)
+              .fontWeight(FontWeight.Bold)
+              .margin({right:15})
+            Blank()
+            if( this.voice === false){
+              Image($r('app.media.voice_close'))
+                .width(30)
+                .height(30)
+                .margin({left:15})
+                .onClick( () => {
+                  this.voice = true;
+                })
+            }else{
+              Image($r('app.media.voice_open'))
+                .width(30)
+                .height(30)
+                .margin({left:15})
+                .onClick( () => {
+                  this.voice = false;
+                })
+            }
+
+          }
+          .layoutWeight(1)
+          .justifyContent(FlexAlign.Center)
+        }
+        .width('100%')
+        .justifyContent(FlexAlign.Start)
+
+        Image($r('app.media.gugong_map'))
+          .width('100%')
+          .height(300)
+          .borderRadius(10)
+
+        Column(){
+          Text('è·¯å¾„è§„åˆ’')
+            .fontSize(24)
+            .fontColor(Color.White)
+            .backgroundColor(Color.Orange)
+            .borderRadius(10)
+            .padding(5)
+            .margin({top:10})
+          Text(myMap.get(this.attraction.name))
+            .fontSize(18)
+            .width('90%')
+            .margin({top:5})
+            .backgroundColor(Color.White)
+        }
+        .alignItems(HorizontalAlign.Start)
+        .backgroundColor(Color.White)
+
+
+        /*Column(){
+          Image($r('app.media.avator'))
+            .width(100)
+            .height(150)
+            .objectFit(ImageFit.Contain)
+            .opacity(0.8)
+            .scale({ x: this.myScale, y: this.myScale })
+        }
+        .position({x:270, y:550})*/
+      }
+      .width('95%')
+      .height('100%')
+      //.backgroundColor('#ffdee7ee')
+    }
+    .hideTitleBar(true)
+  }
+}
+ÔrE‘³../model/AttractionÔrF—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÂÙKD:\HuaWei\Apps\IctProject\features\Travel\src\main\ets\model\Attraction.etsAÃªoh-resolveÂÂÔ  ÔrG”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache‘ÔrH–¤type¥start£end«declarationªspecifiers¦source¶ExportNamedDeclarationÌÍÍ*ÔrI–¤type¥start£end¢idªsuperClass¤body°ClassDeclarationÌÔÍ*ÔrJ”¤type¥start£end¤nameªIdentifierÌÚÌî´AttractionDetailPageJªIdentifierÌ÷Ìı¦ViewPUÔrK”¤type¥start£end¤body©ClassBodyÌşÍ*Ü ÔrL˜¤type¥start£end¦static¨computed£key¤kind¥value°MethodDefinitionÍÍ?ÂÂJªIdentifierÍÍ«constructor«constructorÔrM™¤type¥start£end¢idªexpression©generator¥async¦params¤body²FunctionExpressionÍÍ?ÀÂÂÂ–JªIdentifierÍÍ¦parentJªIdentifierÍÍ¦paramsJªIdentifierÍ!Í/®__localStorageÔrN•¤type¥start£end¤left¥right±AssignmentPatternÍ1Í<JªIdentifierÍ1Í7¦elmtIdÔrO–¤type¥start£end¨operator¦prefix¨argument¯UnaryExpressionÍ:Í<¡-ÃÔrP•¤type¥start£end¥value£raw§LiteralÍ;Í<¡1N±AssignmentPatternÍ>ÍVJªIdentifierÍ>ÍJ¬paramsLambdaJªIdentifierÍMÍV©undefinedJªIdentifierÍXÍa©extraInfoK®BlockStatementÍcÍ?˜ÔrQ”¤type¥start£endªexpression³ExpressionStatementÍnÍŸÔrR–¤type¥start£end¦callee©arguments¨optional®CallExpressionÍnÍÔrS“¤type¥start£end¥SuperÍnÍs”JªIdentifierÍtÍz¦parentJªIdentifierÍ|ÍŠ®__localStorageJªIdentifierÍŒÍ’¦elmtIdJªIdentifierÍ”Í©extraInfoÂÔrT–¤type¥start£end¤testªconsequent©alternate«IfStatementÍ©ÍÔrU–¤type¥start£end¤left¨operator¥right°BinaryExpressionÍ­ÍÏO¯UnaryExpressionÍ­ÍÀ¦typeofÃJªIdentifierÍ´ÍÀ¬paramsLambda£===P§LiteralÍÅÍÏ¨functionª"function"K®BlockStatementÍÑÍ‘Q³ExpressionStatementÍàÍÔrV–¤type¥start£end¨operator¤left¥right´AssignmentExpressionÍàÍ¡=ÔrW—¤type¥start£end¦object¨property¨computed¨optional°MemberExpressionÍàÍõS®ThisExpressionÍàÍäJªIdentifierÍåÍõ°paramsGenerator_ÂÂJªIdentifierÍøÍ¬paramsLambdaÀQ³ExpressionStatementÍÍéV´AssignmentExpressionÍÍè¡=W°MemberExpressionÍÍ+S®ThisExpressionÍÍJªIdentifierÍÍ+¬__attractionÂÂÔrX•¤type¥start£end¦callee©arguments­NewExpressionÍ.ÍèJªIdentifierÍ2ÍJ¸ObservedPropertyObjectPU“X­NewExpressionÍKÍÓJªIdentifierÍOÍYªAttraction“P§LiteralÍZÍ[¡1P§LiteralÍ]Íc¤null¦"null"ÔrY”¤type¥start£endªproperties°ObjectExpressionÍeÍÒ•ÔrZ™¤type¥start£end¦method©shorthand¨computed£key¥value¤kind¨PropertyÍgÍuÂÂÂP§LiteralÍgÍk¢id¤"id"P§LiteralÍmÍuÎ  ¨83886222¤initZ¨PropertyÍwÍ„ÂÂÂP§LiteralÍwÍ}¤type¦"type"P§LiteralÍÍ„ÍN ¥20000¤initZ¨PropertyÍ†ÍÂÂÂJªIdentifierÍ†ÍŒ¦paramsÔr[”¤type¥start£end¨elements¯ArrayExpressionÍÍ¤initZ¨PropertyÍ’Í¸ÂÂÂP§LiteralÍ’ÍªbundleName¬"bundleName"P§LiteralÍ Í¸¶com.example.ictproject¸"com.example.ictproject"¤initZ¨PropertyÍºÍĞÂÂÂP§LiteralÍºÍÆªmoduleName¬"moduleName"P§LiteralÍÈÍĞ¦Travel¨"Travel"¤initS®ThisExpressionÍÕÍÙP§LiteralÍÛÍçªattraction¬"attraction"Q³ExpressionStatementÍóÍIV´AssignmentExpressionÍóÍH¡=W°MemberExpressionÍóÍ	S®ThisExpressionÍóÍ÷JªIdentifierÍøÍ	±__travelPathStackÂÂR®CallExpressionÍÍHW°MemberExpressionÍÍ"S®ThisExpressionÍÍJªIdentifierÍÍ"±initializeConsumeÂÂ’P§LiteralÍ#Í4¯travelPathStack±'travelPathStack'P§LiteralÍ6ÍG¯travelPathStack±"travelPathStack"ÂQ³ExpressionStatementÍSÍ•V´AssignmentExpressionÍSÍ”¡=W°MemberExpressionÍSÍaS®ThisExpressionÍSÍWJªIdentifierÍXÍa©__myScaleÂÂX­NewExpressionÍdÍ”JªIdentifierÍhÍ€¸ObservedPropertySimplePU“P§LiteralÍÍ‚¡1S®ThisExpressionÍ„ÍˆP§LiteralÍŠÍ“§myScale©"myScale"Q³ExpressionStatementÍŸÍáV´AssignmentExpressionÍŸÍà¡=W°MemberExpressionÍŸÍ«S®ThisExpressionÍŸÍ£JªIdentifierÍ¤Í«§__voiceÂÂX­NewExpressionÍ®ÍàJªIdentifierÍ²ÍÊ¸ObservedPropertySimplePU“P§LiteralÍËÍĞÂ¥falseS®ThisExpressionÍÒÍÖP§LiteralÍØÍß¥voice§"voice"Q³ExpressionStatementÍëÍR®CallExpressionÍëÍW°MemberExpressionÍëÍ	S®ThisExpressionÍëÍïJªIdentifierÍğÍ	¹setInitiallyProvidedValueÂÂ‘JªIdentifierÍ
+Í¦paramsÂQ³ExpressionStatementÍÍ8R®CallExpressionÍÍ7W°MemberExpressionÍÍ5S®ThisExpressionÍÍ JªIdentifierÍ!Í5´finalizeConstructionÂÂÂL°MethodDefinitionÍEÍÂÂJªIdentifierÍEÍ^¹setInitiallyProvidedValue¦methodM²FunctionExpressionÍ^ÍÀÂÂÂ‘JªIdentifierÍ_Íe¦paramsK®BlockStatementÍgÍ“T«IfStatementÍrÍÕU°BinaryExpressionÍvÍ•W°MemberExpressionÍvÍ‡JªIdentifierÍvÍ|¦paramsJªIdentifierÍ}Í‡ªattractionÂÂ£!==JªIdentifierÍŒÍ•©undefinedK®BlockStatementÍ—ÍÕ‘Q³ExpressionStatementÍ¦ÍÊV´AssignmentExpressionÍ¦ÍÉ¡=W°MemberExpressionÍ¦ÍµS®ThisExpressionÍ¦ÍªJªIdentifierÍ«ÍµªattractionÂÂW°MemberExpressionÍ¸ÍÉJªIdentifierÍ¸Í¾¦paramsJªIdentifierÍ¿ÍÉªattractionÂÂÀT«IfStatementÍßÍ9U°BinaryExpressionÍãÍÿW°MemberExpressionÍãÍñJªIdentifierÍãÍé¦paramsJªIdentifierÍêÍñ§myScaleÂÂ£!==JªIdentifierÍöÍÿ©undefinedK®BlockStatementÍÍ9‘Q³ExpressionStatementÍÍ.V´AssignmentExpressionÍÍ-¡=W°MemberExpressionÍÍS®ThisExpressionÍÍJªIdentifierÍÍ§myScaleÂÂW°MemberExpressionÍÍ-JªIdentifierÍÍ%¦paramsJªIdentifierÍ&Í-§myScaleÂÂÀT«IfStatementÍCÍ—U°BinaryExpressionÍGÍaW°MemberExpressionÍGÍSJªIdentifierÍGÍM¦paramsJªIdentifierÍNÍS¥voiceÂÂ£!==JªIdentifierÍXÍa©undefinedK®BlockStatementÍcÍ—‘Q³ExpressionStatementÍrÍŒV´AssignmentExpressionÍrÍ‹¡=W°MemberExpressionÍrÍ|S®ThisExpressionÍrÍvJªIdentifierÍwÍ|¥voiceÂÂW°MemberExpressionÍÍ‹JªIdentifierÍÍ…¦paramsJªIdentifierÍ†Í‹¥voiceÂÂÀL°MethodDefinitionÍ¤ÍÄÂÂJªIdentifierÍ¤Í³¯updateStateVars¦methodM²FunctionExpressionÍ³ÍÄÀÂÂÂ‘JªIdentifierÍ´Íº¦paramsK®BlockStatementÍ¼ÍÄL°MethodDefinitionÍÊÍóÂÂJªIdentifierÍÊÍëÙ!purgeVariableDependenciesOnElmtId¦methodM²FunctionExpressionÍëÍóÀÂÂÂ‘JªIdentifierÍìÍô¨rmElmtIdK®BlockStatementÍöÍó”Q³ExpressionStatementÍÍ5R®CallExpressionÍÍ4W°MemberExpressionÍÍ*W°MemberExpressionÍÍS®ThisExpressionÍÍJªIdentifierÍÍ¬__attractionÂÂJªIdentifierÍÍ*·purgeDependencyOnElmtIdÂÂ‘JªIdentifierÍ+Í3¨rmElmtIdÂQ³ExpressionStatementÍ?ÍxR®CallExpressionÍ?ÍwW°MemberExpressionÍ?ÍmW°MemberExpressionÍ?ÍUS®ThisExpressionÍ?ÍCJªIdentifierÍDÍU±__travelPathStackÂÂJªIdentifierÍVÍm·purgeDependencyOnElmtIdÂÂ‘JªIdentifierÍnÍv¨rmElmtIdÂQ³ExpressionStatementÍ‚Í³R®CallExpressionÍ‚Í²W°MemberExpressionÍ‚Í¨W°MemberExpressionÍ‚ÍS®ThisExpressionÍ‚Í†JªIdentifierÍ‡Í©__myScaleÂÂJªIdentifierÍ‘Í¨·purgeDependencyOnElmtIdÂÂ‘JªIdentifierÍ©Í±¨rmElmtIdÂQ³ExpressionStatementÍ½ÍìR®CallExpressionÍ½ÍëW°MemberExpressionÍ½ÍáW°MemberExpressionÍ½ÍÉS®ThisExpressionÍ½ÍÁJªIdentifierÍÂÍÉ§__voiceÂÂJªIdentifierÍÊÍá·purgeDependencyOnElmtIdÂÂ‘JªIdentifierÍâÍê¨rmElmtIdÂL°MethodDefinitionÍùÍ-ÂÂJªIdentifierÍùÍ	°aboutToBeDeleted¦methodM²FunctionExpressionÍ	Í-ÀÂÂÂK®BlockStatementÍÍ-–Q³ExpressionStatementÍÍ<R®CallExpressionÍÍ;W°MemberExpressionÍÍ9W°MemberExpressionÍÍ(S®ThisExpressionÍÍJªIdentifierÍÍ(¬__attractionÂÂJªIdentifierÍ)Í9°aboutToBeDeletedÂÂÂQ³ExpressionStatementÍFÍpR®CallExpressionÍFÍoW°MemberExpressionÍFÍmW°MemberExpressionÍFÍ\S®ThisExpressionÍFÍJJªIdentifierÍKÍ\±__travelPathStackÂÂJªIdentifierÍ]Ím°aboutToBeDeletedÂÂÂQ³ExpressionStatementÍzÍœR®CallExpressionÍzÍ›W°MemberExpressionÍzÍ™W°MemberExpressionÍzÍˆS®ThisExpressionÍzÍ~JªIdentifierÍÍˆ©__myScaleÂÂJªIdentifierÍ‰Í™°aboutToBeDeletedÂÂÂQ³ExpressionStatementÍ¦ÍÆR®CallExpressionÍ¦ÍÅW°MemberExpressionÍ¦ÍÃW°MemberExpressionÍ¦Í²S®ThisExpressionÍ¦ÍªJªIdentifierÍ«Í²§__voiceÂÂJªIdentifierÍ³ÍÃ°aboutToBeDeletedÂÂÂQ³ExpressionStatementÍĞÍüR®CallExpressionÍĞÍûW°MemberExpressionÍĞÍîR®CallExpressionÍĞÍçW°MemberExpressionÍĞÍåJªIdentifierÍĞÍá±SubscriberManagerJªIdentifierÍâÍå£GetÂÂÂJªIdentifierÍèÍî¦deleteÂÂ‘R®CallExpressionÍïÍúW°MemberExpressionÍïÍøS®ThisExpressionÍïÍóJªIdentifierÍôÍø¤id__ÂÂÂÂQ³ExpressionStatementÍÍ&R®CallExpressionÍÍ%W°MemberExpressionÍÍ#S®ThisExpressionÍÍ
+JªIdentifierÍÍ#¸aboutToBeDeletedInternalÂÂÂL°MethodDefinitionÍ3ÍuÂÂJªIdentifierÍ7ÍAªattraction£getM²FunctionExpressionÍAÍuÀÂÂÂK®BlockStatementÍDÍu‘Ôr\”¤type¥start£end¨argument¯ReturnStatementÍOÍnR®CallExpressionÍVÍmW°MemberExpressionÍVÍkW°MemberExpressionÍVÍgS®ThisExpressionÍVÍZJªIdentifierÍ[Íg¬__attractionÂÂJªIdentifierÍhÍk£getÂÂÂL°MethodDefinitionÍ{ÍÆÂÂJªIdentifierÍÍ‰ªattraction£setM²FunctionExpressionÍ‰ÍÆÀÂÂÂ‘JªIdentifierÍŠÍ’¨newValueK®BlockStatementÍ”ÍÆ‘Q³ExpressionStatementÍŸÍ¿R®CallExpressionÍŸÍ¾W°MemberExpressionÍŸÍ´W°MemberExpressionÍŸÍ°S®ThisExpressionÍŸÍ£JªIdentifierÍ¤Í°¬__attractionÂÂJªIdentifierÍ±Í´£setÂÂ‘JªIdentifierÍµÍ½¨newValueÂL°MethodDefinitionÍÌÍ	ÂÂJªIdentifierÍĞÍß¯travelPathStack£getM²FunctionExpressionÍßÍ	ÀÂÂÂK®BlockStatementÍâÍ	‘\¯ReturnStatementÍíÍ	R®CallExpressionÍôÍ	W°MemberExpressionÍôÍ	W°MemberExpressionÍôÍ	
+S®ThisExpressionÍôÍøJªIdentifierÍùÍ	
+±__travelPathStackÂÂJªIdentifierÍ	Í	£getÂÂÂL°MethodDefinitionÍ	Í	sÂÂJªIdentifierÍ	"Í	1¯travelPathStack£setM²FunctionExpressionÍ	1Í	sÀÂÂÂ‘JªIdentifierÍ	2Í	:¨newValueK®BlockStatementÍ	<Í	s‘Q³ExpressionStatementÍ	GÍ	lR®CallExpressionÍ	GÍ	kW°MemberExpressionÍ	GÍ	aW°MemberExpressionÍ	GÍ	]S®ThisExpressionÍ	GÍ	KJªIdentifierÍ	LÍ	]±__travelPathStackÂÂJªIdentifierÍ	^Í	a£setÂÂ‘JªIdentifierÍ	bÍ	j¨newValueÂL°MethodDefinitionÍ	yÍ	µÂÂJªIdentifierÍ	}Í	„§myScale£getM²FunctionExpressionÍ	„Í	µÀÂÂÂK®BlockStatementÍ	‡Í	µ‘\¯ReturnStatementÍ	’Í	®R®CallExpressionÍ	™Í	­W°MemberExpressionÍ	™Í	«W°MemberExpressionÍ	™Í	§S®ThisExpressionÍ	™Í	JªIdentifierÍ	Í	§©__myScaleÂÂJªIdentifierÍ	¨Í	«£getÂÂÂL°MethodDefinitionÍ	»Í
+ ÂÂJªIdentifierÍ	¿Í	Æ§myScale£setM²FunctionExpressionÍ	ÆÍ
+ ÀÂÂÂ‘JªIdentifierÍ	ÇÍ	Ï¨newValueK®BlockStatementÍ	ÑÍ
+ ‘Q³ExpressionStatementÍ	ÜÍ	ùR®CallExpressionÍ	ÜÍ	øW°MemberExpressionÍ	ÜÍ	îW°MemberExpressionÍ	ÜÍ	êS®ThisExpressionÍ	ÜÍ	àJªIdentifierÍ	áÍ	ê©__myScaleÂÂJªIdentifierÍ	ëÍ	î£setÂÂ‘JªIdentifierÍ	ïÍ	÷¨newValueÂL°MethodDefinitionÍ
+Í
+>ÂÂJªIdentifierÍ
+
+Í
+¥voice£getM²FunctionExpressionÍ
+Í
+>ÀÂÂÂK®BlockStatementÍ
+Í
+>‘\¯ReturnStatementÍ
+Í
+7R®CallExpressionÍ
+$Í
+6W°MemberExpressionÍ
+$Í
+4W°MemberExpressionÍ
+$Í
+0S®ThisExpressionÍ
+$Í
+(JªIdentifierÍ
+)Í
+0§__voiceÂÂJªIdentifierÍ
+1Í
+4£getÂÂÂL°MethodDefinitionÍ
+DÍ
+…ÂÂJªIdentifierÍ
+HÍ
+M¥voice£setM²FunctionExpressionÍ
+MÍ
+…ÀÂÂÂ‘JªIdentifierÍ
+NÍ
+V¨newValueK®BlockStatementÍ
+XÍ
+…‘Q³ExpressionStatementÍ
+cÍ
+~R®CallExpressionÍ
+cÍ
+}W°MemberExpressionÍ
+cÍ
+sW°MemberExpressionÍ
+cÍ
+oS®ThisExpressionÍ
+cÍ
+gJªIdentifierÍ
+hÍ
+o§__voiceÂÂJªIdentifierÍ
+pÍ
+s£setÂÂ‘JªIdentifierÍ
+tÍ
+|¨newValueÂL°MethodDefinitionÍ
+‹ÍïÂÂJªIdentifierÍ
+‹Í
+˜­aboutToAppear¦methodM²FunctionExpressionÍ
+˜ÍïÀÂÂÂK®BlockStatementÍ
+›Íï˜Q³ExpressionStatementÍ
+¦ÍAR®CallExpressionÍ
+¦Í@W°MemberExpressionÍ
+¦Í
+¯JªIdentifierÍ
+¦Í
+«¥myMapJªIdentifierÍ
+¬Í
+¯£setÂÂ’P§LiteralÍ
+°Í
+´¦æ•…å®«¨"æ•…å®«"P§LiteralÍ
+¶Í?Úwåˆé—¨è¿›å…¥ â†’ å¤ªå’Œé—¨å¹¿åœº â†’ å¤ªå’Œæ®¿ï¼ˆé‡‘éŠ®æ®¿ï¼‰â†’ ä¸­å’Œæ®¿ï¼ˆçš‡å¸æ›´è¡£å¤„ï¼‰â†’ ä¿å’Œæ®¿ï¼ˆå®´ä¼šå’Œç§‘ä¸¾è€ƒåœºï¼‰â†’ ä¹¾æ¸…å®«ï¼ˆçš‡å¸å¯å®«ï¼‰â†’ äº¤æ³°æ®¿ï¼ˆçš‡åç”Ÿæ—¥åº†å…¸ï¼‰â†’ å¤å®å®«ï¼ˆçš‡åå¯å®«ï¼‰â†’ å¾¡èŠ±å›­ï¼ˆçš‡å®¶å›­æ—ï¼‰â†’ çå®é¦†ï¼ˆå±•ç¤ºçš‡å®¶çå®ï¼‰â†’ å¤©ç©¹å®æ®¿ â†’ å®å¯¿å®«ï¼ˆä¹¾éš†é€€ä½åå±…ä½ï¼‰â†’ ç¥æ­¦é—¨å‡ºÚy"åˆé—¨è¿›å…¥ â†’ å¤ªå’Œé—¨å¹¿åœº â†’ å¤ªå’Œæ®¿ï¼ˆé‡‘éŠ®æ®¿ï¼‰â†’ ä¸­å’Œæ®¿ï¼ˆçš‡å¸æ›´è¡£å¤„ï¼‰â†’ ä¿å’Œæ®¿ï¼ˆå®´ä¼šå’Œç§‘ä¸¾è€ƒåœºï¼‰â†’ ä¹¾æ¸…å®«ï¼ˆçš‡å¸å¯å®«ï¼‰â†’ äº¤æ³°æ®¿ï¼ˆçš‡åç”Ÿæ—¥åº†å…¸ï¼‰â†’ å¤å®å®«ï¼ˆçš‡åå¯å®«ï¼‰â†’ å¾¡èŠ±å›­ï¼ˆçš‡å®¶å›­æ—ï¼‰â†’ çå®é¦†ï¼ˆå±•ç¤ºçš‡å®¶çå®ï¼‰â†’ å¤©ç©¹å®æ®¿ â†’ å®å¯¿å®«ï¼ˆä¹¾éš†é€€ä½åå±…ä½ï¼‰â†’ ç¥æ­¦é—¨å‡º"ÂQ³ExpressionStatementÍKÍ¹R®CallExpressionÍKÍ¸W°MemberExpressionÍKÍTJªIdentifierÍKÍP¥myMapJªIdentifierÍQÍT£setÂÂ’P§LiteralÍUÍ[¬ç§¦å§‹çš‡é™µ®"ç§¦å§‹çš‡é™µ"P§LiteralÍ]Í·Ùòé™µå›­å…¥å£ â†’ 1å·å…µé©¬ä¿‘å‘ï¼ˆè§„æ¨¡æœ€å¤§ï¼‰â†’ 2å·å…µé©¬ä¿‘å‘ï¼ˆæˆ˜è½¦é™ˆåˆ—ï¼‰â†’ 3å·å…µé©¬ä¿‘å‘ï¼ˆæŒ‡æŒ¥ä¸­å¿ƒï¼‰â†’ é“œè½¦é©¬å±•å…ï¼ˆå±•ç¤ºä¸¤è¾†é’é“œé©¬è½¦ï¼‰â†’ ç§¦å§‹çš‡é™µå°åœŸå †è¿œè§‚ â†’ ä¸½å±±å›­ï¼ˆæ¨¡æ‹Ÿè€ƒå¤åŒºï¼‰Ùô"é™µå›­å…¥å£ â†’ 1å·å…µé©¬ä¿‘å‘ï¼ˆè§„æ¨¡æœ€å¤§ï¼‰â†’ 2å·å…µé©¬ä¿‘å‘ï¼ˆæˆ˜è½¦é™ˆåˆ—ï¼‰â†’ 3å·å…µé©¬ä¿‘å‘ï¼ˆæŒ‡æŒ¥ä¸­å¿ƒï¼‰â†’ é“œè½¦é©¬å±•å…ï¼ˆå±•ç¤ºä¸¤è¾†é’é“œé©¬è½¦ï¼‰â†’ ç§¦å§‹çš‡é™µå°åœŸå †è¿œè§‚ â†’ ä¸½å±±å›­ï¼ˆæ¨¡æ‹Ÿè€ƒå¤åŒºï¼‰"ÂQ³ExpressionStatementÍÃÍUR®CallExpressionÍÃÍTW°MemberExpressionÍÃÍÌJªIdentifierÍÃÍÈ¥myMapJªIdentifierÍÉÍÌ£setÂÂ’P§LiteralÍÍÍÑ¦é•¿åŸ¨"é•¿åŸ"P§LiteralÍÓÍSÚdå…¥å£ â†’ ç®­æ¥¼ï¼ˆå…³å£ï¼‰â†’ åŒ—ä¸€æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äºŒæ¥¼ï¼ˆçƒ½ç«å°ï¼Œè§‚èµé•¿åŸå…¨æ™¯ï¼‰â†’ åŒ—ä¸‰æ¥¼ï¼ˆçƒ½ç«å°ï¼Œè¾ƒä¸ºé™¡å³­ï¼‰â†’ åŒ—å››æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äº”æ¥¼ï¼ˆçƒ½ç«å°ï¼Œé‡è¦å†›äº‹ä½ç½®ï¼‰â†’ åŒ—å…­æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—ä¸ƒæ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—å…«æ¥¼ï¼ˆæœ€é«˜ç‚¹ï¼Œå¥½æ±‰å¡ï¼‰â†’ è¿”å›é€”ä¸­å¯é€‰çˆ¬å—é•¿åŸÚf"å…¥å£ â†’ ç®­æ¥¼ï¼ˆå…³å£ï¼‰â†’ åŒ—ä¸€æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äºŒæ¥¼ï¼ˆçƒ½ç«å°ï¼Œè§‚èµé•¿åŸå…¨æ™¯ï¼‰â†’ åŒ—ä¸‰æ¥¼ï¼ˆçƒ½ç«å°ï¼Œè¾ƒä¸ºé™¡å³­ï¼‰â†’ åŒ—å››æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—äº”æ¥¼ï¼ˆçƒ½ç«å°ï¼Œé‡è¦å†›äº‹ä½ç½®ï¼‰â†’ åŒ—å…­æ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—ä¸ƒæ¥¼ï¼ˆçƒ½ç«å°ï¼‰â†’ åŒ—å…«æ¥¼ï¼ˆæœ€é«˜ç‚¹ï¼Œå¥½æ±‰å¡ï¼‰â†’ è¿”å›é€”ä¸­å¯é€‰çˆ¬å—é•¿åŸ"ÂQ³ExpressionStatementÍ_ÍàR®CallExpressionÍ_ÍßW°MemberExpressionÍ_ÍhJªIdentifierÍ_Íd¥myMapJªIdentifierÍeÍh£setÂÂ’P§LiteralÍiÍp¯æ•¦ç…Œè«é«˜çªŸ±"æ•¦ç…Œè«é«˜çªŸ"P§LiteralÍrÍŞÚæ•°å­—å±•ç¤ºä¸­å¿ƒï¼ˆè§‚çœ‹ä»‹ç»å½±ç‰‡ï¼‰â†’ ä¹˜åæ™¯åŒºäº¤é€šè½¦ â†’ è«é«˜çªŸçªŸåŒº â†’ å‚è§‚ä¸»è¦æ´çªŸï¼ˆå¦‚96çªŸã€130çªŸã€148çªŸï¼‰â†’ ç‰¹çªŸå‚è§‚ï¼ˆéœ€é¢å¤–è´­ç¥¨ï¼‰â†’ è—ç»æ´ï¼ˆå‘ç°å¤§é‡æ–‡çŒ®çš„åœ°æ–¹ï¼‰â†’ è«é«˜çªŸåšç‰©é¦†ï¼ˆäº†è§£è«é«˜çªŸçš„å†å²å’Œè‰ºæœ¯ï¼‰Ú "æ•°å­—å±•ç¤ºä¸­å¿ƒï¼ˆè§‚çœ‹ä»‹ç»å½±ç‰‡ï¼‰â†’ ä¹˜åæ™¯åŒºäº¤é€šè½¦ â†’ è«é«˜çªŸçªŸåŒº â†’ å‚è§‚ä¸»è¦æ´çªŸï¼ˆå¦‚96çªŸã€130çªŸã€148çªŸï¼‰â†’ ç‰¹çªŸå‚è§‚ï¼ˆéœ€é¢å¤–è´­ç¥¨ï¼‰â†’ è—ç»æ´ï¼ˆå‘ç°å¤§é‡æ–‡çŒ®çš„åœ°æ–¹ï¼‰â†’ è«é«˜çªŸåšç‰©é¦†ï¼ˆäº†è§£è«é«˜çªŸçš„å†å²å’Œè‰ºæœ¯ï¼‰"ÂQ³ExpressionStatementÍêÍ`R®CallExpressionÍêÍ_W°MemberExpressionÍêÍóJªIdentifierÍêÍï¥myMapJªIdentifierÍğÍó£setÂÂ’P§LiteralÍôÍú¬ä¹å±±å¤§ä½›®"ä¹å±±å¤§ä½›"P§LiteralÍüÍ^Úå±±é—¨ â†’ é’Ÿé¼“æ¥¼ â†’ å‡Œäº‘å¯ºï¼ˆä½›æ•™åœ£åœ°ï¼‰â†’ ä¹æ›²æ ˆé“ï¼ˆä¸‹è‡³å¤§ä½›è„šéƒ¨ï¼Œé€”ä¸­å¯æ¬£èµå£é›•ï¼‰â†’ å¤§ä½›è„šéƒ¨å¹³å°ï¼ˆè¿‘è·ç¦»è§‚èµå¤§ä½›ï¼‰â†’ é‡æ–°æ²¿ä¹æ›²æ ˆé“è¿”å› â†’ è‹å›­ï¼ˆæ±Ÿå—å›­æ—é£æ ¼ï¼‰â†’ ä¹Œå°¤å¯ºï¼ˆè§‚èµä¹å±±å…¨æ™¯ï¼‰Ú"å±±é—¨ â†’ é’Ÿé¼“æ¥¼ â†’ å‡Œäº‘å¯ºï¼ˆä½›æ•™åœ£åœ°ï¼‰â†’ ä¹æ›²æ ˆé“ï¼ˆä¸‹è‡³å¤§ä½›è„šéƒ¨ï¼Œé€”ä¸­å¯æ¬£èµå£é›•ï¼‰â†’ å¤§ä½›è„šéƒ¨å¹³å°ï¼ˆè¿‘è·ç¦»è§‚èµå¤§ä½›ï¼‰â†’ é‡æ–°æ²¿ä¹æ›²æ ˆé“è¿”å› â†’ è‹å›­ï¼ˆæ±Ÿå—å›­æ—é£æ ¼ï¼‰â†’ ä¹Œå°¤å¯ºï¼ˆè§‚èµä¹å±±å…¨æ™¯ï¼‰"ÂQ³ExpressionStatementÍjÍR®CallExpressionÍjÍW°MemberExpressionÍjÍsJªIdentifierÍjÍo¥myMapJªIdentifierÍpÍs£setÂÂ’P§LiteralÍtÍy©é¢å’Œå›­«"é¢å’Œå›­"P§LiteralÍ{ÍÚ|ä¸œå®«é—¨è¿›å…¥ â†’ è‹å·è¡—ï¼ˆæ¨¡ä»¿æ±Ÿå—æ°´ä¹¡ï¼‰â†’ ä¹°å–è¡—ï¼ˆå¤å•†ä¸šè¡—ï¼‰â†’ é•¿å»Šï¼ˆç”»å»Šï¼Œæ¬£èµå£ç”»ï¼‰â†’ æ’äº‘æ®¿ï¼ˆæ…ˆç¦§ç¥å¯¿çš„åœ°æ–¹ï¼‰â†’ ä½›é¦™é˜ï¼ˆä¿¯ç°æ•´ä¸ªå›­æ—ï¼‰â†’ å®œèŠ¸é¦†ï¼ˆçš‡å®¶ä¹¦å±‹ï¼‰â†’ å¾·å’Œå›­ï¼ˆå¤§æˆæ¥¼ï¼‰â†’ æ˜†æ˜æ¹–ï¼ˆåˆ’èˆ¹æˆ–ç¯æ¹–æ•£æ­¥ï¼‰â†’ åä¸ƒå­”æ¡¥ï¼ˆè¿æ¥ä¸œå²¸å’Œå—æ¹–å²›ï¼‰â†’ é“œç‰›ï¼ˆæ˜†æ˜æ¹–ç•”çš„é“œåƒï¼‰Ú~"ä¸œå®«é—¨è¿›å…¥ â†’ è‹å·è¡—ï¼ˆæ¨¡ä»¿æ±Ÿå—æ°´ä¹¡ï¼‰â†’ ä¹°å–è¡—ï¼ˆå¤å•†ä¸šè¡—ï¼‰â†’ é•¿å»Šï¼ˆç”»å»Šï¼Œæ¬£èµå£ç”»ï¼‰â†’ æ’äº‘æ®¿ï¼ˆæ…ˆç¦§ç¥å¯¿çš„åœ°æ–¹ï¼‰â†’ ä½›é¦™é˜ï¼ˆä¿¯ç°æ•´ä¸ªå›­æ—ï¼‰â†’ å®œèŠ¸é¦†ï¼ˆçš‡å®¶ä¹¦å±‹ï¼‰â†’ å¾·å’Œå›­ï¼ˆå¤§æˆæ¥¼ï¼‰â†’ æ˜†æ˜æ¹–ï¼ˆåˆ’èˆ¹æˆ–ç¯æ¹–æ•£æ­¥ï¼‰â†’ åä¸ƒå­”æ¡¥ï¼ˆè¿æ¥ä¸œå²¸å’Œå—æ¹–å²›ï¼‰â†’ é“œç‰›ï¼ˆæ˜†æ˜æ¹–ç•”çš„é“œåƒï¼‰"ÂQ³ExpressionStatementÍÍR®CallExpressionÍÍŒW°MemberExpressionÍÍJªIdentifierÍÍ¥myMapJªIdentifierÍÍ£setÂÂ’P§LiteralÍÍ¦å¤©å›¨"å¤©å›"P§LiteralÍÍ‹Ú*å—é—¨è¿›å…¥ â†’ åœœä¸˜å›ï¼ˆå†¬è‡³ç¥­å¤©çš„åœ°æ–¹ï¼‰â†’ å›éŸ³å£ï¼ˆå£°å­¦å¥‡è¿¹ï¼‰â†’ ç¥ˆå¹´æ®¿ï¼ˆç¥ˆæ±‚ä¸°æ”¶çš„åœ°æ–¹ï¼‰â†’ ç¥ˆå¹´é—¨ â†’ é•¿å»Šï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡ï¼‰â†’ ä¸¹é™›æ¡¥ï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡çš„ç –çŸ³æ¡¥ï¼‰â†’ æ–‹å®«ï¼ˆçš‡å¸ç¥­å¤©å‰æ–‹æˆ’çš„åœ°æ–¹ï¼‰â†’ åŒ—é—¨å‡ºÚ,"å—é—¨è¿›å…¥ â†’ åœœä¸˜å›ï¼ˆå†¬è‡³ç¥­å¤©çš„åœ°æ–¹ï¼‰â†’ å›éŸ³å£ï¼ˆå£°å­¦å¥‡è¿¹ï¼‰â†’ ç¥ˆå¹´æ®¿ï¼ˆç¥ˆæ±‚ä¸°æ”¶çš„åœ°æ–¹ï¼‰â†’ ç¥ˆå¹´é—¨ â†’ é•¿å»Šï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡ï¼‰â†’ ä¸¹é™›æ¡¥ï¼ˆè¿æ¥ç¥ˆå¹´æ®¿å’Œçš‡ç©¹å®‡çš„ç –çŸ³æ¡¥ï¼‰â†’ æ–‹å®«ï¼ˆçš‡å¸ç¥­å¤©å‰æ–‹æˆ’çš„åœ°æ–¹ï¼‰â†’ åŒ—é—¨å‡º"ÂQ³ExpressionStatementÍ—ÍèV´AssignmentExpressionÍ—Íç¡=W°MemberExpressionÍ—Í¦S®ThisExpressionÍ—Í›JªIdentifierÍœÍ¦ªattractionÂÂW°MemberExpressionÍ©ÍçR®CallExpressionÍ©ÍäW°MemberExpressionÍ©ÍÌW°MemberExpressionÍ©Í½S®ThisExpressionÍ©Í­JªIdentifierÍ®Í½¯travelPathStackÂÂJªIdentifierÍ¾ÍÌ®getParamByNameÂÂ‘P§LiteralÍÍÍã´AttractionDetailPage¶'AttractionDetailPage'ÂP§LiteralÍåÍæ ¡0ÃÂL°MethodDefinitionÍõÍ)ÂÂÂJªIdentifierÍõÍ­initialRender¦methodM²FunctionExpressionÍÍ)ÂÀÂÂÂK®BlockStatementÍÍ)Â’Q³ExpressionStatementÍÍ)œR®CallExpressionÍÍ)›W°MemberExpressionÍÍ.S®ThisExpressionÍÍJªIdentifierÍÍ.¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ/Í)ŠÀÂÂÂ’JªIdentifierÍ0Í6¦elmtIdJªIdentifierÍ8ÍG¯isInitialRenderK®BlockStatementÍLÍ)Š“Q³ExpressionStatementÍ[Í(ÙR®CallExpressionÍ[Í(ØW°MemberExpressionÍ[ÍpJªIdentifierÍ[Íi®NavDestinationJªIdentifierÍjÍp¦createÂÂ’M·ArrowFunctionExpressionÍqÍ(xÀÂÂÂK®BlockStatementÍwÍ(xÜ Q³ExpressionStatementÍŠÍÖR®CallExpressionÍŠÍÕW°MemberExpressionÍŠÍ¨S®ThisExpressionÍŠÍJªIdentifierÍÍ¨¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ©ÍÌÀÂÂÂ’JªIdentifierÍªÍ°¦elmtIdJªIdentifierÍ²ÍÁ¯isInitialRenderK®BlockStatementÍÆÍÌ”Q³ExpressionStatementÍİÍíR®CallExpressionÍİÍìW°MemberExpressionÍİÍêJªIdentifierÍİÍã¦ColumnJªIdentifierÍäÍê¦createÂÂÂQ³ExpressionStatementÍÍcR®CallExpressionÍÍbW°MemberExpressionÍÍJªIdentifierÍÍ	¦ColumnJªIdentifierÍ
+Í©debugLineÂÂ’P§LiteralÍÍWÙAfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(30:7)ÙC"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(30:7)"P§LiteralÍYÍa¦travel¨"travel"ÂQ³ExpressionStatementÍyÍR®CallExpressionÍyÍŒW°MemberExpressionÍyÍ…JªIdentifierÍyÍ¦ColumnJªIdentifierÍ€Í…¥widthÂÂ‘P§LiteralÍ†Í‹£95%¥'95%'ÂQ³ExpressionStatementÍ£Í¹R®CallExpressionÍ£Í¸W°MemberExpressionÍ£Í°JªIdentifierÍ£Í©¦ColumnJªIdentifierÍªÍ°¦heightÂÂ‘P§LiteralÍ±Í·¤100%¦'100%'ÂJªIdentifierÍÎÍÔ¦ColumnÂQ³ExpressionStatementÍèÍ7R®CallExpressionÍèÍ6W°MemberExpressionÍèÍS®ThisExpressionÍèÍìJªIdentifierÍíÍ¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍÍ0ÀÂÂÂ’JªIdentifierÍÍ¦elmtIdJªIdentifierÍÍ¯isInitialRenderK®BlockStatementÍ$Í0”Q³ExpressionStatementÍ;ÍHR®CallExpressionÍ;ÍGW°MemberExpressionÍ;ÍEJªIdentifierÍ;Í>£RowJªIdentifierÍ?ÍE¦createÂÂÂQ³ExpressionStatementÍ^Í»R®CallExpressionÍ^ÍºW°MemberExpressionÍ^ÍkJªIdentifierÍ^Ía£RowJªIdentifierÍbÍk©debugLineÂÂ’P§LiteralÍlÍ¯ÙAfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(31:9)ÙC"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(31:9)"P§LiteralÍ±Í¹¦travel¨"travel"ÂQ³ExpressionStatementÍÑÍãR®CallExpressionÍÑÍâW°MemberExpressionÍÑÍÚJªIdentifierÍÑÍÔ£RowJªIdentifierÍÕÍÚ¥widthÂÂ‘P§LiteralÍÛÍá¤100%¦'100%'ÂQ³ExpressionStatementÍùÍR®CallExpressionÍùÍW°MemberExpressionÍùÍJªIdentifierÍùÍü£RowJªIdentifierÍıÍ®justifyContentÂÂ‘W°MemberExpressionÍÍJªIdentifierÍÍ©FlexAlignJªIdentifierÍÍ¥StartÂÂÂJªIdentifierÍ2Í5£RowÂQ³ExpressionStatementÍIÍpR®CallExpressionÍIÍoW°MemberExpressionÍIÍgS®ThisExpressionÍIÍMJªIdentifierÍNÍg¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍhÍgÀÂÂÂ’JªIdentifierÍiÍo¦elmtIdJªIdentifierÍqÍ€¯isInitialRenderK®BlockStatementÍ…Íg•Q³ExpressionStatementÍœÍR®CallExpressionÍœÍW°MemberExpressionÍœÍ¨JªIdentifierÍœÍ¡¥ImageJªIdentifierÍ¢Í¨¦createÂÂ‘Y°ObjectExpressionÍ©Í•Z¨PropertyÍ«Í¹ÂÂÂP§LiteralÍ«Í¯¢id¤"id"P§LiteralÍ±Í¹Î  ¨83886088¤initZ¨PropertyÍ»ÍÈÂÂÂP§LiteralÍ»ÍÁ¤type¦"type"P§LiteralÍÃÍÈÍN ¥20000¤initZ¨PropertyÍÊÍÔÂÂÂJªIdentifierÍÊÍĞ¦params[¯ArrayExpressionÍÒÍÔ¤initZ¨PropertyÍÖÍüÂÂÂP§LiteralÍÖÍâªbundleName¬"bundleName"P§LiteralÍäÍü¶com.example.ictproject¸"com.example.ictproject"¤initZ¨PropertyÍşÍÂÂÂP§LiteralÍşÍ
+ªmoduleName¬"moduleName"P§LiteralÍÍ¦Travel¨"Travel"¤initÂQ³ExpressionStatementÍ.ÍR®CallExpressionÍ.ÍW°MemberExpressionÍ.Í=JªIdentifierÍ.Í3¥ImageJªIdentifierÍ4Í=©debugLineÂÂ’P§LiteralÍ>Í‚ÙBfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(32:11)ÙD"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(32:11)"P§LiteralÍ„ÍŒ¦travel¨"travel"ÂQ³ExpressionStatementÍ¤Í´R®CallExpressionÍ¤Í³W°MemberExpressionÍ¤Í¯JªIdentifierÍ¤Í©¥ImageJªIdentifierÍªÍ¯¥widthÂÂ‘P§LiteralÍ°Í²¢30ÂQ³ExpressionStatementÍÊÍÛR®CallExpressionÍÊÍÚW°MemberExpressionÍÊÍÖJªIdentifierÍÊÍÏ¥ImageJªIdentifierÍĞÍÖ¦heightÂÂ‘P§LiteralÍ×ÍÙ¢30ÂQ³ExpressionStatementÍñÍTR®CallExpressionÍñÍSW°MemberExpressionÍñÍşJªIdentifierÍñÍö¥ImageJªIdentifierÍ÷Íş§onClickÂÂ‘M·ArrowFunctionExpressionÍÿÍRÀÂÂÂK®BlockStatementÍÍR‘Q³ExpressionStatementÍ Í;R®CallExpressionÍ Í:W°MemberExpressionÍ Í8W°MemberExpressionÍ Í4S®ThisExpressionÍ Í$JªIdentifierÍ%Í4¯travelPathStackÂÂJªIdentifierÍ5Í8£popÂÂÂÂJªIdentifierÍiÍn¥ImageÂQ³ExpressionStatementÍ‚ÍÕR®CallExpressionÍ‚ÍÔW°MemberExpressionÍ‚Í S®ThisExpressionÍ‚Í†JªIdentifierÍ‡Í ¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ¡ÍÎÀÂÂÂ’JªIdentifierÍ¢Í¨¦elmtIdJªIdentifierÍªÍ¹¯isInitialRenderK®BlockStatementÍ¾ÍÎ”Q³ExpressionStatementÍÕÍâR®CallExpressionÍÕÍáW°MemberExpressionÍÕÍßJªIdentifierÍÕÍØ£RowJªIdentifierÍÙÍß¦createÂÂÂQ³ExpressionStatementÍøÍVR®CallExpressionÍøÍUW°MemberExpressionÍøÍJªIdentifierÍøÍû£RowJªIdentifierÍüÍ©debugLineÂÂ’P§LiteralÍÍJÙBfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(38:11)ÙD"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(38:11)"P§LiteralÍLÍT¦travel¨"travel"ÂQ³ExpressionStatementÍlÍ€R®CallExpressionÍlÍW°MemberExpressionÍlÍ|JªIdentifierÍlÍo£RowJªIdentifierÍpÍ|¬layoutWeightÂÂ‘P§LiteralÍ}Í~¡1ÂQ³ExpressionStatementÍ–Í»R®CallExpressionÍ–ÍºW°MemberExpressionÍ–Í¨JªIdentifierÍ–Í™£RowJªIdentifierÍšÍ¨®justifyContentÂÂ‘W°MemberExpressionÍ©Í¹JªIdentifierÍ©Í²©FlexAlignJªIdentifierÍ³Í¹¦CenterÂÂÂJªIdentifierÍĞÍÓ£RowÂQ³ExpressionStatementÍçÍ|R®CallExpressionÍçÍ{W°MemberExpressionÍçÍS®ThisExpressionÍçÍëJªIdentifierÍìÍ¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍÍtÀÂÂÂ’JªIdentifierÍÍ¦elmtIdJªIdentifierÍÍ¯isInitialRenderK®BlockStatementÍ#Ít•Q³ExpressionStatementÍ:Í\R®CallExpressionÍ:Í[W°MemberExpressionÍ:ÍEJªIdentifierÍ:Í>¤TextJªIdentifierÍ?ÍE¦createÂÂ‘W°MemberExpressionÍFÍZW°MemberExpressionÍFÍUS®ThisExpressionÍFÍJJªIdentifierÍKÍUªattractionÂÂJªIdentifierÍVÍZ¤nameÂÂÂQ³ExpressionStatementÍrÍÑR®CallExpressionÍrÍĞW°MemberExpressionÍrÍ€JªIdentifierÍrÍv¤TextJªIdentifierÍwÍ€©debugLineÂÂ’P§LiteralÍÍÅÙBfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(39:13)ÙD"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(39:13)"P§LiteralÍÇÍÏ¦travel¨"travel"ÂQ³ExpressionStatementÍçÍùR®CallExpressionÍçÍøW°MemberExpressionÍçÍôJªIdentifierÍçÍë¤TextJªIdentifierÍìÍô¨fontSizeÂÂ‘P§LiteralÍõÍ÷¢20ÂQ³ExpressionStatementÍÍ0R®CallExpressionÍÍ/W°MemberExpressionÍÍJªIdentifierÍÍ¤TextJªIdentifierÍÍªfontWeightÂÂ‘W°MemberExpressionÍÍ.JªIdentifierÍÍ)ªFontWeightJªIdentifierÍ*Í.¤BoldÂÂÂQ³ExpressionStatementÍFÍaR®CallExpressionÍFÍ`W°MemberExpressionÍFÍQJªIdentifierÍFÍJ¤TextJªIdentifierÍKÍQ¦marginÂÂ‘Y°ObjectExpressionÍRÍ_‘Z¨PropertyÍTÍ]ÂÂÂJªIdentifierÍTÍY¥rightP§LiteralÍ[Í]¢15¤initÂJªIdentifierÍvÍz¤TextÂQ³ExpressionStatementÍÍ™R®CallExpressionÍÍ˜W°MemberExpressionÍÍ–JªIdentifierÍÍ’¤TextJªIdentifierÍ“Í–£popÂÂÂQ³ExpressionStatementÍ«ÍŸR®CallExpressionÍ«ÍW°MemberExpressionÍ«ÍÉS®ThisExpressionÍ«Í¯JªIdentifierÍ°ÍÉ¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍÊÍ–ÀÂÂÂ’JªIdentifierÍËÍÑ¦elmtIdJªIdentifierÍÓÍâ¯isInitialRenderK®BlockStatementÍçÍ–’Q³ExpressionStatementÍşÍR®CallExpressionÍşÍW°MemberExpressionÍşÍ
+JªIdentifierÍşÍ¥BlankJªIdentifierÍÍ
+¦createÂÂÂQ³ExpressionStatementÍ#ÍƒR®CallExpressionÍ#Í‚W°MemberExpressionÍ#Í2JªIdentifierÍ#Í(¥BlankJªIdentifierÍ)Í2©debugLineÂÂ’P§LiteralÍ3ÍwÙBfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(43:13)ÙD"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(43:13)"P§LiteralÍyÍ¦travel¨"travel"ÂJªIdentifierÍ˜Í¥BlankÂQ³ExpressionStatementÍ±Í½R®CallExpressionÍ±Í¼W°MemberExpressionÍ±ÍºJªIdentifierÍ±Í¶¥BlankJªIdentifierÍ·Íº£popÂÂÂQ³ExpressionStatementÍÏÍ 7R®CallExpressionÍÏÍ 6W°MemberExpressionÍÏÍíS®ThisExpressionÍÏÍÓJªIdentifierÍÔÍí¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍîÍ 1ÀÂÂÂ’JªIdentifierÍïÍõ¦elmtIdJªIdentifierÍ÷Í¯isInitialRenderK®BlockStatementÍÍ 1’Q³ExpressionStatementÍ"Í.R®CallExpressionÍ"Í-W°MemberExpressionÍ"Í+JªIdentifierÍ"Í$¢IfJªIdentifierÍ%Í+¦createÂÂÂT«IfStatementÍDÍ U°BinaryExpressionÍHÍ\W°MemberExpressionÍHÍRS®ThisExpressionÍHÍLJªIdentifierÍMÍR¥voiceÂÂ£===P§LiteralÍWÍ\Â¥falseK®BlockStatementÍ^Í°‘Q³ExpressionStatementÍyÍ™R®CallExpressionÍyÍ˜W°MemberExpressionÍyÍ˜S®ThisExpressionÍyÍ}JªIdentifierÍ~Í˜ºifElseBranchUpdateFunctionÂÂ’P§LiteralÍ™Íš ¡0M·ArrowFunctionExpressionÍœÍ—ÀÂÂÂK®BlockStatementÍ¢Í—‘Q³ExpressionStatementÍÁÍ|R®CallExpressionÍÁÍ{W°MemberExpressionÍÁÍßS®ThisExpressionÍÁÍÅJªIdentifierÍÆÍß¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍàÍsÀÂÂÂ’JªIdentifierÍáÍç¦elmtIdJªIdentifierÍéÍø¯isInitialRenderK®BlockStatementÍıÍs–Q³ExpressionStatementÍ ÍœR®CallExpressionÍ Í›W°MemberExpressionÍ Í,JªIdentifierÍ Í%¥ImageJªIdentifierÍ&Í,¦createÂÂ‘Y°ObjectExpressionÍ-Íš•Z¨PropertyÍ/Í=ÂÂÂP§LiteralÍ/Í3¢id¤"id"P§LiteralÍ5Í=Î  ¨33554446¤initZ¨PropertyÍ?ÍLÂÂÂP§LiteralÍ?ÍE¤type¦"type"P§LiteralÍGÍLÍN ¥20000¤initZ¨PropertyÍNÍXÂÂÂJªIdentifierÍNÍT¦params[¯ArrayExpressionÍVÍX¤initZ¨PropertyÍZÍ€ÂÂÂP§LiteralÍZÍfªbundleName¬"bundleName"P§LiteralÍhÍ€¶com.example.ictproject¸"com.example.ictproject"¤initZ¨PropertyÍ‚Í˜ÂÂÂP§LiteralÍ‚ÍªmoduleName¬"moduleName"P§LiteralÍÍ˜¦Travel¨"Travel"¤initÂQ³ExpressionStatementÍ¾ÍR®CallExpressionÍ¾ÍW°MemberExpressionÍ¾ÍÍJªIdentifierÍ¾ÍÃ¥ImageJªIdentifierÍÄÍÍ©debugLineÂÂ’P§LiteralÍÎÍÙBfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(45:15)ÙD"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(45:15)"P§LiteralÍÍ¦travel¨"travel"ÂQ³ExpressionStatementÍ@ÍPR®CallExpressionÍ@ÍOW°MemberExpressionÍ@ÍKJªIdentifierÍ@ÍE¥ImageJªIdentifierÍFÍK¥widthÂÂ‘P§LiteralÍLÍN¢30ÂQ³ExpressionStatementÍrÍƒR®CallExpressionÍrÍ‚W°MemberExpressionÍrÍ~JªIdentifierÍrÍw¥ImageJªIdentifierÍxÍ~¦heightÂÂ‘P§LiteralÍÍ¢30ÂQ³ExpressionStatementÍ¥ÍÀR®CallExpressionÍ¥Í¿W°MemberExpressionÍ¥Í±JªIdentifierÍ¥Íª¥ImageJªIdentifierÍ«Í±¦marginÂÂ‘Y°ObjectExpressionÍ²Í¾‘Z¨PropertyÍ´Í¼ÂÂÂJªIdentifierÍ´Í¸¤leftP§LiteralÍºÍ¼¢15¤initÂQ³ExpressionStatementÍâÍTR®CallExpressionÍâÍSW°MemberExpressionÍâÍïJªIdentifierÍâÍç¥ImageJªIdentifierÍèÍï§onClickÂÂ‘M·ArrowFunctionExpressionÍğÍRÀÂÂÂK®BlockStatementÍöÍR‘Q³ExpressionStatementÍÍ/V´AssignmentExpressionÍÍ.¡=W°MemberExpressionÍÍ'S®ThisExpressionÍÍ!JªIdentifierÍ"Í'¥voiceÂÂP§LiteralÍ*Í.Ã¤trueÂJªIdentifierÍuÍz¥ImageÂÂK®BlockStatementÍËÍ ‘Q³ExpressionStatementÍæÍ R®CallExpressionÍæÍ W°MemberExpressionÍæÍS®ThisExpressionÍæÍêJªIdentifierÍëÍºifElseBranchUpdateFunctionÂÂ’P§LiteralÍÍ¡1M·ArrowFunctionExpressionÍ	Í ÀÂÂÂK®BlockStatementÍÍ ‘Q³ExpressionStatementÍ.ÍêR®CallExpressionÍ.ÍéW°MemberExpressionÍ.ÍLS®ThisExpressionÍ.Í2JªIdentifierÍ3ÍL¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍMÍáÀÂÂÂ’JªIdentifierÍNÍT¦elmtIdJªIdentifierÍVÍe¯isInitialRenderK®BlockStatementÍjÍá–Q³ExpressionStatementÍÍ	R®CallExpressionÍÍW°MemberExpressionÍÍ™JªIdentifierÍÍ’¥ImageJªIdentifierÍ“Í™¦createÂÂ‘Y°ObjectExpressionÍšÍ•Z¨PropertyÍœÍªÂÂÂP§LiteralÍœÍ ¢id¤"id"P§LiteralÍ¢ÍªÎ  ¨33554445¤initZ¨PropertyÍ¬Í¹ÂÂÂP§LiteralÍ¬Í²¤type¦"type"P§LiteralÍ´Í¹ÍN ¥20000¤initZ¨PropertyÍ»ÍÅÂÂÂJªIdentifierÍ»ÍÁ¦params[¯ArrayExpressionÍÃÍÅ¤initZ¨PropertyÍÇÍíÂÂÂP§LiteralÍÇÍÓªbundleName¬"bundleName"P§LiteralÍÕÍí¶com.example.ictproject¸"com.example.ictproject"¤initZ¨PropertyÍïÍÂÂÂP§LiteralÍïÍûªmoduleName¬"moduleName"P§LiteralÍıÍ¦Travel¨"Travel"¤initÂQ³ExpressionStatementÍ+Í‹R®CallExpressionÍ+ÍŠW°MemberExpressionÍ+Í:JªIdentifierÍ+Í0¥ImageJªIdentifierÍ1Í:©debugLineÂÂ’P§LiteralÍ;ÍÙBfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(53:15)ÙD"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(53:15)"P§LiteralÍÍ‰¦travel¨"travel"ÂQ³ExpressionStatementÍ­Í½R®CallExpressionÍ­Í¼W°MemberExpressionÍ­Í¸JªIdentifierÍ­Í²¥ImageJªIdentifierÍ³Í¸¥widthÂÂ‘P§LiteralÍ¹Í»¢30ÂQ³ExpressionStatementÍßÍğR®CallExpressionÍßÍïW°MemberExpressionÍßÍëJªIdentifierÍßÍä¥ImageJªIdentifierÍåÍë¦heightÂÂ‘P§LiteralÍìÍî¢30ÂQ³ExpressionStatementÍÍ-R®CallExpressionÍÍ,W°MemberExpressionÍÍJªIdentifierÍÍ¥ImageJªIdentifierÍÍ¦marginÂÂ‘Y°ObjectExpressionÍÍ+‘Z¨PropertyÍ!Í)ÂÂÂJªIdentifierÍ!Í%¤leftP§LiteralÍ'Í)¢15¤initÂQ³ExpressionStatementÍOÍÂR®CallExpressionÍOÍÁW°MemberExpressionÍOÍ\JªIdentifierÍOÍT¥ImageJªIdentifierÍUÍ\§onClickÂÂ‘M·ArrowFunctionExpressionÍ]ÍÀÀÂÂÂK®BlockStatementÍcÍÀ‘Q³ExpressionStatementÍŠÍV´AssignmentExpressionÍŠÍœ¡=W°MemberExpressionÍŠÍ”S®ThisExpressionÍŠÍJªIdentifierÍÍ”¥voiceÂÂP§LiteralÍ—ÍœÂ¥falseÂJªIdentifierÍãÍè¥ImageÂÂJªIdentifierÍ 3Í 5¢IfÂQ³ExpressionStatementÍ IÍ RR®CallExpressionÍ IÍ QW°MemberExpressionÍ IÍ OJªIdentifierÍ IÍ K¢IfJªIdentifierÍ LÍ O£popÂÂÂQ³ExpressionStatementÍ dÍ nR®CallExpressionÍ dÍ mW°MemberExpressionÍ dÍ kJªIdentifierÍ dÍ g£RowJªIdentifierÍ hÍ k£popÂÂÂQ³ExpressionStatementÍ €Í ŠR®CallExpressionÍ €Í ‰W°MemberExpressionÍ €Í ‡JªIdentifierÍ €Í ƒ£RowJªIdentifierÍ „Í ‡£popÂÂÂQ³ExpressionStatementÍ œÍ"{R®CallExpressionÍ œÍ"zW°MemberExpressionÍ œÍ ºS®ThisExpressionÍ œÍ  JªIdentifierÍ ¡Í º¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ »Í"rÀÂÂÂ’JªIdentifierÍ ¼Í Â¦elmtIdJªIdentifierÍ ÄÍ Ó¯isInitialRenderK®BlockStatementÍ ØÍ"r•Q³ExpressionStatementÍ ïÍ!kR®CallExpressionÍ ïÍ!jW°MemberExpressionÍ ïÍ ûJªIdentifierÍ ïÍ ô¥ImageJªIdentifierÍ õÍ û¦createÂÂ‘Y°ObjectExpressionÍ üÍ!i•Z¨PropertyÍ şÍ!ÂÂÂP§LiteralÍ şÍ!¢id¤"id"P§LiteralÍ!Í!Î  ¨33554444¤initZ¨PropertyÍ!Í!ÂÂÂP§LiteralÍ!Í!¤type¦"type"P§LiteralÍ!Í!ÍN ¥20000¤initZ¨PropertyÍ!Í!'ÂÂÂJªIdentifierÍ!Í!#¦params[¯ArrayExpressionÍ!%Í!'¤initZ¨PropertyÍ!)Í!OÂÂÂP§LiteralÍ!)Í!5ªbundleName¬"bundleName"P§LiteralÍ!7Í!O¶com.example.ictproject¸"com.example.ictproject"¤initZ¨PropertyÍ!QÍ!gÂÂÂP§LiteralÍ!QÍ!]ªmoduleName¬"moduleName"P§LiteralÍ!_Í!g¦Travel¨"Travel"¤initÂQ³ExpressionStatementÍ!Í!àR®CallExpressionÍ!Í!ßW°MemberExpressionÍ!Í!JªIdentifierÍ!Í!†¥ImageJªIdentifierÍ!‡Í!©debugLineÂÂ’P§LiteralÍ!‘Í!ÔÙAfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(69:9)ÙC"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(69:9)"P§LiteralÍ!ÖÍ!Ş¦travel¨"travel"ÂQ³ExpressionStatementÍ!öÍ"
+R®CallExpressionÍ!öÍ"	W°MemberExpressionÍ!öÍ"JªIdentifierÍ!öÍ!û¥ImageJªIdentifierÍ!üÍ"¥widthÂÂ‘P§LiteralÍ"Í"¤100%¦'100%'ÂQ³ExpressionStatementÍ" Í"2R®CallExpressionÍ" Í"1W°MemberExpressionÍ" Í",JªIdentifierÍ" Í"%¥ImageJªIdentifierÍ"&Í",¦heightÂÂ‘P§LiteralÍ"-Í"0Í,£300ÂQ³ExpressionStatementÍ"HÍ"_R®CallExpressionÍ"HÍ"^W°MemberExpressionÍ"HÍ"ZJªIdentifierÍ"HÍ"M¥ImageJªIdentifierÍ"NÍ"Z¬borderRadiusÂÂ‘P§LiteralÍ"[Í"]
+¢10ÂJªIdentifierÍ"tÍ"y¥ImageÂQ³ExpressionStatementÍ"Í#üR®CallExpressionÍ"Í#ûW°MemberExpressionÍ"Í"«S®ThisExpressionÍ"Í"‘JªIdentifierÍ"’Í"«¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ"¬Í#òÀÂÂÂ’JªIdentifierÍ"­Í"³¦elmtIdJªIdentifierÍ"µÍ"Ä¯isInitialRenderK®BlockStatementÍ"ÉÍ#ò”Q³ExpressionStatementÍ"àÍ"ğR®CallExpressionÍ"àÍ"ïW°MemberExpressionÍ"àÍ"íJªIdentifierÍ"àÍ"æ¦ColumnJªIdentifierÍ"çÍ"í¦createÂÂÂQ³ExpressionStatementÍ#Í#fR®CallExpressionÍ#Í#eW°MemberExpressionÍ#Í#JªIdentifierÍ#Í#¦ColumnJªIdentifierÍ#Í#©debugLineÂÂ’P§LiteralÍ#Í#ZÙAfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(74:9)ÙC"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(74:9)"P§LiteralÍ#\Í#d¦travel¨"travel"ÂQ³ExpressionStatementÍ#|Í#¥R®CallExpressionÍ#|Í#¤W°MemberExpressionÍ#|Í#JªIdentifierÍ#|Í#‚¦ColumnJªIdentifierÍ#ƒÍ#ªalignItemsÂÂ‘W°MemberExpressionÍ#Í#£JªIdentifierÍ#Í#¯HorizontalAlignJªIdentifierÍ#Í#£¥StartÂÂÂQ³ExpressionStatementÍ#»Í#ßR®CallExpressionÍ#»Í#ŞW°MemberExpressionÍ#»Í#ÑJªIdentifierÍ#»Í#Á¦ColumnJªIdentifierÍ#ÂÍ#Ñ¯backgroundColorÂÂ‘W°MemberExpressionÍ#ÒÍ#İJªIdentifierÍ#ÒÍ#×¥ColorJªIdentifierÍ#ØÍ#İ¥WhiteÂÂÂJªIdentifierÍ#ôÍ#ú¦ColumnÂQ³ExpressionStatementÍ$Í&R®CallExpressionÍ$Í&W°MemberExpressionÍ$Í$,S®ThisExpressionÍ$Í$JªIdentifierÍ$Í$,¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ$-Í&ÀÂÂÂ’JªIdentifierÍ$.Í$4¦elmtIdJªIdentifierÍ$6Í$E¯isInitialRenderK®BlockStatementÍ$JÍ&˜Q³ExpressionStatementÍ$aÍ$uR®CallExpressionÍ$aÍ$tW°MemberExpressionÍ$aÍ$lJªIdentifierÍ$aÍ$e¤TextJªIdentifierÍ$fÍ$l¦createÂÂ‘P§LiteralÍ$mÍ$s¬è·¯å¾„è§„åˆ’®'è·¯å¾„è§„åˆ’'ÂQ³ExpressionStatementÍ$‹Í$êR®CallExpressionÍ$‹Í$éW°MemberExpressionÍ$‹Í$™JªIdentifierÍ$‹Í$¤TextJªIdentifierÍ$Í$™©debugLineÂÂ’P§LiteralÍ$šÍ$ŞÙBfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(75:11)ÙD"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(75:11)"P§LiteralÍ$àÍ$è¦travel¨"travel"ÂQ³ExpressionStatementÍ% Í%R®CallExpressionÍ% Í%W°MemberExpressionÍ% Í%JªIdentifierÍ% Í%¤TextJªIdentifierÍ%Í%¨fontSizeÂÂ‘P§LiteralÍ%Í%¢24ÂQ³ExpressionStatementÍ%(Í%DR®CallExpressionÍ%(Í%CW°MemberExpressionÍ%(Í%6JªIdentifierÍ%(Í%,¤TextJªIdentifierÍ%-Í%6©fontColorÂÂ‘W°MemberExpressionÍ%7Í%BJªIdentifierÍ%7Í%<¥ColorJªIdentifierÍ%=Í%B¥WhiteÂÂÂQ³ExpressionStatementÍ%ZÍ%}R®CallExpressionÍ%ZÍ%|W°MemberExpressionÍ%ZÍ%nJªIdentifierÍ%ZÍ%^¤TextJªIdentifierÍ%_Í%n¯backgroundColorÂÂ‘W°MemberExpressionÍ%oÍ%{JªIdentifierÍ%oÍ%t¥ColorJªIdentifierÍ%uÍ%{¦OrangeÂÂÂQ³ExpressionStatementÍ%“Í%©R®CallExpressionÍ%“Í%¨W°MemberExpressionÍ%“Í%¤JªIdentifierÍ%“Í%—¤TextJªIdentifierÍ%˜Í%¤¬borderRadiusÂÂ‘P§LiteralÍ%¥Í%§
+¢10ÂQ³ExpressionStatementÍ%¿Í%ÏR®CallExpressionÍ%¿Í%ÎW°MemberExpressionÍ%¿Í%ËJªIdentifierÍ%¿Í%Ã¤TextJªIdentifierÍ%ÄÍ%Ë§paddingÂÂ‘P§LiteralÍ%ÌÍ%Í¡5ÂQ³ExpressionStatementÍ%åÍ%şR®CallExpressionÍ%åÍ%ıW°MemberExpressionÍ%åÍ%ğJªIdentifierÍ%åÍ%é¤TextJªIdentifierÍ%êÍ%ğ¦marginÂÂ‘Y°ObjectExpressionÍ%ñÍ%ü‘Z¨PropertyÍ%óÍ%úÂÂÂJªIdentifierÍ%óÍ%ö£topP§LiteralÍ%øÍ%ú
+¢10¤initÂJªIdentifierÍ&Í&¤TextÂQ³ExpressionStatementÍ&+Í&6R®CallExpressionÍ&+Í&5W°MemberExpressionÍ&+Í&3JªIdentifierÍ&+Í&/¤TextJªIdentifierÍ&0Í&3£popÂÂÂQ³ExpressionStatementÍ&HÍ(R®CallExpressionÍ&HÍ(W°MemberExpressionÍ&HÍ&fS®ThisExpressionÍ&HÍ&LJªIdentifierÍ&MÍ&f¹observeComponentCreation2ÂÂ’M·ArrowFunctionExpressionÍ&gÍ(ÀÂÂÂ’JªIdentifierÍ&hÍ&n¦elmtIdJªIdentifierÍ&pÍ&¯isInitialRenderK®BlockStatementÍ&„Í(–Q³ExpressionStatementÍ&›Í&ÈR®CallExpressionÍ&›Í&ÇW°MemberExpressionÍ&›Í&¦JªIdentifierÍ&›Í&Ÿ¤TextJªIdentifierÍ& Í&¦¦createÂÂ‘R®CallExpressionÍ&§Í&ÆW°MemberExpressionÍ&§Í&°JªIdentifierÍ&§Í&¬¥myMapJªIdentifierÍ&­Í&°£getÂÂ‘W°MemberExpressionÍ&±Í&ÅW°MemberExpressionÍ&±Í&ÀS®ThisExpressionÍ&±Í&µJªIdentifierÍ&¶Í&ÀªattractionÂÂJªIdentifierÍ&ÁÍ&Å¤nameÂÂÂÂQ³ExpressionStatementÍ&ŞÍ'=R®CallExpressionÍ&ŞÍ'<W°MemberExpressionÍ&ŞÍ&ìJªIdentifierÍ&ŞÍ&â¤TextJªIdentifierÍ&ãÍ&ì©debugLineÂÂ’P§LiteralÍ&íÍ'1ÙBfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(82:11)ÙD"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(82:11)"P§LiteralÍ'3Í';¦travel¨"travel"ÂQ³ExpressionStatementÍ'SÍ'eR®CallExpressionÍ'SÍ'dW°MemberExpressionÍ'SÍ'`JªIdentifierÍ'SÍ'W¤TextJªIdentifierÍ'XÍ'`¨fontSizeÂÂ‘P§LiteralÍ'aÍ'c¢18ÂQ³ExpressionStatementÍ'{Í'R®CallExpressionÍ'{Í'ŒW°MemberExpressionÍ'{Í'…JªIdentifierÍ'{Í'¤TextJªIdentifierÍ'€Í'…¥widthÂÂ‘P§LiteralÍ'†Í'‹£90%¥'90%'ÂQ³ExpressionStatementÍ'£Í'»R®CallExpressionÍ'£Í'ºW°MemberExpressionÍ'£Í'®JªIdentifierÍ'£Í'§¤TextJªIdentifierÍ'¨Í'®¦marginÂÂ‘Y°ObjectExpressionÍ'¯Í'¹‘Z¨PropertyÍ'±Í'·ÂÂÂJªIdentifierÍ'±Í'´£topP§LiteralÍ'¶Í'·¡5¤initÂQ³ExpressionStatementÍ'ÑÍ'óR®CallExpressionÍ'ÑÍ'òW°MemberExpressionÍ'ÑÍ'åJªIdentifierÍ'ÑÍ'Õ¤TextJªIdentifierÍ'ÖÍ'å¯backgroundColorÂÂ‘W°MemberExpressionÍ'æÍ'ñJªIdentifierÍ'æÍ'ë¥ColorJªIdentifierÍ'ìÍ'ñ¥WhiteÂÂÂJªIdentifierÍ(Í(¤TextÂQ³ExpressionStatementÍ( Í(+R®CallExpressionÍ( Í(*W°MemberExpressionÍ( Í((JªIdentifierÍ( Í($¤TextJªIdentifierÍ(%Í((£popÂÂÂQ³ExpressionStatementÍ(=Í(JR®CallExpressionÍ(=Í(IW°MemberExpressionÍ(=Í(GJªIdentifierÍ(=Í(C¦ColumnJªIdentifierÍ(DÍ(G£popÂÂÂQ³ExpressionStatementÍ(\Í(iR®CallExpressionÍ(\Í(hW°MemberExpressionÍ(\Í(fJªIdentifierÍ(\Í(b¦ColumnJªIdentifierÍ(cÍ(f£popÂÂÂY°ObjectExpressionÍ(zÍ(×’Z¨PropertyÍ(|Í(ÂÂÂJªIdentifierÍ(|Í(†ªmoduleNameP§LiteralÍ(ˆÍ(¦Travel¨"Travel"¤initZ¨PropertyÍ(’Í(ÕÂÂÂJªIdentifierÍ(’Í(š¨pagePathP§LiteralÍ(œÍ(ÕÙ7features/Travel/src/main/ets/pages/AttractionDetailPageÙ9"features/Travel/src/main/ets/pages/AttractionDetailPage"¤initÂQ³ExpressionStatementÍ(çÍ)	R®CallExpressionÍ(çÍ)W°MemberExpressionÍ(çÍ)JªIdentifierÍ(çÍ(õ®NavDestinationJªIdentifierÍ(öÍ)¬hideTitleBarÂÂ‘P§LiteralÍ)Í)Ã¤trueÂQ³ExpressionStatementÍ)Í)R®CallExpressionÍ)Í)~W°MemberExpressionÍ)Í)/JªIdentifierÍ)Í)%®NavDestinationJªIdentifierÍ)&Í)/©debugLineÂÂ’P§LiteralÍ)0Í)sÙAfeatures/Travel/src/main/ets/pages/AttractionDetailPage.ets(29:5)ÙC"features/Travel/src/main/ets/pages/AttractionDetailPage.ets(29:5)"P§LiteralÍ)uÍ)}¦travel¨"travel"ÂJªIdentifierÍ)ŒÍ)š®NavDestinationÂQ³ExpressionStatementÍ)¦Í)»R®CallExpressionÍ)¦Í)ºW°MemberExpressionÍ)¦Í)¸JªIdentifierÍ)¦Í)´®NavDestinationJªIdentifierÍ)µÍ)¸£popÂÂÂL°MethodDefinitionÍ)ÈÍ* ÂÂJªIdentifierÍ)ÈÍ)Ğ¨rerender¦methodM²FunctionExpressionÍ)ĞÍ* ÀÂÂÂK®BlockStatementÍ)ÓÍ* ‘Q³ExpressionStatementÍ)ŞÍ)ùR®CallExpressionÍ)ŞÍ)øW°MemberExpressionÍ)ŞÍ)öS®ThisExpressionÍ)ŞÍ)âJªIdentifierÍ)ãÍ)ö³updateDirtyElementsÂÂÂÀ‘Ôr]•¤type¥start£endªspecifiers¦source±ImportDeclarationÌ€Ì±‘Ôr^•¤type¥start£end¨imported¥local¯ImportSpecifierÌ‰Ì“JªIdentifierÌ‰Ì“ªAttractionJªIdentifierÌ‰Ì“ªAttractionP§LiteralÌ›Ì°³../model/Attractionµ"../model/Attraction"

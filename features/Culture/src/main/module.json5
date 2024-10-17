@@ -1,0 +1,11 @@
+{
+  "module": {
+    "name": "Culture",
+    "type": "har",
+    "deviceTypes": [
+      "default",
+      "tablet",
+      "2in1"
+    ]
+  }
+}

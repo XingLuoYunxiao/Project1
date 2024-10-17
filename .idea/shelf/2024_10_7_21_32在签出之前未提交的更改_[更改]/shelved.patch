@@ -1,0 +1,93 @@
+Index: .hvigor/dependencyMap/dependencyMap.json5
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\"basePath\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\.hvigor\\\\dependencyMap\\\\dependencyMap.json5\",\"rootDependency\":\"./oh-package.json5\",\"dependencyMap\":{\"default\":\"./default/oh-package.json5\",\"map\":\"./map/oh-package.json5\",\"learning\":\"./learning/oh-package.json5\",\"quickstart\":\"./quickstart/oh-package.json5\",\"utils\":\"./utils/oh-package.json5\",\"uicomponents\":\"./uicomponents/oh-package.json5\",\"Login\":\"./Login/oh-package.json5\"},\"modules\":[{\"name\":\"default\",\"srcPath\":\"..\\\\..\\\\..\\\\products\\\\default\"},{\"name\":\"map\",\"srcPath\":\"..\\\\..\\\\..\\\\features\\\\map\"},{\"name\":\"learning\",\"srcPath\":\"..\\\\..\\\\..\\\\features\\\\learning\"},{\"name\":\"quickstart\",\"srcPath\":\"..\\\\..\\\\..\\\\features\\\\quickstart\"},{\"name\":\"utils\",\"srcPath\":\"..\\\\..\\\\..\\\\commons\\\\utils\"},{\"name\":\"uicomponents\",\"srcPath\":\"..\\\\..\\\\..\\\\commons\\\\uicomponents\"},{\"name\":\"Login\",\"srcPath\":\"..\\\\..\\\\..\\\\features\\\\Login\"}]}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.hvigor/dependencyMap/dependencyMap.json5 b/.hvigor/dependencyMap/dependencyMap.json5
+--- a/.hvigor/dependencyMap/dependencyMap.json5	
++++ b/.hvigor/dependencyMap/dependencyMap.json5	
+@@ -1,1 +1,1 @@
+-{"basePath":"D:\\HuaWei\\Apps\\IctProject\\.hvigor\\dependencyMap\\dependencyMap.json5","rootDependency":"./oh-package.json5","dependencyMap":{"default":"./default/oh-package.json5","map":"./map/oh-package.json5","learning":"./learning/oh-package.json5","quickstart":"./quickstart/oh-package.json5","utils":"./utils/oh-package.json5","uicomponents":"./uicomponents/oh-package.json5","Login":"./Login/oh-package.json5"},"modules":[{"name":"default","srcPath":"..\\..\\..\\products\\default"},{"name":"map","srcPath":"..\\..\\..\\features\\map"},{"name":"learning","srcPath":"..\\..\\..\\features\\learning"},{"name":"quickstart","srcPath":"..\\..\\..\\features\\quickstart"},{"name":"utils","srcPath":"..\\..\\..\\commons\\utils"},{"name":"uicomponents","srcPath":"..\\..\\..\\commons\\uicomponents"},{"name":"Login","srcPath":"..\\..\\..\\features\\Login"}]}
+\ No newline at end of file
++{"basePath":"E:\\ohomDemos\\ICT\\IctProject\\.hvigor\\dependencyMap\\dependencyMap.json5","rootDependency":"./oh-package.json5","dependencyMap":{"default":"./default/oh-package.json5","map":"./map/oh-package.json5","learning":"./learning/oh-package.json5","quickstart":"./quickstart/oh-package.json5","utils":"./utils/oh-package.json5","uicomponents":"./uicomponents/oh-package.json5","Login":"./Login/oh-package.json5"},"modules":[{"name":"default","srcPath":"..\\..\\..\\products\\default"},{"name":"map","srcPath":"..\\..\\..\\features\\map"},{"name":"learning","srcPath":"..\\..\\..\\features\\learning"},{"name":"quickstart","srcPath":"..\\..\\..\\features\\quickstart"},{"name":"utils","srcPath":"..\\..\\..\\commons\\utils"},{"name":"uicomponents","srcPath":"..\\..\\..\\commons\\uicomponents"},{"name":"Login","srcPath":"..\\..\\..\\features\\Login"}]}
+\ No newline at end of file
+Index: .idea/.deveco/module/Login.cache.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n\t\"BuildOptions\":{\r\n\t\t\"SELECT_BUILD_TARGET\":\"default\",\r\n\t\t\"BUILD_PATH\":{\r\n\t\t\t\"OUTPUT_METADATA_JSON\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\features\\\\Login\\\\build\\\\default\\\\intermediates\\\\hap_metadata\\\\default\\\\output_metadata.json\",\r\n\t\t\t\"OUTPUT_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\features\\\\Login\\\\build\\\\default\\\\outputs\\\\default\",\r\n\t\t\t\"RES_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\features\\\\Login\\\\build\\\\default\\\\intermediates\\\\res\\\\default\",\r\n\t\t\t\"ETS_SUPER_VISUAL_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\features\\\\Login\\\\build\\\\default\\\\cache\\\\default\\\\default@HarCompileArkTS\\\\esmodule\",\r\n\t\t\t\"JS_ASSETS_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\features\\\\Login\\\\build\\\\default\\\\intermediates\\\\loader_out\\\\default\",\r\n\t\t\t\"INTERMEDIA_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\features\\\\Login\\\\build\\\\default\\\\intermediates\",\r\n\t\t\t\"RES_PROFILE_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\features\\\\Login\\\\build\\\\default\\\\intermediates\\\\res\\\\default\\\\resources\\\\base\\\\profile\",\r\n\t\t\t\"WORKER_LOADER\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\features\\\\Login\\\\build\\\\default\\\\intermediates\\\\loader\\\\default\\\\loader.json\",\r\n\t\t\t\"MANIFEST_JSON\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\features\\\\Login\\\\build\\\\default\\\\intermediates\\\\manifest\\\\default\",\r\n\t\t\t\"JS_LITE_ASSETS_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\features\\\\Login\\\\build\\\\default\\\\intermediates\\\\loader_out_lite\\\\default\",\r\n\t\t\t\"JS_SUPER_VISUAL_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\features\\\\Login\\\\build\\\\default\\\\cache\\\\default\\\\default@HarCompileJS\\\\jsbundle\"\r\n\t\t}\r\n\t},\r\n\t\"CommonInfo\":{\r\n\t\t\"current.select.target\":\"default\"\r\n\t}\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.deveco/module/Login.cache.json b/.idea/.deveco/module/Login.cache.json
+--- a/.idea/.deveco/module/Login.cache.json	
++++ b/.idea/.deveco/module/Login.cache.json	
+@@ -2,17 +2,17 @@
+ 	"BuildOptions":{
+ 		"SELECT_BUILD_TARGET":"default",
+ 		"BUILD_PATH":{
+-			"OUTPUT_METADATA_JSON":"D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
+-			"OUTPUT_PATH":"D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\outputs\\default",
+-			"RES_PATH":"D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\res\\default",
+-			"ETS_SUPER_VISUAL_PATH":"D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+-			"JS_ASSETS_PATH":"D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\loader_out\\default",
+-			"INTERMEDIA_PATH":"D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates",
+-			"RES_PROFILE_PATH":"D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+-			"WORKER_LOADER":"D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\loader\\default\\loader.json",
+-			"MANIFEST_JSON":"D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\manifest\\default",
+-			"JS_LITE_ASSETS_PATH":"D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\loader_out_lite\\default",
+-			"JS_SUPER_VISUAL_PATH":"D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle"
++			"OUTPUT_METADATA_JSON":"E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
++			"OUTPUT_PATH":"E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\outputs\\default",
++			"RES_PATH":"E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\res\\default",
++			"ETS_SUPER_VISUAL_PATH":"E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
++			"JS_ASSETS_PATH":"E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\loader_out\\default",
++			"INTERMEDIA_PATH":"E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates",
++			"RES_PROFILE_PATH":"E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
++			"WORKER_LOADER":"E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\loader\\default\\loader.json",
++			"MANIFEST_JSON":"E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\manifest\\default",
++			"JS_LITE_ASSETS_PATH":"E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\intermediates\\loader_out_lite\\default",
++			"JS_SUPER_VISUAL_PATH":"E:\\ohomDemos\\ICT\\IctProject\\features\\Login\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle"
+ 		}
+ 	},
+ 	"CommonInfo":{
+Index: .idea/.deveco/module/uicomponents.cache.json
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>{\r\n\t\"BuildOptions\":{\r\n\t\t\"SELECT_BUILD_TARGET\":\"default\",\r\n\t\t\"BUILD_PATH\":{\r\n\t\t\t\"OUTPUT_METADATA_JSON\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\commons\\\\uicomponents\\\\build\\\\default\\\\intermediates\\\\hap_metadata\\\\default\\\\output_metadata.json\",\r\n\t\t\t\"OUTPUT_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\commons\\\\uicomponents\\\\build\\\\default\\\\outputs\\\\default\",\r\n\t\t\t\"RES_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\commons\\\\uicomponents\\\\build\\\\default\\\\intermediates\\\\res\\\\default\",\r\n\t\t\t\"ETS_SUPER_VISUAL_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\commons\\\\uicomponents\\\\build\\\\default\\\\cache\\\\default\\\\default@HarCompileArkTS\\\\esmodule\",\r\n\t\t\t\"JS_ASSETS_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\commons\\\\uicomponents\\\\build\\\\default\\\\intermediates\\\\loader_out\\\\default\",\r\n\t\t\t\"INTERMEDIA_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\commons\\\\uicomponents\\\\build\\\\default\\\\intermediates\",\r\n\t\t\t\"RES_PROFILE_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\commons\\\\uicomponents\\\\build\\\\default\\\\intermediates\\\\res\\\\default\\\\resources\\\\base\\\\profile\",\r\n\t\t\t\"WORKER_LOADER\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\commons\\\\uicomponents\\\\build\\\\default\\\\intermediates\\\\loader\\\\default\\\\loader.json\",\r\n\t\t\t\"MANIFEST_JSON\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\commons\\\\uicomponents\\\\build\\\\default\\\\intermediates\\\\manifest\\\\default\",\r\n\t\t\t\"JS_LITE_ASSETS_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\commons\\\\uicomponents\\\\build\\\\default\\\\intermediates\\\\loader_out_lite\\\\default\",\r\n\t\t\t\"JS_SUPER_VISUAL_PATH\":\"D:\\\\HuaWei\\\\Apps\\\\IctProject\\\\commons\\\\uicomponents\\\\build\\\\default\\\\cache\\\\default\\\\default@HarCompileJS\\\\jsbundle\"\r\n\t\t}\r\n\t},\r\n\t\"CommonInfo\":{\r\n\t\t\"current.select.target\":\"default\"\r\n\t}\r\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.deveco/module/uicomponents.cache.json b/.idea/.deveco/module/uicomponents.cache.json
+--- a/.idea/.deveco/module/uicomponents.cache.json	
++++ b/.idea/.deveco/module/uicomponents.cache.json	
+@@ -2,17 +2,17 @@
+ 	"BuildOptions":{
+ 		"SELECT_BUILD_TARGET":"default",
+ 		"BUILD_PATH":{
+-			"OUTPUT_METADATA_JSON":"D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
+-			"OUTPUT_PATH":"D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\outputs\\default",
+-			"RES_PATH":"D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\res\\default",
+-			"ETS_SUPER_VISUAL_PATH":"D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+-			"JS_ASSETS_PATH":"D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader_out\\default",
+-			"INTERMEDIA_PATH":"D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates",
+-			"RES_PROFILE_PATH":"D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+-			"WORKER_LOADER":"D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader\\default\\loader.json",
+-			"MANIFEST_JSON":"D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\manifest\\default",
+-			"JS_LITE_ASSETS_PATH":"D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader_out_lite\\default",
+-			"JS_SUPER_VISUAL_PATH":"D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle"
++			"OUTPUT_METADATA_JSON":"E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
++			"OUTPUT_PATH":"E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\outputs\\default",
++			"RES_PATH":"E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\res\\default",
++			"ETS_SUPER_VISUAL_PATH":"E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
++			"JS_ASSETS_PATH":"E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader_out\\default",
++			"INTERMEDIA_PATH":"E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates",
++			"RES_PROFILE_PATH":"E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
++			"WORKER_LOADER":"E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader\\default\\loader.json",
++			"MANIFEST_JSON":"E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\manifest\\default",
++			"JS_LITE_ASSETS_PATH":"E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader_out_lite\\default",
++			"JS_SUPER_VISUAL_PATH":"E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle"
+ 		}
+ 	},
+ 	"CommonInfo":{
