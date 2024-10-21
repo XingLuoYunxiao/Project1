@@ -3,7 +3,7 @@ import { ttf } from "../util/ttf"
 import { MasterpieceI, tsetMasterPieceIArr } from "../model/MasterpieceI";
 import { Icon } from "../model/interface/IconInterface";
 import { AncientGames, tsetAncientGamesIArr } from "../model/AncientGamesI";
-
+import {PoetryAndClassicPage} from "../pages/poetryAndClassic/PoetryAndClassicPage"
 @Component
 export struct CulturalHeritageStartPage {
   @Provide('travelPathStack') travelPathStack: NavPathStack = new NavPathStack();
@@ -53,7 +53,7 @@ export struct CulturalHeritageStartPage {
               }
             }
             .onClick(() => {
-              this.travelPathStack.pushPathByName(MasterpieceI.id, null)
+              this.travelPathStack.pushPathByName(MasterpieceI.path, null)
             })
           })
         }

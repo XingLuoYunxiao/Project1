@@ -1,56 +1,56 @@
 {
   "ohos-module-default": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build",
+    "MODULE_BUILD_DIR": "D:\\HUAWEI\\Project1\\products\\default\\build",
     "DEPENDENCY_INFO": {
-      "travel": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel",
-      "login": "D:\\HuaWei\\Apps\\IctProject\\features\\Login",
-      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-      "culture": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture",
-      "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents",
-      "@luvi/lv-markdown-in": "D:\\HuaWei\\Apps\\IctProject\\oh_modules\\.ohpm\\@luvi+lv-markdown-in@2.0.9\\oh_modules\\@luvi\\lv-markdown-in",
-      "@luvi/html2md": "D:\\HuaWei\\Apps\\IctProject\\oh_modules\\.ohpm\\@luvi+html2md@1.0.2\\oh_modules\\@luvi\\html2md"
+      "travel": "D:\\HUAWEI\\Project1\\features\\Travel",
+      "login": "D:\\HUAWEI\\Project1\\features\\Login",
+      "utils": "D:\\HUAWEI\\Project1\\commons\\utils",
+      "culture": "D:\\HUAWEI\\Project1\\features\\Culture",
+      "uicomponents": "D:\\HUAWEI\\Project1\\commons\\uicomponents",
+      "@luvi/lv-markdown-in": "D:\\HUAWEI\\Project1\\oh_modules\\.ohpm\\@luvi+lv-markdown-in@2.0.9\\oh_modules\\@luvi\\lv-markdown-in",
+      "@luvi/html2md": "D:\\HUAWEI\\Project1\\oh_modules\\.ohpm\\@luvi+html2md@1.0.2\\oh_modules\\@luvi\\html2md"
     },
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main",
+        "SOURCE_ROOT": "D:\\HUAWEI\\Project1\\products\\default\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\main\\resources"
+          "D:\\HUAWEI\\Project1\\products\\default\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\cache\\default\\default@CompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\cache\\default\\default@CompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
         }
       },
       "ohosTest": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\ohosTest",
+        "SOURCE_ROOT": "D:\\HUAWEI\\Project1\\products\\default\\src\\ohosTest",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\products\\default\\src\\ohosTest\\resources"
+          "D:\\HUAWEI\\Project1\\products\\default\\src\\ohosTest\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\outputs\\ohosTest",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\ohosTest",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out_lite\\ohosTest",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\res\\ohosTest",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\loader\\ohosTest\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\manifest\\ohosTest",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\build\\default\\intermediates\\hap_metadata\\ohosTest\\output_metadata.json"
+          "OUTPUT_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\outputs\\ohosTest",
+          "INTERMEDIA_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\loader_out\\ohosTest",
+          "JS_LITE_ASSETS_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\loader_out_lite\\ohosTest",
+          "RES_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\res\\ohosTest",
+          "RES_PROFILE_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\res\\ohosTest\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\cache\\ohosTest\\ohosTest@OhosTestCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\loader\\ohosTest\\loader.json",
+          "MANIFEST_JSON": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\manifest\\ohosTest",
+          "OUTPUT_METADATA_JSON": "D:\\HUAWEI\\Project1\\products\\default\\build\\default\\intermediates\\hap_metadata\\ohosTest\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -100,32 +100,32 @@
   },
   "ohos-module-Travel": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build",
+    "MODULE_BUILD_DIR": "D:\\HUAWEI\\Project1\\features\\Travel\\build",
     "DEPENDENCY_INFO": {
-      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-      "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents",
-      "login": "D:\\HuaWei\\Apps\\IctProject\\features\\Login",
-      "@luvi/lv-markdown-in": "D:\\HuaWei\\Apps\\IctProject\\oh_modules\\.ohpm\\@luvi+lv-markdown-in@2.0.9\\oh_modules\\@luvi\\lv-markdown-in",
-      "@luvi/html2md": "D:\\HuaWei\\Apps\\IctProject\\oh_modules\\.ohpm\\@luvi+html2md@1.0.2\\oh_modules\\@luvi\\html2md"
+      "utils": "D:\\HUAWEI\\Project1\\commons\\utils",
+      "uicomponents": "D:\\HUAWEI\\Project1\\commons\\uicomponents",
+      "login": "D:\\HUAWEI\\Project1\\features\\Login",
+      "@luvi/lv-markdown-in": "D:\\HUAWEI\\Project1\\oh_modules\\.ohpm\\@luvi+lv-markdown-in@2.0.9\\oh_modules\\@luvi\\lv-markdown-in",
+      "@luvi/html2md": "D:\\HUAWEI\\Project1\\oh_modules\\.ohpm\\@luvi+html2md@1.0.2\\oh_modules\\@luvi\\html2md"
     },
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main",
+        "SOURCE_ROOT": "D:\\HUAWEI\\Project1\\features\\Travel\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\src\\main\\resources"
+          "D:\\HUAWEI\\Project1\\features\\Travel\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "D:\\HUAWEI\\Project1\\features\\Travel\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HUAWEI\\Project1\\features\\Travel\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HUAWEI\\Project1\\features\\Travel\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HUAWEI\\Project1\\features\\Travel\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HUAWEI\\Project1\\features\\Travel\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HUAWEI\\Project1\\features\\Travel\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HUAWEI\\Project1\\features\\Travel\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HUAWEI\\Project1\\features\\Travel\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HUAWEI\\Project1\\features\\Travel\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -178,29 +178,29 @@
   },
   "ohos-module-utils": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build",
+    "MODULE_BUILD_DIR": "D:\\HUAWEI\\Project1\\commons\\utils\\build",
     "DEPENDENCY_INFO": {
-      "@luvi/lv-markdown-in": "D:\\HuaWei\\Apps\\IctProject\\oh_modules\\.ohpm\\@luvi+lv-markdown-in@2.0.9\\oh_modules\\@luvi\\lv-markdown-in",
-      "@luvi/html2md": "D:\\HuaWei\\Apps\\IctProject\\oh_modules\\.ohpm\\@luvi+html2md@1.0.2\\oh_modules\\@luvi\\html2md"
+      "@luvi/lv-markdown-in": "D:\\HUAWEI\\Project1\\oh_modules\\.ohpm\\@luvi+lv-markdown-in@2.0.9\\oh_modules\\@luvi\\lv-markdown-in",
+      "@luvi/html2md": "D:\\HUAWEI\\Project1\\oh_modules\\.ohpm\\@luvi+html2md@1.0.2\\oh_modules\\@luvi\\html2md"
     },
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main",
+        "SOURCE_ROOT": "D:\\HUAWEI\\Project1\\commons\\utils\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\src\\main\\resources"
+          "D:\\HUAWEI\\Project1\\commons\\utils\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "D:\\HUAWEI\\Project1\\commons\\utils\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HUAWEI\\Project1\\commons\\utils\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HUAWEI\\Project1\\commons\\utils\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HUAWEI\\Project1\\commons\\utils\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HUAWEI\\Project1\\commons\\utils\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HUAWEI\\Project1\\commons\\utils\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\commons\\utils\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\commons\\utils\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HUAWEI\\Project1\\commons\\utils\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HUAWEI\\Project1\\commons\\utils\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HUAWEI\\Project1\\commons\\utils\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -253,29 +253,29 @@
   },
   "ohos-module-uicomponents": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build",
+    "MODULE_BUILD_DIR": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\build",
     "DEPENDENCY_INFO": {
-      "@luvi/lv-markdown-in": "D:\\HuaWei\\Apps\\IctProject\\oh_modules\\.ohpm\\@luvi+lv-markdown-in@2.0.9\\oh_modules\\@luvi\\lv-markdown-in",
-      "@luvi/html2md": "D:\\HuaWei\\Apps\\IctProject\\oh_modules\\.ohpm\\@luvi+html2md@1.0.2\\oh_modules\\@luvi\\html2md"
+      "@luvi/lv-markdown-in": "D:\\HUAWEI\\Project1\\oh_modules\\.ohpm\\@luvi+lv-markdown-in@2.0.9\\oh_modules\\@luvi\\lv-markdown-in",
+      "@luvi/html2md": "D:\\HUAWEI\\Project1\\oh_modules\\.ohpm\\@luvi+html2md@1.0.2\\oh_modules\\@luvi\\html2md"
     },
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\src\\main",
+        "SOURCE_ROOT": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\src\\main\\resources"
+          "D:\\HUAWEI\\Project1\\commons\\uicomponents\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HUAWEI\\Project1\\commons\\uicomponents\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -328,30 +328,30 @@
   },
   "ohos-module-Login": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build",
+    "MODULE_BUILD_DIR": "D:\\HUAWEI\\Project1\\features\\Login\\build",
     "DEPENDENCY_INFO": {
-      "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-      "@luvi/lv-markdown-in": "D:\\HuaWei\\Apps\\IctProject\\oh_modules\\.ohpm\\@luvi+lv-markdown-in@2.0.9\\oh_modules\\@luvi\\lv-markdown-in",
-      "@luvi/html2md": "D:\\HuaWei\\Apps\\IctProject\\oh_modules\\.ohpm\\@luvi+html2md@1.0.2\\oh_modules\\@luvi\\html2md"
+      "utils": "D:\\HUAWEI\\Project1\\commons\\utils",
+      "@luvi/lv-markdown-in": "D:\\HUAWEI\\Project1\\oh_modules\\.ohpm\\@luvi+lv-markdown-in@2.0.9\\oh_modules\\@luvi\\lv-markdown-in",
+      "@luvi/html2md": "D:\\HUAWEI\\Project1\\oh_modules\\.ohpm\\@luvi+html2md@1.0.2\\oh_modules\\@luvi\\html2md"
     },
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main",
+        "SOURCE_ROOT": "D:\\HUAWEI\\Project1\\features\\Login\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\src\\main\\resources"
+          "D:\\HUAWEI\\Project1\\features\\Login\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Login\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "D:\\HUAWEI\\Project1\\features\\Login\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HUAWEI\\Project1\\features\\Login\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HUAWEI\\Project1\\features\\Login\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HUAWEI\\Project1\\features\\Login\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HUAWEI\\Project1\\features\\Login\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HUAWEI\\Project1\\features\\Login\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\features\\Login\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\features\\Login\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HUAWEI\\Project1\\features\\Login\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HUAWEI\\Project1\\features\\Login\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HUAWEI\\Project1\\features\\Login\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -404,29 +404,29 @@
   },
   "ohos-module-Culture": {
     "SELECT_TARGET": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\build",
+    "MODULE_BUILD_DIR": "D:\\HUAWEI\\Project1\\features\\Culture\\build",
     "DEPENDENCY_INFO": {
-      "@luvi/lv-markdown-in": "D:\\HuaWei\\Apps\\IctProject\\oh_modules\\.ohpm\\@luvi+lv-markdown-in@2.0.9\\oh_modules\\@luvi\\lv-markdown-in",
-      "@luvi/html2md": "D:\\HuaWei\\Apps\\IctProject\\oh_modules\\.ohpm\\@luvi+html2md@1.0.2\\oh_modules\\@luvi\\html2md"
+      "@luvi/lv-markdown-in": "D:\\HUAWEI\\Project1\\oh_modules\\.ohpm\\@luvi+lv-markdown-in@2.0.9\\oh_modules\\@luvi\\lv-markdown-in",
+      "@luvi/html2md": "D:\\HUAWEI\\Project1\\oh_modules\\.ohpm\\@luvi+html2md@1.0.2\\oh_modules\\@luvi\\html2md"
     },
     "TARGETS": {
       "default": {
-        "SOURCE_ROOT": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\src\\main",
+        "SOURCE_ROOT": "D:\\HUAWEI\\Project1\\features\\Culture\\src\\main",
         "RESOURCES_PATH": [
-          "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\src\\main\\resources"
+          "D:\\HUAWEI\\Project1\\features\\Culture\\src\\main\\resources"
         ],
         "BUILD_PATH": {
-          "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\build\\default\\outputs\\default",
-          "INTERMEDIA_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\build\\default\\intermediates",
-          "JS_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\build\\default\\intermediates\\loader_out\\default",
-          "JS_LITE_ASSETS_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\build\\default\\intermediates\\loader_out_lite\\default",
-          "RES_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\build\\default\\intermediates\\res\\default",
-          "RES_PROFILE_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-          "ETS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-          "JS_SUPER_VISUAL_PATH": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
-          "WORKER_LOADER": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\build\\default\\intermediates\\loader\\default\\loader.json",
-          "MANIFEST_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\build\\default\\intermediates\\manifest\\default",
-          "OUTPUT_METADATA_JSON": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
+          "OUTPUT_PATH": "D:\\HUAWEI\\Project1\\features\\Culture\\build\\default\\outputs\\default",
+          "INTERMEDIA_PATH": "D:\\HUAWEI\\Project1\\features\\Culture\\build\\default\\intermediates",
+          "JS_ASSETS_PATH": "D:\\HUAWEI\\Project1\\features\\Culture\\build\\default\\intermediates\\loader_out\\default",
+          "JS_LITE_ASSETS_PATH": "D:\\HUAWEI\\Project1\\features\\Culture\\build\\default\\intermediates\\loader_out_lite\\default",
+          "RES_PATH": "D:\\HUAWEI\\Project1\\features\\Culture\\build\\default\\intermediates\\res\\default",
+          "RES_PROFILE_PATH": "D:\\HUAWEI\\Project1\\features\\Culture\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+          "ETS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\features\\Culture\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+          "JS_SUPER_VISUAL_PATH": "D:\\HUAWEI\\Project1\\features\\Culture\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle",
+          "WORKER_LOADER": "D:\\HUAWEI\\Project1\\features\\Culture\\build\\default\\intermediates\\loader\\default\\loader.json",
+          "MANIFEST_JSON": "D:\\HUAWEI\\Project1\\features\\Culture\\build\\default\\intermediates\\manifest\\default",
+          "OUTPUT_METADATA_JSON": "D:\\HUAWEI\\Project1\\features\\Culture\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json"
         },
         "BUILD_OPTION": {
           "debuggable": true
@@ -479,15 +479,15 @@
   },
   "ohos-project": {
     "SELECT_PRODUCT_NAME": "default",
-    "MODULE_BUILD_DIR": "D:\\HuaWei\\Apps\\IctProject\\build",
+    "MODULE_BUILD_DIR": "D:\\HUAWEI\\Project1\\build",
     "BUNDLE_NAME": "com.example.ictproject",
     "BUILD_PATH": {
-      "OUTPUT_PATH": "D:\\HuaWei\\Apps\\IctProject\\build\\outputs\\default"
+      "OUTPUT_PATH": "D:\\HUAWEI\\Project1\\build\\outputs\\default"
     },
     "MODULES": [
       {
         "name": "default",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\products\\default",
+        "srcPath": "D:\\HUAWEI\\Project1\\products\\default",
         "targets": [
           {
             "name": "default",
@@ -496,32 +496,32 @@
             ]
           }
         ],
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "belongProjectPath": "D:\\HUAWEI\\Project1"
       },
       {
         "name": "Travel",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel",
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "srcPath": "D:\\HUAWEI\\Project1\\features\\Travel",
+        "belongProjectPath": "D:\\HUAWEI\\Project1"
       },
       {
         "name": "utils",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "srcPath": "D:\\HUAWEI\\Project1\\commons\\utils",
+        "belongProjectPath": "D:\\HUAWEI\\Project1"
       },
       {
         "name": "uicomponents",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents",
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "srcPath": "D:\\HUAWEI\\Project1\\commons\\uicomponents",
+        "belongProjectPath": "D:\\HUAWEI\\Project1"
       },
       {
         "name": "Login",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\Login",
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "srcPath": "D:\\HUAWEI\\Project1\\features\\Login",
+        "belongProjectPath": "D:\\HUAWEI\\Project1"
       },
       {
         "name": "Culture",
-        "srcPath": "D:\\HuaWei\\Apps\\IctProject\\features\\Culture",
-        "belongProjectPath": "D:\\HuaWei\\Apps\\IctProject"
+        "srcPath": "D:\\HUAWEI\\Project1\\features\\Culture",
+        "belongProjectPath": "D:\\HUAWEI\\Project1"
       }
     ],
     "PROFILE_OPT": {
@@ -585,7 +585,7 @@
       "hvigor.keepDependency": true
     },
     "OVERALL_PROJECT_PATHS": [
-      "D:\\HuaWei\\Apps\\IctProject"
+      "D:\\HUAWEI\\Project1"
     ]
   },
   "version": 1

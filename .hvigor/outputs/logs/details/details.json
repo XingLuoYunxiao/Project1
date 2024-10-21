@@ -5,7 +5,7 @@
         "MODULE_NAME": "c21f969b5f03d33d43e04f8f136e7682",
         "API_TYPE": "stageMode",
         "INCREMENTAL_TASKS": {
-          "COMPILE_ARKTS": false
+          "COMPILE_ARKTS": true
         }
       },
       {
@@ -38,80 +38,46 @@
     "IS_HVIGORFILE_TYPE_CHECK": false,
     "TASK_TIME": {
       "c21f969b5f03d33d43e04f8f136e7682": {
-        "clean": 3144500,
-        "GenerateMetadata": 8010400,
-        "PreCheckSyscap": 622100,
-        "GeneratePkgContextInfo": 617300,
-        "ProcessIntegratedHsp": 3157300,
-        "SyscapTransform": 16251600,
-        "ProcessRouterMap": 34420100,
-        "CreateBuildProfile": 6775800,
-        "MergeProfile": 59273900,
-        "GenerateLoaderJson": 45107500,
-        "ConfigureCmake": 177000,
-        "MakePackInfo": 8347600,
-        "ProcessProfile": 2027069000,
-        "BuildNativeWithCmake": 243200,
-        "ProcessResource": 16581400,
-        "CompileResource": 1213734900,
-        "BuildJS": 9872500,
-        "BuildNativeWithNinja": 2163700,
-        "ProcessLibs": 19666500,
-        "DoNativeStrip": 8050200,
-        "CacheNativeLibs": 1506244600,
-        "CompileArkTS": 9728444200,
-        "GeneratePkgModuleJson": 5183000,
-        "PackageHap": 471577000,
-        "SignHap": 3360900,
-        "assembleHap": 195500
-      },
-      "1fb0f99b55e6c2be35aed72ebe38c245": {
-        "clean": 3344800,
-        "ConfigureCmake": 265900,
-        "MergeProfile": 27379000,
-        "BuildNativeWithCmake": 1211600,
-        "BuildNativeWithNinja": 2157800,
-        "ProcessLibs": 1558915400,
-        "DoNativeStrip": 56764400
+        "PreCheckSyscap": 237200,
+        "GeneratePkgContextInfo": 397900,
+        "ProcessIntegratedHsp": 1896400,
+        "SyscapTransform": 3680800,
+        "ConfigureCmake": 542600,
+        "BuildNativeWithCmake": 205900,
+        "BuildJS": 6381800,
+        "BuildNativeWithNinja": 1000000,
+        "CompileArkTS": 1215801400,
+        "PackageHap": 858959600,
+        "SignHap": 1326300,
+        "assembleHap": 249500
       },
       "2b3583e6e17721c54496bd04e57a0c15": {
-        "clean": 3780300,
-        "ConfigureCmake": 176300,
-        "MergeProfile": 8520700,
-        "BuildNativeWithCmake": 232900,
-        "BuildNativeWithNinja": 1913800,
-        "ProcessLibs": 1576624900,
-        "DoNativeStrip": 26711100
+        "ConfigureCmake": 190900,
+        "BuildNativeWithCmake": 235500,
+        "BuildNativeWithNinja": 813300
       },
       "4b9fd96ea9bad44c52cdc82569434346": {
-        "clean": 3085200,
-        "ConfigureCmake": 199400,
-        "MergeProfile": 22921100,
-        "BuildNativeWithCmake": 212500,
-        "BuildNativeWithNinja": 1943700,
-        "ProcessLibs": 1533935200,
-        "DoNativeStrip": 38540400
-      },
-      "99dea78007133396a7b8ed70578ac6ae": {
-        "clean": 3055500,
-        "ConfigureCmake": 210700,
-        "MergeProfile": 24395300,
-        "BuildNativeWithCmake": 212000,
-        "BuildNativeWithNinja": 1937700,
-        "ProcessLibs": 1599666300,
-        "DoNativeStrip": 24951900
+        "ConfigureCmake": 165700,
+        "BuildNativeWithCmake": 232500,
+        "BuildNativeWithNinja": 882300
       },
       "6926f2fd88f899a22a561f0e808aa8a9": {
-        "clean": 3240500,
-        "ConfigureCmake": 189300,
-        "MergeProfile": 22421700,
-        "BuildNativeWithCmake": 239200,
-        "BuildNativeWithNinja": 1872400,
-        "ProcessLibs": 1587287300,
-        "DoNativeStrip": 9113600
+        "ConfigureCmake": 161400,
+        "BuildNativeWithCmake": 263000,
+        "BuildNativeWithNinja": 853200
+      },
+      "99dea78007133396a7b8ed70578ac6ae": {
+        "ConfigureCmake": 247500,
+        "BuildNativeWithCmake": 293200,
+        "BuildNativeWithNinja": 856500
+      },
+      "1fb0f99b55e6c2be35aed72ebe38c245": {
+        "ConfigureCmake": 199800,
+        "BuildNativeWithCmake": 224900,
+        "BuildNativeWithNinja": 1204300
       }
     },
-    "TOTAL_TIME": 14712541500,
-    "BUILD_ID": "202410172053113520"
+    "TOTAL_TIME": 2850416400,
+    "BUILD_ID": "202410212028155610"
   }
 }
