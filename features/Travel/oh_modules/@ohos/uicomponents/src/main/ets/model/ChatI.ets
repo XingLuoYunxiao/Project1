@@ -5,7 +5,7 @@ interface Info{
 
 export abstract class ChatI{
   protected id:number
-  messages:Array<Info>
+  protected messages:Array<Info>
 
   constructor(id:number,messages:Array<Info>){
     this.id = id

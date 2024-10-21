@@ -1,8 +1,8 @@
 import { ChatI } from './ChatI'
 
 abstract class BaseProject1{
-  name:string
-  chats: Array<ChatI>
+  protected name:string
+  protected chats: Array<ChatI>
 
   constructor(name:string){
     this.name = name
