@@ -13588,3 +13588,65 @@ Warning: 'D:\HuaWei\Apps\IctProject\commons\uicomponents\src\main\resources\base
 [2024-10-21T20:00:00.624] [DEBUG] debug-file - Worker 0 has been cleared.
 [2024-10-21T20:00:00.624] [DEBUG] debug-file - Current idle worker size: 0.
 [2024-10-21T20:00:00.624] [DEBUG] debug-file - Current busy worker size: 0.
+[2024-10-21T20:00:00.629] [DEBUG] debug-file - Current worker pool is terminated.
+[2024-10-21T20:00:00.629] [DEBUG] debug-file - clean: Terminating worker pool finished.
+[2024-10-21T20:00:00.950] [DEBUG] debug-file - default : clean cost memory -4.2934112548828125
+[2024-10-21T20:00:00.950] [DEBUG] debug-file - runTaskFromQueue task cost before running: 815 ms 
+[2024-10-21T20:00:00.950] [INFO] debug-file - Finished :default:clean... after 327 ms 
+[2024-10-21T20:00:00.952] [DEBUG] debug-file - Executing task :Travel:clean
+[2024-10-21T20:00:00.952] [DEBUG] debug-file - clean: Worker pool is inactive.
+[2024-10-21T20:00:00.979] [DEBUG] debug-file - Travel : clean cost memory 0.5069580078125
+[2024-10-21T20:00:00.979] [DEBUG] debug-file - runTaskFromQueue task cost before running: 845 ms 
+[2024-10-21T20:00:00.979] [INFO] debug-file - Finished :Travel:clean... after 28 ms 
+[2024-10-21T20:00:00.982] [DEBUG] debug-file - Executing task :utils:clean
+[2024-10-21T20:00:00.982] [DEBUG] debug-file - clean: Worker pool is inactive.
+[2024-10-21T20:00:00.998] [DEBUG] debug-file - utils : clean cost memory 0.33880615234375
+[2024-10-21T20:00:00.999] [DEBUG] debug-file - runTaskFromQueue task cost before running: 864 ms 
+[2024-10-21T20:00:00.999] [INFO] debug-file - Finished :utils:clean... after 17 ms 
+[2024-10-21T20:00:01.001] [DEBUG] debug-file - Executing task :uicomponents:clean
+[2024-10-21T20:00:01.001] [DEBUG] debug-file - clean: Worker pool is inactive.
+[2024-10-21T20:00:01.028] [DEBUG] debug-file - uicomponents : clean cost memory 0.51171875
+[2024-10-21T20:00:01.028] [DEBUG] debug-file - runTaskFromQueue task cost before running: 893 ms 
+[2024-10-21T20:00:01.028] [INFO] debug-file - Finished :uicomponents:clean... after 27 ms 
+[2024-10-21T20:00:01.030] [DEBUG] debug-file - Executing task :Login:clean
+[2024-10-21T20:00:01.030] [DEBUG] debug-file - clean: Worker pool is inactive.
+[2024-10-21T20:00:01.059] [DEBUG] debug-file - Login : clean cost memory 0.5021743774414062
+[2024-10-21T20:00:01.059] [DEBUG] debug-file - runTaskFromQueue task cost before running: 924 ms 
+[2024-10-21T20:00:01.059] [INFO] debug-file - Finished :Login:clean... after 29 ms 
+[2024-10-21T20:00:01.061] [DEBUG] debug-file - Executing task :Culture:clean
+[2024-10-21T20:00:01.062] [DEBUG] debug-file - clean: Worker pool is inactive.
+[2024-10-21T20:00:01.098] [DEBUG] debug-file - Culture : clean cost memory -7.05126953125
+[2024-10-21T20:00:01.098] [DEBUG] debug-file - runTaskFromQueue task cost before running: 964 ms 
+[2024-10-21T20:00:01.098] [INFO] debug-file - Finished :Culture:clean... after 37 ms 
+[2024-10-21T20:00:01.098] [DEBUG] debug-file - Executing task ::clean
+[2024-10-21T20:00:01.098] [DEBUG] debug-file - clean: Worker pool is inactive.
+[2024-10-21T20:00:01.099] [DEBUG] debug-file - IctProject : clean cost memory 0.03582000732421875
+[2024-10-21T20:00:01.099] [DEBUG] debug-file - runTaskFromQueue task cost before running: 965 ms 
+[2024-10-21T20:00:01.100] [INFO] debug-file - Finished ::clean... after 1 ms 
+[2024-10-21T20:00:01.110] [DEBUG] debug-file - BUILD SUCCESSFUL in 975 ms 
+[2024-10-21T20:00:01.131] [DEBUG] debug-file - Since there is no instance or instance is terminated, create a new worker pool.
+[2024-10-21T20:00:01.132] [DEBUG] debug-file - Worker pool is initialized with config:  {
+  minPoolNum: 2,
+  maxPoolNum: undefined,
+  maxCoreSize: undefined,
+  cacheCapacity: undefined,
+  cacheTtl: undefined
+}
+[2024-10-21T20:00:01.133] [DEBUG] debug-file - Create  resident worker with id: 0.
+[2024-10-21T20:00:01.134] [DEBUG] debug-file - Create  resident worker with id: 1.
+[2024-10-21T20:00:01.135] [DEBUG] debug-file - Cleanup worker 0.
+[2024-10-21T20:00:01.135] [DEBUG] debug-file - Worker 0 has been cleaned up.
+[2024-10-21T20:00:01.135] [DEBUG] debug-file - Current idle worker size: 1.
+[2024-10-21T20:00:01.135] [DEBUG] debug-file - Current resident worker size: 2.
+[2024-10-21T20:00:01.135] [DEBUG] debug-file - Cleanup worker 1.
+[2024-10-21T20:00:01.135] [DEBUG] debug-file - Worker 1 has been cleaned up.
+[2024-10-21T20:00:01.135] [DEBUG] debug-file - Current idle worker size: 0.
+[2024-10-21T20:00:01.135] [DEBUG] debug-file - Current resident worker size: 2.
+[2024-10-21T20:00:01.137] [DEBUG] debug-file - hvigor build process will be closed.
+[2024-10-21T20:00:01.138] [DEBUG] debug-file - worker[0] exits with exit code 1.
+[2024-10-21T20:00:01.140] [DEBUG] debug-file - worker[0] exits with exit code 0.
+[2024-10-21T20:00:01.141] [DEBUG] debug-file - worker[1] exits with exit code 0.
+[2024-10-21T20:00:01.144] [DEBUG] debug-file - session manager: send message to worker process.
+[2024-10-21T20:00:01.145] [DEBUG] debug-file - session manager: send message to worker process.
+[2024-10-21T20:00:01.145] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
+[2024-10-21T20:00:01.145] [DEBUG] debug-file - watch worker: worker id should be larger than 0. Nothing will be sent to any worker thread.
