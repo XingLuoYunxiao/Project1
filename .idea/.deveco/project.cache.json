@@ -3,13 +3,13 @@
 		"BUNDLE_NAME":"com.example.ictproject",
 		"SELECT_BUILD_MODE":"",
 		"BUILD_PATH":{
-			"OUTPUT_PATH":"D:\\HuaWei\\Apps\\IctProject\\build\\outputs\\default"
+			"OUTPUT_PATH":"D:\\Huawei\\projectone\\Project1\\build\\outputs\\default"
 		},
 		"SELECT_BUILD_PRODUCT":"default"
 	},
 	"CommonInfo":{
 		"crossplatform.projectType":"",
-		"project.ide.version":"5.0.3.814",
+		"project.ide.version":"5.0.3.900",
 		"current.select.product":"default",
 		"current.select.buildMode":""
 	}

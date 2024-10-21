@@ -18,6 +18,9 @@ export struct InfoMessagePage {
             Text(this.personName)
               .fontSize(18)
               .height(25)
+            Blank()
+            Text('客服')
+            Text('设置')
           } else {
             Image($r('app.media.avatar_icon'))
               .width(70)
@@ -29,6 +32,9 @@ export struct InfoMessagePage {
               .onClick(() => {
                 this.loginPathStack.pushPathByName('LoginPage', 123)
               })
+            Blank()
+            Text('客服')
+            Text('设置')
           }
         }
         .backgroundColor(Color.White)
@@ -40,58 +46,9 @@ export struct InfoMessagePage {
         .width('100%')
         .height(100)
 
-        Row() {
-          Row() {
-            Image($r('app.media.collection'))
-              .width(30)
-              .height(30)
-              .margin({left:5})
-            Text('收藏')
-              .fontSize(16)
-              .margin({left:10,right:20})
-            Text('0个')
-              .fontSize(16)
-              .fontColor('#ff838282')
-            Blank()
-            Text('···')
-              .margin({right:10})
-              .fontSize(16)
-              .fontColor('#ff838282')
-          }
-          .margin({right:5})
-          .width('47.5%')
-          .height(60)
-          .backgroundColor(Color.White)
-          .borderRadius(10)
-          .padding({top:10,bottom:10,left:5})
+        Row(){
 
-          Row() {
-            Image($r('app.media.achievement'))
-              .width(30)
-              .height(30)
-              .margin({left:5})
-            Text('成就')
-              .fontSize(16)
-              .margin({left:10,right:20})
-            Text('0个')
-              .fontSize(16)
-              .fontColor('#ff838282')
-            Blank()
-            Text('···')
-              .margin({right:10})
-              .fontSize(16)
-              .fontColor('#ff838282')
-          }
-          .width('47.5%')
-          .height(60)
-          .backgroundColor(Color.White)
-          .borderRadius(10)
-          .padding({top:10,bottom:10, right:5})
         }
-        .width('100%')
-        .height(60)
-        .justifyContent(FlexAlign.Center)
-        .padding({ top: 12, bottom: 12 })
 
         // 我的账户
         Column(){
