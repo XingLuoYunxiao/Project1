@@ -1,0 +1,706 @@
+Ôr@Ÿªassertions¤code´customTransformCache¬dependencies¢id¤meta±moduleSideEffects¬originalCode±originalSourcemap«resolvedIds®sourcemapChainµsyntheticNamedExportsµtransformDependencies®transformFiles¨cacheAstÔrAÚ"vif (!("finalizeConstruction" in ViewPU.prototype)) {
+    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
+}
+import { lvQuote } from '../domain/LvQuote';
+import { lvFootnoteController } from './controller/lvFootnoteController';
+import { lvCompositeComponent } from './lvCompositeComponent';
+export class lvQuoteComponent extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.o = new ObservedPropertySimplePU("", this, "text");
+        this.a2 = new ObservedPropertyObjectPU(lvQuote, this, "nQuote");
+        this.h1 = new ObservedPropertyObjectPU(null, this, "dialogController");
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.text !== undefined) {
+            this.text = params.text;
+        }
+        if (params.nQuote !== undefined) {
+            this.nQuote = params.nQuote;
+        }
+        if (params.dialogController !== undefined) {
+            this.dialogController = params.dialogController;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.o.purgeDependencyOnElmtId(rmElmtId);
+        this.a2.purgeDependencyOnElmtId(rmElmtId);
+        this.h1.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.o.aboutToBeDeleted();
+        this.a2.aboutToBeDeleted();
+        this.h1.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get text() {
+        return this.o.get();
+    }
+    set text(newValue) {
+        this.o.set(newValue);
+    }
+    get nQuote() {
+        return this.a2.get();
+    }
+    set nQuote(newValue) {
+        this.a2.set(newValue);
+    }
+    get dialogController() {
+        return this.h1.get();
+    }
+    set dialogController(newValue) {
+        this.h1.set(newValue);
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.alignItems(HorizontalAlign.Start);
+            Column.width('100%');
+            Column.backgroundColor(this.nQuote.getBackgroundColor());
+            Column.padding({
+                left: 8,
+                top: 12,
+                right: 7,
+                bottom: 12
+            });
+            Column.border({
+                color: {
+                    left: this.nQuote.getBorderColor()
+                },
+                style: {
+                    left: BorderStyle.Solid
+                },
+                width: {
+                    left: '4',
+                    right: '0',
+                    top: '0',
+                    bottom: '0'
+                }
+            });
+        }, Column);
+        {
+            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                if (isInitialRender) {
+                    let componentCall = new x12(this, { text: this.text.trim(), dialogController: this.dialogController }, undefined, elmtId, () => { }, { page: "lvMarkdownIn/src/main/ets/lv-markdown-in/lib/utils/lvQuoteComponent.ets", line: 13, f1: 7 });
+                    ViewPU.create(componentCall);
+                    let paramsLambda = () => {
+                        return {
+                            text: this.text.trim(),
+                            dialogController: this.dialogController
+                        };
+                    };
+                    componentCall.paramsGenerator_ = paramsLambda;
+                }
+                else {
+                    this.updateStateVarsOfChildByElmtId(elmtId, {});
+                }
+            }, { name: "ft" });
+        }
+        Column.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+}
+class x12 extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.o = new ObservedPropertySimplePU("", this, "text");
+        this.h1 = new ObservedPropertyObjectPU(null, this, "dialogController");
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.text !== undefined) {
+            this.text = params.text;
+        }
+        if (params.dialogController !== undefined) {
+            this.dialogController = params.dialogController;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.o.purgeDependencyOnElmtId(rmElmtId);
+        this.h1.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.o.aboutToBeDeleted();
+        this.h1.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get text() {
+        return this.o.get();
+    }
+    set text(newValue) {
+        this.o.set(newValue);
+    }
+    get dialogController() {
+        return this.h1.get();
+    }
+    set dialogController(newValue) {
+        this.h1.set(newValue);
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            If.create();
+            if (this.text.slice(0, 3) == "> >") {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    {
+                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                            if (isInitialRender) {
+                                let componentCall = new lvQuoteComponent(this, { text: this.text.slice(1).trim(), dialogController: this.dialogController }, undefined, elmtId, () => { }, { page: "lvMarkdownIn/src/main/ets/lv-markdown-in/lib/utils/lvQuoteComponent.ets", line: 52, f1: 7 });
+                                ViewPU.create(componentCall);
+                                let paramsLambda = () => {
+                                    return {
+                                        text: this.text.slice(1).trim(),
+                                        dialogController: this.dialogController
+                                    };
+                                };
+                                componentCall.paramsGenerator_ = paramsLambda;
+                            }
+                            else {
+                                this.updateStateVarsOfChildByElmtId(elmtId, {});
+                            }
+                        }, { name: "lvQuoteComponent" });
+                    }
+                });
+            }
+            else {
+                this.ifElseBranchUpdateFunction(1, () => {
+                    {
+                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                            if (isInitialRender) {
+                                let componentCall = new lvCompositeComponent(this, {
+                                    dialogController: this.dialogController,
+                                    footnoteController: lvFootnoteController,
+                                    text: this.text.slice(1)
+                                }, undefined, elmtId, () => { }, { page: "lvMarkdownIn/src/main/ets/lv-markdown-in/lib/utils/lvQuoteComponent.ets", line: 54, f1: 7 });
+                                ViewPU.create(componentCall);
+                                let paramsLambda = () => {
+                                    return {
+                                        dialogController: this.dialogController,
+                                        footnoteController: lvFootnoteController,
+                                        text: this.text.slice(1)
+                                    };
+                                };
+                                componentCall.paramsGenerator_ = paramsLambda;
+                            }
+                            else {
+                                this.updateStateVarsOfChildByElmtId(elmtId, {
+                                    footnoteController: lvFootnoteController
+                                });
+                            }
+                        }, { name: "lvCompositeComponent" });
+                    }
+                });
+            }
+        }, If);
+        If.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+}
+Â“ÙD:\HUAWEI\Project1\oh_modules\.ohpm\@luvi+lv-markdown-in@2.0.9\oh_modules\@luvi\lv-markdown-in\src\main\ets\lv-markdown-in\lib\domain\LvQuote.jsÙ§D:\HUAWEI\Project1\oh_modules\.ohpm\@luvi+lv-markdown-in@2.0.9\oh_modules\@luvi\lv-markdown-in\src\main\ets\lv-markdown-in\lib\utils\controller\lvFootnoteController.jsÙœD:\HUAWEI\Project1\oh_modules\.ohpm\@luvi+lv-markdown-in@2.0.9\oh_modules\@luvi\lv-markdown-in\src\main\ets\lv-markdown-in\lib\utils\lvCompositeComponent.jsÙ˜D:\HUAWEI\Project1\oh_modules\.ohpm\@luvi+lv-markdown-in@2.0.9\oh_modules\@luvi\lv-markdown-in\src\main\ets\lv-markdown-in\lib\utils\lvQuoteComponent.jsÔrB™±isLocalDependency¯isNodeEntryFile§pkgPath§pkgNameªpkgVersion±belongProjectPath±dependencyPkgInfo¨commonjs¯hostModulesInfoÂÂÙ^D:\HUAWEI\Project1\oh_modules\.ohpm\@luvi+lv-markdown-in@2.0.9\oh_modules\@luvi\lv-markdown-in´@luvi/lv-markdown-in¥2.0.9²D:\HUAWEI\Project1ÔrC’§pkgNameªpkgVersion´@luvi/lv-markdown-in¥2.0.9ÔrD’¯hasNamedExportsªisCommonJSÃÂÃÚ"vif (!("finalizeConstruction" in ViewPU.prototype)) {
+    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
+}
+import { lvQuote } from '../domain/LvQuote';
+import { lvFootnoteController } from './controller/lvFootnoteController';
+import { lvCompositeComponent } from './lvCompositeComponent';
+export class lvQuoteComponent extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.o = new ObservedPropertySimplePU("", this, "text");
+        this.a2 = new ObservedPropertyObjectPU(lvQuote, this, "nQuote");
+        this.h1 = new ObservedPropertyObjectPU(null, this, "dialogController");
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.text !== undefined) {
+            this.text = params.text;
+        }
+        if (params.nQuote !== undefined) {
+            this.nQuote = params.nQuote;
+        }
+        if (params.dialogController !== undefined) {
+            this.dialogController = params.dialogController;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.o.purgeDependencyOnElmtId(rmElmtId);
+        this.a2.purgeDependencyOnElmtId(rmElmtId);
+        this.h1.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.o.aboutToBeDeleted();
+        this.a2.aboutToBeDeleted();
+        this.h1.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get text() {
+        return this.o.get();
+    }
+    set text(newValue) {
+        this.o.set(newValue);
+    }
+    get nQuote() {
+        return this.a2.get();
+    }
+    set nQuote(newValue) {
+        this.a2.set(newValue);
+    }
+    get dialogController() {
+        return this.h1.get();
+    }
+    set dialogController(newValue) {
+        this.h1.set(newValue);
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.alignItems(HorizontalAlign.Start);
+            Column.width('100%');
+            Column.backgroundColor(this.nQuote.getBackgroundColor());
+            Column.padding({
+                left: 8,
+                top: 12,
+                right: 7,
+                bottom: 12
+            });
+            Column.border({
+                color: {
+                    left: this.nQuote.getBorderColor()
+                },
+                style: {
+                    left: BorderStyle.Solid
+                },
+                width: {
+                    left: '4',
+                    right: '0',
+                    top: '0',
+                    bottom: '0'
+                }
+            });
+        }, Column);
+        {
+            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                if (isInitialRender) {
+                    let componentCall = new x12(this, { text: this.text.trim(), dialogController: this.dialogController }, undefined, elmtId, () => { }, { page: "lvMarkdownIn/src/main/ets/lv-markdown-in/lib/utils/lvQuoteComponent.ets", line: 13, f1: 7 });
+                    ViewPU.create(componentCall);
+                    let paramsLambda = () => {
+                        return {
+                            text: this.text.trim(),
+                            dialogController: this.dialogController
+                        };
+                    };
+                    componentCall.paramsGenerator_ = paramsLambda;
+                }
+                else {
+                    this.updateStateVarsOfChildByElmtId(elmtId, {});
+                }
+            }, { name: "ft" });
+        }
+        Column.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+}
+class x12 extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.o = new ObservedPropertySimplePU("", this, "text");
+        this.h1 = new ObservedPropertyObjectPU(null, this, "dialogController");
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.text !== undefined) {
+            this.text = params.text;
+        }
+        if (params.dialogController !== undefined) {
+            this.dialogController = params.dialogController;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.o.purgeDependencyOnElmtId(rmElmtId);
+        this.h1.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.o.aboutToBeDeleted();
+        this.h1.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get text() {
+        return this.o.get();
+    }
+    set text(newValue) {
+        this.o.set(newValue);
+    }
+    get dialogController() {
+        return this.h1.get();
+    }
+    set dialogController(newValue) {
+        this.h1.set(newValue);
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            If.create();
+            if (this.text.slice(0, 3) == "> >") {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    {
+                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                            if (isInitialRender) {
+                                let componentCall = new lvQuoteComponent(this, { text: this.text.slice(1).trim(), dialogController: this.dialogController }, undefined, elmtId, () => { }, { page: "lvMarkdownIn/src/main/ets/lv-markdown-in/lib/utils/lvQuoteComponent.ets", line: 52, f1: 7 });
+                                ViewPU.create(componentCall);
+                                let paramsLambda = () => {
+                                    return {
+                                        text: this.text.slice(1).trim(),
+                                        dialogController: this.dialogController
+                                    };
+                                };
+                                componentCall.paramsGenerator_ = paramsLambda;
+                            }
+                            else {
+                                this.updateStateVarsOfChildByElmtId(elmtId, {});
+                            }
+                        }, { name: "lvQuoteComponent" });
+                    }
+                });
+            }
+            else {
+                this.ifElseBranchUpdateFunction(1, () => {
+                    {
+                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                            if (isInitialRender) {
+                                let componentCall = new lvCompositeComponent(this, {
+                                    dialogController: this.dialogController,
+                                    footnoteController: lvFootnoteController,
+                                    text: this.text.slice(1)
+                                }, undefined, elmtId, () => { }, { page: "lvMarkdownIn/src/main/ets/lv-markdown-in/lib/utils/lvQuoteComponent.ets", line: 54, f1: 7 });
+                                ViewPU.create(componentCall);
+                                let paramsLambda = () => {
+                                    return {
+                                        dialogController: this.dialogController,
+                                        footnoteController: lvFootnoteController,
+                                        text: this.text.slice(1)
+                                    };
+                                };
+                                componentCall.paramsGenerator_ = paramsLambda;
+                            }
+                            else {
+                                this.updateStateVarsOfChildByElmtId(elmtId, {
+                                    footnoteController: lvFootnoteController
+                                });
+                            }
+                        }, { name: "lvCompositeComponent" });
+                    }
+                });
+            }
+        }, If);
+        If.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+}
+ÔrE•§version¨mappings¥names§sources®sourcesContentÜ Ù‘”    ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”  	 ‘”  
+ ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”   ‘”    ‘”  ! ‘”  " ‘”  # ‘”  $ ‘”  % ‘”  & ‘”  ' ‘”  ( ‘”  ) ‘”  * ‘”  + ‘”  , ‘”  - ‘”  . ‘”  / ‘”  0 ‘”  1 ‘”  2 ‘”  3 ‘”  4 ‘”  5 ‘”  6 ‘”  7 ‘”  8 ‘”  9 ‘”  : ‘”  ; ‘”  < ‘”  = ‘”  > ‘”  ? ‘”  Ì@ ‘”  ÌA ‘”  ÌB ‘”  ÌC ‘”  ÌD ‘”  ÌE ‘”  ÌF ‘”  ÌG ‘”  ÌH ‘”  ÌI ‘”  ÌJ ‘”  ÌK ‘”  ÌL ‘”  ÌM ‘”  ÌN ‘”  ÌO ‘”  ÌP ‘”  ÌQ ‘”  ÌR ‘”  ÌS ‘”  ÌT ‘”  ÌU ‘”  ÌV ‘”  ÌW ‘”  ÌX ‘”  ÌY ‘”  ÌZ ‘”  Ì[ ‘”  Ì\ ‘”  Ì] ‘”  Ì^ ‘”  Ì_ ‘”  Ì` ‘”  Ìa ‘”  Ìb ‘”  Ìc ‘”  Ìd ‘”  Ìe ‘”  Ìf ‘”  Ìg ‘”  Ìh ‘”  Ìi ‘”  Ìj ‘”  Ìk ‘”  Ìl ‘”  Ìm ‘”  Ìn ‘”  Ìo ‘”  Ìp ‘”  Ìq ‘”  Ìr ‘”  Ìs ‘”  Ìt ‘”  Ìu ‘”  Ìv ‘”  Ìw ‘”  Ìx ‘”  Ìy ‘”  Ìz ‘”  Ì{ ‘”  Ì| ‘”  Ì} ‘”  Ì~ ‘”  Ì ‘”  Ì€ ‘”  Ì ‘”  Ì‚ ‘”  Ìƒ ‘”  Ì„ ‘”  Ì… ‘”  Ì† ‘”  Ì‡ ‘”  Ìˆ ‘”  Ì‰ ‘”  ÌŠ ‘”  Ì‹ ‘”  ÌŒ ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì ‘”  Ì‘ ‘”  Ì’ ‘”  Ì“ ‘”  Ì” ‘”  Ì• ‘”  Ì– ‘”  Ì— ‘”  Ì˜ ‘”  Ì™ ‘”  Ìš ‘”  Ì› ‘”  Ìœ ‘”  Ì ‘”  Ì ‘”  ÌŸ ‘”  Ì  ‘”  Ì¡ ‘”  Ì¢ ‘”  Ì£ ‘”  Ì¤ ‘”  Ì¥ ‘”  Ì¦ ‘”  Ì§ ‘”  Ì¨ ‘”  Ì© ‘”  Ìª ‘”  Ì« ‘”  Ì¬ ‘”  Ì­ ‘”  Ì® ‘”  Ì¯ ‘”  Ì° ‘”  Ì± ‘”  Ì² ‘”  Ì³ ‘”  Ì´ ‘”  Ìµ ‘”  Ì¶ ‘”  Ì· ‘”  Ì¸ ‘”  Ì¹ ‘”  Ìº ‘”  Ì» ‘”  Ì¼ ‘”  Ì½ ‘”  Ì¾ ‘”  Ì¿ ‘”  ÌÀ ‘”  ÌÁ ‘”  ÌÂ ‘”  ÌÃ ‘”  ÌÄ ‘”  ÌÅ ‘”  ÌÆ ‘”  ÌÇ ‘”  ÌÈ ‘”  ÌÉ ‘”  ÌÊ ‘”  ÌË ‘”  ÌÌ ‘”  ÌÍ ‘”  ÌÎ ‘”  ÌÏ ‘”  ÌĞ ‘”  ÌÑ ‘”  ÌÒ ‘”  ÌÓ ‘”  ÌÔ ‘”  ÌÕ ‘”  ÌÖ ‘”  Ì× ‘Ù˜D:\HUAWEI\Project1\oh_modules\.ohpm\@luvi+lv-markdown-in@2.0.9\oh_modules\@luvi\lv-markdown-in\src\main\ets\lv-markdown-in\lib\utils\lvQuoteComponent.js‘Ú"vif (!("finalizeConstruction" in ViewPU.prototype)) {
+    Reflect.set(ViewPU.prototype, "finalizeConstruction", () => { });
+}
+import { lvQuote } from '../domain/LvQuote';
+import { lvFootnoteController } from './controller/lvFootnoteController';
+import { lvCompositeComponent } from './lvCompositeComponent';
+export class lvQuoteComponent extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.o = new ObservedPropertySimplePU("", this, "text");
+        this.a2 = new ObservedPropertyObjectPU(lvQuote, this, "nQuote");
+        this.h1 = new ObservedPropertyObjectPU(null, this, "dialogController");
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.text !== undefined) {
+            this.text = params.text;
+        }
+        if (params.nQuote !== undefined) {
+            this.nQuote = params.nQuote;
+        }
+        if (params.dialogController !== undefined) {
+            this.dialogController = params.dialogController;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.o.purgeDependencyOnElmtId(rmElmtId);
+        this.a2.purgeDependencyOnElmtId(rmElmtId);
+        this.h1.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.o.aboutToBeDeleted();
+        this.a2.aboutToBeDeleted();
+        this.h1.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get text() {
+        return this.o.get();
+    }
+    set text(newValue) {
+        this.o.set(newValue);
+    }
+    get nQuote() {
+        return this.a2.get();
+    }
+    set nQuote(newValue) {
+        this.a2.set(newValue);
+    }
+    get dialogController() {
+        return this.h1.get();
+    }
+    set dialogController(newValue) {
+        this.h1.set(newValue);
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            Column.create();
+            Column.alignItems(HorizontalAlign.Start);
+            Column.width('100%');
+            Column.backgroundColor(this.nQuote.getBackgroundColor());
+            Column.padding({
+                left: 8,
+                top: 12,
+                right: 7,
+                bottom: 12
+            });
+            Column.border({
+                color: {
+                    left: this.nQuote.getBorderColor()
+                },
+                style: {
+                    left: BorderStyle.Solid
+                },
+                width: {
+                    left: '4',
+                    right: '0',
+                    top: '0',
+                    bottom: '0'
+                }
+            });
+        }, Column);
+        {
+            this.observeComponentCreation2((elmtId, isInitialRender) => {
+                if (isInitialRender) {
+                    let componentCall = new x12(this, { text: this.text.trim(), dialogController: this.dialogController }, undefined, elmtId, () => { }, { page: "lvMarkdownIn/src/main/ets/lv-markdown-in/lib/utils/lvQuoteComponent.ets", line: 13, f1: 7 });
+                    ViewPU.create(componentCall);
+                    let paramsLambda = () => {
+                        return {
+                            text: this.text.trim(),
+                            dialogController: this.dialogController
+                        };
+                    };
+                    componentCall.paramsGenerator_ = paramsLambda;
+                }
+                else {
+                    this.updateStateVarsOfChildByElmtId(elmtId, {});
+                }
+            }, { name: "ft" });
+        }
+        Column.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+}
+class x12 extends ViewPU {
+    constructor(parent, params, __localStorage, elmtId = -1, paramsLambda = undefined, extraInfo) {
+        super(parent, __localStorage, elmtId, extraInfo);
+        if (typeof paramsLambda === "function") {
+            this.paramsGenerator_ = paramsLambda;
+        }
+        this.o = new ObservedPropertySimplePU("", this, "text");
+        this.h1 = new ObservedPropertyObjectPU(null, this, "dialogController");
+        this.setInitiallyProvidedValue(params);
+        this.finalizeConstruction();
+    }
+    setInitiallyProvidedValue(params) {
+        if (params.text !== undefined) {
+            this.text = params.text;
+        }
+        if (params.dialogController !== undefined) {
+            this.dialogController = params.dialogController;
+        }
+    }
+    updateStateVars(params) {
+    }
+    purgeVariableDependenciesOnElmtId(rmElmtId) {
+        this.o.purgeDependencyOnElmtId(rmElmtId);
+        this.h1.purgeDependencyOnElmtId(rmElmtId);
+    }
+    aboutToBeDeleted() {
+        this.o.aboutToBeDeleted();
+        this.h1.aboutToBeDeleted();
+        SubscriberManager.Get().delete(this.id__());
+        this.aboutToBeDeletedInternal();
+    }
+    get text() {
+        return this.o.get();
+    }
+    set text(newValue) {
+        this.o.set(newValue);
+    }
+    get dialogController() {
+        return this.h1.get();
+    }
+    set dialogController(newValue) {
+        this.h1.set(newValue);
+    }
+    initialRender() {
+        this.observeComponentCreation2((elmtId, isInitialRender) => {
+            If.create();
+            if (this.text.slice(0, 3) == "> >") {
+                this.ifElseBranchUpdateFunction(0, () => {
+                    {
+                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                            if (isInitialRender) {
+                                let componentCall = new lvQuoteComponent(this, { text: this.text.slice(1).trim(), dialogController: this.dialogController }, undefined, elmtId, () => { }, { page: "lvMarkdownIn/src/main/ets/lv-markdown-in/lib/utils/lvQuoteComponent.ets", line: 52, f1: 7 });
+                                ViewPU.create(componentCall);
+                                let paramsLambda = () => {
+                                    return {
+                                        text: this.text.slice(1).trim(),
+                                        dialogController: this.dialogController
+                                    };
+                                };
+                                componentCall.paramsGenerator_ = paramsLambda;
+                            }
+                            else {
+                                this.updateStateVarsOfChildByElmtId(elmtId, {});
+                            }
+                        }, { name: "lvQuoteComponent" });
+                    }
+                });
+            }
+            else {
+                this.ifElseBranchUpdateFunction(1, () => {
+                    {
+                        this.observeComponentCreation2((elmtId, isInitialRender) => {
+                            if (isInitialRender) {
+                                let componentCall = new lvCompositeComponent(this, {
+                                    dialogController: this.dialogController,
+                                    footnoteController: lvFootnoteController,
+                                    text: this.text.slice(1)
+                                }, undefined, elmtId, () => { }, { page: "lvMarkdownIn/src/main/ets/lv-markdown-in/lib/utils/lvQuoteComponent.ets", line: 54, f1: 7 });
+                                ViewPU.create(componentCall);
+                                let paramsLambda = () => {
+                                    return {
+                                        dialogController: this.dialogController,
+                                        footnoteController: lvFootnoteController,
+                                        text: this.text.slice(1)
+                                    };
+                                };
+                                componentCall.paramsGenerator_ = paramsLambda;
+                            }
+                            else {
+                                this.updateStateVarsOfChildByElmtId(elmtId, {
+                                    footnoteController: lvFootnoteController
+                                });
+                            }
+                        }, { name: "lvCompositeComponent" });
+                    }
+                });
+            }
+        }, If);
+        If.pop();
+    }
+    rerender() {
+        this.updateDirtyElements();
+    }
+}
+ÔrF“±../domain/LvQuote¶./lvCompositeComponentÙ!./controller/lvFootnoteControllerÔrG—ªassertions¨external¢id¤meta±moduleSideEffectsªresolvedByµsyntheticNamedExportsAÂÙD:\HUAWEI\Project1\oh_modules\.ohpm\@luvi+lv-markdown-in@2.0.9\oh_modules\@luvi\lv-markdown-in\src\main\ets\lv-markdown-in\lib\domain\LvQuote.jsAÃªoh-resolveÂGAÂÙœD:\HUAWEI\Project1\oh_modules\.ohpm\@luvi+lv-markdown-in@2.0.9\oh_modules\@luvi\lv-markdown-in\src\main\ets\lv-markdown-in\lib\utils\lvCompositeComponent.jsAÃªoh-resolveÂGAÂÙ§D:\HUAWEI\Project1\oh_modules\.ohpm\@luvi+lv-markdown-in@2.0.9\oh_modules\@luvi\lv-markdown-in\src\main\ets\lv-markdown-in\lib\utils\controller\lvFootnoteController.jsAÃªoh-resolveÂÂÔ  ÔrH”²dynamicImportCache¹exportAllDeclarationCache»exportNamedDeclarationCache«importCache‘ÔrI–¤type¥start£end«declarationªspecifiers¦source¶ExportNamedDeclarationÍ9ÍûÔrJ–¤type¥start£end¢idªsuperClass¤body°ClassDeclarationÍ@ÍûÔrK”¤type¥start£end¤nameªIdentifierÍFÍV°lvQuoteComponentKªIdentifierÍ_Íe¦ViewPUÔrL”¤type¥start£end¤body©ClassBodyÍfÍûÔrM˜¤type¥start£end¦static¨computed£key¤kind¥value°MethodDefinitionÍmÍ³ÂÂKªIdentifierÍmÍx«constructor«constructorÔrN™¤type¥start£end¢idªexpression©generator¥async¦params¤body²FunctionExpressionÍxÍ³ÀÂÂÂ–KªIdentifierÍyÍ¦parentKªIdentifierÍÍ‡¦paramsKªIdentifierÍ‰Í—®__localStorageÔrO•¤type¥start£end¤left¥right±AssignmentPatternÍ™Í¤KªIdentifierÍ™ÍŸ¦elmtIdÔrP–¤type¥start£end¨operator¦prefix¨argument¯UnaryExpressionÍ¢Í¤¡-ÃÔrQ•¤type¥start£end¥value£raw§LiteralÍ£Í¤¡1O±AssignmentPatternÍ¦Í¾KªIdentifierÍ¦Í²¬paramsLambdaKªIdentifierÍµÍ¾©undefinedKªIdentifierÍÀÍÉ©extraInfoL®BlockStatementÍËÍ³—ÔrR”¤type¥start£endªexpression³ExpressionStatementÍÖÍÔrS–¤type¥start£end¦callee©arguments¨optional®CallExpressionÍÖÍÔrT“¤type¥start£end¥SuperÍÖÍÛ”KªIdentifierÍÜÍâ¦parentKªIdentifierÍäÍò®__localStorageKªIdentifierÍôÍú¦elmtIdKªIdentifierÍüÍ©extraInfoÂÔrU–¤type¥start£end¤testªconsequent©alternate«IfStatementÍÍxÔrV–¤type¥start£end¤left¨operator¥right°BinaryExpressionÍÍ7P¯UnaryExpressionÍÍ(¦typeofÃKªIdentifierÍÍ(¬paramsLambda£===Q§LiteralÍ-Í7¨functionª"function"L®BlockStatementÍ9Íx‘R³ExpressionStatementÍHÍmÔrW–¤type¥start£end¨operator¤left¥right´AssignmentExpressionÍHÍl¡=ÔrX—¤type¥start£end¦object¨property¨computed¨optional°MemberExpressionÍHÍ]T®ThisExpressionÍHÍLKªIdentifierÍMÍ]°paramsGenerator_ÂÂKªIdentifierÍ`Íl¬paramsLambdaÀR³ExpressionStatementÍ‚ÍºW´AssignmentExpressionÍ‚Í¹¡=X°MemberExpressionÍ‚ÍˆT®ThisExpressionÍ‚Í†KªIdentifierÍ‡Íˆ¡oÂÂÔrY•¤type¥start£end¦callee©arguments­NewExpressionÍ‹Í¹KªIdentifierÍÍ§¸ObservedPropertySimplePU“Q§LiteralÍ¨Íª ¢""T®ThisExpressionÍ¬Í°Q§LiteralÍ²Í¸¤text¦"text"R³ExpressionStatementÍÄÍW´AssignmentExpressionÍÄÍ¡=X°MemberExpressionÍÄÍËT®ThisExpressionÍÄÍÈKªIdentifierÍÉÍË¢a2ÂÂY­NewExpressionÍÎÍKªIdentifierÍÒÍê¸ObservedPropertyObjectPU“KªIdentifierÍëÍò§lvQuoteT®ThisExpressionÍôÍøQ§LiteralÍúÍ¦nQuote¨"nQuote"R³ExpressionStatementÍÍUW´AssignmentExpressionÍÍT¡=X°MemberExpressionÍÍT®ThisExpressionÍÍKªIdentifierÍÍ¢h1ÂÂY­NewExpressionÍÍTKªIdentifierÍÍ4¸ObservedPropertyObjectPU“Q§LiteralÍ5Í9À¤nullT®ThisExpressionÍ;Í?Q§LiteralÍAÍS°dialogController²"dialogController"R³ExpressionStatementÍ_Í†S®CallExpressionÍ_Í…X°MemberExpressionÍ_Í}T®ThisExpressionÍ_ÍcKªIdentifierÍdÍ}¹setInitiallyProvidedValueÂÂ‘KªIdentifierÍ~Í„¦paramsÂR³ExpressionStatementÍÍ¬S®CallExpressionÍÍ«X°MemberExpressionÍÍ©T®ThisExpressionÍÍ”KªIdentifierÍ•Í©´finalizeConstructionÂÂÂM°MethodDefinitionÍ¹ÍÂÂKªIdentifierÍ¹ÍÒ¹setInitiallyProvidedValue¦methodN²FunctionExpressionÍÒÍÀÂÂÂ‘KªIdentifierÍÓÍÙ¦paramsL®BlockStatementÍÛÍ“U«IfStatementÍæÍ7V°BinaryExpressionÍêÍX°MemberExpressionÍêÍõKªIdentifierÍêÍğ¦paramsKªIdentifierÍñÍõ¤textÂÂ£!==KªIdentifierÍúÍ©undefinedL®BlockStatementÍÍ7‘R³ExpressionStatementÍÍ,W´AssignmentExpressionÍÍ+¡=X°MemberExpressionÍÍT®ThisExpressionÍÍKªIdentifierÍÍ¤textÂÂX°MemberExpressionÍ Í+KªIdentifierÍ Í&¦paramsKªIdentifierÍ'Í+¤textÂÂÀU«IfStatementÍAÍ˜V°BinaryExpressionÍEÍ`X°MemberExpressionÍEÍRKªIdentifierÍEÍK¦paramsKªIdentifierÍLÍR¦nQuoteÂÂ£!==KªIdentifierÍWÍ`©undefinedL®BlockStatementÍbÍ˜‘R³ExpressionStatementÍqÍW´AssignmentExpressionÍqÍŒ¡=X°MemberExpressionÍqÍ|T®ThisExpressionÍqÍuKªIdentifierÍvÍ|¦nQuoteÂÂX°MemberExpressionÍÍŒKªIdentifierÍÍ…¦paramsKªIdentifierÍ†ÍŒ¦nQuoteÂÂÀU«IfStatementÍ¢ÍV°BinaryExpressionÍ¦ÍËX°MemberExpressionÍ¦Í½KªIdentifierÍ¦Í¬¦paramsKªIdentifierÍ­Í½°dialogControllerÂÂ£!==KªIdentifierÍÂÍË©undefinedL®BlockStatementÍÍÍ‘R³ExpressionStatementÍÜÍW´AssignmentExpressionÍÜÍ¡=X°MemberExpressionÍÜÍñT®ThisExpressionÍÜÍàKªIdentifierÍáÍñ°dialogControllerÂÂX°MemberExpressionÍôÍKªIdentifierÍôÍú¦paramsKªIdentifierÍûÍ°dialogControllerÂÂÀM°MethodDefinitionÍ$ÍDÂÂKªIdentifierÍ$Í3¯updateStateVars¦methodN²FunctionExpressionÍ3ÍDÀÂÂÂ‘KªIdentifierÍ4Í:¦paramsL®BlockStatementÍ<ÍDM°MethodDefinitionÍJÍÂÂKªIdentifierÍJÍkÙ!purgeVariableDependenciesOnElmtId¦methodN²FunctionExpressionÍkÍÀÂÂÂ‘KªIdentifierÍlÍt¨rmElmtIdL®BlockStatementÍvÍ“R³ExpressionStatementÍÍªS®CallExpressionÍÍ©X°MemberExpressionÍÍŸX°MemberExpressionÍÍ‡T®ThisExpressionÍÍ…KªIdentifierÍ†Í‡¡oÂÂKªIdentifierÍˆÍŸ·purgeDependencyOnElmtIdÂÂ‘KªIdentifierÍ Í¨¨rmElmtIdÂR³ExpressionStatementÍ´ÍŞS®CallExpressionÍ´ÍİX°MemberExpressionÍ´ÍÓX°MemberExpressionÍ´Í»T®ThisExpressionÍ´Í¸KªIdentifierÍ¹Í»¢a2ÂÂKªIdentifierÍ¼ÍÓ·purgeDependencyOnElmtIdÂÂ‘KªIdentifierÍÔÍÜ¨rmElmtIdÂR³ExpressionStatementÍèÍS®CallExpressionÍèÍX°MemberExpressionÍèÍX°MemberExpressionÍèÍïT®ThisExpressionÍèÍìKªIdentifierÍíÍï¢h1ÂÂKªIdentifierÍğÍ·purgeDependencyOnElmtIdÂÂ‘KªIdentifierÍÍ¨rmElmtIdÂM°MethodDefinitionÍÍÂÂKªIdentifierÍÍ/°aboutToBeDeleted¦methodN²FunctionExpressionÍ/ÍÀÂÂÂL®BlockStatementÍ2Í•R³ExpressionStatementÍ=ÍWS®CallExpressionÍ=ÍVX°MemberExpressionÍ=ÍTX°MemberExpressionÍ=ÍCT®ThisExpressionÍ=ÍAKªIdentifierÍBÍC¡oÂÂKªIdentifierÍDÍT°aboutToBeDeletedÂÂÂR³ExpressionStatementÍaÍ|S®CallExpressionÍaÍ{X°MemberExpressionÍaÍyX°MemberExpressionÍaÍhT®ThisExpressionÍaÍeKªIdentifierÍfÍh¢a2ÂÂKªIdentifierÍiÍy°aboutToBeDeletedÂÂÂR³ExpressionStatementÍ†Í¡S®CallExpressionÍ†Í X°MemberExpressionÍ†ÍX°MemberExpressionÍ†ÍT®ThisExpressionÍ†ÍŠKªIdentifierÍ‹Í¢h1ÂÂKªIdentifierÍÍ°aboutToBeDeletedÂÂÂR³ExpressionStatementÍ«Í×S®CallExpressionÍ«ÍÖX°MemberExpressionÍ«ÍÉS®CallExpressionÍ«ÍÂX°MemberExpressionÍ«ÍÀKªIdentifierÍ«Í¼±SubscriberManagerKªIdentifierÍ½ÍÀ£GetÂÂÂKªIdentifierÍÃÍÉ¦deleteÂÂ‘S®CallExpressionÍÊÍÕX°MemberExpressionÍÊÍÓT®ThisExpressionÍÊÍÎKªIdentifierÍÏÍÓ¤id__ÂÂÂÂR³ExpressionStatementÍáÍS®CallExpressionÍáÍ X°MemberExpressionÍáÍşT®ThisExpressionÍáÍåKªIdentifierÍæÍş¸aboutToBeDeletedInternalÂÂÂM°MethodDefinitionÍÍ?ÂÂKªIdentifierÍÍ¤text£getN²FunctionExpressionÍÍ?ÀÂÂÂL®BlockStatementÍÍ?‘ÔrZ”¤type¥start£end¨argument¯ReturnStatementÍ$Í8S®CallExpressionÍ+Í7X°MemberExpressionÍ+Í5X°MemberExpressionÍ+Í1T®ThisExpressionÍ+Í/KªIdentifierÍ0Í1¡oÂÂKªIdentifierÍ2Í5£getÂÂÂM°MethodDefinitionÍEÍÂÂKªIdentifierÍIÍM¤text£setN²FunctionExpressionÍMÍÀÂÂÂ‘KªIdentifierÍNÍV¨newValueL®BlockStatementÍXÍ‘R³ExpressionStatementÍcÍxS®CallExpressionÍcÍwX°MemberExpressionÍcÍmX°MemberExpressionÍcÍiT®ThisExpressionÍcÍgKªIdentifierÍhÍi¡oÂÂKªIdentifierÍjÍm£setÂÂ‘KªIdentifierÍnÍv¨newValueÂM°MethodDefinitionÍ…Í¹ÂÂKªIdentifierÍ‰Í¦nQuote£getN²FunctionExpressionÍÍ¹ÀÂÂÂL®BlockStatementÍ’Í¹‘Z¯ReturnStatementÍÍ²S®CallExpressionÍ¤Í±X°MemberExpressionÍ¤Í¯X°MemberExpressionÍ¤Í«T®ThisExpressionÍ¤Í¨KªIdentifierÍ©Í«¢a2ÂÂKªIdentifierÍ¬Í¯£getÂÂÂM°MethodDefinitionÍ¿ÍüÂÂKªIdentifierÍÃÍÉ¦nQuote£setN²FunctionExpressionÍÉÍüÀÂÂÂ‘KªIdentifierÍÊÍÒ¨newValueL®BlockStatementÍÔÍü‘R³ExpressionStatementÍßÍõS®CallExpressionÍßÍôX°MemberExpressionÍßÍêX°MemberExpressionÍßÍæT®ThisExpressionÍßÍãKªIdentifierÍäÍæ¢a2ÂÂKªIdentifierÍçÍê£setÂÂ‘KªIdentifierÍëÍó¨newValueÂM°MethodDefinitionÍÍ@ÂÂKªIdentifierÍÍ°dialogController£getN²FunctionExpressionÍÍ@ÀÂÂÂL®BlockStatementÍÍ@‘Z¯ReturnStatementÍ$Í9S®CallExpressionÍ+Í8X°MemberExpressionÍ+Í6X°MemberExpressionÍ+Í2T®ThisExpressionÍ+Í/KªIdentifierÍ0Í2¢h1ÂÂKªIdentifierÍ3Í6£getÂÂÂM°MethodDefinitionÍFÍÂÂKªIdentifierÍJÍZ°dialogController£setN²FunctionExpressionÍZÍÀÂÂÂ‘KªIdentifierÍ[Íc¨newValueL®BlockStatementÍeÍ‘R³ExpressionStatementÍpÍ†S®CallExpressionÍpÍ…X°MemberExpressionÍpÍ{X°MemberExpressionÍpÍwT®ThisExpressionÍpÍtKªIdentifierÍuÍw¢h1ÂÂKªIdentifierÍxÍ{£setÂÂ‘KªIdentifierÍ|Í„¨newValueÂM°MethodDefinitionÍ“ÍºÂÂKªIdentifierÍ“Í ­initialRender¦methodN²FunctionExpressionÍ ÍºÀÂÂÂL®BlockStatementÍ£Íº“R³ExpressionStatementÍ®ÍöS®CallExpressionÍ®ÍõX°MemberExpressionÍ®ÍÌT®ThisExpressionÍ®Í²KªIdentifierÍ³ÍÌ¹observeComponentCreation2ÂÂ’N·ArrowFunctionExpressionÍÍÍìÀÂÂÂ’KªIdentifierÍÎÍÔ¦elmtIdKªIdentifierÍÖÍå¯isInitialRenderL®BlockStatementÍêÍì–R³ExpressionStatementÍùÍ		S®CallExpressionÍùÍ	X°MemberExpressionÍùÍ	KªIdentifierÍùÍÿ¦ColumnKªIdentifierÍ	 Í	¦createÂÂÂR³ExpressionStatementÍ	Í	@S®CallExpressionÍ	Í	?X°MemberExpressionÍ	Í	(KªIdentifierÍ	Í	¦ColumnKªIdentifierÍ	Í	(ªalignItemsÂÂ‘X°MemberExpressionÍ	)Í	>KªIdentifierÍ	)Í	8¯HorizontalAlignKªIdentifierÍ	9Í	>¥StartÂÂÂR³ExpressionStatementÍ	NÍ	cS®CallExpressionÍ	NÍ	bX°MemberExpressionÍ	NÍ	ZKªIdentifierÍ	NÍ	T¦ColumnKªIdentifierÍ	UÍ	Z¥widthÂÂ‘Q§LiteralÍ	[Í	a¤100%¦'100%'ÂR³ExpressionStatementÍ	qÍ	ªS®CallExpressionÍ	qÍ	©X°MemberExpressionÍ	qÍ	‡KªIdentifierÍ	qÍ	w¦ColumnKªIdentifierÍ	xÍ	‡¯backgroundColorÂÂ‘S®CallExpressionÍ	ˆÍ	¨X°MemberExpressionÍ	ˆÍ	¦X°MemberExpressionÍ	ˆÍ	“T®ThisExpressionÍ	ˆÍ	ŒKªIdentifierÍ	Í	“¦nQuoteÂÂKªIdentifierÍ	”Í	¦²getBackgroundColorÂÂÂÂR³ExpressionStatementÍ	¸Í
+DS®CallExpressionÍ	¸Í
+CX°MemberExpressionÍ	¸Í	ÆKªIdentifierÍ	¸Í	¾¦ColumnKªIdentifierÍ	¿Í	Æ§paddingÂÂ‘Ôr[”¤type¥start£endªproperties°ObjectExpressionÍ	ÇÍ
+B”Ôr\™¤type¥start£end¦method©shorthand¨computed£key¥value¤kind¨PropertyÍ	ÚÍ	áÂÂÂKªIdentifierÍ	ÚÍ	Ş¤leftQ§LiteralÍ	àÍ	á¡8¤init\¨PropertyÍ	ôÍ	ûÂÂÂKªIdentifierÍ	ôÍ	÷£topQ§LiteralÍ	ùÍ	û¢12¤init\¨PropertyÍ
+Í
+ÂÂÂKªIdentifierÍ
+Í
+¥rightQ§LiteralÍ
+Í
+¡7¤init\¨PropertyÍ
+)Í
+3ÂÂÂKªIdentifierÍ
+)Í
+/¦bottomQ§LiteralÍ
+1Í
+3¢12¤initÂR³ExpressionStatementÍ
+RÍáS®CallExpressionÍ
+RÍàX°MemberExpressionÍ
+RÍ
+_KªIdentifierÍ
+RÍ
+X¦ColumnKªIdentifierÍ
+YÍ
+_¦borderÂÂ‘[°ObjectExpressionÍ
+`Íß“\¨PropertyÍ
+sÍ
+ÆÂÂÂKªIdentifierÍ
+sÍ
+x¥color[°ObjectExpressionÍ
+zÍ
+Æ‘\¨PropertyÍ
+‘Í
+³ÂÂÂKªIdentifierÍ
+‘Í
+•¤leftS®CallExpressionÍ
+—Í
+³X°MemberExpressionÍ
+—Í
+±X°MemberExpressionÍ
+—Í
+¢T®ThisExpressionÍ
+—Í
+›KªIdentifierÍ
+œÍ
+¢¦nQuoteÂÂKªIdentifierÍ
+£Í
+±®getBorderColorÂÂÂ¤init¤init\¨PropertyÍ
+ÙÍ!ÂÂÂKªIdentifierÍ
+ÙÍ
+Ş¥style[°ObjectExpressionÍ
+àÍ!‘\¨PropertyÍ
+÷ÍÂÂÂKªIdentifierÍ
+÷Í
+û¤leftX°MemberExpressionÍ
+ıÍKªIdentifierÍ
+ıÍ«BorderStyleKªIdentifierÍ	Í¥SolidÂÂ¤init¤init\¨PropertyÍ4ÍĞÂÂÂKªIdentifierÍ4Í9¥width[°ObjectExpressionÍ;ÍĞ”\¨PropertyÍRÍ[ÂÂÂKªIdentifierÍRÍV¤leftQ§LiteralÍXÍ[¡4£'4'¤init\¨PropertyÍrÍ|ÂÂÂKªIdentifierÍrÍw¥rightQ§LiteralÍyÍ|¡0£'0'¤init\¨PropertyÍ“Í›ÂÂÂKªIdentifierÍ“Í–£topQ§LiteralÍ˜Í›¡0£'0'¤init\¨PropertyÍ²Í½ÂÂÂKªIdentifierÍ²Í¸¦bottomQ§LiteralÍºÍ½¡0£'0'¤init¤initÂKªIdentifierÍîÍô¦ColumnÂL®BlockStatementÍ Íœ‘R³ExpressionStatementÍÍ‘S®CallExpressionÍÍX°MemberExpressionÍÍ-T®ThisExpressionÍÍKªIdentifierÍÍ-¹observeComponentCreation2ÂÂ’N·ArrowFunctionExpressionÍ.ÍÀÂÂÂ’KªIdentifierÍ/Í5¦elmtIdKªIdentifierÍ7ÍF¯isInitialRenderL®BlockStatementÍKÍ‘U«IfStatementÍ^ÍpKªIdentifierÍbÍq¯isInitialRenderL®BlockStatementÍsÍÿ”Ôr]•¤type¥start£end¬declarations¤kind³VariableDeclarationÍŠÍu‘Ôr^•¤type¥start£end¢id¤init²VariableDeclaratorÍÍtKªIdentifierÍÍ›­componentCallY­NewExpressionÍÍtKªIdentifierÍ¢Í¥£x12–T®ThisExpressionÍ¦Íª[°ObjectExpressionÍ¬Íï’\¨PropertyÍ®ÍÄÂÂÂKªIdentifierÍ®Í²¤textS®CallExpressionÍ´ÍÄX°MemberExpressionÍ´ÍÂX°MemberExpressionÍ´Í½T®ThisExpressionÍ´Í¸KªIdentifierÍ¹Í½¤textÂÂKªIdentifierÍ¾ÍÂ¤trimÂÂÂ¤init\¨PropertyÍÆÍíÂÂÂKªIdentifierÍÆÍÖ°dialogControllerX°MemberExpressionÍØÍíT®ThisExpressionÍØÍÜKªIdentifierÍİÍí°dialogControllerÂÂ¤initKªIdentifierÍñÍú©undefinedKªIdentifierÍüÍ¦elmtIdN·ArrowFunctionExpressionÍÍÀÂÂÂL®BlockStatementÍ
+Í[°ObjectExpressionÍÍs“\¨PropertyÍÍ`ÂÂÂKªIdentifierÍÍ¤pageQ§LiteralÍÍ`ÙGlvMarkdownIn/src/main/ets/lv-markdown-in/lib/utils/lvQuoteComponent.etsÙI"lvMarkdownIn/src/main/ets/lv-markdown-in/lib/utils/lvQuoteComponent.ets"¤init\¨PropertyÍbÍjÂÂÂKªIdentifierÍbÍf¤lineQ§LiteralÍhÍj¢13¤init\¨PropertyÍlÍqÂÂÂKªIdentifierÍlÍn¢f1Q§LiteralÍpÍq¡7¤init£letR³ExpressionStatementÍ‹Í¨S®CallExpressionÍ‹Í§X°MemberExpressionÍ‹Í˜KªIdentifierÍ‹Í‘¦ViewPUKªIdentifierÍ’Í˜¦createÂÂ‘KªIdentifierÍ™Í¦­componentCallÂ]³VariableDeclarationÍ¾Í¨‘^²VariableDeclaratorÍÂÍ§KªIdentifierÍÂÍÎ¬paramsLambdaN·ArrowFunctionExpressionÍÑÍ§ÀÂÂÂL®BlockStatementÍ×Í§‘Z¯ReturnStatementÍòÍ[°ObjectExpressionÍùÍ’\¨PropertyÍÍ.ÂÂÂKªIdentifierÍÍ¤textS®CallExpressionÍÍ.X°MemberExpressionÍÍ,X°MemberExpressionÍÍ'T®ThisExpressionÍÍ"KªIdentifierÍ#Í'¤textÂÂKªIdentifierÍ(Í,¤trimÂÂÂ¤init\¨PropertyÍMÍtÂÂÂKªIdentifierÍMÍ]°dialogControllerX°MemberExpressionÍ_ÍtT®ThisExpressionÍ_ÍcKªIdentifierÍdÍt°dialogControllerÂÂ¤init£letR³ExpressionStatementÍ¾ÍìW´AssignmentExpressionÍ¾Íë¡=X°MemberExpressionÍ¾ÍÜKªIdentifierÍ¾ÍË­componentCallKªIdentifierÍÌÍÜ°paramsGenerator_ÂÂKªIdentifierÍßÍë¬paramsLambdaL®BlockStatementÍÍp‘R³ExpressionStatementÍ-Í]S®CallExpressionÍ-Í\X°MemberExpressionÍ-ÍPT®ThisExpressionÍ-Í1KªIdentifierÍ2ÍP¾updateStateVarsOfChildByElmtIdÂÂ’KªIdentifierÍQÍW¦elmtId[°ObjectExpressionÍYÍ[Â[°ObjectExpressionÍÍ‘\¨PropertyÍƒÍÂÂÂKªIdentifierÍƒÍ‡¤nameQ§LiteralÍ‰Í¢ft¤"ft"¤initÂR³ExpressionStatementÍ¦Í³S®CallExpressionÍ¦Í²X°MemberExpressionÍ¦Í°KªIdentifierÍ¦Í¬¦ColumnKªIdentifierÍ­Í°£popÂÂÂM°MethodDefinitionÍÀÍøÂÂKªIdentifierÍÀÍÈ¨rerender¦methodN²FunctionExpressionÍÈÍøÀÂÂÂL®BlockStatementÍËÍø‘R³ExpressionStatementÍÖÍñS®CallExpressionÍÖÍğX°MemberExpressionÍÖÍîT®ThisExpressionÍÖÍÚKªIdentifierÍÛÍî³updateDirtyElementsÂÂÂÀ“Ôr_•¤type¥start£endªspecifiers¦source±ImportDeclarationÌ€Ì¬‘Ôr`•¤type¥start£end¨imported¥local¯ImportSpecifierÌ‰ÌKªIdentifierÌ‰Ì§lvQuoteKªIdentifierÌ‰Ì§lvQuoteQ§LiteralÌ˜Ì«±../domain/LvQuote³'../domain/LvQuote'_±ImportDeclarationÌ®Ì÷‘`¯ImportSpecifierÌ·ÌËKªIdentifierÌ·ÌË´lvFootnoteControllerKªIdentifierÌ·ÌË´lvFootnoteControllerQ§LiteralÌÓÌöÙ!./controller/lvFootnoteControllerÙ#'./controller/lvFootnoteController'_±ImportDeclarationÌùÍ7‘`¯ImportSpecifierÍÍKªIdentifierÍÍ´lvCompositeComponentKªIdentifierÍÍ´lvCompositeComponentQ§LiteralÍÍ6¶./lvCompositeComponent¸'./lvCompositeComponent'
