@@ -1,8 +1,8 @@
-import { ChatI } from './ChatI'
+import { IChat } from './IChat'
 
-abstract class BaseProject1{
+abstract class IBaseProject{
   protected name:string
-  protected chats: Array<ChatI>
+  protected chats: Array<IChat>
 
   constructor(name:string){
     this.name = name
@@ -10,12 +10,12 @@ abstract class BaseProject1{
   }
 
   //添加一个Chat
-  abstract addChat(chat:ChatI)
+  abstract addChat(chat:IChat)
 
   //获取一个聊天记录
-  abstract getChat(index:number):ChatI
+  abstract getChat(index:number):IChat
 
   //获取所有聊天记录
-  abstract getAllChat():Array<ChatI>
+  abstract getAllChat():Array<IChat>
 
 }

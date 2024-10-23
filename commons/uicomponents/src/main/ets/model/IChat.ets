@@ -3,7 +3,7 @@ interface Info{
   content:string
 }
 
-export abstract class ChatI{
+export abstract class IChat{
   protected id:number
   protected messages:Array<Info>
 

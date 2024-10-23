@@ -75,6 +75,7 @@ export struct FamousPlacePage {
 
 
     }
+    .backgroundColor($r('app.color.app_background_color'))
     .hideTitleBar(true)
   }
 

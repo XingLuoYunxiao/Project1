@@ -109,7 +109,7 @@ export struct AttractionDetailPage {
           .scrollable(ScrollDirection.Vertical)
         }
         .alignItems(HorizontalAlign.Start)
-        .backgroundColor(Color.White)
+        .backgroundColor($r('app.color.app_background_color'))
 
         Column(){
 
@@ -130,6 +130,7 @@ export struct AttractionDetailPage {
       .width('95%')
       .height('100%')
     }
+    .backgroundColor($r('app.color.app_background_color'))
     .hideTitleBar(true)
   }
 }

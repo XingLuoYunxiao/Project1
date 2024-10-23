@@ -55,7 +55,7 @@ export struct TravelStartPage {
       }
       .width('95%')
       .height('100%')
-      .backgroundColor('#F1F3F5')
+      .backgroundColor($r('app.color.app_background_color'))
     }
     .navDestination(this.travelStartRouter)
     .hideTitleBar(true)
