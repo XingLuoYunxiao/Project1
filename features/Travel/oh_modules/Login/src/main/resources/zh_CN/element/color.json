@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "column_background_color",
+      "value": "#fafafa"
+    },
+    {
+      "name": "custom_color",
+      "value": "#5e5e5e"
+    },
+    {
+      "name": "divider_color",
+      "value": "#5e5e5e"
+    },
+    {
+      "name": "custom_blank_color",
+      "value": "#d1d1d1"
+    }
+  ]
+}

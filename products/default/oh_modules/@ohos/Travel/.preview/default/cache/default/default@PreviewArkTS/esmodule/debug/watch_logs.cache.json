@@ -1,0 +1,5 @@
+<<<<<<< HEAD
+[]
+=======
+[{"time":"2024-10-05T13:36:13.522Z","category":"etsTransform","level":"warn","msg":"\u001b[33mArkTS:WARN File: D:/HuaWei/Apps/IctProject/features/Travel/src/main/ets/util/avatar.ets:1:1\n It's not a recommended way to export struct with @Entry decorator, which may cause ACE Engine error in component preview mode.","type":"plugin_log"}]
+>>>>>>> origin/zmx
