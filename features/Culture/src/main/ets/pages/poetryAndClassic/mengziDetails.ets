@@ -1,13 +1,10 @@
-import { common } from "@kit.AbilityKit";
-import { util } from "@kit.ArkTS";
-import { BusinessError } from '@kit.BasicServicesKit';
 import { BasicDataSource } from "../../model/poetryModel/poetryModel";
 import { FileUtil } from "../../util/FileUtil";
 
-const TAG: string = 'lunyuDetails';
+const TAG: string = 'mengziDetails';
 
 @Builder
-export function lunyuDetailsBuilder(name?: string, param?: Object) {
+export function mengziDetailsBuilder(name?: string, param?: Object) {
   details({ param: param as string });
 }
 
@@ -16,27 +13,27 @@ export struct details {
 
   @State param: string = ''
 
-  @State lunyuList: Array<lunyu> = [];
+  @State mengziList: Array<mengzi> = [];
 
   aboutToAppear(): void {
-    console.debug("这是论语 details 页面");
+    console.debug("这是孟子 details 页面");
 
-    // 加载论语数据
-    getLunyuData()
+    // 加载孟子数据
+    getMengziData()
   }
 
   build() {
     NavDestination() {
-      Text('论语').lunyuItemStyle()
+      Text('孟子').lunyuItemStyle()
 
       Column() {
         List({space:12}) {
-          LazyForEach(lunyuData, (item: lunyu, index: number) => {
+          LazyForEach(mengziData, (item: mengzi, index: number) => {
             ListItem() {
-              lunyuItem({lunyu:item})
+              mengziItem({mengzi:item})
                 .margin({right:15})
             }
-          }, (item: lunyu, index: number) => index.toString())
+          }, (item: mengzi, index: number) => index.toString())
         }
         .cachedCount(10)
 
@@ -52,64 +49,63 @@ export struct details {
 
 }
 
-
 @Extend(Text) function lunyuItemStyle() {
   .fontWeight(FontWeight.Medium)
 }
 
-class lunyuModel extends BasicDataSource<lunyu> {
-  data: Array<lunyu> = [];
+class mengziModel extends BasicDataSource<mengzi> {
+  data: Array<mengzi> = [];
 
-  public getData(index: number): void | lunyu {
+  public getData(index: number): void | mengzi {
     if (index === this.data.length - 1) {
-      //getLunyuDataFromRawfile();
+      //getMengziDataFromRawfile();
     }
     return this.data[index];
   }
 
 }
 
-const lunyuData: lunyuModel = new lunyuModel();
+const mengziData: mengziModel = new mengziModel();
 
-async function getLunyuData() {
+async function getMengziData() {
   try {
-    let lunyuArr: lunyu[] = await FileUtil.getDataFromRawfile<lunyu>('lunyu.json');
+    let mengziArr: mengzi[] = await FileUtil.getDataFromRawfile<mengzi>('mengzi.json');
 
-    lunyuArr.forEach(item => {
-      lunyuData.pushData(item);
+    mengziArr.forEach(item => {
+      mengziData.pushData(item);
     });
   } catch (error) {
-    console.error("Error loading lunyu data: ", error);
+    console.error("Error loading mengzi data: ", error);
   }
 }
 
-interface lunyu {
+interface mengzi {
   chapter: string;
   paragraphs: string[];
 }
 
 @Component
-struct  lunyuItem{
+struct  mengziItem{
   @State spread:boolean =false
-  @Prop lunyu:lunyu
+  @Prop mengzi:mengzi
   spreadDuration:number =2000
   closeTime:number =300
   build() {
 
     Column({space:8}) {
-      Text(this.lunyu.chapter).lunyuItemStyle()
+      Text(this.mengzi.chapter).lunyuItemStyle()
         .fontSize($r('app.float.poetry_title_fontSize'))
 
 
         .onClick(()=>{
-            this.spread =!this.spread
+          this.spread =!this.spread
         })
       Column(){
         List(){
           ListItem(){
 
           }
-          ForEach(this.lunyu.paragraphs,(prgp:string)=>{
+          ForEach(this.mengzi.paragraphs,(prgp:string)=>{
             ListItem(){
               Text(prgp)
                 .fontSize($r('app.float.poetry_fontSize'))

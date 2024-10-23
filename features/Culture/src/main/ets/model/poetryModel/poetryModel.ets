@@ -24,6 +24,10 @@ interface shici{
   dynasty:string
   content:string
 }
+interface shishuwujing{
+  chapter:string
+  paragraphs:string
+}
 
 
 //基础数据源类

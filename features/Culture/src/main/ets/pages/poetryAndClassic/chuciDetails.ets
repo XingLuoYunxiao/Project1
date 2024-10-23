@@ -1,7 +1,5 @@
 
-import { common } from "@kit.AbilityKit";
-import { util } from "@kit.ArkTS";
-import { BusinessError } from '@kit.BasicServicesKit';
+
 import { BasicDataSource } from "../../model/poetryModel/poetryModel";
 import { FileUtil } from "../../util/FileUtil";
 
@@ -78,10 +76,6 @@ class chuciModel extends BasicDataSource<chuci> {
     return this.data[index];
   }
 
-  public pushData(data: chuci): void {
-    this.data.push(data);
-    this.notifyDataAdd(this.data.length - 1);
-  }
 }
 
 const chuciData: chuciModel = new chuciModel();

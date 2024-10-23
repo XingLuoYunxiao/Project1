@@ -19,7 +19,6 @@ export class FileUtil {
             reject(error);
           } else {
             let rawFile = value;
-            console.debug(JSON.stringify(rawFile));
 
             let textDecoderOptions: util.TextDecoderOptions = { ignoreBOM: true };
             let textDecoder = util.TextDecoder.create("utf-8", textDecoderOptions);

@@ -13,7 +13,6 @@ export struct CulturalHeritageStartPage {
   aboutToAppear(): void {
     ttf('STXINGKAFont', 'STXINGKA.TTF')
     console.log('testlog' + this.MasterpieceIArr.length)
-
   }
 
   build() {

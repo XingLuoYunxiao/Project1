@@ -9,7 +9,7 @@ export  function PoetryAndClassicPageBuilder(name: string, param: Object){
 @Component
 export struct PoetryAndClassicPage{
 
-  list:string[]=['楚辞','诗经','论语','四书五经','诗词','小说']
+  list:string[]=['楚辞','诗经','论语','孟子','诗词','中庸']
 
   @Consume('travelPathStack') travelPathStack:NavPathStack
 
