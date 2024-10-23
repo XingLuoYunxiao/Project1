@@ -1,7 +1,0 @@
-[2024-10-22T20:13:15.497] [DEBUG] debug-file - current process  memoryUsage: {
-  rss: 971014144,
-  heapTotal: 76046336,
-  heapUsed: 44225016,
-  external: 2112586,
-  arrayBuffers: 60284
-} os memoryUsage :12.750808715820312
