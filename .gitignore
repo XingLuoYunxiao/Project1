@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # dir 不需要提交的目录
 node_modules/
 oh_modules/
@@ -9,8 +10,9 @@ build/
 /.idea
 **/BuildProfile.ets
 
-
 # file 不需要提交的文件
 local.properties
 oh-package-lock.json5
 /.clang-format
+
+

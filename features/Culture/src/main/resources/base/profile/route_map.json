@@ -1,0 +1,42 @@
+{
+  "routerMap": [
+    {
+      "name":"poetryAndClassicPage",
+      "pageSourceFile": "src/main/ets/pages/poetryAndClassic/PoetryAndClassicPage.ets",
+      "buildFunction": "PoetryAndClassicPageBuilder"
+    },
+    {
+      "name": "chuciDetails",
+      "pageSourceFile": "src/main/ets/pages/poetryAndClassic/chuciDetails.ets",
+      "buildFunction": "chuciDetailsBuilder"
+    },
+    {
+      "name": "lunyuDetails",
+      "pageSourceFile": "src/main/ets/pages/poetryAndClassic/lunyuDetails.ets",
+      "buildFunction": "lunyuDetailsBuilder"
+    },
+    {
+      "name": "shijingDetails",
+      "pageSourceFile": "src/main/ets/pages/poetryAndClassic/shijingDetails.ets",
+      "buildFunction": "shijingDetailsBuilder"
+    },
+    {
+      "name": "shiciDetails",
+      "pageSourceFile": "src/main/ets/pages/poetryAndClassic/shiciDetails.ets",
+      "buildFunction": "shiciDetailsBuilder"
+    },
+
+    {
+      "name": "mengziDetails",
+      "pageSourceFile": "src/main/ets/pages/poetryAndClassic/mengziDetails.ets",
+      "buildFunction": "mengziDetailsBuilder"
+    },
+    {
+      "name": "zhongyongDetails",
+      "pageSourceFile": "src/main/ets/pages/poetryAndClassic/zhongyongDetails.ets",
+      "buildFunction": "zhongyongDetailsBuilder"
+    }
+
+
+  ]
+}

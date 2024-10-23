@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Culture/Culture.iml" filepath="$PROJECT_DIR$/.idea/modules/Culture/Culture.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Login/Login.iml" filepath="$PROJECT_DIR$/.idea/modules/Login/Login.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Project1.iml" filepath="$PROJECT_DIR$/.idea/modules/Project1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Travel/Travel.iml" filepath="$PROJECT_DIR$/.idea/modules/Travel/Travel.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/default/default.iml" filepath="$PROJECT_DIR$/.idea/modules/default/default.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/uicomponents/uicomponents.iml" filepath="$PROJECT_DIR$/.idea/modules/uicomponents/uicomponents.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/utils/utils.iml" filepath="$PROJECT_DIR$/.idea/modules/utils/utils.iml" />
+    </modules>
+  </component>
+</project>
