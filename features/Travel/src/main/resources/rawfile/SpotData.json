@@ -1,0 +1,241 @@
+[
+  {
+    "id": "1",
+    "name": "长城",
+    "description": "长城是中国古代的军事防御工程，也是世界文化遗产。",
+    "feature": "中国古代的伟大建筑",
+    "rating": 5,
+    "location": {"latitude": 40.404494, "longitude": 116.376160},
+    "ticketPrice": 45,
+    "openingHours": "06:30-18:30",
+    "image": "app.media.attraction_1"
+  },
+  {
+    "id": "2",
+    "name": "故宫",
+    "description": "故宫是明、清两代的皇宫，也是世界上现存规模最大、保存最完整的木质结构古建筑群。",
+    "feature": "中国古代皇家宫殿",
+    "rating": 5,
+    "location": {"latitude": 39.916520, "longitude": 116.397120},
+    "ticketPrice": 60,
+    "openingHours": "08:30-17:00",
+    "image": "app.media.attraction_2"
+
+  },
+  {
+    "id": "3",
+    "name": "颐和园",
+    "description": "颐和园是清朝时期的皇家园林，以昆明湖、万寿山为基础，汇集了江南园林的设计理念。",
+    "feature": "皇家园林",
+    "rating": 5,
+    "location": {"latitude": 39.982290, "longitude": 116.280740},
+    "ticketPrice": 30,
+    "openingHours": "06:30-18:00",
+    "image": "app.media.attraction_3"
+
+  },
+  {
+    "id": "4",
+    "name": "天坛",
+    "description": "天坛是明清两朝皇帝祭天和祈祷丰收的地方。",
+    "feature": "古代祭天场所",
+    "rating": 4,
+    "location": {"latitude": 39.802090, "longitude": 116.442170},
+    "ticketPrice": 15,
+    "openingHours": "06:00-21:00",
+    "image": "app.media.tiantan"
+
+  },
+  {
+    "id": "5",
+    "name": "圆明园",
+    "description": "圆明园曾是中国清朝时期的皇家园林，现在是遗址公园。",
+    "feature": "清朝皇家园林遗址",
+    "rating": 4,
+    "location": {"latitude": 39.997200, "longitude": 116.362890},
+    "ticketPrice": 10,
+    "openingHours": "06:00-20:00",
+    "image": "app.media.attraction_1"
+
+  },
+  {
+    "id": "6",
+    "name": "南锣鼓巷",
+    "description": "南锣鼓巷是一条历史悠久的胡同，现在成为北京的文化地标。",
+    "feature": "历史文化街区",
+    "rating": 4,
+    "location": {"latitude": 39.934470, "longitude": 116.417240},
+    "ticketPrice": 0,
+    "openingHours": "全天开放",
+    "image": "app.media.attraction_3"
+
+  },
+  {
+    "id": "7",
+    "name": "西湖",
+    "description": "杭州西湖风景名胜区是中国著名的旅游景点之一，以其山水风光闻名。",
+    "feature": "美丽的自然湖泊",
+    "rating": 5,
+    "location": {"latitude": 30.262950, "longitude": 120.128230},
+    "ticketPrice": 0,
+    "openingHours": "全天开放",
+    "image": "app.media.attraction_2"
+
+  },
+  {
+    "id": "8",
+    "name": "鼓浪屿",
+    "description": "鼓浪屿位于福建省厦门市，是一个有着丰富历史文化的岛屿。",
+    "feature": "历史文化岛",
+    "rating": 5,
+    "location": {"latitude": 24.442270, "longitude": 118.114700},
+    "ticketPrice": 0,
+    "openingHours": "全天开放",
+    "image": "app.media.nearby_1"
+
+  },
+  {
+    "id": "9",
+    "name": "丽江古城",
+    "description": "丽江古城位于云南省，是一个充满纳西族文化特色的古城。",
+    "feature": "纳西族文化古城",
+    "rating": 5,
+    "location": {"latitude": 26.896960, "longitude": 100.253740},
+    "ticketPrice": 80,
+    "openingHours": "全天开放",
+    "image": "app.media.nearby_2"
+
+  },
+  {
+    "id": "10",
+    "name": "九寨沟",
+    "description": "九寨沟位于四川省阿坝藏族羌族自治州，以其多彩的湖泊而著名。",
+    "feature": "自然保护区",
+    "rating": 5,
+    "location": {"latitude": 32.878480, "longitude": 103.752030},
+    "ticketPrice": 220,
+    "openingHours": "08:00-17:00",
+    "image": "app.media.nearby_3"
+
+  },
+  {
+    "id": "11",
+    "name": "华山",
+    "description": "华山位于陕西省，是中国五岳之一。",
+    "feature": "险峻的山峰",
+    "rating": 4,
+    "location": {"latitude": 34.581060, "longitude": 109.651300},
+    "ticketPrice": 180,
+    "openingHours": "07:00-18:00",
+    "image": "app.media.nearby_4"
+
+  },
+  {
+    "id": "12",
+    "name": "泰山",
+    "description": "泰山位于山东省，是中国五岳之首。",
+    "feature": "登山朝圣之地",
+    "rating": 4,
+    "location": {"latitude": 36.184680, "longitude": 117.127610},
+    "ticketPrice": 125,
+    "openingHours": "全天开放",
+    "image": "app.media.nearby_5"
+
+  },
+  {
+    "id": "13",
+    "name": "峨眉山",
+    "description": "峨眉山位于四川省，是中国四大佛教名山之一。",
+    "feature": "佛教圣地",
+    "rating": 4,
+    "location": {"latitude": 29.601900, "longitude": 103.436120},
+    "ticketPrice": 185,
+    "openingHours": "全天开放",
+    "image": "app.media.attraction_2"
+
+  },
+  {
+    "id": "14",
+    "name": "黄山",
+    "description": "黄山位于安徽省，以其奇松、怪石、云海、温泉四绝著称。",
+    "feature": "自然景观",
+    "rating": 5,
+    "location": {"latitude": 29.841550, "longitude": 118.297680},
+    "ticketPrice": 230,
+    "openingHours": "全天开放",
+    "image": "app.media.attraction_1"
+
+  },
+  {
+    "id": "15",
+    "name": "张家界国家森林公园",
+    "description": "张家界位于湖南省，以其独特的砂岩峰林地貌而闻名。",
+    "feature": "砂岩峰林地貌",
+    "rating": 5,
+    "location": {"latitude": 29.444750, "longitude": 110.945870},
+    "ticketPrice": 248,
+    "openingHours": "07:00-17:30",
+    "image": "app.media.attraction_1"
+
+  },
+  {
+    "id": "16",
+    "name": "武当山",
+    "description": "武当山位于湖北省，是中国道教的重要圣地。",
+    "feature": "道教圣地",
+    "rating": 4,
+    "location": {"latitude": 32.427600, "longitude": 111.051300},
+    "ticketPrice": 140,
+    "openingHours": "全天开放",
+    "image": "app.media.attraction_1"
+
+  },
+  {
+    "id": "17",
+    "name": "秦始皇兵马俑",
+    "description": "秦始皇兵马俑位于陕西省西安市，是秦始皇陵的一部分。",
+    "feature": "古代陪葬坑",
+    "rating": 5,
+    "location": {"latitude": 34.508790, "longitude": 109.270140},
+    "ticketPrice": 150,
+    "openingHours": "08:30-18:00",
+    "image": "app.media.qinshihuanglin"
+
+  },
+  {
+    "id": "18",
+    "name": "布达拉宫",
+    "description": "布达拉宫位于西藏自治区拉萨市，是藏传佛教的圣地。",
+    "feature": "藏传佛教圣地",
+    "rating": 5,
+    "location": {"latitude": 29.660490, "longitude": 91.116250},
+    "ticketPrice": 200,
+    "openingHours": "09:00-16:00",
+    "image": "app.media.attraction_1"
+
+  },
+  {
+    "id": "19",
+    "name": "西湖龙井茶园",
+    "description": "西湖龙井茶园位于浙江省杭州市，是中国著名的茶叶产地。",
+    "feature": "茶文化",
+    "rating": 4,
+    "location": {"latitude": 30.211300, "longitude": 120.134100},
+    "ticketPrice": 0,
+    "openingHours": "全天开放",
+    "image": "app.media.attraction_1"
+
+  },
+  {
+    "id": "20",
+    "name": "桂林漓江",
+    "description": "桂林漓江位于广西壮族自治区，以其秀美的山水风光著称。",
+    "feature": "山水风光",
+    "rating": 5,
+    "location": {"latitude": 25.241600, "longitude": 110.284750},
+    "ticketPrice": 210,
+    "openingHours": "全天开放",
+    "image": "app.media.attraction_1"
+
+  }
+]

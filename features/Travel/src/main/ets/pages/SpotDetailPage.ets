@@ -1,12 +1,11 @@
 import { HttpGet } from "@ohos/utils";
-import { Attraction } from "../model/Attraction";
 import { lvMarkdownIn, lvText } from "@luvi/lv-markdown-in"
-
+import { Spot} from "../model/ISpot";
 
 
 @Component
-export struct AttractionDetailPage {
-  @State attraction: Attraction = new Attraction(1, "null", $r("app.media.attraction_1"));
+export struct SpotDetailPage {
+  @State spot: Spot = new Spot('0','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null');
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @State  myScale: number = 1
   @State voice: boolean = false;
@@ -17,8 +16,8 @@ export struct AttractionDetailPage {
 
   async aboutToAppear(): Promise<void> {
     lvText.setTextSize(16)
-    this.attraction = await this.travelPathStack.getParamByName('AttractionDetailPage')[0] as Attraction;
-    this.sendRequest(this.attraction.name);
+    this.spot = await this.travelPathStack.getParamByName('SpotDetailPage')[0] as Spot;
+    this.sendRequest(this.spot.name);
   }
 
   async sendRequest(content:string) {
@@ -47,7 +46,7 @@ export struct AttractionDetailPage {
               this.travelPathStack.pop();
             })
           Row(){
-            Text(this.attraction.name)
+            Text(this.spot.name)
               .fontSize(20)
               .fontWeight(FontWeight.Bold)
               .margin({right:15})

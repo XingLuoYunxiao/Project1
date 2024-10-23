@@ -1,5 +1,6 @@
-import { Attraction, famousPlaces, otherItemList } from "../model/Attraction";
-import { LoadingAnimation } from "../util/Loading";
+import { otherItemList } from "../model/Attraction";
+import { Spot } from "../model/ISpot";
+import { SpotDataSource } from "../model/SpotDataSource";
 
 //评分数组，最高10分
 const scoreList: number[] = [9.7, 10.0, 8.8, 9.5, 9.2, 9.9, 9.0];
@@ -7,15 +8,29 @@ const scoreList: number[] = [9.7, 10.0, 8.8, 9.5, 9.2, 9.9, 9.0];
 
 export interface  LoadParams{
   param1: string;
-  param2: Attraction;
+  param2: Spot;
 }
 
 @Component
 export struct FamousPlacePage {
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @State category: string = "";
+  @State spotDataSource: SpotDataSource = new SpotDataSource();
+  scroller: Scroller = new Scroller()
 
-  aboutToAppear(): void {
+  @Builder itemFoot(){
+    Column(){
+      Text('-------到底了--------')
+        .fontSize(10)
+        .backgroundColor(Color.White)
+        .width('100%')
+        .textAlign(TextAlign.Center)
+        .height(30)
+        .margin({top:5})
+    }
+  }
+
+  async aboutToAppear(): Promise<void> {
     this.category = this.travelPathStack.getParamByName('FamousPlacePage')[0] as string
   }
 
@@ -45,9 +60,9 @@ export struct FamousPlacePage {
       Tabs(){
         TabContent(){
           Column(){
-            List(){
-              ForEach( famousPlaces, (item: Attraction, index) => {
-                ListItem(){
+            WaterFlow({footer: this.itemFoot(), scroller: this.scroller}){
+              LazyForEach( this.spotDataSource, (item: Spot, index) => {
+                FlowItem(){
                   Column(){
                     this.FamousItem(item, index)
                     Divider()
@@ -56,6 +71,16 @@ export struct FamousPlacePage {
                       .width('100%')
                   }
                 }
+                // 用来避免有加载效果造成的卡顿
+                .onAppear(() => {
+                  // 即将触底时提前增加数据
+                  if (index + 5 == this.spotDataSource.totalCount()) {
+                    for (let i = 0; i < 5; i++) {
+                      this.spotDataSource.addLastItem()
+                    }
+                    console.log('waterFlow ' + '即将触底了')
+                  }
+                })
               })
             }
             .scrollBar(BarState.Off)
@@ -80,10 +105,10 @@ export struct FamousPlacePage {
   }
 
   @Builder
-  FamousItem(attraction: Attraction, index:number){
+  FamousItem(spot: Spot, index:number){
     Row(){
       Column(){
-        Image(attraction.image)
+        Image($r(spot.image))
           .width('100%')
           .borderRadius(10)
           .height(210)
@@ -93,13 +118,13 @@ export struct FamousPlacePage {
       .alignItems(HorizontalAlign.Center)
 
       Column(){
-        Text(attraction.name)
+        Text(spot.name)
           .fontSize(20)
           .padding({top:5, bottom:10})
           .fontColor(Color.Black)
           .fontWeight(500)
         Text(){
-          Span(scoreList[index].toFixed(1) + '分')
+          Span(scoreList[index%7].toFixed(1) + '分')
           .fontSize(16)
           .fontColor(Color.White)
           }
@@ -108,7 +133,7 @@ export struct FamousPlacePage {
           .padding(5)
           .borderRadius(10)
           .margin({bottom:8})
-        Text(attraction.description)
+        Text(spot.description)
           .fontSize(14)
           .fontColor(Color.Gray)
           .textOverflow({overflow: TextOverflow.Ellipsis})
@@ -120,7 +145,7 @@ export struct FamousPlacePage {
               Image($r('app.media.hotel_icon'))
                 .width(16)
                 .height(16)
-              Text(`【${otherItemList[index].hotel}】`)
+              Text(`【${otherItemList[index%7].hotel}】`)
                 .fontSize(14)
                 .fontColor(Color.Gray)
             }
@@ -128,11 +153,11 @@ export struct FamousPlacePage {
               Image($r('app.media.guide_icon'))
                 .width(16)
                 .height(16)
-              Text(`【${otherItemList[index].guide}】`)
+              Text(`【${otherItemList[index%7].guide}】`)
                 .fontSize(14)
                 .fontColor(Color.Gray)
             }
-            Text(`${otherItemList[index].people}人出行`)
+            Text(`${otherItemList[index%7].people}人出行`)
               .fontSize(14)
               .fontColor(Color.Gray)
           }
@@ -145,8 +170,8 @@ export struct FamousPlacePage {
               .fontColor(Color.White)
               .onClick( () => {
                 let params: LoadParams = {
-                  param1: "AttractionDetailPage", // 第一个参数
-                  param2: attraction  // 第二个参数
+                  param1: "SpotDetailPage", // 第一个参数
+                  param2: spot  // 第二个参数
                 };
                 this.travelPathStack.pushPathByName('LoadingAnimation', params)
               })
