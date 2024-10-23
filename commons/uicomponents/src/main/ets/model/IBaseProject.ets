@@ -1,6 +1,6 @@
 import { IChat } from './IChat'
 
-abstract class IBaseProject{
+export abstract class IBaseProject{
   protected name:string
   protected chats: Array<IChat>
 

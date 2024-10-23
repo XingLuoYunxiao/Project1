@@ -1,4 +1,4 @@
-interface Info{
+export interface Info{
   type:string
   content:string
 }
