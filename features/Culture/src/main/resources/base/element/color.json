@@ -7,6 +7,10 @@
     {
       "name": "poetry_background",
       "value": "#99797554"
+    },
+    {
+      "name": "baseFuncView_detail_background",
+      "value": "#99DBD7A9"
     }
   ]
 }

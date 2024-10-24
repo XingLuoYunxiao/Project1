@@ -3,6 +3,8 @@ import { util } from "@kit.ArkTS";
 import { BusinessError } from '@kit.BasicServicesKit';
 import { BasicDataSource } from "../../model/poetryModel/poetryModel";
 import { FileUtil } from "../../util/FileUtil";
+import { AppreciateView } from "../../view/Appreciate";
+import { TranslateView } from "../../view/Translate";
 
 const TAG: string = 'lunyuDetails';
 
@@ -106,9 +108,14 @@ struct  lunyuItem{
         })
       Column(){
         List(){
-          ListItem(){
-
+        ListItem(){
+          Row({space:10}){
+            TranslateView({importContent:this.lunyu.paragraphs})
           }
+          .margin({top:8,bottom:8})
+          .width('100%')
+          .justifyContent(FlexAlign.End)
+        }
           ForEach(this.lunyu.paragraphs,(prgp:string)=>{
             ListItem(){
               Text(prgp)

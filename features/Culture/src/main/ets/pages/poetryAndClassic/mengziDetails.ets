@@ -1,5 +1,6 @@
 import { BasicDataSource } from "../../model/poetryModel/poetryModel";
 import { FileUtil } from "../../util/FileUtil";
+import { TranslateView } from "../../view/Translate";
 
 const TAG: string = 'mengziDetails';
 
@@ -93,6 +94,7 @@ struct  mengziItem{
   build() {
 
     Column({space:8}) {
+
       Text(this.mengzi.chapter).lunyuItemStyle()
         .fontSize($r('app.float.poetry_title_fontSize'))
 
@@ -103,7 +105,12 @@ struct  mengziItem{
       Column(){
         List(){
           ListItem(){
-
+            Row({space:10}){
+              TranslateView({importContent:this.mengzi.paragraphs})
+            }
+            .margin({top:8,bottom:8})
+            .width('100%')
+            .justifyContent(FlexAlign.End)
           }
           ForEach(this.mengzi.paragraphs,(prgp:string)=>{
             ListItem(){

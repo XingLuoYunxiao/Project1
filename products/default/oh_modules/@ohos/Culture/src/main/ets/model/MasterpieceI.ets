@@ -1,4 +1,4 @@
-import { Icon } from "./interface/IconInterface"
+import { Icon } from "./IconInterface"
 
 export class MasterpieceI implements Icon {
   img: Resource

@@ -1,8 +1,6 @@
 import { HttpGet } from "@ohos/utils";
 import { Attraction } from "../model/Attraction";
-import { lvMarkdownIn, lvText } from "@luvi/lv-markdown-in"
-
-
+import { lvMarkdownIn ,lvText} from "@luvi/lv-markdown-in"
 
 @Component
 export struct AttractionDetailPage {

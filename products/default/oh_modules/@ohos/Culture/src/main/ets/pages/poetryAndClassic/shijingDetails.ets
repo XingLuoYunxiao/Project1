@@ -3,6 +3,8 @@ import { util } from "@kit.ArkTS";
 import { BusinessError } from '@kit.BasicServicesKit';
 import { BasicDataSource } from "../../model/poetryModel/poetryModel";
 import { FileUtil } from "../../util/FileUtil";
+import { AppreciateView } from "../../view/Appreciate";
+import { TranslateView } from "../../view/Translate";
 
 const TAG: string = 'shijingDetails';
 
@@ -47,6 +49,13 @@ export struct details {
     Column() {
       Text(item.title)
         .fontSize($r('app.float.poetry_title_fontSize'))
+      Row({space:10}){
+        TranslateView({importContent:item.content})
+        AppreciateView({importContent:item.content})
+      }
+      .margin({top:8,bottom:8})
+      .width('100%')
+      .justifyContent(FlexAlign.End)
       Text(item.chapter)
         .fontSize($r('app.float.poetry_fontSize'))
       Text(item.section).margin(10)

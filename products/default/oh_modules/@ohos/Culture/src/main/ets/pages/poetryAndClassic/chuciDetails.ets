@@ -2,6 +2,8 @@
 
 import { BasicDataSource } from "../../model/poetryModel/poetryModel";
 import { FileUtil } from "../../util/FileUtil";
+import { AppreciateView } from "../../view/Appreciate";
+import { TranslateView } from "../../view/Translate";
 
 const TAG: string = 'details';
 
@@ -45,6 +47,13 @@ export struct  details {
   poetyrItem(item:chuci){
     Column(){
       Text(item.title).poetryItemStyle()
+      Row({space:10}){
+        TranslateView({importContent:item.content})
+        AppreciateView({importContent:item.content})
+      }
+      .margin({top:8,bottom:8})
+      .width('100%')
+      .justifyContent(FlexAlign.End)
       Text(item.author).poetryItemStyle()
         .margin(10)
 

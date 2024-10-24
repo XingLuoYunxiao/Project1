@@ -1,7 +1,7 @@
 import { FlyingFlowerOrderPage } from "./FlyingFlowerOrderPage";
 import { ttf } from "../util/ttf"
 import { MasterpieceI, tsetMasterPieceIArr } from "../model/MasterpieceI";
-import { Icon } from "../model/interface/IconInterface";
+import { Icon } from "../model/IconInterface";
 import { AncientGames, tsetAncientGamesIArr } from "../model/AncientGamesI";
 import {PoetryAndClassicPage} from "../pages/poetryAndClassic/PoetryAndClassicPage"
 @Component

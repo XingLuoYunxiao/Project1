@@ -62,48 +62,48 @@ export class HttpGet{
     '\n' +
     '**推荐路径 方案几**：'
 
-/*
-  static async travelDetailGet(context:string): Promise<string>{
-    let httpRequest = http.createHttp();
-    try {
-      let response = await httpRequest.request(
-        HttpGet.travelUrl,
+  /*
+    static async travelDetailGet(context:string): Promise<string>{
+      let httpRequest = http.createHttp();
+      try {
+        let response = await httpRequest.request(
+          HttpGet.travelUrl,
 
-        {
-          method: http.RequestMethod.POST,
-          header: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${HttpGet.travelPassword}`
-          },
-          extraData:{
-            "model": HttpGet.useTravelModel,
-            "messages": [
-              {
-                "role": "user",
-                "content": `${context}`
-              }
-            ],
-            //"stream": true
+          {
+            method: http.RequestMethod.POST,
+            header: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${HttpGet.travelPassword}`
+            },
+            extraData:{
+              "model": HttpGet.useTravelModel,
+              "messages": [
+                {
+                  "role": "user",
+                  "content": `${context}`
+                }
+              ],
+              //"stream": true
+            }
           }
+        );
+        console.log("TagTest ", response.responseCode + " " + response.result)
+        if (response.responseCode === 200) {
+          let responseData = JSON.parse(response.result.toString())
+          let streamResponse = new StreamResponse(responseData.choices)
+          console.log("TagTest ", streamResponse.choices[0].message.content)
+          return streamResponse.choices[0].message.content
+        } else {
+          throw new Error(`HTTP request failed with status ${response.responseCode}`);
         }
-      );
-      console.log("TagTest ", response.responseCode + " " + response.result)
-      if (response.responseCode === 200) {
-        let responseData = JSON.parse(response.result.toString())
-        let streamResponse = new StreamResponse(responseData.choices)
-        console.log("TagTest ", streamResponse.choices[0].message.content)
-        return streamResponse.choices[0].message.content
-      } else {
-        throw new Error(`HTTP request failed with status ${response.responseCode}`);
+        }catch (error){
+        console.log(error)
+      } finally {
+        httpRequest.destroy();
       }
-      }catch (error){
-      console.log(error)
-    } finally {
-      httpRequest.destroy();
+      return "error"
     }
-    return "error"
-  }
-*/
+  */
   //使用流式请求传输方式
   static async travelDetailGet(context:string, onUpdate: (chunk: string) => void): Promise<string>{
     let fullContent = '';
