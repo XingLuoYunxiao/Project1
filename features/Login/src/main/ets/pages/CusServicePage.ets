@@ -1,0 +1,44 @@
+@Preview
+@Component
+//客服
+export struct CusServicePage {
+  build() {
+  NavDestination(){
+    Column(){
+      Row(){
+        Image($r('app.media.miaosha')).width(50)
+        Column(){
+          Text('ICT客服')
+          Text('提供专业服务')
+        }
+      }
+      .justifyContent(FlexAlign.Start)
+      .width('100%')
+      Text('Hi,II很高兴为您服务')
+      Column(){
+        Row(){
+          Text('question1')
+          Blank()
+          Image($r('app.media.ic_arrow')).width(15)
+        }
+        Row(){
+          Text('question1')
+          Blank()
+          Image($r('app.media.ic_arrow')).width(15)
+        }
+        Row(){
+          Text('question1')
+          Blank()
+          Image($r('app.media.ic_arrow')).width(15)
+        }
+        Row(){
+          Text('question1')
+          Blank()
+          Image($r('app.media.ic_arrow')).width(15)
+        }
+      }
+    }.width('100%')
+    .height('100%')
+  }
+  }
+}
