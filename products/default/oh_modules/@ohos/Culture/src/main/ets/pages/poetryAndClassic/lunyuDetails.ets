@@ -1,9 +1,6 @@
-import { common } from "@kit.AbilityKit";
-import { util } from "@kit.ArkTS";
-import { BusinessError } from '@kit.BasicServicesKit';
+
 import { BasicDataSource } from "../../model/poetryModel/poetryModel";
 import { FileUtil } from "../../util/FileUtil";
-import { AppreciateView } from "../../view/Appreciate";
 import { TranslateView } from "../../view/Translate";
 
 const TAG: string = 'lunyuDetails';
@@ -17,9 +14,7 @@ export function lunyuDetailsBuilder(name?: string, param?: Object) {
 export struct details {
 
   @State param: string = ''
-
   @State lunyuList: Array<lunyu> = [];
-
   aboutToAppear(): void {
     console.debug("这是论语 details 页面");
 

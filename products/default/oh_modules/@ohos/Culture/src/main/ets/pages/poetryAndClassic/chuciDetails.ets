@@ -1,5 +1,3 @@
-
-
 import { BasicDataSource } from "../../model/poetryModel/poetryModel";
 import { FileUtil } from "../../util/FileUtil";
 import { AppreciateView } from "../../view/Appreciate";
@@ -11,8 +9,6 @@ const TAG: string = 'details';
 export function chuciDetailsBuilder(name:string,param:Object) {
   details({param:param as string});
 }
-
-
 
 @Component
 export struct  details {

@@ -1,5 +1,5 @@
 import { promptMap } from "../model/promptWords"
-import { baseFuncViewComponent } from "./baseFuncView"
+import {baseFuncViewComponent} from '../view/baseFuncComponent'
 
 @Component
 export  struct TranslateView{

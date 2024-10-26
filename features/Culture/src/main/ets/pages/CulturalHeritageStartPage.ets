@@ -6,7 +6,7 @@ import { AncientGames, tsetAncientGamesIArr } from "../model/AncientGamesI";
 import {PoetryAndClassicPage} from "../pages/poetryAndClassic/PoetryAndClassicPage"
 @Component
 export struct CulturalHeritageStartPage {
-  @Provide('travelPathStack') travelPathStack: NavPathStack = new NavPathStack();
+  @Provide('culturePathStack') culturePathStack: NavPathStack = new NavPathStack();
   MasterpieceIArr: MasterpieceI[] = tsetMasterPieceIArr()
   AncientGameIArr: AncientGames[] = tsetAncientGamesIArr()
 
@@ -17,7 +17,7 @@ export struct CulturalHeritageStartPage {
 
   build() {
 
-    Navigation(this.travelPathStack) {
+    Navigation(this.culturePathStack) {
       Column() {
         //TODO 非遗天地
         Row() {
@@ -52,7 +52,7 @@ export struct CulturalHeritageStartPage {
               }
             }
             .onClick(() => {
-              this.travelPathStack.pushPathByName(MasterpieceI.path, null)
+              this.culturePathStack.pushPathByName(MasterpieceI.path, null)
             })
           })
         }
@@ -85,7 +85,7 @@ export struct CulturalHeritageStartPage {
             }
             .onClick(() => {
               console.log('testlog' + AncientGameI.path)
-              this.travelPathStack.pushPathByName(AncientGameI.path, null)
+              this.culturePathStack.pushPathByName(AncientGameI.path, null)
             })
           })
         }

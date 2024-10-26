@@ -11,7 +11,7 @@ export struct PoetryAndClassicPage{
 
   list:string[]=['楚辞','诗经','论语','孟子','诗词','中庸']
 
-  @Consume('travelPathStack') travelPathStack:NavPathStack
+  @Consume('culturePathStack') culturePathStack:NavPathStack
 
   build() {
     NavDestination(){
@@ -44,7 +44,7 @@ export struct PoetryAndClassicPage{
     .onClick(()=>{
       let s:string =transChinese(item)
       console.debug('转化后的拼音是：'+s)
-      this.travelPathStack.pushPathByName(`${s}`+'Details',new Object({
+      this.culturePathStack.pushPathByName(`${s}`+'Details',new Object({
         param:item
       }))
     })
