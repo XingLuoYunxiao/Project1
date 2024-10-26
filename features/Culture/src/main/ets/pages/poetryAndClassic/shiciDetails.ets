@@ -1,5 +1,4 @@
-
-import { BasicDataSource } from "../../model/poetryModel/poetryModel";
+import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
 import { FileUtil } from "../../util/FileUtil";
 import { AppreciateView } from "../../view/appreciate";
 import { TranslateView } from "../../view/Translate";
@@ -47,13 +46,14 @@ export struct details {
 
       Text(item.title)
         .fontSize($r('app.float.poetry_title_fontSize'))
-      Row({space:10}){
-        TranslateView({importContent:item.content})
-        AppreciateView({importContent:item.content})
+      Row({ space: 10 }) {
+        TranslateView({ importContent: item.content })
+        AppreciateView({ importContent: item.content })
       }
-      .margin({top:8,bottom:8})
+      .margin({ top: 8, bottom: 8 })
       .width('100%')
       .justifyContent(FlexAlign.End)
+
       Text(item.dynasty)
         .fontSize($r('app.float.poetry_fontSize'))
       Text(item.auth)

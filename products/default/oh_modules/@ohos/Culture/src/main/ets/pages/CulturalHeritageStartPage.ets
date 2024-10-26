@@ -1,18 +1,25 @@
-import { FlyingFlowerOrderPage } from "./FlyingFlowerOrderPage";
-import { ttf } from "../util/ttf"
-import { MasterpieceI, tsetMasterPieceIArr } from "../model/MasterpieceI";
-import { Icon } from "../model/IconInterface";
-import { AncientGames, tsetAncientGamesIArr } from "../model/AncientGamesI";
-import {PoetryAndClassicPage} from "../pages/poetryAndClassic/PoetryAndClassicPage"
+import { FlyingFlowerOrderPage } from './FlyingFlowerOrderPage';
+import { ttf } from '../util/ttf';
+import { MasterpieceI, tsetMasterPieceIArr } from '../model/MasterpieceI';
+import { AncientGames, tsetAncientGamesIArr } from '../model/AncientGamesI';
+import { Lottie, LottieController } from '@jjr/lottie_component';
+
 @Component
 export struct CulturalHeritageStartPage {
   @Provide('culturePathStack') culturePathStack: NavPathStack = new NavPathStack();
   MasterpieceIArr: MasterpieceI[] = tsetMasterPieceIArr()
   AncientGameIArr: AncientGames[] = tsetAncientGamesIArr()
+  // 从 rawfile 资源文件夹加载 json data
+  @State animationData?: Object = undefined
 
-  aboutToAppear(): void {
+  // 无控制动画需求时 LottieController 可不传
+
+  async aboutToAppear() {
     ttf('STXINGKAFont', 'STXINGKA.TTF')
-    console.log('testlog' + this.MasterpieceIArr.length)
+
+
+    this.animationData = await LottieController.getRawFileAnimationData(getContext(this), 'down.json')
+
   }
 
   build() {
@@ -37,12 +44,24 @@ export struct CulturalHeritageStartPage {
         //TODO 经典著作
         this.secondaryHeader('经典著作')
         Blank()
+
           .height(10)
         //TODO 经典著作格栅
         Grid() {
           ForEach(this.MasterpieceIArr, (MasterpieceI: MasterpieceI) => {
             GridItem() {
+
               Column({ space: 10 }) {
+                // if (this.animationData) {
+                //   Lottie({
+                //     animationData: this.animationData,
+                //     autoPlay: true,
+                //     loop: true
+                //   })
+                //     .width(50)
+                //     .height(50)
+                //     .margin({ top: 30 })
+                // }
                 Image(MasterpieceI.img)
                   .size({ height: 40, width: 40 })
                   .backgroundColor(Color.Green)

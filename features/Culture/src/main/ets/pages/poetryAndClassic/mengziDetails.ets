@@ -1,4 +1,4 @@
-import { BasicDataSource } from "../../model/poetryModel/poetryModel";
+import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
 import { FileUtil } from "../../util/FileUtil";
 import { TranslateView } from "../../view/Translate";
 
@@ -11,9 +11,7 @@ export function mengziDetailsBuilder(name?: string, param?: Object) {
 
 @Component
 export struct details {
-
   @State param: string = ''
-
   @State mengziList: Array<mengzi> = [];
 
   aboutToAppear(): void {
@@ -28,11 +26,11 @@ export struct details {
       Text('孟子').lunyuItemStyle()
 
       Column() {
-        List({space:12}) {
+        List({ space: 12 }) {
           LazyForEach(mengziData, (item: mengzi, index: number) => {
             ListItem() {
-              mengziItem({mengzi:item})
-                .margin({right:15})
+              mengziItem({ mengzi: item })
+                .margin({ right: 15 })
             }
           }, (item: mengzi, index: number) => index.toString())
         }
@@ -46,11 +44,10 @@ export struct details {
     }
     .hideTitleBar(true);
   }
-
-
 }
 
-@Extend(Text) function lunyuItemStyle() {
+@Extend(Text)
+function lunyuItemStyle() {
   .fontWeight(FontWeight.Medium)
 }
 
@@ -63,7 +60,6 @@ class mengziModel extends BasicDataSource<mengzi> {
     }
     return this.data[index];
   }
-
 }
 
 const mengziData: mengziModel = new mengziModel();
@@ -86,53 +82,57 @@ interface mengzi {
 }
 
 @Component
-struct  mengziItem{
-  @State spread:boolean =false
-  @Prop mengzi:mengzi
-  spreadDuration:number =2000
-  closeTime:number =300
+struct mengziItem {
+  @State spread: boolean = false
+  @Prop mengzi: mengzi
+  spreadDuration: number = 2000
+  closeTime: number = 300
+
   build() {
 
-    Column({space:8}) {
+    Column({ space: 8 }) {
 
       Text(this.mengzi.chapter).lunyuItemStyle()
         .fontSize($r('app.float.poetry_title_fontSize'))
 
 
-        .onClick(()=>{
-          this.spread =!this.spread
+        .onClick(() => {
+          this.spread = !this.spread
         })
-      Column(){
-        List(){
-          ListItem(){
-            Row({space:10}){
-              TranslateView({importContent:this.mengzi.paragraphs})
+      Column() {
+        List() {
+          ListItem() {
+            Row({ space: 10 }) {
+              TranslateView({ importContent: this.mengzi.paragraphs })
             }
-            .margin({top:8,bottom:8})
+            .margin({ top: 8, bottom: 8 })
             .width('100%')
             .justifyContent(FlexAlign.End)
           }
-          ForEach(this.mengzi.paragraphs,(prgp:string)=>{
-            ListItem(){
+
+          ForEach(this.mengzi.paragraphs, (prgp: string) => {
+            ListItem() {
               Text(prgp)
                 .fontSize($r('app.float.poetry_fontSize'))
             }
           })
         }
       }
-      .margin({top:30})
-      .visibility(this.spread ? Visibility.Visible:Visibility.None)
+      .margin({ top: 30 })
+      .visibility(this.spread ? Visibility.Visible : Visibility.None)
       .justifyContent(FlexAlign.Center)
       .width('100%')
-      .animation({ duration: this.spread?this.spreadDuration: this.closeTime, curve: Curve.FastOutLinearIn }) // 设置动画效果
+      .animation({
+        duration: this.spread ? this.spreadDuration : this.closeTime,
+        curve: Curve.FastOutLinearIn
+      }) // 设置动画效果
     }
     .backgroundColor($r('app.color.poetry_background'))
     .justifyContent(FlexAlign.Center)
     .width('100%')
-    .margin({left:10,right:10})
+    .margin({ left: 10, right: 10 })
     .borderRadius(20)
     .padding(10)
-
 
   }
 }

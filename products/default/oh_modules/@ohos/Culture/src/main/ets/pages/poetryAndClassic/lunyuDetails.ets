@@ -1,5 +1,4 @@
-
-import { BasicDataSource } from "../../model/poetryModel/poetryModel";
+import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
 import { FileUtil } from "../../util/FileUtil";
 import { TranslateView } from "../../view/Translate";
 
@@ -12,9 +11,9 @@ export function lunyuDetailsBuilder(name?: string, param?: Object) {
 
 @Component
 export struct details {
-
   @State param: string = ''
   @State lunyuList: Array<lunyu> = [];
+
   aboutToAppear(): void {
     console.debug("这是论语 details 页面");
 
@@ -27,11 +26,11 @@ export struct details {
       Text('论语').lunyuItemStyle()
 
       Column() {
-        List({space:12}) {
+        List({ space: 12 }) {
           LazyForEach(lunyuData, (item: lunyu, index: number) => {
             ListItem() {
-              lunyuItem({lunyu:item})
-                .margin({right:15})
+              lunyuItem({ lunyu: item })
+                .margin({ right: 15 })
             }
           }, (item: lunyu, index: number) => index.toString())
         }
@@ -45,12 +44,11 @@ export struct details {
     }
     .hideTitleBar(true);
   }
-
-
 }
 
 
-@Extend(Text) function lunyuItemStyle() {
+@Extend(Text)
+function lunyuItemStyle() {
   .fontWeight(FontWeight.Medium)
 }
 
@@ -63,7 +61,6 @@ class lunyuModel extends BasicDataSource<lunyu> {
     }
     return this.data[index];
   }
-
 }
 
 const lunyuData: lunyuModel = new lunyuModel();
@@ -86,52 +83,56 @@ interface lunyu {
 }
 
 @Component
-struct  lunyuItem{
-  @State spread:boolean =false
-  @Prop lunyu:lunyu
-  spreadDuration:number =2000
-  closeTime:number =300
+struct lunyuItem {
+  @State spread: boolean = false
+  @Prop lunyu: lunyu
+  spreadDuration: number = 2000
+  closeTime: number = 300
+
   build() {
 
-    Column({space:8}) {
+    Column({ space: 8 }) {
       Text(this.lunyu.chapter).lunyuItemStyle()
         .fontSize($r('app.float.poetry_title_fontSize'))
 
 
-        .onClick(()=>{
-            this.spread =!this.spread
+        .onClick(() => {
+          this.spread = !this.spread
         })
-      Column(){
-        List(){
-        ListItem(){
-          Row({space:10}){
-            TranslateView({importContent:this.lunyu.paragraphs})
+      Column() {
+        List() {
+          ListItem() {
+            Row({ space: 10 }) {
+              TranslateView({ importContent: this.lunyu.paragraphs })
+            }
+            .margin({ top: 8, bottom: 8 })
+            .width('100%')
+            .justifyContent(FlexAlign.End)
           }
-          .margin({top:8,bottom:8})
-          .width('100%')
-          .justifyContent(FlexAlign.End)
-        }
-          ForEach(this.lunyu.paragraphs,(prgp:string)=>{
-            ListItem(){
+
+          ForEach(this.lunyu.paragraphs, (prgp: string) => {
+            ListItem() {
               Text(prgp)
                 .fontSize($r('app.float.poetry_fontSize'))
             }
           })
         }
       }
-      .margin({top:30})
-      .visibility(this.spread ? Visibility.Visible:Visibility.None)
+      .margin({ top: 30 })
+      .visibility(this.spread ? Visibility.Visible : Visibility.None)
       .justifyContent(FlexAlign.Center)
       .width('100%')
-      .animation({ duration: this.spread?this.spreadDuration: this.closeTime, curve: Curve.FastOutLinearIn }) // 设置动画效果
+      .animation({
+        duration: this.spread ? this.spreadDuration : this.closeTime,
+        curve: Curve.FastOutLinearIn
+      }) // 设置动画效果
     }
     .backgroundColor($r('app.color.poetry_background'))
     .justifyContent(FlexAlign.Center)
     .width('100%')
-    .margin({left:10,right:10})
+    .margin({ left: 10, right: 10 })
     .borderRadius(20)
     .padding(10)
-
 
   }
 }
