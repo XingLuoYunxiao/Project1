@@ -1,4 +1,4 @@
-import { BasicDataSource } from "../../model/poetryModel/poetryModel";
+import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
 import { FileUtil } from "../../util/FileUtil";
 import { AppreciateView } from "../../view/Appreciate";
 import { TranslateView } from "../../view/Translate";
@@ -6,16 +6,15 @@ import { TranslateView } from "../../view/Translate";
 const TAG: string = 'details';
 
 @Builder
-export function chuciDetailsBuilder(name:string,param:Object) {
-  details({param:param as string});
+export function chuciDetailsBuilder(name: string, param: Object) {
+  details({ param: param as string });
 }
 
 @Component
-export struct  details {
-
+export struct details {
   @State param: string = ''
-
   @State chuciList: Array<chuci> = [];
+
   aboutToAppear(): void {
     console.debug("这是details页面");
 
@@ -25,12 +24,12 @@ export struct  details {
   build() {
     NavDestination() {
       Column() {
-        List({space:10}){
-          LazyForEach( chuciData,(item:chuci,index:number)=> {
-            ListItem(){
+        List({ space: 10 }) {
+          LazyForEach(chuciData, (item: chuci, index: number) => {
+            ListItem() {
               this.poetyrItem(item)
             }
-          }, (item:chuci,index:number)=> index.toString())
+          }, (item: chuci, index: number) => index.toString())
         }.cachedCount(10)
       }
       .justifyContent(FlexAlign.Center)
@@ -40,16 +39,17 @@ export struct  details {
   }
 
   @Builder
-  poetyrItem(item:chuci){
-    Column(){
+  poetyrItem(item: chuci) {
+    Column() {
       Text(item.title).poetryItemStyle()
-      Row({space:10}){
-        TranslateView({importContent:item.content})
-        AppreciateView({importContent:item.content})
+      Row({ space: 10 }) {
+        TranslateView({ importContent: item.content })
+        AppreciateView({ importContent: item.content })
       }
-      .margin({top:8,bottom:8})
+      .margin({ top: 8, bottom: 8 })
       .width('100%')
       .justifyContent(FlexAlign.End)
+
       Text(item.author).poetryItemStyle()
         .margin(10)
 
@@ -61,14 +61,13 @@ export struct  details {
     .borderRadius(20)
     .padding(12)
   }
-
 }
 
-@Extend(Text) function  poetryItemStyle(){
-    .fontSize(24)
-    .fontWeight(FontWeight.Medium)
+@Extend(Text)
+function poetryItemStyle() {
+  .fontSize(24)
+  .fontWeight(FontWeight.Medium)
 }
-
 
 
 class chuciModel extends BasicDataSource<chuci> {
@@ -80,7 +79,6 @@ class chuciModel extends BasicDataSource<chuci> {
     }
     return this.data[index];
   }
-
 }
 
 const chuciData: chuciModel = new chuciModel();

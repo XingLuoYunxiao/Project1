@@ -9,7 +9,6 @@ struct Index {
   @StorageLink('isHideToolBar') isHideToolBar: boolean = false;
   private tabsController: TabsController = new TabsController();
 
-
   @Builder
   tabBarBuilder(title: string, targetIndex: number, selectedIcon: Resource, unselectIcon: Resource) {
     Column() {

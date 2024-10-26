@@ -1,6 +1,5 @@
 import { ChatI } from '../model/ChatI'
 import { inputMethod } from '@kit.IMEKit'
-import { font } from '@kit.ArkUI'
 import { ttf } from '../util/ttf'
 
 @Component
@@ -24,7 +23,7 @@ export struct FlyingFlowerOrderPage {
   }
 
   build() {
-    NavDestination(){
+    NavDestination() {
       Column() {
 
         Row() {

@@ -39,6 +39,11 @@
       "name": "ArtPage",
       "pageSourceFile": "src/main/ets/pages/art/ArtPage.ets",
       "buildFunction": "ArtPageBuilder"
+    },
+    {
+      "name": "PaintingDetails",
+      "pageSourceFile": "src/main/ets/pages/art/PaintingDetails.ets",
+      "buildFunction": "PaintingDetailsBuilder"
     }
   ]
 }
