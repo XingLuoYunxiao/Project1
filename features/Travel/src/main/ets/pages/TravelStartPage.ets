@@ -1,4 +1,4 @@
-import {Attraction} from '../model/Attraction'
+import { Attraction } from '../model/Attraction'
 import { LoadingAnimation } from '../util/Loading';
 import { Classification } from '../view/Classficiation';
 import { NearbyAttraction } from '../view/NearbyAttraction';

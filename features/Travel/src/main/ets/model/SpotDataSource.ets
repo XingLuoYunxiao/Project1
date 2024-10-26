@@ -1,5 +1,5 @@
 import { DataUtil } from '../util/DataUtil'
-import { Spot } from './ISpot'
+import { Spot } from './Spot'
 
 export class SpotDataSource implements IDataSource{
   private dataArray: Spot[] = []

@@ -1,11 +1,11 @@
-import { HttpGet } from "@ohos/utils";
 import { lvMarkdownIn, lvText } from "@luvi/lv-markdown-in"
-import { Spot} from "../model/ISpot";
+import Constants from "../constants/Constants";
+import { Spot } from "../model/Spot";
 
 
 @Component
 export struct SpotDetailPage {
-  @State spot: Spot = new Spot('0','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null');
+  @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null');
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @State  myScale: number = 1
   @State voice: boolean = false;
@@ -16,15 +16,19 @@ export struct SpotDetailPage {
 
   async aboutToAppear(): Promise<void> {
     lvText.setTextSize(16)
-    this.spot = await this.travelPathStack.getParamByName('SpotDetailPage')[0] as Spot;
+    let spot = await this.travelPathStack.getParamByName('SpotDetailPage')[0] as Spot;
+    this.spot = new Spot(spot.id, spot.name, spot.description, spot.feature, spot.rating, spot.location, spot.ticketPrice, spot.openingHours, spot.image);
     this.sendRequest(this.spot.name);
+
   }
 
   async sendRequest(content:string) {
     this.isLoading = true;
     this.responseText = '';
     try {
-      await HttpGet.travelDetailGet(content, (chunk: string) => {
+      if(this.spot.chats == undefined || this.spot.chats.length === 0)
+        this.spot.addChat();
+      this.spot.sendRequest(content, (chunk: string) => {
         this.responseText += chunk;
       });
     } catch (error) {
@@ -73,11 +77,11 @@ export struct SpotDetailPage {
           .layoutWeight(1)
           .justifyContent(FlexAlign.Center)
         }
-        .width('100%')
+        .width(Constants.FULL_WIDTH)
         .justifyContent(FlexAlign.Start)
 
         /*Image($r('app.media.gugong_map'))
-          .width('100%')
+          .width(Constants.FULL_WIDTH)
           .height(300)
           .borderRadius(10)
           .margin({top:10})
@@ -86,7 +90,7 @@ export struct SpotDetailPage {
           })*/
 
         Column(){
-          Text('路径规划')
+          Text(`${this.spot.name}路径规划`)
             .fontSize(24)
             .fontColor(Color.White)
             .backgroundColor(Color.Orange)
@@ -99,10 +103,10 @@ export struct SpotDetailPage {
           Scroll(){
             Column(){
               lvMarkdownIn({ text: this.responseText.toString() })
-                .width('95%') // content为文本内容
+                .width(Constants.OUTER_WIDTH) // content为文本内容
                 .padding(10)
             }
-            .width('100%')
+            .width(Constants.FULL_WIDTH)
           }
           .edgeEffect(EdgeEffect.Spring)
           .scrollable(ScrollDirection.Vertical)
@@ -126,8 +130,8 @@ export struct SpotDetailPage {
         }
         .position({x:270, y:550})*/
       }
-      .width('95%')
-      .height('100%')
+      .width(Constants.OUTER_WIDTH)
+      .height(Constants.FULL_HEIGHT)
     }
     .backgroundColor($r('app.color.app_background_color'))
     .hideTitleBar(true)

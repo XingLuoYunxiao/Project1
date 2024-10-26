@@ -1,5 +1,5 @@
 import { otherItemList } from "../model/Attraction";
-import { Spot } from "../model/ISpot";
+import { Spot } from "../model/Spot";
 import { SpotDataSource } from "../model/SpotDataSource";
 
 //评分数组，最高10分

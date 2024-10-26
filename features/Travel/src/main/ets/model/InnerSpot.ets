@@ -1,4 +1,4 @@
-import { Location, Spot } from '../model/ISpot'
+import { Location } from './Spot'
 
 class InnerSpot {
   id: string
