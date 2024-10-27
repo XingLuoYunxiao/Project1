@@ -4,16 +4,11 @@ export interface Info{
 }
 
 export abstract class IChat{
-  protected id:number
-  protected messages:Array<Info>
-
-  constructor(id:number,messages:Array<Info>){
-    this.id = id
-    this.messages = messages
-  }
+  abstract id:number
+  protected abstract messages:Array<Info>
 
   //返回调用大模型api获取的数据
-  abstract getData(content: string):string
+  abstract getData(content: string, onUpdate?: (chunk: string) => void):Promise<string>
 
   abstract addMessage(message:string):void
 

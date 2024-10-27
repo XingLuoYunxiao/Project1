@@ -3,10 +3,11 @@ node_modules/
 oh_modules/
 .preview/
 build/
-/.cxx
-/.test
+.cxx/
+.test/
 /.hvigor
 /.idea
+.gitignore
 **/BuildProfile.ets
 
 # file 不需要提交的文件

@@ -1,20 +1,13 @@
-import http from '@ohos.net.http';
-import util from '@ohos.util';
+import { IChat, Info } from '@ohos/uicomponents'
+import { http } from '@kit.NetworkKit';
+import { util } from '@kit.ArkTS';
+import { StreamResponse2 } from '@ohos/utils';
 
 
-export interface StreamResponse2{
-  choices: Array<{
-    delta: {
-      role: string;
-      content: string;
-    };
-    index: number;
-  }>;
+export class TravelChat extends IChat {
+  id: number;
+  protected messages: Array<Info>;
 
-}
-
-
-export class HttpGet{
   private static travelPassword:string = 'MvZBmiYOGqZwMwImGcDs:RnzZhRIwimchQTzsnMss'
   private static useTravelModel:string = 'generalv3.5';
   private static travelUrl:string = 'https://spark-api-open.xf-yun.com/v1/chat/completions';
@@ -31,51 +24,13 @@ export class HttpGet{
     '\n' +
     '**推荐路径 方案**：'
 
+  constructor(id: number, messages: Array<Info>) {
+    super();
+    this.id = id;
+    this.messages = messages;
+  }
 
-  /*
-    static async travelDetailGet(context:string): Promise<string>{
-      let httpRequest = http.createHttp();
-      try {
-        let response = await httpRequest.request(
-          HttpGet.travelUrl,
-
-          {
-            method: http.RequestMethod.POST,
-            header: {
-              'Content-Type': 'application/json',
-              'Authorization': `Bearer ${HttpGet.travelPassword}`
-            },
-            extraData:{
-              "model": HttpGet.useTravelModel,
-              "messages": [
-                {
-                  "role": "user",
-                  "content": `${context}`
-                }
-              ],
-              //"stream": true
-            }
-          }
-        );
-        console.log("TagTest ", response.responseCode + " " + response.result)
-        if (response.responseCode === 200) {
-          let responseData = JSON.parse(response.result.toString())
-          let streamResponse = new StreamResponse(responseData.choices)
-          console.log("TagTest ", streamResponse.choices[0].message.content)
-          return streamResponse.choices[0].message.content
-        } else {
-          throw new Error(`HTTP request failed with status ${response.responseCode}`);
-        }
-        }catch (error){
-        console.log(error)
-      } finally {
-        httpRequest.destroy();
-      }
-      return "error"
-    }
-  */
-  //使用流式请求传输方式
-  static async travelDetailGet(context:string, onUpdate: (chunk: string) => void): Promise<string>{
+  async getData(content: string, onUpdate: (chunk: string) => void): Promise<string>{
     let fullContent = '';
     let httpRequest = http.createHttp();
     httpRequest.on("dataReceive", (data:ArrayBuffer) => {
@@ -120,16 +75,16 @@ export class HttpGet{
 
     try {
       let response = await httpRequest.requestInStream(
-        HttpGet.travelUrl,
+        TravelChat.travelUrl,
 
         {
           method: http.RequestMethod.POST,
           header: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${HttpGet.travelPassword}`
+            'Authorization': `Bearer ${TravelChat.travelPassword}`
           },
           extraData:{
-            "model": HttpGet.useTravelModel,
+            "model": TravelChat.useTravelModel,
 
             "max_tokens": 1024,
             "top_k": 4,
@@ -141,7 +96,7 @@ export class HttpGet{
               },
               {
                 "role": "user",
-                "content": `${context};${this.travelTemplate}`
+                "content": `${content};${TravelChat.travelTemplate}`
               }
             ],
             "stream": true
@@ -162,6 +117,12 @@ export class HttpGet{
     }
     return "error"
   }
+
+  addMessage(message: string): void {
+    throw new Error('Method not implemented.');
+  }
+
+  getMessage(index: number): string {
+    throw new Error('Method not implemented.');
+  }
 }
-
-
