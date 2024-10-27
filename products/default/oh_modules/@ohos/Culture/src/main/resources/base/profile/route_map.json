@@ -44,6 +44,11 @@
       "name": "PaintingDetails",
       "pageSourceFile": "src/main/ets/pages/art/PaintingDetails.ets",
       "buildFunction": "PaintingDetailsBuilder"
+    },
+    {
+      "name": "CalligraphyDetails",
+      "pageSourceFile": "src/main/ets/pages/art/CalligraphyDetails.ets",
+      "buildFunction": "CalligraphyDetailsBuilder"
     }
   ]
 }

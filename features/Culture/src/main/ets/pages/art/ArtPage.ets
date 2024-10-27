@@ -12,9 +12,11 @@ export function ArtPageBuilder(name: string, param: Object) {
 @Component
 export struct ArtPage {
   @Consume('culturePathStack') culturePathStack: NavPathStack
+
   // 从 rawfile 资源文件夹加载 json data
   @State @Watch('set') animationData?: Object = undefined
   private artController: LottieController = new LottieController()
+
   private swiperController: SwiperController = new SwiperController()
 
   // 无控制动画需求时 LottieController 可不传
@@ -22,7 +24,6 @@ export struct ArtPage {
   async aboutToAppear() {
     ttf('STXINGKAFont', 'STXINGKA.TTF')
     this.animationData = await LottieController.getRawFileAnimationData(getContext(this), 'sroll.json')
-
 
   }
 
