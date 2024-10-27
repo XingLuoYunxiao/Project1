@@ -8,6 +8,7 @@
   "dependencies": {
     "@ohos/utils": "file:../../commons/utils",
     "@ohos/uicomponents": "file:../../commons/uicomponents",
-    "Login": "file:../Login"
+    "Login": "file:../Login",
+
   }
 }

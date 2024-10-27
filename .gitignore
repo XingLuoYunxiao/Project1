@@ -3,15 +3,16 @@ node_modules/
 oh_modules/
 .preview/
 build/
-/.cxx
-/.test
+.cxx/
+.test/
 /.hvigor
 /.idea
-/.gitignore
+.gitignore
 **/BuildProfile.ets
-
 
 # file 不需要提交的文件
 local.properties
 oh-package-lock.json5
 /.clang-format
+
+

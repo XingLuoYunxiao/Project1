@@ -1,4 +1,4 @@
-import { Icon } from "./interface/IconInterface"
+import { Icon } from "./IconInterface"
 
 export class AncientGames implements Icon {
   img: Resource;
