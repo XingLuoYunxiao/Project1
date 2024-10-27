@@ -1,9 +1,9 @@
-import {Attraction} from '../model/Attraction'
+import { Attraction } from '../model/Attraction'
 import { LoadingAnimation } from '../util/Loading';
 import { Classification } from '../view/Classficiation';
 import { NearbyAttraction } from '../view/NearbyAttraction';
 import { SearchHeader } from '../view/SearchHeader';
-import { AttractionDetailPage } from './AttractionDetailPage';
+import { SpotDetailPage } from './SpotDetailPage';
 import { FamousPlacePage } from './FamousPlacePage';
 import { MapDemo } from './MapDemo';
 
@@ -69,8 +69,8 @@ export struct TravelStartPage {
       FamousPlacePage()
     }else if( path === 'LoadingAnimation'){
       LoadingAnimation()
-    }else if( path === 'AttractionDetailPage'){
-      AttractionDetailPage()
+    }else if( path === 'SpotDetailPage'){
+      SpotDetailPage()
     }else if( path === 'MapDemo'){
       MapDemo()
     }
