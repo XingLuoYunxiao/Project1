@@ -78,6 +78,8 @@ export struct ArtPage {
       }
       .indicatorInteractive(false)
       .vertical(true)
+      .loop(false)
+      .displayArrow(null)
 
     }
     .hideTitleBar(true)
@@ -88,14 +90,36 @@ export struct ArtPage {
 @Component
 struct calligraphyPage {
   @Consume('culturePathStack') culturePathStack: NavPathStack
+  t: string[] = ['书法如行云流水', "墨香似古木参天", "一笔一划皆风骨", "字字珠玑映心间"]
 
   build() {
     Column() {
-      Text('书法如行云流水，墨香似古木参天。一笔一划皆风骨，字字珠玑映心间')
-        .fontFamily('STXINGKAFont')
-        .fontSize(30)
+      List() {
+        ForEach(this.t, (item: string) => {
+          ListItem() {
+            Row() {
+              Text(item)
+                .fontFamily('STXINGKAFont')
+                .fontSize(30)
+            }
+            .width('100%')
+            .justifyContent(FlexAlign.Center)
+
+          }
+
+        })
+
+      }
+      .width('100%')
+
       MyButton({ Text: "进入" })
+        .onClick(() => {
+          this.culturePathStack.pushPathByName("CalligraphyDetails", null)
+        })
+
     }
+    .justifyContent(FlexAlign.SpaceAround)
+    .alignItems(HorizontalAlign.Center)
     .width('100%')
     .height('100%')
   }
@@ -107,7 +131,10 @@ struct PaintingPage {
 
   build() {
     Column() {
-      Text('笔底春风化雨来，丹青妙手夺天工')
+      Text('笔底春风化雨来')
+        .fontFamily('STXINGKAFont')
+        .fontSize(30)
+      Text('丹青妙手夺天工')
         .fontFamily('STXINGKAFont')
         .fontSize(30)
       MyButton({ Text: "进入" })
@@ -116,6 +143,8 @@ struct PaintingPage {
         })
 
     }
+    .justifyContent(FlexAlign.SpaceAround)
+    .alignItems(HorizontalAlign.Center)
     .width('100%')
     .height('100%')
   }

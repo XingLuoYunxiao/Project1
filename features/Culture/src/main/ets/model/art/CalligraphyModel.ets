@@ -1,6 +1,6 @@
 import { ArtModel } from './ArtModel';
 
-class calligraphyItem implements ArtModel {
+export class calligraphyItem implements ArtModel {
   name: string = ''; // 字体名称
   type: string = ''; // 类型
   introduction: string = ''; // 简介
@@ -8,29 +8,29 @@ class calligraphyItem implements ArtModel {
   famousCalligraphers: string[] = []; // 著名书法家
   characteristics: string = ''; // 字体特点
   commonUsage: string = ''; // 常见用途
-  exampleImage: string = ''; // 示例图片链接
+  Images?: ResourceStr = ''
 }
 
-const calligraphyItemList: calligraphyItem[] = [
+export const calligraphyItemList: calligraphyItem[] = [
   {
     name: '甲骨文',
     type: '书法',
     introduction: '甲骨文是中国已知最早的文字之一，主要用于商代占卜活动，刻写在龟甲和兽骨上，具有象形特点。',
     originPeriod: '商朝',
-    famousCalligraphers: ['无记录'],
+    famousCalligraphers: [],
     characteristics: '象形字形、线条粗犷、富有原始美感',
     commonUsage: '占卜记录、铭文',
-    exampleImage: 'https://example.com/jiaguwen.jpg',
+    Images: $r('app.media.calligraphy_jiaguwen')
   },
   {
-    name: '大篆',
+    name: '金文',
     type: '书法',
-    introduction: '大篆包括金文和籀文等早期字体，笔画粗犷有力，广泛用于青铜器铭文。',
+    introduction: '金文是中国早期的书体之一，主要用于青铜器铭文，笔画粗犷有力。',
     originPeriod: '商周时期',
-    famousCalligraphers: ['无特别记录'],
+    famousCalligraphers: [],
     characteristics: '笔画粗犷、造型独特',
     commonUsage: '青铜器铭文',
-    exampleImage: 'https://example.com/dazhuan.jpg',
+    Images: $r('app.media.calligraphy_jinwen')
   },
   {
     name: '篆书',
@@ -40,18 +40,9 @@ const calligraphyItemList: calligraphyItem[] = [
     famousCalligraphers: ['李斯', '程邈'],
     characteristics: '字形对称、线条优美',
     commonUsage: '印章、铭文',
-    exampleImage: 'https://example.com/zhuanshu.jpg',
+    Images: $r('app.media.calligraphy_zhuanshu')
   },
-  {
-    name: '小篆',
-    type: '书法',
-    introduction: '小篆是秦朝统一文字后推广的一种标准字体，笔画圆润、线条均匀，是篆书的规范化形式。',
-    originPeriod: '秦朝',
-    famousCalligraphers: ['李斯'],
-    characteristics: '笔画圆润、线条均匀',
-    commonUsage: '印章、铭文',
-    exampleImage: 'https://example.com/xiaozhuan.jpg',
-  },
+
   {
     name: '隶书',
     type: '书法',
@@ -60,7 +51,7 @@ const calligraphyItemList: calligraphyItem[] = [
     famousCalligraphers: ['蔡邕', '张芝'],
     characteristics: '工整平稳、横画呈波浪形',
     commonUsage: '石碑、书法练习',
-    exampleImage: 'https://example.com/lishu.jpg',
+    Images: $r('app.media.calligraphy_lvshu')
   },
   {
     name: '草书',
@@ -70,7 +61,7 @@ const calligraphyItemList: calligraphyItem[] = [
     famousCalligraphers: ['张芝', '王羲之', '张旭'],
     characteristics: '连贯迅速、结构简化',
     commonUsage: '诗文书写',
-    exampleImage: 'https://example.com/caoshu.jpg',
+    Images: $r('app.media.calligraphy_chaoshu')
   },
   {
     name: '楷书',
@@ -80,7 +71,7 @@ const calligraphyItemList: calligraphyItem[] = [
     famousCalligraphers: ['钟繇', '颜真卿', '欧阳询'],
     characteristics: '字形方正、笔画清晰',
     commonUsage: '书法练习、正式文件',
-    exampleImage: 'https://example.com/kaishu.jpg',
+    Images: $r('app.media.calligraphy_kaishu')
   },
   {
     name: '行书',
@@ -90,11 +81,10 @@ const calligraphyItemList: calligraphyItem[] = [
     famousCalligraphers: ['王羲之', '颜真卿', '苏轼'],
     characteristics: '流畅自然、结体灵活',
     commonUsage: '书信、日常书写',
-    exampleImage: 'https://example.com/xingshu.jpg',
+    Images: $r('app.media.calligraphy_xingshu')
   }
 ];
 
 export const calligraphyMap: Map<string, calligraphyItem> = new Map<string, calligraphyItem>(
   calligraphyItemList.map(calligraphy => [calligraphy.name, calligraphy])
-)
-
+);

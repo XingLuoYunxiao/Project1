@@ -1,6 +1,6 @@
 import { ArtModel } from "./ArtModel";
 import {
-  Drawing,
+  paintingData,
   figureList,
   FlowerBirdsList,
   HaipaiPaintingList,
@@ -23,7 +23,7 @@ export class PaintingModel implements ArtModel {
   materialAndTechnique: string = ''; // 创作材料和技法
   subjectMatter: string = ''; // 题材内容
 
-  ImageArr?: Drawing[] = [];
+  ImageArr?: paintingData[] = [];
 }
 
 export const paintingModelList: PaintingModel[] = [

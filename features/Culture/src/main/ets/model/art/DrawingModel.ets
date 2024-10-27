@@ -1,4 +1,4 @@
-export class Drawing {
+export class paintingData {
   name: string = ''; //画作名称
   type: string = ''; // 画种类型
   author: string = ''; //作者
@@ -7,7 +7,7 @@ export class Drawing {
   path: ResourceStr = '' // 文件路径，我自己写
 }
 
-export const shanshuiList: Drawing[] = [
+export const shanshuiList: paintingData[] = [
   {
     name: "潇湘图",
     type: "山水画",
@@ -34,7 +34,7 @@ export const shanshuiList: Drawing[] = [
   }
 ]
 
-export const figureList: Drawing[] = [
+export const figureList: paintingData[] = [
   {
     name: "虢国夫人游春图",
     type: "人物画",
@@ -61,7 +61,7 @@ export const figureList: Drawing[] = [
   }
 ]
 
-export const FlowerBirdsList: Drawing[] = [
+export const FlowerBirdsList: paintingData[] = [
   {
     name: "写生珍禽图",
     type: "花鸟画",
@@ -97,7 +97,7 @@ export const FlowerBirdsList: Drawing[] = [
   }
 ]
 
-export const InkPaintingList: Drawing[] = [
+export const InkPaintingList: paintingData[] = [
   {
     name: "泼墨仙人图",
     type: "水墨画",
@@ -140,7 +140,7 @@ export const InkPaintingList: Drawing[] = [
   }
 ]
 
-export const shinvList: Drawing[] = [
+export const shinvList: paintingData[] = [
   {
     name: "簪花仕女图",
     type: "仕女图",
@@ -148,22 +148,6 @@ export const shinvList: Drawing[] = [
     authorDynasty: "唐代",
     explain: "《簪花仕女图》表现了唐代贵族女子佩戴花饰的形象，线条流畅，衣纹精致，突显出仕女的雍容华贵，展示了盛唐时期的风采。",
     path: $r('app.media.painting_zanhuashinv') // 请替换为实际的图片路径或URL
-  },
-  {
-    name: "虢国夫人游春图",
-    type: "仕女图",
-    author: "张萱",
-    authorDynasty: "唐代",
-    explain: "此图描绘了虢国夫人及其侍女出游踏青的场景，展现了唐代贵族女子的生活风貌。人物形象端庄、服饰华丽，是仕女图的代表作。",
-    path: $r('app.media.painting_guoguofuren') // 请替换为实际的图片路径或URL
-  },
-  {
-    name: "捣练图",
-    type: "仕女图",
-    author: "张萱",
-    authorDynasty: "唐代",
-    explain: "《捣练图》描绘了贵族妇女捣制丝绢的情景，画面中女性形象优雅，线条流畅，真实展现了唐代生活中的一幕，是仕女图中的经典之作。",
-    path: $r('app.media.painting_daolian') // 请替换为实际的图片路径或URL
   },
 
   {
@@ -182,17 +166,10 @@ export const shinvList: Drawing[] = [
     explain: "《挥扇仕女图》描绘了唐代贵族女子挥扇纳凉的场景，仕女的形象端庄优雅，衣纹流畅，表现出唐代仕女的高贵气质。",
     path: $r('app.media.painting_huishansinv') // 请替换为实际的图片路径或URL
   },
-  {
-    name: "宫乐图",
-    type: "仕女图",
-    author: "不详",
-    authorDynasty: "唐代",
-    explain: "《宫乐图》展示了唐代宫廷女子欣赏音乐、舞蹈的场景。人物姿态各异，场面生动，表现出宫廷生活的丰富多彩。",
-    path: $r('app.media.painting_gongle') // 请替换为实际的图片路径或URL
-  }
+
 ];
 
-export const HaipaiPaintingList: Drawing[] = [
+export const HaipaiPaintingList: paintingData[] = [
   {
     name: "鱼虾图",
     type: "海派画",
