@@ -1,0 +1,14 @@
+{
+  "modelVersion": "5.0.0",
+  "description": "Please describe the basic information.",
+  "dependencies": {
+    "@hw-agconnect/cloud": "^1.0.0",
+    "@hw-agconnect/hmcore": "^1.0.0",
+    "@hw-agconnect/auth-component": "^1.0.0",
+    "long": "5.2.1"
+  },
+  "devDependencies": {
+    "@ohos/hypium": "1.0.19",
+    "@ohos/hamock": "1.0.0"
+  }
+}
