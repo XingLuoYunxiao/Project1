@@ -1,0 +1,14 @@
+{
+  "name": "default",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@ohos/Travel": "file:../../features/Travel",
+    "@ohos/login": "file:../../features/Login",
+    "@ohos/utils": "file:../../commons/utils",
+    "@ohos/Culture": "file:../../features/Culture"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "模块描述"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+      "value": "iRead"
+    },
+    {
+      "name": "default_sex",
+      "value": "男"
+    },
+    {
+      "name": "text_input_hint",
+      "value": "昵称"
+    },
+    {
+      "name": "text_title_hobbies",
+      "value": "爱好"
+    },
+    {
+      "name": "cancel_button",
+      "value": "撤销"
+    },
+    {
+      "name": "definite_button",
+      "value": "确定"
+    },
+    {
+      "name": "title_sex",
+      "value": "性别"
+    },
+    {
+      "name": "text_input_signature",
+      "value": "个性签名"
+    },
+    {
+      "name": "title_hobbies",
+      "value": "兴趣爱好 (多选)"
+    }
+  ]
+}

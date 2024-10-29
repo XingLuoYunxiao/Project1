@@ -5,10 +5,12 @@
     "@hw-agconnect/cloud": "^1.0.0",
     "@hw-agconnect/hmcore": "^1.0.0",
     "@hw-agconnect/auth-component": "^1.0.0",
-    "long": "5.2.1"
+    "long": "5.2.1",
+    "@luvi/lv-markdown-in": "^2.0.9"
   },
   "devDependencies": {
     "@ohos/hypium": "1.0.19",
     "@ohos/hamock": "1.0.0"
   }
 }
+
