@@ -1,5 +1,5 @@
 import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
-import { FileUtil } from "../../util/FileUtil";
+import { cultureFileUtil } from "../../util/FileUtil";
 import { TranslateView } from "../../view/Translate";
 
 const TAG: string = 'lunyuDetails';
@@ -67,7 +67,7 @@ const lunyuData: lunyuModel = new lunyuModel();
 
 async function getLunyuData() {
   try {
-    let lunyuArr: lunyu[] = await FileUtil.getDataFromRawfile<lunyu>('lunyu.json');
+    let lunyuArr: lunyu[] = await cultureFileUtil.getDataFromRawfile<lunyu>('lunyu.json');
 
     lunyuArr.forEach(item => {
       lunyuData.pushData(item);

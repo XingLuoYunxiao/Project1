@@ -1,5 +1,5 @@
 import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
-import { FileUtil } from "../../util/FileUtil";
+import { cultureFileUtil } from "../../util/FileUtil";
 
 const TAG: string = 'details';
 

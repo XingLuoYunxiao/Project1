@@ -24,6 +24,10 @@ export class PaintingModel implements ArtModel {
   subjectMatter: string = ''; // 题材内容
 
   ImageArr?: paintingData[] = [];
+
+  public static getInfro() {
+    return
+  }
 }
 
 export const paintingModelList: PaintingModel[] = [

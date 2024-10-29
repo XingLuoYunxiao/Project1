@@ -49,6 +49,11 @@
       "name": "CalligraphyDetails",
       "pageSourceFile": "src/main/ets/pages/art/CalligraphyDetails.ets",
       "buildFunction": "CalligraphyDetailsBuilder"
+    },
+    {
+      "name": "FestivalPage",
+      "pageSourceFile": "src/main/ets/pages/tradictionalFestival/FestivalPage.ets",
+      "buildFunction": "FestivalPageBuilder"
     }
   ]
 }

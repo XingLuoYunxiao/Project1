@@ -1,5 +1,5 @@
 import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
-import { FileUtil } from "../../util/FileUtil";
+import { cultureFileUtil } from "../../util/FileUtil";
 import { AppreciateView } from "../../view/Appreciate";
 import { TranslateView } from "../../view/Translate";
 
@@ -85,7 +85,7 @@ const chuciData: chuciModel = new chuciModel();
 
 async function getChuciData() {
   try {
-    let chuciArr: chuci[] = await FileUtil.getDataFromRawfile<chuci>('chuci.json');
+    let chuciArr: chuci[] = await cultureFileUtil.getDataFromRawfile<chuci>('chuci.json');
 
     chuciArr.forEach(item => {
       chuciData.pushData(item);

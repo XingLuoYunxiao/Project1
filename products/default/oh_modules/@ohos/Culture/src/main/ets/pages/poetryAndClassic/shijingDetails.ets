@@ -2,7 +2,7 @@ import { common } from "@kit.AbilityKit";
 import { util } from "@kit.ArkTS";
 import { BusinessError } from '@kit.BasicServicesKit';
 import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
-import { FileUtil } from "../../util/FileUtil";
+import { cultureFileUtil } from "../../util/FileUtil";
 import { AppreciateView } from "../../view/Appreciate";
 import { TranslateView } from "../../view/Translate";
 
@@ -86,7 +86,7 @@ const shijingData: shijingModel = new shijingModel();
 
 async function getShijingData() {
   try {
-    let shijingArr: shijing[] = await FileUtil.getDataFromRawfile<shijing>('shijing.json');
+    let shijingArr: shijing[] = await cultureFileUtil.getDataFromRawfile<shijing>('shijing.json');
 
     shijingArr.forEach(item => {
       shijingData.pushData(item);

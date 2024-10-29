@@ -1,5 +1,5 @@
 import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
-import { FileUtil } from "../../util/FileUtil";
+import { cultureFileUtil } from "../../util/FileUtil";
 import { TranslateView } from "../../view/Translate";
 
 const TAG: string = 'mengziDetails';
@@ -66,7 +66,7 @@ const mengziData: mengziModel = new mengziModel();
 
 async function getMengziData() {
   try {
-    let mengziArr: mengzi[] = await FileUtil.getDataFromRawfile<mengzi>('mengzi.json');
+    let mengziArr: mengzi[] = await cultureFileUtil.getDataFromRawfile<mengzi>('mengzi.json');
 
     mengziArr.forEach(item => {
       mengziData.pushData(item);

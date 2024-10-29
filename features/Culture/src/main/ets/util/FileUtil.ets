@@ -2,8 +2,7 @@ import { common } from "@kit.AbilityKit";
 import { util } from "@kit.ArkTS";
 import { BusinessError } from '@kit.BasicServicesKit';
 
-export class FileUtil {
-
+export class cultureFileUtil {
   /**
    * 从资源文件中读取 JSON 并解析为数组
    * @param fileName 资源文件名
