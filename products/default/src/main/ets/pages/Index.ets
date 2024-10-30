@@ -2,7 +2,7 @@ import { TravelStartPage } from '@ohos/Travel';
 import { InfoMessagePage } from '@ohos/login';
 import { CulturalHeritageStartPage } from '@ohos/Culture';
 import { TabBarType } from '../model/TabBarModel';
-import { CustomTabBar } from '../component/CustomTabBar';
+import { CustomTabBar } from '../components/CustomTabBar';
 import { AppConstants } from '../constants/AppConstants';
 
 @Entry
