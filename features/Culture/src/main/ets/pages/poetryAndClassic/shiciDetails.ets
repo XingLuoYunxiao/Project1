@@ -1,7 +1,8 @@
-
-import { BasicDataSource } from "../../model/poetryModel/poetryModel";
-import { FileUtil } from "../../util/FileUtil";
+import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
+import { cultureFileUtil } from "../../util/FileUtil";
 import { AppreciateView } from "../../view/appreciate";
+import { testOne } from "../../view/test";
+import { testTwo } from "../../view/testTwo";
 import { TranslateView } from "../../view/Translate";
 
 const TAG: string = 'shiciDetails';
@@ -47,13 +48,14 @@ export struct details {
 
       Text(item.title)
         .fontSize($r('app.float.poetry_title_fontSize'))
-      Row({space:10}){
-        TranslateView({importContent:item.content})
-        AppreciateView({importContent:item.content})
+      Row({ space: 10 }) {
+        TranslateView({ importContent: item.content })
+        AppreciateView({ importContent: item.content })
       }
-      .margin({top:8,bottom:8})
+      .margin({ top: 8, bottom: 8 })
       .width('100%')
       .justifyContent(FlexAlign.End)
+
       Text(item.dynasty)
         .fontSize($r('app.float.poetry_fontSize'))
       Text(item.auth)
@@ -62,6 +64,8 @@ export struct details {
       Text(item.content.toString())
         .fontSize($r('app.float.poetry_fontSize'))
       //contentBuilder(item.content)
+      //testOne()
+      //testTwo()
     }
     .backgroundColor($r('app.color.poetryItem_background'))
     .justifyContent(FlexAlign.Center)
@@ -104,7 +108,7 @@ const shiciData: shiciModel = new shiciModel();
 
 async function getShiciData() {
   try {
-    let shiciArr: shici[] = await FileUtil.getDataFromRawfile<shici>('shici.json');
+    let shiciArr: shici[] = await cultureFileUtil.getDataFromRawfile<shici>('shici.json');
 
     shiciArr.forEach(item => {
       shiciData.pushData(item);

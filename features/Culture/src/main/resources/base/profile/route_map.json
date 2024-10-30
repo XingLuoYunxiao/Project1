@@ -1,7 +1,7 @@
 {
   "routerMap": [
     {
-      "name":"poetryAndClassicPage",
+      "name": "poetryAndClassicPage",
       "pageSourceFile": "src/main/ets/pages/poetryAndClassic/PoetryAndClassicPage.ets",
       "buildFunction": "PoetryAndClassicPageBuilder"
     },
@@ -25,7 +25,6 @@
       "pageSourceFile": "src/main/ets/pages/poetryAndClassic/shiciDetails.ets",
       "buildFunction": "shiciDetailsBuilder"
     },
-
     {
       "name": "mengziDetails",
       "pageSourceFile": "src/main/ets/pages/poetryAndClassic/mengziDetails.ets",
@@ -35,8 +34,26 @@
       "name": "zhongyongDetails",
       "pageSourceFile": "src/main/ets/pages/poetryAndClassic/zhongyongDetails.ets",
       "buildFunction": "zhongyongDetailsBuilder"
+    },
+    {
+      "name": "ArtPage",
+      "pageSourceFile": "src/main/ets/pages/art/ArtPage.ets",
+      "buildFunction": "ArtPageBuilder"
+    },
+    {
+      "name": "PaintingDetails",
+      "pageSourceFile": "src/main/ets/pages/art/PaintingDetails.ets",
+      "buildFunction": "PaintingDetailsBuilder"
+    },
+    {
+      "name": "CalligraphyDetails",
+      "pageSourceFile": "src/main/ets/pages/art/CalligraphyDetails.ets",
+      "buildFunction": "CalligraphyDetailsBuilder"
+    },
+    {
+      "name": "FestivalPage",
+      "pageSourceFile": "src/main/ets/pages/tradictionalFestival/FestivalPage.ets",
+      "buildFunction": "FestivalPageBuilder"
     }
-
-
   ]
 }

@@ -5,24 +5,20 @@
       "value": "#FFFFFF"
     },
     {
-      "name": "place_color",
-      "value": "#7e7e7e"
+      "name": "link_blue",
+      "value": "#007DFF"
     },
     {
-      "name": "column_background_color",
-      "value": "#fafafa"
+      "name": "navigator_black",
+      "value": "#000000"
     },
     {
-      "name": "custom_color",
-      "value": "#5e5e5e"
+      "name": "title_black",
+      "value": "#182431"
     },
     {
-      "name": "divider_color",
-      "value": "#5e5e5e"
-    },
-    {
-      "name": "custom_blank_color",
-      "value": "#d1d1d1"
+      "name": "page_background_grey",
+      "value": "#F1F3F5"
     }
   ]
 }

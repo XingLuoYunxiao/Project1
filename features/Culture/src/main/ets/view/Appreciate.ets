@@ -1,4 +1,4 @@
-import {baseFuncViewComponent} from '../view/baseFuncView'
+import {baseFuncViewComponent} from '../view/baseFuncComponent'
 import { PromptWords,promptMap } from "../model/promptWords";
 @Component
 export  struct AppreciateView{

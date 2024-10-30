@@ -1,5 +1,5 @@
-import { BasicDataSource } from "../../model/poetryModel/poetryModel";
-import { FileUtil } from "../../util/FileUtil";
+import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
+import { cultureFileUtil } from "../../util/FileUtil";
 
 const TAG: string = 'details';
 
@@ -13,9 +13,9 @@ export function zhongyongDetailsBuilder(name: string, param: Object) {
 @Component
 export struct details {
   @State param: string = ''; // 传递的参数
-  @State data:zhongyong =  {
-    chapter:"中庸",
-    paragraphs:[
+  @State data: zhongyong = {
+    chapter: "中庸",
+    paragraphs: [
       "大學之道，在明明德，在親民，在止於至善。知止而后有定，定而后能靜，靜而后能安，安而后能慮，慮而后能得。物有本末，事有終始，知所先後，則近道矣。",
       "古之欲明明德於天下者，先治其國；欲治其國者，先齊其家；欲齊其家者，先修其身；欲修其身者，先正其心；欲正其心者，先誠其意；欲誠其意者，先致其知，致知在格物。物格而後知至，知至而後意誠，意誠而後心正，心正而後身修，身修而後家齊，家齊而後國治，國治而後天下平。自天子以至於庶人，壹是皆以修身為本。其本亂而末治者否矣，其所厚者薄，而其所薄者厚，未之有也！此謂知本，此謂知之至也。",
       "所謂誠其意者，毋自欺也，如惡惡臭，如好好色，此之謂自謙，故君子必慎其獨也！小人閑居為不善，無所不至，見君子而後厭然，掩其不善，而著其善。人之視己，如見其肺肝然，則何益矣！此謂誠於中，形於外，故君子必慎其獨也。曾子曰：「十目所視，十手所指，其嚴乎！」富潤屋，德潤身，心廣體胖，故君子必誠其意。",
@@ -35,8 +35,6 @@ export struct details {
     ]
   }
 
-
-
   aboutToAppear(): void {
     console.debug("这是中庸 details 页面");
   }
@@ -45,9 +43,9 @@ export struct details {
     NavDestination() {
       Column() {
         List({ space: 10 }) {
-         ListItem(){
+          ListItem() {
             this.poetryItem(this.data)
-         }
+          }
         }
       }
       .justifyContent(FlexAlign.Center)
@@ -60,7 +58,7 @@ export struct details {
   @Builder
   poetryItem(item: zhongyong) {
     Column() {
-      Text(item.chapter) // 显示章节
+      Text(item.chapter)// 显示章节
         .fontSize($r('app.float.poetry_title_fontSize'))
       Text(item.paragraphs.toString())
         .fontSize($r('app.float.poetry_fontSize'))

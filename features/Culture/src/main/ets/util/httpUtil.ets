@@ -29,9 +29,9 @@ class StreamResponse implements StreamResponseInterface {
 export class httpToAI {
   private static Password: string = 'MvZBmiYOGqZwMwImGcDs:RnzZhRIwimchQTzsnMss';
   private static useTravelModel: string = 'generalv3.5';
-  private static travelUrl: string = 'https://spark-api-open.xf-yun.com/v1/chat/completions';
+  private static Url: string = 'https://spark-api-open.xf-yun.com/v1/chat/completions';
 
-  static async askAI(
+  public static async askAI(
     context: string,
     prompt: PromptWords,
     onUpdate: (chunk: string) => void
@@ -76,7 +76,7 @@ export class httpToAI {
     //
     try {
       let response = await httpRequest.requestInStream(
-        httpToAI.travelUrl,
+        httpToAI.Url,
         {
           method: http.RequestMethod.POST,
           header: {

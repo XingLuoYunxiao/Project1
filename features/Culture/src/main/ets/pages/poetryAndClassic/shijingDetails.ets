@@ -1,8 +1,8 @@
 import { common } from "@kit.AbilityKit";
 import { util } from "@kit.ArkTS";
 import { BusinessError } from '@kit.BasicServicesKit';
-import { BasicDataSource } from "../../model/poetryModel/poetryModel";
-import { FileUtil } from "../../util/FileUtil";
+import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
+import { cultureFileUtil } from "../../util/FileUtil";
 import { AppreciateView } from "../../view/Appreciate";
 import { TranslateView } from "../../view/Translate";
 
@@ -15,9 +15,7 @@ export function shijingDetailsBuilder(name: string, param: Object) {
 
 @Component
 export struct details {
-
   @State param: string = ''
-
   @State shijingList: Array<shijing> = [];
 
   aboutToAppear(): void {
@@ -30,7 +28,7 @@ export struct details {
   build() {
     NavDestination() {
       Column() {
-        List({space: 10}) {
+        List({ space: 10 }) {
           LazyForEach(shijingData, (item: shijing, index: number) => {
             ListItem() {
               this.poetryItem(item)
@@ -49,13 +47,14 @@ export struct details {
     Column() {
       Text(item.title)
         .fontSize($r('app.float.poetry_title_fontSize'))
-      Row({space:10}){
-        TranslateView({importContent:item.content})
-        AppreciateView({importContent:item.content})
+      Row({ space: 10 }) {
+        TranslateView({ importContent: item.content })
+        AppreciateView({ importContent: item.content })
       }
-      .margin({top:8,bottom:8})
+      .margin({ top: 8, bottom: 8 })
       .width('100%')
       .justifyContent(FlexAlign.End)
+
       Text(item.chapter)
         .fontSize($r('app.float.poetry_fontSize'))
       Text(item.section).margin(10)
@@ -70,7 +69,6 @@ export struct details {
     .padding(12)
   }
 }
-
 
 
 class shijingModel extends BasicDataSource<shijing> {
@@ -88,7 +86,7 @@ const shijingData: shijingModel = new shijingModel();
 
 async function getShijingData() {
   try {
-    let shijingArr: shijing[] = await FileUtil.getDataFromRawfile<shijing>('shijing.json');
+    let shijingArr: shijing[] = await cultureFileUtil.getDataFromRawfile<shijing>('shijing.json');
 
     shijingArr.forEach(item => {
       shijingData.pushData(item);
@@ -97,6 +95,7 @@ async function getShijingData() {
     console.error("Error loading shijing data: ", error);
   }
 }
+
 interface shijing {
   title: string;
   chapter: string;
