@@ -4,7 +4,8 @@
   "dependencies": {
     "@luvi/lv-markdown-in": "^2.0.9",
     "@jjr/lottie_component": "^1.0.2",
-    "@ohos/lottie": "^2.0.13"
+    "@ohos/lottie": "^2.0.13",
+    "@xsqd/component": "^1.1.0"
   },
   "devDependencies": {},
   "dynamicDependencies": {}
