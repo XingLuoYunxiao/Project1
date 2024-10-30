@@ -47,6 +47,47 @@
     {
       "name": "title_hobbies",
       "value": "hobbie_title"
-    }
+    },
+
+        {
+          "name": "button_confirm",
+          "value": "Confirm"
+        },
+        {
+          "name": "dialog_message",
+          "value": "Message"
+        },
+        {
+          "name": "navigator_name",
+          "value": "Web component"
+        },
+        {
+          "name": "title_name",
+          "value": "In web component"
+        },
+        {
+          "name": "write_success",
+          "value": "Write cookie success"
+        },
+        {
+          "name": "write_fail",
+          "value": "Write cookie fail"
+        },
+        {
+          "name": "delete_success",
+          "value": "Delete cookie success"
+        },
+        {
+          "name": "test_content",
+          "value": "info=test writing cookie"
+        },
+        {
+          "name": "load_error",
+          "value": "Failed to load the page: please check your network connection."
+        },
+        {
+          "name": "reason",
+          "value": "Used to initiate network data requests."
+        }
   ]
 }

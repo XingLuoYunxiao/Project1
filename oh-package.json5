@@ -2,7 +2,8 @@
   "modelVersion": "5.0.0",
   "description": "Please describe the basic information.",
   "dependencies": {
-    "@luvi/lv-markdown-in": "^2.0.9"
+    "@luvi/lv-markdown-in": "^2.0.9",
+    "@xsqd/calendar": "^1.0.1"
   },
   "devDependencies": {},
   "dynamicDependencies": {}

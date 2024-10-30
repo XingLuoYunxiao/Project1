@@ -2,17 +2,17 @@
 	"BuildOptions":{
 		"SELECT_BUILD_TARGET":"default",
 		"BUILD_PATH":{
-			"OUTPUT_METADATA_JSON":"D:\\Huawei\\projectone\\Project1\\features\\Travel\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
-			"OUTPUT_PATH":"D:\\Huawei\\projectone\\Project1\\features\\Travel\\build\\default\\outputs\\default",
-			"RES_PATH":"D:\\Huawei\\projectone\\Project1\\features\\Travel\\build\\default\\intermediates\\res\\default",
-			"ETS_SUPER_VISUAL_PATH":"D:\\Huawei\\projectone\\Project1\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
-			"JS_ASSETS_PATH":"D:\\Huawei\\projectone\\Project1\\features\\Travel\\build\\default\\intermediates\\loader_out\\default",
-			"INTERMEDIA_PATH":"D:\\Huawei\\projectone\\Project1\\features\\Travel\\build\\default\\intermediates",
-			"RES_PROFILE_PATH":"D:\\Huawei\\projectone\\Project1\\features\\Travel\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
-			"WORKER_LOADER":"D:\\Huawei\\projectone\\Project1\\features\\Travel\\build\\default\\intermediates\\loader\\default\\loader.json",
-			"MANIFEST_JSON":"D:\\Huawei\\projectone\\Project1\\features\\Travel\\build\\default\\intermediates\\manifest\\default",
-			"JS_LITE_ASSETS_PATH":"D:\\Huawei\\projectone\\Project1\\features\\Travel\\build\\default\\intermediates\\loader_out_lite\\default",
-			"JS_SUPER_VISUAL_PATH":"D:\\Huawei\\projectone\\Project1\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle"
+			"OUTPUT_METADATA_JSON":"D:\\Huawei\\Project1\\features\\Travel\\build\\default\\intermediates\\hap_metadata\\default\\output_metadata.json",
+			"OUTPUT_PATH":"D:\\Huawei\\Project1\\features\\Travel\\build\\default\\outputs\\default",
+			"RES_PATH":"D:\\Huawei\\Project1\\features\\Travel\\build\\default\\intermediates\\res\\default",
+			"ETS_SUPER_VISUAL_PATH":"D:\\Huawei\\Project1\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileArkTS\\esmodule",
+			"JS_ASSETS_PATH":"D:\\Huawei\\Project1\\features\\Travel\\build\\default\\intermediates\\loader_out\\default",
+			"INTERMEDIA_PATH":"D:\\Huawei\\Project1\\features\\Travel\\build\\default\\intermediates",
+			"RES_PROFILE_PATH":"D:\\Huawei\\Project1\\features\\Travel\\build\\default\\intermediates\\res\\default\\resources\\base\\profile",
+			"WORKER_LOADER":"D:\\Huawei\\Project1\\features\\Travel\\build\\default\\intermediates\\loader\\default\\loader.json",
+			"MANIFEST_JSON":"D:\\Huawei\\Project1\\features\\Travel\\build\\default\\intermediates\\manifest\\default",
+			"JS_LITE_ASSETS_PATH":"D:\\Huawei\\Project1\\features\\Travel\\build\\default\\intermediates\\loader_out_lite\\default",
+			"JS_SUPER_VISUAL_PATH":"D:\\Huawei\\Project1\\features\\Travel\\build\\default\\cache\\default\\default@HarCompileJS\\jsbundle"
 		}
 	},
 	"CommonInfo":{
