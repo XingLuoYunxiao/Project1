@@ -1,13 +1,21 @@
 import { TravelStartPage } from '@ohos/Travel';
 import { InfoMessagePage } from '@ohos/login';
 import { CulturalHeritageStartPage } from '@ohos/Culture';
+import { TabBarType } from '../model/TabBarModel';
+import { CustomTabBar } from '../component/CustomTabBar';
+import { AppConstants } from '../constants/AppConstants';
 
 @Entry
 @Component
 struct Index {
-  @State currentIndex: number = 0;
-  @StorageLink('isHideToolBar') isHideToolBar: boolean = false;
+  @State currentIndex: number = TabBarType.TRAVEL;
+  @StorageLink('isHideBar') isHideBar: boolean = false;
+  @Provide('appPathStack') appPathStack: NavPathStack = new NavPathStack();
   private tabsController: TabsController = new TabsController();
+
+  aboutToAppear(): void {
+    AppStorage.setOrCreate('isHideBar', false);
+  }
 
 
   @Builder
@@ -35,29 +43,57 @@ struct Index {
   }
 
   build() {
-    Tabs({ barPosition: BarPosition.End, controller: this.tabsController }) {
-      TabContent() {
-        TravelStartPage()
-      }
-      .tabBar(this.tabBarBuilder('旅游', 0, $r('app.media.ic_01_on'), $r('app.media.ic_01_off')))
+    Navigation(){
+      Stack(){
+        Flex({ direction: FlexDirection.RowReverse }){
+          Tabs({ index: this.currentIndex  }) {
+            TabContent() {
+              TravelStartPage()
+            }
+            //.tabBar(this.tabBarBuilder('旅游', 0, $r("app.media.ic_tab_travel_on"), $r("app.media.ic_tab_travel_off")))
 
-      TabContent() {
-        CulturalHeritageStartPage()
-      }
-      .tabBar(this.tabBarBuilder('非遗', 1, $r('app.media.ic_02_on'), $r('app.media.ic_02_off')))
+            TabContent() {
+              CulturalHeritageStartPage()
+            }
+            TabContent() {
+              Text('开发中')
+                .align(Alignment.Center)
+            }
+            //.tabBar(this.tabBarBuilder('非遗', 1, $r("app.media.ic_tab_culture_on"), $r("app.media.ic_tab_culture_off")))
 
-      TabContent() {
-        InfoMessagePage()
+            TabContent() {
+              InfoMessagePage()
+            }
+            //.tabBar(this.tabBarBuilder('我的', 2, $r("app.media.ic_tab_mine_on"), $r("app.media.ic_tab_mine_off")))
+
+          }
+          .layoutWeight(1)
+          .barHeight(0)
+          .scrollable(false)
+          .vertical(false)
+          .divider({
+            strokeWidth: 0.5,
+            color: '#0D182431'
+          })
+          .scrollable(false)
+          .backgroundColor('#F1F3F5')
+          .padding({ top: 36, bottom: 28 })
+          .onChange((index) => {
+            this.currentIndex = index;
+          })
+
+        }
+        .width(AppConstants.FULL_PERCENT)
+        .height(AppConstants.FULL_PERCENT)
+
+        CustomTabBar({ currentIndex: $currentIndex})
+
       }
-      .tabBar(this.tabBarBuilder('我的', 2, $r('app.media.ic_03_on'), $r('app.media.ic_03_off')))
+      .alignContent(Alignment.BottomEnd)
+
     }
-    .vertical(false)
-    .divider({
-      strokeWidth: 0.5,
-      color: '#0D182431'
-    })
-    .scrollable(false)
-    .backgroundColor('#F1F3F5')
-    .padding({ top: 36, bottom: 28 })
+    .hideTitleBar(true)
+    .mode(NavigationMode.Stack)
+
   }
 }

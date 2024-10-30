@@ -19,6 +19,7 @@ export const attractions: Attraction[] = [
 export struct TravelStartPage {
 
   @Provide('travelPathStack') travelPathStack: NavPathStack = new NavPathStack();
+  @Consume('appPathStack') appPathStack: NavPathStack;
 
   build() {
     Navigation(this.travelPathStack){
@@ -50,7 +51,7 @@ export struct TravelStartPage {
         //附近景点
         NearbyAttraction()
           .width('100%')
-          .height('100%')
+          .layoutWeight(1)
 
       }
       .width('95%')

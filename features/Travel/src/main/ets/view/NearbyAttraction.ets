@@ -7,11 +7,15 @@ const nearbyAttractions: Attraction[] = [
   new Attraction(6, "西安城墙", $r("app.media.nearby_4"), "西安城墙是中国现存规模最大、保存最完整的古代城垣，是明代初年在唐长安城的基础上扩建而成的。"),
   new Attraction(7, "钟楼", $r("app.media.nearby_3"), "钟楼位于西安市中心，是明代建筑的典范，历史上用于晨钟暮鼓，现在是西安的标志性建筑之一。"),
   new Attraction(3, "大唐不夜城", $r("app.media.attraction_3"), "大唐不夜城位于陕西省西安市，是一个集文化、旅游、商业于一体的综合性旅游景区，以唐代皇家园林为主题，展现了盛唐时期的繁荣景象。"),
+  new Attraction(3, "大唐不夜城", $r("app.media.attraction_3"), "大唐不夜城位于陕西省西安市，是一个集文化、旅游、商业于一体的综合性旅游景区，以唐代皇家园林为主题，展现了盛唐时期的繁荣景象。"),
+  new Attraction(3, "大唐不夜城", $r("app.media.attraction_3"), "大唐不夜城位于陕西省西安市，是一个集文化、旅游、商业于一体的综合性旅游景区，以唐代皇家园林为主题，展现了盛唐时期的繁荣景象。"),
+  new Attraction(3, "大唐不夜城", $r("app.media.attraction_3"), "大唐不夜城位于陕西省西安市，是一个集文化、旅游、商业于一体的综合性旅游景区，以唐代皇家园林为主题，展现了盛唐时期的繁荣景象。"),
+  new Attraction(3, "大唐不夜城", $r("app.media.attraction_3"), "大唐不夜城位于陕西省西安市，是一个集文化、旅游、商业于一体的综合性旅游景区，以唐代皇家园林为主题，展现了盛唐时期的繁荣景象。"),
 ]
 
 //定义一个景点距离数组
 const distances: number[] = [
-  12.2, 5.1, 36.6, 17.2, 49.8
+  12.2, 5.1, 36.6, 17.2, 49.8, 11.1, 11,1, 11,1, 11,1
 ]
 
 
@@ -47,13 +51,9 @@ export struct NearbyAttraction {
       //.edgeEffect(EdgeEffect.Spring, {alwaysEnabled:true})
       .scrollBar(BarState.Off)
       .width('100%')
-      .height(300)
       .listDirection(Axis.Vertical)
+      .margin({bottom: "15%"})
 
-      Column(){
-      }
-      .width('100%')
-      .height(200)
     }
     .alignItems(HorizontalAlign.Start)
     .width('100%')

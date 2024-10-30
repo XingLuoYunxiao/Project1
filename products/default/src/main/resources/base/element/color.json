@@ -3,6 +3,14 @@
     {
       "name": "start_window_background",
       "value": "#FFFFFF"
+    },
+    {
+      "name": "challenge_light",
+      "value": "#00CCD7"
+    },
+    {
+      "name": "clear_color",
+      "value": "#00FFFFFF"
     }
   ]
 }

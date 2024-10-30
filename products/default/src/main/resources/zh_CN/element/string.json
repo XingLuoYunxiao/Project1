@@ -10,7 +10,27 @@
     },
     {
       "name": "EntryAbility_label",
-      "value": "ICT"
+      "value": "古韵游踪"
+    },
+    {
+      "name": "tab_travel",
+      "value": "首页"
+    },
+    {
+      "name": "tab_culture",
+      "value": "非遗"
+    },
+    {
+      "name": "tab_mine",
+      "value": "我的"
+    },
+    {
+      "name": "tab_route",
+      "value": "行程"
+    },
+    {
+      "name": "tab_AI",
+      "value": "AI"
     }
   ]
 }

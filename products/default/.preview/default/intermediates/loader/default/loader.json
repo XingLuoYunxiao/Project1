@@ -1,50 +1,78 @@
 {
   "modulePathMap": {
-<<<<<<< HEAD:products/default/.preview/default/intermediates/loader/default/loader.json
-    "default": "D:\\HuaWei\\Apps\\IctProject\\products\\default",
-    "map": "D:\\HuaWei\\Apps\\IctProject\\features\\map",
-    "learning": "D:\\HuaWei\\Apps\\IctProject\\features\\learning",
-    "Travel": "D:\\HuaWei\\Apps\\IctProject\\features\\Travel",
-    "utils": "D:\\HuaWei\\Apps\\IctProject\\commons\\utils",
-    "uicomponents": "D:\\HuaWei\\Apps\\IctProject\\commons\\uicomponents",
-    "Login": "D:\\HuaWei\\Apps\\IctProject\\features\\Login"
+    "default": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\products\\default",
+    "Travel": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Travel",
+    "utils": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\commons\\utils",
+    "uicomponents": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\commons\\uicomponents",
+    "Login": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Login",
+    "Culture": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture"
   },
   "compileMode": "esmodule",
-  "projectRootPath": "D:\\HuaWei\\Apps\\IctProject",
-  "nodeModulesPath": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\.preview\\default\\intermediates\\loader_out\\default\\node_modules",
-=======
-    "default": "E:\\ohomDemos\\ICT\\IctProject\\products\\default",
-    "map": "E:\\ohomDemos\\ICT\\IctProject\\features\\map",
-    "learning": "E:\\ohomDemos\\ICT\\IctProject\\features\\learning",
-    "Travel": "E:\\ohomDemos\\ICT\\IctProject\\features\\Travel",
-    "utils": "E:\\ohomDemos\\ICT\\IctProject\\commons\\utils",
-    "uicomponents": "E:\\ohomDemos\\ICT\\IctProject\\commons\\uicomponents",
-    "Login": "E:\\ohomDemos\\ICT\\IctProject\\features\\Login"
-  },
-  "compileMode": "esmodule",
-  "projectRootPath": "E:\\ohomDemos\\ICT\\IctProject",
-  "nodeModulesPath": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\default\\node_modules",
->>>>>>> origin/zmx:products/default/build/default/intermediates/loader/default/loader.json
+  "projectRootPath": "D:\\HuaWei\\Apps\\IctProjectOne\\Application",
+  "nodeModulesPath": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\products\\default\\.preview\\default\\intermediates\\loader_out\\default\\node_modules",
   "byteCodeHarInfo": {},
   "declarationEntry": [],
   "moduleName": "default",
   "hspNameOhmMap": {},
   "harNameOhmMap": {},
   "packageManagerType": "ohpm",
-  "compileEntry": [],
+  "compileEntry": [
+    "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\PoetryAndClassicPage.ets",
+    "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\chuciDetails.ets",
+    "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\lunyuDetails.ets",
+    "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\shijingDetails.ets",
+    "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\shiciDetails.ets",
+    "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\mengziDetails.ets",
+    "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\zhongyongDetails.ets"
+  ],
   "otherCompileFiles": [],
   "dynamicImportLibInfo": {},
-  "routerMap": [],
+  "routerMap": [
+    {
+      "ohmurl": "@bundle:com.application.ictprojectone/default@Culture/ets/pages/poetryAndClassic/PoetryAndClassicPage",
+      "name": "poetryAndClassicPage",
+      "pageSourceFile": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\PoetryAndClassicPage.ets",
+      "buildFunction": "PoetryAndClassicPageBuilder"
+    },
+    {
+      "ohmurl": "@bundle:com.application.ictprojectone/default@Culture/ets/pages/poetryAndClassic/chuciDetails",
+      "name": "chuciDetails",
+      "pageSourceFile": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\chuciDetails.ets",
+      "buildFunction": "chuciDetailsBuilder"
+    },
+    {
+      "ohmurl": "@bundle:com.application.ictprojectone/default@Culture/ets/pages/poetryAndClassic/lunyuDetails",
+      "name": "lunyuDetails",
+      "pageSourceFile": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\lunyuDetails.ets",
+      "buildFunction": "lunyuDetailsBuilder"
+    },
+    {
+      "ohmurl": "@bundle:com.application.ictprojectone/default@Culture/ets/pages/poetryAndClassic/shijingDetails",
+      "name": "shijingDetails",
+      "pageSourceFile": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\shijingDetails.ets",
+      "buildFunction": "shijingDetailsBuilder"
+    },
+    {
+      "ohmurl": "@bundle:com.application.ictprojectone/default@Culture/ets/pages/poetryAndClassic/shiciDetails",
+      "name": "shiciDetails",
+      "pageSourceFile": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\shiciDetails.ets",
+      "buildFunction": "shiciDetailsBuilder"
+    },
+    {
+      "ohmurl": "@bundle:com.application.ictprojectone/default@Culture/ets/pages/poetryAndClassic/mengziDetails",
+      "name": "mengziDetails",
+      "pageSourceFile": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\mengziDetails.ets",
+      "buildFunction": "mengziDetailsBuilder"
+    },
+    {
+      "ohmurl": "@bundle:com.application.ictprojectone/default@Culture/ets/pages/poetryAndClassic/zhongyongDetails",
+      "name": "zhongyongDetails",
+      "pageSourceFile": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\features\\Culture\\src\\main\\ets\\pages\\poetryAndClassic\\zhongyongDetails.ets",
+      "buildFunction": "zhongyongDetailsBuilder"
+    }
+  ],
   "hspResourcesMap": {},
-<<<<<<< HEAD:products/default/.preview/default/intermediates/loader/default/loader.json
-  "anBuildOutPut": "D:\\HuaWei\\Apps\\IctProject\\products\\default\\.preview\\default\\intermediates\\loader_out\\default\\an\\arm64-v8a",
+  "anBuildOutPut": "D:\\HuaWei\\Apps\\IctProjectOne\\Application\\products\\default\\.preview\\default\\intermediates\\loader_out\\default\\an\\arm64-v8a",
   "anBuildMode": "type",
   "buildConfigPath": ".preview\\config\\buildConfig.json"
-=======
-  "anBuildOutPut": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\loader_out\\default\\an\\arm64-v8a",
-  "anBuildMode": "type",
-  "patchConfig": {
-    "changedFileList": "E:\\ohomDemos\\ICT\\IctProject\\products\\default\\build\\default\\intermediates\\patch\\default\\changedFileList.json"
-  }
->>>>>>> origin/zmx:products/default/build/default/intermediates/loader/default/loader.json
 }

@@ -6,9 +6,9 @@
   "author": "",
   "license": "",
   "dependencies": {
-    "@ohos/Travel": "file:../../features/Travel",
-    "@ohos/login": "file:../../features/Login",
-    "@ohos/utils": "file:../../commons/utils",
-    "@ohos/Culture": "file:../../features/Culture"
+    "@ohos/travel": "file:../../features/Travel",
+    "@ohos/Login": "file:../../features/Login",
+    "@ohos/Utils": "file:../../commons/utils",
+    "@ohos/culture": "file:../../features/Culture"
   }
 }

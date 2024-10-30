@@ -57,6 +57,8 @@ export const classificationList: classification[] = [
 @Component
 export struct Classification {
   @Consume('travelPathStack') travelPathStack: NavPathStack;
+  @Consume('appPathStack') appPathStack: NavPathStack;
+
 
   build() {
     //景点分类
@@ -70,6 +72,7 @@ export struct Classification {
         })
       })
     }
+    .justifyContent(FlexAlign.SpaceAround)
     .width('100%')
     .height(100)
     .backgroundColor(Color.White)

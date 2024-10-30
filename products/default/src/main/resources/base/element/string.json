@@ -12,5 +12,26 @@
       "name": "EntryAbility_label",
      "value": "HMOS Basic"
     }
+    ,
+    {
+      "name": "tab_travel",
+      "value": "首页"
+    },
+    {
+      "name": "tab_culture",
+      "value": "非遗"
+    },
+    {
+      "name": "tab_mine",
+      "value": "我的"
+    },
+    {
+      "name": "tab_route",
+      "value": "行程"
+    },
+    {
+      "name": "tab_AI",
+      "value": "AI"
+    }
   ]
 }
