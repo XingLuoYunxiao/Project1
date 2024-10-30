@@ -1,6 +1,4 @@
 
-import { XsCalendar } from '@xsqd/calendar';
-import { CollectHistoryMore } from '../model/CollectHistoryModel';
 import { CollectHistoryView } from '../view/CollectHistoryView';
 
 @Component

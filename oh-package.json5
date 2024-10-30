@@ -1,21 +1,10 @@
-<<<<<<< HEAD
 {
   "modelVersion": "5.0.0",
   "description": "Please describe the basic information.",
   "dependencies": {
     "@luvi/lv-markdown-in": "^2.0.9",
-    "@xsqd/calendar": "^1.0.1"
+    "@xsqd/component": "^1.1.0"
   },
   "devDependencies": {},
   "dynamicDependencies": {}
-=======
-{
-  "modelVersion": "5.0.0",
-  "description": "Please describe the basic information.",
-  "dependencies": {
-    "@luvi/lv-markdown-in": "^2.0.9"
-  },
-  "devDependencies": {},
-  "dynamicDependencies": {}
->>>>>>> c12a191ea38d8120674a75890fed6abc001e3ddc
 }
