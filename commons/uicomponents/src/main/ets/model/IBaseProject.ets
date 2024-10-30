@@ -2,11 +2,10 @@ import { IChat } from './IChat'
 
 export abstract class IBaseProject{
   protected name:string
-  protected chats: Array<IChat>
+  protected abstract chats: Array<IChat>
 
   constructor(name:string){
     this.name = name
-    this.chats = []
   }
 
   //添加一个Chat

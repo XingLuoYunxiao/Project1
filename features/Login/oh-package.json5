@@ -7,6 +7,10 @@
   "license": "Apache-2.0",
   "dependencies": {
     "utils": "file:../../commons/utils",
+<<<<<<< HEAD
     "uicomponents": "file:../../commons/uicomponents"
+=======
+    "@ohos/uicomponents": "file:../../commons/uicomponents"
+>>>>>>> c12a191ea38d8120674a75890fed6abc001e3ddc
   }
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
   "modelVersion": "5.0.0",
   "description": "Please describe the basic information.",
@@ -7,4 +8,14 @@
   },
   "devDependencies": {},
   "dynamicDependencies": {}
+=======
+{
+  "modelVersion": "5.0.0",
+  "description": "Please describe the basic information.",
+  "dependencies": {
+    "@luvi/lv-markdown-in": "^2.0.9"
+  },
+  "devDependencies": {},
+  "dynamicDependencies": {}
+>>>>>>> c12a191ea38d8120674a75890fed6abc001e3ddc
 }
