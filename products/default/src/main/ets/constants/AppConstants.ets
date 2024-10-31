@@ -31,4 +31,7 @@ export class AppConstants {
    */
   static readonly DEFAULT_STATUS_HEIGHT: number = 32;
   static readonly TAB_HEIGHT: number = 56;
+
+  static readonly MAIN_BOTTOM_MARGIN: number = 16;
+
 }
