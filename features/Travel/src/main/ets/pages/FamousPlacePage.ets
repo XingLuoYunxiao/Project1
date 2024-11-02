@@ -14,6 +14,7 @@ export interface  LoadParams{
 @Component
 export struct FamousPlacePage {
   @Consume('travelPathStack') travelPathStack: NavPathStack;
+  @Consume('appPathStack') appPathStack: NavPathStack;
   @State category: string = "";
   @State spotDataSource: SpotDataSource = new SpotDataSource();
   scroller: Scroller = new Scroller()
@@ -31,7 +32,7 @@ export struct FamousPlacePage {
   }
 
   async aboutToAppear(): Promise<void> {
-    this.category = this.travelPathStack.getParamByName('FamousPlacePage')[0] as string
+    this.category = this.appPathStack.getParamByName('FamousPlacePage')[0] as string
   }
 
 
@@ -133,7 +134,7 @@ export struct FamousPlacePage {
           .padding(5)
           .borderRadius(10)
           .margin({bottom:8})
-        Text(spot.description)
+        Text(spot.summary)
           .fontSize(14)
           .fontColor(Color.Gray)
           .textOverflow({overflow: TextOverflow.Ellipsis})
@@ -173,7 +174,7 @@ export struct FamousPlacePage {
                   param1: "SpotDetailPage", // 第一个参数
                   param2: spot  // 第二个参数
                 };
-                this.travelPathStack.pushPathByName('LoadingAnimation', params)
+                this.appPathStack.pushPathByName('LoadingAnimation', params)
               })
           }
           .alignItems(HorizontalAlign.End)
@@ -198,4 +199,8 @@ export struct FamousPlacePage {
 
 }
 
+@Builder
+export function FamousPlacePageBuilder(){
+  FamousPlacePage()
+}
 

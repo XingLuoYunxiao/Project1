@@ -1,5 +1,5 @@
 import { TravelStartPage } from '@ohos/Travel';
-import { InfoMessagePage } from '@ohos/login';
+import { InfoMessagePage } from '@ohos/Login';
 import { CulturalHeritageStartPage } from '@ohos/Culture';
 import { TabBarType } from '../model/TabBarModel';
 import { CustomTabBar } from '../components/CustomTabBar';
@@ -10,6 +10,7 @@ import { AppConstants } from '../constants/AppConstants';
 struct Index {
   @State currentIndex: number = TabBarType.TRAVEL;
   @StorageLink('isHideBar') isHideBar: boolean = false;
+  @Provide('travelPathStack') travelPathStack: NavPathStack = new NavPathStack();
   @Provide('appPathStack') appPathStack: NavPathStack = new NavPathStack();
   private tabsController: TabsController = new TabsController();
 
@@ -43,7 +44,7 @@ struct Index {
   }
 
   build() {
-    Navigation(){
+    Navigation(this.appPathStack){
       Stack(){
         Flex({ direction: FlexDirection.RowReverse }){
           Tabs({ index: this.currentIndex  }) {

@@ -68,7 +68,7 @@ export struct Classification {
           this.myClassBuilder(item, index)
         }
         .onClick( () => {
-          this.travelPathStack.pushPathByName(classificationList[index].page, item.category);
+          this.appPathStack.pushPathByName(classificationList[index].page, item.category);
         })
       })
     }

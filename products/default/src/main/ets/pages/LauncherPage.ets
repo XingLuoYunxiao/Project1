@@ -1,7 +1,7 @@
 import { router } from '@kit.ArkUI'
-import { CustomDialogComponent } from '@ohos/login'
+import { CustomDialogComponent } from '@ohos/Login'
 import { common } from '@kit.AbilityKit'
-import { PreferenceUtil  as preferenceUtil } from '@ohos/utils'
+import { PreferenceUtil  as preferenceUtil } from '@ohos/Utils'
 
 const PREF_KEY = 'iReadUserKey'
 
