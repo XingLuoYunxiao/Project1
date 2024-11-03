@@ -3,7 +3,7 @@
     "id": "001",
     "name": "故宫博物院",
     "summary": "中国古代宫廷建筑之精华",
-    "category": "历史遗迹",
+    "category": "全部分类、自然风光、历史遗迹",
     "rating": 4.9,
     "location": {
       "latitude": 39.915,
@@ -24,7 +24,7 @@
     "id": "002",
     "name": "长城",
     "summary": "世界文化遗产，中国古代的军事防御工程",
-    "category": "历史遗迹",
+    "category": "全部分类、自然风光、历史遗迹",
     "rating": 4.8,
     "location": {
       "latitude": 40.4319,
@@ -45,7 +45,7 @@
     "id": "003",
     "name": "西湖",
     "summary": "杭州西湖，人间天堂",
-    "category": "自然风光",
+    "category": "全部分类、自然风光、滨海公园",
     "rating": 4.7,
     "location": {
       "latitude": 30.2593,
@@ -66,7 +66,7 @@
     "id": "004",
     "name": "外滩",
     "summary": "上海的标志性景点，观赏黄浦江两岸风光",
-    "category": "城市观光",
+    "category": "全部分类、城市观光、地标观光",
     "rating": 4.6,
     "location": {
       "latitude": 31.2403,
@@ -87,7 +87,7 @@
     "id": "005",
     "name": "九寨沟",
     "summary": "童话世界，水景之王",
-    "category": "自然风光",
+    "category": "全部分类、自然风光、地标观光",
     "rating": 4.9,
     "location": {
       "latitude": 33.2628,
@@ -108,7 +108,7 @@
     "id": "006",
     "name": "黄山",
     "summary": "五岳归来不看山，黄山归来不看岳",
-    "category": "自然风光",
+    "category": "全部分类、自然风光",
     "rating": 4.8,
     "location": {
       "latitude": 30.0744,
@@ -129,7 +129,7 @@
     "id": "007",
     "name": "张家界国家森林公园",
     "summary": "世界自然遗产，世界地质公园",
-    "category": "自然风光",
+    "category": "全部分类、自然风光、历史遗迹",
     "rating": 4.7,
     "location": {
       "latitude": 29.3444,
@@ -150,7 +150,7 @@
     "id": "008",
     "name": "鼓浪屿",
     "summary": "世界文化遗产，海上花园",
-    "category": "城市观光",
+    "category": "全部分类、城市观光、地标观光",
     "rating": 4.6,
     "location": {
       "latitude": 24.4426,
@@ -171,7 +171,7 @@
     "id": "009",
     "name": "泰山",
     "summary": "五岳之首，天下第一山",
-    "category": "自然风光",
+    "category": "全部分类、自然风光",
     "rating": 4.8,
     "location": {
       "latitude": 36.2156,
@@ -192,7 +192,7 @@
     "id": "010",
     "name": "兵马俑",
     "summary": "世界第八大奇迹，秦始皇陵的一部分",
-    "category": "历史遗迹",
+    "category": "全部分类、展览馆、自然风光、历史遗迹",
     "rating": 4.7,
     "location": {
       "latitude": 34.3715,
@@ -213,7 +213,7 @@
     "id": "011",
     "name": "峨眉山",
     "summary": "四大佛教名山之一",
-    "category": "自然风光",
+    "category": "全部分类、自然风光",
     "rating": 4.6,
     "location": {
       "latitude": 29.5476,
@@ -234,7 +234,7 @@
     "id": "012",
     "name": "丽江古城",
     "summary": "世界文化遗产，纳西族文化的发源地",
-    "category": "历史遗迹",
+    "category": "全部分类、自然风光、历史遗迹",
     "rating": 4.5,
     "location": {
       "latitude": 26.8625,
@@ -255,7 +255,7 @@
     "id": "013",
     "name": "苏州园林",
     "summary": "中国园林艺术的代表",
-    "category": "历史遗迹",
+    "category": "全部分类、城市观光、历史遗迹",
     "rating": 4.8,
     "location": {
       "latitude": 31.3021,
@@ -276,7 +276,7 @@
     "id": "014",
     "name": "布达拉宫",
     "summary": "西藏最庞大、最完整的古代宫堡建筑群",
-    "category": "历史遗迹",
+    "category": "全部分类、展览馆、历史遗迹",
     "rating": 4.7,
     "location": {
       "latitude": 29.6547,
@@ -297,7 +297,7 @@
     "id": "015",
     "name": "桂林山水",
     "summary": "桂林山水甲天下",
-    "category": "自然风光",
+    "category": "全部分类、自然风光",
     "rating": 4.6,
     "location": {
       "latitude": 25.2736,
@@ -318,7 +318,7 @@
     "id": "016",
     "name": "颐和园",
     "summary": "保存最完整的一座皇家行宫御苑",
-    "category": "历史遗迹",
+    "category": "全部分类、城市观光、历史遗迹",
     "rating": 4.8,
     "location": {
       "latitude": 39.9986,
@@ -339,7 +339,7 @@
     "id": "017",
     "name": "天坛公园",
     "summary": "明清两代皇帝祭祀皇天、祈五谷丰登之地",
-    "category": "历史遗迹",
+    "category": "全部分类、城市观光、历史遗迹",
     "rating": 4.7,
     "location": {
       "latitude": 39.8724,
@@ -360,7 +360,7 @@
     "id": "018",
     "name": "拙政园",
     "summary": "江南园林的代表，苏州园林中面积最大的古典山水园林",
-    "category": "历史遗迹",
+    "category": "全部分类、城市观光、地标观光、历史遗迹",
     "rating": 4.6,
     "location": {
       "latitude": 31.3214,
@@ -381,7 +381,7 @@
     "id": "019",
     "name": "黄果树瀑布",
     "summary": "中国第一大瀑布，世界著名瀑布之一",
-    "category": "自然风光",
+    "category": "全部分类、自然风光、森林公园",
     "rating": 4.5,
     "location": {
       "latitude": 26.1341,
@@ -402,7 +402,7 @@
     "id": "020",
     "name": "乌镇",
     "summary": "中国历史文化名镇，江南水乡的代表",
-    "category": "历史遗迹",
+    "category": "全部分类、城市观光、地标观光、历史遗迹",
     "rating": 4.7,
     "location": {
       "latitude": 30.7448,

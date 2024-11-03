@@ -13,6 +13,7 @@ export struct SpotDetailPage {
   @State voice: boolean = false;
   @State isLoading: boolean = false;
   @State responseText: string = '';
+  @State aImage: Resource = $r('app.media.avator');
 
 
 

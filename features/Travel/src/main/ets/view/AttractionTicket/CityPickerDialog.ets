@@ -5,9 +5,11 @@ import { City } from "../../service/CategoryData";
 export struct CityPickerDialog {
   controller: CustomDialogController;
   confirm: (city: City) => void = () => {};
+  update: () => void = () => {};
   cancel: () => void = () => {};
 
   private cities: City[] = [
+    { cityName: '所有', cityId: '0' },
     { cityName: '北京', cityId: '2' },
     { cityName: '上海', cityId: '1' },
     { cityName: '广州', cityId: '3' },
@@ -29,6 +31,7 @@ export struct CityPickerDialog {
               .width('100%')
               .onClick(() => {
                 this.confirm(city);
+                this.update();
                 this.controller.close();
               })
           }
