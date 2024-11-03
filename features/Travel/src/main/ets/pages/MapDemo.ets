@@ -60,3 +60,8 @@ export struct MapDemo {
     }
   }
 }
+
+@Builder
+export function MapDemoBuilder(){
+  MapDemo()
+}

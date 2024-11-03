@@ -1,4 +1,4 @@
-import { IBaseProject, IChat } from "uicomponents";
+import { IBaseProject, IChat } from "@ohos/Uicomponents";
 import { FestivalChat } from "./festivalChat";
 import { Festival, festivalList } from "./festivalModel";
 

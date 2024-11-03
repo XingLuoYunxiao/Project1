@@ -4,7 +4,7 @@ import { MyButton } from "../../view/Mybutton"
 import { PaintingDetails } from "./PaintingDetails"
 import { cloudStorage } from '@kit.CloudFoundationKit';
 import { cultureFileUtil } from "../../util/FileUtil";
-import { FileUtil } from "utils/src/main/ets/utils/puraUtils/FileUtil";
+import { FileUtil } from "@ohos/Utils/src/main/ets/utils/puraUtils/FileUtil";
 import { BusinessError, request } from "@kit.BasicServicesKit";
 
 

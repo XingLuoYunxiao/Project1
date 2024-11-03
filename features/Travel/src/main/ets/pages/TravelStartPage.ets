@@ -1,16 +1,13 @@
 import { Attraction } from '../model/Attraction'
-import { LoadingAnimation } from '../util/Loading';
 import { Classification } from '../view/Classficiation';
 import { NearbyAttraction } from '../view/NearbyAttraction';
 import { SearchHeader } from '../view/SearchHeader';
-import { SpotDetailPage } from './SpotDetailPage';
-import { FamousPlacePage } from './FamousPlacePage';
-import { MapDemo } from './MapDemo';
+
 
 export const attractions: Attraction[] = [
-  new Attraction(1, "长城", $r("app.media.attraction_1")),
-  new Attraction(2, "故宫", $r("app.media.attraction_2")),
-  new Attraction(3, "大唐不夜城", $r("app.media.attraction_3")),
+  new Attraction(1, "长城", $r("app.media.changcheng")),
+  new Attraction(2, "故宫", $r("app.media.gugong")),
+  new Attraction(3, "大唐不夜城", $r("app.media.datangbuyecheng")),
 
 ]
 
@@ -18,7 +15,7 @@ export const attractions: Attraction[] = [
 @Component
 export struct TravelStartPage {
 
-  @Provide('travelPathStack') travelPathStack: NavPathStack = new NavPathStack();
+  @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
 
   build() {
@@ -58,13 +55,13 @@ export struct TravelStartPage {
       .height('100%')
       .backgroundColor($r('app.color.app_background_color'))
     }
-    .navDestination(this.travelStartRouter)
+    //.navDestination(this.travelStartRouter)
     .hideTitleBar(true)
     .mode(NavigationMode.Stack)
 
   }
 
-  @Builder
+  /*@Builder
   travelStartRouter(path: string){
     if( path === 'FamousPlacePage'){
       FamousPlacePage()
@@ -75,7 +72,7 @@ export struct TravelStartPage {
     }else if( path === 'MapDemo'){
       MapDemo()
     }
-  }
+  }*/
 
   @Builder
   AttractionItem(attraction: Attraction){

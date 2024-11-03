@@ -1,16 +1,18 @@
-import { LoadParams } from "../pages/FamousPlacePage"; // 导入LoadParams类型，用于接收路径参数
+import { LoadParams } from "./FamousPlacePage"; // 导入LoadParams类型，用于接收路径参数
 
 @Component
 export struct LoadingAnimation {  // 定义LoadingAnimation组件
   @State currentStep: number = 0  // 使用@State装饰器定义一个当前步骤的状态变量，初始值为0
   @Consume('travelPathStack') travelPathStack: NavPathStack;  // 使用@Consume注解，获取导航路径栈
+  @Consume('appPathStack') appPathStack: NavPathStack;
+
   private steps: string[] = ['正在为您智能规划路径', '正在生成虚拟人为您讲解', '已完成']  // 定义路径规划的不同阶段文本
   private intervalID: number = -1  // 定义定时器ID，用于管理计时器
 
   // 生命周期方法，在组件即将出现时调用
   aboutToAppear() {
     // 从路径栈中获取传递的参数对象
-    let object = this.travelPathStack.getParamByName('LoadingAnimation')[0] as LoadParams
+    let object = this.appPathStack.getParamByName('LoadingAnimation')[0] as LoadParams
 
     // 设置一个定时器，每秒更新一次当前步骤
     this.intervalID = setInterval(() => {
@@ -18,7 +20,7 @@ export struct LoadingAnimation {  // 定义LoadingAnimation组件
         this.currentStep++  // 当前步骤递增
       } else {
         clearInterval(this.intervalID)  // 完成所有步骤后清除定时器
-        this.travelPathStack.replacePathByName(object.param1, object.param2)  // 完成后替换路径
+        this.appPathStack.replacePathByName(object.param1, object.param2)  // 完成后替换路径
       }
     }, 1000)  // 每秒执行一次
   }
@@ -73,4 +75,9 @@ export struct LoadingAnimation {  // 定义LoadingAnimation组件
     }
     .hideTitleBar(true)  // 隐藏标题栏
   }
+}
+
+@Builder
+export function LoadingAnimationBuilder(){
+  LoadingAnimation()
 }

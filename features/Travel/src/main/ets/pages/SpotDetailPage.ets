@@ -7,17 +7,20 @@ import { Spot } from "../model/Spot";
 export struct SpotDetailPage {
   @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null');
   @Consume('travelPathStack') travelPathStack: NavPathStack;
+  @Consume('appPathStack') appPathStack: NavPathStack;
+
   @State  myScale: number = 1
   @State voice: boolean = false;
   @State isLoading: boolean = false;
   @State responseText: string = '';
+  @State aImage: Resource = $r('app.media.avator');
 
 
 
   async aboutToAppear(): Promise<void> {
     lvText.setTextSize(16)
-    let spot = await this.travelPathStack.getParamByName('SpotDetailPage')[0] as Spot;
-    this.spot = new Spot(spot.id, spot.name, spot.description, spot.feature, spot.rating, spot.location, spot.ticketPrice, spot.openingHours, spot.image);
+    let spot = await this.appPathStack.getParamByName('SpotDetailPage')[0] as Spot;
+    this.spot = new Spot(spot.id, spot.name, spot.summary, spot.category, spot.rating, spot.location, spot.ticketPrice, spot.openingHours, spot.image);
     this.sendRequest(this.spot.name);
 
   }
@@ -47,7 +50,7 @@ export struct SpotDetailPage {
             .width(30)
             .height(30)
             .onClick( () => {
-              this.travelPathStack.pop();
+              this.appPathStack.pop();
             })
           Row(){
             Text(this.spot.name)
@@ -137,3 +140,9 @@ export struct SpotDetailPage {
     .hideTitleBar(true)
   }
 }
+
+@Builder
+export function SpotDetailPageBuilder(){
+  SpotDetailPage()
+}
+

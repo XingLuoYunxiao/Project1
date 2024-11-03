@@ -2,6 +2,7 @@
   "module": {
     "name": "Travel",
     "type": "har",
+    "routerMap": "$profile:router_map",
     "deviceTypes": [
       "default",
       "tablet",

@@ -1,4 +1,4 @@
-import { IChat, Info } from "uicomponents";
+import { IChat, Info } from "@ohos/Uicomponents";
 
 export class FestivalChat extends IChat {
   id: number;
