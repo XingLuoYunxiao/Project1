@@ -7,7 +7,8 @@
     "@hw-agconnect/auth-component": "^1.0.0",
     "long": "5.2.1",
     "@luvi/lv-markdown-in": "^2.0.9",
-    "@xsqd/component": "^1.1.0"
+    "@xsqd/component": "^1.1.0",
+    "@ohos/axios": "^2.2.4"
   },
   "devDependencies": {
     "@ohos/hypium": "1.0.19",

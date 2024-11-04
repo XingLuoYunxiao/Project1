@@ -1,8 +1,7 @@
-import { IChat, Info } from "uicomponents";
+import { IBaseProject, IChat, Info } from "@ohos/Uicomponents"
 
 
-
-export class SkillChat extends IChat{
+export class SkillChat extends IChat {
   id: number;
   protected messages: Info[];
 
@@ -23,5 +22,4 @@ export class SkillChat extends IChat{
   getMessage(index: number): string {
     throw new Error("Method not implemented.");
   }
-
 }

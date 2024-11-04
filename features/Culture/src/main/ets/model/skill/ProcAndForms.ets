@@ -14,13 +14,13 @@ export const ceramicMakingProcesses: MakingProcess[] = [
 
 // 创建艺术形式实例
 export const ceramicArtForms: ArtForm[] = [
-  { name: "青花瓷", description: "以钴蓝色料在瓷胎上绘制图案，再覆以透明釉烧制而成。" },
-  { name: "粉彩瓷", description: "在烧好的素瓷上用粉彩料绘制，再低温烧制，色彩丰富柔和。" },
-  { name: "斗彩瓷", description: "先用青花勾出轮廓，再在轮廓内填上其他色彩，形成对比效果。" },
-  { name: "釉里红", description: "在瓷胎上绘制氧化铜为着色剂的红色图案，再覆盖釉料烧制。" },
-  { name: "五彩瓷", description: "在瓷器上使用多种颜色进行绘制，色彩鲜明。" },
-  { name: "玲珑瓷", description: "在瓷器上雕镂出透空的几何图案，内外图案相映成趣。" },
-  { name: "颜色釉瓷", description: "以不同金属氧化物为着色剂，制成各种颜色的釉料，覆盖在瓷器上。" }
+  { name: "青花瓷", description: "以钴蓝色料在瓷胎上绘制图案，再覆以透明釉烧制而成。" ,Image: ""},
+  { name: "粉彩瓷", description: "在烧好的素瓷上用粉彩料绘制，再低温烧制，色彩丰富柔和。" ,Image: ""},
+  { name: "斗彩瓷", description: "先用青花勾出轮廓，再在轮廓内填上其他色彩，形成对比效果。" ,Image: ""},
+  { name: "釉里红", description: "在瓷胎上绘制氧化铜为着色剂的红色图案，再覆盖釉料烧制。" ,Image: ""},
+  { name: "五彩瓷", description: "在瓷器上使用多种颜色进行绘制，色彩鲜明。" ,Image: ""},
+  { name: "玲珑瓷", description: "在瓷器上雕镂出透空的几何图案，内外图案相映成趣。" ,Image: ""},
+  { name: "颜色釉瓷", description: "以不同金属氧化物为着色剂，制成各种颜色的釉料，覆盖在瓷器上。" ,Image: ""}
 ];
 
 // 丝绸织造的制作工艺

@@ -18,6 +18,12 @@
           ]
         }
       },
+      "nativeLib": {
+        "debugSymbol": {
+          "strip": true,
+          "exclude": []
+        }
+      },
     },
   ],
   "targets": [

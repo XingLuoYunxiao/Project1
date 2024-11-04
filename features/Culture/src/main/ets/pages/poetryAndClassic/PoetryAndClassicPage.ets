@@ -1,51 +1,68 @@
 import { i18n } from '@kit.LocalizationKit';
+import { ToolBar } from '@ohos.arkui.advanced.ToolBar';
+
 @Builder
-export  function PoetryAndClassicPageBuilder(name: string, param: Object){
+export function PoetryAndClassicPageBuilder(name: string, param: Object) {
   PoetryAndClassicPage()
 }
 
 
-
 @Component
-export struct PoetryAndClassicPage{
-
-  list:string[]=['楚辞','诗经','论语','孟子','诗词','中庸']
-
-  @Consume('culturePathStack') culturePathStack:NavPathStack
+export struct PoetryAndClassicPage {
+  list: string[] = ['楚辞', '诗经', '论语', '孟子', '诗词', '中庸']
+  @Consume('culturePathStack') culturePathStack: NavPathStack
 
   build() {
-    NavDestination(){
-      Stack(){
-        Image($r('app.media.poetryBackground'))
-        Grid(){
-          ForEach(this.list,(item:string)=>{
-            GridItem(){
-              this.itemBuilder(item)
+    NavDestination() {
+
+      Tabs() {
+        TabContent() {
+          Stack() {
+            Image($r('app.media.poetryBackground'))
+            Grid() {
+              ForEach(this.list, (item: string) => {
+                GridItem() {
+                  this.itemBuilder(item)
+                }
+              })
             }
-          })
+            .margin({ top: 60 })
+            .columnsTemplate('1fr 1fr')
+            .columnsGap(10)
+            .width('100%')
+            .height('100%')
+            .rowsGap(20)
+          }
         }
-        .margin({top:60})
-        .columnsTemplate('1fr 1fr')
-        .columnsGap(10)
-        .width('100%')
-        .height('100%')
-        .rowsGap(20)
+        .tabBar('诗歌')
+
+        TabContent() {
+
+        }
+        .tabBar('AI')
+
+        TabContent() {
+
+        }
+        .tabBar('我的')
       }
+
     }
     .hideTitleBar(true)
   }
+
   @Builder
-  itemBuilder(item:string){
-    Row(){
+  itemBuilder(item: string) {
+    Row() {
       Text(item)
         .fontColor(Color.Black)
         .fontSize(24)
     }
-    .onClick(()=>{
-      let s:string =transChinese(item)
-      console.debug('转化后的拼音是：'+s)
-      this.culturePathStack.pushPathByName(`${s}`+'Details',new Object({
-        param:item
+    .onClick(() => {
+      let s: string = transChinese(item)
+      console.debug('转化后的拼音是：' + s)
+      this.culturePathStack.pushPathByName(`${s}` + 'Details', new Object({
+        param: item
       }))
     })
     .alignItems(VerticalAlign.Center)
@@ -55,10 +72,10 @@ export struct PoetryAndClassicPage{
     .backgroundColor('#aaf5f5b7')
     .borderRadius(30)
 
-
   }
 }
-function transChinese(s:string):string{
+
+function transChinese(s: string): string {
   let transliterator1 = i18n.Transliterator.getInstance('Any-Latn');
   let res = transliterator1.transform(s);
 
@@ -69,6 +86,7 @@ function transChinese(s:string):string{
   return removeSpacesAndWhitespace(res2)
 
 }
+
 function removeSpacesAndWhitespace(str: string): string {
   return str.replace(/\s+/g, '');
 }
