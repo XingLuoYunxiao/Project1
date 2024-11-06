@@ -2,6 +2,11 @@ import { Attraction } from '../model/Attraction'
 import { Classification } from '../view/Classficiation';
 import { NearbyAttraction } from '../view/NearbyAttraction';
 import { SearchHeader } from '../view/SearchHeader';
+import cloud, { Database } from '@hw-agconnect/cloud';
+import { mySpot } from '../model/mySpot';
+import { cloudDatabase } from '@kit.CloudFoundationKit';
+import  theSpot  from '../../resources/rawfile/ProjectOne_28_cn.json';
+import { Spot } from '../model/Spot';
 
 
 export const attractions: Attraction[] = [
@@ -17,7 +22,25 @@ export struct TravelStartPage {
 
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
+  @State spots: Spot[] = []
+  private databaseZone = cloudDatabase.zone('QuickStartDemo');
+  private database:Database |null= null
 
+
+  async aboutToAppear(): Promise<void> {
+    // 初始化
+    this.database= cloud.database({
+      zoneName:'Travel',
+      objectTypeInfo: theSpot
+    })
+
+    let result: mySpot[] = await this.database.collection(mySpot).query().get()
+    this.spots = result.map(item => new Spot(item.id, item.name, item.summary, item.category, item.rating,
+      {latitude: item.latitude, longitude: item.longitude  }, item.ticketPrice, item.openingHours, item.imageUrl, item.cityCode, item.cityId, item.cityName));
+
+  }
+
+  //TODO 未完成
   build() {
     Navigation(this.travelPathStack){
       Column() {
@@ -26,7 +49,7 @@ export struct TravelStartPage {
 
         //轮播图
         Swiper() {
-          ForEach(attractions, ( item: Attraction) => {
+          ForEach(this.spots, ( item: Spot) => {
             ListItem(){
               this.AttractionItem(item)
             }
@@ -75,10 +98,10 @@ export struct TravelStartPage {
   }*/
 
   @Builder
-  AttractionItem(attraction: Attraction){
+  AttractionItem(attraction: Spot){
     Stack() {
 
-      Image(attraction.image)
+      Image($r(`${attraction.image}`))
         .width('100%')
         .height(200)
         .borderRadius(10)

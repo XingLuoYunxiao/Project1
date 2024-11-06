@@ -1,11 +1,9 @@
 import { IBaseProject, IChat } from "@ohos/Uicomponents";
+import { Location } from "@ohos/Utils";
 import { ISpot } from "./ISpot";
 import { TravelChat } from "./TravelChat";
 
-export interface Location {
-  latitude: number;
-  longitude: number;
-}
+
 
 @Observed
 export class Spot extends IBaseProject implements ISpot {
@@ -19,6 +17,7 @@ export class Spot extends IBaseProject implements ISpot {
   ticketPrice: number;
   openingHours: string;
   image: string
+  cityCode?:string //城市编码
   cityId?:string //城市ID
   cityName?:string //城市名称
   address?:string //地址
@@ -32,7 +31,7 @@ export class Spot extends IBaseProject implements ISpot {
   static idCount = 0
 
   constructor( id: string, name: string, summary: string, category: string, rating:number, location: Location, ticketPrice: number,
-    openingHours: string, image: string) {
+    openingHours: string, image: string, cityCode?:string, cityId?:string, cityName?:string) {
     super(name);
     this.id = id;
     this.name = name;
@@ -43,6 +42,9 @@ export class Spot extends IBaseProject implements ISpot {
     this.ticketPrice = ticketPrice;
     this.openingHours = openingHours;
     this.image = image;
+    this.cityCode = cityCode;
+    this.cityId = cityId;
+    this.cityName = cityName;
   }
 
 
@@ -66,3 +68,5 @@ export class Spot extends IBaseProject implements ISpot {
   }
 
 }
+
+export { Location };

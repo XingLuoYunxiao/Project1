@@ -1,18 +1,41 @@
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { abilityAccessCtrl, AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit'
 import { PreferenceUtil } from '@ohos/utils';
+import { buffer } from '@kit.ArkTS';
+import { initialize } from '@hw-agconnect/hmcore';
 
 const TAG: string = 'EntryAbility';
 const name = 'appEntryStore'
-
+const domain = 0x0011;//定位模块
 
 export default class EntryAbility extends UIAbility {
-  onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
+  async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
+    this.initAgc()
+    let atManager = abilityAccessCtrl.createAtManager();
+    try {
+      await atManager.requestPermissionsFromUser(this.context,
+        ['ohos.permission.INTERNET', 'ohos.permission.LOCATION', 'ohos.permission.APPROXIMATELY_LOCATION'])
+        .then((data) => {
+          hilog.info(domain, TAG, `data: ${JSON.stringify(data)}`);
+        })
+        .catch((err: BusinessError) => {
+          hilog.error(domain, TAG, `err: ${JSON.stringify(err)}`);
+        })
+    } catch (err) {
+      hilog.error(domain, TAG, `catch err->${JSON.stringify(err)}`);
+    }
     PreferenceUtil.loadPreference(this.context, name)
 
+  }
+
+  async initAgc() {
+    const value = await this.context.resourceManager.getRawFileContent('agconnect-services.json');
+    let json: string = buffer.from(value).toString('utf8');
+    console.log('json testTag: ' + json)
+    initialize(this.context, JSON.parse(json));
   }
 
   onDestroy(): void {

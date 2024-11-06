@@ -31,6 +31,18 @@
     {
       "name": "tab_AI",
       "value": "AI"
+    },
+    {
+      "name": "location_permission",
+      "value": "Allows applications to obtain location information while running in the foreground"
+    },
+    {
+      "name": "background_location_permission",
+      "value": "Allows apps to obtain location information while running in the background"
+    },
+    {
+      "name": "fuzzy_location_permission",
+      "value": "Allows applications to obtain fuzzy location information for devices"
     }
   ]
 }

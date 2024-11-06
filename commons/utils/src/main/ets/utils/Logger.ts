@@ -1,6 +1,6 @@
 import hilog from '@ohos.hilog';
 
-const LOGGER_PREFIX: string = 'Heima_Healthy';
+const LOGGER_PREFIX: string = '[GuYunYouZong]';
 
 class Logger {
   private domain: number;
@@ -22,19 +22,19 @@ class Logger {
   }
 
   debug(...args: string[]): void {
-    hilog.debug(this.domain, this.prefix, this.format, 'heimahealthy ' +  args);
+    hilog.debug(this.domain, this.prefix, this.format, 'guyunyouzong ' +  args);
   }
 
   info(...args: string[]): void {
-    hilog.info(this.domain, this.prefix, this.format, 'heimahealthy ' + args);
+    hilog.info(this.domain, this.prefix, this.format, 'guyunyouzong ' + args);
   }
 
   warn(...args: string[]): void {
-    hilog.warn(this.domain, this.prefix, this.format, 'heimahealthy ' +  args);
+    hilog.warn(this.domain, this.prefix, this.format, 'guyunyouzong ' +  args);
   }
 
   error(...args: string[]): void {
-    hilog.error(this.domain, this.prefix, this.format,'heimahealthy ' +  args);
+    hilog.error(this.domain, this.prefix, this.format,'guyunyouzong ' +  args);
   }
 }
 

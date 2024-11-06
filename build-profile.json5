@@ -71,5 +71,16 @@
       "name": "Culture",
       "srcPath": "./features/Culture",
     }
-  ]
+  ,{
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    }]
 }

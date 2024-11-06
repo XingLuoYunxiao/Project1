@@ -1,6 +1,7 @@
 import { lvMarkdownIn, lvText } from "@luvi/lv-markdown-in"
 import Constants from "../constants/Constants";
 import { Spot } from "../model/Spot";
+import { MapDemo } from "./MapDemo";
 
 
 @Component

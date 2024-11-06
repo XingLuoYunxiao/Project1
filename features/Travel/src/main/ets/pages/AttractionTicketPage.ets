@@ -5,7 +5,11 @@ import { CategoryDialog } from '../view/AttractionTicket/CategoryDialog';
 import { CityPickerDialog } from '../view/AttractionTicket/CityPickerDialog';
 import { Location, Spot } from '../model/Spot';
 import { DataUtil } from '../util/DataUtil';
-import { ServerPushOperationType } from '@hw-agconnect/cloud/src/main/ets/database/sync/utils/MessageType';
+import { LocationUtil } from '@ohos/Utils';
+import hilog from '@ohos.hilog';
+
+const TAG = '[AttractionTicketPage]';
+const domain = 0x0011;
 
 @Component
 export default struct AttractionTicketPage {
@@ -199,16 +203,6 @@ export default struct AttractionTicketPage {
       });
     }
 
-    //(位置距离排序)
-    if (this.currentCategory[1] !== '不限距离' && this.currentCategory[1] !== '位置距离') {
-      const userLocation = this.getCurrentUserLocation(); // You'll need to implement this
-      this.currentAttractions.sort((a, b) => {
-        const distanceA = this.calculateDistance(userLocation, a.location);
-        const distanceB = this.calculateDistance(userLocation, b.location);
-        //return (distanceA - distanceB) < Number(this.currentCategory[1].substring(0, -3))
-        return (distanceA - distanceB)
-      });
-    }
 
     // (综合排序)
     if (this.currentCategory[2] !== '综合排序') {
@@ -221,6 +215,14 @@ export default struct AttractionTicketPage {
           break;
         case '价格最高':
           this.currentAttractions.sort((a, b) => b.ticketPrice - a.ticketPrice);
+          break;
+        case '最近距离':
+          const userLocation = this.getCurrentUserLocation();
+          this.currentAttractions.sort((a, b) => {
+            const distanceA = this.calculateDistance(userLocation, a.location);
+            const distanceB = this.calculateDistance(userLocation, b.location);
+            return (distanceA - distanceB)
+          });
           break;
       }
     }
@@ -258,12 +260,14 @@ export default struct AttractionTicketPage {
     return value * Math.PI / 180;
   }
 
-
+  //获取当前位置
   private getCurrentUserLocation(): Location {
-    return {
-      latitude: 34.27,
-      longitude: 108.83
-    };
+    let loc: Location =  { latitude:34.27, longitude:108.83}
+    LocationUtil.getInstance().getCurrentLocation().then((location: Location) => {
+      loc = location;
+    });
+    hilog.debug(domain, TAG,  'LocationUtil getCurrentLocation', loc.latitude, ',',  loc.longitude)
+    return loc
   }
 }
 

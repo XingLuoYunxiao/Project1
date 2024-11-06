@@ -61,7 +61,7 @@ export const mainCategories: CategoryItem[] = [
           { id: 30, name: '综合排序' },
           { id: 31, name: '评分最高' },
           { id: 32, name: '价格最低' },
-          { id: 33, name: '人气最高' }
+          { id: 33, name: '最近距离' }
         ]
       }
     ]
