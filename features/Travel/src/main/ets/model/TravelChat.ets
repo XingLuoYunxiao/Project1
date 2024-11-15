@@ -1,4 +1,4 @@
-import { IChat, Info } from '@ohos/uicomponents'
+import { IChat, Info } from '@ohos/Uicomponents'
 import { http } from '@kit.NetworkKit';
 import { util } from '@kit.ArkTS';
 import { StreamResponse2 } from '@ohos/Utils';

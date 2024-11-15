@@ -1,6 +1,9 @@
+import { LazyDataSource } from "@ohos/Utils";
+import Constants from "../constants/Constants";
 import { otherItemList } from "../model/Attraction";
 import { Spot } from "../model/Spot";
 import { SpotDataSource } from "../model/SpotDataSource";
+import { SpotNetFunc } from "../service/SpotNetFunc";
 
 //评分数组，最高10分
 const scoreList: number[] = [9.7, 10.0, 8.8, 9.5, 9.2, 9.9, 9.0];
@@ -15,8 +18,10 @@ export interface  LoadParams{
 export struct FamousPlacePage {
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
+  @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance();
+  //@Link searchText: string;
   @State category: string = "";
-  @State spotDataSource: SpotDataSource = new SpotDataSource();
+  @State spotDataSource: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource
   scroller: Scroller = new Scroller()
 
   @Builder itemFoot(){
@@ -49,6 +54,9 @@ export struct FamousPlacePage {
         Search({placeholder:"搜索想要去的景点"})
           .height(30)
           .layoutWeight(1)
+          .onClick( () => {
+            this.appPathStack.pushPathByName('SearchPage', true)
+          })
         Badge({count: 1, position: BadgePosition.RightTop, style:{fontSize:14, badgeColor: Color.Red}}){
           Image($r('app.media.ic_public_email'))
             .width(24)
@@ -72,16 +80,16 @@ export struct FamousPlacePage {
                       .width('100%')
                   }
                 }
-                // 用来避免有加载效果造成的卡顿
+                /*// 用来避免有加载效果造成的卡顿
                 .onAppear(() => {
                   // 即将触底时提前增加数据
                   if (index + 5 == this.spotDataSource.totalCount()) {
                     for (let i = 0; i < 5; i++) {
-                      this.spotDataSource.addLastItem()
+                      this.spotDataSource.addData(this.spotDataSource.totalCount(), new Spot())
                     }
                     console.log('waterFlow ' + '即将触底了')
                   }
-                })
+                })*/
               })
             }
             .scrollBar(BarState.Off)
@@ -103,6 +111,7 @@ export struct FamousPlacePage {
     }
     .backgroundColor($r('app.color.app_background_color'))
     .hideTitleBar(true)
+    .margin({top:Constants.HEADER_HEIGHT_PAGE})
   }
 
   @Builder

@@ -2,13 +2,19 @@ import { router } from '@kit.ArkUI'
 import { CustomDialogComponent } from '@ohos/Login'
 import { common } from '@kit.AbilityKit'
 import { PreferenceUtil  as preferenceUtil } from '@ohos/Utils'
+import { BusinessError } from '@kit.BasicServicesKit'
+import Logger from '@ohos/Utils/src/main/ets/utils/Logger'
 
-const PREF_KEY = 'iReadUserKey'
+const PREF_KEY = 'GuYunUserKey'
+const TAG: string = '[LauncherPage]';
+
 
 @Entry
 @Component
 struct LauncherPage {
   context = getContext(this) as common.UIAbilityContext
+  isAgree: boolean = false
+  private PreferenceUtil: preferenceUtil = preferenceUtil.getInstance()
   controller: CustomDialogController = new CustomDialogController({
     builder: CustomDialogComponent({
       confirm: (): void => this.onConfirm(),
@@ -18,16 +24,32 @@ struct LauncherPage {
 
   async onPageShow(): Promise<void> {
     // 加载首选项
-    let isAgree  = await preferenceUtil.getPreferenceValue(PREF_KEY, false)
+    this.PreferenceUtil.getPreferenceValue<boolean>(PREF_KEY).then( (res) => {
+      this.isAgree = res ?? false
+    })
 
-    // 判断是否同意
-    if( isAgree)
-    // 同意跳转页面
-      this.jumpToIndex()
-    //不同意，退出
-    else{
-      this.controller.open()
+    if (this.isAgree) {
+      this.PreferenceUtil.putPreferenceValue(PREF_KEY, true).then(() => {
+        Logger.info(TAG, 'Put the value of isAgreedPrivacy Successfully.');
+        this.jumpToIndex()
+      }).catch((err: BusinessError) => {
+        Logger.error(TAG, 'Put the value of isAgreedPrivacy Failed, err: ' + err);
+      });
+    } else {
+      this.PreferenceUtil.getPreferenceValue<boolean>(PREF_KEY).then((isAgreed: boolean | null) => {
+        if (isAgreed) {
+          this.jumpToIndex()
+        } else {
+          this.controller.open()
+        }
+      }).catch((err: BusinessError) => {
+        Logger.error(TAG, 'check isAgreedPrivacy Failed, err: ' + err);
+      });
     }
+  }
+
+  checkAgreedPrivacy(): void {
+
   }
 
   jumpToIndex(){
@@ -40,7 +62,7 @@ struct LauncherPage {
 
   onConfirm(){
     // 1.保存首选项
-    preferenceUtil.putPreferenceValue(PREF_KEY, true)
+    this.PreferenceUtil.putPreferenceValue<boolean>(PREF_KEY, true)
     // 2.跳转到主页
     this.jumpToIndex()
   }

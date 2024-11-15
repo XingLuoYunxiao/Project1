@@ -1,4 +1,5 @@
-import { IBaseProject, IChat } from "@ohos/Uicomponents"
+
+import { IBaseProject, IChat } from "@ohos/Uicomponents";
 import { SkillChat } from "./skillChat";
 import { TraditionalCraft, ceramicArt, silkWeaving, metalCraft } from "./skillModel";
 

@@ -3,27 +3,34 @@ import Constants from '../constants/Constants';
 import { AttractionCard } from '../view/AttractionTicket/AttractionCard';
 import { CategoryDialog } from '../view/AttractionTicket/CategoryDialog';
 import { CityPickerDialog } from '../view/AttractionTicket/CityPickerDialog';
-import { Location, Spot } from '../model/Spot';
-import { DataUtil } from '../util/DataUtil';
-import { ServerPushOperationType } from '@hw-agconnect/cloud/src/main/ets/database/sync/utils/MessageType';
+import { Spot } from '../model/Spot';
+import { SpotNetFunc } from '../service/SpotNetFunc';
+import { LoadingStatus } from '@ohos/Utils/src/main/ets/common/CommonUtil';
+
 
 @Component
 export default struct AttractionTicketPage {
+  @Consume('appPathStack') appPathStack: NavPathStack
+  @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance()
   @State currentCity: City = { cityId: '0', cityName: '所有' };
-  @State searchText: string = '';
   //四个选择
   @State currentCategory :string[] = ['全部景点', '位置距离', '综合排序', '筛选'];
   //当前当前距离
-
-
   @State currentSubCategory: CategoryItem | null = null;
-  @State attractions: Spot[] = [];
   @State currentAttractions: Spot[] = [];
 
   async aboutToAppear(): Promise<void> {
-    this.attractions = await DataUtil.readJsonFromRawFile<Spot>('SpotData.json')
-    this.currentAttractions = this.attractions;
+    let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
+    this.currentCategory[0] = category
+    this.spotNetWork.loadSpotsData()
+    this.currentAttractions = this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
   }
+
+  aboutToDisappear(): void {
+    this.currentAttractions = this.spotNetWork.spots
+    this.spotNetWork.searchLoadingStatus = LoadingStatus.OFF
+  }
+
 
   cityPickerController: CustomDialogController = new CustomDialogController({
     builder: CityPickerDialog({
@@ -76,6 +83,13 @@ export default struct AttractionTicketPage {
   @Builder
   Header() {
     Row() {
+      Image($r('app.media.ic_back'))
+        .width(30)
+        .height(30)
+        .margin({left:5, right:5})
+        .onClick( () =>{
+          this.appPathStack.pop()
+        })
       Row() {
         Text(this.currentCity.cityName)
           .fontSize(Constants.FONT_TITLE)
@@ -89,18 +103,24 @@ export default struct AttractionTicketPage {
           .margin({ left: 4 })
       }
 
-      Search({ value: this.searchText, placeholder: '北京环球影城' })
-        .width('80%')
+      Search({  placeholder: '请输入搜索城市' })
+        .width('70%')
         .height(36)
         .margin({ left: Constants.MARGIN_LG })
-        .onChange((value: string) => {
-          this.searchText = value;
+        .onChange( ()=> {
+          this.updateAttractionsList()
+        })
+        .onClick( () => {
+          this.appPathStack.replacePathByName('SearchPage', true)
         })
 
       Text('搜索')
         .padding(5)
         .fontColor(Constants.COLOR_PRIMARY)
         .fontSize(Constants.FONT_CONTENT)
+        .onClick( () => {
+          this.appPathStack.replacePathByName('SearchPage', true)
+        })
     }
     .width(Constants.FULL_WIDTH)
     .height(Constants.HEADER_HEIGHT)
@@ -108,16 +128,10 @@ export default struct AttractionTicketPage {
     .backgroundColor(Color.White)
   }
 
-  /*updateAttractionsList() {
+  updateAttractionsList() {
     //遍历所有景点，将所有符合条件的景点插入到currentAttractions中,不符合则删除
-    this.attractions.every((item: Spot) => {
-      if (item.category.indexOf(this.currentCategory[0]) || (this.currentCity.cityName === '所有' || item.cityName === this.currentCity.cityName)) {
-        this.currentAttractions.push(item);
-      } else{
-
-      }
-    })
-  }*/
+    this.currentAttractions = this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
+  }
 
 
   build() {
@@ -156,7 +170,11 @@ export default struct AttractionTicketPage {
           ForEach(this.currentAttractions, (item: Spot) => {
             ListItem() {
                 AttractionCard({ item: item })
+                  .reuseId("attraction")
             }
+            .onClick(() => {
+              this.appPathStack.pushPathByName('AttractionDetailPage', item)
+            })
           })
         }
 
@@ -167,103 +185,9 @@ export default struct AttractionTicketPage {
       .width(Constants.FULL_WIDTH)
       .height(Constants.FULL_HEIGHT)
     }
-  }
+    .hideTitleBar(true)
+    .margin({ top: Constants.HEADER_HEIGHT_PAGE })
 
-  updateAttractionsList() {
-    // Reset current attractions
-    this.currentAttractions = [...this.attractions];
-
-    // Filter by city first
-    if (this.currentCity.cityName !== '所有') {
-      this.currentAttractions = this.currentAttractions.filter(spot =>
-      spot.cityName === this.currentCity.cityName
-      );
-    }
-
-    // (全部景点)
-    if (this.currentCategory[0] !== '全部景点') {
-      this.currentAttractions = this.currentAttractions.filter(spot =>
-      spot.category.includes(this.currentCategory[0])
-      );
-    }
-
-    //(位置距离之内)
-    if (this.currentCategory[1] !== '不限距离' && this.currentCategory[1] !== '位置距离') {
-      const userLocation = this.getCurrentUserLocation();
-      // 假设距离格式是 "5km"，需要提取数字部分
-      const maxDistance = Number(this.currentCategory[1].slice(0, -2));
-
-      this.currentAttractions = this.currentAttractions.filter((spot) => {
-        const distance = this.calculateDistance(userLocation, spot.location);
-        return distance <= maxDistance; // 返回布尔值，距离小于等于指定值的景点会被保留
-      });
-    }
-
-    //(位置距离排序)
-    if (this.currentCategory[1] !== '不限距离' && this.currentCategory[1] !== '位置距离') {
-      const userLocation = this.getCurrentUserLocation(); // You'll need to implement this
-      this.currentAttractions.sort((a, b) => {
-        const distanceA = this.calculateDistance(userLocation, a.location);
-        const distanceB = this.calculateDistance(userLocation, b.location);
-        //return (distanceA - distanceB) < Number(this.currentCategory[1].substring(0, -3))
-        return (distanceA - distanceB)
-      });
-    }
-
-    // (综合排序)
-    if (this.currentCategory[2] !== '综合排序') {
-      switch (this.currentCategory[2]) {
-        case '评分最高':
-          this.currentAttractions.sort((a, b) => b.rating - a.rating);
-          break;
-        case '价格最低':
-          this.currentAttractions.sort((a, b) => a.ticketPrice - b.ticketPrice);
-          break;
-        case '价格最高':
-          this.currentAttractions.sort((a, b) => b.ticketPrice - a.ticketPrice);
-          break;
-      }
-    }
-
-    // (筛选)
-
-
-    /*// 搜索之后的景点列表
-    if (this.searchText.trim()) {
-      const searchLower = this.searchText.toLowerCase().trim();
-      this.currentAttractions = this.currentAttractions.filter(spot =>
-      spot.name.toLowerCase().includes(searchLower) ||
-      spot.summary.toLowerCase().includes(searchLower) ||
-      spot.address?.toLowerCase().includes(searchLower)
-      );
-    }*/
-  }
-
-  // 计算景点和用户之间的距离
-  private calculateDistance(loc1: Location, loc2: Location): number {
-    // 使用Haversine公式计算两点之间的最短距离
-    const R = 6371; //
-    const dLat = this.toRad(loc2.latitude - loc1.latitude);
-    const dLon = this.toRad(loc2.longitude - loc1.longitude);
-    const lat1 = this.toRad(loc1.latitude);
-    const lat2 = this.toRad(loc2.latitude);
-
-    const a = Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.sin(dLon/2) * Math.sin(dLon/2) * Math.cos(lat1) * Math.cos(lat2);
-    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-    return R * c;
-  }
-
-  private toRad(value: number): number {
-    return value * Math.PI / 180;
-  }
-
-
-  private getCurrentUserLocation(): Location {
-    return {
-      latitude: 34.27,
-      longitude: 108.83
-    };
   }
 }
 

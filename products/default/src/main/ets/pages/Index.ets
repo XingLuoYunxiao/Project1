@@ -4,6 +4,7 @@ import { CulturalHeritageStartPage } from '@ohos/Culture';
 import { TabBarType } from '../model/TabBarModel';
 import { CustomTabBar } from '../components/CustomTabBar';
 import { AppConstants } from '../constants/AppConstants';
+import { LocationUtil } from '@ohos/Utils';
 
 @Entry
 @Component
@@ -14,7 +15,8 @@ struct Index {
   @Provide('appPathStack') appPathStack: NavPathStack = new NavPathStack();
   private tabsController: TabsController = new TabsController();
 
-  aboutToAppear(): void {
+  async aboutToAppear(): Promise<void> {
+    await LocationUtil.getInstance().getCurrentLocation()
     AppStorage.setOrCreate('isHideBar', false);
   }
 
