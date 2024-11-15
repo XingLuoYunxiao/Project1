@@ -2,7 +2,7 @@ import { IBaseProject, IChat } from "@ohos/Uicomponents";
 import { Location } from "@ohos/Utils";
 import { ISpot } from "./ISpot";
 import { TravelChat } from "./TravelChat";
-
+import { BusinessError } from "@kit.BasicServicesKit";
 
 
 @Observed
@@ -17,9 +17,9 @@ export class Spot extends IBaseProject implements ISpot {
   ticketPrice: number;
   openingHours: string;
   image: string
-  cityCode?:string //城市编码
-  cityId?:string //城市ID
-  cityName?:string //城市名称
+  cityCode:string //城市编码
+  cityId:string //城市ID
+  cityName:string //城市名称
   address?:string //地址
   proId?:string //省份ID
   proName?:string //省份名称
@@ -31,7 +31,7 @@ export class Spot extends IBaseProject implements ISpot {
   static idCount = 0
 
   constructor( id: string, name: string, summary: string, category: string, rating:number, location: Location, ticketPrice: number,
-    openingHours: string, image: string, cityCode?:string, cityId?:string, cityName?:string) {
+  openingHours: string, image: string, cityCode:string, cityId:string, cityName:string, address?:string ) {
     super(name);
     this.id = id;
     this.name = name;
@@ -45,6 +45,7 @@ export class Spot extends IBaseProject implements ISpot {
     this.cityCode = cityCode;
     this.cityId = cityId;
     this.cityName = cityName;
+    this.address = address;
   }
 
 
@@ -66,6 +67,19 @@ export class Spot extends IBaseProject implements ISpot {
   getAllChat(): IChat[] {
     return this.chats;
   }
+
+  /*getData(): Promise<Spot[]> {
+    return new Promise<Spot[]>(async (resolve, reject) => {
+      try{
+        this.spots = await Spot.netWork.getSpotData();
+        resolve(this.spots);
+      }catch (e){
+        return reject(e);
+      }
+    }).catch( (error:BusinessError) => {
+      return Promise.reject(error);
+    });
+  }*/
 
 }
 

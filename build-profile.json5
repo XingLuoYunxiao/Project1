@@ -5,13 +5,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "certpath": "C:\\Users\\XingLuoYunxiao\\.ohos\\config\\default_Application_Rj5VdUKSpf8_ttZ_9ifXP2fYpnchiycwFe3kzC5AxJ8=.cer",
-          "storePassword": "0000001B5D9F48DD6C2C371A2D1BEBCC07E2787808F375463C4E921128C857759D6849B8ED25E73E4DEBDD",
-          "keyAlias": "debugKey",
-          "keyPassword": "0000001B7D43047D1DC88DD3C4549A2A0A44C794B6AA2AE207185F39338DCBBAE9491CD91B8BF5841140FF",
-          "profile": "C:\\Users\\XingLuoYunxiao\\.ohos\\config\\default_Application_Rj5VdUKSpf8_ttZ_9ifXP2fYpnchiycwFe3kzC5AxJ8=.p7b",
+          "storePassword": "0000001AEABD3526592CD3FE045FDD4D0C4F6E228DE8B50D06C9A4B4DE62FCE66EF6F9E77B1E68C44323",
+          "certpath": "D:/HuaWei/certificate/key2/ProjectOne.cer",
+          "keyAlias": "ProjectOne",
+          "keyPassword": "0000001A36A8E603F2E84CA7A1EFDFB3ED34E698A976BFA3D23EF34D130C96ABF3BF353749A8ECB2C59A",
+          "profile": "D:/HuaWei/certificate/key2/ProjectOneProfileDebug.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "C:\\Users\\XingLuoYunxiao\\.ohos\\config\\default_Application_Rj5VdUKSpf8_ttZ_9ifXP2fYpnchiycwFe3kzC5AxJ8=.p12"
+          "storeFile": "D:/HuaWei/certificate/key2/.p12"
         }
       }
     ],
@@ -70,8 +70,8 @@
     {
       "name": "Culture",
       "srcPath": "./features/Culture",
-    }
-  ,{
+    },
+    {
       "name": "entry",
       "srcPath": "./entry",
       "targets": [
@@ -82,5 +82,6 @@
           ]
         }
       ]
-    }]
+    }
+  ]
 }

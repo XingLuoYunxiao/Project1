@@ -1,12 +1,11 @@
 import { lvMarkdownIn, lvText } from "@luvi/lv-markdown-in"
 import Constants from "../constants/Constants";
 import { Spot } from "../model/Spot";
-import { MapDemo } from "./MapDemo";
 
 
 @Component
 export struct SpotDetailPage {
-  @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null');
+  @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null', '', '', '', '');
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
 
@@ -21,7 +20,7 @@ export struct SpotDetailPage {
   async aboutToAppear(): Promise<void> {
     lvText.setTextSize(16)
     let spot = await this.appPathStack.getParamByName('SpotDetailPage')[0] as Spot;
-    this.spot = new Spot(spot.id, spot.name, spot.summary, spot.category, spot.rating, spot.location, spot.ticketPrice, spot.openingHours, spot.image);
+    this.spot = new Spot(spot.id, spot.name, spot.summary, spot.category, spot.rating, spot.location, spot.ticketPrice, spot.openingHours, spot.image, spot.cityCode, spot.cityId, spot.cityName);
     this.sendRequest(this.spot.name);
 
   }
@@ -116,29 +115,13 @@ export struct SpotDetailPage {
           .scrollable(ScrollDirection.Vertical)
         }
         .alignItems(HorizontalAlign.Start)
-        .backgroundColor($r('app.color.app_background_color'))
 
-        Column(){
-
-        }
-
-
-
-        /*Column(){
-          Image($r('app.media.avator'))
-            .width(100)
-            .height(150)
-            .objectFit(ImageFit.Contain)
-            .opacity(0.8)
-            .scale({ x: this.myScale, y: this.myScale })
-        }
-        .position({x:270, y:550})*/
       }
       .width(Constants.OUTER_WIDTH)
       .height(Constants.FULL_HEIGHT)
     }
-    .backgroundColor($r('app.color.app_background_color'))
     .hideTitleBar(true)
+    .margin({top:Constants.HEADER_HEIGHT_PAGE})
   }
 }
 

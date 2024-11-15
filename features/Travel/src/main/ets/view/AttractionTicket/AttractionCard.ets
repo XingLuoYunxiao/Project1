@@ -1,9 +1,14 @@
 import Constants from "../../constants/Constants";
 import { Spot } from "../../model/Spot";
 
+@Reusable
 @Component
 export struct AttractionCard {
-  @ObjectLink item: Spot;
+  @State item: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null', '', '', '', '');
+
+  aboutToReuse(params: Record<string, object>): void {
+    this.item = params.item as Spot;
+  }
 
   build() {
     Row() {

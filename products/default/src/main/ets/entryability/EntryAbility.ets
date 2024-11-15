@@ -2,12 +2,10 @@ import { abilityAccessCtrl, AbilityConstant, UIAbility, Want } from '@kit.Abilit
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit'
-import { PreferenceUtil } from '@ohos/utils';
 import { buffer } from '@kit.ArkTS';
 import { initialize } from '@hw-agconnect/hmcore';
 
 const TAG: string = 'EntryAbility';
-const name = 'appEntryStore'
 const domain = 0x0011;//定位模块
 
 export default class EntryAbility extends UIAbility {
@@ -27,7 +25,6 @@ export default class EntryAbility extends UIAbility {
     } catch (err) {
       hilog.error(domain, TAG, `catch err->${JSON.stringify(err)}`);
     }
-    PreferenceUtil.loadPreference(this.context, name)
 
   }
 
