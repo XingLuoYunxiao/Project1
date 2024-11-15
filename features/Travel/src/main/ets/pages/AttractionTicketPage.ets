@@ -21,7 +21,7 @@ export default struct AttractionTicketPage {
 
   async aboutToAppear(): Promise<void> {
     let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
-    this.currentCategory[0] = category
+    //this.currentCategory[0] = category
     this.spotNetWork.loadSpotsData()
     this.currentAttractions = this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
   }
