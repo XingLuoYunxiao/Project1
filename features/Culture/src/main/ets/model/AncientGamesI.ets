@@ -16,7 +16,7 @@ export function tsetAncientGamesIArr(): AncientGames[] {
   let masterPiceIArr: AncientGames[] = [
     new AncientGames($r('app.media.feihualing'), '飞花令', 'FlyingFlowerOrderPage'),
     new AncientGames($r('app.media.class_2'), 'AI绘画', 'AIPaintingPage'),
-    new AncientGames($r('app.media.class_2'), '开发中', ''),
+    new AncientGames($r('app.media.class_2'), 'Poem', 'PoemPage'),
     new AncientGames($r('app.media.class_2'), '开发中', ''),
     new AncientGames($r('app.media.class_2'), '开发中', ''),
     new AncientGames($r('app.media.class_2'), '开发中', ''),]

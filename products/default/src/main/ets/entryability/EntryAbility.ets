@@ -1,18 +1,34 @@
-import { AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { abilityAccessCtrl, AbilityConstant, PermissionRequestResult, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit'
-import { PreferenceUtil } from '@ohos/utils';
+import { PreferenceUtil } from '@ohos/Utils';
+
+import { initialize } from '@hw-agconnect/hmcore';
+import servicesJson from '../../resources/rawfile/agconnect-services.json';
 
 const TAG: string = 'EntryAbility';
 const name = 'appEntryStore'
-
 
 export default class EntryAbility extends UIAbility {
   onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): void {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     PreferenceUtil.loadPreference(this.context, name)
+    try {
+      initialize(this.context, servicesJson);
+    } catch (e) {
+      hilog.error(0x0000, 'AGConnectError', JSON.stringify(e));
+    }
 
+    let AtManager = abilityAccessCtrl.createAtManager();
+    AtManager.requestPermissionsFromUser(this.context, ['ohos.permission.READ_MEDIA', 'ohos.permission.MEDIA_LOCATION'])
+      .then((data: PermissionRequestResult) => {
+        hilog.info(0x0000, 'testTag', '%{public}s', 'request permissions from user success' + data);
+      })
+      .catch((err: Object) => {
+        hilog.error(0x0000, 'testTag', 'Failed to request permissions from user. Cause: %{public}s',
+          JSON.stringify(err) ?? '');
+      });
   }
 
   onDestroy(): void {
