@@ -1,241 +1,444 @@
 [
   {
-    "id": "1",
-    "name": "长城",
-    "description": "长城是中国古代的军事防御工程，也是世界文化遗产。",
-    "feature": "中国古代的伟大建筑",
-    "rating": 5,
-    "location": {"latitude": 40.404494, "longitude": 116.376160},
-    "ticketPrice": 45,
-    "openingHours": "06:30-18:30",
-    "image": "app.media.attraction_1"
-  },
-  {
-    "id": "2",
-    "name": "故宫",
-    "description": "故宫是明、清两代的皇宫，也是世界上现存规模最大、保存最完整的木质结构古建筑群。",
-    "feature": "中国古代皇家宫殿",
-    "rating": 5,
-    "location": {"latitude": 39.916520, "longitude": 116.397120},
+    "id": "001",
+    "name": "故宫博物院",
+    "summary": "中国古代宫廷建筑之精华",
+    "category": "全部分类、自然风光、历史遗迹",
+    "rating": 4.9,
+    "location": {
+      "latitude": 39.915,
+      "longitude": 116.404
+    },
     "ticketPrice": 60,
     "openingHours": "08:30-17:00",
-    "image": "app.media.attraction_2"
-
+    "image": "app.media.gugong",
+    "cityCode": "",
+    "cityId": "BJ",
+    "cityName": "北京",
+    "address": "东城区景山前街4号",
+    "proId": "BJ",
+    "proName": "北京",
+    "areaId": "Dongcheng",
+    "areaName": "东城区"
   },
   {
-    "id": "3",
-    "name": "颐和园",
-    "description": "颐和园是清朝时期的皇家园林，以昆明湖、万寿山为基础，汇集了江南园林的设计理念。",
-    "feature": "皇家园林",
-    "rating": 5,
-    "location": {"latitude": 39.982290, "longitude": 116.280740},
-    "ticketPrice": 30,
-    "openingHours": "06:30-18:00",
-    "image": "app.media.attraction_3"
-
+    "id": "002",
+    "name": "长城",
+    "summary": "世界文化遗产，中国古代的军事防御工程",
+    "category": "全部分类、自然风光、历史遗迹",
+    "rating": 4.8,
+    "location": {
+      "latitude": 40.4319,
+      "longitude": 116.0225
+    },
+    "ticketPrice": 45,
+    "openingHours": "06:30-19:00",
+    "image": "app.media.changcheng",
+    "cityCode": "",
+    "cityId": "BJ",
+    "cityName": "北京",
+    "address": "延庆区G6京藏高速58号",
+    "proId": "BJ",
+    "proName": "北京",
+    "areaId": "Yanqing",
+    "areaName": "延庆区"
   },
   {
-    "id": "4",
-    "name": "天坛",
-    "description": "天坛是明清两朝皇帝祭天和祈祷丰收的地方。",
-    "feature": "古代祭天场所",
-    "rating": 4,
-    "location": {"latitude": 39.802090, "longitude": 116.442170},
-    "ticketPrice": 15,
-    "openingHours": "06:00-21:00",
-    "image": "app.media.tiantan"
-
-  },
-  {
-    "id": "5",
-    "name": "圆明园",
-    "description": "圆明园曾是中国清朝时期的皇家园林，现在是遗址公园。",
-    "feature": "清朝皇家园林遗址",
-    "rating": 4,
-    "location": {"latitude": 39.997200, "longitude": 116.362890},
-    "ticketPrice": 10,
-    "openingHours": "06:00-20:00",
-    "image": "app.media.attraction_1"
-
-  },
-  {
-    "id": "6",
-    "name": "南锣鼓巷",
-    "description": "南锣鼓巷是一条历史悠久的胡同，现在成为北京的文化地标。",
-    "feature": "历史文化街区",
-    "rating": 4,
-    "location": {"latitude": 39.934470, "longitude": 116.417240},
-    "ticketPrice": 0,
-    "openingHours": "全天开放",
-    "image": "app.media.attraction_3"
-
-  },
-  {
-    "id": "7",
+    "id": "003",
     "name": "西湖",
-    "description": "杭州西湖风景名胜区是中国著名的旅游景点之一，以其山水风光闻名。",
-    "feature": "美丽的自然湖泊",
-    "rating": 5,
-    "location": {"latitude": 30.262950, "longitude": 120.128230},
+    "summary": "杭州西湖，人间天堂",
+    "category": "全部分类、自然风光、滨海公园",
+    "rating": 4.7,
+    "location": {
+      "latitude": 30.2593,
+      "longitude": 120.1551
+    },
     "ticketPrice": 0,
-    "openingHours": "全天开放",
-    "image": "app.media.attraction_2"
-
+    "openingHours": "全天",
+    "image": "app.media.yiheyuan",
+    "cityCode": "",
+    "cityId": "HZ",
+    "cityName": "杭州",
+    "address": "西湖区龙井路1号",
+    "proId": "ZJ",
+    "proName": "浙江",
+    "areaId": "Xihu",
+    "areaName": "西湖区"
   },
   {
-    "id": "8",
-    "name": "鼓浪屿",
-    "description": "鼓浪屿位于福建省厦门市，是一个有着丰富历史文化的岛屿。",
-    "feature": "历史文化岛",
-    "rating": 5,
-    "location": {"latitude": 24.442270, "longitude": 118.114700},
+    "id": "004",
+    "name": "外滩",
+    "summary": "上海的标志性景点，观赏黄浦江两岸风光",
+    "category": "全部分类、城市观光、地标观光",
+    "rating": 4.6,
+    "location": {
+      "latitude": 31.2403,
+      "longitude": 121.4737
+    },
     "ticketPrice": 0,
-    "openingHours": "全天开放",
-    "image": "app.media.nearby_1"
-
+    "openingHours": "全天",
+    "image": "app.media.zhonglou",
+    "cityCode": "",
+    "cityId": "SH",
+    "cityName": "上海",
+    "address": "黄浦区中山东一路",
+    "proId": "SH",
+    "proName": "上海",
+    "areaId": "Huangpu",
+    "areaName": "黄浦区"
   },
   {
-    "id": "9",
-    "name": "丽江古城",
-    "description": "丽江古城位于云南省，是一个充满纳西族文化特色的古城。",
-    "feature": "纳西族文化古城",
-    "rating": 5,
-    "location": {"latitude": 26.896960, "longitude": 100.253740},
-    "ticketPrice": 80,
-    "openingHours": "全天开放",
-    "image": "app.media.nearby_2"
-
-  },
-  {
-    "id": "10",
+    "id": "005",
     "name": "九寨沟",
-    "description": "九寨沟位于四川省阿坝藏族羌族自治州，以其多彩的湖泊而著名。",
-    "feature": "自然保护区",
-    "rating": 5,
-    "location": {"latitude": 32.878480, "longitude": 103.752030},
-    "ticketPrice": 220,
-    "openingHours": "08:00-17:00",
-    "image": "app.media.nearby_3"
-
+    "summary": "童话世界，水景之王",
+    "category": "全部分类、自然风光、地标观光",
+    "rating": 4.9,
+    "location": {
+      "latitude": 33.2628,
+      "longitude": 103.9222
+    },
+    "ticketPrice": 169,
+    "openingHours": "07:30-18:00",
+    "image": "app.media.dayanta",
+    "cityCode": "",
+    "cityId": "AB",
+    "cityName": "阿坝",
+    "address": "阿坝藏族羌族自治州九寨沟县",
+    "proId": "SC",
+    "proName": "四川",
+    "areaId": "Jiuzhaigou",
+    "areaName": "九寨沟县"
   },
   {
-    "id": "11",
-    "name": "华山",
-    "description": "华山位于陕西省，是中国五岳之一。",
-    "feature": "险峻的山峰",
-    "rating": 4,
-    "location": {"latitude": 34.581060, "longitude": 109.651300},
-    "ticketPrice": 180,
-    "openingHours": "07:00-18:00",
-    "image": "app.media.nearby_4"
-
-  },
-  {
-    "id": "12",
-    "name": "泰山",
-    "description": "泰山位于山东省，是中国五岳之首。",
-    "feature": "登山朝圣之地",
-    "rating": 4,
-    "location": {"latitude": 36.184680, "longitude": 117.127610},
-    "ticketPrice": 125,
-    "openingHours": "全天开放",
-    "image": "app.media.nearby_1"
-
-  },
-  {
-    "id": "13",
-    "name": "峨眉山",
-    "description": "峨眉山位于四川省，是中国四大佛教名山之一。",
-    "feature": "佛教圣地",
-    "rating": 4,
-    "location": {"latitude": 29.601900, "longitude": 103.436120},
-    "ticketPrice": 185,
-    "openingHours": "全天开放",
-    "image": "app.media.attraction_2"
-
-  },
-  {
-    "id": "14",
+    "id": "006",
     "name": "黄山",
-    "description": "黄山位于安徽省，以其奇松、怪石、云海、温泉四绝著称。",
-    "feature": "自然景观",
-    "rating": 5,
-    "location": {"latitude": 29.841550, "longitude": 118.297680},
-    "ticketPrice": 230,
-    "openingHours": "全天开放",
-    "image": "app.media.attraction_1"
-
+    "summary": "五岳归来不看山，黄山归来不看岳",
+    "category": "全部分类、自然风光",
+    "rating": 4.8,
+    "location": {
+      "latitude": 30.0744,
+      "longitude": 118.0934
+    },
+    "ticketPrice": 190,
+    "openingHours": "06:00-17:30",
+    "image": "app.media.gugong",
+    "cityCode": "",
+    "cityId": "Huangshan",
+    "cityName": "黄山",
+    "address": "黄山市黄山区汤口镇",
+    "proId": "AH",
+    "proName": "安徽",
+    "areaId": "Huangshan",
+    "areaName": "黄山市"
   },
   {
-    "id": "15",
+    "id": "007",
     "name": "张家界国家森林公园",
-    "description": "张家界位于湖南省，以其独特的砂岩峰林地貌而闻名。",
-    "feature": "砂岩峰林地貌",
-    "rating": 5,
-    "location": {"latitude": 29.444750, "longitude": 110.945870},
-    "ticketPrice": 248,
-    "openingHours": "07:00-17:30",
-    "image": "app.media.attraction_1"
-
+    "summary": "世界自然遗产，世界地质公园",
+    "category": "全部分类、自然风光、历史遗迹",
+    "rating": 4.7,
+    "location": {
+      "latitude": 29.3444,
+      "longitude": 110.4783
+    },
+    "ticketPrice": 228,
+    "openingHours": "07:00-18:00",
+    "image": "app.media.dayanta",
+    "cityCode": "",
+    "cityId": "ZJJ",
+    "cityName": "张家界",
+    "address": "张家界市武陵源区",
+    "proId": "HN",
+    "proName": "湖南",
+    "areaId": "Wulingyuan",
+    "areaName": "武陵源区"
   },
   {
-    "id": "16",
-    "name": "武当山",
-    "description": "武当山位于湖北省，是中国道教的重要圣地。",
-    "feature": "道教圣地",
-    "rating": 4,
-    "location": {"latitude": 32.427600, "longitude": 111.051300},
-    "ticketPrice": 140,
-    "openingHours": "全天开放",
-    "image": "app.media.attraction_1"
-
+    "id": "008",
+    "name": "鼓浪屿",
+    "summary": "世界文化遗产，海上花园",
+    "category": "全部分类、城市观光、地标观光",
+    "rating": 4.6,
+    "location": {
+      "latitude": 24.4426,
+      "longitude": 118.0683
+    },
+    "ticketPrice": 0,
+    "openingHours": "全天",
+    "image": "app.media.gugong",
+    "cityCode": "",
+    "cityId": "XM",
+    "cityName": "厦门",
+    "address": "思明区鼓浪屿",
+    "proId": "FJ",
+    "proName": "福建",
+    "areaId": "Siming",
+    "areaName": "思明区"
   },
   {
-    "id": "17",
-    "name": "秦始皇兵马俑",
-    "description": "秦始皇兵马俑位于陕西省西安市，是秦始皇陵的一部分。",
-    "feature": "古代陪葬坑",
-    "rating": 5,
-    "location": {"latitude": 34.508790, "longitude": 109.270140},
-    "ticketPrice": 150,
-    "openingHours": "08:30-18:00",
-    "image": "app.media.qinshihuanglin"
-
+    "id": "009",
+    "name": "泰山",
+    "summary": "五岳之首，天下第一山",
+    "category": "全部分类、自然风光",
+    "rating": 4.8,
+    "location": {
+      "latitude": 36.2156,
+      "longitude": 117.1018
+    },
+    "ticketPrice": 127,
+    "openingHours": "全天",
+    "image": "app.media.dayanta",
+    "cityCode": "",
+    "cityId": "Taian",
+    "cityName": "泰安",
+    "address": "泰安市泰山区红门路",
+    "proId": "SD",
+    "proName": "山东",
+    "areaId": "Taishan",
+    "areaName": "泰山区"
   },
   {
-    "id": "18",
+    "id": "010",
+    "name": "兵马俑",
+    "summary": "世界第八大奇迹，秦始皇陵的一部分",
+    "category": "全部分类、展览馆、自然风光、历史遗迹",
+    "rating": 4.7,
+    "location": {
+      "latitude": 34.3715,
+      "longitude": 109.2456
+    },
+    "ticketPrice": 120,
+    "openingHours": "08:30-17:30",
+    "image": "app.media.bingmayong",
+    "cityCode": "",
+    "cityId": "Xian",
+    "cityName": "西安",
+    "address": "临潼区秦陵北路",
+    "proId": "SN",
+    "proName": "陕西",
+    "areaId": "Lintong",
+    "areaName": "临潼区"
+  },
+  {
+    "id": "011",
+    "name": "峨眉山",
+    "summary": "四大佛教名山之一",
+    "category": "全部分类、自然风光",
+    "rating": 4.6,
+    "location": {
+      "latitude": 29.5476,
+      "longitude": 103.4626
+    },
+    "ticketPrice": 160,
+    "openingHours": "06:00-18:00",
+    "image": "app.media.dayanta",
+    "cityCode": "",
+    "cityId": "EM",
+    "cityName": "峨眉山",
+    "address": "四川省乐山市峨眉山市黄湾镇",
+    "proId": "SC",
+    "proName": "四川",
+    "areaId": "Emeishan",
+    "areaName": "峨眉山"
+  },
+  {
+    "id": "012",
+    "name": "丽江古城",
+    "summary": "世界文化遗产，纳西族文化的发源地",
+    "category": "全部分类、自然风光、历史遗迹",
+    "rating": 4.5,
+    "location": {
+      "latitude": 26.8625,
+      "longitude": 100.2239
+    },
+    "ticketPrice": 0,
+    "openingHours": "全天",
+    "image": "app.media.gugong",
+    "cityCode": "",
+    "cityId": "LJ",
+    "cityName": "丽江",
+    "address": "丽江市古城区",
+    "proId": "YN",
+    "proName": "云南",
+    "areaId": "Gucheng",
+    "areaName": "古城区"
+  },
+  {
+    "id": "013",
+    "name": "苏州园林",
+    "summary": "中国园林艺术的代表",
+    "category": "全部分类、城市观光、历史遗迹",
+    "rating": 4.8,
+    "location": {
+      "latitude": 31.3021,
+      "longitude": 120.5848
+    },
+    "ticketPrice": 45,
+    "openingHours": "07:30-17:00",
+    "image": "app.media.dayanta",
+    "cityCode": "",
+    "cityId": "SZ",
+    "cityName": "苏州",
+    "address": "苏州市姑苏区",
+    "proId": "JS",
+    "proName": "江苏",
+    "areaId": "Gusu",
+    "areaName": "姑苏区"
+  },
+  {
+    "id": "014",
     "name": "布达拉宫",
-    "description": "布达拉宫位于西藏自治区拉萨市，是藏传佛教的圣地。",
-    "feature": "藏传佛教圣地",
-    "rating": 5,
-    "location": {"latitude": 29.660490, "longitude": 91.116250},
+    "summary": "西藏最庞大、最完整的古代宫堡建筑群",
+    "category": "全部分类、展览馆、历史遗迹",
+    "rating": 4.7,
+    "location": {
+      "latitude": 29.6547,
+      "longitude": 91.1319
+    },
     "ticketPrice": 200,
     "openingHours": "09:00-16:00",
-    "image": "app.media.attraction_1"
-
+    "image": "app.media.tiantan",
+    "cityCode": "",
+    "cityId": "LZ",
+    "cityName": "拉萨",
+    "address": "拉萨市城关区北京中路",
+    "proId": "XZ",
+    "proName": "西藏",
+    "areaId": "Chengguan",
+    "areaName": "城关区"
   },
   {
-    "id": "19",
-    "name": "西湖龙井茶园",
-    "description": "西湖龙井茶园位于浙江省杭州市，是中国著名的茶叶产地。",
-    "feature": "茶文化",
-    "rating": 4,
-    "location": {"latitude": 30.211300, "longitude": 120.134100},
+    "id": "015",
+    "name": "桂林山水",
+    "summary": "桂林山水甲天下",
+    "category": "全部分类、自然风光",
+    "rating": 4.6,
+    "location": {
+      "latitude": 25.2736,
+      "longitude": 110.2864
+    },
     "ticketPrice": 0,
-    "openingHours": "全天开放",
-    "image": "app.media.attraction_1"
-
+    "openingHours": "全天",
+    "image": "app.media.tiantan",
+    "cityCode": "",
+    "cityId": "GL",
+    "cityName": "桂林",
+    "address": "桂林市象山区",
+    "proId": "GX",
+    "proName": "广西",
+    "areaId": "Xiangshan",
+    "areaName": "象山区"
   },
   {
-    "id": "20",
-    "name": "桂林漓江",
-    "description": "桂林漓江位于广西壮族自治区，以其秀美的山水风光著称。",
-    "feature": "山水风光",
-    "rating": 5,
-    "location": {"latitude": 25.241600, "longitude": 110.284750},
-    "ticketPrice": 210,
-    "openingHours": "全天开放",
-    "image": "app.media.attraction_1"
-
+    "id": "016",
+    "name": "颐和园",
+    "summary": "保存最完整的一座皇家行宫御苑",
+    "category": "全部分类、城市观光、历史遗迹",
+    "rating": 4.8,
+    "location": {
+      "latitude": 39.9986,
+      "longitude": 116.0762
+    },
+    "ticketPrice": 30,
+    "openingHours": "06:30-18:00",
+    "image": "app.media.tiantan",
+    "cityCode": "",
+    "cityId": "BJ",
+    "cityName": "北京",
+    "address": "北京市海淀区新建宫门路19号",
+    "proId": "BJ",
+    "proName": "北京",
+    "areaId": "Haidian",
+    "areaName": "海淀区"
+  },
+  {
+    "id": "017",
+    "name": "天坛公园",
+    "summary": "明清两代皇帝祭祀皇天、祈五谷丰登之地",
+    "category": "全部分类、城市观光、历史遗迹",
+    "rating": 4.7,
+    "location": {
+      "latitude": 39.8724,
+      "longitude": 116.4114
+    },
+    "ticketPrice": 15,
+    "openingHours": "06:00-21:00",
+    "image": "app.media.tiantan",
+    "cityCode": "",
+    "cityId": "BJ",
+    "cityName": "北京",
+    "address": "北京市东城区天坛东里甲1号",
+    "proId": "BJ",
+    "proName": "北京",
+    "areaId": "Dongcheng",
+    "areaName": "东城区"
+  },
+  {
+    "id": "018",
+    "name": "拙政园",
+    "summary": "江南园林的代表，苏州园林中面积最大的古典山水园林",
+    "category": "全部分类、城市观光、地标观光、历史遗迹",
+    "rating": 4.6,
+    "location": {
+      "latitude": 31.3214,
+      "longitude": 120.6415
+    },
+    "ticketPrice": 88,
+    "openingHours": "07:30-17:30",
+    "image": "app.media.gugong",
+    "cityCode": "",
+    "cityId": "SZ",
+    "cityName": "苏州",
+    "address": "苏州市姑苏区东北街178号",
+    "proId": "JS",
+    "proName": "江苏",
+    "areaId": "Gusu",
+    "areaName": "姑苏区"
+  },
+  {
+    "id": "019",
+    "name": "黄果树瀑布",
+    "summary": "中国第一大瀑布，世界著名瀑布之一",
+    "category": "全部分类、自然风光、森林公园",
+    "rating": 4.5,
+    "location": {
+      "latitude": 26.1341,
+      "longitude": 105.7113
+    },
+    "ticketPrice": 160,
+    "openingHours": "07:00-18:30",
+    "image": "app.media.gugong",
+    "cityCode": "",
+    "cityId": "Anshun",
+    "cityName": "安顺",
+    "address": "安顺市镇宁布依族苗族自治县",
+    "proId": "GZ",
+    "proName": "贵州",
+    "areaId": "Zhenning",
+    "areaName": "镇宁布依族苗族自治县"
+  },
+  {
+    "id": "020",
+    "name": "乌镇",
+    "summary": "中国历史文化名镇，江南水乡的代表",
+    "category": "全部分类、城市观光、地标观光、历史遗迹",
+    "rating": 4.7,
+    "location": {
+      "latitude": 30.7448,
+      "longitude": 120.4743
+    },
+    "ticketPrice": 110,
+    "openingHours": "07:00-22:00",
+    "image": "app.media.tiantan",
+    "cityCode": "",
+    "cityId": "WZ",
+    "cityName": "桐乡",
+    "address": "嘉兴市桐乡市乌镇石佛南路18号",
+    "proId": "ZJ",
+    "proName": "浙江",
+    "areaId": "Tongxiang",
+    "areaName": "桐乡市"
   }
 ]
+
+

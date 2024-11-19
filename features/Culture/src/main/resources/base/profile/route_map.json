@@ -54,6 +54,16 @@
       "name": "FestivalPage",
       "pageSourceFile": "src/main/ets/pages/tradictionalFestival/FestivalPage.ets",
       "buildFunction": "FestivalPageBuilder"
+    },
+    {
+      "name": "AIPaintingPage",
+      "pageSourceFile": "src/main/ets/pages/AIPainting/AIPaintingPage.ets",
+      "buildFunction": "AIPaintingPageBuilder"
+    },
+    {
+      "name": "SkillPage",
+      "pageSourceFile": "src/main/ets/pages/skill/SkillPage.ets",
+      "buildFunction": "SkillPageBuilder"
     }
   ]
 }

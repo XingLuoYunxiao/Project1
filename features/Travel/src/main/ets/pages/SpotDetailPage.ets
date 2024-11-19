@@ -5,19 +5,22 @@ import { Spot } from "../model/Spot";
 
 @Component
 export struct SpotDetailPage {
-  @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null');
+  @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null', '', '', '', '');
   @Consume('travelPathStack') travelPathStack: NavPathStack;
+  @Consume('appPathStack') appPathStack: NavPathStack;
+
   @State  myScale: number = 1
   @State voice: boolean = false;
   @State isLoading: boolean = false;
   @State responseText: string = '';
+  @State aImage: Resource = $r('app.media.avator');
 
 
 
   async aboutToAppear(): Promise<void> {
     lvText.setTextSize(16)
-    let spot = await this.travelPathStack.getParamByName('SpotDetailPage')[0] as Spot;
-    this.spot = new Spot(spot.id, spot.name, spot.description, spot.feature, spot.rating, spot.location, spot.ticketPrice, spot.openingHours, spot.image);
+    let spot = await this.appPathStack.getParamByName('SpotDetailPage')[0] as Spot;
+    this.spot = new Spot(spot.id, spot.name, spot.summary, spot.category, spot.rating, spot.location, spot.ticketPrice, spot.openingHours, spot.image, spot.cityCode, spot.cityId, spot.cityName);
     this.sendRequest(this.spot.name);
 
   }
@@ -47,7 +50,7 @@ export struct SpotDetailPage {
             .width(30)
             .height(30)
             .onClick( () => {
-              this.travelPathStack.pop();
+              this.appPathStack.pop();
             })
           Row(){
             Text(this.spot.name)
@@ -112,28 +115,18 @@ export struct SpotDetailPage {
           .scrollable(ScrollDirection.Vertical)
         }
         .alignItems(HorizontalAlign.Start)
-        .backgroundColor($r('app.color.app_background_color'))
 
-        Column(){
-
-        }
-
-
-
-        /*Column(){
-          Image($r('app.media.avator'))
-            .width(100)
-            .height(150)
-            .objectFit(ImageFit.Contain)
-            .opacity(0.8)
-            .scale({ x: this.myScale, y: this.myScale })
-        }
-        .position({x:270, y:550})*/
       }
       .width(Constants.OUTER_WIDTH)
       .height(Constants.FULL_HEIGHT)
     }
-    .backgroundColor($r('app.color.app_background_color'))
     .hideTitleBar(true)
+    .margin({top:Constants.HEADER_HEIGHT_PAGE})
   }
 }
+
+@Builder
+export function SpotDetailPageBuilder(){
+  SpotDetailPage()
+}
+

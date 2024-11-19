@@ -1,5 +1,6 @@
-import { Festival } from "../../model/tradictionFestival/festivalModel"
+import { Custom, Festival } from "../../model/tradictionFestival/festivalModel"
 import { FestivalInstance, FestivalProject } from "../../model/tradictionFestival/tradFestProject"
+import { BuilderNode } from "@kit.ArkUI"
 
 @Builder
 export function FestivalPageBuilder() {
@@ -14,7 +15,7 @@ export struct FestivalPage {
   build() {
     NavDestination() {
       Swiper() {
-        Column() {
+        Column({space:10}) {
           Text(FestivalInstance.getName())
             .fontSize(24)
 
@@ -28,10 +29,11 @@ export struct FestivalPage {
         }
         .justifyContent(FlexAlign.Center)
         .width('100%')
-        .padding(10)
+        .padding(30)
 
         ForEach(this.FestivalInstance.festivals, (item: Festival) => {
           this.festivalItem(item)
+
         })
       }
       .vertical(true)
@@ -43,16 +45,43 @@ export struct FestivalPage {
   @Builder
   festivalItem(festival: Festival) {
 
-    Column() {
+    Column({space:10}) {
       Text(festival.getSummary())
-
-      Text(festival.name + "的习俗有:" + festival.customs.forEach(item => {
-        item.name
-      }))
-
-
+        .padding(30)
+        .fontSize(24)
+      Text(festival.name + "的习俗有:")
+        .padding(30)
+        .fontSize(24)
+      ForEach(festival.customs,(cust:Custom)=>{
+        CustomBuilder({cust:cust})
+      })
     }
     .width('100%')
   }
+
+
 }
+
+@Component
+export struct CustomBuilder{
+  @Prop cust: Custom
+  @State handlePopup: boolean = false
+    build(){
+       Column(){
+        Text(this.cust.name)
+          .fontSize(18)
+          .onClick(()=>{
+            this.handlePopup =!this.handlePopup
+          })
+      .bindPopup(this.handlePopup, {
+        message: this.cust.description,
+      })
+  }
+  .width('100%')
+  .height(100)
+}
+}
+
+
+
 

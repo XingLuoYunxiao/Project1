@@ -1,14 +1,35 @@
 {
   "app": {
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "storePassword": "0000001AEABD3526592CD3FE045FDD4D0C4F6E228DE8B50D06C9A4B4DE62FCE66EF6F9E77B1E68C44323",
+          "certpath": "D:/HuaWei/certificate/key2/ProjectOne.cer",
+          "keyAlias": "ProjectOne",
+          "keyPassword": "0000001A36A8E603F2E84CA7A1EFDFB3ED34E698A976BFA3D23EF34D130C96ABF3BF353749A8ECB2C59A",
+          "profile": "D:/HuaWei/certificate/key2/ProjectOneProfileDebug.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "D:/HuaWei/certificate/key2/.p12"
+        }
+      }
+    ],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
         "compatibleSdkVersion": "5.0.0(12)",
-        "runtimeOS": "HarmonyOS"
+        "runtimeOS": "HarmonyOS",
+        "buildOption": {
+          "strictMode": {
+            "caseSensitiveCheck": true,
+            "useNormalizedOHMUrl": true
+          }
+        }
       }
     ],
-    "buildModeSet": [//
+    "buildModeSet": [////
       {
         "name": "debug"
       },
@@ -64,6 +85,22 @@
     {
       "name": "Culture",
       "srcPath": "./features/Culture",
+    },
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Map",
+      "srcPath": "./features/Map",
     }
   ]
 }

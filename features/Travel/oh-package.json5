@@ -6,8 +6,9 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
-    "@ohos/utils": "file:../../commons/utils",
-    "@ohos/uicomponents": "file:../../commons/uicomponents",
-    "@ohos/login": "file:../Login"
+    "utils": "file:../../commons/utils",
+    "uicomponents": "file:../../commons/uicomponents",
+    "login": "file:../Login",
+    "map": "file:../Map"
   }
 }

@@ -7,9 +7,13 @@
   "license": "",
   "dependencies": {
     "@hw-agconnect/auth": "^1.0.0-beta",
-    "@ohos/travel": "file:../../features/Travel",
-    "@ohos/Login": "file:../../features/Login",
-    "@ohos/Utils": "file:../../commons/utils",
-    "@ohos/culture": "file:../../features/Culture",
+    "travel": "file:../../features/Travel",
+    "login": "file:../../features/Login",
+    "utils": "file:../../commons/utils",
+    "culture": "file:../../features/Culture",
   },
-}
+    "travel": "file:../../features/Travel",
+    "login": "file:../../features/Login",
+    "utils": "file:../../commons/utils",
+    "culture": "file:../../features/Culture"
+  }

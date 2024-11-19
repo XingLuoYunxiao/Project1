@@ -1,22 +1,19 @@
 {
-	"schemaVersion":5,
+	"schemaVersion":32,
 	"permissions":[
 		{
 			"permissions":[
 				{
 					"role":"World",
 					"rights":[
-						"Read",
-						"Upsert",
-						"Delete"
+						"Read"
 					]
 				},
 				{
 					"role":"Authenticated",
 					"rights":[
 						"Read",
-						"Upsert",
-						"Delete"
+						"Upsert"
 					]
 				},
 				{
@@ -36,7 +33,7 @@
 					]
 				}
 			],
-			"objectTypeName":"Post"
+			"objectTypeName":"BrowsingHistory"
 		},
 		{
 			"permissions":[
@@ -70,7 +67,41 @@
 					]
 				}
 			],
-			"objectTypeName":"t_content"
+			"objectTypeName":"myOrder"
+		},
+		{
+			"permissions":[
+				{
+					"role":"World",
+					"rights":[
+						"Read"
+					]
+				},
+				{
+					"role":"Authenticated",
+					"rights":[
+						"Read",
+						"Upsert"
+					]
+				},
+				{
+					"role":"Creator",
+					"rights":[
+						"Read",
+						"Upsert",
+						"Delete"
+					]
+				},
+				{
+					"role":"Administrator",
+					"rights":[
+						"Read",
+						"Upsert",
+						"Delete"
+					]
+				}
+			],
+			"objectTypeName":"Collection"
 		},
 		{
 			"permissions":[
@@ -104,124 +135,60 @@
 				}
 			],
 			"objectTypeName":"t_test"
+		},
+		{
+			"permissions":[
+				{
+					"role":"World",
+					"rights":[
+						"Read"
+					]
+				},
+				{
+					"role":"Authenticated",
+					"rights":[
+						"Read",
+						"Upsert"
+					]
+				},
+				{
+					"role":"Creator",
+					"rights":[
+						"Read",
+						"Upsert",
+						"Delete"
+					]
+				},
+				{
+					"role":"Administrator",
+					"rights":[
+						"Read",
+						"Upsert",
+						"Delete"
+					]
+				}
+			],
+			"objectTypeName":"mySpot"
 		}
 	],
 	"objectTypes":[
 		{
 			"indexes":[
 				{
-					"indexName":"insertDate",
-					"indexList":[
-						{
-							"fieldName":"insertDate",
-							"sortType":"DESC"
-						}
-					]
-				},
-				{
-					"indexName":"likeCount",
-					"indexList":[
-						{
-							"fieldName":"likeCount",
-							"sortType":"DESC"
-						}
-					]
-				},
-				{
-					"indexName":"userId",
+					"indexName":"idx_history_user_spot",
 					"indexList":[
 						{
 							"fieldName":"userId",
 							"sortType":"ASC"
-						}
-					]
-				}
-			],
-			"objectTypeName":"Post",
-			"fields":[
-				{
-					"isNeedEncrypt":false,
-					"fieldName":"id",
-					"notNull":true,
-					"isSensitive":false,
-					"belongPrimaryKey":true,
-					"fieldType":"Integer"
-				},
-				{
-					"isNeedEncrypt":false,
-					"fieldName":"userId",
-					"notNull":true,
-					"isSensitive":false,
-					"defaultValue":"",
-					"belongPrimaryKey":false,
-					"fieldType":"String"
-				},
-				{
-					"isNeedEncrypt":false,
-					"fieldName":"content",
-					"notNull":true,
-					"isSensitive":false,
-					"defaultValue":"",
-					"belongPrimaryKey":false,
-					"fieldType":"String"
-				},
-				{
-					"isNeedEncrypt":false,
-					"fieldName":"name",
-					"notNull":false,
-					"isSensitive":false,
-					"belongPrimaryKey":false,
-					"fieldType":"String"
-				},
-				{
-					"isNeedEncrypt":false,
-					"fieldName":"profilePicture",
-					"notNull":false,
-					"isSensitive":false,
-					"belongPrimaryKey":false,
-					"fieldType":"String"
-				},
-				{
-					"isNeedEncrypt":false,
-					"fieldName":"insertDate",
-					"notNull":false,
-					"isSensitive":false,
-					"belongPrimaryKey":false,
-					"fieldType":"Date"
-				},
-				{
-					"isNeedEncrypt":false,
-					"fieldName":"likes",
-					"notNull":true,
-					"isSensitive":false,
-					"defaultValue":"[]",
-					"belongPrimaryKey":false,
-					"fieldType":"String"
-				},
-				{
-					"isNeedEncrypt":false,
-					"fieldName":"likeCount",
-					"notNull":true,
-					"isSensitive":false,
-					"defaultValue":"0",
-					"belongPrimaryKey":false,
-					"fieldType":"Integer"
-				}
-			]
-		},
-		{
-			"indexes":[
-				{
-					"indexName":"id",
-					"indexList":[
+						},
 						{
-							"fieldName":"id",
+							"fieldName":"spotId",
 							"sortType":"ASC"
 						}
 					]
 				}
 			],
-			"objectTypeName":"t_content",
+			"objectTypeName":"BrowsingHistory",
 			"fields":[
 				{
 					"isNeedEncrypt":false,
@@ -233,11 +200,163 @@
 				},
 				{
 					"isNeedEncrypt":false,
-					"fieldName":"title",
+					"fieldName":"userId",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"0",
+					"belongPrimaryKey":false,
+					"fieldType":"Integer"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"spotId",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"0",
+					"belongPrimaryKey":false,
+					"fieldType":"Integer"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"viewTime",
 					"notNull":false,
 					"isSensitive":false,
 					"belongPrimaryKey":false,
+					"fieldType":"Date"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"viewCount",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Integer"
+				}
+			]
+		},
+		{
+			"indexes":[
+				{
+					"indexName":"order_id_idx",
+					"indexList":[
+						{
+							"fieldName":"order_id",
+							"sortType":"DESC"
+						}
+					]
+				}
+			],
+			"objectTypeName":"myOrder",
+			"fields":[
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"order_id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"IntAutoIncrement"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"spot_id",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"0",
+					"belongPrimaryKey":false,
+					"fieldType":"Integer"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"order_time",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Date"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"order_status",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"1",
+					"belongPrimaryKey":false,
 					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"total_amount",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"1.0",
+					"belongPrimaryKey":false,
+					"fieldType":"Double"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"quantity",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Byte"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"order_type",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Byte"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"user_id",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"0",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				}
+			]
+		},
+		{
+			"indexes":[
+				{
+					"indexName":"idx_collection_user",
+					"indexList":[
+						{
+							"fieldName":"userId",
+							"sortType":"ASC"
+						}
+					]
+				}
+			],
+			"objectTypeName":"Collection",
+			"fields":[
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"IntAutoIncrement"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"userId",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"0",
+					"belongPrimaryKey":false,
+					"fieldType":"Integer"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"spotId",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"0",
+					"belongPrimaryKey":false,
+					"fieldType":"Integer"
 				}
 			]
 		},
@@ -266,6 +385,177 @@
 				{
 					"isNeedEncrypt":false,
 					"fieldName":"name",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				}
+			]
+		},
+		{
+			"indexes":[
+				{
+					"indexName":"idx_spot_category",
+					"indexList":[
+						{
+							"fieldName":"category",
+							"sortType":"ASC"
+						},
+						{
+							"fieldName":"rating",
+							"sortType":"ASC"
+						}
+					]
+				},
+				{
+					"indexName":"idx_spot_location",
+					"indexList":[
+						{
+							"fieldName":"cityId",
+							"sortType":"ASC"
+						},
+						{
+							"fieldName":"areaName",
+							"sortType":"ASC"
+						}
+					]
+				}
+			],
+			"objectTypeName":"mySpot",
+			"fields":[
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"IntAutoIncrement"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"name",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"null",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"summary",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Text"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"category",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"所有分类",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"rating",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Float"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"ticketPrice",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Float"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"openingHours",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"imageUrl",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"latitude",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Double"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"longitude",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Double"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"cityCode",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"cityId",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"cityName",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"areaName",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"address",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"proId",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Long"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"proName",
 					"notNull":false,
 					"isSensitive":false,
 					"belongPrimaryKey":false,

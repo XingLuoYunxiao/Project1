@@ -248,5 +248,11 @@
       "name": "common_check_size",
       "value": "图片大小不能超过2MB"
     }
-  ]
+  ,{
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },{
+      "name": "EntryAbility_label",
+      "value": "label"
+    }]
 }

@@ -1,3 +1,4 @@
+
 import { IBaseProject, IChat } from "uicomponents";
 import { SkillChat } from "./skillChat";
 import { TraditionalCraft, ceramicArt, silkWeaving, metalCraft } from "./skillModel";
@@ -11,6 +12,7 @@ export class skillProject extends IBaseProject {
     this.skills = skills
     this.chats = chats
   }
+
 
   addChat(chat: IChat): void {
     throw new Error("Method not implemented.");
