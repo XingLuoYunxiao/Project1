@@ -1,0 +1,6 @@
+{
+  "src": [
+    "pages/InfoMessagePage",
+    "pages/LoginPage"
+  ]
+}

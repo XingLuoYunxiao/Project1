@@ -1,33 +1,41 @@
 {
   "app": {
-    "signingConfigs": [],
     "products": [
       {
         "name": "default",
         "signingConfig": "default",
         "compatibleSdkVersion": "5.0.0(12)",
-        "runtimeOS": "HarmonyOS",
-        "buildOption": {
-          "strictMode": {
-            "caseSensitiveCheck": true,
-            "useNormalizedOHMUrl": true
-          }
-        }
+        "runtimeOS": "HarmonyOS"
       }
     ],
-    "buildModeSet": [
+    "buildModeSet": [//
       {
-        "name": "debug",
+        "name": "debug"
       },
       {
         "name": "release"
+      }
+    ],
+    "signingConfigs": [
+      {
+        "name": "default",
+        "type": "HarmonyOS",
+        "material": {
+          "storePassword": "0000001A5C4E7D7B7F763F8EF0F8566C4BDCED6666DA786F25B8C0B8198BF54FD83D87BB8A545AA11E72",
+          "certpath": "D:/BrowsingDownLoad/ProjectOne.cer",
+          "keyAlias": "ProjectOne",
+          "keyPassword": "0000001A373F8EDBA735F0362FF5F9F43AD44332E06B976C261F099FF54F90A92ABE00A503A293A305D9",
+          "profile": "D:/BrowsingDownLoad/ProjectOneProfileDebug.p7b",
+          "signAlg": "SHA256withECDSA",
+          "storeFile": "D:/Huawei/realphone/.p12"
+        }
       }
     ]
   },
   "modules": [
     {
-      "name": "entry",
-      "srcPath": "./entry",
+      "name": "default",
+      "srcPath": "./products/default",
       "targets": [
         {
           "name": "default",
@@ -36,6 +44,26 @@
           ]
         }
       ]
+    },
+    {
+      "name": "Travel",
+      "srcPath": "./features/Travel"
+    },
+    {
+      "name": "utils",
+      "srcPath": "./commons/utils"
+    },
+    {
+      "name": "uicomponents",
+      "srcPath": "./commons/uicomponents"
+    },
+    {
+      "name": "Login",
+      "srcPath": "./features/Login",
+    },
+    {
+      "name": "Culture",
+      "srcPath": "./features/Culture",
     }
   ]
 }

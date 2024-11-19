@@ -1,0 +1,36 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+     "value": "HMOS Basic"
+    },
+    {
+      "name": "tab_travel",
+      "value": "Travel"
+    },
+    {
+      "name": "tab_culture",
+      "value": "Culture"
+    },
+    {
+      "name": "tab_mine",
+      "value": "Mine"
+    },
+    {
+      "name": "tab_route",
+      "value": "行程"
+    },
+    {
+      "name": "tab_AI",
+      "value": "AI"
+    }
+  ]
+}

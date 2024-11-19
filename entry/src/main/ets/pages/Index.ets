@@ -18,6 +18,7 @@ struct Index {
           .textAlign(TextAlign.Center)
           .fontSize($r('app.float.body_font_size'))
           .margin({ bottom: 5 })
+
       }
       .width('100%')
     }

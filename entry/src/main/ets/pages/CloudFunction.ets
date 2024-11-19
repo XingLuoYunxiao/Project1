@@ -1,6 +1,7 @@
 import { cloudFunction } from '@kit.CloudFoundationKit';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
+import cloud from '@hw-agconnect/cloud'
 
 interface IdGeneratorResponse {
   uuid: string
@@ -10,6 +11,7 @@ interface IdGeneratorResponse {
 @Component
 struct CloudFunction {
   @State globalId: string = '';
+  @State message:string = '';
 
   build() {
     Column() {
@@ -19,6 +21,18 @@ struct CloudFunction {
         .width('100%')
         .margin({ bottom: 10 })
         .titleMode(NavigationTitleMode.Mini)
+
+      Column(){
+        Button("调用test云函数").onClick( async()=>{
+          const result =  await cloud.callFunction({
+            name:'test', // 云函数名称
+            version:"$latest", // 云函数版本，$latest表示为最新版
+            params:{request:"你好"} // 传递参数
+          })
+          this.message =result.getValue().message
+        })
+        Text(this.message)
+      }.width(200).height(100)
 
       Text($r('app.string.cloud_function_description'))
         .width('90%')
@@ -39,7 +53,8 @@ struct CloudFunction {
       })
 
       Column() {
-        Text(this.globalId).fontSize($r('app.float.body_font_size'))
+        //Text(this.globalId).fontSize($r('app.float.body_font_size'))
+        Text(this.message).fontSize($r('app.float.body_font_size'))
       }
       .width('90%')
       .padding({ top: 20, bottom: 20 })
@@ -48,9 +63,17 @@ struct CloudFunction {
     }.height('100%')
   }
 
-  private callIdGenerator() {
-    cloudFunction.call({ name: 'id-generator' }).then((res: cloudFunction.FunctionResult) => {
-      this.globalId = (res.result as IdGeneratorResponse).uuid;
+// <<<<<<< HEAD
+//   private callIdGenerator() {
+//     cloudFunction.call({ name: 'id-generator' }).then((res: cloudFunction.FunctionResult) => {
+//       this.globalId = (res.result as IdGeneratorResponse).uuid;
+// =======
+  //云函数调用
+   callIdGenerator() {
+    cloudFunction.call({ name: 'test', version: "$latest" }).then(async (res: cloudFunction.FunctionResult) => {
+      this.message = await res.result.toString()
+      //this.globalId = (res.result as IdGeneratorResponse).uuid;
+// >>>>>>> origin/main
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'CloudFunction', 'call id-generator exception, ErrCode: %{public}d ErrMessage: %{public}s',
         err.code, err.message);
