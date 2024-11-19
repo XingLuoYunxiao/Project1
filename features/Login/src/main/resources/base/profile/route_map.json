@@ -1,0 +1,55 @@
+{
+  "routerMap": [
+    {
+      "name": "LoginPage",
+      "pageSourceFile": "src/main/ets/pages/LoginPage.ets",
+      "buildFunction": "LoginPageBuilder"
+    },
+    {
+      "name": "CusServicePage",
+      "pageSourceFile": "src/main/ets/pages/CusServicePage.ets",
+      "buildFunction": "CusServicePageBuilder"
+    },
+    {
+      "name": "SettingPage",
+      "pageSourceFile": "src/main/ets/pages/SettingPage.ets",
+      "buildFunction": "SettingPageBuilder"
+    },
+    {
+      "name": "CollectionPage",
+      "pageSourceFile": "src/main/ets/pages/CollectionPage.ets",
+      "buildFunction": "CollectionPageBuilder"
+    },
+    {
+      "name": "BrowsHistoryPage",
+      "pageSourceFile": "src/main/ets/pages/BrowsHistoryPage.ets",
+      "buildFunction": "BrowsHistoryPageBuilder"
+    },
+    {
+      "name": "MyOrderPage",
+      "pageSourceFile": "src/main/ets/pages/MyOrderPage.ets",
+      "buildFunction": "MyOrderPageBuilder"
+
+    },
+    {
+      "name": "AdvicePage",
+      "pageSourceFile": "src/main/ets/pages/AdvicePage.ets",
+      "buildFunction": "AdvicePageBuilder"
+    },
+    {
+      "name": "PrivacyPage",
+      "pageSourceFile": "src/main/ets/pages/PrivacyPage.ets",
+      "buildFunction": "PrivacyPageBuilder"
+    },
+    {
+      "name": "ChangePhoto",
+      "pageSourceFile": "src/main/ets/pages/ChangePhoto.ets",
+      "buildFunction": "ChangePhotoBuilder"
+    },
+    {
+      "name": "KnowledgePage",
+      "pageSourceFile": "src/main/ets/pages/KnowledgePage.ets",
+      "buildFunction": "KnowledgePageBuilder"
+    }
+  ]
+}

@@ -3,6 +3,8 @@ import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit'
 import { buffer } from '@kit.ArkTS';
+import auth from '@hw-agconnect/auth';
+
 import { initialize } from '@hw-agconnect/hmcore';
 
 const TAG: string = 'EntryAbility';
@@ -10,6 +12,10 @@ const domain = 0x0011;//定位模块
 
 export default class EntryAbility extends UIAbility {
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
+    this.initAgc()
+    let file = this.context.resourceManager.getRawFileContentSync('agconnect-services.json');
+    let json:string = buffer.from(file.buffer).toString();
+    auth.init(this.context,json);
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     this.initAgc()
     let atManager = abilityAccessCtrl.createAtManager();

@@ -1,6 +1,7 @@
 import { abilityAccessCtrl, AbilityConstant, PermissionRequestResult, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
+
 import { buffer } from '@kit.ArkTS';
 import { initialize } from "@hw-agconnect/hmcore"
 
@@ -20,12 +21,12 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
 
   }
-
   async initAgc() {
     const value = await this.context.resourceManager.getRawFileContent('agconnect-services.json');
     let json: string = buffer.from(value).toString('utf8');
     console.log('json testTag: ' + json)
     initialize(this.context, JSON.parse(json));
+
   }
 
   onDestroy(): void {

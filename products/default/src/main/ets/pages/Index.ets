@@ -4,6 +4,7 @@ import { CulturalHeritageStartPage } from 'culture';
 import { TabBarType } from '../model/TabBarModel';
 import { CustomTabBar } from '../components/CustomTabBar';
 import { AppConstants } from '../constants/AppConstants';
+import auth from '@hw-agconnect/auth';
 import { LocationUtil } from 'utils';
 
 @Entry
@@ -13,6 +14,7 @@ struct Index {
   @StorageLink('isHideBar') isHideBar: boolean = false;
   @Provide('travelPathStack') travelPathStack: NavPathStack = new NavPathStack();
   @Provide('appPathStack') appPathStack: NavPathStack = new NavPathStack();
+  @Provide('loginPathStack') loginPathStack: NavPathStack = new NavPathStack();
   private tabsController: TabsController = new TabsController();
 
   async aboutToAppear(): Promise<void> {
@@ -97,6 +99,5 @@ struct Index {
     }
     .hideTitleBar(true)
     .mode(NavigationMode.Stack)
-
   }
 }

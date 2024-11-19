@@ -29,9 +29,9 @@
         }
       }
     ],
-    "buildModeSet": [
+    "buildModeSet": [////
       {
-        "name": "debug",
+        "name": "debug"
       },
       {
         "name": "release"

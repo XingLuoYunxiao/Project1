@@ -3,7 +3,6 @@ import { BusinessError } from '@kit.BasicServicesKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import cloud from '@hw-agconnect/cloud'
 
-
 interface IdGeneratorResponse {
   uuid: string
 }
@@ -35,8 +34,6 @@ struct CloudFunction {
         Text(this.message)
       }.width(200).height(100)
 
-
-
       Text($r('app.string.cloud_function_description'))
         .width('90%')
         .textAlign(TextAlign.Center)
@@ -66,11 +63,17 @@ struct CloudFunction {
     }.height('100%')
   }
 
+// <<<<<<< HEAD
+//   private callIdGenerator() {
+//     cloudFunction.call({ name: 'id-generator' }).then((res: cloudFunction.FunctionResult) => {
+//       this.globalId = (res.result as IdGeneratorResponse).uuid;
+// =======
   //云函数调用
    callIdGenerator() {
     cloudFunction.call({ name: 'test', version: "$latest" }).then(async (res: cloudFunction.FunctionResult) => {
       this.message = await res.result.toString()
       //this.globalId = (res.result as IdGeneratorResponse).uuid;
+// >>>>>>> origin/main
     }).catch((err: BusinessError) => {
       hilog.error(0x0000, 'CloudFunction', 'call id-generator exception, ErrCode: %{public}d ErrMessage: %{public}s',
         err.code, err.message);

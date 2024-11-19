@@ -104,8 +104,6 @@ export struct FamousPlacePage {
         }.tabBar('自由行')
 
       }
-
-
     }
     .backgroundColor($r('app.color.app_background_color'))
     .hideTitleBar(true)

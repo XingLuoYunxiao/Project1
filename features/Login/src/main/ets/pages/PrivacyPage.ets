@@ -1,6 +1,10 @@
+@Builder
+export function PrivacyPageBuilder() {
+  PrivacyPage()
+}
 @Component
 export struct PrivacyPage {
-  @Consume ('loginPathStack') loginPathStack: NavPathStack;
+  @Consume('appPathStack') appPathStack: NavPathStack
 
   build() {
     NavDestination(){
@@ -59,6 +63,5 @@ export struct PrivacyPage {
       }
       .width('100%')
     }
-
   }
 }

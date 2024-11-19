@@ -45,5 +45,9 @@
       "name": "fuzzy_location_permission",
       "value": "允许应用获取设备模糊位置信息"
     }
+  ,{
+      "name": "reason",
+      "value": "save"
+    }
   ]
 }

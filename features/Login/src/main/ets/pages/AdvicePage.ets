@@ -1,8 +1,11 @@
 const sensitive:string[]=['卧槽','我操','滚','傻']
-
+@Builder
+export function AdvicePageBuilder() {
+  AdvicePage()
+}
 @Component
 export struct AdvicePage {
-  @Consume ('loginPathStack') loginPathStack: NavPathStack
+  @Consume('appPathStack') appPathStack: NavPathStack
   @State content:string=''
   @State wordcount:number=0
   controller: TextAreaController = new TextAreaController()
@@ -11,7 +14,7 @@ export struct AdvicePage {
         Column() {
           Row(){
             Image($r('app.media.ic_back')).width(30).onClick(()=>{
-              this.loginPathStack.pop()
+              this.appPathStack.pop()
             })
             Text('反馈')
           }.width('100%')
@@ -72,6 +75,7 @@ export struct AdvicePage {
         }
         .margin({top:10,left:10,right:10})
         .width('100%')
-      }.hideTitleBar(true)
+      }
+      .hideTitleBar(true)
   }
 }
