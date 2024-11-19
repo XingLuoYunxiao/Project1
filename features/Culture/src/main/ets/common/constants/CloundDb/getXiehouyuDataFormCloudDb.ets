@@ -1,7 +1,7 @@
 import { cloudDatabase } from "@kit.CloudFoundationKit";
 import { Idiom } from "../../../model/Idiom/Idiom";
 import { BusinessError } from "@kit.BasicServicesKit";
-import Logger from "@ohos/Utils/src/main/ets/utils/Logger"
+import Logger from "utils/src/main/ets/utils/Logger"
 import { Xiehouyu } from "../../../model/Xiehouyu";
 
 // 从云数据库获取成语

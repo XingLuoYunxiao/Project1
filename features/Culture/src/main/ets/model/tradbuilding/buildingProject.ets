@@ -1,5 +1,5 @@
-import { IChat } from "@ohos/Uicomponents";
-import { IBaseProject } from "@ohos/Uicomponents/src/main/ets/model/IBaseProject";
+import { IChat } from "uicomponents";
+import { IBaseProject } from "uicomponents/src/main/ets/model/IBaseProject";
 import { BuildingChat } from "./BuildingChat";
 import { buildingList, TraditionalBuilding } from "./Buildings";
 
