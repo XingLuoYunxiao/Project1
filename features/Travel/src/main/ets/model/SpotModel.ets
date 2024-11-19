@@ -2,7 +2,7 @@ import cloud, { Database } from "@hw-agconnect/cloud";
 import { mySpot } from "./mySpot";
 import  theSpot  from '../../resources/rawfile/ProjectOne_28_cn.json';
 import { Spot } from "./Spot";
-import Logger from "@ohos/Utils/src/main/ets/utils/Logger";
+import Logger from "utils/src/main/ets/utils/Logger";
 
 const TAG = '[SpotModel]';
 

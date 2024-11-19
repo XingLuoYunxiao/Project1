@@ -16,11 +16,6 @@
       "buildFunction": "SpotDetailPageBuilder"
     },
     {
-      "name": "MapDemo",
-      "pageSourceFile": "src/main/ets/pages/MapDemo.ets",
-      "buildFunction": "MapDemoBuilder"
-    },
-    {
       "name": "AttractionTicketPage",
       "pageSourceFile": "src/main/ets/pages/AttractionTicketPage.ets",
       "buildFunction": "AttractionTicketPageBuilder"

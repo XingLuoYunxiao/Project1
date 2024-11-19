@@ -1,8 +1,7 @@
-import { IBaseProject, IChat } from "@ohos/Uicomponents";
-import { Location } from "@ohos/Utils";
+import { IBaseProject, IChat } from "uicomponents";
+import { Location } from "utils";
 import { ISpot } from "./ISpot";
 import { TravelChat } from "./TravelChat";
-import { BusinessError } from "@kit.BasicServicesKit";
 
 
 @Observed

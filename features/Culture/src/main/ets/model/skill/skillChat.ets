@@ -1,5 +1,5 @@
 
-import { IChat, Info } from "@ohos/Uicomponents";
+import { IChat, Info } from "uicomponents";
 
 
 export class SkillChat extends IChat {

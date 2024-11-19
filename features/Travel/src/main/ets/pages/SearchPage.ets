@@ -1,4 +1,4 @@
-import { PreferenceUtil } from '@ohos/Utils'
+import { PreferenceUtil } from 'utils'
 import Constants from '../constants/Constants'
 import { SpotNetFunc } from '../service/SpotNetFunc'
 
@@ -129,7 +129,7 @@ struct SearchPage {
                   .onClick( () => {
                     this.searchText = item
                     this.SpotNetWork.search(this.searchText);
-                    this.appPathStack.replacePathByName('AttractionTicketPage', true)
+                    this.appPathStack.replacePathByName('AttractionTicketPage', "")
                   })
               })
             }

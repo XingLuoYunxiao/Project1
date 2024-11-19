@@ -1,4 +1,4 @@
-import { Location } from '@ohos/Utils'
+import { Location } from 'utils'
 import { ISpot } from './ISpot'
 
 class InnerSpot implements ISpot {

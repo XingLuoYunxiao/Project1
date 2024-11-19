@@ -6,7 +6,7 @@ import { mySpot } from '../model/mySpot';
 import  theSpot  from '../../resources/rawfile/ProjectOne_28_cn.json';
 import { Spot } from '../model/Spot';
 import { SpotNetFunc } from '../service/SpotNetFunc';
-import { LoadingStatus } from '@ohos/Utils';
+import { LoadingStatus } from 'utils';
 
 
 @Component

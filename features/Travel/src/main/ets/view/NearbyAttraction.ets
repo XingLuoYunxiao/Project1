@@ -1,5 +1,5 @@
-import { LoadingStatus, LocationUtil } from "@ohos/Utils"
-import Logger from "@ohos/Utils/src/main/ets/utils/Logger"
+import { LoadingStatus, LocationUtil } from "utils"
+import Logger from "utils/src/main/ets/utils/Logger"
 import Constants from "../constants/Constants"
 import { Spot } from "../model/Spot"
 import { SpotNetFunc } from "../service/SpotNetFunc"

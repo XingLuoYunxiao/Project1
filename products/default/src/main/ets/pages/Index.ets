@@ -1,10 +1,10 @@
-import { TravelStartPage } from '@ohos/Travel';
-import { InfoMessagePage } from '@ohos/Login';
-import { CulturalHeritageStartPage } from '@ohos/Culture';
+import { TravelStartPage } from 'travel';
+import { InfoMessagePage } from 'login';
+import { CulturalHeritageStartPage } from 'culture';
 import { TabBarType } from '../model/TabBarModel';
 import { CustomTabBar } from '../components/CustomTabBar';
 import { AppConstants } from '../constants/AppConstants';
-import { LocationUtil } from '@ohos/Utils';
+import { LocationUtil } from 'utils';
 
 @Entry
 @Component

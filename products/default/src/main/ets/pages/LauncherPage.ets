@@ -1,9 +1,9 @@
 import { router } from '@kit.ArkUI'
-import { CustomDialogComponent } from '@ohos/Login'
+import { CustomDialogComponent } from 'login'
 import { common } from '@kit.AbilityKit'
-import { PreferenceUtil  as preferenceUtil } from '@ohos/Utils'
+import { PreferenceUtil  as preferenceUtil } from 'utils'
 import { BusinessError } from '@kit.BasicServicesKit'
-import Logger from '@ohos/Utils/src/main/ets/utils/Logger'
+import Logger from 'utils/src/main/ets/utils/Logger'
 
 const PREF_KEY = 'GuYunUserKey'
 const TAG: string = '[LauncherPage]';

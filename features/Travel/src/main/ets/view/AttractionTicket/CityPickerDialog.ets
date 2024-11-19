@@ -1,4 +1,5 @@
-import { City } from "../../service/CategoryData";
+import { LocationUtil } from "utils";
+import { cities, City, CityTab, cityTabs } from "../../service/CategoryData";
 
 
 @CustomDialog
@@ -7,38 +8,97 @@ export struct CityPickerDialog {
   confirm: (city: City) => void = () => {};
   update: () => void = () => {};
   cancel: () => void = () => {};
+  @State locationUtil: LocationUtil = LocationUtil.getInstance()
 
-  private cities: City[] = [
-    { cityName: '所有', cityId: '0' },
-    { cityName: '北京', cityId: '2' },
-    { cityName: '上海', cityId: '1' },
-    { cityName: '广州', cityId: '3' },
-    { cityName: '深圳', cityId: '4' }
-  ];
 
   build() {
     Column() {
       Text('选择城市')
-        .fontSize(20)
+        .fontSize(24)
         .margin({ top: 20, bottom: 20 })
 
-      List() {
-        ForEach(this.cities, (city: City) => {
-          ListItem() {
-            Text(city.cityName)
-              .fontSize(16)
-              .padding(16)
-              .width('100%')
-              .onClick(() => {
-                this.confirm(city);
-                this.update();
-                this.controller.close();
-              })
+      Tabs() {
+        ForEach(cityTabs, (item: CityTab) => {
+          TabContent() {
+            Column(){
+              if (item.title === cityTabs[0].title) {
+                Column() {
+                  Text('定位/位置')
+                    .fontSize(22)
+                    .margin({ top: 10, bottom: 10 })
+                  if (this.locationUtil.currentCityName !== undefined) {
+                    Text(this.locationUtil.currentCityName)
+                      .fontSize(20)
+                      .margin({ top: 10, bottom: 10 })
+                      .width('25%')
+                      .height(60)
+                      .border({ width: 0.5, color: Color.Green })
+                      .borderRadius(8)
+                      .textAlign(TextAlign.Center)
+                      .onClick(() => {
+                        this.confirm(cities.find(city => this.locationUtil.currentCityName?.includes(city.cityName))!);
+                        this.update();
+                        this.controller.close();
+                      })
+                  } else {
+                    Row() {
+                      Image($r('app.media.refresh_icon'))
+                        .fillColor(Color.Green)
+                        .width(24)
+                        .width(24)
+                        .padding({ right: 4 })
+                      Text('获取定位')
+                        .fontColor(Color.Green)
+                        .fontSize(20)
+                        .textAlign(TextAlign.Center)
+                    }
+                    .width('25%')
+                    .height(60)
+                    .border({ width: 0.5, color: Color.Green })
+                    .borderRadius(8)
+                    .onClick(() => {
+                      this.locationUtil.getCurrentLocation()
+                    })
+                    .justifyContent(FlexAlign.Center)
+
+                  }
+
+                }
+                .alignItems(HorizontalAlign.Start)
+                .justifyContent(FlexAlign.Start)
+                .width('100%')
+              }
+              Grid() {
+                ForEach(item.cityList, (city: City) => {
+                  GridItem() {
+                    Text(city.cityName)
+                      .fontSize(20)
+                      .textAlign(TextAlign.Center)
+                      .onClick(() => {
+                        this.confirm(city);
+                        this.update();
+                        this.controller.close();
+                      })
+                  }
+                  .border({ width: 0.5, color: Color.Gray })
+                  .borderRadius(8)
+                  .width('100%')
+                  .height(60)
+                })
+              }
+              .columnsTemplate('1fr 1fr 1fr 1fr')
+              .rowsTemplate('repeat(auto-fit, 60)')
+              .rowsGap(8)
+              .columnsGap(8)
+            }
           }
-          .width('100%')
+          .tabBar(item.title)
         })
       }
-      .width('100%')
+      .barMode(BarMode.Fixed)
+      .barWidth(100)
+      .vertical(true)
+
 
       Button('取消')
         .onClick(() => {
@@ -49,7 +109,7 @@ export struct CityPickerDialog {
         .backgroundColor(Color.Orange)
 
     }
-    .width('80%')
+    .width('100%')
     .borderRadius(12)
   }
 }

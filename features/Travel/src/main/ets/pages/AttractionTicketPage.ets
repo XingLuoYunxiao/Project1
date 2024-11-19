@@ -5,9 +5,9 @@ import { CategoryDialog } from '../view/AttractionTicket/CategoryDialog';
 import { CityPickerDialog } from '../view/AttractionTicket/CityPickerDialog';
 import { Spot } from '../model/Spot';
 import { SpotNetFunc } from '../service/SpotNetFunc';
-import { LoadingStatus } from '@ohos/Utils/src/main/ets/common/CommonUtil';
+import { LoadingStatus } from 'utils/src/main/ets/common/CommonUtil';
 
-
+//TODO 小bug，点太快进入该页面会获取不到数据
 @Component
 export default struct AttractionTicketPage {
   @Consume('appPathStack') appPathStack: NavPathStack
@@ -21,7 +21,8 @@ export default struct AttractionTicketPage {
 
   async aboutToAppear(): Promise<void> {
     let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
-    //this.currentCategory[0] = category
+    if( category !== "")
+      this.currentCategory[0] = category
     this.spotNetWork.loadSpotsData()
     this.currentAttractions = this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
   }
@@ -40,7 +41,8 @@ export default struct AttractionTicketPage {
       update: () => {this.updateAttractionsList()},
       cancel: () => {
       }
-    })
+    }),
+    width: 600
   });
 
   //分类选择器

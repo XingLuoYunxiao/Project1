@@ -1,8 +1,8 @@
 import { Location, Spot } from "../model/Spot";
 import { BusinessError } from "@kit.BasicServicesKit";
-import { LazyDataSource, LoadingStatus, LocationUtil, PreferenceUtil } from "@ohos/Utils";
+import { LazyDataSource, LoadingStatus, LocationUtil, PreferenceUtil } from "utils";
 import { City } from "./CategoryData";
-import Logger from "@ohos/Utils/src/main/ets/utils/Logger";
+import Logger from "utils/src/main/ets/utils/Logger";
 import { SpotModel } from "../model/SpotModel";
 import { classificationList } from "./ClassficationData";
 
@@ -165,8 +165,9 @@ export class SpotNetFunc{
 
     // Filter by city first
     if (currentCity.cityName !== '所有') {
+      currentAttractions = this.spots
       currentAttractions = currentAttractions.filter(spot =>
-      spot.cityName === currentCity.cityName
+      spot.cityCode === currentCity.cityCode
       );
     }
 

@@ -14,6 +14,7 @@ export class LocationUtil {
   private static instance: LocationUtil = new LocationUtil();
   //当前用户位置
   currentLocation: Location | undefined = undefined
+  currentCityName: string | undefined = undefined
 
   //单次定位功能
   private requestOnceSpeed: geoLocationManager.SingleLocationRequest = {
@@ -107,6 +108,7 @@ export class LocationUtil {
       await this.getCurrentLocation()
     return new Promise(async ( resolve, reject) => {
       let address:string = await this.getAddress(this.currentLocation!)
+      this.currentCityName = address
       if( address !== '未获取到地址'){
         Logger.info(Tag, 'getCityName', '获取到地址', address)
         resolve(address)

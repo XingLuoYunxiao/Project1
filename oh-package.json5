@@ -8,7 +8,9 @@
     "long": "5.2.1",
     "@luvi/lv-markdown-in": "^2.0.9",
     "@xsqd/component": "^1.1.0",
-    "@ohos/axios": "^2.2.4"
+    "@ohos/axios": "^2.2.4",
+    "@amap/amap_lbs_common": ">=1.1.0",
+    "@amap/amap_lbs_map3d": ">=2.1.0"
   },
   "devDependencies": {
     "@ohos/hypium": "1.0.19",

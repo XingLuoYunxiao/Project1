@@ -1,10 +1,9 @@
-import { LazyDataSource } from "@ohos/Utils";
+import "map/src/main/ets/pages/MapViewPage";
+import { LazyDataSource } from "utils";
 import Constants from "../constants/Constants";
 import { otherItemList } from "../model/Attraction";
 import { Spot } from "../model/Spot";
-import { SpotDataSource } from "../model/SpotDataSource";
 import { SpotNetFunc } from "../service/SpotNetFunc";
-
 //评分数组，最高10分
 const scoreList: number[] = [9.7, 10.0, 8.8, 9.5, 9.2, 9.9, 9.0];
 
@@ -19,7 +18,6 @@ export struct FamousPlacePage {
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance();
-  //@Link searchText: string;
   @State category: string = "";
   @State spotDataSource: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource
   scroller: Scroller = new Scroller()
@@ -49,7 +47,7 @@ export struct FamousPlacePage {
           .width(30)
           .height(30)
           .onClick( () => {
-            this.travelPathStack.pop();
+            this.appPathStack.pop();
           })
         Search({placeholder:"搜索想要去的景点"})
           .height(30)
@@ -100,7 +98,7 @@ export struct FamousPlacePage {
         }.tabBar('推荐')
         TabContent(){
 
-        }.tabBar('跟团')
+        }.tabBar('地图')
         TabContent(){
 
         }.tabBar('自由行')
@@ -173,6 +171,27 @@ export struct FamousPlacePage {
           }
           .alignItems(HorizontalAlign.Start)
           Column(){
+            Button('地图服务')
+              .type(ButtonType.Capsule)
+              .fontSize(16)
+              .backgroundColor(Color.Orange)
+              .fontColor(Color.White)
+              .onClick(() => { // 点击跳转到其他共享包中的页面
+                try {
+                  this.getUIContext().getRouter().pushNamedRoute({
+                    name: 'mapView',
+                    params: {
+                      data1: 'message',
+                      data2: {
+                        data3: [123, 456, 789]
+                      }
+                    }
+                  })
+                } catch (e) {
+                  console.log("mapTestTag ", e)
+                }
+              })
+              .margin({right:10})
             Button('AI导游')
               .type(ButtonType.Capsule)
               .fontSize(16)
