@@ -31,7 +31,7 @@ export struct InfoMessagePage {
   }
 
       build() {
-        Navigation(this.appPathStack) {
+        Navigation(this.loginPathStack) {
           Column({ space: 10 }) {
             //登录
             Row({ space: 10 }) {
