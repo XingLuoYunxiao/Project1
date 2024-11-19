@@ -1,9 +1,11 @@
-import { TravelStartPage } from '@ohos/Travel';
-import { InfoMessagePage } from '@ohos/Login';
-import { CulturalHeritageStartPage } from '@ohos/Culture';
+import { TravelStartPage } from 'travel';
+import { InfoMessagePage } from 'login';
+import { CulturalHeritageStartPage } from 'culture';
 import { TabBarType } from '../model/TabBarModel';
 import { CustomTabBar } from '../components/CustomTabBar';
 import { AppConstants } from '../constants/AppConstants';
+import auth from '@hw-agconnect/auth';
+import { LocationUtil } from 'utils';
 
 @Entry
 @Component
@@ -12,9 +14,11 @@ struct Index {
   @StorageLink('isHideBar') isHideBar: boolean = false;
   @Provide('travelPathStack') travelPathStack: NavPathStack = new NavPathStack();
   @Provide('appPathStack') appPathStack: NavPathStack = new NavPathStack();
+  @Provide('loginPathStack') loginPathStack: NavPathStack = new NavPathStack();
   private tabsController: TabsController = new TabsController();
 
-  aboutToAppear(): void {
+  async aboutToAppear(): Promise<void> {
+    await LocationUtil.getInstance().getCurrentLocation()
     AppStorage.setOrCreate('isHideBar', false);
   }
 
@@ -95,6 +99,5 @@ struct Index {
     }
     .hideTitleBar(true)
     .mode(NavigationMode.Stack)
-
   }
 }

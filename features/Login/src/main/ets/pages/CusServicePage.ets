@@ -1,5 +1,7 @@
-import { inputMethod } from '@kit.IMEKit'
-
+@Builder
+export function CusServicePageBuilder() {
+  CusServicePage()
+}
 const question:string[]=['如何退款','在哪里领取优惠券','大唐芙蓉园什么时间段可以预约','查看更多']
 @Preview
 @Component
@@ -7,7 +9,7 @@ const question:string[]=['如何退款','在哪里领取优惠券','大唐芙蓉
 export struct CusServicePage {
   @State curtalk:string=''
   @State QuesItemList:string[] = []
-  @Consume ('loginPathStack') loginPathStack: NavPathStack
+  @Consume('appPathStack') appPathStack: NavPathStack
   wordLibrary: Set<string> = new Set(['退款', '预约', '优惠券']);
   answers:Set<string> = new Set(['好的,已帮您退款', '预约', '优惠券在首页右上角']);
   checkSentence(sentence: string): string {
@@ -29,7 +31,7 @@ export struct CusServicePage {
     Column(){
       Row(){
         Image($r('app.media.ic_back')).width(30).onClick(()=>{
-          this.loginPathStack.pop()
+          this.appPathStack.pop()
         })
         Image($r('app.media.miaosha')).width(50)
         Column(){

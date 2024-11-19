@@ -1,1 +1,138 @@
-{"schemaVersion":5,"permissions":[{"permissions":[{"role":"World","rights":["Read"]},{"role":"Authenticated","rights":["Read","Upsert"]},{"role":"Creator","rights":["Read","Upsert","Delete"]},{"role":"Administrator","rights":["Read","Upsert","Delete"]}],"objectTypeName":"t_content"},{"permissions":[{"role":"World","rights":["Read"]},{"role":"Authenticated","rights":["Read"]},{"role":"Creator","rights":["Read","Upsert","Delete"]},{"role":"Administrator","rights":["Read","Upsert","Delete"]}],"objectTypeName":"t_test"}],"objectTypes":[{"indexes":[{"indexName":"id","indexList":[{"fieldName":"id","sortType":"ASC"}]}],"objectTypeName":"t_content","fields":[{"isNeedEncrypt":false,"fieldName":"id","notNull":true,"isSensitive":false,"belongPrimaryKey":true,"fieldType":"IntAutoIncrement"},{"isNeedEncrypt":false,"fieldName":"title","notNull":false,"isSensitive":false,"belongPrimaryKey":false,"fieldType":"String"}]},{"indexes":[{"indexName":"id","indexList":[{"fieldName":"id","sortType":"ASC"}]}],"objectTypeName":"t_test","fields":[{"isNeedEncrypt":false,"fieldName":"id","notNull":true,"isSensitive":false,"belongPrimaryKey":true,"fieldType":"IntAutoIncrement"},{"isNeedEncrypt":false,"fieldName":"name","notNull":false,"isSensitive":false,"belongPrimaryKey":false,"fieldType":"String"}]}]}
+{
+  "schemaVersion": 5,
+  "permissions": [
+    {
+      "permissions": [
+        {
+          "role": "World",
+          "rights": [
+            "Read"
+          ]
+        },
+        {
+          "role": "Authenticated",
+          "rights": [
+            "Read",
+            "Upsert"
+          ]
+        },
+        {
+          "role": "Creator",
+          "rights": [
+            "Read",
+            "Upsert",
+            "Delete"
+          ]
+        },
+        {
+          "role": "Administrator",
+          "rights": [
+            "Read",
+            "Upsert",
+            "Delete"
+          ]
+        }
+      ],
+      "objectTypeName": "t_content"
+    },
+    {
+      "permissions": [
+        {
+          "role": "World",
+          "rights": [
+            "Read"
+          ]
+        },
+        {
+          "role": "Authenticated",
+          "rights": [
+            "Read"
+          ]
+        },
+        {
+          "role": "Creator",
+          "rights": [
+            "Read",
+            "Upsert",
+            "Delete"
+          ]
+        },
+        {
+          "role": "Administrator",
+          "rights": [
+            "Read",
+            "Upsert",
+            "Delete"
+          ]
+        }
+      ],
+      "objectTypeName": "t_test"
+    }
+  ],
+  "objectTypes": [
+    {
+      "indexes": [
+        {
+          "indexName": "id",
+          "indexList": [
+            {
+              "fieldName": "id",
+              "sortType": "ASC"
+            }
+          ]
+        }
+      ],
+      "objectTypeName": "t_content",
+      "fields": [
+        {
+          "isNeedEncrypt": false,
+          "fieldName": "id",
+          "notNull": true,
+          "isSensitive": false,
+          "belongPrimaryKey": true,
+          "fieldType": "IntAutoIncrement"
+        },
+        {
+          "isNeedEncrypt": false,
+          "fieldName": "title",
+          "notNull": false,
+          "isSensitive": false,
+          "belongPrimaryKey": false,
+          "fieldType": "String"
+        }
+      ]
+    },
+    {
+      "indexes": [
+        {
+          "indexName": "id",
+          "indexList": [
+            {
+              "fieldName": "id",
+              "sortType": "ASC"
+            }
+          ]
+        }
+      ],
+      "objectTypeName": "t_test",
+      "fields": [
+        {
+          "isNeedEncrypt": false,
+          "fieldName": "id",
+          "notNull": true,
+          "isSensitive": false,
+          "belongPrimaryKey": true,
+          "fieldType": "IntAutoIncrement"
+        },
+        {
+          "isNeedEncrypt": false,
+          "fieldName": "name",
+          "notNull": false,
+          "isSensitive": false,
+          "belongPrimaryKey": false,
+          "fieldType": "String"
+        }
+      ]
+    }
+  ]
+}

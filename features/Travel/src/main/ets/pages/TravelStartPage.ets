@@ -1,22 +1,44 @@
-import { Attraction } from '../model/Attraction'
 import { Classification } from '../view/Classficiation';
 import { NearbyAttraction } from '../view/NearbyAttraction';
 import { SearchHeader } from '../view/SearchHeader';
-
-
-export const attractions: Attraction[] = [
-  new Attraction(1, "长城", $r("app.media.changcheng")),
-  new Attraction(2, "故宫", $r("app.media.gugong")),
-  new Attraction(3, "大唐不夜城", $r("app.media.datangbuyecheng")),
-
-]
+import cloud, { Database } from '@hw-agconnect/cloud';
+import { mySpot } from '../model/mySpot';
+import  theSpot  from '../../resources/rawfile/ProjectOne_28_cn.json';
+import { Spot } from '../model/Spot';
+import { SpotNetFunc } from '../service/SpotNetFunc';
+import { LoadingStatus } from 'utils';
 
 
 @Component
 export struct TravelStartPage {
-
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
+  @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance()
+  @State loadAllState: string =LoadingStatus.OFF
+  @State spots: Spot[] = this.spotNetWork.spots
+  private database:Database |null= null
+
+  async aboutToAppear(): Promise<void> {
+    this.loadAllState = LoadingStatus.LOADING
+    this.spotNetWork.loadSpotsData().then(
+      () => {
+        this.loadAllState = LoadingStatus.SUCCESS
+      }
+    ).catch(()=>{
+      this.loadAllState = LoadingStatus.FAILED
+    })
+
+    // 初始化
+    this.database= cloud.database({
+      zoneName:'Travel',
+      objectTypeInfo: theSpot
+    })
+
+    let result: mySpot[] = await this.database.collection(mySpot).query().limit(3).get()
+    this.spots = result.map(item => new Spot(item.id, item.name, item.summary, item.category, item.rating,
+      {latitude: item.latitude, longitude: item.longitude  }, item.ticketPrice, item.openingHours, item.imageUrl, item.cityCode, item.cityId, item.cityName));
+
+  }
 
   build() {
     Navigation(this.travelPathStack){
@@ -26,7 +48,7 @@ export struct TravelStartPage {
 
         //轮播图
         Swiper() {
-          ForEach(attractions, ( item: Attraction) => {
+          ForEach(this.spots, ( item: Spot) => {
             ListItem(){
               this.AttractionItem(item)
             }
@@ -44,11 +66,13 @@ export struct TravelStartPage {
         Classification()
           .padding({top:10,bottom:10})
 
-
-        //附近景点
-        NearbyAttraction()
-          .width('100%')
-          .layoutWeight(1)
+        if( this.loadAllState === LoadingStatus.SUCCESS)
+        {
+          //附近景点
+          NearbyAttraction()
+            .width('100%')
+            .layoutWeight(1)
+        }
 
       }
       .width('95%')
@@ -75,18 +99,21 @@ export struct TravelStartPage {
   }*/
 
   @Builder
-  AttractionItem(attraction: Attraction){
+  AttractionItem(attraction: Spot){
     Stack() {
+      if( $r(`${attraction.image}`) !== undefined){
+        Image($r(`${attraction.image}`))
+          .width('100%')
+          .height(200)
+          .borderRadius(10)
 
-      Image(attraction.image)
-        .width('100%')
-        .height(200)
-        .borderRadius(10)
+      }
       Text(attraction.name)
         .fontSize(18)
         .padding({top:5})
         .padding(5)
         .fontColor(Color.White)
+
     }
     .align(Alignment.TopStart)
     //.alignItems(HorizontalAlign.Start)

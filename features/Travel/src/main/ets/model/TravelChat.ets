@@ -1,7 +1,7 @@
-import { IChat, Info } from '@ohos/Uicomponents'
+import { IChat, Info } from 'uicomponents'
 import { http } from '@kit.NetworkKit';
 import { util } from '@kit.ArkTS';
-import { StreamResponse2 } from '@ohos/Utils';
+import { StreamResponse2 } from 'utils';
 
 
 export class TravelChat extends IChat {

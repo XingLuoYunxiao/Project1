@@ -9,7 +9,7 @@
         "buildOption": {
           "strictMode": {
             "caseSensitiveCheck": true,
-            "useNormalizedOHMUrl": false
+            "useNormalizedOHMUrl": true
           }
         }
       }
@@ -70,6 +70,22 @@
     {
       "name": "Culture",
       "srcPath": "./features/Culture",
+    },
+    {
+      "name": "entry",
+      "srcPath": "./entry",
+      "targets": [
+        {
+          "name": "default",
+          "applyToProducts": [
+            "default"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Map",
+      "srcPath": "./features/Map",
     }
   ]
 }

@@ -1,7 +1,7 @@
 {
   "module": {
     "name": "entry",
-    "type": "entry",
+    "type": "feature",
     "description": "$string:module_desc",
     "mainElement": "EntryAbility",
     "deviceTypes": [

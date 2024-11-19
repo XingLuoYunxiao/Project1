@@ -1,5 +1,5 @@
+import { Location } from 'utils'
 import { ISpot } from './ISpot'
-import { Location } from './Spot'
 
 class InnerSpot implements ISpot {
   id: string
