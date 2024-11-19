@@ -1,5 +1,4 @@
 import lottie from '@ohos/lottie'
-import { LottieUtil } from '@ohos/utils';
 import { AchieveImage, ACHIEVE_IMAGE_LIST } from '../model/AchievementModel';
 import { UserModel } from '../model/UserModel';
 

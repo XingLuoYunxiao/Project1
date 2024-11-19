@@ -79,7 +79,7 @@ struct SearchPage {
               .onClick(() => {
                 //跳转到搜索结果页面
                 this.SpotNetWork.search(this.searchText)
-                this.appPathStack.pushPathByName('AttractionTicketPage', true)
+                this.appPathStack.pushPathByName('AttractionTicketPage', "")
               })
           }
           .borderRadius(Constants.BORDER_RADIUS_MD)

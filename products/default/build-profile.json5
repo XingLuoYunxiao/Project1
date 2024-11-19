@@ -6,9 +6,9 @@
         "sources": [
         ],
         "packages": [
-          "@ohos/travel",
-          "@ohos/Login",
-          "@ohos/culture"
+          "travel",
+          "login",
+          "culture"
           //
         ]
       }

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import { router } from '@kit.ArkUI';
 
 @Entry
@@ -52,25 +51,25 @@ struct Index {
     .width('100%')
     .padding(10)
     .backgroundColor($r('app.color.start_window_background'))
-=======
-@Entry
-@Component
-struct Index {
-  @State message: string = 'Hello World';
-
-  build() {
-    RelativeContainer() {
-      Text(this.message)
-        .id('HelloWorld')
-        .fontSize(50)
-        .fontWeight(FontWeight.Bold)
-        .alignRules({
-          center: { anchor: '__container__', align: VerticalAlign.Center },
-          middle: { anchor: '__container__', align: HorizontalAlign.Center }
-        })
-    }
-    .height('100%')
-    .width('100%')
->>>>>>> d7ef9ebdcd5b7c32d3714d427ffbf0b5d7520036
+// =======
+// @Entry
+// @Component
+// struct Index {
+//   @State message: string = 'Hello World';
+//
+//   build() {
+//     RelativeContainer() {
+//       Text(this.message)
+//         .id('HelloWorld')
+//         .fontSize(50)
+//         .fontWeight(FontWeight.Bold)
+//         .alignRules({
+//           center: { anchor: '__container__', align: VerticalAlign.Center },
+//           middle: { anchor: '__container__', align: HorizontalAlign.Center }
+//         })
+//     }
+//     .height('100%')
+//     .width('100%')
+// >>>>>>> d7ef9ebdcd5b7c32d3714d427ffbf0b5d7520036
   }
 }

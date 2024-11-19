@@ -1,9 +1,6 @@
 export { PreferenceUtil } from './src/main/ets/utils/PreferenceUtil'
 export { HttpGet, StreamResponse2} from './src/main/ets/utils/HttpGet'
-<<<<<<< HEAD
-export { LottieUtil } from './src/main/ets/utils/LottieUtil';
-=======
 export { LocationUtil, Location } from './src/main/ets/utils/LocationUtil'
 export { default as LazyDataSource } from './src/main/ets/utils/LazyDataSource';
 export { LoadingStatus } from './src/main/ets/common/CommonUtil'
->>>>>>> d7ef9ebdcd5b7c32d3714d427ffbf0b5d7520036
+
