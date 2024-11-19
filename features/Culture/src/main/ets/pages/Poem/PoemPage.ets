@@ -3,7 +3,7 @@ import { BasicDataSource } from '../../model/poetryModel/PoetryModel'; // 导入
 import { componentUtils, Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'; // 导入UI工具和筛选器相关模块
 import { dynastyList, poets, TypeList } from '../../common/constants/poemType'; // 导入诗词相关常量数据
 import { Poem } from '../../model/Poem'; // 导入诗歌模型类
-import { GetDataFormCloudDb } from '../../common/constants/CloundDb/getDataFormCloudDb'; // 导入云数据库数据获取模块
+import { GetPoemDataFormCloud } from '../../common/constants/CloundDb/getPoemDataFormCloudDb'; // 导入云数据库数据获取模块
 import { PoemDetailPage } from './PoemDetailPage'; // 导入诗词详情页
 
 @Component
@@ -31,7 +31,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
   // 生命周期方法：组件加载时调用，获取初始数据
   async aboutToAppear(): Promise<void> {
     // 从云数据库获取诗歌数据
-    let poems: Poem[] | undefined = await GetDataFormCloudDb.fetchAllData(this.pageNumber);
+    let poems: Poem[] | undefined = await GetPoemDataFormCloud.fetchAllData(this.pageNumber);
     if (poems) {
       poems.forEach(item => {
         PoemData.pushData(item); // 添加数据到PoemData
@@ -64,7 +64,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
           PoemData.notifyDataReload(); // 通知数据重载
           // 根据筛选条件从云数据库获取数据
           let res: Poem[] | undefined =
-            await GetDataFormCloudDb.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
+            await GetPoemDataFormCloud.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
           if (res) {
             res.forEach(poem => {
               PoemData.pushData(poem); // 添加数据到PoemData
@@ -72,9 +72,8 @@ export struct PoemPage { // 定义一个组件类PoemPage
             PoemData.notifyDataReload(); // 通知数据更新
           }
         }
-      })
-      {
-        Column(){
+      }) {
+        Column() {
           // 展示数据的列表组件
           List({ space: 10 }) {
             // 使用LazyForEach动态加载诗歌数据
@@ -102,7 +101,6 @@ export struct PoemPage { // 定义一个组件类PoemPage
         .width('100%')
       }
 
-
     }
     .width('100%'); // 设置宽度
   }
@@ -111,13 +109,13 @@ export struct PoemPage { // 定义一个组件类PoemPage
   @Builder
   PoemItem(poem: Poem) {
     Column({ space: 10 }) {
-      Text(poem.title) // 诗歌标题
+      Text(poem.title)// 诗歌标题
         .fontSize($r('app.float.normal_text_size1'));
-      Text(poem.writer) // 诗人
+      Text(poem.writer)// 诗人
         .fontSize($r('app.float.normal_text_size1'));
-      Text(poem.dynasty) // 朝代
+      Text(poem.dynasty)// 朝代
         .fontSize($r('app.float.normal_text_size1'));
-      Text(poem.content) // 诗歌内容
+      Text(poem.content)// 诗歌内容
         .fontSize($r('app.float.normal_text_size1'));
     }
     .borderRadius(25) // 圆角
@@ -129,7 +127,6 @@ export struct PoemPage { // 定义一个组件类PoemPage
       this.culturePathStack.pushPathByName("PoemDetailPage", poem); // 跳转到诗歌详情页
     });
   }
-
 }
 
 // 诗歌数据模型类，继承自BasicDataSource

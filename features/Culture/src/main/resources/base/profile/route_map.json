@@ -74,7 +74,16 @@
       "name": "PoemDetailPage",
       "pageSourceFile": "src/main/ets/pages/Poem/PoemDetailPage.ets",
       "buildFunction": "PoemDetailPageBuilder"
+    },
+    {
+      "name": "IdiomPage",
+      "pageSourceFile": "src/main/ets/pages/Idiom/IdiomPage.ets",
+      "buildFunction": "IdiomPageBuilder"
+    },
+    {
+      "name": "XiehouyuPage",
+      "pageSourceFile": "src/main/ets/pages/xiehouyu/XiehouyuPage.ets",
+      "buildFunction": "XiehouyuPageBuilder"
     }
-
   ]
 }

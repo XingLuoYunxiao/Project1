@@ -1,10 +1,10 @@
 import { cloudDatabase } from '@kit.CloudFoundationKit';
 import { Poem } from '../../../model/Poem';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { Writer} from '../../../model/Writer';
+import { Writer } from '../../../model/Writer';
 import { Sentence } from '../../../model/Sentence';
 
-export class GetDataFormCloudDb {
+export class GetPoemDataFormCloud {
   //不设置查询条件
   public static async fetchAllData(pageNumber: number = 1): Promise<Poem[] | undefined> {
     try {
@@ -69,6 +69,7 @@ export class GetDataFormCloudDb {
       return undefined; // 确保函数返回 undefined
     }
   }
+
   //根据诗人，类型，朝代获取数据
   public static async fetchPoem(poet: string, type: string, dynasty: string,
     pageNumber: number = 1): Promise<Poem[] | undefined> {
@@ -151,42 +152,40 @@ export class GetDataFormCloudDb {
   }
 
   //根据诗人name获取诗人数据
-  public static async fetchWriterData(writer:string):Promise<Writer[] | undefined>{
+  public static async fetchWriterData(writer: string): Promise<Writer[] | undefined> {
 
     let databaseZone = cloudDatabase.zone('Travel');
     let condition = new cloudDatabase.DatabaseQuery(Writer);
 
-    condition.equalTo('name',writer).limit(1)
+    condition.equalTo('name', writer).limit(1)
 
     try {
       return new Promise((resolve, reject) => {
-          databaseZone.query(condition,(err:BusinessError,writerData:Writer[])=>{
-            if(err){
-              console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
-              reject(err)
-            }
-            else {
-              console.info(`查询成功，结果: ${JSON.stringify(writerData)}`);
-              resolve(writerData)
-            }
-          })
+        databaseZone.query(condition, (err: BusinessError, writerData: Writer[]) => {
+          if (err) {
+            console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
+            reject(err)
+          } else {
+            console.info(`查询成功，结果: ${JSON.stringify(writerData)}`);
+            resolve(writerData)
+          }
+        })
       })
 
-    }
-    catch (err){
+    } catch (err) {
       return undefined
     }
   }
 
   //诗人name和poem的title获取poem数据
-  public static async fetchDataByWriterAndTitle(writer:string,title:string): Promise<Poem[] | undefined> {
+  public static async fetchDataByWriterAndTitle(writer: string, title: string): Promise<Poem[] | undefined> {
     try {
       let databaseZone = cloudDatabase.zone('Travel');
       let condition = new cloudDatabase.DatabaseQuery(Poem);
 
 
       // 设置查询条件：分页查询
-      condition.equalTo('writer',writer).and().equalTo('title',title).limit(1)
+      condition.equalTo('writer', writer).and().equalTo('title', title).limit(1)
 
 
       return new Promise((resolve, reject) => {
