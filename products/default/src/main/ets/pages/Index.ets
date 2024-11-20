@@ -6,6 +6,7 @@ import { CustomTabBar } from '../components/CustomTabBar';
 import { AppConstants } from '../constants/AppConstants';
 import auth from '@hw-agconnect/auth';
 import { LocationUtil } from 'utils';
+import { RouterModule, RouterNameConstants } from 'routermodule';
 
 @Entry
 @Component
@@ -20,7 +21,17 @@ struct Index {
   async aboutToAppear(): Promise<void> {
     await LocationUtil.getInstance().getCurrentLocation()
     AppStorage.setOrCreate('isHideBar', false);
+    if( !this.appPathStack){
+      this.appPathStack = new NavPathStack();
+    }
+    RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
   }
+
+  @Builder
+  routerMap(builderName: string, param: object) {
+    // Obtain the WrappedBuilder object based on the module name, create a page through the builder interface, and import the param parameter.
+    RouterModule.getBuilder(builderName).builder(param);
+  };
 
 
   @Builder
@@ -99,5 +110,6 @@ struct Index {
     }
     .hideTitleBar(true)
     .mode(NavigationMode.Stack)
+    .navDestination(this.routerMap)
   }
 }

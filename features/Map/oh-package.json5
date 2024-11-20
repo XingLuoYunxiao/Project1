@@ -6,5 +6,7 @@
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
+    "routermodule": "file:../../RouterModule",
+    "travel": "file:../../features/Travel",
   }
 }

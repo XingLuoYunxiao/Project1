@@ -9,6 +9,6 @@
     "utils": "file:../../commons/utils",
     "uicomponents": "file:../../commons/uicomponents",
     "login": "file:../Login",
-    "map": "file:../Map"
+    "routermodule": "file:../../RouterModule"
   }
 }

@@ -8,8 +8,8 @@
         "packages": [
           "travel",
           "login",
-          "culture"
-          //
+          "culture",
+          "map"
         ]
       }
     }

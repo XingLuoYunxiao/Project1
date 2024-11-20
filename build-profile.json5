@@ -86,6 +86,10 @@
     {
       "name": "Map",
       "srcPath": "./features/Map",
+    },
+    {
+      "name": "RouterModule",
+      "srcPath": "./RouterModule",
     }
   ]
 }
