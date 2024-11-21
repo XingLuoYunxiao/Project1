@@ -1,14 +1,31 @@
+/*
+ * Copyright (C) 2024 桃花镇童长老 @pura/harmony-utils
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * https://ohpm.openharmony.cn/#/cn/detail/@pura%2Fharmony-utils
+ */
+
 import bundleManager from '@ohos.bundle.bundleManager';
 import { LogUtil } from './LogUtil';
 import { BusinessError } from '@ohos.base';
 import { KeyboardAvoidMode, window } from '@kit.ArkUI';
 import { DeviceUtil } from './DeviceUtil';
 import { resourceManager } from '@kit.LocalizationKit';
-import { common, Want } from '@kit.AbilityKit';
+import { common } from '@kit.AbilityKit';
 
 
 /**
- * App相关工具类(使用该工具前请在UIAbility的onWindowStageCreate方法中调用AppUtil的init方法初始化)
+ * TODO App相关工具类(使用该工具前请在UIAbility的onWindowStageCreate方法中调用AppUtil的init方法初始化)
  * author: 桃花镇童长老ᥫ᭡
  * since: 2024/05/01
  * 仓库主页：https://ohpm.openharmony.cn/#/cn/detail/@pura%2Fharmony-utils
@@ -17,27 +34,21 @@ import { common, Want } from '@kit.AbilityKit';
  * CSDN: https://blog.csdn.net/qq_32922545
  * QQ交流群: 569512366
  */
-export class AppUtil{
+export class AppUtil {
 
   private constructor() {}
 
-  private static readonly uri_info: string = 'application_info_entry' //应用设置页面
-  private static readonly uri_network: string = "mobile_network_entry"; //移动网络设置页面
-  private static readonly uri_notification: string = "systemui_notification_settings"; //通知设置页面
-  private static readonly uri_bluetooth: string = "bluetooth_entry"; //蓝牙设置页面
-  private static readonly uri_nfc: string = "nfc_settings"; //NFC设置页面
   private static context: common.UIAbilityContext; //common.UIAbilityContext，上下文
-  private static windowStage: window.WindowStage;
 
 
   /**
-   * 初始化方法,缓存全局变量，在UIAbility的onWindowStageCreate方法中初始化该方法。
+   * 初始化方法,缓存全局变量，在UIAbility的onCreate方法中初始化该方法。
    * @param windowStage 窗口管理器
    */
-  static init(context: common.UIAbilityContext, windowStage: window.WindowStage) {
+  static init(context: common.UIAbilityContext) {
     AppUtil.context = context;
-    AppUtil.windowStage = windowStage;
   }
+
 
   /**
    * 获取上下文，common.UIAbilityContext
@@ -51,14 +62,20 @@ export class AppUtil{
     return AppUtil.context;
   }
 
+
+  /**
+   * 获取WindowStage
+   * @returns
+   */
+  static getWindowStage(): window.WindowStage {
+    return AppUtil.getContext().windowStage;
+  }
+
   /**
    * 获取主窗口
    */
   static getMainWindow(): window.Window {
-    if (!AppUtil.windowStage) {
-      LogUtil.error("windowStage为空，请在UIAbility的onWindowStageCreate方法中调用AppUtil的init方法初始化！");
-    }
-    return AppUtil.windowStage.getMainWindowSync();
+    return AppUtil.getContext().windowStage.getMainWindowSync();
   }
 
   /**
@@ -68,6 +85,24 @@ export class AppUtil{
   static getUIContext(): UIContext {
     return AppUtil.getMainWindow().getUIContext();
   }
+
+
+  /**
+   * 设置灰阶，APP一键置灰。
+   * @param grayScale  该参数为浮点数，取值范围为[0.0, 1.0]。
+   * @param onlyMainWindow 是否只置灰主窗口，默认false。
+   * @returns
+   */
+  static async setGrayScale(grayScale: number = 1.0, onlyMainWindow: boolean = false): Promise<void> {
+    AppUtil.getMainWindow().setWindowGrayScale(grayScale);
+    if (!onlyMainWindow) {
+      let subWindows = await AppUtil.getContext().windowStage.getSubWindow();
+      if (subWindows && subWindows.length > 0) {
+        subWindows.forEach((subWindow) => subWindow.setWindowGrayScale(grayScale));
+      }
+    }
+  }
+
 
   /**
    * 获取当前窗口的属性
@@ -97,16 +132,19 @@ export class AppUtil{
     return mode;
   }
 
+
   /**
    * 设置虚拟键盘弹出时，页面的避让模式。
    * @param value （OFFSET-上抬模式、RESIZE-压缩模式）
    */
-  static setKeyboardAvoidMode(value: KeyboardAvoidMode) {
+  static setKeyboardAvoidMode(value: KeyboardAvoidMode): boolean {
     try {
       AppUtil.getUIContext().setKeyboardAvoidMode(value);
     } catch (err) {
-      LogUtil.error(JSON.stringify(err))
+      LogUtil.error(JSON.stringify(err));
+      return false;
     }
+    return true;
   }
 
 
@@ -338,31 +376,39 @@ export class AppUtil{
   }
 
   /**
+   * 获取当前应用的BundleInfo
+   */
+  static getBundleInfoSync(): bundleManager.BundleInfo {
+    return bundleManager.getBundleInfoForSelfSync(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
+  }
+
+
+  /**
    * 获取应用包的名称。
    */
-  static async getBundleName(): Promise<string> {
-    return (await AppUtil.getBundleInfo()).name;
+  static getBundleName(): string {
+    return AppUtil.getBundleInfoSync().name;
   }
 
   /**
    * 获取应用版本号。
    */
-  static async getVersionCode(): Promise<number> {
-    return (await AppUtil.getBundleInfo()).versionCode;
+  static getVersionCode(): number {
+    return AppUtil.getBundleInfoSync().versionCode;
   }
 
   /**
    * 获取应用版本名。
    */
-  static async getVersionName(): Promise<string> {
-    return (await AppUtil.getBundleInfo()).versionName;
+  static getVersionName(): string {
+    return AppUtil.getBundleInfoSync().versionName;
   }
 
   /**
    * 获取运行应用包所需要最高SDK版本号。
    */
-  static async getTargetVersion(): Promise<number> {
-    return (await AppUtil.getBundleInfo()).targetVersion;
+  static getTargetVersion(): number {
+    return AppUtil.getBundleInfoSync().targetVersion;
   }
 
 
@@ -370,102 +416,16 @@ export class AppUtil{
    * 获取应用程序的配置信息
    * @returns
    */
-  static async getAppInfo() {
-    let bundleInfo: bundleManager.BundleInfo =
-      await bundleManager.getBundleInfoForSelf(bundleManager.BundleFlag.GET_BUNDLE_INFO_WITH_APPLICATION);
-    return bundleInfo.appInfo;
-  }
-
-
-  /**
-   * 跳转应用设置页面（调用此方法到设置，手动开启权限）
-   */
-  static async toAppSetting(uri: string = AppUtil.uri_info): Promise<void> {
-    let context = AppUtil.getContext();
-    let want: Want = {
-      bundleName: 'com.huawei.hmos.settings', //设置应用bundleName
-      abilityName: 'com.huawei.hmos.settings.MainAbility', //设置应用abilityName
-      uri: uri, //目标页面
-      parameters: {
-        bundleName: context.abilityInfo.bundleName, //拉起方应用包名
-        pushParams: context.abilityInfo.bundleName, //拉起方应用包名
-      }
-    }
-    return await context.startAbility(want);
+  static async getAppInfo(): Promise<bundleManager.ApplicationInfo> {
+    return (await AppUtil.getBundleInfo()).appInfo;
   }
 
   /**
-   * 跳转移动网络设置页面
-   */
-  static toNetworkSetting(): Promise<void> {
-    return AppUtil.toAppSetting(AppUtil.uri_network);
-  }
-
-  /**
-   * 跳转通知设置页面
-   */
-  static toNotificationSetting(): Promise<void> {
-    return AppUtil.toAppSetting(AppUtil.uri_notification);
-  }
-
-  /**
-   * 跳转蓝牙设置页面
-   */
-  static toBluetoothSetting(): Promise<void> {
-    return AppUtil.toAppSetting(AppUtil.uri_bluetooth);
-  }
-
-  /**
-   * 跳转NFC设置页面
-   */
-  static toNfcSetting(): Promise<void> {
-    return AppUtil.toAppSetting(AppUtil.uri_nfc);
-  }
-
-
-  /**
-   * 拉起系统浏览器
-   */
-  static async toWebBrowser(url: string): Promise<void> {
-    let context = AppUtil.getContext();
-    let want: Want = {
-      action: 'ohos.want.action.viewData',
-      entities: ['entity.system.browsable'],
-      uri: url,
-      parameters: {
-        bundleName: context.abilityInfo.bundleName, //拉起方应用包名
-        pushParams: context.abilityInfo.bundleName, //拉起方应用包名
-      }
-    }
-    return await context.startAbility(want);
-  }
-
-
-  /**
-   * 拉起应用市场对应的应用详情界面
-   * @param bundleName 需要打开应用详情的应用的包名。
+   * 获取应用程序的配置信息
    * @returns
    */
-  static async toAppGalleryDetail(bundleName: string): Promise<void> {
-    let context = AppUtil.getContext();
-    let want: Want = {
-      action: 'ohos.want.action.appdetail',
-      uri: 'store://appgallery.huawei.com/app/detail?id=' + bundleName,
-    };
-    return await context.startAbility(want);
-  }
-
-
-  /**
-   * 拉起系统文件管理器
-   */
-  static async toFileManagement(): Promise<void> {
-    let context = AppUtil.getContext();
-    let want: Want = {
-      bundleName: 'com.huawei.hmos.filemanager',
-      abilityName: 'MainAbility'
-    };
-    return await context.startAbility(want);
+  static getAppInfoSync(): bundleManager.ApplicationInfo {
+    return AppUtil.getBundleInfoSync().appInfo;
   }
 
 

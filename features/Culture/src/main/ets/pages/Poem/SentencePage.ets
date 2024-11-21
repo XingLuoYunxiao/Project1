@@ -6,6 +6,9 @@ import { Poem } from '../../model/Poem'; // 导入诗歌模型类
 import { GetPoemDataFormCloud } from '../../common/constants/CloundDb/getPoemDataFormCloudDb'; // 导入云数据库数据获取模块
 import { PoemDetailPage } from './PoemDetailPage'; // 导入诗词详情页
 import { Sentence } from '../../model/Sentence';
+import { addExp } from '../../common/util/addExp';
+
+let addEXPId: number = 0
 
 @Component
 export struct SentencePage { // 定义一个组件类PoemPage
@@ -27,6 +30,16 @@ export struct SentencePage { // 定义一个组件类PoemPage
       });
     }
     this.pageNumber++; // 增加页码
+
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp('Sentence', 5)
+    }, 10000)
+  }
+
+  aboutToDisappear(): void {
+    // 退出页面时取消对经验值的添加
+    clearTimeout(addEXPId)
   }
 
   // 构建组件UI结构

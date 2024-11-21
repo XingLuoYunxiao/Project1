@@ -1,6 +1,6 @@
 import { http } from "@kit.NetworkKit";
 import { util } from "@kit.ArkTS";
-import { PromptWords } from "../model/promptWords";
+import { PromptWords } from "../../model/promptWords";
 
 // 定义接口 Delta 和 Choice
 interface Delta {

@@ -1,5 +1,5 @@
 import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
-import { cultureFileUtil } from "../../util/FileUtil";
+import { cultureFileUtil } from "../../common/util/FileUtil";
 import { AppreciateView } from "../../view/Appreciate";
 
 import { TranslateView } from "../../view/Translate";

@@ -1,11 +1,12 @@
 import { FlyingFlowerOrderPage } from './FlyingFlowerOrderPage';
-import { ttf } from '../util/ttf';
+import { ttf } from '../common/util/ttf';
 import { MasterpieceI, tsetMasterPieceIArr } from '../model/MasterpieceI';
 import { AncientGames, tsetAncientGamesIArr } from '../model/AncientGamesI';
 import { Lottie, LottieController } from '@jjr/lottie_component';
 
 @Component
 export struct CulturalHeritageStartPage {
+  @Consume('appPathStack') appPathStack: NavPathStack;
   @Provide('culturePathStack') culturePathStack: NavPathStack = new NavPathStack();
   MasterpieceIArr: MasterpieceI[] = tsetMasterPieceIArr()
   AncientGameIArr: AncientGames[] = tsetAncientGamesIArr()
@@ -20,8 +21,6 @@ export struct CulturalHeritageStartPage {
     this.animationData = await LottieController.getRawFileAnimationData(getContext(this), 'down.json')
 
   }
-
-
 
   build() {
 

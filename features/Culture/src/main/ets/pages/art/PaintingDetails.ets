@@ -1,7 +1,8 @@
 // 引入所需的模块和数据模型
 import { paintingData } from "../../model/art/DrawingModel"
 import { PaintingModel, paintingModelList } from "../../model/art/PaintingModel"
-import { ttf } from "../../util/ttf"
+import { ttf } from "../../common/util/ttf"
+import { addExp } from "../../common/util/addExp"
 
 // 创建PaintingDetailsBuilder方法，生成PaintingDetails组件
 @Builder
@@ -9,12 +10,24 @@ export function PaintingDetailsBuilder(name: string, param: Object) {
   PaintingDetails() // 创建并渲染PaintingDetails组件
 }
 
+let addEXPId: number = 0
+
 // PaintingDetails组件的主体部分
 @Component
 export struct PaintingDetails {
   // 组件即将出现时的生命周期函数
   aboutToAppear(): void {
     console.log('这是PaintingDetails') // 控制台输出信息，便于调试
+
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp('Painting', 5)
+    }, 10000)
+  }
+
+  aboutToDisappear(): void {
+    // 退出页面时取消对经验值的添加
+    clearTimeout(addEXPId)
   }
 
   // build方法构建组件的UI
@@ -28,6 +41,11 @@ export struct PaintingDetails {
             }
           })
         }
+        .onReachEnd(() => {
+          addExp('Painting')
+
+        })
+
       }
     }
     .hideTitleBar(true) // 隐藏标题栏
@@ -55,6 +73,9 @@ export struct PaintingDetails {
             ShowPainting({ painting: item }) // 渲染每幅绘画图片
           })
         }
+        .onReachEnd(() => {
+
+        })
       }
       .padding(10) // 内边距设置为10
       .alignItems(HorizontalAlign.Start) // 水平左对齐

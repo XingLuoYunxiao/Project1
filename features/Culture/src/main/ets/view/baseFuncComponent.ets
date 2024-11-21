@@ -1,7 +1,8 @@
-import { httpToAI } from "../util/httpUtil"
+import { httpToAI } from "../common/util/httpUtil"
 import { PromptWords, promptMap } from "../model/promptWords";
 import { lvMarkdownIn, lvText } from "@luvi/lv-markdown-in";
-import { ttf } from "../util/ttf";
+import { ttf } from "../common/util/ttf";
+
 import { Lottie, LottieController } from "@jjr/lottie_component";
 
 // @Preview
