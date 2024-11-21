@@ -1,0 +1,30 @@
+#<<<<<<< HEAD
+#/node_modules
+#/oh_modules
+#/local.properties
+#/.idea
+#**/build
+#/.hvigor
+#.cxx
+#/.clangd
+#/.clang-format
+#/.clang-tidy
+#**/.test
+#/.appanalyzer
+#=======
+# dir 不需要提交的目录
+node_modules/
+oh_modules/
+.preview/
+build/
+.cxx/
+.test/
+/.hvigor
+/.idea
+**/BuildProfile.ets
+
+# file 不需要提交的文件
+local.properties
+oh-package-lock.json5
+/.clang-format
+#>>>>>>> origin/main

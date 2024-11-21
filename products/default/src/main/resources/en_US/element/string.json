@@ -1,0 +1,48 @@
+{
+  "string": [
+    {
+      "name": "module_desc",
+      "value": "module description"
+    },
+    {
+      "name": "EntryAbility_desc",
+      "value": "description"
+    },
+    {
+      "name": "EntryAbility_label",
+     "value": "HMOS Basic"
+    },
+    {
+      "name": "tab_travel",
+      "value": "Travel"
+    },
+    {
+      "name": "tab_culture",
+      "value": "Culture"
+    },
+    {
+      "name": "tab_mine",
+      "value": "Mine"
+    },
+    {
+      "name": "tab_route",
+      "value": "行程"
+    },
+    {
+      "name": "tab_AI",
+      "value": "AI"
+    },
+    {
+      "name": "location_permission",
+      "value": "Allows applications to obtain location information while running in the foreground"
+    },
+    {
+      "name": "background_location_permission",
+      "value": "Allows apps to obtain location information while running in the background"
+    },
+    {
+      "name": "fuzzy_location_permission",
+      "value": "Allows applications to obtain fuzzy location information for devices"
+    }
+  ]
+}

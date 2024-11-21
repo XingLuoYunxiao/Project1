@@ -1,0 +1,19 @@
+{
+  "name": "default",
+  "version": "1.0.0",
+  "description": "Please describe the basic information.",
+  "main": "",
+  "author": "",
+  "license": "",
+  "dependencies": {
+    "@hw-agconnect/auth": "^1.0.0-beta",
+    "travel": "file:../../features/Travel",
+    "login": "file:../../features/Login",
+    "utils": "file:../../commons/utils",
+    "culture": "file:../../features/Culture",
+  },
+    "travel": "file:../../features/Travel",
+    "login": "file:../../features/Login",
+    "utils": "file:../../commons/utils",
+    "culture": "file:../../features/Culture"
+  }

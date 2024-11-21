@@ -1,0 +1,20 @@
+{
+  "color": [
+    {
+      "name": "poetryItem_background",
+      "value": "#99C8C59F"
+    },
+    {
+      "name": "poetry_background",
+      "value": "#99797554"
+    },
+    {
+      "name": "baseFuncView_detail_background",
+      "value": "#99DBD7A9"
+    },
+    {
+      "name": "main_background",
+      "value": "#fff5eee6"
+    }
+  ]
+}
