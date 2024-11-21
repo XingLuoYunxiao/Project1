@@ -1,4 +1,5 @@
 import "map/src/main/ets/pages/MapViewPage";
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import { LazyDataSource } from "utils";
 import Constants from "../constants/Constants";
 import { otherItemList } from "../model/Attraction";
@@ -174,7 +175,7 @@ export struct FamousPlacePage {
               .fontSize(16)
               .backgroundColor(Color.Orange)
               .fontColor(Color.White)
-              .onClick(() => { // 点击跳转到其他共享包中的页面
+              /*.onClick(() => { // 点击跳转到其他共享包中的页面
                 try {
                   this.getUIContext().getRouter().pushNamedRoute({
                     name: 'mapView',
@@ -188,8 +189,12 @@ export struct FamousPlacePage {
                 } catch (e) {
                   console.log("mapTestTag ", e)
                 }
-              })
+              })*/
               .margin({right:10})
+              .onClick(() => {
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.MAP_MAPVIEWPAGE, new Object({Object:spot}));
+                //buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.MAP_MAPVIEWPAGE);
+              })
             Button('AI导游')
               .type(ButtonType.Capsule)
               .fontSize(16)
@@ -230,3 +235,9 @@ export function FamousPlacePageBuilder(){
   FamousPlacePage()
 }
 
+
+const builderName = BuilderNameConstants.TRAVEL_FAMOUSPLACEPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(FamousPlacePageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
+}
