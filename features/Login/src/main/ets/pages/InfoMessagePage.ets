@@ -1,6 +1,5 @@
 import auth from "@hw-agconnect/auth"
 import { functionItem } from "../model/functionItem"
-import { MineViewModel } from "../service/MineViewModel"
 
 @Component
 export struct InfoMessagePage {
@@ -8,7 +7,6 @@ export struct InfoMessagePage {
   @StorageLink('personName') personName: string =''
   @StorageLink('personPhoto') personPhoto: string =''
   @Consume('loginPathStack') loginPathStack: NavPathStack
-  //主要功能
   @Builder
   myListItem(image: ResourceStr, title:string) {
     Column() {
@@ -31,7 +29,7 @@ export struct InfoMessagePage {
   }
 
       build() {
-        Navigation(this.appPathStack) {
+        Navigation(this.loginPathStack) {
           Column({ space: 10 }) {
             //登录
             Row({ space: 10 }) {

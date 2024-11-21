@@ -5,8 +5,10 @@ import { CollectionAdd } from "../model/CollectionAdd";
 import { BrowsingHistory } from "../model/BrowsingHistory";
 import { ListDataSource } from "./ListDataSource";
 import { HistoryAdd } from "../model/HistoryAdd";
-import { myOrder } from "../model/myOrder";
-import { myOrderAdd } from "../model/myOrderAdd";
+import {  myOrderAdd } from "../model/myOrderAdd";
+import { myOrder} from "../model/myOrder";
+import { mySpot } from "../model/mySpot";
+
 
 @Observed
 export class MineViewModel{
@@ -20,7 +22,6 @@ export class MineViewModel{
   historyspotListData:ListDataSource<HistoryAdd> = new ListDataSource();
   historypoemListData:ListDataSource<HistoryAdd> = new ListDataSource();
   orderListData: ListDataSource<myOrderAdd> = new ListDataSource();
-
 
   private static instance: MineViewModel = new MineViewModel();
 

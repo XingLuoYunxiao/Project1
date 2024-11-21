@@ -6,7 +6,24 @@ import { mySpot } from "./mySpot";
 import { Poem } from "./Poem";
 import { Collection } from "./Collection";
 import { BrowsingHistory } from "./BrowsingHistory";
+import { cloudDatabase } from '@kit.CloudFoundationKit';
+import { cloudCommon } from '@kit.CloudFoundationKit';
+import { request } from '@kit.BasicServicesKit';
 import { CollectionAdd } from "./CollectionAdd";
+
+class myAuthProvider implements cloudCommon.AuthProvider {
+  getAccessToken(isForceRefresh: boolean): Promise<string> {
+    return Promise.resolve("your accessToken")
+  }
+}
+let authProvider = new myAuthProvider()
+cloudCommon.init({
+  region: cloudCommon.CloudRegion.CHINA,
+  authProvider: authProvider,
+  functionOptions:{timeout:10*1000},
+  storageOptions:{mode:request.agent.Mode.BACKGROUND, network:request.agent.Network.ANY},
+  databaseOptions:{schema:"schema", traceId:"traceId"}
+})
 
 export class UserModel{
   private static instance: UserModel = new UserModel();
@@ -14,6 +31,7 @@ export class UserModel{
   private poemPoint :number=0;
   private classicPoint :number=0;
   private artPoint :number=0;
+
   private constructor() {
     // 私有构造函数防止外部实例化
   }
@@ -113,17 +131,23 @@ export class UserModel{
   }
 
   async deletecollectData(cur:CollectionAdd){
-    this.database = cloud.database({
-      zoneName: "Travel",
-      objectTypeInfo: schema
-    })
+    // let databaseZone = cloudDatabase.zone("Travel");
+    // databaseZone.delete(cur).then((val)=>{
+    //   console.log('删除成功'+val)
+    // }).catch((e:Error)=>{
+    //   console.log('删除失败',e.message)
+    // });
+   this.database = cloud.database({
+     zoneName: "Travel",
+     objectTypeInfo: schema
+   })
 
-    await this.database.collection(Collection)//选择表
-      .delete(cur).then((val)=>{
-        console.log('删除1',val)
-      }).catch((e:Error)=>{
-        console.log('删除',e.message)
-      });
+   await this.database.collection(Collection)//选择表
+     .delete(cur).then((val)=>{
+       console.log('删除1',val)
+     }).catch((e:Error)=>{
+       console.log('删除',e.name,e.message)
+     });
   }
 
   async gethistoryData(personUid: string): Promise<BrowsingHistory[]>{

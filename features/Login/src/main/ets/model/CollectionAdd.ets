@@ -1,5 +1,5 @@
 @Observed
-class CollectionAdd{
+class CollectionAdd {
   id:number;
   spotId:number;
   userId:string;

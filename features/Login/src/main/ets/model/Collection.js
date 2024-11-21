@@ -42,6 +42,7 @@ class Collection {
     getType() {
         return this.type;
     }
+
 }
 
 Collection.className = 'Collection';

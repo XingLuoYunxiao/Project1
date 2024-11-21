@@ -14,10 +14,10 @@
     "@amap/amap_lbs_map3d": ">=2.1.0"
   },
   "devDependencies": {
+    "@hw-agconnect/auth": "^1.0.0-beta",
     "@ohos/hypium": "1.0.19",
     "@ohos/hamock": "1.0.0",
-    "@jjr/lottie_component": "^1.0.2",
-    "@hw-agconnect/auth": "^1.0.0-beta"
+    "@jjr/lottie_component": "^1.0.2"
   },
   "dynamicDependencies": {}
 }

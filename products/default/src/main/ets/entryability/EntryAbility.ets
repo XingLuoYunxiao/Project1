@@ -1,11 +1,11 @@
 import { abilityAccessCtrl, AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { window } from '@kit.ArkUI';
-import { BusinessError } from '@kit.BasicServicesKit'
+import { BusinessError, request } from '@kit.BasicServicesKit'
 import { buffer } from '@kit.ArkTS';
-import auth from '@hw-agconnect/auth';
-
 import { initialize } from '@hw-agconnect/hmcore';
+import { cloudCommon } from '@kit.CloudFoundationKit';
+import auth from '@hw-agconnect/auth';
 
 const TAG: string = 'EntryAbility';
 const domain = 0x0011;//定位模块
