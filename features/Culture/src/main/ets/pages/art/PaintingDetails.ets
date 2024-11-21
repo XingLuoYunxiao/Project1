@@ -1,7 +1,8 @@
 // 引入所需的模块和数据模型
 import { paintingData } from "../../model/art/DrawingModel"
 import { PaintingModel, paintingModelList } from "../../model/art/PaintingModel"
-import { ttf } from "../../util/ttf"
+import { ttf } from "../../common/util/ttf"
+import { addExp } from "../../common/util/addExp"
 
 // 创建PaintingDetailsBuilder方法，生成PaintingDetails组件
 @Builder
@@ -28,6 +29,11 @@ export struct PaintingDetails {
             }
           })
         }
+        .onReachEnd(() => {
+          addExp('Painting')
+
+        })
+
       }
     }
     .hideTitleBar(true) // 隐藏标题栏
@@ -55,6 +61,9 @@ export struct PaintingDetails {
             ShowPainting({ painting: item }) // 渲染每幅绘画图片
           })
         }
+        .onReachEnd(() => {
+
+        })
       }
       .padding(10) // 内边距设置为10
       .alignItems(HorizontalAlign.Start) // 水平左对齐

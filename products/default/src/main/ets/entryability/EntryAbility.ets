@@ -4,18 +4,21 @@ import { window } from '@kit.ArkUI';
 import { BusinessError } from '@kit.BasicServicesKit'
 import { buffer } from '@kit.ArkTS';
 import auth from '@hw-agconnect/auth';
-
 import { initialize } from '@hw-agconnect/hmcore';
+import { AppUtil } from "utils/src/main/ets/utils/puraUtils/AppUtil"
 
 const TAG: string = 'EntryAbility';
-const domain = 0x0011;//定位模块
+const domain = 0x0011; //定位模块
 
 export default class EntryAbility extends UIAbility {
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
+
+    AppUtil.init(this.context);
+
     this.initAgc()
     let file = this.context.resourceManager.getRawFileContentSync('agconnect-services.json');
-    let json:string = buffer.from(file.buffer).toString();
-    auth.init(this.context,json);
+    let json: string = buffer.from(file.buffer).toString();
+    auth.init(this.context, json);
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     this.initAgc()
     let atManager = abilityAccessCtrl.createAtManager();
@@ -49,6 +52,16 @@ export default class EntryAbility extends UIAbility {
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     requestFullScreen(windowStage, this.context);
+
+    //浏览非遗页面的经验值的全部管理
+    let EXPmap: Map<string, number> = new Map<string, number>()
+    EXPmap.set('art', 0)
+    EXPmap.set('poem', 0)
+    EXPmap.set('sentence', 0)
+    EXPmap.set('xiehouyu', 0)
+
+    AppStorage.setOrCreate('EXP', EXPmap)
+
     windowStage.loadContent('pages/LauncherPage', (err, data) => {
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');

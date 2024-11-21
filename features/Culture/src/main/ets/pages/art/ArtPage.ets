@@ -1,9 +1,9 @@
 import { Lottie, LottieController } from "@jjr/lottie_component"
-import { ttf } from "../../util/ttf"
+import { ttf } from "../../common/util/ttf"
 import { MyButton } from "../../view/Mybutton"
 import { PaintingDetails } from "./PaintingDetails"
 import { cloudStorage } from '@kit.CloudFoundationKit';
-import { cultureFileUtil } from "../../util/FileUtil";
+import { cultureFileUtil } from "../../common/util/FileUtil";
 import { FileUtil } from "utils/src/main/ets/utils/puraUtils/FileUtil";
 import { BusinessError, request } from "@kit.BasicServicesKit";
 
@@ -18,7 +18,7 @@ export function ArtPageBuilder(name: string, param: Object) {
 export struct ArtPage {
   @Consume('culturePathStack') culturePathStack: NavPathStack
   // 从 rawfile 资源文件夹加载 json data
-  @State @Watch('set') animationData?: Object = undefined
+  @State animationData?: Object = undefined
   private artController: LottieController = new LottieController()
   private swiperController: SwiperController = new SwiperController()
 
@@ -27,12 +27,6 @@ export struct ArtPage {
   async aboutToAppear() {
     ttf('STXINGKAFont', 'STXINGKA.TTF')
     this.animationData = await LottieController.getRawFileAnimationData(getContext(this), 'sroll.json')
-  }
-
-  set() {
-    if (this.animationData) {
-      this.artController.setSpeed(0)
-    }
   }
 
   build() {
@@ -68,6 +62,7 @@ export struct ArtPage {
                 .margin(10)
 
             }
+
           }
           .width('100%')
           .width('100%')

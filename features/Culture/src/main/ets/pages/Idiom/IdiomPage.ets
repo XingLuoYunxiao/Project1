@@ -2,7 +2,7 @@ import { realIdiom } from "../../model/Idiom/RealIdiom"
 
 import { cloudDatabase } from "@kit.CloudFoundationKit"
 import { getIdiomFormCloud } from "../../common/constants/CloundDb/getIdiomDataFormCloudDb"
-import { deepCopy } from "../../util/deepCopy"
+import { deepCopy } from "../../common/util/deepCopy"
 import { LogUtil } from "utils/src/main/ets/utils/puraUtils/LogUtil"
 import { async } from "@hw-agconnect/cloud/src/main/ets/storage/upload/task"
 

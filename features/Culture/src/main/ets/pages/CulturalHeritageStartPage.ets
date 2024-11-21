@@ -1,5 +1,5 @@
 import { FlyingFlowerOrderPage } from './FlyingFlowerOrderPage';
-import { ttf } from '../util/ttf';
+import { ttf } from '../common/util/ttf';
 import { MasterpieceI, tsetMasterPieceIArr } from '../model/MasterpieceI';
 import { AncientGames, tsetAncientGamesIArr } from '../model/AncientGamesI';
 import { Lottie, LottieController } from '@jjr/lottie_component';
@@ -20,8 +20,6 @@ export struct CulturalHeritageStartPage {
     this.animationData = await LottieController.getRawFileAnimationData(getContext(this), 'down.json')
 
   }
-
-
 
   build() {
 

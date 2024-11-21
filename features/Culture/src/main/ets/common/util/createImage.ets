@@ -1,6 +1,6 @@
 import { http } from '@kit.NetworkKit';
 import { BusinessError } from '@kit.BasicServicesKit';
-import { CommonConstants } from '../common/constants/commonConstants';
+import { CommonConstants } from '../constants/commonConstants';
 
 // 定义响应数据的接口
 interface GeneratedTypeLiteralInterface_1 {
