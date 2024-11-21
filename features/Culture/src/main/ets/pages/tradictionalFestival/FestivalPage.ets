@@ -14,7 +14,7 @@ export struct FestivalPage {
   build() {
     NavDestination() {
       Swiper() {
-        Column({space:10}) {
+        Column({ space: 10 }) {
           Text(FestivalInstance.getName())
             .fontSize(24)
 
@@ -29,6 +29,7 @@ export struct FestivalPage {
         .justifyContent(FlexAlign.Center)
         .width('100%')
         .padding(30)
+        .height('100%')
 
         ForEach(this.FestivalInstance.festivals, (item: Festival) => {
           this.festivalItem(item)
@@ -44,41 +45,41 @@ export struct FestivalPage {
   @Builder
   festivalItem(festival: Festival) {
 
-    Column({space:10}) {
+    Column({ space: 10 }) {
       Text(festival.getSummary())
         .padding(30)
         .fontSize(24)
       Text(festival.name + "的习俗有:")
         .padding(30)
         .fontSize(24)
-      ForEach(festival.customs,(cust:Custom)=>{
-        CustomBuilder({cust:cust})
+      ForEach(festival.customs, (cust: Custom) => {
+        CustomBuilder({ cust: cust })
       })
     }
     .width('100%')
+    .height('100%')
   }
-
-
 }
 
 @Component
-export struct CustomBuilder{
+export struct CustomBuilder {
   @Prop cust: Custom
   @State handlePopup: boolean = false
-    build(){
-       Column(){
-        Text(this.cust.name)
-          .fontSize(18)
-          .onClick(()=>{
-            this.handlePopup =!this.handlePopup
-          })
-      .bindPopup(this.handlePopup, {
-        message: this.cust.description,
-      })
+
+  build() {
+    Column() {
+      Text(this.cust.name)
+        .fontSize(18)
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup
+        })
+        .bindPopup(this.handlePopup, {
+          message: this.cust.description,
+        })
+    }
+    .width('100%')
+    .height(100)
   }
-  .width('100%')
-  .height(100)
-}
 }
 
 

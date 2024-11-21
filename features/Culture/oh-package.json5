@@ -8,6 +8,5 @@
   "dependencies": {
     "uicomponents": "file:../../commons/uicomponents",
     "utils": "file:../../commons/utils",
-    "libculture.so": "file:./src/main/cpp/types/libculture"
   }
 }

@@ -4,17 +4,34 @@ import { cloudDatabase } from "@kit.CloudFoundationKit"
 import { getIdiomFormCloud } from "../../common/constants/CloundDb/getIdiomDataFormCloudDb"
 import { deepCopy } from "../../common/util/deepCopy"
 import { LogUtil } from "utils/src/main/ets/utils/puraUtils/LogUtil"
-import { async } from "@hw-agconnect/cloud/src/main/ets/storage/upload/task"
+import { PreferencesUtil } from "utils/src/main/ets/utils/puraUtils/PreferencesUtil"
+import { addExp } from "../../common/util/addExp"
+
 
 @Builder
 export function IdiomPageBuilder() {
   IdiomPage()
 }
 
+let addEXPId: number = 0
+
 @Component
 export struct IdiomPage {
   @State idiom: realIdiom | undefined = new realIdiom()
   @State changeValue: string = ''
+
+  aboutToAppear(): void {
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp('Idiom', 5)
+    }, 10000)
+
+  }
+
+  aboutToDisappear(): void {
+    // 退出页面时取消对经验值的添加
+    clearTimeout(addEXPId)
+  }
 
   build() {
 

@@ -2,7 +2,7 @@ import { PreferencesUtil } from "utils/src/main/ets/utils/puraUtils/PreferencesU
 import { EXP } from "../../model/EXP"
 import { LogUtil } from "utils/src/main/ets/utils/puraUtils/LogUtil"
 
-export function addExp(key: string) {
+export function addExp(key: string, value?: number) {
 
   let EXPString: string = PreferencesUtil.getSync("EXP", "") as string;
   LogUtil.debug("EXPstring:" + EXPString)
@@ -10,7 +10,6 @@ export function addExp(key: string) {
     let exp: EXP[] = []
     PreferencesUtil.put("EXP", JSON.stringify(exp))
   } else {
-
     let exp: EXP[] = JSON.parse(EXPString) as EXP[]
     LogUtil.debug("从首选项中获取EXP:" + JSON.stringify(exp))
 
@@ -20,13 +19,21 @@ export function addExp(key: string) {
         isExist = true
         if (e.value === 0) {
           e.value += 100
+        } else {
+          if (value) {
+            e.value += value
+          }
         }
       }
     }
+
     if (!isExist) {
       exp.push(new EXP(key, 100))
     }
     LogUtil.debug("当前的EXP:" + JSON.stringify(exp))
-    PreferencesUtil.put('EXP', JSON.stringify(exp))
+    PreferencesUtil.putSync('EXP', JSON.stringify(exp))
   }
 }
+
+
+

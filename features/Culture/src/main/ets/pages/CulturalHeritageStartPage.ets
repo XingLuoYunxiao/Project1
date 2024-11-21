@@ -6,6 +6,7 @@ import { Lottie, LottieController } from '@jjr/lottie_component';
 
 @Component
 export struct CulturalHeritageStartPage {
+  @Consume('appPathStack') appPathStack: NavPathStack;
   @Provide('culturePathStack') culturePathStack: NavPathStack = new NavPathStack();
   MasterpieceIArr: MasterpieceI[] = tsetMasterPieceIArr()
   AncientGameIArr: AncientGames[] = tsetAncientGamesIArr()

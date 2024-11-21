@@ -6,6 +6,9 @@ import { buffer } from '@kit.ArkTS';
 import auth from '@hw-agconnect/auth';
 import { initialize } from '@hw-agconnect/hmcore';
 import { AppUtil } from "utils/src/main/ets/utils/puraUtils/AppUtil"
+import { PreferencesUtil } from "utils/src/main/ets/utils/puraUtils/PreferencesUtil"
+import { EXP } from "culture/src/main/ets/model/EXP"
+import { LogUtil } from "utils/src/main/ets/utils/puraUtils/LogUtil"
 
 const TAG: string = 'EntryAbility';
 const domain = 0x0011; //定位模块
@@ -13,6 +16,7 @@ const domain = 0x0011; //定位模块
 export default class EntryAbility extends UIAbility {
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
 
+    // 初始化方法,缓存全局变量
     AppUtil.init(this.context);
 
     this.initAgc()
@@ -49,18 +53,19 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
+
+    // 将经验首选项初始化为[],方便之后取出后直接解析成数组
+    let EXPString: string = PreferencesUtil.getSync("EXP", "") as string;
+    LogUtil.debug("EXPstring:" + EXPString)
+    if (EXPString === '') {
+      let exp: EXP[] = []
+      PreferencesUtil.putSync("EXP", JSON.stringify(exp))
+    }
+
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     requestFullScreen(windowStage, this.context);
 
-    //浏览非遗页面的经验值的全部管理
-    let EXPmap: Map<string, number> = new Map<string, number>()
-    EXPmap.set('art', 0)
-    EXPmap.set('poem', 0)
-    EXPmap.set('sentence', 0)
-    EXPmap.set('xiehouyu', 0)
-
-    AppStorage.setOrCreate('EXP', EXPmap)
 
     windowStage.loadContent('pages/LauncherPage', (err, data) => {
       if (err.code) {

@@ -1,7 +1,10 @@
 import { async } from "@hw-agconnect/cloud/src/main/ets/storage/upload/task"
 import { GetPoemDataFormCloud } from "../../common/constants/CloundDb/getPoemDataFormCloudDb"
+import { addExp } from "../../common/util/addExp"
 import { Poem } from "../../model/Poem"
 import { Writer } from "../../model/Writer"
+
+let addEXPId: number = 0
 
 @Component
 export struct PoemDetailPage {
@@ -10,12 +13,22 @@ export struct PoemDetailPage {
   @State writer: Writer = new Writer()
 
   async aboutToAppear(): Promise<void> {
+
     let poets: Writer[] | undefined = await GetPoemDataFormCloud.fetchWriterData(this.poem.writer)
     if (poets) {
       this.writer = poets[0]
     }
 
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp('Idiom', 5)
+    }, 10000)
 
+  }
+
+  aboutToDisappear(): void {
+    // 退出页面时取消对经验值的添加
+    clearTimeout(addEXPId)
   }
 
   build() {
