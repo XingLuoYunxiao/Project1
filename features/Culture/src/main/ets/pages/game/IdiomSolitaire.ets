@@ -1,13 +1,15 @@
-@Component
-export struct IdiomSolitaire {
-  build() {
-    // 分
-    Row(){
-
-      Column(){
-
-
-      }
-    }
-  }
-}
+// @Component
+// export struct IdiomSolitaire {
+//
+//   @State chatList:
+//
+//   build() {
+//
+//
+//       Column(){
+//
+//
+//       }
+//
+//   }
+// }

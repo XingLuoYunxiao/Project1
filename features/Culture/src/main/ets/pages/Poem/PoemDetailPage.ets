@@ -21,7 +21,7 @@ export struct PoemDetailPage {
 
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
-      addExp('Idiom', 5)
+      addExp('Poem', 5)
     }, 10000)
 
   }

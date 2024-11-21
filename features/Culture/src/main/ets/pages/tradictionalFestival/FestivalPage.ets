@@ -1,3 +1,4 @@
+import { addExp } from "../../common/util/addExp"
 import { Custom, Festival } from "../../model/tradictionFestival/festivalModel"
 import { FestivalInstance, FestivalProject } from "../../model/tradictionFestival/tradFestProject"
 
@@ -7,9 +8,25 @@ export function FestivalPageBuilder() {
   FestivalPage()
 }
 
+let addEXPId: number = 0
+
 @Component
 export struct FestivalPage {
   @State FestivalInstance: FestivalProject = FestivalInstance
+
+  // 组件即将出现时的生命周期函数
+  aboutToAppear(): void {
+
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp('Festival', 5)
+    }, 10000)
+  }
+
+  aboutToDisappear(): void {
+    // 退出页面时取消对经验值的添加
+    clearTimeout(addEXPId)
+  }
 
   build() {
     NavDestination() {

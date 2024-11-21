@@ -11,6 +11,7 @@ export function CalligraphyDetailsBuilder() {
 }
 
 const TAG: string = 'CalligraphyDetails  '
+let addEXPId: number = 0
 
 @Component
 export struct CalligraphyDetails {
@@ -19,7 +20,15 @@ export struct CalligraphyDetails {
   @State modernApplication: string = '在现代社会，书法不仅是一种艺术表现形式，也在设计、教育等领域得到了广泛应用。'
 
   aboutToAppear(): void {
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp('Painting', 5)
+    }, 10000)
+  }
 
+  aboutToDisappear(): void {
+    // 退出页面时取消对经验值的添加
+    clearTimeout(addEXPId)
   }
 
   build() {

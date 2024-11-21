@@ -19,6 +19,8 @@ export struct XiehouyuPage {
     res.forEach(item => {
       xiehouyuModel.pushData(item)
     })
+
+
   }
 
   async getXiehouyuList(): Promise<Xiehouyu[]> {

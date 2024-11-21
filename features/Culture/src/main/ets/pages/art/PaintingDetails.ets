@@ -10,12 +10,24 @@ export function PaintingDetailsBuilder(name: string, param: Object) {
   PaintingDetails() // 创建并渲染PaintingDetails组件
 }
 
+let addEXPId: number = 0
+
 // PaintingDetails组件的主体部分
 @Component
 export struct PaintingDetails {
   // 组件即将出现时的生命周期函数
   aboutToAppear(): void {
     console.log('这是PaintingDetails') // 控制台输出信息，便于调试
+
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp('Painting', 5)
+    }, 10000)
+  }
+
+  aboutToDisappear(): void {
+    // 退出页面时取消对经验值的添加
+    clearTimeout(addEXPId)
   }
 
   // build方法构建组件的UI

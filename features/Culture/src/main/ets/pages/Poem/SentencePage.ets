@@ -33,7 +33,7 @@ export struct SentencePage { // 定义一个组件类PoemPage
 
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
-      addExp('Idiom', 5)
+      addExp('Sentence', 5)
     }, 10000)
   }
 
