@@ -1,12 +1,11 @@
 import { Custom, Festival } from "../../model/tradictionFestival/festivalModel"
 import { FestivalInstance, FestivalProject } from "../../model/tradictionFestival/tradFestProject"
-import { BuilderNode } from "@kit.ArkUI"
+
 
 @Builder
 export function FestivalPageBuilder() {
   FestivalPage()
 }
-
 
 @Component
 export struct FestivalPage {

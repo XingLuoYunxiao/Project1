@@ -1,35 +1,4 @@
 
-interface chuci{
-  title:string
-  section:string
-  author:string
-  content:string
-}
-
-interface shijing{
-  title:string
-  chapter:string
-  section:string
-  content:string
-}
-
-interface lunyu{
-  chapter:string
-  paragraphs:string
-}
-
-interface shici{
-  title:string
-  auth:string
-  dynasty:string
-  content:string
-}
-interface shishuwujing{
-  chapter:string
-  paragraphs:string
-}
-
-
 //基础数据源类
 export abstract class BasicDataSource<T> implements IDataSource {
   private listeners: DataChangeListener[] = [];

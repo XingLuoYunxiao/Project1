@@ -64,6 +64,26 @@
       "name": "SkillPage",
       "pageSourceFile": "src/main/ets/pages/skill/SkillPage.ets",
       "buildFunction": "SkillPageBuilder"
+    },
+    {
+      "name": "PoemEnterPage",
+      "pageSourceFile": "src/main/ets/pages/Poem/PoemEnterPage.ets",
+      "buildFunction": "PoemEnterPageBuilder"
+    },
+    {
+      "name": "PoemDetailPage",
+      "pageSourceFile": "src/main/ets/pages/Poem/PoemDetailPage.ets",
+      "buildFunction": "PoemDetailPageBuilder"
+    },
+    {
+      "name": "IdiomPage",
+      "pageSourceFile": "src/main/ets/pages/Idiom/IdiomPage.ets",
+      "buildFunction": "IdiomPageBuilder"
+    },
+    {
+      "name": "XiehouyuPage",
+      "pageSourceFile": "src/main/ets/pages/xiehouyu/XiehouyuPage.ets",
+      "buildFunction": "XiehouyuPageBuilder"
     }
   ]
 }

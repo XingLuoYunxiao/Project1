@@ -3,11 +3,6 @@ import { ttf } from '../util/ttf';
 import { MasterpieceI, tsetMasterPieceIArr } from '../model/MasterpieceI';
 import { AncientGames, tsetAncientGamesIArr } from '../model/AncientGamesI';
 import { Lottie, LottieController } from '@jjr/lottie_component';
-import { cloudStorage } from '@kit.CloudFoundationKit';
-import { BusinessError } from '@kit.BasicServicesKit';
-
-//let storageBucket: cloudStorage.StorageBucket = cloudStorage.bucket();
-
 
 @Component
 export struct CulturalHeritageStartPage {
@@ -23,26 +18,16 @@ export struct CulturalHeritageStartPage {
   async aboutToAppear() {
     ttf('STXINGKAFont', 'STXINGKA.TTF')
     this.animationData = await LottieController.getRawFileAnimationData(getContext(this), 'down.json')
-    //this.getUrl()
+
   }
 
-  //获取云侧文件下载地址
-  // getUrl() {
-  //   // 获取云存储默认实例中screenshot_xxx.jpg文件的下载地址
-  //   storageBucket.getDownloadURL('culture/fuchunshanju.jpg').then((downloadURL: string) => {
-  //     console.info(`getDownloadURL: ${downloadURL}`);
-  //   }).catch((err: BusinessError) => {
-  //     console.error(`getDownloadURL failed, Code: ${err.code}, message: ${err.message}`);
-  //   });
-  // }
+
 
   build() {
 
     Navigation(this.culturePathStack) {
       Column() {
 
-        // Image(this.ImageURL)
-        //   .alt($r('app.media.alt'))
         //TODO 文化天地
         Row() {
           Text('文化天地')
