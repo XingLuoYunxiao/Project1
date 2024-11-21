@@ -2,11 +2,8 @@ import { webview } from "@kit.ArkWeb";
 import { AlertDialog } from '@kit.ArkUI'
 import auth from "@hw-agconnect/auth";
 import { UserModel } from "../model/UserModel";
+import { BuilderNameConstants, RouterModule } from "routermodule";
 
-@Builder
-export function SettingPageBuilder() {
-  SettingPage()
-}
 @Component
 export struct SettingPage {
   @Consume('appPathStack') appPathStack: NavPathStack
@@ -69,5 +66,15 @@ export struct SettingPage {
         .width('100%')
       }
   }
+}
 
+@Builder
+export function SettingPageBuilder() {
+  SettingPage()
+}
+
+const builderName = BuilderNameConstants.LOGIN_SETTINGPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(SettingPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

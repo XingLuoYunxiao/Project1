@@ -1,8 +1,7 @@
+import { BuilderNameConstants, RouterModule } from "routermodule"
+
 const sensitive:string[]=['卧槽','我操','滚','傻']
-@Builder
-export function AdvicePageBuilder() {
-  AdvicePage()
-}
+
 @Component
 export struct AdvicePage {
   @Consume('appPathStack') appPathStack: NavPathStack
@@ -78,4 +77,14 @@ export struct AdvicePage {
       }
       .hideTitleBar(true)
   }
+}
+@Builder
+export function AdvicePageBuilder() {
+  AdvicePage()
+}
+
+const builderName = BuilderNameConstants.LOGIN_ADVICEPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(AdvicePageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

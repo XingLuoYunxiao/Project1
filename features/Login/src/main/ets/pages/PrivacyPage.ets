@@ -1,7 +1,5 @@
-@Builder
-export function PrivacyPageBuilder() {
-  PrivacyPage()
-}
+import { BuilderNameConstants, RouterModule } from "routermodule"
+
 @Component
 export struct PrivacyPage {
   @Consume('appPathStack') appPathStack: NavPathStack
@@ -64,4 +62,14 @@ export struct PrivacyPage {
       .width('100%')
     }
   }
+}
+@Builder
+export function PrivacyPageBuilder() {
+  PrivacyPage()
+}
+
+const builderName = BuilderNameConstants.LOGIN_PRIVACYPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(PrivacyPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

@@ -6,13 +6,7 @@ import { CollectHistoryItem } from '../view/CollectHistoryItem'
 import { ListDataSource } from '../service/ListDataSource'
 import { MineViewModel } from '../service/MineViewModel'
 import auth from '@hw-agconnect/auth'
-import  { Database } from '@hw-agconnect/cloud'
-import { OrderItem } from '../view/OrderItem'
-
-@Builder
-export function CollectionPageBuilder() {
-  CollectionPage()
-}
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 
 @Component
 export struct EveryItem {
@@ -121,6 +115,9 @@ export struct CollectionPage {
                   }else{
                     LazyForEach(this.collectspotListData,(spot:CollectionAdd)=>{
                       EveryItem({manage:$manage,spot:spot})
+                        .onClick(()=>{
+                          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE)
+                        })
                     },(spot:CollectionAdd,index:number)=>JSON.stringify(spot)+Math.random()+index)
                   }
                 }
@@ -151,5 +148,15 @@ export struct CollectionPage {
     }
     .hideTitleBar(true)
   }
+}
 
+@Builder
+export function CollectionPageBuilder() {
+  CollectionPage()
+}
+
+const builderName = BuilderNameConstants.LOGIN_COLLECTIONPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(CollectionPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

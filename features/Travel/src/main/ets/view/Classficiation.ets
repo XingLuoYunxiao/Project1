@@ -1,3 +1,4 @@
+import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule";
 import { classification, classificationList, colorList } from "../service/ClassficationData";
 
 
@@ -15,7 +16,8 @@ export struct Classification {
           this.myClassBuilder(item, index)
         }
         .onClick( () => {
-          this.appPathStack.pushPathByName(item.page === undefined ? 'AttractionTicketPage' : item.page, item.category);
+          //this.appPathStack.pushPathByName(item.page === undefined ? 'AttractionTicketPage' : item.page, item.category);
+          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_FAMOUSPLACEPAGE);
         })
       })
     }

@@ -1,3 +1,4 @@
+import { BuilderNameConstants, RouterModule } from 'routermodule';
 import Constants from '../constants/Constants'
 import { Spot } from '../model/Spot'
 
@@ -289,6 +290,11 @@ function isBusinessTime(businessHours: string): boolean {
 }
 
 @Builder
-export function AttractionDetailPageBuilder() {
+export function AttractionDetailPageBuilder(value:object) {
   AttractionDetailPage()
+}
+const builderName = BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(AttractionDetailPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

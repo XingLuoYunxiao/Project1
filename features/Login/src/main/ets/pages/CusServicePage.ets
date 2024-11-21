@@ -1,7 +1,5 @@
-@Builder
-export function CusServicePageBuilder() {
-  CusServicePage()
-}
+import { BuilderNameConstants, RouterModule } from "routermodule"
+
 const question:string[]=['如何退款','在哪里领取优惠券','大唐芙蓉园什么时间段可以预约','查看更多']
 @Preview
 @Component
@@ -118,4 +116,15 @@ export struct CusServicePage {
   }
   .hideTitleBar(true)
   }
+}
+
+@Builder
+export function CusServicePageBuilder() {
+  CusServicePage()
+}
+
+const builderName = BuilderNameConstants.LOGIN_CUSSERVICEPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(CusServicePageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

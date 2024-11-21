@@ -1,12 +1,6 @@
-import lottie from '@ohos/lottie'
+import { BuilderNameConstants, RouterModule } from 'routermodule';
 import { LottieUtil } from 'utils/src/main/ets/utils/LottieUtil';
 import { AchieveImage, ACHIEVE_IMAGE_LIST } from '../model/AchievementModel';
-import { UserModel } from '../model/UserModel';
-
-@Builder
-export function KnowledgePageBuilder() {
-  KnowledgePage()
-}
 
 @Component
 export struct KnowledgePage {
@@ -102,4 +96,14 @@ export struct KnowledgePage {
     .width(100)
     .height(100)
   }
+}
+@Builder
+export function KnowledgePageBuilder() {
+  KnowledgePage()
+}
+
+const builderName = BuilderNameConstants.LOGIN_KNOWLEDGEPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(KnowledgePageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

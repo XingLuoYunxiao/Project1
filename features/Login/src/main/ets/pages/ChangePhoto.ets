@@ -5,10 +5,8 @@ import { hilog } from "@kit.PerformanceAnalysisKit";
 import { image } from "@kit.ImageKit";
 import fileio from '@ohos.fileio';
 import { fileIo as fs } from '@kit.CoreFileKit';
-@Builder
-export function ChangePhotoBuilder() {
-  ChangePhoto()
-}
+import { BuilderNameConstants, RouterModule } from "routermodule";
+
 @CustomDialog
 struct CustomDialogChange {
   @StorageLink('personName') personName: string =''
@@ -108,4 +106,14 @@ export struct ChangePhoto {
       }
       .hideTitleBar(true)
   }
+}
+@Builder
+export function ChangePhotoBuilder() {
+  ChangePhoto()
+}
+
+const builderName = BuilderNameConstants.LOGIN_CHANGEPHOTO;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(ChangePhotoBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

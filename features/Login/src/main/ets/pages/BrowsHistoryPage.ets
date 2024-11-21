@@ -5,11 +5,8 @@ import { CollectHistoryItem } from "../view/CollectHistoryItem";
 import { ListDataSource } from "../service/ListDataSource";
 import { MineViewModel } from "../service/MineViewModel";
 import auth from "@hw-agconnect/auth";
+import { BuilderNameConstants, RouterModule } from "routermodule";
 
-@Builder
-export function BrowsHistoryPageBuilder() {
-  BrowsHistoryPage()
-}
 @Component
 export struct BrowsHistoryPage {
   @Consume('appPathStack') appPathStack: NavPathStack
@@ -115,4 +112,15 @@ bottomDelete(){
     }
     .hideTitleBar(true)
   }
+}
+
+@Builder
+export function BrowsHistoryPageBuilder() {
+  BrowsHistoryPage()
+}
+
+const builderName = BuilderNameConstants.LOGIN_BROWSHISTORYPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(BrowsHistoryPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

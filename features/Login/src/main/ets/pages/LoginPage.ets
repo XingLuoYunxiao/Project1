@@ -1,11 +1,7 @@
 import { webview } from '@kit.ArkWeb'
 import { CustomContentDialog } from '@kit.ArkUI'
 import { MineViewModel } from '../service/MineViewModel';
-
-@Builder
-export function LoginPageBuilder() {
-  LoginPage()
-}
+import { BuilderNameConstants, RouterModule } from 'routermodule';
 
 @Component
 export struct LoginPage {
@@ -135,5 +131,16 @@ export struct LoginPage {
     }, 1000)
     this.mineViewModel.codeDeal(this.phoneNumber)
   }
+}
+
+@Builder
+export function LoginPageBuilder() {
+  LoginPage()
+}
+
+const builderName = BuilderNameConstants.LOGIN_LOGINPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(LoginPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }
 

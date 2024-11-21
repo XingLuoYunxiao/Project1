@@ -27,13 +27,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "storePassword": "0000001A2F099FECB557366547B20EC6272D7AB89048EAE739D3E72C713B5F9F4A2774002E01246E3DC1",
-          "certpath": "D:/HUAWEI/key/ProjectOne.cer",
+          "storePassword": "0000001A5C4E7D7B7F763F8EF0F8566C4BDCED6666DA786F25B8C0B8198BF54FD83D87BB8A545AA11E72",
+          "certpath": "D:/BrowsingDownLoad/ProjectOne.cer",
           "keyAlias": "ProjectOne",
-          "keyPassword": "0000001AE2577848D2D2D7AAF9572A82EF31F05BAFB8301BB30F18E86FA0A5324CB7E66EBBFCAAA4394C",
-          "profile": "D:/HUAWEI/key/ProjectOneProfileDebug.p7b",
+          "keyPassword": "0000001A373F8EDBA735F0362FF5F9F43AD44332E06B976C261F099FF54F90A92ABE00A503A293A305D9",
+          "profile": "D:/BrowsingDownLoad/ProjectOneProfileDebug.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "D:/HUAWEI/key/.p12"
+          "storeFile": "D:/Huawei/realphone/.p12"
         }
       }
     ]
@@ -86,6 +86,10 @@
     {
       "name": "Map",
       "srcPath": "./features/Map",
+    },
+    {
+      "name": "RouterModule",
+      "srcPath": "./RouterModule",
     }
   ]
 }

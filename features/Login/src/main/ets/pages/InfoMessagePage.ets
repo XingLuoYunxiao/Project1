@@ -1,4 +1,5 @@
 import auth from "@hw-agconnect/auth"
+import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule"
 import { functionItem } from "../model/functionItem"
 
 @Component
@@ -40,36 +41,36 @@ export struct InfoMessagePage {
                 .onClick(()=>{
                     //未登录点击去登陆页面
                     if(this.personName==''){
-                      this.appPathStack.pushPathByName('LoginPage', null)
+                      buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_LOGINPAGE)
                     }else
                     //登录了点击去修改页面
-                      this.appPathStack.pushPathByName('ChangePhoto', null)
+                      buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_CHANGEPHOTO, new Object())
                 })
               if (this.personName!='') {
                 Text(this.personName)
                   .fontSize(18)
                   .height(25)
                   .onClick(()=>{
-                    this.appPathStack.pushPathByName('ChangePhoto', null)
+                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_CHANGEPHOTO, new Object())
                   })
               } else {
                 Text('登  录')
                   .fontSize(18)
                   .height(25)
                   .onClick(() => {
-                    this.appPathStack.pushPathByName('LoginPage', null)
+                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_LOGINPAGE, new Object())
                   })
               }
               Blank()
               Text('客服')
                 .onClick(() => {
-                  this.appPathStack.pushPathByName('CusServicePage', null)
+                  buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_CUSSERVICEPAGE, new Object())
                 })
               Text('设置')
                 .fontSize(18)
                 .height(25)
                 .onClick(() => {
-                  this.appPathStack.pushPathByName('SettingPage', null)
+                  buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_SETTINGPAGE, new Object())
                 })
             }
             .backgroundColor(Color.White)
@@ -90,7 +91,7 @@ export struct InfoMessagePage {
                       this.myListItem(item.img, item.title)
                     }
                   }.onClick(() => {
-                    this.appPathStack.pushPathByName(item.turnname,null)
+                    buildRouterModel(RouterNameConstants.ENTRY_HAP, item.turnname)
                   })
                 })
               }
@@ -133,10 +134,10 @@ export struct InfoMessagePage {
       }
 }
 const FUNCTION_PATHS: functionItem[]=[
-  new functionItem($r('app.media.account'), "收藏",'CollectionPage'),
-  new functionItem($r('app.media.attraction'), "浏览记录",'BrowsHistoryPage'),
-  new functionItem($r('app.media.record'), "我的订单",'MyOrderPage'),
-  new functionItem($r('app.media.setting'), "知识等级",'KnowledgePage'),
+  new functionItem($r('app.media.account'), "收藏",BuilderNameConstants.LOGIN_COLLECTIONPAGE),
+  new functionItem($r('app.media.attraction'), "浏览记录",BuilderNameConstants.LOGIN_BROWSHISTORYPAGE),
+  new functionItem($r('app.media.record'), "我的订单",BuilderNameConstants.LOGIN_MYORDER),
+  new functionItem($r('app.media.setting'), "知识等级",BuilderNameConstants.LOGIN_KNOWLEDGEPAGE),
   new functionItem($r('app.media.account'),"消息",'Message',$r('app.media.ic_arrow')),
   new functionItem($r('app.media.account'),"隱私",'PrivacyPage',$r('app.media.ic_arrow')),
   new functionItem($r('app.media.account'),"意見",'AdvicePage',$r('app.media.ic_arrow')),

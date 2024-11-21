@@ -6,6 +6,7 @@ import { ListDataSource } from "../service/ListDataSource"
 import { MineViewModel } from "../service/MineViewModel"
 import auth from '@hw-agconnect/auth'
 import text from '@ohos.graphics.text'
+import { BuilderNameConstants, RouterModule } from 'routermodule'
 
 @Component
 export struct MyOrderPage {
@@ -90,4 +91,9 @@ export struct MyOrderPage {
 @Builder
 export function MyOrderPageBuilder() {
   MyOrderPage()
+}
+const builderName = BuilderNameConstants.LOGIN_MYORDER;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(MyOrderPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

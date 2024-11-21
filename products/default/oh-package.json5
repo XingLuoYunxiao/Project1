@@ -11,9 +11,7 @@
     "login": "file:../../features/Login",
     "utils": "file:../../commons/utils",
     "culture": "file:../../features/Culture",
-  },
-    "travel": "file:../../features/Travel",
-    "login": "file:../../features/Login",
-    "utils": "file:../../commons/utils",
-    "culture": "file:../../features/Culture"
+    "map": "file:../../features/Map",
+    "routermodule": "file:../../RouterModule"
   }
+}
