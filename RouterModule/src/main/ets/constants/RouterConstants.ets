@@ -16,7 +16,6 @@
 // Key of the builderMap of the routing table in the RouterModule. The format is as follows:{bundleName}_${pageName}.
 export class BuilderNameConstants {
   static readonly MAP_MAPVIEWPAGE: string = 'map_MapViewPage';
-
   //Travel
   static readonly TRAVEL_FAMOUSPLACEPAGE: string = 'travel_FamousPlacePage';
   static readonly HARA_A2: string = '@ohos/hara_A2';
@@ -25,6 +24,18 @@ export class BuilderNameConstants {
   static readonly HARB_B3: string = '@ohos/harb_B3';
   static readonly HARC_C1: string = '@ohos/harc_C1';
   static readonly HARC_C2: string = '@ohos/harc_C2';
+  //Culture
+  static readonly CULTURE_POEM: string = 'culture_PoemPage'
+  static readonly CULTURE_POEMDETAIL: string = 'culture_PoemDetailPage'
+  static readonly CULTURE_POEMENETER: string = 'culture_PoemEnterPage'
+  static readonly CULTURE_SENTENCE: string = "culture_SentencePage"
+  static readonly CULTURE_IDIOM: string = "culture_IdiomPage"
+  static readonly CULTURE_XIEHOUYU: string = "culture_XiehouyuPage"
+  static readonly CULTURE_ART: string = "culture_ArtPage"
+  static readonly CULTURE_FESTIVAL: string = "culture_FestivalPage"
+  static readonly CULTURE_CALLIGRAPHY: string = "culture_CalligraphyDetails"
+  static readonly CULTURE_PAINTING: string = "culture_PaintingDetails"
+  static readonly CULTURE_IdiomSolitaire: string = "culture_IdiomSolitaire"
 }
 
 // Indicates the key of the routerMap table in the RouterModule.

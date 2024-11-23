@@ -5,10 +5,10 @@ import { BusinessError } from '@kit.BasicServicesKit'
 import { buffer } from '@kit.ArkTS';
 import auth from '@hw-agconnect/auth';
 import { initialize } from '@hw-agconnect/hmcore';
-import { AppUtil } from "utils/src/main/ets/utils/puraUtils/AppUtil"
-import { PreferencesUtil } from "utils/src/main/ets/utils/puraUtils/PreferencesUtil"
+import { AppUtil } from "utils/src/main/ets/puraUtils/AppUtil"
+import { PreferencesUtil } from "utils/src/main/ets/puraUtils/PreferencesUtil"
 import { EXP } from "culture/src/main/ets/model/EXP"
-import { LogUtil } from "utils/src/main/ets/utils/puraUtils/LogUtil"
+import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 
 const TAG: string = 'EntryAbility';
 const domain = 0x0011; //定位模块

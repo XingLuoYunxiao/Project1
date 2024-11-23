@@ -1,14 +1,10 @@
 import { calligraphyItem, calligraphyItemList } from "../../model/art/CalligraphyModel"
-import { PreferencesUtil } from "utils/src/main/ets/utils/puraUtils/PreferencesUtil"
+import { PreferencesUtil } from "utils/src/main/ets/puraUtils/PreferencesUtil"
 import { EXP } from "../../model/EXP"
-import { LogUtil } from "utils/src/main/ets/utils/puraUtils/LogUtil"
+import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 import { addExp } from "../../common/util/addExp"
+import { BuilderNameConstants, RouterModule } from "routermodule"
 
-
-@Builder
-export function CalligraphyDetailsBuilder() {
-  CalligraphyDetails()
-}
 
 const TAG: string = 'CalligraphyDetails  '
 let addEXPId: number = 0
@@ -87,6 +83,8 @@ export struct CalligraphyDetails {
         });
 
       }
+
+
       .width('100%')
     }
     .hideTitleBar(true)
@@ -140,4 +138,15 @@ struct ItemBuilder {
     }
     .width('100%')
   }
+}
+
+@Builder
+export function CalligraphyDetailsBuilder() {
+  CalligraphyDetails()
+}
+
+const builderName = BuilderNameConstants.CULTURE_CALLIGRAPHY
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(CalligraphyDetailsBuilder)
+  RouterModule.registerBuilder(builderName, builder)
 }

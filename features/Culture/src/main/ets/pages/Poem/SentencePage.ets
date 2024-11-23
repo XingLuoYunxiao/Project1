@@ -7,6 +7,7 @@ import { GetPoemDataFormCloud } from '../../common/constants/CloundDb/getPoemDat
 import { PoemDetailPage } from './PoemDetailPage'; // 导入诗词详情页
 import { Sentence } from '../../model/Sentence';
 import { addExp } from '../../common/util/addExp';
+import { BuilderNameConstants, RouterModule } from 'routermodule';
 
 let addEXPId: number = 0
 
@@ -44,35 +45,38 @@ export struct SentencePage { // 定义一个组件类PoemPage
 
   // 构建组件UI结构
   build() {
-    Column() {
+    NavDestination() {
+      Column() {
 
-      // 展示数据的列表组件
-      List({ space: 10 }) {
-        // 使用LazyForEach动态加载诗歌数据
-        LazyForEach(SentenceData, (item: Sentence) => {
-          this.SentenceItem(item); // 渲染单个诗歌项
-        },
-          (item: Sentence) => item.id) // 以numId为唯一标识
-      }
-      .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
-      .cachedCount(15) // 缓存项数
-      .id('poemList') // 列表ID
-      .onReachEnd(async () => { // 滑动到底部时触发
-        this.pageNumber++; // 页码增加
-        let res: Sentence[] | undefined =
-          await GetPoemDataFormCloud.fetchSentence(this.pageNumber);
-        if (res) {
-          console.log('滑倒底部触发更新');
-          res.forEach(sentence => {
-            SentenceData.pushData(sentence); // 添加数据
-          });
-          SentenceData.notifyDataReload(); // 通知数据更新
+        // 展示数据的列表组件
+        List({ space: 10 }) {
+          // 使用LazyForEach动态加载诗歌数据
+          LazyForEach(SentenceData, (item: Sentence) => {
+            this.SentenceItem(item); // 渲染单个诗歌项
+          },
+            (item: Sentence) => item.id) // 以numId为唯一标识
         }
-      });
+        .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
+        .cachedCount(15) // 缓存项数
+        .id('poemList') // 列表ID
+        .onReachEnd(async () => { // 滑动到底部时触发
+          this.pageNumber++; // 页码增加
+          let res: Sentence[] | undefined =
+            await GetPoemDataFormCloud.fetchSentence(this.pageNumber);
+          if (res) {
+            console.log('滑倒底部触发更新');
+            res.forEach(sentence => {
+              SentenceData.pushData(sentence); // 添加数据
+            });
+            SentenceData.notifyDataReload(); // 通知数据更新
+          }
+        });
 
+      }
+
+      .width('100%'); // 设置宽度
     }
 
-    .width('100%'); // 设置宽度
   }
 
   // 渲染单个诗歌项
@@ -140,4 +144,15 @@ function extractPoet(input: string): string | null {
 function extractTitle(input: string): string | null {
   const match = input.match(/^.+《(.+?)》$/); // 匹配标题部分
   return match ? match[1].trim() : null; // 返回标题，去除多余空格
+}
+
+@Builder
+export function SentencePageBuilder() {
+  SentencePage()
+}
+
+const builderName = BuilderNameConstants.CULTURE_SENTENCE
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(SentencePageBuilder)
+  RouterModule.registerBuilder(builderName, builder)
 }

@@ -6,8 +6,10 @@ import { Poem } from '../../model/Poem'; // 导入诗歌模型类
 import { GetPoemDataFormCloud } from '../../common/constants/CloundDb/getPoemDataFormCloudDb'; // 导入云数据库数据获取模块
 import { PoemDetailPage } from './PoemDetailPage'; // 导入诗词详情页
 import { addExp } from '../../common/util/addExp';
+import { BuilderNameConstants, RouterModule, RouterNameConstants } from 'routermodule';
 
 let addEXPId: number = 0
+
 
 @Component
 export struct PoemPage { // 定义一个组件类PoemPage
@@ -52,70 +54,73 @@ export struct PoemPage { // 定义一个组件类PoemPage
     // 退出页面时取消对经验值的添加
     clearTimeout(addEXPId)
   }
-
   // 构建组件UI结构
   build() {
-    Column() {
-      // 筛选器组件
-      Filter({
-        multiFilters: this.filterParam, // 多个筛选条件
-        filterType: FilterType.MULTI_LINE_FILTER, // 筛选类型
-        onFilterChanged: async (select: Array<FilterResult>) => { // 筛选条件变化时的回调函数
-          console.log('rec filter change');
-          for (let filter of select) {
-            console.log('name:' + filter.name + ',index:' + filter.index + ',value:' + filter.value);
-            if (filter.name === '类型') {
-              this.poemType = filter.value.toString(); // 更新筛选的诗歌类型
-            } else if (filter.name === '诗人') {
-              this.poets = filter.value.toString(); // 更新筛选的诗人
-            } else if (filter.name = '朝代') {
-              this.dynasty = filter.value.toString(); // 更新筛选的朝代
+    NavDestination(){
+      Column() {
+        // 筛选器组件
+        Filter({
+          multiFilters: this.filterParam, // 多个筛选条件
+          filterType: FilterType.MULTI_LINE_FILTER, // 筛选类型
+          onFilterChanged: async (select: Array<FilterResult>) => { // 筛选条件变化时的回调函数
+            console.log('rec filter change');
+            for (let filter of select) {
+              console.log('name:' + filter.name + ',index:' + filter.index + ',value:' + filter.value);
+              if (filter.name === '类型') {
+                this.poemType = filter.value.toString(); // 更新筛选的诗歌类型
+              } else if (filter.name === '诗人') {
+                this.poets = filter.value.toString(); // 更新筛选的诗人
+              } else if (filter.name = '朝代') {
+                this.dynasty = filter.value.toString(); // 更新筛选的朝代
+              }
+            }
+            this.pageNumber = 1; // 重置页码
+            PoemData.data = []; // 清空当前数据
+            PoemData.notifyDataReload(); // 通知数据重载
+            // 根据筛选条件从云数据库获取数据
+            let res: Poem[] | undefined =
+              await GetPoemDataFormCloud.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
+            if (res) {
+              res.forEach(poem => {
+                PoemData.pushData(poem); // 添加数据到PoemData
+              });
+              PoemData.notifyDataReload(); // 通知数据更新
             }
           }
-          this.pageNumber = 1; // 重置页码
-          PoemData.data = []; // 清空当前数据
-          PoemData.notifyDataReload(); // 通知数据重载
-          // 根据筛选条件从云数据库获取数据
-          let res: Poem[] | undefined =
-            await GetPoemDataFormCloud.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
-          if (res) {
-            res.forEach(poem => {
-              PoemData.pushData(poem); // 添加数据到PoemData
-            });
-            PoemData.notifyDataReload(); // 通知数据更新
+        }) {
+          Column() {
+            // 展示数据的列表组件
+            List({ space: 10 }) {
+              // 使用LazyForEach动态加载诗歌数据
+              LazyForEach(PoemData, (item: Poem) => {
+                this.PoemItem(item); // 渲染单个诗歌项
+              },
+                (item: Poem) => item.numId.toString()) // 以numId为唯一标识
+            }
+            .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
+            .cachedCount(15) // 缓存项数
+            .id('poemList') // 列表ID
+            // .onReachEnd(async () => { // 滑动到底部时触发
+            //   this.pageNumber++; // 页码增加
+            //   let res: Poem[] | undefined =
+            //     await GetDataFormCloudDb.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
+            //   if (res) {
+            //     console.log('滑倒底部触发更新');
+            //     res.forEach(poem => {
+            //       PoemData.pushData(poem); // 添加数据
+            //     });
+            //     PoemData.notifyDataReload(); // 通知数据更新
+            //   }
+            // })
           }
+          .width('100%')
         }
-      }) {
-        Column() {
-          // 展示数据的列表组件
-          List({ space: 10 }) {
-            // 使用LazyForEach动态加载诗歌数据
-            LazyForEach(PoemData, (item: Poem) => {
-              this.PoemItem(item); // 渲染单个诗歌项
-            },
-              (item: Poem) => item.numId.toString()) // 以numId为唯一标识
-          }
-          .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
-          .cachedCount(15) // 缓存项数
-          .id('poemList') // 列表ID
-          // .onReachEnd(async () => { // 滑动到底部时触发
-          //   this.pageNumber++; // 页码增加
-          //   let res: Poem[] | undefined =
-          //     await GetDataFormCloudDb.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
-          //   if (res) {
-          //     console.log('滑倒底部触发更新');
-          //     res.forEach(poem => {
-          //       PoemData.pushData(poem); // 添加数据
-          //     });
-          //     PoemData.notifyDataReload(); // 通知数据更新
-          //   }
-          // })
-        }
-        .width('100%')
-      }
 
+      }
+      .width('100%'); // 设置宽度
     }
-    .width('100%'); // 设置宽度
+
+
   }
 
   // 渲染单个诗歌项
@@ -155,3 +160,14 @@ class PoemModel extends BasicDataSource<Poem> {
 }
 
 const PoemData: PoemModel = new PoemModel(); // 诗歌数据实例
+
+@Builder
+export function PoemPageBuilder() {
+    PoemPage()
+}
+
+const builderName = BuilderNameConstants.CULTURE_POEM
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(PoemPageBuilder)
+  RouterModule.registerBuilder(builderName, builder)
+}

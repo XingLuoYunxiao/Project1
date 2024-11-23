@@ -1,12 +1,7 @@
+import { BuilderNameConstants, RouterModule } from "routermodule"
 import { getXiehouyuFormCloud } from "../../common/constants/CloundDb/getXiehouyuDataFormCloudDb"
 import { BasicDataSource } from "../../model/poetryModel/PoetryModel"
 import { Xiehouyu } from "../../model/Xiehouyu"
-
-
-@Builder
-export function XiehouyuPageBuilder() {
-  XiehouyuPage()
-}
 
 
 @Component
@@ -62,7 +57,7 @@ export struct XiehouyuPage {
               Row() {
                 Text(item.riddle)
                   .fontSize(24)
-                Text('———' + item.answer)
+                Text('——' + item.answer)
                   .fontSize(24)
               }
               .backgroundColor($r('app.color.main_background'))
@@ -103,3 +98,16 @@ class XiehouyuModel extends BasicDataSource<Xiehouyu> {
 }
 
 const xiehouyuModel: XiehouyuModel = new XiehouyuModel()
+
+
+@Builder
+export function XiehouyuPageBuilder() {
+  XiehouyuPage()
+}
+
+const builderName = BuilderNameConstants.CULTURE_XIEHOUYU
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(XiehouyuPageBuilder)
+  RouterModule.registerBuilder(builderName, builder)
+}
+

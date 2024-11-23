@@ -2,10 +2,7 @@ import { PoemsPage } from "../../view/test"
 import { PoemPage } from "./PoemPage"
 import { SentencePage } from "./SentencePage"
 
-@Builder
-export function PoemEnterPageBuilder() {
-  PoemEnterPage()
-}
+
 
 @Component
 export struct PoemEnterPage {
@@ -33,3 +30,12 @@ export struct PoemEnterPage {
     .hideTitleBar(true)
   }
 }
+
+@Builder
+export function PoemEnterPageBuilder() {
+  PoemEnterPage()
+}
+// const buildName = BuilderNameConstants.CULTURE_POEMDEAILPAGE
+// if (!RouterModule.getBuilder(buildName)) {
+//   const builder: WrappedBuilder<[object]> = wrapBuilder(PoemDetailPageBuilder)
+// }

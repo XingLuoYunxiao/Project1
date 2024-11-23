@@ -15,6 +15,14 @@
     {
       "name": "main_background",
       "value": "#fff5eee6"
+    },
+    {
+      "name": "massage_background",
+      "value": "#FFC1D0D0"
+    },
+    {
+      "name": "background_light_gray",
+      "value": "#f1f3f5"
     }
   ]
 }

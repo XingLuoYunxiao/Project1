@@ -24,6 +24,7 @@ export class RouterModule {
     RouterModule.builderMap.set(builderName, builder);
   }
 
+
   // Get builder by name.
   public static getBuilder(builderName: string): WrappedBuilder<[object]> {
     const builder = RouterModule.builderMap.get(builderName);
@@ -42,6 +43,7 @@ export class RouterModule {
   public static getRouter(routerName: string): NavPathStack {
     return RouterModule.routerMap.get(routerName) as NavPathStack;
   }
+  
 
   // Jumping to a Specified Page by Obtaining the Page Stack.
   public static async push(router: RouterModel): Promise<void> {

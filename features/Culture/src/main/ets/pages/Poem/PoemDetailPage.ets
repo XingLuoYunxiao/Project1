@@ -1,4 +1,5 @@
 import { async } from "@hw-agconnect/cloud/src/main/ets/storage/upload/task"
+import { BuilderNameConstants, RouterModule } from "routermodule"
 import { GetPoemDataFormCloud } from "../../common/constants/CloundDb/getPoemDataFormCloudDb"
 import { addExp } from "../../common/util/addExp"
 import { Poem } from "../../model/Poem"
@@ -29,6 +30,8 @@ export struct PoemDetailPage {
   aboutToDisappear(): void {
     // 退出页面时取消对经验值的添加
     clearTimeout(addEXPId)
+
+    RouterModule.pop(BuilderNameConstants.CULTURE_POEMDETAIL)
   }
 
   build() {
@@ -116,6 +119,11 @@ export struct PoemDetailPage {
 }
 
 @Builder
-export function PoemDetailPageBuilder(name: string, param: object) {
+export function PoemDetailPageBuilder(param: object) {
   PoemDetailPage({ poem: param as Poem })
+}
+
+const buildName = BuilderNameConstants.CULTURE_POEMDETAIL
+if (!RouterModule.getBuilder(buildName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(PoemDetailPageBuilder)
 }

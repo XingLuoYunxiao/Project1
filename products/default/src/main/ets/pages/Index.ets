@@ -1,6 +1,6 @@
 import { TravelStartPage } from 'travel';
 import { InfoMessagePage } from 'login';
-import { CulturalHeritageStartPage } from 'culture';
+import { CulturalHeritageStartPage, CulturalPage } from 'culture';
 import { TabBarType } from '../model/TabBarModel';
 import { CustomTabBar } from '../components/CustomTabBar';
 import { AppConstants } from '../constants/AppConstants';
@@ -16,23 +16,26 @@ struct Index {
   @Provide('travelPathStack') travelPathStack: NavPathStack = new NavPathStack();
   @Provide('appPathStack') appPathStack: NavPathStack = new NavPathStack();
   @Provide('loginPathStack') loginPathStack: NavPathStack = new NavPathStack();
+  @Provide('culturePathStack') culturePathStack: NavPathStack = new NavPathStack();
   private tabsController: TabsController = new TabsController();
 
   async aboutToAppear(): Promise<void> {
+
     await LocationUtil.getInstance().getCurrentLocation()
+
     AppStorage.setOrCreate('isHideBar', false);
-    if( !this.appPathStack){
+
+    if (!this.appPathStack) {
       this.appPathStack = new NavPathStack();
     }
     RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
   }
 
   @Builder
-  routerMap(builderName: string, param: object) {
-    // Obtain the WrappedBuilder object based on the module name, create a page through the builder interface, and import the param parameter.
+  routerMap(builderName: string, param?: object) {
     RouterModule.getBuilder(builderName).builder(param);
-  };
 
+  };
 
   @Builder
   tabBarBuilder(title: string, targetIndex: number, selectedIcon: Resource, unselectIcon: Resource) {
@@ -59,27 +62,31 @@ struct Index {
   }
 
   build() {
-    Navigation(this.appPathStack){
-      Stack(){
-        Flex({ direction: FlexDirection.RowReverse }){
-          Tabs({ index: this.currentIndex  }) {
+    Navigation(this.appPathStack) {
+      Stack() {
+        Flex({ direction: FlexDirection.RowReverse }) {
+          Tabs({ index: this.currentIndex }) {
             TabContent() {
               TravelStartPage()
             }
+
             //.tabBar(this.tabBarBuilder('旅游', 0, $r("app.media.ic_tab_travel_on"), $r("app.media.ic_tab_travel_off")))
 
             TabContent() {
-              CulturalHeritageStartPage()
+              CulturalPage()
             }
+
             TabContent() {
               Text('开发中')
                 .align(Alignment.Center)
             }
+
             //.tabBar(this.tabBarBuilder('非遗', 1, $r("app.media.ic_tab_culture_on"), $r("app.media.ic_tab_culture_off")))
 
             TabContent() {
               InfoMessagePage()
             }
+
             //.tabBar(this.tabBarBuilder('我的', 2, $r("app.media.ic_tab_mine_on"), $r("app.media.ic_tab_mine_off")))
 
           }
@@ -102,7 +109,7 @@ struct Index {
         .width(AppConstants.FULL_PERCENT)
         .height(AppConstants.FULL_PERCENT)
 
-        CustomTabBar({ currentIndex: $currentIndex})
+        CustomTabBar({ currentIndex: $currentIndex })
 
       }
       .alignContent(Alignment.BottomEnd)

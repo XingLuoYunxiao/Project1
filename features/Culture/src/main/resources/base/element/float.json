@@ -139,6 +139,10 @@
     {
       "name": "search_height",
       "value": "40vp"
+    },
+    {
+      "name": "header_height_page",
+      "value": "30vp"
     }
   ]
 }
