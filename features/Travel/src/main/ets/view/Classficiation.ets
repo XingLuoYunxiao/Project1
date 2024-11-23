@@ -17,7 +17,11 @@ export struct Classification {
         }
         .onClick( () => {
           //this.appPathStack.pushPathByName(item.page === undefined ? 'AttractionTicketPage' : item.page, item.category);
-          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_FAMOUSPLACEPAGE);
+          if( item.page === undefined)
+            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE, new Object({text: item.category}));
+          else
+            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_FAMOUSPLACEPAGE, new Object({category: item.category}));
+
         })
       })
     }

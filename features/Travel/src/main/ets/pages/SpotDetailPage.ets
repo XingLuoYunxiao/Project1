@@ -1,4 +1,5 @@
 import { lvMarkdownIn, lvText } from "@luvi/lv-markdown-in"
+import { BuilderNameConstants, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from "../constants/Constants";
 import { Spot } from "../model/Spot";
 
@@ -9,6 +10,7 @@ export struct SpotDetailPage {
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
 
+  @State value: object = new Object()
   @State  myScale: number = 1
   @State voice: boolean = false;
   @State isLoading: boolean = false;
@@ -19,7 +21,8 @@ export struct SpotDetailPage {
 
   async aboutToAppear(): Promise<void> {
     lvText.setTextSize(16)
-    let spot = await this.appPathStack.getParamByName('SpotDetailPage')[0] as Spot;
+    let spot = JSON.parse(JSON.stringify(this.value)).spot as Spot
+    //let spot = await this.appPathStack.getParamByName('SpotDetailPage')[0] as Spot;
     this.spot = new Spot(spot.id, spot.name, spot.summary, spot.category, spot.rating, spot.location, spot.ticketPrice, spot.openingHours, spot.image, spot.cityCode, spot.cityId, spot.cityName);
     this.sendRequest(this.spot.name);
 
@@ -50,7 +53,8 @@ export struct SpotDetailPage {
             .width(30)
             .height(30)
             .onClick( () => {
-              this.appPathStack.pop();
+              //this.appPathStack.pop();
+              RouterModule.popToName(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_FAMOUSPLACEPAGE)
             })
           Row(){
             Text(this.spot.name)
@@ -126,7 +130,12 @@ export struct SpotDetailPage {
 }
 
 @Builder
-export function SpotDetailPageBuilder(){
-  SpotDetailPage()
+export function SpotDetailPageBuilder(value: object){
+  SpotDetailPage({value:value})
 }
 
+const builderName = BuilderNameConstants.TRAVEL_SPOTDETAILPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(SpotDetailPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
+}

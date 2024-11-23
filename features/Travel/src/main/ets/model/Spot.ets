@@ -48,7 +48,6 @@ export class Spot extends IBaseProject implements ISpot {
   }
 
 
-
   addChat(): void {
     Spot.idCount += 1
     let newChat = new TravelChat(Spot.idCount ,[])

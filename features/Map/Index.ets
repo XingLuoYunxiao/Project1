@@ -8,6 +8,8 @@ export function harInit(builderName: string): void {
     case BuilderNameConstants.MAP_MAPVIEWPAGE:
       import("./src/main/ets/pages/MapViewPage");
       break;
+    case BuilderNameConstants.MAP_NAVIGATIONPAGE:
+      import("./src/main/ets/pages/NavigationPage");
     default:
       break;
   }
