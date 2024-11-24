@@ -1,6 +1,6 @@
 import { async } from "@hw-agconnect/cloud/src/main/ets/storage/upload/task"
 import { BuilderNameConstants, RouterModule } from "routermodule"
-import { GetPoemDataFormCloud } from "../../common/constants/CloundDb/getPoemDataFormCloudDb"
+import { CloudPoemService } from "../../service/CloudPoemService"
 import { addExp } from "../../common/util/addExp"
 import { Poem } from "../../model/Poem"
 import { Writer } from "../../model/Writer"
@@ -15,7 +15,7 @@ export struct PoemDetailPage {
 
   async aboutToAppear(): Promise<void> {
 
-    let poets: Writer[] | undefined = await GetPoemDataFormCloud.fetchWriterData(this.poem.writer)
+    let poets: Writer[] | undefined = await CloudPoemService.fetchWriterData(this.poem.writer)
     if (poets) {
       this.writer = poets[0]
     }

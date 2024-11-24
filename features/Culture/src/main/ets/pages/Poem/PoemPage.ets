@@ -1,12 +1,11 @@
 import cloud, { FunctionResult } from '@hw-agconnect/cloud'; // 导入云函数库
 import { BasicDataSource } from '../../model/poetryModel/PoetryModel'; // 导入基本数据源
-import { componentUtils, Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'; // 导入UI工具和筛选器相关模块
+import { Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'; // 导入UI工具和筛选器相关模块
 import { dynastyList, poets, TypeList } from '../../common/constants/poemType'; // 导入诗词相关常量数据
 import { Poem } from '../../model/Poem'; // 导入诗歌模型类
-import { GetPoemDataFormCloud } from '../../common/constants/CloundDb/getPoemDataFormCloudDb'; // 导入云数据库数据获取模块
-import { PoemDetailPage } from './PoemDetailPage'; // 导入诗词详情页
 import { addExp } from '../../common/util/addExp';
 import { BuilderNameConstants, RouterModule, RouterNameConstants } from 'routermodule';
+import { CloudPoemService } from '../../service/CloudPoemService';
 
 let addEXPId: number = 0
 
@@ -36,7 +35,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
   // 生命周期方法：组件加载时调用，获取初始数据
   async aboutToAppear(): Promise<void> {
     // 从云数据库获取诗歌数据
-    let poems: Poem[] | undefined = await GetPoemDataFormCloud.fetchAllData(this.pageNumber);
+    let poems: Poem[] | undefined = await CloudPoemService.fetchAllData(this.pageNumber);
     if (poems) {
       poems.forEach(item => {
         PoemData.pushData(item); // 添加数据到PoemData
@@ -54,9 +53,10 @@ export struct PoemPage { // 定义一个组件类PoemPage
     // 退出页面时取消对经验值的添加
     clearTimeout(addEXPId)
   }
+
   // 构建组件UI结构
   build() {
-    NavDestination(){
+    NavDestination() {
       Column() {
         // 筛选器组件
         Filter({
@@ -79,7 +79,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
             PoemData.notifyDataReload(); // 通知数据重载
             // 根据筛选条件从云数据库获取数据
             let res: Poem[] | undefined =
-              await GetPoemDataFormCloud.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
+              await CloudPoemService.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
             if (res) {
               res.forEach(poem => {
                 PoemData.pushData(poem); // 添加数据到PoemData
@@ -119,7 +119,6 @@ export struct PoemPage { // 定义一个组件类PoemPage
       }
       .width('100%'); // 设置宽度
     }
-
 
   }
 
@@ -163,7 +162,7 @@ const PoemData: PoemModel = new PoemModel(); // 诗歌数据实例
 
 @Builder
 export function PoemPageBuilder() {
-    PoemPage()
+  PoemPage()
 }
 
 const builderName = BuilderNameConstants.CULTURE_POEM

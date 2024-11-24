@@ -1,4 +1,3 @@
-
 @CustomDialog
 export struct GameRuleDialog {
   @Prop str: ResourceStr
@@ -18,7 +17,7 @@ export struct GameRuleDialog {
           this.controller.close()
         })
     }
-    .width(240)
-    .height(200)
+    .width(280)
+    .height(240)
   }
 }

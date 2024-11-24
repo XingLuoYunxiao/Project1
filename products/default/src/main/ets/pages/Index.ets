@@ -1,6 +1,6 @@
 import { TravelStartPage } from 'travel';
 import { InfoMessagePage } from 'login';
-import { CulturalHeritageStartPage, CulturalPage } from 'culture';
+import {  CulturalPage } from 'culture';
 import { TabBarType } from '../model/TabBarModel';
 import { CustomTabBar } from '../components/CustomTabBar';
 import { AppConstants } from '../constants/AppConstants';
@@ -28,7 +28,7 @@ struct Index {
     if (!this.appPathStack) {
       this.appPathStack = new NavPathStack();
     }
-    RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
+   RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
   }
 
   @Builder

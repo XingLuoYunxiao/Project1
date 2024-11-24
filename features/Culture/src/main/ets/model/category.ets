@@ -49,7 +49,7 @@ export const traditionList: category[] = [
 export const gameList: category[] = [
   {
     name: "飞花令",
-    path: ""
+    path: BuilderNameConstants.CULTURE_FlyingFlowerOder
   },
   {
     name: "成语接龙",
