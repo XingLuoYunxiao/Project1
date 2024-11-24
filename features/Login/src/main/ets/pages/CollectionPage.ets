@@ -8,6 +8,8 @@ import { MineViewModel } from '../service/MineViewModel'
 import auth from '@hw-agconnect/auth'
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from '../common/constants/Constants'
+import { Spot } from 'travel'
+import { SpotNetFunc } from 'travel/src/main/ets/service/SpotNetFunc'
 
 @Component
 export struct EveryItem {
@@ -43,6 +45,7 @@ export struct CollectionPage {
   @Provide collectspotListData: ListDataSource<CollectionAdd> = this.mineViewModel.collectspotListData
   @Provide collectpoemListData: ListDataSource<CollectionAdd> =this.mineViewModel.collectpoemListData
   @Provide searchListData: ListDataSource<CollectionAdd> = new ListDataSource();
+  @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
 
   @Builder
   bottomDelete(){
@@ -119,7 +122,8 @@ export struct CollectionPage {
                     LazyForEach(this.collectspotListData,(spot:CollectionAdd)=>{
                       EveryItem({manage:$manage,spot:spot})
                         .onClick(()=>{
-                          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE)
+                          this.SpotNetWork.search(spot.spotname)
+                          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
                         })
                     },(spot:CollectionAdd,index:number)=>JSON.stringify(spot)+Math.random()+index)
                   }

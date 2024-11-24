@@ -5,20 +5,22 @@ import { OrderItem} from "../view/OrderItem"
 import { ListDataSource } from "../service/ListDataSource"
 import { MineViewModel } from "../service/MineViewModel"
 import auth from '@hw-agconnect/auth'
-import text from '@ohos.graphics.text'
-import { BuilderNameConstants, RouterModule } from 'routermodule'
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule'
 import Constants from '../common/constants/Constants'
+import { Spot } from 'travel'
+import { SpotNetFunc } from 'travel/src/main/ets/service/SpotNetFunc'
 
 @Component
 export struct MyOrderPage {
-  @Consume('appPathStack') appPathStack: NavPathStack
-  @State order: myOrder[] = []
-  @StorageLink('personUid') personUid: string = ''
-  @State spots: mySpot[] = []
-  @State isSearch:boolean=false
+  @Consume('appPathStack') appPathStack: NavPathStack;
+  @State order: myOrder[] = [];
+  @StorageLink('personUid') personUid: string = '';
+  @State spots: mySpot[] = [];
+  @State isSearch:boolean=false;
   @State mineViewModel:MineViewModel=MineViewModel.getInstance();
-  @Provide orderListData: ListDataSource<myOrderAdd> = this.mineViewModel.orderListData
+  @Provide orderListData: ListDataSource<myOrderAdd> = this.mineViewModel.orderListData;
   @State searchListData: ListDataSource<myOrderAdd> = new ListDataSource();
+  @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
 
   async aboutToAppear() {
     auth.getCurrentUser().then(user=>{
@@ -68,7 +70,10 @@ export struct MyOrderPage {
                       LazyForEach(this.orderListData, (or: myOrderAdd) => {
                         ListItem() {
                           OrderItem({ item: or, reviewname: or.spotname })
-                        }
+                        }.onClick(()=>{
+                          this.SpotNetWork.search(or.spotname)
+                          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
+                        })
                       }, (or: myOrderAdd) => JSON.stringify(or))
                     }
                   }.scrollBar(BarState.Off)

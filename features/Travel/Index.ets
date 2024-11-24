@@ -9,8 +9,20 @@ export function harInit(builderName: string): void {
     case BuilderNameConstants.TRAVEL_FAMOUSPLACEPAGE:
       import("./src/main/ets/pages/FamousPlacePage");
       break;
+    case BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE:
+      import("./src/main/ets/pages/AttractionTicketPage");
+      break;
     case BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE:
       import("./src/main/ets/pages/AttractionDetailPage");
+      break;
+    case BuilderNameConstants.TRAVEL_LOADINGANIMATION:
+      import("./src/main/ets/pages/LoadingAnimation");
+      break;
+    case BuilderNameConstants.TRAVEL_SEARCHPAGE:
+      import("./src/main/ets/pages/SearchPage");
+      break;
+    case BuilderNameConstants.TRAVEL_SPOTDETAILPAGE:
+      import("./src/main/ets/pages/SpotDetailPage");
       break;
     default:
       break;

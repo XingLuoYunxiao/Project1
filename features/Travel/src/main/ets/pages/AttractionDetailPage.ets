@@ -5,6 +5,7 @@ import { Spot } from '../model/Spot'
 @Component
 struct AttractionDetailPage {
   @Consume('appPathStack') appPathStack: NavPathStack
+  @State value: object = new Object()
   @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null', '', '', '', '');
   @State orderData :string[] = ['可定今日', '可订明日', '更多日期']
   @State isSelected: number = 0
@@ -12,9 +13,9 @@ struct AttractionDetailPage {
 
   aboutToAppear(): void {
     //获取路由参数
-    this.spot = this.appPathStack.getParamByName('AttractionDetailPage')[0] as Spot;
+    this.spot = JSON.parse(JSON.stringify(this.value)).item as Spot
+    //this.spot = this.appPathStack.getParamByName('AttractionDetailPage')[0] as Spot;
   }
-
 
   build() {
     NavDestination(){
@@ -290,9 +291,10 @@ function isBusinessTime(businessHours: string): boolean {
 }
 
 @Builder
-export function AttractionDetailPageBuilder(value:object) {
-  AttractionDetailPage()
+export function AttractionDetailPageBuilder(value: object) {
+  AttractionDetailPage({value: value})
 }
+
 const builderName = BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE;
 if (!RouterModule.getBuilder(builderName)) {
   const builder: WrappedBuilder<[object]> = wrapBuilder(AttractionDetailPageBuilder);

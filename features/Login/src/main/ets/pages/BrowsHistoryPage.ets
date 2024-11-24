@@ -5,8 +5,9 @@ import { CollectHistoryItem } from "../view/CollectHistoryItem";
 import { ListDataSource } from "../service/ListDataSource";
 import { MineViewModel } from "../service/MineViewModel";
 import auth from "@hw-agconnect/auth";
-import { BuilderNameConstants, RouterModule } from "routermodule";
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from "../common/constants/Constants";
+import { SpotNetFunc } from "travel/src/main/ets/service/SpotNetFunc";
 
 @Component
 export struct BrowsHistoryPage {
@@ -19,6 +20,7 @@ export struct BrowsHistoryPage {
   @State mineViewModel:MineViewModel=MineViewModel.getInstance();
   @State historyspotListData: ListDataSource<HistoryAdd> = this.mineViewModel.historyspotListData
   @State historypoemListData: ListDataSource<HistoryAdd> = this.mineViewModel.historypoemListData
+  @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
 
   @Builder
 bottomDelete(){
@@ -83,7 +85,10 @@ bottomDelete(){
                       }
                       CollectHistoryItem({ item: history })
                     }
-                  }
+                  }.onClick(()=>{
+                    this.SpotNetWork.search(history.spotname)
+                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
+                  })
                 }, (history: HistoryAdd) => JSON.stringify(history))
               }.scrollBar(BarState.Off)
 
@@ -110,7 +115,9 @@ bottomDelete(){
                       }
                       CollectHistoryItem({ item: history })
                     }
-                  }
+                  }.onClick(()=>{
+
+                  })
                 }, (history: HistoryAdd) => JSON.stringify(history))
               }.scrollBar(BarState.Off)
               Text('已经到底了').fontSize(20).fontColor($r('app.color.page_background_grey'))

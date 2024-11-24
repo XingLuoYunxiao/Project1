@@ -15,6 +15,7 @@
       }
     ],
     "buildModeSet": [
+
       {
         "name": "debug"
       },

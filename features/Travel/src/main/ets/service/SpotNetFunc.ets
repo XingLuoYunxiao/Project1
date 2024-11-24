@@ -145,7 +145,6 @@ export class SpotNetFunc{
     this.preferenceUtil.putPreferenceValue<string[]>('searchHistory', this.searchHistory);
     this.searchResult = this.spots.filter(spot => spot.name.toLowerCase().includes(value.toLowerCase()))
     this.searchLoadingStatus = LoadingStatus.SUCCESS
-
   }
 
 

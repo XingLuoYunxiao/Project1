@@ -5,6 +5,8 @@ import Constants from "../constants/Constants";
 import { otherItemList } from "../model/Attraction";
 import { Spot } from "../model/Spot";
 import { SpotNetFunc } from "../service/SpotNetFunc";
+import { router } from "@kit.ArkUI";
+
 //评分数组，最高10分
 const scoreList: number[] = [9.7, 10.0, 8.8, 9.5, 9.2, 9.9, 9.0];
 
@@ -18,6 +20,7 @@ export interface  LoadParams{
 export struct FamousPlacePage {
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
+  @State value:object = new Object()
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance();
   @State category: string = "";
   @State spotDataSource: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource
@@ -36,7 +39,8 @@ export struct FamousPlacePage {
   }
 
   async aboutToAppear(): Promise<void> {
-    this.category = this.appPathStack.getParamByName('FamousPlacePage')[0] as string
+    this.category = JSON.parse(JSON.stringify(this.value)).category as string
+    //this.category = this.appPathStack.getParamByName('FamousPlacePage')[0] as string
   }
 
 
@@ -54,7 +58,8 @@ export struct FamousPlacePage {
           .height(30)
           .layoutWeight(1)
           .onClick( () => {
-            this.appPathStack.pushPathByName('SearchPage', true)
+            buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_SEARCHPAGE)
+            //this.appPathStack.pushPathByName('SearchPage', true)
           })
         Badge({count: 1, position: BadgePosition.RightTop, style:{fontSize:14, badgeColor: Color.Red}}){
           Image($r('app.media.ic_public_email'))
@@ -205,7 +210,8 @@ export struct FamousPlacePage {
                   param1: "SpotDetailPage", // 第一个参数
                   param2: spot  // 第二个参数
                 };
-                this.appPathStack.pushPathByName('LoadingAnimation', params)
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_LOADINGANIMATION, new Object({params:params}));
+                //this.appPathStack.pushPathByName('LoadingAnimation', params)
               })
           }
           .alignItems(HorizontalAlign.End)
@@ -231,8 +237,8 @@ export struct FamousPlacePage {
 }
 
 @Builder
-export function FamousPlacePageBuilder(){
-  FamousPlacePage()
+export function FamousPlacePageBuilder(value: object){
+  FamousPlacePage({value:value})
 }
 
 

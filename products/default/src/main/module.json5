@@ -34,6 +34,13 @@
       {
         "name": "ohos.permission.INTERNET"
         //加入网络权限
+      },
+      {
+        "name": "ohos.permission.KEEP_BACKGROUND_RUNNING",
+        "reason": "$string:Harmony_navi_permission_reason",
+        "usedScene": {
+          "when": "always"
+        }
       }
     ],
     "name": "default",

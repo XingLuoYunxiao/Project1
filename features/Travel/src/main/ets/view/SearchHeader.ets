@@ -1,3 +1,4 @@
+import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule"
 
 @Component
 export struct SearchHeader {
@@ -11,7 +12,8 @@ export struct SearchHeader {
         .height(30)
         .layoutWeight(1)
         .onClick( () => {
-          this.appPathStack.pushPathByName('SearchPage', true)
+          buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_SEARCHPAGE)
+          //this.appPathStack.pushPathByName('SearchPage', true)
         })
       Badge({count: 1, position: BadgePosition.RightTop, style:{fontSize:14, badgeColor: Color.Red}}){
         Image($r('app.media.ic_public_email'))

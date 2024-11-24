@@ -78,7 +78,6 @@ export struct InfoMessagePage {
                   buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_SETTINGPAGE)
                 })
             }
-            .backgroundColor(Color.White)
             .padding({
               top: 10,
               left: 10,
