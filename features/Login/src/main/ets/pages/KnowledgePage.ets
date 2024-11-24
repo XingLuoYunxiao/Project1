@@ -1,6 +1,9 @@
 import { BuilderNameConstants, RouterModule } from 'routermodule';
 import { LottieUtil } from 'utils/src/main/ets/utils/LottieUtil';
 import { AchieveImage, ACHIEVE_IMAGE_LIST } from '../model/AchievementModel';
+import { PreferencesUtil } from "utils/src/main/ets/utils/puraUtils/PreferencesUtil"
+import { EXP } from 'culture';
+import Constants from '../common/constants/Constants';
 
 @Component
 export struct KnowledgePage {
@@ -9,17 +12,28 @@ export struct KnowledgePage {
   @State isShow: boolean = false;
   private mainRenderingSettings: RenderingContextSettings = new RenderingContextSettings(true);
   private mainCanvasRenderingContext: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.mainRenderingSettings);
+  @State exp:EXP[]=[]
 
+  aboutToAppear() {
+    let EXPString: string = PreferencesUtil.getSync("EXP", "") as string
+    this.exp= JSON.parse(EXPString) as EXP[]
+  }
   getShowImg(item: AchieveImage): Resource | undefined {
-    // if (this.learnedIds.includes(item.pathId)) {
+    if(this.exp[0].value>1000){
       return item.activeImage;
-    // }
-    // return item.defaultImage;
+    }
+    return item.defaultImage;
   }
 
   build() {
     NavDestination(){
       Column() {
+        Row(){
+          Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(()=>{
+            this.appPathStack.pop()
+          })
+        }
+        .height(Constants.TOP_HEIGHT_PAGE)
         Grid(){
           ForEach(ACHIEVE_IMAGE_LIST,(item:AchieveImage)=>{
             GridItem() {
@@ -28,15 +42,9 @@ export struct KnowledgePage {
                 .width(100)
                 .aspectRatio(1)
             }.onClick(()=>{
-              // if (this.learnedIds.includes(item.pathId)) {
-              //   this.clickedItem = item;
-              //   this.isShow = true;
-              // }
-                    this.isShow = true;
-              //   if(this.pointMap.get('poem')){
-              //     if((this.pointMap.get('poem') as number)>20){
-              //       this.isShow = true;
-              //     }
+              if(this.getShowImg(item)==item.activeImage){
+                this.isShow = true;
+              }
             })
           })
         }
@@ -57,9 +65,10 @@ export struct KnowledgePage {
         .padding(5)
         .margin(6)
       }
+      .padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE})
       .width('100%')
       .height('100%')
-    }
+    }.margin({top:Constants.HEADER_HEIGHT_PAGE})
   }
   @Builder
   playLottieBuilder() {

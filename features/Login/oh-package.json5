@@ -8,6 +8,8 @@
   "dependencies": {
     "utils": "file:../../commons/utils",
     "uicomponents": "file:../../commons/uicomponents",
-    "routermodule": "file:../../RouterModule"
+    "routermodule": "file:../../RouterModule",
+    "travel": "file:../Travel",
+    "culture": "file:../Culture",
   }
 }

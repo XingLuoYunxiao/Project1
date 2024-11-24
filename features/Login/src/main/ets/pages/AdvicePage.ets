@@ -1,4 +1,5 @@
 import { BuilderNameConstants, RouterModule } from "routermodule"
+import Constants from "../common/constants/Constants"
 
 const sensitive:string[]=['卧槽','我操','滚','傻']
 
@@ -12,11 +13,15 @@ export struct AdvicePage {
       NavDestination(){
         Column() {
           Row(){
-            Image($r('app.media.ic_back')).width(30).onClick(()=>{
+            Image($r('app.media.ic_back'))
+              .width($r('app.float.md_topic_width'))
+              .onClick(()=>{
               this.appPathStack.pop()
             })
             Text('反馈')
-          }.width('100%')
+          }
+          .height(Constants.TOP_HEIGHT_PAGE)
+          .width('100%')
           TextArea({ placeholder: '请写下您的建议反馈', text: this.content ,controller: this.controller})
             .maxLength(200)
             .maxLines(10)
@@ -72,10 +77,10 @@ export struct AdvicePage {
             })
           })
         }
-        .margin({top:10,left:10,right:10})
         .width('100%')
       }
       .hideTitleBar(true)
+      .margin({top:Constants.HEADER_HEIGHT_PAGE})
   }
 }
 @Builder

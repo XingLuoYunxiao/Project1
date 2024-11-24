@@ -55,10 +55,10 @@ export struct TravelStartPage {
             .width('100%')
             .height(230)
           })
-
         }
         .autoPlay(true)
         .loop(true)
+        //导航点
         .indicator(false)
         .width('100%')
 

@@ -1,5 +1,9 @@
 import auth from "@hw-agconnect/auth"
 import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule"
+import { Spot } from "travel"
+import { SpotNetFunc } from "travel/src/main/ets/service/SpotNetFunc"
+import { LazyDataSource } from "utils"
+import Constants from "../common/constants/Constants"
 import { functionItem } from "../model/functionItem"
 
 @Component
@@ -8,16 +12,19 @@ export struct InfoMessagePage {
   @StorageLink('personName') personName: string =''
   @StorageLink('personPhoto') personPhoto: string =''
   @Consume('loginPathStack') loginPathStack: NavPathStack
+  @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance();
+  @State spotDataSource: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource
+
   @Builder
   myListItem(image: ResourceStr, title:string) {
-    Column() {
+    Column({space:Constants.SMALL_SPACE}) {
         Image(image)
-          .width(50)
-          .height(50)
+          .width($r('app.float.options_height'))
+          .height($r('app.float.options_height'))
         Text(title)
-          .fontSize(16)
-          .fontWeight(FontWeight.Bold)
+          .fontSize($r('app.float.large_text_size'))
     }
+    .justifyContent(FlexAlign.Center)
   }
 
   aboutToAppear() {
@@ -29,48 +36,46 @@ export struct InfoMessagePage {
     });
   }
 
-      build() {
-        Navigation(this.loginPathStack) {
-          Column({ space: 10 }) {
-            //登录
-            Row({ space: 10 }) {
-              Image(this.personName ==''? $r('app.media.guanggao') : this.personPhoto)
-                .width(70)
-                .height(70)
-                .borderRadius(35)
-                .onClick(()=>{
-                    //未登录点击去登陆页面
-                    if(this.personName==''){
-                      buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_LOGINPAGE)
-                    }else
-                    //登录了点击去修改页面
-                      buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_CHANGEPHOTO, new Object())
-                })
+  build() {
+    Navigation(this.loginPathStack) {
+      Column({ space:Constants.MIDDLE_SPACE }) {
+        //登录
+        Row({ space:Constants.MIDDLE_SPACE }) {
+          Image(this.personName ==''? $r('app.media.defaultphoto') : this.personPhoto)
+            .width($r('app.float.lg_topic_width'))
+            .height($r('app.float.topic_height'))
+            .borderRadius($r('app.float.large_border_radius'))
+            .onClick(()=>{
+              //未登录点击去登陆页面
+              if(this.personName==''){
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_LOGINPAGE)
+              }else
+                //登录了点击去修改页面
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_CHANGEPHOTO)
+            })
               if (this.personName!='') {
                 Text(this.personName)
-                  .fontSize(18)
-                  .height(25)
+                  .fontSize($r('app.float.large_text_size'))
                   .onClick(()=>{
-                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_CHANGEPHOTO, new Object())
+                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_CHANGEPHOTO)
                   })
               } else {
                 Text('登  录')
-                  .fontSize(18)
-                  .height(25)
+                  .fontSize($r('app.float.large_text_size'))
                   .onClick(() => {
-                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_LOGINPAGE, new Object())
+                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_LOGINPAGE)
                   })
               }
               Blank()
               Text('客服')
+                .fontSize($r('app.float.large_text_size'))
                 .onClick(() => {
-                  buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_CUSSERVICEPAGE, new Object())
+                  buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_CUSSERVICEPAGE)
                 })
               Text('设置')
-                .fontSize(18)
-                .height(25)
+                .fontSize($r('app.float.large_text_size'))
                 .onClick(() => {
-                  buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_SETTINGPAGE, new Object())
+                  buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.LOGIN_SETTINGPAGE)
                 })
             }
             .backgroundColor(Color.White)
@@ -80,66 +85,95 @@ export struct InfoMessagePage {
               right: 10
             })
             .width('100%')
-            .height(100)
+            .height($r('app.float.row_height'))
 
-            // 卡片
-            Row() {
-              List({space:24}) {
-                ForEach(FUNCTION_PATHS,(item:functionItem,index)=>{
-                  ListItem() {
-                    if(index<4){
-                      this.myListItem(item.img, item.title)
-                    }
-                  }.onClick(() => {
-                    buildRouterModel(RouterNameConstants.ENTRY_HAP, item.turnname)
-                  })
-                })
+        // 卡片
+        Row({space:Constants.LLARGE_SPACE}) {
+          ForEach(FUNCTION_PATHS,(item:functionItem,index)=>{
+            ListItem() {
+              if(index<4){
+                this.myListItem(item.img, item.title)
               }
-              .padding({left:14,right:14})
-              .listDirection(Axis.Horizontal)
-            }
-            .backgroundColor(Color.White)
-            .borderRadius(10)
-            .height(120)
-            .width('95%')
-
-            //其他功能
-            Column(){
-              List(){
-                ForEach(FUNCTION_PATHS,(item:functionItem,index)=>{
-                  ListItem(){
-                    if(index>3){
-                      Row(){
-                        Image(item.img).width(30)
-                        Text(item.title)
-                        Image(item.icon).width(30)
-                      }
-                    }
-                  }.onClick(()=>{
-                    this.appPathStack.pushPathByName(item.turnname,123)
-                  })
-                })
-              }
-            }
-            .width('100%')
-            .height('100%')
-            .backgroundColor(Color.White)
-          }
-          .backgroundColor('#ffe0dede')
-          .width('100%')
-          .height('100%')
+            }.onClick(() => {
+              buildRouterModel(RouterNameConstants.ENTRY_HAP, item.turnname)
+            })
+          })
         }
-        .hideTitleBar(true)
-        .mode(NavigationMode.Stack)
+        .padding($r('app.float.lg_padding_margin'))
+        .backgroundColor(Color.White)
+        .borderRadius($r('app.float.regular_border_radius'))
+        .height($r('app.float.row_height'))
+        .width('95%')
+
+        //其他功能
+        Column(){
+            ForEach(FUNCTION_PATHS,(item:functionItem,index)=>{
+              ListItem(){
+                if(index>3){
+                  Row(){
+                    Image(item.img).width(30).margin({right:6})
+                    Text(item.title)
+                    Blank()
+                    Image(item.icon).width(40)
+                  }.width('100%')
+                }
+              }.onClick(()=>{
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, item.turnname)
+              })
+            })
+        }
+        .padding({left:$r('app.float.xl_padding_margin'),right:$r('app.float.xl_padding_margin'),top:$r('app.float.md_padding_margin'),bottom:$r('app.float.md_padding_margin')})
+        .width('100%')
+        .backgroundColor(Color.White)
+
+        //推荐流
+        WaterFlow(){
+          LazyForEach(this.spotDataSource,(item:Spot,index:number)=>{
+            FlowItem() {
+              Column({space:Constants.SMALL_SPACE}) {
+                Image($r(item.image))
+                  .width('50%')
+                  .borderRadius(10)
+                  .height(200)
+                Text(item.name)
+                Row({space:Constants.SMALL_SPACE}){
+                  Text(`￥${item.ticketPrice}`)
+                  Text('已售500+')
+                }
+              }
+            }
+            // .onAppear(() => {
+            //   // 即将触底时提前增加数据
+            //   if (index + 20 == this.spotDataSource.totalCount()) {
+            //     for (let i = 0; i < 100; i++) {
+            //       this.spotDataSource.addData()
+            //     }
+            //   }
+            // })
+          })
+        }
+        .columnsTemplate("1fr 1fr")
+        .columnsGap(5)
+        .rowsGap(5)
+        .width('100%')
+        .padding($r('app.float.lg_padding_margin'))
+        .backgroundColor(Color.White)
       }
+      .backgroundColor($r('app.color.app_background_color'))
+      .width('100%')
+      .height('100%')
+    }
+    .hideTitleBar(true)
+    .mode(NavigationMode.Stack)
+  }
 }
 const FUNCTION_PATHS: functionItem[]=[
-  new functionItem($r('app.media.account'), "收藏",BuilderNameConstants.LOGIN_COLLECTIONPAGE),
-  new functionItem($r('app.media.attraction'), "浏览记录",BuilderNameConstants.LOGIN_BROWSHISTORYPAGE),
-  new functionItem($r('app.media.record'), "我的订单",BuilderNameConstants.LOGIN_MYORDER),
-  new functionItem($r('app.media.setting'), "知识等级",BuilderNameConstants.LOGIN_KNOWLEDGEPAGE),
-  new functionItem($r('app.media.account'),"消息",'Message',$r('app.media.ic_arrow')),
-  new functionItem($r('app.media.account'),"隱私",'PrivacyPage',$r('app.media.ic_arrow')),
-  new functionItem($r('app.media.account'),"意見",'AdvicePage',$r('app.media.ic_arrow')),
-  new functionItem($r('app.media.account'),"分享",'SharePage',$r('app.media.ic_arrow'))
+  new functionItem($r('app.media.collect'), "我的收藏",BuilderNameConstants.LOGIN_COLLECTIONPAGE),
+  new functionItem($r('app.media.history'), "浏览记录",BuilderNameConstants.LOGIN_BROWSHISTORYPAGE),
+  new functionItem($r('app.media.order'), "我的订单",BuilderNameConstants.LOGIN_MYORDER),
+  new functionItem($r('app.media.knowledge'), "知识等级",BuilderNameConstants.LOGIN_KNOWLEDGEPAGE),
+  new functionItem($r('app.media.message'),"消息",'Message',$r('app.media.ic_arrow')),
+  new functionItem($r('app.media.privacy'),"隐私",BuilderNameConstants.LOGIN_PRIVACYPAGE,$r('app.media.ic_arrow')),
+  new functionItem($r('app.media.advice'),"意见",BuilderNameConstants.LOGIN_ADVICEPAGE,$r('app.media.ic_arrow')),
+  // new functionItem($r('app.media.account'),"分享",'SharePage',$r('app.media.ic_arrow'))
 ];

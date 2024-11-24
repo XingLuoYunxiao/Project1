@@ -7,6 +7,7 @@ import { MineViewModel } from "../service/MineViewModel"
 import auth from '@hw-agconnect/auth'
 import text from '@ohos.graphics.text'
 import { BuilderNameConstants, RouterModule } from 'routermodule'
+import Constants from '../common/constants/Constants'
 
 @Component
 export struct MyOrderPage {
@@ -31,61 +32,63 @@ export struct MyOrderPage {
     NavDestination() {
       Column() {
         Row() {
-          Image($r('app.media.ic_hobbies')).width(30).onClick(() => {
-            this.appPathStack.pop()
-          })
-          Search({placeholder:'搜索我的订单'})
-            .onSubmit((val)=>{
-              this.isSearch=true
+          Image($r('app.media.ic_back'))
+            .width($r('app.float.md_topic_width'))
+            .onClick(() => {
+              this.appPathStack.pop()
+              })
+          Search({ placeholder: '搜索我的订单' })
+            .onSubmit((val) => {
+              this.isSearch = true
               this.searchListData.notifyDataDeleteAll()
               for (let index = 0; index < this.orderListData.totalCount(); index++) {
-                const res=this.orderListData.getData(index)
-                if(res.spotname.includes(val)){
+                const res = this.orderListData.getData(index)
+                if (res.spotname.includes(val)) {
                   this.searchListData.pushData(res)
                 }
               }
               this.searchListData.notifyDataReload()
             }).width('80%')
-        }
+          }
+          .width('100%')
+          .height(Constants.TOP_HEIGHT_PAGE)
 
-        Tabs() {
-          TabContent() {
-            Scroll(){
-              Column(){
-                List({space:10}) {
-                  if(this.isSearch==true){
+          Tabs() {
+            TabContent() {
+              Scroll() {
+                Column() {
+                  List({space:Constants.SMALL_SPACE}) {
+                    if (this.isSearch == true) {
                       LazyForEach(this.searchListData, (or: myOrderAdd) => {
                         ListItem() {
-                          OrderItem({item:or})
+                          OrderItem({ item: or })
                         }
-                      },(or: myOrderAdd,index:number) => JSON.stringify(or)+Math.random()+index)
-                  }else{
-                    LazyForEach(this.orderListData, (or: myOrderAdd) => {
-                      ListItem() {
-                        OrderItem({item:or,reviewname:or.spotname})
-                      }
-                    }, (or: myOrderAdd) => JSON.stringify(or))
-                  }
-                }
-                Text('已经到底了').fontSize(20).fontColor($r('app.color.page_background_grey'))
-              }
-            }.scrollBar(BarState.Off)
-            .edgeEffect(EdgeEffect.Spring)
-            .height('100%')
-          }
-          .tabBar('全部订单')
-          TabContent() {
-          }
-          .tabBar('待使用')
-
+                      }, (or: myOrderAdd, index: number) => JSON.stringify(or) + Math.random() + index)
+                    } else {
+                      LazyForEach(this.orderListData, (or: myOrderAdd) => {
+                        ListItem() {
+                          OrderItem({ item: or, reviewname: or.spotname })
+                        }
+                      }, (or: myOrderAdd) => JSON.stringify(or))
+                    }
+                  }.scrollBar(BarState.Off)
+                  Text('已经到底了').fontSize(20).fontColor($r('app.color.page_background_grey'))
+                }.height('100%')
+              }.scrollBar(BarState.Off)
+              .edgeEffect(EdgeEffect.Spring)
+            }
+            .tabBar('全部订单')
+            TabContent() {
+            }
+            .tabBar('待使用')
+          }.barHeight(Constants.BAR_HEIGHT_PAGE)
         }
-      }
-      .padding(8)
-      .width('100%')
-      .height('100%')
-      .backgroundColor($r('app.color.page_background_grey'))
-    }
-    .hideTitleBar(true)
+        .padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE,top:Constants.PADDING_PAGE})
+        .width('100%')
+        .height('100%')
+        .backgroundColor($r('app.color.page_background_grey'))
+    }.hideTitleBar(true)
+    .margin({top:Constants.HEADER_HEIGHT_PAGE})
   }
 }
 @Builder

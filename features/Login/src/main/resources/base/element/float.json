@@ -34,7 +34,7 @@
     },
     {
       "name": "row_height",
-      "value": "40"
+      "value": "90"
     },
     {
       "name": "arrow_image_width",
@@ -118,7 +118,7 @@
     },
     {
       "name": "options_height",
-      "value": "30"
+      "value": "46"
     },
     {
       "name": "options_top_distance",
@@ -168,13 +168,13 @@
       "name": "dialog_radius",
       "value": "10"
     },
-        {
-          "name": "page_title_margin_top",
-          "value": "48vp"
-        },
-        {
-          "name": "page_title_margin_bottom",
-          "value": "28vp"
-        }
+    {
+      "name": "page_title_margin_top",
+      "value": "48vp"
+    },
+    {
+      "name": "page_title_margin_bottom",
+      "value": "28vp"
+    }
   ]
 }

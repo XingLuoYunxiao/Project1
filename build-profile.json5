@@ -22,7 +22,7 @@
         "name": "release"
       }
     ],
-    "signingConfigs": [
+    "signingConfigs": [///
       {
         "name": "default",
         "type": "HarmonyOS",

@@ -46,7 +46,7 @@
     },
     {
       "name": "large_border_radius",
-      "value": "16vp"
+      "value": "35vp"
     },
     {
       "name": "regular_border_radius",
@@ -62,15 +62,15 @@
     },
     {
       "name": "lg_topic_width",
-      "value": "56vp"
+      "value": "70"
     },
     {
       "name": "md_topic_width",
-      "value": "43vp"
+      "value": "40vp"
     },
     {
       "name": "topic_height",
-      "value": "16vp"
+      "value": "60vp"
     },
     {
       "name": "sm_margin",

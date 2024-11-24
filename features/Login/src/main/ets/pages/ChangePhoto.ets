@@ -6,6 +6,7 @@ import { image } from "@kit.ImageKit";
 import fileio from '@ohos.fileio';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { BuilderNameConstants, RouterModule } from "routermodule";
+import Constants from "../common/constants/Constants";
 
 @CustomDialog
 struct CustomDialogChange {
@@ -71,7 +72,7 @@ export struct ChangePhoto {
             .onClick(()=>{
               this.appPathStack.pop()
             })
-            .width(30)
+            .width($r('app.float.md_topic_width'))
           Row(){
             //暂定
             Image(this.personPhoto).width(40)
@@ -102,9 +103,11 @@ export struct ChangePhoto {
               this.dialogController.open()
             })
           }
-        }.width('100%')
+        }
+        .width('100%')
       }
       .hideTitleBar(true)
+      .margin({top:Constants.HEADER_HEIGHT_PAGE})
   }
 }
 @Builder

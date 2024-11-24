@@ -7,6 +7,7 @@ import { ListDataSource } from '../service/ListDataSource'
 import { MineViewModel } from '../service/MineViewModel'
 import auth from '@hw-agconnect/auth'
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
+import Constants from '../common/constants/Constants'
 
 @Component
 export struct EveryItem {
@@ -77,7 +78,7 @@ export struct CollectionPage {
     NavDestination(){
       Column() {
         Row(){
-          Image($r('app.media.swiper2')).width(30).onClick(()=>{
+          Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(()=>{
             this.appPathStack.pop()
           })
           Text('收藏')
@@ -100,12 +101,14 @@ export struct CollectionPage {
               this.manage='管理'
             }
           })
-        }.width('100%')
+        }
+        .width('100%')
+        .height(Constants.TOP_HEIGHT_PAGE)
         .justifyContent(FlexAlign.SpaceBetween)
         Tabs(){
           TabContent(){
             Column(){
-                List(){
+                List({space:Constants.SMALL_SPACE}){
                   if(this.isSearch==true){
                     LazyForEach(this.searchListData, (or: CollectionAdd) => {
                       ListItem() {
@@ -120,7 +123,7 @@ export struct CollectionPage {
                         })
                     },(spot:CollectionAdd,index:number)=>JSON.stringify(spot)+Math.random()+index)
                   }
-                }
+                }.scrollBar(BarState.Off)
             }.height('100%')
             if(this.manage=='完成'){
               this.bottomDelete()
@@ -128,7 +131,7 @@ export struct CollectionPage {
           }.tabBar('遗迹景点')
           TabContent(){
             Column(){
-              List(){
+              List({space:Constants.SMALL_SPACE}){
                 LazyForEach(this.collectpoemListData,(poem:CollectionAdd)=>{
                   ListItem(){
                     Row(){
@@ -138,14 +141,16 @@ export struct CollectionPage {
                   }
                 },(poem:CollectionAdd)=>JSON.stringify(poem))
 
-              }
+              }.scrollBar(BarState.Off)
             }.height('100%')
           }.tabBar('诗词歌赋')
-        }
+        }.barHeight(Constants.BAR_HEIGHT_PAGE)
       }
+      .padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE,top:Constants.PADDING_PAGE})
       .backgroundColor($r('app.color.page_background_grey'))
       .width('100%')
     }
+    .margin({top:Constants.HEADER_HEIGHT_PAGE})
     .hideTitleBar(true)
   }
 }

@@ -24,7 +24,7 @@ export class BuilderNameConstants {
   static readonly HARB_B3: string = '@ohos/harb_B3';
   static readonly HARC_C1: string = '@ohos/harc_C1';
   static readonly HARC_C2: string = '@ohos/harc_C2';
-  //Mine
+  //Login
   static readonly TRAVEL_ATTRACTIONDETAILPAGE:string='travel_AttractionDetailPage';
   static readonly LOGIN_COLLECTIONPAGE: string = 'login_CollectionPage';
   static readonly LOGIN_LOGINPAGE:string='login_LoginPage';

@@ -1,4 +1,5 @@
 import { BuilderNameConstants, RouterModule } from "routermodule"
+import Constants from "../common/constants/Constants"
 
 const question:string[]=['如何退款','在哪里领取优惠券','大唐芙蓉园什么时间段可以预约','查看更多']
 @Preview
@@ -28,36 +29,52 @@ export struct CusServicePage {
   NavDestination(){
     Column(){
       Row(){
-        Image($r('app.media.ic_back')).width(30).onClick(()=>{
+        Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(()=>{
           this.appPathStack.pop()
         })
-        Image($r('app.media.miaosha')).width(50)
+        Image($r('app.media.defaultphoto')).width(50)
         Column(){
-          Text('ICT客服')
+          Text('古韵游踪客服')
+            .fontSize(16)
+            .fontWeight(700)
           Text('提供专业服务')
+            .fontSize(12)
         }
       }
-      .justifyContent(FlexAlign.Start)
       .width('100%')
-      Text('Hi,II很高兴为您服务').width('100%').padding({left:120})
-      Text('猜你想问')
-      List(){
-        ForEach(question,(ques:string,inx)=>{
-          ListItem(){
-            Row(){
-              Text(ques)
-              Blank()
-              Image($r('app.media.ic_arrow')).width(15)
-            }.onClick(()=>{
+      .height(Constants.TOP_HEIGHT_PAGE)
+      .justifyContent(FlexAlign.Start)
+      .margin({bottom:15})
+      Text('Hi,古古很高兴为您服务').fontSize(16)
+        .backgroundColor($r('app.color.dialog_background_blue'))
+        .borderRadius($r('app.float.small_border_radius'))
+        .padding($r('app.float.md_padding_margin'))
+        .margin({bottom:10})
+      Column(){
+        Text('猜你想问')
+          .fontSize(20)
+          .margin({bottom:10})
+          .fontWeight(500)
+        List({space:Constants.SMALL_SPACE}){
+          ForEach(question,(ques:string,inx)=>{
+            ListItem(){
+              Row(){
+                Text(ques)
+                Blank()
+                Image($r('app.media.ic_arrow')).width(15)
+              }.onClick(()=>{
                 this.QuesItemList.push(ques)
-            })
-          }
-        })
+              })
+            }
+          })
+        }
+        .width(260)
+        .height(120)
       }
-      .margin({left:20})
-      .width(260)
-      .height(200)
-      .backgroundColor($r('app.color.white'))
+      .padding($r('app.float.md_padding_margin'))
+      .borderRadius($r('app.float.small_border_radius'))
+      .backgroundColor($r('app.color.dialog_background_blue'))
+      .alignItems(HorizontalAlign.Start)
 
       List(){
         ForEach(this.QuesItemList,(quesitem:string)=>{
@@ -82,38 +99,38 @@ export struct CusServicePage {
             }
         })
       }
-      Row({ space: 20 }) {
+      .backgroundColor($r('app.color.dialog_background_yellow'))
+      Row({ space: 10 }) {
         TextArea({ placeholder: '请简单描述您的问题', text: this.curtalk })
           .fontSize(16)
-          .width(300)
-          .position({ left: '2%', bottom: 0 })
+          .width('80%')
           .onChange((val) => {
             this.curtalk = val
           })
 
         Button('发送')
-          .backgroundColor(Color.Yellow)
+          .backgroundColor($r('app.color.link_blue'))
           .fontColor(Color.White)
-          .position({ bottom: 0, right: '2%' })
+          .width('20%')
           .onClick(() => {
             if (this.curtalk.length > 0) {
               this.QuesItemList.push(this.curtalk)
               this.curtalk = ''
-              // inputMethod.getController().stopInputSession()
             }
           })
-
       }
       .backgroundColor("#f1f1f1")
       .padding({ bottom: 20 })
       .width('100%')
       .height(80)
     }
+    .padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE,top:Constants.PADDING_PAGE})
     .alignItems(HorizontalAlign.Start)
     .width('100%')
     .height('100%')
     .backgroundColor($r('app.color.app_background_color'))
   }
+  .margin({top:Constants.HEADER_HEIGHT_PAGE})
   .hideTitleBar(true)
   }
 }

@@ -2,6 +2,7 @@ import { webview } from '@kit.ArkWeb'
 import { CustomContentDialog } from '@kit.ArkUI'
 import { MineViewModel } from '../service/MineViewModel';
 import { BuilderNameConstants, RouterModule } from 'routermodule';
+import Constants from '../common/constants/Constants';
 
 @Component
 export struct LoginPage {
@@ -42,7 +43,7 @@ export struct LoginPage {
   build() {
     NavDestination() {
       Column() {
-        Image($r('app.media.ic_back')).width(30).onClick(() => {
+        Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(() => {
             this.appPathStack.pop()
           })
         Text('欢迎登录古韵游踪')
@@ -113,6 +114,7 @@ export struct LoginPage {
       .height('100%')
       .width('100%')
     }
+    .margin({top:Constants.HEADER_HEIGHT_PAGE})
     .hideTitleBar(true)
   }
 

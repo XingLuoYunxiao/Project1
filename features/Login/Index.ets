@@ -1,5 +1,4 @@
 import { BuilderNameConstants } from 'routermodule';
-
 export { InfoMessagePage } from './src/main/ets/pages/InfoMessagePage';
 export { CustomDialogComponent } from './src/main/ets/view/CustomDialogComponent';
 export function harInit(builderName: string): void {
