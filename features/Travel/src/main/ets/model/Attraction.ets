@@ -42,3 +42,4 @@ export const otherItemList: OhterItem[] = [
   { hotel: '周边酒店', guide: 'AI导游', people: 192 }
 ];
 
+

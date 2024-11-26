@@ -14,8 +14,8 @@ export class MasterpieceI implements Icon {
 
 export function tsetMasterPieceIArr(): MasterpieceI[] {
   let masterPiceIArr: MasterpieceI[] = [
-    new MasterpieceI($r('app.media.poetry_icon'), '诗歌典籍', 'poetryAndClassicPage'),
-    new MasterpieceI($r('app.media.class_1'), '古典小说', ''),
+    new MasterpieceI($r('app.media.poetry_icon'), '诗词歌赋', 'PoemEnterPage'),
+    new MasterpieceI($r('app.media.class_1'), '传统建筑', ''),
     new MasterpieceI($r('app.media.class_2'), '中华美术', 'ArtPage'),
     new MasterpieceI($r('app.media.class_3'), '民间艺术', ''),
     new MasterpieceI($r('app.media.class_4'), '传统节日', 'FestivalPage'),

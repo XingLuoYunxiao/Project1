@@ -1,13 +1,12 @@
 // 引入所需的模块和数据模型
 import { paintingData } from "../../model/art/DrawingModel"
 import { PaintingModel, paintingModelList } from "../../model/art/PaintingModel"
-import { ttf } from "../../util/ttf"
+import { ttf } from "../../common/util/ttf"
+import { addExp } from "../../common/util/addExp"
+import { BuilderNameConstants, RouterModule } from "routermodule"
 
-// 创建PaintingDetailsBuilder方法，生成PaintingDetails组件
-@Builder
-export function PaintingDetailsBuilder(name: string, param: Object) {
-  PaintingDetails() // 创建并渲染PaintingDetails组件
-}
+
+let addEXPId: number = 0
 
 // PaintingDetails组件的主体部分
 @Component
@@ -15,6 +14,16 @@ export struct PaintingDetails {
   // 组件即将出现时的生命周期函数
   aboutToAppear(): void {
     console.log('这是PaintingDetails') // 控制台输出信息，便于调试
+
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp('Painting', 5)
+    }, 10000)
+  }
+
+  aboutToDisappear(): void {
+    // 退出页面时取消对经验值的添加
+    clearTimeout(addEXPId)
   }
 
   // build方法构建组件的UI
@@ -28,6 +37,11 @@ export struct PaintingDetails {
             }
           })
         }
+        .onReachEnd(() => {
+          addExp('Painting')
+
+        })
+
       }
     }
     .hideTitleBar(true) // 隐藏标题栏
@@ -36,7 +50,7 @@ export struct PaintingDetails {
   // paintingItem方法，负责渲染单个绘画项目
   @Builder
   paintingItem(item: PaintingModel) {
-    Column({ space: 15 }) { // 使用Column布局
+    Column({ space: 15 }) { // 嵌套Column显示绘画详细信息
       Row() {
         Text(item.name)// 显示绘画名称
           .fontSize(30) // 设置字体大小
@@ -44,25 +58,24 @@ export struct PaintingDetails {
       .justifyContent(FlexAlign.Center) // 水平居中对齐
       .width('100%') // 宽度占满
 
-      Column() { // 嵌套Column显示绘画详细信息
-        Text("简介：" + item.introduction) // 显示简介
-        Text('起源:' + item.originPeriod) // 显示起源
+      Text("简介：" + item.introduction) // 显示简介
+      Text('起源:' + item.originPeriod) // 显示起源
 
-        Text("特征：" + item.characteristics) // 显示特征
-        Text("代表画家：" + item.famousArtists.toString()) // 显示代表画家
-        List({ space: 10 }) { // 用于展示绘画的图片列表
-          ForEach(item.ImageArr, (item: paintingData, index: number) => {
-            ShowPainting({ painting: item }) // 渲染每幅绘画图片
-          })
-        }
+      Text("特征：" + item.characteristics) // 显示特征
+      Text("代表画家：" + item.famousArtists.toString()) // 显示代表画家
+      List({ space: 10 }) { // 用于展示绘画的图片列表
+        ForEach(item.ImageArr, (item: paintingData, index: number) => {
+          ShowPainting({ painting: item }) // 渲染每幅绘画图片
+        })
       }
-      .padding(10) // 内边距设置为10
-      .alignItems(HorizontalAlign.Start) // 水平左对齐
-      .backgroundColor('#cecde5d1') // 背景色
-      .width('100%') // 宽度占满
+      .onReachEnd(() => {
+
+      })
     }
-    .width('100%') // 外层宽度占满
-    .justifyContent(FlexAlign.SpaceBetween) // 元素间均匀分布
+    .padding(10) // 内边距设置为10
+    .alignItems(HorizontalAlign.Start) // 水平左对齐
+    .backgroundColor($r('app.color.poetry_background')) // 背景色
+    .width('100%') // 宽度占满
   }
 }
 
@@ -93,11 +106,14 @@ struct ShowPainting {
       .width('100%') // 宽度占满
       .borderRadius(20) // 设置圆角
       .backgroundImage(this.spread ? null : $r('app.media.painting_title')) // 背景图片
+      .backgroundImageSize(ImageSize.Cover)
 
       Column() { // 展开后显示内容的容器
         Scroll() {
           Image(this.painting.path)// 展示绘画图片
-            .height(260) // 设置图片高度
+            .height(300)// 设置图片高度
+            .objectFit(ImageFit.Cover)
+
         }
         .scrollable(ScrollDirection.Horizontal) // 可水平滚动
 
@@ -128,4 +144,16 @@ struct ShowPainting {
     .backgroundColor("#ffe2dad4") // 背景色
     .justifyContent(FlexAlign.SpaceBetween) // 内容均匀分布
   }
+}
+
+// 创建PaintingDetailsBuilder方法，生成PaintingDetails组件
+@Builder
+export function PaintingDetailsBuilder() {
+  PaintingDetails() // 创建并渲染PaintingDetails组件
+}
+
+const builderName = BuilderNameConstants.CULTURE_PAINTING
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(PaintingDetailsBuilder)
+  RouterModule.registerBuilder(builderName, builder)
 }

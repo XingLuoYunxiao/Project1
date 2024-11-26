@@ -20,7 +20,6 @@ export class BuilderNameConstants {
   static readonly MAP_NAVIGATIONPAGE: string = 'map_NavigationPage';
   static readonly MAP_ROUTEPLANVIEW: string = 'map_RoutePlanView';
 
-
   //Travel
   // Feature: Travel中的AI导游页面
   static readonly TRAVEL_FAMOUSPLACEPAGE: string = 'travel_FamousPlacePage';
@@ -32,6 +31,19 @@ export class BuilderNameConstants {
   static readonly TRAVEL_ATTRACTIONDETAILPAGE: string = 'travel_AttractionDetailPage';
 
 
+  //Culture
+  static readonly CULTURE_POEM: string = 'culture_PoemPage'
+  static readonly CULTURE_POEMDETAIL: string = 'culture_PoemDetailPage'
+  static readonly CULTURE_POEMENETER: string = 'culture_PoemEnterPage'
+  static readonly CULTURE_SENTENCE: string = "culture_SentencePage"
+  static readonly CULTURE_IDIOM: string = "culture_IdiomPage"
+  static readonly CULTURE_XIEHOUYU: string = "culture_XiehouyuPage"
+  static readonly CULTURE_ART: string = "culture_ArtPage"
+  static readonly CULTURE_FESTIVAL: string = "culture_FestivalPage"
+  static readonly CULTURE_CALLIGRAPHY: string = "culture_CalligraphyDetails"
+  static readonly CULTURE_PAINTING: string = "culture_PaintingDetails"
+  static readonly CULTURE_IdiomSolitaire: string = "culture_IdiomSolitaire"
+  static readonly CULTURE_FlyingFlowerOder: string = 'culture_FlyingFlowerOder'
 }
 
 // Indicates the key of the routerMap table in the RouterModule.

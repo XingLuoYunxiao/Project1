@@ -1,8 +1,7 @@
 import { BasicDataSource } from "../../model/poetryModel/PoetryModel";
-import { cultureFileUtil } from "../../util/FileUtil";
+import { cultureFileUtil } from "../../common/util/FileUtil";
 import { AppreciateView } from "../../view/Appreciate";
-import { testOne } from "../../view/test";
-import { testTwo } from "../../view/testTwo";
+
 import { TranslateView } from "../../view/Translate";
 
 const TAG: string = 'shiciDetails';

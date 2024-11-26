@@ -1,15 +1,31 @@
 import { calligraphyItem, calligraphyItemList } from "../../model/art/CalligraphyModel"
+import { PreferencesUtil } from "utils/src/main/ets/puraUtils/PreferencesUtil"
+import { EXP } from "../../model/EXP"
+import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
+import { addExp } from "../../common/util/addExp"
+import { BuilderNameConstants, RouterModule } from "routermodule"
 
-@Builder
-export function CalligraphyDetailsBuilder() {
-  CalligraphyDetails()
-}
+
+const TAG: string = 'CalligraphyDetails  '
+let addEXPId: number = 0
 
 @Component
 export struct CalligraphyDetails {
   @State pageIntroduction: string = '书法是中华文化的载体，接下来让我们以时间的尺度，探究中华书法的演变，体会书法的魅力'
   @State historyBackground: string = '书法，作为中国传统文化的重要组成部分，经历了数千年的发展，承载着丰富的历史和文化信息。'
   @State modernApplication: string = '在现代社会，书法不仅是一种艺术表现形式，也在设计、教育等领域得到了广泛应用。'
+
+  aboutToAppear(): void {
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp('Painting', 5)
+    }, 10000)
+  }
+
+  aboutToDisappear(): void {
+    // 退出页面时取消对经验值的添加
+    clearTimeout(addEXPId)
+  }
 
   build() {
     NavDestination() {
@@ -57,21 +73,18 @@ export struct CalligraphyDetails {
               .margin(10)
 
           }
-
-          // ListItem() {
-          //   Text("推荐书籍和网站：")
-          //     .fontSize(20)
-          //     .padding(10)
-          //     .margin(10)
-          //   Text("《书法入门》、《中国书法史》；推荐访问书法学习网站如书法网等。")
-          //     .fontSize(16)
-          //     .padding(5)
-          //     .margin(5)
-          //}
-
-
         }
+
+        .onReachEnd(() => {
+
+          addExp('art')
+
+
+        });
+
       }
+
+
       .width('100%')
     }
     .hideTitleBar(true)
@@ -125,4 +138,15 @@ struct ItemBuilder {
     }
     .width('100%')
   }
+}
+
+@Builder
+export function CalligraphyDetailsBuilder() {
+  CalligraphyDetails()
+}
+
+const builderName = BuilderNameConstants.CULTURE_CALLIGRAPHY
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(CalligraphyDetailsBuilder)
+  RouterModule.registerBuilder(builderName, builder)
 }
