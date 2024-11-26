@@ -1,3 +1,4 @@
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule'
 import { PreferenceUtil } from 'utils'
 import Constants from '../constants/Constants'
 import { SpotNetFunc } from '../service/SpotNetFunc'
@@ -79,7 +80,8 @@ struct SearchPage {
               .onClick(() => {
                 //跳转到搜索结果页面
                 this.SpotNetWork.search(this.searchText)
-                this.appPathStack.pushPathByName('AttractionTicketPage', "")
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE, new Object({text: ""}))
+                //this.appPathStack.pushPathByName('AttractionTicketPage', "")
               })
           }
           .borderRadius(Constants.BORDER_RADIUS_MD)
@@ -129,7 +131,8 @@ struct SearchPage {
                   .onClick( () => {
                     this.searchText = item
                     this.SpotNetWork.search(this.searchText);
-                    this.appPathStack.replacePathByName('AttractionTicketPage', "")
+                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE, new Object({text: ""}))
+                    //this.appPathStack.replacePathByName('AttractionTicketPage', "")
                   })
               })
             }
@@ -206,4 +209,10 @@ struct SearchPage {
 @Builder
 export function SearchPageBuilder() {
   SearchPage()
+}
+
+const builderName = BuilderNameConstants.TRAVEL_SEARCHPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(SearchPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

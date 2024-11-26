@@ -48,6 +48,10 @@
   ,{
       "name": "reason",
       "value": "save"
+    },
+    {
+      "name": "Harmony_navi_permission_reason",
+      "value": "导航申请需要权限"
     }
   ]
 }

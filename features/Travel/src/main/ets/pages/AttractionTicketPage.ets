@@ -6,6 +6,7 @@ import { CityPickerDialog } from '../view/AttractionTicket/CityPickerDialog';
 import { Spot } from '../model/Spot';
 import { SpotNetFunc } from '../service/SpotNetFunc';
 import { LoadingStatus } from 'utils/src/main/ets/common/CommonUtil';
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
 
 //TODO 小bug，点太快进入该页面会获取不到数据
 @Component
@@ -18,9 +19,11 @@ export default struct AttractionTicketPage {
   //当前当前距离
   @State currentSubCategory: CategoryItem | null = null;
   @State currentAttractions: Spot[] = [];
+  @State value: object = new Object()
 
   async aboutToAppear(): Promise<void> {
-    let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
+    //let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
+    let category = JSON.parse(JSON.stringify(this.value)).text as string
     if( category !== "")
       this.currentCategory[0] = category
     this.spotNetWork.loadSpotsData()
@@ -113,7 +116,8 @@ export default struct AttractionTicketPage {
           this.updateAttractionsList()
         })
         .onClick( () => {
-          this.appPathStack.replacePathByName('SearchPage', true)
+          buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_SEARCHPAGE)
+          //this.appPathStack.replacePathByName('SearchPage', true)
         })
 
       Text('搜索')
@@ -121,7 +125,8 @@ export default struct AttractionTicketPage {
         .fontColor(Constants.COLOR_PRIMARY)
         .fontSize(Constants.FONT_CONTENT)
         .onClick( () => {
-          this.appPathStack.replacePathByName('SearchPage', true)
+          buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_SEARCHPAGE)
+          //this.appPathStack.replacePathByName('SearchPage', true)
         })
     }
     .width(Constants.FULL_WIDTH)
@@ -175,7 +180,8 @@ export default struct AttractionTicketPage {
                   .reuseId("attraction")
             }
             .onClick(() => {
-              this.appPathStack.pushPathByName('AttractionDetailPage', item)
+              buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item:item}))
+              //this.appPathStack.pushPathByName('AttractionDetailPage', item)
             })
           })
         }
@@ -194,6 +200,13 @@ export default struct AttractionTicketPage {
 }
 
 @Builder
-export function AttractionTicketPageBuilder() {
-  AttractionTicketPage()
+export function AttractionTicketPageBuilder(value:object) {
+  AttractionTicketPage({value: value})
+}
+
+
+const builderName = BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(AttractionTicketPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

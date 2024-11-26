@@ -15,15 +15,22 @@
 
 // Key of the builderMap of the routing table in the RouterModule. The format is as follows:{bundleName}_${pageName}.
 export class BuilderNameConstants {
+  // Map
   static readonly MAP_MAPVIEWPAGE: string = 'map_MapViewPage';
+  static readonly MAP_NAVIGATIONPAGE: string = 'map_NavigationPage';
+  static readonly MAP_ROUTEPLANVIEW: string = 'map_RoutePlanView';
+
   //Travel
+  // Feature: Travel中的AI导游页面
   static readonly TRAVEL_FAMOUSPLACEPAGE: string = 'travel_FamousPlacePage';
-  static readonly HARA_A2: string = '@ohos/hara_A2';
-  static readonly HARB_B1: string = '@ohos/harb_B1';
-  static readonly HARB_B2: string = '@ohos/harb_B2';
-  static readonly HARB_B3: string = '@ohos/harb_B3';
-  static readonly HARC_C1: string = '@ohos/harc_C1';
-  static readonly HARC_C2: string = '@ohos/harc_C2';
+  // Feature: Travel中的景点分类页面
+  static readonly TRAVEL_ATTRACTIONTICKETPAGE: string = 'travel_AttractionTicketPage';
+  static readonly TRAVEL_LOADINGANIMATION: string = 'travel_LoadingAnimation';
+  static readonly TRAVEL_SPOTDETAILPAGE: string = 'travel_SpotDetailPage';
+  static readonly TRAVEL_SEARCHPAGE: string = 'travel_SearchPage';
+  static readonly TRAVEL_ATTRACTIONDETAILPAGE: string = 'travel_AttractionDetailPage';
+
+
   //Culture
   static readonly CULTURE_POEM: string = 'culture_PoemPage'
   static readonly CULTURE_POEMDETAIL: string = 'culture_PoemDetailPage'

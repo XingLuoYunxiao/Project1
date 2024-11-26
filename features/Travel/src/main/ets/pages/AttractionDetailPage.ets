@@ -1,9 +1,11 @@
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
 import Constants from '../constants/Constants'
 import { Spot } from '../model/Spot'
 
 @Component
 struct AttractionDetailPage {
   @Consume('appPathStack') appPathStack: NavPathStack
+  @State value: object = new Object()
   @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null', '', '', '', '');
   @State orderData :string[] = ['可定今日', '可订明日', '更多日期']
   @State isSelected: number = 0
@@ -11,7 +13,8 @@ struct AttractionDetailPage {
 
   aboutToAppear(): void {
     //获取路由参数
-    this.spot = this.appPathStack.getParamByName('AttractionDetailPage')[0] as Spot;
+    this.spot = JSON.parse(JSON.stringify(this.value)).item as Spot
+    //this.spot = this.appPathStack.getParamByName('AttractionDetailPage')[0] as Spot;
   }
 
 
@@ -79,13 +82,23 @@ struct AttractionDetailPage {
                   .fontSize(Constants.FONT_CONTENT)
                   .fontWeight(FontWeight.Medium)
                   .margin({ left: 8 })
-                Blank()
                 Text(`${getRandomNumber()}条点评`)
                   .fontSize(Constants.FONT_CAPTION)
                   .fontColor('#666666')
                   .margin({ left: 16 })
+                Blank()
+                Button('导航')
+                  .fontColor(Color.White)
+                  .fontSize(20)
+                  .backgroundColor('#ffe7a76c')
+                  .width(72)
+                  .height(40)
+                  .onClick( () => {
+                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.MAP_ROUTEPLANVIEW, new Object({Object: this.spot}))
+                  })
 
               }
+              .width('100%')
               .margin({ top: 12 })
             }
             .width('100%')
@@ -231,9 +244,11 @@ struct AttractionDetailPage {
             .backgroundColor(Color.White)
           }
         }
+        .width('100%')
+        .layoutWeight(1)
+        .scrollable(ScrollDirection.Vertical)
       }
       .width(Constants.FULL_WIDTH)
-      .height(Constants.FULL_HEIGHT)
       .margin({ top: Constants.HEADER_HEIGHT_PAGE })
     }
     .hideTitleBar(true)
@@ -289,6 +304,12 @@ function isBusinessTime(businessHours: string): boolean {
 }
 
 @Builder
-export function AttractionDetailPageBuilder() {
-  AttractionDetailPage()
+export function AttractionDetailPageBuilder(value: object) {
+  AttractionDetailPage({value: value})
+}
+
+const builderName = BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(AttractionDetailPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

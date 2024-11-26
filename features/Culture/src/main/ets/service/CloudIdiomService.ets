@@ -3,7 +3,6 @@ import { Idiom } from "../model/Idiom/Idiom";
 import { BusinessError } from "@kit.BasicServicesKit";
 import { realIdiom } from "../model/Idiom/RealIdiom";
 import Logger from "utils/src/main/ets/utils/Logger"
-import { t } from "@amap/amap_lbs_common";
 
 // 从云数据库获取成语
 export class CloudIdiomService {

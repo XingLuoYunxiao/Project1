@@ -37,30 +37,6 @@ struct Index {
 
   };
 
-  @Builder
-  tabBarBuilder(title: string, targetIndex: number, selectedIcon: Resource, unselectIcon: Resource) {
-    Column() {
-      Image(this.currentIndex === targetIndex ? selectedIcon : unselectIcon)
-        .width(24)
-        .height(24)
-      Text(title)
-        .fontFamily('HarmonyHeiTi-Medium')
-        .fontSize(10)
-        .fontColor(this.currentIndex === targetIndex ? '#0A59F7' : 'rgba(0,0,0,0.60)')
-        .textAlign(TextAlign.Center)
-        .lineHeight(14)
-        .fontWeight(500)
-    }
-    .width('100%')
-    .height('100%')
-    .justifyContent(FlexAlign.Center)
-    .alignItems(HorizontalAlign.Center)
-    .onClick(() => {
-      this.currentIndex = targetIndex;
-      this.tabsController.changeIndex(targetIndex);
-    })
-  }
-
   build() {
     Navigation(this.appPathStack) {
       Stack() {
@@ -69,8 +45,6 @@ struct Index {
             TabContent() {
               TravelStartPage()
             }
-
-            //.tabBar(this.tabBarBuilder('旅游', 0, $r("app.media.ic_tab_travel_on"), $r("app.media.ic_tab_travel_off")))
 
             TabContent() {
               CulturalPage()
@@ -81,13 +55,9 @@ struct Index {
                 .align(Alignment.Center)
             }
 
-            //.tabBar(this.tabBarBuilder('非遗', 1, $r("app.media.ic_tab_culture_on"), $r("app.media.ic_tab_culture_off")))
-
             TabContent() {
               InfoMessagePage()
             }
-
-            //.tabBar(this.tabBarBuilder('我的', 2, $r("app.media.ic_tab_mine_on"), $r("app.media.ic_tab_mine_off")))
 
           }
           .layoutWeight(1)

@@ -85,18 +85,6 @@ export struct TravelStartPage {
 
   }
 
-  /*@Builder
-  travelStartRouter(path: string){
-    if( path === 'FamousPlacePage'){
-      FamousPlacePage()
-    }else if( path === 'LoadingAnimation'){
-      LoadingAnimation()
-    }else if( path === 'SpotDetailPage'){
-      SpotDetailPage()
-    }else if( path === 'MapDemo'){
-      MapDemo()
-    }
-  }*/
 
   @Builder
   AttractionItem(attraction: Spot){

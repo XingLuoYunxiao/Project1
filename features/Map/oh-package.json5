@@ -8,5 +8,6 @@
   "dependencies": {
     "routermodule": "file:../../RouterModule",
     "travel": "file:../../features/Travel",
+    "utils": "file:../../commons/utils"
   }
 }

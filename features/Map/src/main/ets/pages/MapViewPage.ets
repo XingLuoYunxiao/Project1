@@ -1,45 +1,44 @@
-import { AMap, MapsInitializer, MapView, MapViewComponent, MapViewManager, } from '@amap/amap_lbs_map3d';
-import { router } from '@kit.ArkUI';
-import { RouterModule } from 'routermodule';
+import { RouterModule, RouterNameConstants } from 'routermodule';
 import { BuilderNameConstants } from 'routermodule';
 import { Spot } from 'travel';
+import { NavigationPage } from './NavigationPage';
 
-MapsInitializer.setApiKey("6c6f0a62ed032f8422a7e2bc070f18e5");
-MapViewManager.getInstance().registerMapViewCreatedCallback((mapview?: MapView, mapViewName?: string) => {
-  if (!mapview) {
-    return;
-  }
-  let mapView = mapview;
-  mapView.onCreate();
-  mapView.getMapAsync((map) => {
-    let aMap: AMap = map;
-  })
-})
 
-//TODO 模块间跳转，不知道能否引用其他模块的内容
-//@Entry({routeName: 'mapView'})
 @Component
 export struct MapViewPage {
+  //@State mapUtil: MapUtil = MapUtil.getInstance();
+  @Consume('appPathStack') appPathStack: NavPathStack;
   @State value: object = new Object()
   @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null', '', '', '', '');
-    //new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null', '', '', '', '');
+
   aboutToAppear(): void {
-    this.spot = JSON.parse(JSON.stringify(this.value).toString()) as Spot;
-    //this.spot = this.value.Object as Spot;
+    this.spot = JSON.parse(JSON.stringify(this.value).toString()).Object as Spot;
   }
 
   build() {
     NavDestination(){
-      Row() {
-        MapViewComponent()
-          .width('100%')
-          .height('50%')
+      Row(){
+        Image($r('app.media.ic_back'))
+          .width(30)
+          .height(30)
+          .onClick( () => {
+            RouterModule.pop(RouterNameConstants.ENTRY_HAP);
+          })
 
+        Text(this.spot.name)
+          .fontSize(24)
+          .layoutWeight(1)
+          .textAlign(TextAlign.Center)
       }
-      Text(this.spot.name)
-        .width('100%')
-        .height(200)
+      .width('100%')
+      Row() {
+        NavigationPage({spot:this.spot})
+          .width('100%')
+          .height('100%')
+      }
     }
+    .margin({top:$r('app.float.header_height_page')})
+    .hideTitleBar(true)
   }
 }
 
@@ -53,3 +52,4 @@ if (!RouterModule.getBuilder(builderName)) {
   const builder: WrappedBuilder<[object]> = wrapBuilder(MapViewPageBuilder);
   RouterModule.registerBuilder(builderName, builder);
 }
+
