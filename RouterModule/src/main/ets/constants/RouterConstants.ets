@@ -18,6 +18,8 @@ export class BuilderNameConstants {
   // Map
   static readonly MAP_MAPVIEWPAGE: string = 'map_MapViewPage';
   static readonly MAP_NAVIGATIONPAGE: string = 'map_NavigationPage';
+  static readonly MAP_ROUTEPLANVIEW: string = 'map_RoutePlanView';
+
 
   //Travel
   // Feature: Travel中的AI导游页面
@@ -28,6 +30,7 @@ export class BuilderNameConstants {
   static readonly TRAVEL_SPOTDETAILPAGE: string = 'travel_SpotDetailPage';
   static readonly TRAVEL_SEARCHPAGE: string = 'travel_SearchPage';
   static readonly TRAVEL_ATTRACTIONDETAILPAGE: string = 'travel_AttractionDetailPage';
+
 
 }
 

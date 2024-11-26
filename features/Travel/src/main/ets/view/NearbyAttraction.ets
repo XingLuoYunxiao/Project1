@@ -1,3 +1,4 @@
+import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule"
 import { LoadingStatus, LocationUtil } from "utils"
 import Logger from "utils/src/main/ets/utils/Logger"
 import Constants from "../constants/Constants"
@@ -80,7 +81,8 @@ export struct NearbyAttraction {
               this.NearbyItem(item)
             }
             .onClick(() => {
-              this.appPathStack.pushPathByName('AttractionDetailPage', item)
+              buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item: item}))
+              //this.appPathStack.pushPathByName('AttractionDetailPage', item)
             })
 
           })

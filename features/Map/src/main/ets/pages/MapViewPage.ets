@@ -4,7 +4,6 @@ import { Spot } from 'travel';
 import { NavigationPage } from './NavigationPage';
 
 
-//TODO 模块间跳转，不知道能否引用其他模块的内容
 @Component
 export struct MapViewPage {
   //@State mapUtil: MapUtil = MapUtil.getInstance();

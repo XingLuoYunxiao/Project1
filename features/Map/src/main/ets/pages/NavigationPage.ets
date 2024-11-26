@@ -1,10 +1,9 @@
-import { common, Want } from '@kit.AbilityKit';
-
 import { RouterModule } from 'routermodule';
 import { BuilderNameConstants } from 'routermodule';
 import { MapComponent, mapCommon, map, navi } from '@kit.MapKit';
 import { AsyncCallback } from '@kit.BasicServicesKit';
 import { Spot } from 'travel';
+import { CommonConstants } from '../constants/CommonConstants';
 
 @Component
 export struct NavigationPage {
@@ -14,6 +13,38 @@ export struct NavigationPage {
   private mapController?: map.MapComponentController;
   private mapEventManager?: map.MapEventManager;
   @Prop spot:Spot
+  private style: mapCommon.MyLocationStyle = {
+    anchorU: 0.5,
+    anchorV: 0.5,
+    radiusFillColor: 0xff00FFFFFF,
+    displayType: mapCommon.MyLocationDisplayType.FOLLOW
+  };
+
+  async testDrivingRoutes(): Promise<navi.RouteResult | undefined>{
+    let params: navi.DrivingRouteParams = {
+      // 起点的经纬度
+      origins: [{
+        "latitude": 34.982129213545843,
+        "longitude": 108.27745557768591
+      }],
+      // 终点的经纬度
+      destination: {
+        "latitude": this.spot.location.latitude,
+        "longitude": this.spot.location.longitude
+      },
+      // 路径的途经点
+      waypoints: [{ "latitude": 31.967236140819114, "longitude": 120.27142088866847 },
+        { "latitude": 31.972868002238872, "longitude": 120.2943211817165 },
+        { "latitude": 31.98469327973332, "longitude": 120.29101107384068 }],
+      language: "zh_CN"
+    };
+    const result = await navi.getDrivingRoutes(params);
+    console.info("Succeeded in getting driving routes.");
+    return result;
+
+  }
+
+
 
   aboutToAppear(): void {
     // 地图初始化参数，设置地图中心点坐标及层级
@@ -23,7 +54,7 @@ export struct NavigationPage {
           latitude: this.spot.location.latitude,
           longitude: this.spot.location.longitude
         },
-        zoom: 16
+        zoom: CommonConstants.ZOOM
       }
     };
 
@@ -32,7 +63,26 @@ export struct NavigationPage {
       if (!err) {
         // 获取地图的控制器类，用来操作地图
         this.mapController = mapController;
+        this.abilityEnabled();
+        mapController.setMyLocationStyle(this.style);
         this.mapEventManager = this.mapController.getEventManager();
+        // polyline初始化参数
+        let polylineOption: mapCommon.MapPolylineOptions = {
+          points: [{longitude:108.78,latitude:34.975}, {longitude:this.spot.location.longitude, latitude:this.spot.location.latitude}],
+          clickable: true,
+          startCap: mapCommon.CapStyle.BUTT,
+          endCap: mapCommon.CapStyle.BUTT,
+          geodesic: false,
+          jointType: mapCommon.JointType.BEVEL,
+          visible: true,
+          width: 10,
+          zIndex: 10,
+          gradient: false
+        }
+        // 创建polyline
+        await this.mapController.addPolyline(polylineOption).then(() => {
+          console.info('Drawing success');
+        });
         let callback = () => {
           console.info(this.TAG, `on-mapLoad`);
         }
@@ -55,6 +105,17 @@ export struct NavigationPage {
     if (this.mapController !== undefined) {
       this.mapController.hide();
     }
+  }
+
+  async abilityEnabled(): Promise<void> {
+    this.mapController?.setMyLocationEnabled(true);
+    this.mapController?.setMyLocationControlsEnabled(true);
+    this.mapController?.setTrafficEnabled(true);
+    this.mapController?.setBuildingEnabled(true);
+    /*if (this.currentBreakpoint === BreakpointConstants.BREAKPOINT_SM) {
+      this.mapController?.setZoomControlsEnabled(false);
+    }
+    this.mapController?.moveCamera(map.zoomTo(MapConstants.ZOOM));*/
   }
 
   build() {
