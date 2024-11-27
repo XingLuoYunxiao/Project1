@@ -12,10 +12,10 @@ export struct GameRuleDialog {
         .fontSize(20)
         .margin({ top: 10, bottom: 10 })
 
-      Button('确认')
-        .onClick(() => {
-          this.controller.close()
-        })
+      // Button('确认')
+      //   .onClick(() => {
+      //     this.controller.close()
+      //   })
     }
     .width(280)
     .height(240)

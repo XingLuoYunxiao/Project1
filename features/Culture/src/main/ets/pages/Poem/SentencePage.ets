@@ -7,6 +7,7 @@ import { CloudPoemService } from "../../service/CloudPoemService";
 import { Sentence } from '../../model/Sentence';
 import { addExp } from '../../common/util/addExp';
 import { BuilderNameConstants, RouterModule } from 'routermodule';
+import { CommonConstants } from '../../common/constants/commonConstants';
 
 let addEXPId: number = 0
 
@@ -33,7 +34,7 @@ export struct SentencePage { // 定义一个组件类PoemPage
 
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
-      addExp('Sentence', 5)
+      addExp(CommonConstants.expTypeKnowledge, 5)
     }, 10000)
   }
 

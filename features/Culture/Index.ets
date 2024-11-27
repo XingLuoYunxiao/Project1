@@ -46,13 +46,15 @@ export function harInit(builderName: string): void {
 
     case BuilderNameConstants.CULTURE_IdiomSolitaire:
       LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/art/PaintingDetails')
-      import("./src/main/ets/pages/game/IdiomSolitaire/IdiomSolitairePage");
+      import("./src/main/ets/pages/game/IdiomSolitairePage");
       break;
 
     case BuilderNameConstants.CULTURE_FlyingFlowerOder:
       import("./src/main/ets/pages/game/FlyingFlowerOrderPage");
       break;
-
+    case BuilderNameConstants.CULTURE_TEST:
+      import("./src/main/ets/pages/test");
+      break;
     default:
       break;
   }

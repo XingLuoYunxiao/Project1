@@ -4,6 +4,7 @@ import { EXP } from "../../model/EXP"
 import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 import { addExp } from "../../common/util/addExp"
 import { BuilderNameConstants, RouterModule } from "routermodule"
+import { CommonConstants } from "../../common/constants/commonConstants"
 
 
 const TAG: string = 'CalligraphyDetails  '
@@ -18,7 +19,7 @@ export struct CalligraphyDetails {
   aboutToAppear(): void {
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
-      addExp('Painting', 5)
+      addExp(CommonConstants.expTypeCulture, 5)
     }, 10000)
   }
 
@@ -31,26 +32,27 @@ export struct CalligraphyDetails {
     NavDestination() {
       Column() {
         List() {
-          ListItem() {
-            Text(this.pageIntroduction)
-              .fontSize(22)
-              .padding(10)
-              .margin(15)
-          }
 
-          ListItem() {
-            Text(this.historyBackground)
-              .fontSize(20)
-              .padding(10)
-              .margin(10)
-          }
-
-          ListItem() {
-            Text(this.modernApplication)
-              .fontSize(20)
-              .padding(10)
-              .margin(10)
-          }
+          // ListItem() {
+          //   Text(this.pageIntroduction)
+          //     .fontSize(22)
+          //     .padding(10)
+          //     .margin(15)
+          // }
+          //
+          // ListItem() {
+          //   Text(this.historyBackground)
+          //     .fontSize(20)
+          //     .padding(10)
+          //     .margin(10)
+          // }
+          //
+          // ListItem() {
+          //   Text(this.modernApplication)
+          //     .fontSize(20)
+          //     .padding(10)
+          //     .margin(10)
+          // }
 
           ListItem() {
             Text('以下是主流的书法类型的介绍：')
@@ -76,10 +78,7 @@ export struct CalligraphyDetails {
         }
 
         .onReachEnd(() => {
-
-          addExp('art')
-
-
+          addExp(CommonConstants.expTypeCulture, 5)
         });
 
       }

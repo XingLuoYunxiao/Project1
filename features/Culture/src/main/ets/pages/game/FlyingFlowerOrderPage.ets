@@ -6,12 +6,13 @@ import { BuilderNameConstants, RouterModule } from "routermodule";
 import { ChatMsgModel } from "../../viewmodel/MessageViewModel";
 import { ChatMsg, ROLE } from "../../model/ChatMassageModel";
 import { MessageComponent } from "../../view/MessageComponent";
-import { CloudIdiomService } from "../../service/CloudIdiomService";
 import { CloudPoemService } from "../../service/CloudPoemService";
-
+import { addExp } from "../../common/util/addExp";
+import { CommonConstants } from '../../common/constants/commonConstants';
 
 const TAG: string = ' FlyingFlowerOrderPage ';
 let MessageDataModel: ChatMsgModel = new ChatMsgModel();
+let addEXPId: number = 0
 
 @Component
 export struct FlyingFlowerOrderPage {
@@ -32,13 +33,22 @@ export struct FlyingFlowerOrderPage {
   })
 
   aboutToAppear(): void {
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp(CommonConstants.expTypeGame, 5)
+    }, 10000)
+
     this.textTimerController.start()
     if (this.PoemList.length === 0) {
       this.systemAddSentence()
     } else {
       LogUtil.debug('this.PoemList.length !== 0')
     }
+  }
 
+  aboutToDisappear(): void {
+    //退出页面，取消对经验值的添加
+    clearTimeout(addEXPId)
   }
 
   async systemAddSentence() {
@@ -50,7 +60,7 @@ export struct FlyingFlowerOrderPage {
           this.PoemList.push(tempPoem)
           MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, res));
 
-          this.StartId = tempPoem.numId
+          this.StartId = tempPoem.id
         }
       }
     }
@@ -124,6 +134,8 @@ export struct FlyingFlowerOrderPage {
                   this.systemAddSentence()
                 } else {
                   MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, "这看起来不是一句诗句"));
+                  MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, "我接着继续"));
+                  this.systemAddSentence()
                 }
               })
 

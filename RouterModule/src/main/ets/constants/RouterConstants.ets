@@ -44,6 +44,7 @@ export class BuilderNameConstants {
   static readonly CULTURE_PAINTING: string = "culture_PaintingDetails"
   static readonly CULTURE_IdiomSolitaire: string = "culture_IdiomSolitaire"
   static readonly CULTURE_FlyingFlowerOder: string = 'culture_FlyingFlowerOder'
+  static readonly CULTURE_TEST: string = 'culture_Test'
 }
 
 // Indicates the key of the routerMap table in the RouterModule.

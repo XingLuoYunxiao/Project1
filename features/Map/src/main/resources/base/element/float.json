@@ -215,6 +215,10 @@
     {
       "name": "column_bottom_space",
       "value": "12vp"
+    },
+    {
+      "name": "header_height_page",
+      "value": "30vp"
     }
   ]
 }

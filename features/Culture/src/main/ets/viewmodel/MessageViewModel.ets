@@ -11,11 +11,5 @@ export class ChatMsgModel extends BasicDataSource<ChatMsg> {
     }
     return this.data[index];
   }
-
-  public addMessage(meg: ChatMsg) {
-    this.data.push(meg);
-    this.notifyDataAdd(this.data.length - 1);
-    this.notifyDataReload()
-  }
 }
 

@@ -3,6 +3,7 @@ import { Poem } from '../model/Poem';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Writer } from '../model/Writer';
 import { Sentence } from '../model/Sentence';
+import cloud, { FunctionResult } from '@hw-agconnect/cloud';
 
 export class CloudPoemService {
   //不设置查询条件
@@ -306,4 +307,14 @@ export class CloudPoemService {
       return undefined
     }
   }
+
+  // 从云函数获取诗歌数据
+  async getPoemData_cloundFunction() {
+    let funResult: FunctionResult = await cloud.callFunction({
+      name: "get-poem-data",
+    });
+    let poems: Poem[] = funResult.getValue().result; // 获取云函数返回的数据
+
+  }
 }
+

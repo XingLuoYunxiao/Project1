@@ -1,16 +1,18 @@
 import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil";
-import { CloudIdiomService } from "../../../service/CloudIdiomService";
-import { ChatMsg, ROLE } from "../../../model/ChatMassageModel";
-import { realIdiom } from "../../../model/Idiom/RealIdiom";
-import { MessageComponent } from "../../../view/MessageComponent";
-import { ChatMsgModel } from "../../../viewmodel/MessageViewModel";
+import { CloudIdiomService } from "../../service/CloudIdiomService";
+import { ChatMsg, ROLE } from "../../model/ChatMassageModel";
+import { realIdiom } from "../../model/Idiom/RealIdiom";
+import { MessageComponent } from "../../view/MessageComponent";
+import { ChatMsgModel } from "../../viewmodel/MessageViewModel";
 import { BuilderNameConstants, RouterModule } from "routermodule";
-import { GameRuleDialog } from "../../../view/Dialog/gameRuleDialog";
-import { GameOverDialog } from "../../../view/IdiomSolitaire/GameOver";
-
+import { GameRuleDialog } from "../../view/Dialog/gameRuleDialog";
+import { GameOverDialog } from "../../view/IdiomSolitaire/GameOver";
+import { addExp } from "../../common/util/addExp";
+import { CommonConstants } from "../../common/constants/commonConstants";
 
 const TAG: string = 'IdiomSolitaire.ets ';
 let MessageDataModel: ChatMsgModel = new ChatMsgModel();
+let addEXPId: number = 0
 
 @Component
 export struct IdiomSolitairePage {
@@ -31,7 +33,6 @@ export struct IdiomSolitairePage {
       regame: this.resetGame,
       cancel: () => {
       }
-
     }),
   })
 
@@ -50,6 +51,12 @@ export struct IdiomSolitairePage {
 
   async aboutToAppear(): Promise<void> {
     LogUtil.info(TAG, '这是成语接龙页面')
+
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp(CommonConstants.expTypeGame, 5)
+    }, 10000)
+
     if (MessageDataModel.data.length === 0) {
       try {
         let temp: realIdiom | undefined = await CloudIdiomService.fetchIdiomByRandom();
@@ -62,8 +69,11 @@ export struct IdiomSolitairePage {
         console.error("初始化成语失败:", error.message);
       }
     }
+    if (MessageDataModel.data.length !== 0) {
+      this.textTimerController.start()
+    }
 
-    this.textTimerController.start()
+
   }
 
   build() {
@@ -82,13 +92,13 @@ export struct IdiomSolitairePage {
             Text('当前接龙汉字：' + this.lastChar)
               .fontSize($r('app.float.title_text_size'))
             // 计时器
-            TextTimer({ controller: this.textTimerController, isCountDown: this.isCountDown, count: 20000 })
+            TextTimer({ controller: this.textTimerController, isCountDown: this.isCountDown, count: 30000 })
               .format(this.format)
               .fontColor(Color.Black)
               .fontSize(24)
               .onTimer((utc: number, elapsedTime: number) => {
-                LogUtil.info(`textTimer notCountDown utc is：${utc}, elapsedTime: ${elapsedTime}`);
-                if (elapsedTime === 2000) {
+                //LogUtil.info(`textTimer notCountDown utc is：${utc}, elapsedTime: ${elapsedTime}`);
+                if (elapsedTime === 3000) {
                   this.GameOverDialogController.open()
                 }
               })
@@ -116,7 +126,7 @@ export struct IdiomSolitairePage {
             text: this.inputText
           })
             .width('80%')
-            .height(60)
+            .height(40)
             .margin(20)
             .fontSize(14)
             .fontColor(Color.Black)
@@ -133,7 +143,7 @@ export struct IdiomSolitairePage {
             });
         }
         .width('100%')
-        .margin({ bottom: 40 })
+        .margin({ bottom: 20 })
         .padding(10)
 
       }
@@ -190,13 +200,16 @@ export struct IdiomSolitairePage {
   }
 
   aboutToDisappear(): void {
-    LogUtil.info(TAG, '退出成语接龙页面');
+    clearTimeout(addEXPId)
+
 
     // 清理状态和资源
     this.textTimerController.reset();
     this.dialogController.close();
     this.GameOverDialogController.close();
     MessageDataModel.data = []
+    MessageDataModel.notifyDataReload()
+    LogUtil.info(TAG, '退出成语接龙页面');
   }
 }
 
