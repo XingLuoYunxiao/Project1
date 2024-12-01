@@ -22,51 +22,51 @@ export class AchieveImage {
 
 export const ACHIEVE_IMAGE_LIST: AchieveImage[] = [
   {
-    pathId: 'p001',
+    pathId: '1',
     activeImage: $r('app.media.learning_path_1_completed'),
     defaultImage: $r('app.media.learning_path_1_default'),
     lottiePath: 'common/lottie/learning_path_1_lottie.json'
   },
   {
-    pathId: 'p002',
+    pathId: '2',
     activeImage: $r('app.media.learning_path_2_completed'),
     defaultImage: $r('app.media.learning_path_2_default'),
     lottiePath: 'common/lottie/learning_path_2_lottie.json'
   },
   {
-    pathId: 'p003',
+    pathId: '3',
     activeImage: $r('app.media.learning_path_3_completed'),
     defaultImage: $r('app.media.learning_path_3_default'),
     lottiePath: 'common/lottie/learning_path_3_lottie.json'
   },
-  // {
-  //   pathId: 'p004',
-  //   activeImage: $r('app.media.learning_path_4_completed'),
-  //   defaultImage: $r('app.media.learning_path_4_default'),
-  //   lottiePath: 'common/lottie/learning_path_4_lottie.json'
-  // },
-  // {
-  //   pathId: 'p005',
-  //   activeImage: $r('app.media.learning_path_5_completed'),
-  //   defaultImage: $r('app.media.learning_path_5_default'),
-  //   lottiePath: 'common/lottie/learning_path_5_lottie.json'
-  // },
-  // {
-  //   pathId: 'p006',
-  //   activeImage: $r('app.media.learning_path_6_completed'),
-  //   defaultImage: $r('app.media.learning_path_6_default'),
-  //   lottiePath: 'common/lottie/learning_path_6_lottie.json'
-  // },
-  // {
-  //   pathId: 'p007',
-  //   activeImage: $r('app.media.learning_path_7_completed'),
-  //   defaultImage: $r('app.media.learning_path_7_default'),
-  //   lottiePath: 'common/lottie/learning_path_7_lottie.json'
-  // },
-  // {
-  //   pathId: 'p008',
-  //   activeImage: $r('app.media.learning_path_8_completed'),
-  //   defaultImage: $r('app.media.learning_path_8_default'),
-  //   lottiePath: 'common/lottie/learning_path_8_lottie.json'
-  // }
+  {
+    pathId: '4',
+    activeImage: $r('app.media.learning_path_4_completed'),
+    defaultImage: $r('app.media.learning_path_4_default'),
+    lottiePath: 'common/lottie/learning_path_4_lottie.json'
+  },
+  {
+    pathId: '5',
+    activeImage: $r('app.media.learning_path_5_completed'),
+    defaultImage: $r('app.media.learning_path_5_default'),
+    lottiePath: 'common/lottie/learning_path_5_lottie.json'
+  },
+  {
+    pathId: '6',
+    activeImage: $r('app.media.learning_path_6_completed'),
+    defaultImage: $r('app.media.learning_path_6_default'),
+    lottiePath: 'common/lottie/learning_path_6_lottie.json'
+  },
+  {
+    pathId: '7',
+    activeImage: $r('app.media.learning_path_7_completed'),
+    defaultImage: $r('app.media.learning_path_7_default'),
+    lottiePath: 'common/lottie/learning_path_7_lottie.json'
+  },
+  {
+    pathId: '8',
+    activeImage: $r('app.media.learning_path_8_completed'),
+    defaultImage: $r('app.media.learning_path_8_default'),
+    lottiePath: 'common/lottie/learning_path_8_lottie.json'
+  }
 ];

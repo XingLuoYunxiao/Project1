@@ -1,5 +1,5 @@
 import { ZhiPuImage2 } from "../../api/ApiService"; // 导入生成图片的 API 服务
-import { ChatMessageType, ChatMsgModel } from "../../model/AIChatListModel"; // 导入聊天消息类型和模型
+import { ChatMessageType, ChatMsg, ROLE } from "../../model/ChatMassageModel"; // 导入聊天消息类型和模型
 import { MessageType } from "@hw-agconnect/cloud/src/main/ets/database/sync/utils/MessageType"; // 导入消息类型定义
 
 @Builder
@@ -13,17 +13,17 @@ export struct AIPaintingPage {
   controller: TextInputController = new TextInputController(); // 控制输入框的控制器
   @State showImage: boolean = false; // 控制图片显示的状态
   @State ImageUrl: string = ''; // 存储生成的图片 URL
-  @State chatList: ChatMsgModel[] = []; // 存储聊天消息的列表
+  @State chatList: ChatMsg[] = []; // 存储聊天消息的列表
 
   build() {
     NavDestination() {
       Column() { // 主列布局
         List({ space: 12 }) { // 聊天消息列表
-          ForEach(this.chatList, (item: ChatMsgModel, index) => {
+          ForEach(this.chatList, (item: ChatMsg, index) => {
             ListItem() {
               this.messageBuilder(item); // 渲染每一条消息
             }
-          }, (item: ChatMsgModel, index: number) => index.toString());
+          }, (item: ChatMsg, index: number) => index.toString());
         }
         .width('100%')
         .height('80%');
@@ -47,13 +47,13 @@ export struct AIPaintingPage {
               this.inputText = ''
               if (tempText !== '') {
                 // 添加用户消息
-                this.chatList.push(new ChatMsgModel("user", tempText, ChatMessageType.Text));
+                this.chatList.push(new ChatMsg(ROLE.user, tempText, ChatMessageType.Text));
                 // 调用 API 生成图片
                 this.ImageUrl = await ZhiPuImage2(tempText);
 
                 if (this.ImageUrl !== '') {
                   // 添加系统消息（图片）
-                  this.chatList.push(new ChatMsgModel("system", this.ImageUrl, ChatMessageType.Image));
+                  this.chatList.push(new ChatMsg(ROLE.system, this.ImageUrl, ChatMessageType.Image));
                   this.showImage = !this.showImage; // 切换图片显示状态
                 }
 
@@ -74,16 +74,16 @@ export struct AIPaintingPage {
   }
 
   @Builder
-  messageBuilder(item: ChatMsgModel) {
+  messageBuilder(item: ChatMsg) {
     Column({ space: 10 }) { // 消息列布局
       // 头像和用户名
       Row() {
-        Image(item.authorImage)// 用户头像
+        Image(item.roleHeadImg)// 用户头像
           .height(30)
           .width(30)
           .borderRadius(100)// 头像圆形
           .alt('');
-        Text(item.author); // 用户名
+        Text(item.role); // 用户名
       }
       .justifyContent(FlexAlign.Start); // 左对齐
 

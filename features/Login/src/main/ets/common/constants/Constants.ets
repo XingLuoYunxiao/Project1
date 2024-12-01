@@ -40,8 +40,8 @@ export default class Constants {
   static readonly COUNT_TWO: number = 2;
   static readonly PHOTO_PADDING_BOTTOM: number = 30;
   //页面距离顶部高度
-  static readonly HEADER_HEIGHT_PAGE = 30;
+  static readonly HEADER_HEIGHT_PAGE = 20;
   //barheight
-  static readonly BAR_HEIGHT_PAGE = 50;
+  static readonly BAR_HEIGHT_PAGE = 40;
   static readonly TOP_HEIGHT_PAGE = 40;
 }

@@ -1,12 +1,8 @@
+import { BuilderNameConstants, RouterModule } from "routermodule"
 import { addExp } from "../../common/util/addExp"
 import { Custom, Festival } from "../../model/tradictionFestival/festivalModel"
 import { FestivalInstance, FestivalProject } from "../../model/tradictionFestival/tradFestProject"
 
-
-@Builder
-export function FestivalPageBuilder() {
-  FestivalPage()
-}
 
 let addEXPId: number = 0
 
@@ -99,6 +95,15 @@ export struct CustomBuilder {
   }
 }
 
+@Builder
+export function FestivalPageBuilder() {
+  FestivalPage()
+}
 
+const builderName = BuilderNameConstants.CULTURE_POEM
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(FestivalPageBuilder)
+  RouterModule.registerBuilder(builderName, builder)
+}
 
 

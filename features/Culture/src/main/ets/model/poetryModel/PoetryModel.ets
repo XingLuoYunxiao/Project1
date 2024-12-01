@@ -60,6 +60,7 @@ export abstract class BasicDataSource<T> implements IDataSource {
   public pushData(data: T): void {
     this.data.push(data);
     this.notifyDataAdd(this.data.length - 1);
+
   }
 }
 

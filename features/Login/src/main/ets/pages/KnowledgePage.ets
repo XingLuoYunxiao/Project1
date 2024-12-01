@@ -1,10 +1,9 @@
 import { BuilderNameConstants, RouterModule } from 'routermodule';
 import { LottieUtil } from 'utils/src/main/ets/utils/LottieUtil';
 import { AchieveImage, ACHIEVE_IMAGE_LIST } from '../model/AchievementModel';
-import { PreferencesUtil } from "utils/src/main/ets/utils/puraUtils/PreferencesUtil"
 import { EXP } from 'culture';
 import Constants from '../common/constants/Constants';
-
+import { PreferencesUtil } from 'utils/src/main/ets/puraUtils/PreferencesUtil';
 @Component
 export struct KnowledgePage {
   @Consume('appPathStack') appPathStack: NavPathStack
@@ -13,15 +12,21 @@ export struct KnowledgePage {
   private mainRenderingSettings: RenderingContextSettings = new RenderingContextSettings(true);
   private mainCanvasRenderingContext: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.mainRenderingSettings);
   @State exp:EXP[]=[]
+  @State EXPString:string=''
+
 
   aboutToAppear() {
-    let EXPString: string = PreferencesUtil.getSync("EXP", "") as string
-    this.exp= JSON.parse(EXPString) as EXP[]
+    this.EXPString= PreferencesUtil.getSync("EXP", "") as string
+    this.exp= JSON.parse(this.EXPString) as EXP[]
   }
   getShowImg(item: AchieveImage): Resource | undefined {
-    if(this.exp[0].value>1000){
-      return item.activeImage;
-    }
+    // if(this.EXPString!==''){
+      // this.exp.forEach((value:EXP,index:number,arr:EXP[])=>{
+      //     if(){
+      //       return item.activeImage;
+      //     }
+      // })
+    // }
     return item.defaultImage;
   }
 
@@ -32,14 +37,18 @@ export struct KnowledgePage {
           Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(()=>{
             this.appPathStack.pop()
           })
-        }
+          Text('知识等级')
+        }.width('100%')
+        .justifyContent(FlexAlign.Start)
         .height(Constants.TOP_HEIGHT_PAGE)
         Grid(){
           ForEach(ACHIEVE_IMAGE_LIST,(item:AchieveImage)=>{
             GridItem() {
               Image(this.getShowImg(item))
+                //缓解图片在缩放时的锯齿问题
                 .interpolation(ImageInterpolation.High)
                 .width(100)
+                //组件的宽高比,仅设置width、aspectRatio时，height=width/aspectRatio
                 .aspectRatio(1)
             }.onClick(()=>{
               if(this.getShowImg(item)==item.activeImage){
@@ -65,10 +74,12 @@ export struct KnowledgePage {
         .padding(5)
         .margin(6)
       }
-      .padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE})
+      .padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE,top:Constants.PADDING_PAGE})
       .width('100%')
       .height('100%')
-    }.margin({top:Constants.HEADER_HEIGHT_PAGE})
+    }
+    .hideTitleBar(true)
+    .margin({top:Constants.HEADER_HEIGHT_PAGE})
   }
   @Builder
   playLottieBuilder() {
@@ -78,7 +89,6 @@ export struct KnowledgePage {
           .height(50)
           .width(80)
           .onReady(() => {
-            // if (this.clickedItem != null) {
               LottieUtil.loadAnimation({
                 container: this.mainCanvasRenderingContext,
                 renderer: 'canvas',
@@ -87,7 +97,6 @@ export struct KnowledgePage {
                 name: 'p001',
                 path: 'common/lottie/learning_path_1_lottie.json'
               })
-            // }
           })
           .onClick(() => {
             this.isShow = false;
@@ -106,6 +115,7 @@ export struct KnowledgePage {
     .height(100)
   }
 }
+
 @Builder
 export function KnowledgePageBuilder() {
   KnowledgePage()

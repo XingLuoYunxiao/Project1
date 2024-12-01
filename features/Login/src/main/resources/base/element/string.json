@@ -5,28 +5,12 @@
       "value": "module description"
     },
     {
-      "name": "EntryAbility_desc",
-      "value": "description"
+      "name": "chat_with_expression_msg_1",
+      "value": "Hi,小古很高兴为您服务"
     },
     {
-      "name": "EntryAbility_label",
-      "value": "iRead"
-    },
-    {
-      "name": "default_sex",
-      "value": "男"
-    },
-    {
-      "name": "text_input_hint",
-      "value": "昵称"
-    },
-    {
-      "name": "title_birthdate",
-      "value": "出生日期"
-    },
-    {
-      "name": "text_title_hobbies",
-      "value": "爱好"
+      "name": "chat_with_expression_msg_2",
+      "value": "请问您有什么问题需要问小古呢?"
     },
     {
       "name": "cancel_button",

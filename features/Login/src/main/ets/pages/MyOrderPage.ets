@@ -21,6 +21,7 @@ export struct MyOrderPage {
   @Provide orderListData: ListDataSource<myOrderAdd> = this.mineViewModel.orderListData;
   @State searchListData: ListDataSource<myOrderAdd> = new ListDataSource();
   @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
+  @State waitListData: ListDataSource<myOrderAdd> =this.mineViewModel.waitListData;
 
   async aboutToAppear() {
     auth.getCurrentUser().then(user=>{
@@ -30,6 +31,23 @@ export struct MyOrderPage {
     })
   }
 
+  @Builder
+  listData(data:ListDataSource<myOrderAdd>){
+    Column() {
+      List({space:Constants.SMALL_SPACE}) {
+        LazyForEach(data, (or: myOrderAdd) => {
+          ListItem() {
+            OrderItem({ item: or, reviewname: or.spotname })
+          }.onClick(()=>{
+            this.SpotNetWork.search(or.spotname)
+            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
+          })
+        },(or: myOrderAdd, index: number) => JSON.stringify(or) + Math.random() + index)
+        // }
+      }.scrollBar(BarState.Off)
+      Text('已经到底了').fontSize(20).fontColor($r('app.color.page_background_grey'))
+    }.height('100%')
+  }
   build() {
     NavDestination() {
       Column() {
@@ -58,32 +76,20 @@ export struct MyOrderPage {
           Tabs() {
             TabContent() {
               Scroll() {
-                Column() {
-                  List({space:Constants.SMALL_SPACE}) {
-                    if (this.isSearch == true) {
-                      LazyForEach(this.searchListData, (or: myOrderAdd) => {
-                        ListItem() {
-                          OrderItem({ item: or })
-                        }
-                      }, (or: myOrderAdd, index: number) => JSON.stringify(or) + Math.random() + index)
-                    } else {
-                      LazyForEach(this.orderListData, (or: myOrderAdd) => {
-                        ListItem() {
-                          OrderItem({ item: or, reviewname: or.spotname })
-                        }.onClick(()=>{
-                          this.SpotNetWork.search(or.spotname)
-                          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
-                        })
-                      }, (or: myOrderAdd) => JSON.stringify(or))
-                    }
-                  }.scrollBar(BarState.Off)
-                  Text('已经到底了').fontSize(20).fontColor($r('app.color.page_background_grey'))
-                }.height('100%')
+                if(this.isSearch==true){
+                  this.listData(this.searchListData)
+                }else{
+                  this.listData(this.orderListData)
+                }
               }.scrollBar(BarState.Off)
               .edgeEffect(EdgeEffect.Spring)
             }
             .tabBar('全部订单')
             TabContent() {
+              Scroll() {
+                this.listData(this.waitListData)
+              }.scrollBar(BarState.Off)
+              .edgeEffect(EdgeEffect.Spring)
             }
             .tabBar('待使用')
           }.barHeight(Constants.BAR_HEIGHT_PAGE)

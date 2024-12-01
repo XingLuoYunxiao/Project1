@@ -1,6 +1,6 @@
 import { TravelStartPage } from 'travel';
 import { InfoMessagePage } from 'login';
-import { CulturalHeritageStartPage } from 'culture';
+import { CulturalHeritageStartPage, CulturalPage } from 'culture';
 import { TabBarType } from '../model/TabBarModel';
 import { CustomTabBar } from '../components/CustomTabBar';
 import { AppConstants } from '../constants/AppConstants';
@@ -15,34 +15,33 @@ struct Index {
   @Provide('travelPathStack') travelPathStack: NavPathStack = new NavPathStack();
   @Provide('appPathStack') appPathStack: NavPathStack = new NavPathStack();
   @Provide('loginPathStack') loginPathStack: NavPathStack = new NavPathStack();
+  @Provide('culturePathStack') culturePathStack: NavPathStack = new NavPathStack();
 
   async aboutToAppear(): Promise<void> {
     await LocationUtil.getInstance().getCurrentLocation()
     if( !this.appPathStack){
       this.appPathStack = new NavPathStack();
+      AppStorage.setOrCreate('isHideBar', false);
     }
     RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
   }
 
   @Builder
-  routerMap(builderName: string, param: object) {
-    // Obtain the WrappedBuilder object based on the module name, create a page through the builder interface, and import the param parameter.
+  routerMap(builderName: string, param?: object) {
     RouterModule.getBuilder(builderName).builder(param);
-  };
+  }
 
   build() {
-    Navigation(this.appPathStack){
-      Stack(){
-        Flex({ direction: FlexDirection.Row}){
-          Tabs({index:this.currentIndex}) {
+    Navigation(this.appPathStack) {
+      Stack() {
+        Flex({ direction: FlexDirection.RowReverse }) {
+          Tabs({ index: this.currentIndex }) {
             TabContent() {
               TravelStartPage()
             }
-
             TabContent() {
-              CulturalHeritageStartPage()
+              CulturalPage()
             }
-
             TabContent() {
               Text('开发中')
                 .align(Alignment.Center)
@@ -72,7 +71,7 @@ struct Index {
         .width(AppConstants.FULL_PERCENT)
         .height(AppConstants.FULL_PERCENT)
 
-        CustomTabBar({ currentIndex: $currentIndex})
+        CustomTabBar({ currentIndex: $currentIndex })
 
       }
       //Stack的属性,子组件的对齐方式

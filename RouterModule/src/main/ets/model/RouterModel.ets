@@ -22,14 +22,20 @@ export class RouterModel {
   routerName: string = "";
   // Parameters that need to be transferred to the page.
   param?: object = new Object();
+  // constructor( builderName?: string,routerName?: string ) {
+  //   this.builderName =builderName
+  //
+  // }
 }
 
 // Create routing information and put it into the routing stack table.
 export function buildRouterModel(routerName: string, builderName: string, param?: object) {
+  console.log('到达buildRouterModel')
   let router: RouterModel = new RouterModel();
   router.builderName = builderName;
   router.routerName = routerName;
   router.param = param;
   RouterModule.push(router);
 }
+
 

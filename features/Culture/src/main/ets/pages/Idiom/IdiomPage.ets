@@ -1,17 +1,9 @@
 import { realIdiom } from "../../model/Idiom/RealIdiom"
-
-import { cloudDatabase } from "@kit.CloudFoundationKit"
-import { getIdiomFormCloud } from "../../common/constants/CloundDb/getIdiomDataFormCloudDb"
+import { CloudIdiomService } from "../../service/CloudIdiomService"
 import { deepCopy } from "../../common/util/deepCopy"
-import { LogUtil } from "utils/src/main/ets/utils/puraUtils/LogUtil"
-import { PreferencesUtil } from "utils/src/main/ets/utils/puraUtils/PreferencesUtil"
+import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 import { addExp } from "../../common/util/addExp"
-
-
-@Builder
-export function IdiomPageBuilder() {
-  IdiomPage()
-}
+import { BuilderNameConstants, RouterModule } from "routermodule"
 
 let addEXPId: number = 0
 
@@ -49,14 +41,14 @@ export struct IdiomPage {
           .textFont({ size: 14, weight: 400 })
           .onSubmit(async (value: string) => {
             LogUtil.debug('点击了搜索事件')
-            let temp: realIdiom | undefined = await getIdiomFormCloud.fetchIdiomByWord(value)
+            let temp: realIdiom | undefined = await CloudIdiomService.fetchIdiomByWord(value)
             if (temp) {
               this.idiom = deepCopy(temp) //深拷贝
 
               LogUtil.debug('获取成语：' + JSON.stringify(temp))
               LogUtil.debug('获取成语：' + JSON.stringify(this.idiom))
             } else {
-
+              LogUtil.debug('没有该成语哟')
             }
 
           })
@@ -79,10 +71,9 @@ export struct IdiomPage {
           .height(40)
           .onClick(async () => {
             let rand: number = Math.floor(Math.random() * (49000 - 1) + 1); //获取随机数，49000是成语在数据库的数量
-            let temp: realIdiom | undefined = await getIdiomFormCloud.fetchIdiomById(rand)
+            let temp: realIdiom | undefined = await CloudIdiomService.fetchIdiomById(rand)
             if (temp) {
               this.idiom = deepCopy(temp) //深拷贝
-              LogUtil.debug('获取成语：' + JSON.stringify(temp))
               LogUtil.debug('获取成语：' + JSON.stringify(this.idiom))
             }
           })
@@ -158,13 +149,15 @@ struct realIdiomComp {
           .justifyContent(FlexAlign.Start)
         }
 
-
-        Row() {
-          Text("——" + this.idiom.data.exampleBook)
-            .fontSize($r('app.float.title_text_size'))
+        if (this.idiom.data.exampleBook) {
+          Row() {
+            Text("——" + this.idiom.data.exampleBook)
+              .fontSize($r('app.float.title_text_size'))
+          }
+          .width('80%')
+          .justifyContent(FlexAlign.End)
         }
-        .width('80%')
-        .justifyContent(FlexAlign.End)
+
 
         if (this.idiom.data.story !== '' && this.idiom.data.story !== undefined) {
           Row() {
@@ -177,9 +170,7 @@ struct realIdiomComp {
           .margin({ right: 40 })
           .width('80%')
           .justifyContent(FlexAlign.Start)
-
         }
-
 
       }
       .backgroundColor($r('app.color.main_background'))
@@ -197,5 +188,15 @@ struct realIdiomComp {
 function generalize() {
   .fontSize(24)
   .fontWeight(FontWeight.Medium)
+}
 
+@Builder
+export function IdiomPageBuilder() {
+  IdiomPage()
+}
+
+const builderName = BuilderNameConstants.CULTURE_IDIOM
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(IdiomPageBuilder)
+  RouterModule.registerBuilder(builderName, builder)
 }

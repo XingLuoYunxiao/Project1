@@ -10,6 +10,6 @@
     "uicomponents": "file:../../commons/uicomponents",
     "routermodule": "file:../../RouterModule",
     "travel": "file:../Travel",
-    "culture": "file:../Culture",
+    "culture": "file:../Culture"
   }
 }

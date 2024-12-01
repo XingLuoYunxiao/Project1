@@ -4,7 +4,6 @@ export interface City {
   cityCode?: string;
   proId?: string; //省份id
   proName?: string;//省份
-
 }
 
 export interface CategoryItem {

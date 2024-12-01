@@ -1,4 +1,4 @@
-import { FlyingFlowerOrderPage } from './FlyingFlowerOrderPage';
+import { FlyingFlowerOrderPage } from './game/FlyingFlowerOrderPage';
 import { ttf } from '../common/util/ttf';
 import { MasterpieceI, tsetMasterPieceIArr } from '../model/MasterpieceI';
 import { AncientGames, tsetAncientGamesIArr } from '../model/AncientGamesI';

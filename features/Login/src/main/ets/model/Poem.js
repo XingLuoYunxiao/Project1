@@ -5,24 +5,15 @@
 
 class Poem {
     constructor() {
-        this.numId = undefined;
         this.id = undefined;
-        this.title = undefined;
+        this.title = "";
         this.dynasty = undefined;
-        this.writer = undefined;
-        this.content = undefined;
+        this.writer = "";
+        this.content = "";
         this.type = undefined;
         this.remark = undefined;
         this.shangxi = undefined;
         this.translation = undefined;
-    }
-
-    setNumId(numId) {
-        this.numId = numId;
-    }
-
-    getNumId() {
-        return this.numId;
     }
 
     setId(id) {

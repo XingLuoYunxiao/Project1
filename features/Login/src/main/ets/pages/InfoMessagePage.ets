@@ -32,6 +32,7 @@ export struct InfoMessagePage {
       if(user){
         AppStorage.setOrCreate('personName',user.getDisplayName())
         AppStorage.setOrCreate('personPhoto',user.getPhotoUrl())
+        AppStorage.setOrCreate('personUid',user.getUid())
       }
     });
   }
@@ -140,7 +141,9 @@ export struct InfoMessagePage {
                   Text('已售500+')
                 }
               }
-            }
+            }.onClick(()=>{
+              buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:item}))
+            })
             // .onAppear(() => {
             //   // 即将触底时提前增加数据
             //   if (index + 20 == this.spotDataSource.totalCount()) {

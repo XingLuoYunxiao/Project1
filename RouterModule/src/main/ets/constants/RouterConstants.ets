@@ -38,6 +38,19 @@ export class BuilderNameConstants {
   static readonly TRAVEL_LOADINGANIMATION: string = 'travel_LoadingAnimation';
   static readonly TRAVEL_SPOTDETAILPAGE: string = 'travel_SpotDetailPage';
   static readonly TRAVEL_SEARCHPAGE: string = 'travel_SearchPage';
+
+  //Culture
+  static readonly CULTURE_POEM: string = 'culture_PoemPage'
+  static readonly CULTURE_POEMDETAIL: string = 'culture_PoemDetailPage'
+  static readonly CULTURE_POEMENETER: string = 'culture_PoemEnterPage'
+  static readonly CULTURE_SENTENCE: string = "culture_SentencePage"
+  static readonly CULTURE_IDIOM: string = "culture_IdiomPage"
+  static readonly CULTURE_XIEHOUYU: string = "culture_XiehouyuPage"
+  static readonly CULTURE_ART: string = "culture_ArtPage"
+  static readonly CULTURE_FESTIVAL: string = "culture_FestivalPage"
+  static readonly CULTURE_CALLIGRAPHY: string = "culture_CalligraphyDetails"
+  static readonly CULTURE_PAINTING: string = "culture_PaintingDetails"
+  static readonly CULTURE_IdiomSolitaire: string = "culture_IdiomSolitaire"
 }
 
 // Indicates the key of the routerMap table in the RouterModule.

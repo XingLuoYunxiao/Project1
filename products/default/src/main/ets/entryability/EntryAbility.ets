@@ -1,16 +1,15 @@
-import { abilityAccessCtrl, AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { window } from '@kit.ArkUI';
 import { BusinessError, request } from '@kit.BasicServicesKit'
 import { buffer } from '@kit.ArkTS';
 import auth from '@hw-agconnect/auth';
 import { initialize } from '@hw-agconnect/hmcore';
-import { AppUtil } from "utils/src/main/ets/utils/puraUtils/AppUtil"
-import { PreferencesUtil } from "utils/src/main/ets/utils/puraUtils/PreferencesUtil"
+import { AppUtil } from "utils/src/main/ets/puraUtils/AppUtil"
+import { PreferencesUtil } from "utils/src/main/ets/puraUtils/PreferencesUtil"
 import { EXP } from "culture/src/main/ets/model/EXP"
-import { LogUtil } from "utils/src/main/ets/utils/puraUtils/LogUtil"
-
-
+import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
+import {abilityAccessCtrl,AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
+import { calendarManager } from '@kit.CalendarKit';
+import { window } from '@kit.ArkUI';
 const TAG: string = 'EntryAbility';
 const domain = 0x0011; //定位模块
 
@@ -75,7 +74,10 @@ export default class EntryAbility extends UIAbility {
       }
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
+
   }
+
+
 
   onWindowStageDestroy(): void {
     // Main window is destroyed, release UI related resources
@@ -102,3 +104,4 @@ function requestFullScreen(windowStage: window.WindowStage, context: Context): v
     windowClass.setWindowLayoutFullScreen(true);
   });
 }
+
