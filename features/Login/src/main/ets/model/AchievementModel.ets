@@ -56,17 +56,5 @@ export const ACHIEVE_IMAGE_LIST: AchieveImage[] = [
     activeImage: $r('app.media.learning_path_6_completed'),
     defaultImage: $r('app.media.learning_path_6_default'),
     lottiePath: 'common/lottie/learning_path_6_lottie.json'
-  },
-  {
-    pathId: '7',
-    activeImage: $r('app.media.learning_path_7_completed'),
-    defaultImage: $r('app.media.learning_path_7_default'),
-    lottiePath: 'common/lottie/learning_path_7_lottie.json'
-  },
-  {
-    pathId: '8',
-    activeImage: $r('app.media.learning_path_8_completed'),
-    defaultImage: $r('app.media.learning_path_8_default'),
-    lottiePath: 'common/lottie/learning_path_8_lottie.json'
   }
 ];

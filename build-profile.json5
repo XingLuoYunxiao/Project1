@@ -47,7 +47,7 @@
       "targets": [
         {
           "name": "default",
-          "applyToProducts": [
+          "applyToProducts": [//
             "default"
           ]
         }

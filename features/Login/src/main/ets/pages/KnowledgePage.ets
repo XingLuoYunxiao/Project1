@@ -9,24 +9,47 @@ export struct KnowledgePage {
   @Consume('appPathStack') appPathStack: NavPathStack
   @StorageProp('pointMap') pointMap: Map<string,number> = new Map
   @State isShow: boolean = false;
+  //canvas是否开启抗锯齿
   private mainRenderingSettings: RenderingContextSettings = new RenderingContextSettings(true);
   private mainCanvasRenderingContext: CanvasRenderingContext2D = new CanvasRenderingContext2D(this.mainRenderingSettings);
   @State exp:EXP[]=[]
   @State EXPString:string=''
+  @State clickedItem: AchieveImage | null = null;
 
 
   aboutToAppear() {
     this.EXPString= PreferencesUtil.getSync("EXP", "") as string
     this.exp= JSON.parse(this.EXPString) as EXP[]
   }
-  getShowImg(item: AchieveImage): Resource | undefined {
-    // if(this.EXPString!==''){
-      // this.exp.forEach((value:EXP,index:number,arr:EXP[])=>{
-      //     if(){
-      //       return item.activeImage;
-      //     }
-      // })
-    // }
+  getShowImg(item: AchieveImage,len:number): Resource | undefined {
+    if(this.EXPString!==''){
+      while (len>0) {
+         switch (this.exp[len-1].key) {
+            case 'knowledge':
+              if (item.pathId === '1') {
+                return this.exp[len-1].value > 100 ? item.activeImage : item.defaultImage;
+              }else if(item.pathId==='2'){
+                return this.exp[len-1].value > 1500? item.activeImage : item.defaultImage;
+              }
+              break;
+            case 'culture':
+              if (item.pathId === '3') {
+                return this.exp[len-1].value > 100 ? item.activeImage : item.defaultImage;
+              }else if(item.pathId==='4'){
+                return this.exp[len-1].value > 1500? item.activeImage : item.defaultImage;
+              }
+              break;
+            case 'game':
+              if (item.pathId === '5') {
+                return this.exp[len-1].value > 100 ? item.activeImage : item.defaultImage;
+              }else if(item.pathId==='6'){
+                return this.exp[len-1].value > 1500? item.activeImage : item.defaultImage;
+              }
+              break;
+         }
+         len--;
+      }
+    }
     return item.defaultImage;
   }
 
@@ -44,14 +67,15 @@ export struct KnowledgePage {
         Grid(){
           ForEach(ACHIEVE_IMAGE_LIST,(item:AchieveImage)=>{
             GridItem() {
-              Image(this.getShowImg(item))
+              Image(this.getShowImg(item,this.exp.length))
                 //缓解图片在缩放时的锯齿问题
                 .interpolation(ImageInterpolation.High)
                 .width(100)
                 //组件的宽高比,仅设置width、aspectRatio时，height=width/aspectRatio
                 .aspectRatio(1)
             }.onClick(()=>{
-              if(this.getShowImg(item)==item.activeImage){
+              if(this.getShowImg(item,this.exp.length)==item.activeImage){
+                this.clickedItem = item;
                 this.isShow = true;
               }
             })
@@ -61,6 +85,7 @@ export struct KnowledgePage {
           this.isShow,
           this.playLottieBuilder(),
           {
+            //全屏模态透明度渐变动画
             modalTransition: ModalTransition.ALPHA,
             onDisappear: () => {
               LottieUtil.destroy();
@@ -86,16 +111,17 @@ export struct KnowledgePage {
     Column() {
       Column() {
         Canvas(this.mainCanvasRenderingContext)
-          .height(50)
-          .width(80)
+          .height(200)
+          .width(200)
+          //Canvas组件初始化完成时或者Canvas组件发生大小变化时的事件回调
           .onReady(() => {
               LottieUtil.loadAnimation({
                 container: this.mainCanvasRenderingContext,
                 renderer: 'canvas',
                 loop: false,
                 autoplay: true,
-                name: 'p001',
-                path: 'common/lottie/learning_path_1_lottie.json'
+                name: this.clickedItem?.pathId,
+                path: this.clickedItem?.lottiePath
               })
           })
           .onClick(() => {
@@ -111,8 +137,8 @@ export struct KnowledgePage {
       }
     }
     .justifyContent(FlexAlign.Center)
-    .width(100)
-    .height(100)
+    .width('100%')
+    .height('100%')
   }
 }
 
