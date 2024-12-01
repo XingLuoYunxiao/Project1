@@ -1,15 +1,17 @@
-import cloud, { FunctionResult } from '@hw-agconnect/cloud'; // 导入云函数库
-import { BasicDataSource } from '../../model/poetryModel/PoetryModel'; // 导入基本数据源
-import { componentUtils, Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'; // 导入UI工具和筛选器相关模块
+import { Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'; // 导入UI工具和筛选器相关模块
 import { dynastyList, poets, TypeList } from '../../common/constants/poemType'; // 导入诗词相关常量数据
 import { Poem } from '../../model/Poem'; // 导入诗歌模型类
-import { GetPoemDataFormCloud } from '../../common/constants/CloundDb/getPoemDataFormCloudDb'; // 导入云数据库数据获取模块
-import { PoemDetailPage } from './PoemDetailPage'; // 导入诗词详情页
 import { addExp } from '../../common/util/addExp';
-import { BuilderNameConstants, RouterModule, RouterNameConstants } from 'routermodule';
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
+import { CloudPoemService } from '../../service/CloudPoemService';
+import { CommonConstants } from '../../common/constants/commonConstants';
+import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
+import { PoemModel } from '../../viewmodel/PoemViewModel';
+import { talk } from './talk';
 
 let addEXPId: number = 0
 
+const TAG: string = 'PoemPage'
 
 @Component
 export struct PoemPage { // 定义一个组件类PoemPage
@@ -22,21 +24,10 @@ export struct PoemPage { // 定义一个组件类PoemPage
   private filterParam: Array<FilterParams> = [{ name: '类型', options: TypeList }, { name: '诗人', options: poets },
     { name: '朝代', options: dynastyList }]; // 筛选器参数
 
-  // 从云函数获取诗歌数据
-  async getPoemData_cloundFunc() {
-    let funResult: FunctionResult = await cloud.callFunction({
-      name: "get-poem-data",
-    });
-    let poems: Poem[] = funResult.getValue().result; // 获取云函数返回的数据
-    poems.forEach(item => {
-      PoemData.pushData(item); // 将获取的诗歌数据添加到PoemData中
-    });
-  }
-
   // 生命周期方法：组件加载时调用，获取初始数据
   async aboutToAppear(): Promise<void> {
     // 从云数据库获取诗歌数据
-    let poems: Poem[] | undefined = await GetPoemDataFormCloud.fetchAllData(this.pageNumber);
+    let poems: Poem[] | undefined = await CloudPoemService.fetchAllData(this.pageNumber);
     if (poems) {
       poems.forEach(item => {
         PoemData.pushData(item); // 添加数据到PoemData
@@ -46,17 +37,19 @@ export struct PoemPage { // 定义一个组件类PoemPage
 
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
-      addExp('Poem', 5)
+      addExp(CommonConstants.expTypeKnowledge, 5)
     }, 10000)
+
   }
 
   aboutToDisappear(): void {
     // 退出页面时取消对经验值的添加
     clearTimeout(addEXPId)
   }
+
   // 构建组件UI结构
   build() {
-    NavDestination(){
+    NavDestination() {
       Column() {
         // 筛选器组件
         Filter({
@@ -79,7 +72,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
             PoemData.notifyDataReload(); // 通知数据重载
             // 根据筛选条件从云数据库获取数据
             let res: Poem[] | undefined =
-              await GetPoemDataFormCloud.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
+              await CloudPoemService.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
             if (res) {
               res.forEach(poem => {
                 PoemData.pushData(poem); // 添加数据到PoemData
@@ -95,23 +88,23 @@ export struct PoemPage { // 定义一个组件类PoemPage
               LazyForEach(PoemData, (item: Poem) => {
                 this.PoemItem(item); // 渲染单个诗歌项
               },
-                (item: Poem) => item.numId.toString()) // 以numId为唯一标识
+                (item: Poem) => item.id.toString()) // 以numId为唯一标识
             }
             .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
             .cachedCount(15) // 缓存项数
             .id('poemList') // 列表ID
-            // .onReachEnd(async () => { // 滑动到底部时触发
-            //   this.pageNumber++; // 页码增加
-            //   let res: Poem[] | undefined =
-            //     await GetDataFormCloudDb.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
-            //   if (res) {
-            //     console.log('滑倒底部触发更新');
-            //     res.forEach(poem => {
-            //       PoemData.pushData(poem); // 添加数据
-            //     });
-            //     PoemData.notifyDataReload(); // 通知数据更新
-            //   }
-            // })
+            .onReachEnd(async () => { // 滑动到底部时触发
+              this.pageNumber++; // 页码增加
+              let res: Poem[] | undefined =
+                await CloudPoemService.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
+              if (res) {
+                console.log('滑倒底部触发更新');
+                res.forEach(poem => {
+                  PoemData.pushData(poem); // 添加数据
+                });
+                //PoemData.notifyDataReload(); // 通知数据更新
+              }
+            })
           }
           .width('100%')
         }
@@ -120,13 +113,13 @@ export struct PoemPage { // 定义一个组件类PoemPage
       .width('100%'); // 设置宽度
     }
 
-
   }
 
   // 渲染单个诗歌项
   @Builder
   PoemItem(poem: Poem) {
     Column({ space: 10 }) {
+
       Text(poem.title)// 诗歌标题
         .fontSize($r('app.float.normal_text_size1'));
       Text(poem.writer)// 诗人
@@ -142,28 +135,18 @@ export struct PoemPage { // 定义一个组件类PoemPage
     .justifyContent(FlexAlign.Center) // 垂直居中
     .width('100%') // 宽度
     .onClick(() => { // 点击事件
-      this.culturePathStack.pushPathByName("PoemDetailPage", poem); // 跳转到诗歌详情页
+      buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_POEMDETAIL,
+        new Object(poem))
     });
   }
 }
 
-// 诗歌数据模型类，继承自BasicDataSource
-class PoemModel extends BasicDataSource<Poem> {
-  data: Array<Poem> = []; // 诗歌数据数组
-
-  // 获取指定索引的数据
-  public getData(index: number): void | Poem {
-    if (index === this.data.length - 1) {
-    }
-    return this.data[index];
-  }
-}
 
 const PoemData: PoemModel = new PoemModel(); // 诗歌数据实例
 
 @Builder
 export function PoemPageBuilder() {
-    PoemPage()
+  PoemPage()
 }
 
 const builderName = BuilderNameConstants.CULTURE_POEM

@@ -2,7 +2,7 @@ import { cloudDatabase } from "@kit.CloudFoundationKit";
 import { Idiom } from "../model/Idiom/Idiom";
 import { BusinessError } from "@kit.BasicServicesKit";
 import { realIdiom } from "../model/Idiom/RealIdiom";
-
+import Logger from "utils/src/main/ets/utils/Logger"
 
 // 从云数据库获取成语
 export class CloudIdiomService {
@@ -93,7 +93,7 @@ export class CloudIdiomService {
   public static async fetchIdiomByRandom(): Promise<realIdiom> {
     const totalIdioms = 49000; // 成语在数据库的数量
     let attempts = 0;
-    const maxAttempts = 10; // 最大尝试次数，防止无限循环
+    const maxAttempts = 20; // 最大尝试次数，防止无限循环
 
     while (attempts < maxAttempts) {
       let rand: number = Math.floor(Math.random() * totalIdioms) + 1;

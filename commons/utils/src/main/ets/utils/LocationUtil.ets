@@ -2,6 +2,8 @@ import { geoLocationManager } from '@kit.LocationKit';
 import { promptAction } from '@kit.ArkUI';
 import { hilog } from '@kit.PerformanceAnalysisKit';
 import { Logger } from '@hw-agconnect/hmcore/src/main/ets/base/log/Logger';
+import { map } from '@kit.MapKit';
+import { CommonConstants } from '../constants/CommonConstants';
 
 const Tag = 'LocationUtil';
 
@@ -117,6 +119,25 @@ export class LocationUtil {
       }
         reject(address)
     })
+  }
+
+  //TODO 可以优化
+  //导航模块需要的地图服务
+  async getLocation(mapController?: map.MapComponentController): Promise<geoLocationManager.Location> {
+    let promise = geoLocationManager.getCurrentLocation();
+    Logger.info(Tag, 'getCurrentLocation' + JSON.stringify(promise));
+    promise.then(async (location: geoLocationManager.Location) => {
+      mapController?.setMyLocation(location);
+      Logger.info(Tag, 'getCurrentLocation' + JSON.stringify(location));
+      mapController?.animateCamera(map.newLatLng({
+        latitude: location.latitude,
+        longitude: location.longitude
+      }, CommonConstants.ZOOM), CommonConstants.DURATION);
+      return location;
+    }).catch((error: Error) => {
+      Logger.error('getCurrentLocation failed', 'getCurrentLocation error: ' + JSON.stringify(error));
+    });
+    return promise;
   }
 
 }

@@ -2,7 +2,8 @@ import { PreferencesUtil } from "utils/src/main/ets/puraUtils/PreferencesUtil"
 import { EXP } from "../../model/EXP"
 import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 
-export function addExp(key: string, value?: number) {
+
+export async function addExp(key: string, value?: number) {
 
   let EXPString: string = PreferencesUtil.getSync("EXP", "") as string;
 

@@ -33,6 +33,10 @@ export class BuilderNameConstants {
   static readonly LOGIN_MYORDER:string='login_Myorder';
   static readonly LOGIN_PRIVACYPAGE:string='login_PrivacyPage';
   static readonly LOGIN_SETTINGPAGE:string='login_SettingPage';
+  static readonly MAP_ROUTEPLANVIEW: string = 'map_RoutePlanView';
+
+  //Travel
+  // Feature: Travel中的AI导游页面
   // Feature: Travel中的景点分类页面
   static readonly TRAVEL_ATTRACTIONTICKETPAGE: string = 'travel_AttractionTicketPage';
   static readonly TRAVEL_LOADINGANIMATION: string = 'travel_LoadingAnimation';
@@ -51,6 +55,8 @@ export class BuilderNameConstants {
   static readonly CULTURE_CALLIGRAPHY: string = "culture_CalligraphyDetails"
   static readonly CULTURE_PAINTING: string = "culture_PaintingDetails"
   static readonly CULTURE_IdiomSolitaire: string = "culture_IdiomSolitaire"
+  static readonly CULTURE_FlyingFlowerOder: string = 'culture_FlyingFlowerOder'
+  static readonly CULTURE_TEST: string = 'culture_Test'
 }
 
 // Indicates the key of the routerMap table in the RouterModule.

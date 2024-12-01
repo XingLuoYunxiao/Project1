@@ -3,11 +3,11 @@ import { BasicDataSource } from '../../model/poetryModel/PoetryModel'; // 导入
 import { componentUtils, Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'; // 导入UI工具和筛选器相关模块
 import { dynastyList, poets, TypeList } from '../../common/constants/poemType'; // 导入诗词相关常量数据
 import { Poem } from '../../model/Poem'; // 导入诗歌模型类
-import { GetPoemDataFormCloud } from '../../common/constants/CloundDb/getPoemDataFormCloudDb'; // 导入云数据库数据获取模块
-import { PoemDetailPage } from './PoemDetailPage'; // 导入诗词详情页
+import { CloudPoemService } from "../../service/CloudPoemService";
 import { Sentence } from '../../model/Sentence';
 import { addExp } from '../../common/util/addExp';
 import { BuilderNameConstants, RouterModule } from 'routermodule';
+import { CommonConstants } from '../../common/constants/commonConstants';
 
 let addEXPId: number = 0
 
@@ -24,7 +24,7 @@ export struct SentencePage { // 定义一个组件类PoemPage
   // 生命周期方法：组件加载时调用，获取初始数据
   async aboutToAppear(): Promise<void> {
     // 从云数据库获取诗歌数据
-    let sentence: Sentence [] | undefined = await GetPoemDataFormCloud.fetchSentence(this.pageNumber);
+    let sentence: Sentence [] | undefined = await CloudPoemService.fetchSentence(this.pageNumber);
     if (sentence) {
       sentence.forEach(sentence => {
         SentenceData.pushData(sentence); // 添加数据到PoemData
@@ -34,7 +34,7 @@ export struct SentencePage { // 定义一个组件类PoemPage
 
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
-      addExp('Sentence', 5)
+      addExp(CommonConstants.expTypeKnowledge, 5)
     }, 10000)
   }
 
@@ -62,7 +62,7 @@ export struct SentencePage { // 定义一个组件类PoemPage
         .onReachEnd(async () => { // 滑动到底部时触发
           this.pageNumber++; // 页码增加
           let res: Sentence[] | undefined =
-            await GetPoemDataFormCloud.fetchSentence(this.pageNumber);
+            await CloudPoemService.fetchSentence(this.pageNumber);
           if (res) {
             console.log('滑倒底部触发更新');
             res.forEach(sentence => {
@@ -111,7 +111,7 @@ export struct SentencePage { // 定义一个组件类PoemPage
       console.log(name)
       console.log(title)
       if (name && title) {
-        poem = await GetPoemDataFormCloud.fetchDataByWriterAndTitle(name, title)
+        poem = await CloudPoemService.fetchDataByWriterAndTitle(name, title)
         console.log(JSON.stringify(poem));
       }
       if (poem) {

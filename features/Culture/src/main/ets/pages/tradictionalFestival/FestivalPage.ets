@@ -1,4 +1,5 @@
 import { BuilderNameConstants, RouterModule } from "routermodule"
+import { CommonConstants } from "../../common/constants/commonConstants"
 import { addExp } from "../../common/util/addExp"
 import { Custom, Festival } from "../../model/tradictionFestival/festivalModel"
 import { FestivalInstance, FestivalProject } from "../../model/tradictionFestival/tradFestProject"
@@ -15,7 +16,7 @@ export struct FestivalPage {
 
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
-      addExp('Festival', 5)
+      addExp(CommonConstants.expTypeCulture, 5)
     }, 10000)
   }
 

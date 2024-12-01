@@ -1,54 +1,36 @@
 import { BuilderNameConstants, buildRouterModel, RouterModel, RouterNameConstants } from "routermodule";
 import { category, gameList, literatureList, traditionList, } from "../model/category";
 import { LogUtil } from 'utils/src/main/ets/puraUtils/LogUtil'
+import { cloudStorage } from '@kit.CloudFoundationKit';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { CloudStorageConstants } from "../common/constants/cloudStorageConstants";
+import { CloudStorageService } from "../service/CloudStorage";
+
 
 let TAG: string = "CulturalPage  "
+
 
 @Component
 export struct CulturalPage {
   @Consume('appPathStack') appPathStack: NavPathStack;
   @Consume('culturePathStack') culturePathStack: NavPathStack;
 
-  // @Builder
-  // routerMap(builderName: string, param?: object) {
-  //   RouterModule.getBuilder(builderName).builder(param);
-  // }
-
   build() {
     Navigation(this.culturePathStack) {
       Column({ space: 15 }) {
         Text('文化天地')
           .fontSize($r('app.float.large_text_size'))
+
+        Text('测试页面')
+          .fontSize($r('app.float.large_text_size'))
           .onClick(() => {
-            LogUtil.debug('你点击了动态路由')
-            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_SENTENCE)
+            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_TEST)
           })
 
         groupComponent({ groupName: "文学", groupData: literatureList })
-
         groupComponent({ groupName: "文化", groupData: traditionList })
         groupComponent({ groupName: "小游戏", groupData: gameList })
 
-        // List({ space: 20 }) {
-        //   ForEach(literatureList, (item: category) => {
-        //     ListItem() {
-        //       Column() {
-        //         Text(item.name)
-        //           .fontSize(24)
-        //       }
-        //       .width(100)
-        //       .height(60)
-        //       .backgroundColor(Color.Gray)
-        //       .onClick(() => {
-        //         LogUtil.debug('你点击了动态路由')
-        //         buildRouterModel(RouterNameConstants.ENTRY_HAP, item.path)
-        //       })
-        //     }
-        //
-        //   },
-        //     (item: category) => item.name)
-        //
-        // }
 
       }
       .height('90%')
@@ -58,8 +40,6 @@ export struct CulturalPage {
     }
     .mode(NavigationMode.Stack)
     .hideTitleBar(true)
-
-    //.navDestination(this.routerMap)
 
   }
 }

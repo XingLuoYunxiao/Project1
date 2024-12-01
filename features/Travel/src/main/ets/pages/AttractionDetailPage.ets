@@ -1,4 +1,4 @@
-import { BuilderNameConstants, RouterModule } from 'routermodule';
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
 import Constants from '../constants/Constants'
 import { Spot } from '../model/Spot'
 
@@ -81,13 +81,23 @@ struct AttractionDetailPage {
                   .fontSize(Constants.FONT_CONTENT)
                   .fontWeight(FontWeight.Medium)
                   .margin({ left: 8 })
-                Blank()
                 Text(`${getRandomNumber()}条点评`)
                   .fontSize(Constants.FONT_CAPTION)
                   .fontColor('#666666')
                   .margin({ left: 16 })
+                Blank()
+                Button('导航')
+                  .fontColor(Color.White)
+                  .fontSize(20)
+                  .backgroundColor('#ffe7a76c')
+                  .width(72)
+                  .height(40)
+                  .onClick( () => {
+                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.MAP_ROUTEPLANVIEW, new Object({Object: this.spot}))
+                  })
 
               }
+              .width('100%')
               .margin({ top: 12 })
             }
             .width('100%')
@@ -233,9 +243,11 @@ struct AttractionDetailPage {
             .backgroundColor(Color.White)
           }
         }
+        .width('100%')
+        .layoutWeight(1)
+        .scrollable(ScrollDirection.Vertical)
       }
       .width(Constants.FULL_WIDTH)
-      .height(Constants.FULL_HEIGHT)
       .margin({ top: Constants.HEADER_HEIGHT_PAGE })
     }
     .hideTitleBar(true)

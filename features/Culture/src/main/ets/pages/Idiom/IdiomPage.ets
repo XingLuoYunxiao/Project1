@@ -4,6 +4,7 @@ import { deepCopy } from "../../common/util/deepCopy"
 import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 import { addExp } from "../../common/util/addExp"
 import { BuilderNameConstants, RouterModule } from "routermodule"
+import { CommonConstants } from "../../common/constants/commonConstants"
 
 let addEXPId: number = 0
 
@@ -15,7 +16,7 @@ export struct IdiomPage {
   aboutToAppear(): void {
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
-      addExp('Idiom', 5)
+      addExp(CommonConstants.expTypeKnowledge, 5)
     }, 10000)
 
   }
@@ -108,6 +109,7 @@ struct realIdiomComp {
           Text('解释:')
             .generalize()
 
+
           Text(this.idiom.data.explanation)
             .fontSize($r('app.float.title_text_size'))
         }
@@ -115,25 +117,29 @@ struct realIdiomComp {
         .margin({ right: 40 })
         .width('80%')
 
+        if (this.idiom.data.sourceText) {
+          Row() {
+            Text('出处:')
+              .generalize()
 
-        Row() {
-          Text('出处:')
-            .generalize()
-          Text(this.idiom.data.sourceText)
-            .fontSize($r('app.float.title_text_size'))
-            .width('80%')
-        }
-        .padding({ right: 30 })
-        .margin({ right: 40 })
-        .width('80%')
-        .justifyContent(FlexAlign.Start)
+            Text(this.idiom.data.sourceText)
+              .fontSize($r('app.float.title_text_size'))
+              .width('80%')
+          }
+          .padding({ right: 30 })
+          .margin({ right: 40 })
+          .width('80%')
+          .justifyContent(FlexAlign.Start)
 
-        Row() {
-          Text("——" + this.idiom.data.sourceBook)
-            .fontSize($r('app.float.title_text_size'))
+
+          Row() {
+            Text("——" + this.idiom.data.sourceBook)
+              .fontSize($r('app.float.title_text_size'))
+          }
+          .width('80%')
+          .justifyContent(FlexAlign.End)
         }
-        .width('80%')
-        .justifyContent(FlexAlign.End)
+
 
         if (this.idiom.data.exampleText !== '' && this.idiom.data.exampleText !== undefined) {
           Row() {
@@ -188,6 +194,7 @@ struct realIdiomComp {
 function generalize() {
   .fontSize(24)
   .fontWeight(FontWeight.Medium)
+  .margin({ left: 10 })
 }
 
 @Builder

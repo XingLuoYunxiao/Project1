@@ -4,6 +4,7 @@ import { PaintingModel, paintingModelList } from "../../model/art/PaintingModel"
 import { ttf } from "../../common/util/ttf"
 import { addExp } from "../../common/util/addExp"
 import { BuilderNameConstants, RouterModule } from "routermodule"
+import { CommonConstants } from "../../common/constants/commonConstants"
 
 
 let addEXPId: number = 0
@@ -17,7 +18,7 @@ export struct PaintingDetails {
 
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
-      addExp('Painting', 5)
+      addExp(CommonConstants.expTypeCulture, 5)
     }, 10000)
   }
 
@@ -38,10 +39,8 @@ export struct PaintingDetails {
           })
         }
         .onReachEnd(() => {
-          addExp('Painting')
-
+          addExp(CommonConstants.expTypeCulture, 5)
         })
-
       }
     }
     .hideTitleBar(true) // 隐藏标题栏
