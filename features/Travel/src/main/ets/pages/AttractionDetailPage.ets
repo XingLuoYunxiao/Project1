@@ -1,6 +1,8 @@
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
 import Constants from '../constants/Constants'
 import { Spot } from '../model/Spot'
+import { Want } from '@kit.AbilityKit';
+import { common } from '@kit.AbilityKit';
 
 @Component
 struct AttractionDetailPage {
@@ -15,6 +17,25 @@ struct AttractionDetailPage {
     //获取路由参数
     this.spot = JSON.parse(JSON.stringify(this.value)).item as Spot
     //this.spot = this.appPathStack.getParamByName('AttractionDetailPage')[0] as Spot;
+  }
+
+  StartNavi = ()=>{
+    let petalMapWant: Want = {
+      bundleName: 'com.huawei.hmos.maps.app',
+      uri: 'maps://routes', // 路径规划
+      // uri: 'maps://navigation', // 导航
+      parameters: {
+        // 接入方业务名或包名，Link请求来源。
+        linkSource: '用户到景点的导航',
+        destinationLatitude: this.spot.location.latitude,
+        destinationLongitude: this.spot.location.longitude,
+        destinationName: `${this.spot.name}`,
+        vehicleType: 0 // 交通出行工具。0-驾车， 1-步行， 2-骑行。默认驾车
+      }
+    }
+
+    let context = getContext(this) as common.UIAbilityContext;
+    context.startAbility(petalMapWant);
   }
 
 
@@ -94,7 +115,7 @@ struct AttractionDetailPage {
                   .width(72)
                   .height(40)
                   .onClick( () => {
-                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.MAP_ROUTEPLANVIEW, new Object({Object: this.spot}))
+                    this.StartNavi()
                   })
 
               }

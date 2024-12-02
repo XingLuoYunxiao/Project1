@@ -69,4 +69,10 @@ export class RouterModule {
   public static popToName(routerName: string, builderName: string): void {
     RouterModule.getRouter(routerName).popToName(builderName);
   }
+
+  public static async replacePath(routerName: string, builderName: string, params: object): Promise<void> {
+    const harName = builderName.split('_')[0];
+    await import(harName).then((ns: ESObject): Promise<void> => ns.harInit(builderName));
+    RouterModule.getRouter(routerName).replacePathByName(builderName, params);
+  }
 }

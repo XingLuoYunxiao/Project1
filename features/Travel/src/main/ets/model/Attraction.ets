@@ -14,7 +14,7 @@ export class Attraction {
 }
 
 export const famousPlaces: Attraction[] = [
-  new Attraction(1, '秦始皇陵', $r('app.media.qinshihuanglin'), '中国历史上第一位皇帝秦始皇的陵墓，以兵马俑闻名于世。'),
+  new Attraction(1, '秦始皇陵', $r("app.media.qinshihuangbingmayong"), '中国历史上第一位皇帝秦始皇的陵墓，以兵马俑闻名于世。'),
   new Attraction(2, '故宫', $r('app.media.gugong'), '位于北京的明清两代皇宫，是中国古代宫廷建筑之精华。'),
   new Attraction(3, '长城', $r("app.media.changcheng"), '中国古代的军事防御工程，东起辽东，西至嘉峪关，绵延数千里。'),
   new Attraction(4, '敦煌莫高窟', $r('app.media.mogao'), '位于甘肃省敦煌市的佛教艺术地，拥有大量的壁画和雕塑。'),

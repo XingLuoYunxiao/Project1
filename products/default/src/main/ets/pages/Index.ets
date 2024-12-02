@@ -34,7 +34,6 @@ struct Index {
   @Builder
   routerMap(builderName: string, param?: object) {
     RouterModule.getBuilder(builderName).builder(param);
-
   };
 
   build() {

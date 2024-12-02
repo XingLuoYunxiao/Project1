@@ -43,8 +43,6 @@ export struct FamousPlacePage {
     //this.category = this.appPathStack.getParamByName('FamousPlacePage')[0] as string
   }
 
-
-
   build() {
     NavDestination(){
       Row({space:5}){
@@ -102,12 +100,12 @@ export struct FamousPlacePage {
           .width('95%')
           .height('100%')
         }.tabBar('推荐')
-        TabContent(){
+        /*TabContent(){
 
         }.tabBar('地图')
         TabContent(){
 
-        }.tabBar('自由行')
+        }.tabBar('自由行')*/
 
       }
     }
@@ -175,31 +173,6 @@ export struct FamousPlacePage {
           }
           .alignItems(HorizontalAlign.Start)
           Column(){
-            Button('地图服务')
-              .type(ButtonType.Capsule)
-              .fontSize(16)
-              .backgroundColor(Color.Orange)
-              .fontColor(Color.White)
-              /*.onClick(() => { // 点击跳转到其他共享包中的页面
-                try {
-                  this.getUIContext().getRouter().pushNamedRoute({
-                    name: 'mapView',
-                    params: {
-                      data1: 'message',
-                      data2: {
-                        data3: [123, 456, 789]
-                      }
-                    }
-                  })
-                } catch (e) {
-                  console.log("mapTestTag ", e)
-                }
-              })*/
-              .margin({right:10})
-              .onClick(() => {
-                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.MAP_MAPVIEWPAGE, new Object({Object:spot}));
-                //buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.MAP_MAPVIEWPAGE);
-              })
             Button('AI导游')
               .type(ButtonType.Capsule)
               .fontSize(16)
