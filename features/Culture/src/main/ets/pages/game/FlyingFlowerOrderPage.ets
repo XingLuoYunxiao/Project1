@@ -1,7 +1,6 @@
 import { Poem } from "../../model/Poem";
 import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil";
 import { GameRuleDialog } from "../../view/Dialog/gameRuleDialog";
-import { EXP } from "../../model/EXP";
 import { BuilderNameConstants, RouterModule } from "routermodule";
 import { ChatMsgModel } from "../../viewmodel/MessageViewModel";
 import { ChatMsg, ROLE } from "../../model/ChatMassageModel";
@@ -38,15 +37,20 @@ export struct FlyingFlowerOrderPage {
       addExp(CommonConstants.expTypeGame, 5)
     }, 10000)
 
-    this.textTimerController.start()
+
     if (this.PoemList.length === 0) {
       this.systemAddSentence()
+
     } else {
       LogUtil.debug('this.PoemList.length !== 0')
     }
   }
 
   aboutToDisappear(): void {
+    this.PoemList = []
+    this.poemMap.clear()
+    MessageDataModel.data = []
+    MessageDataModel.notifyDataReload()
     //退出页面，取消对经验值的添加
     clearTimeout(addEXPId)
   }
@@ -64,6 +68,9 @@ export struct FlyingFlowerOrderPage {
         }
       }
     }
+    this.textTimerController.reset()
+    this.textTimerController.start()
+
   }
 
   build() {
@@ -82,13 +89,13 @@ export struct FlyingFlowerOrderPage {
             Text('今日令词：' + this.commonWord)
               .fontSize($r('app.float.title_text_size'))
             // 计时器
-            TextTimer({ controller: this.textTimerController, isCountDown: this.isCountDown, count: 30000 })
+            TextTimer({ controller: this.textTimerController, isCountDown: this.isCountDown, count: 40000 })
               .format(this.format)
               .fontColor(Color.Black)
               .fontSize(24)
               .onTimer((utc: number, elapsedTime: number) => {
                 LogUtil.info(`textTimer notCountDown utc is：${utc}, elapsedTime: ${elapsedTime}`);
-                if (elapsedTime === 3000) {
+                if (elapsedTime === 4000) {
                   //this.GameOverDialogController.open()
                 }
               })
@@ -146,6 +153,8 @@ export struct FlyingFlowerOrderPage {
         .padding(10)
 
       }
+      .backgroundImage($r('app.media.game_flyFlower'))
+      .backgroundImageSize(ImageSize.Cover)
       .margin({ top: $r('app.float.header_height_page') })
       .width('100%')
       .height('100%')

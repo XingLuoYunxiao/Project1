@@ -33,11 +33,11 @@ export const traditionList: category[] = [
   },
   {
     name: "节日",
-    path: BuilderNameConstants.CULTURE_FESTIVAL
+    path: BuilderNameConstants.CULTURE_FestivalPage2
   },
   {
     name: "建筑",
-    path: ""
+    path: BuilderNameConstants.CULTURE_Building
   },
   {
     name: "民间艺术",
@@ -52,8 +52,20 @@ export const gameList: category[] = [
     path: BuilderNameConstants.CULTURE_FlyingFlowerOder
   },
   {
+    name: '诗句填空',
+    path: BuilderNameConstants.CULTURE_GapFillingPage
+  },
+  {
+    name: '填空',
+    path: BuilderNameConstants.CULTURE_SentenceFilling
+  },
+  {
     name: "成语接龙",
     path: BuilderNameConstants.CULTURE_IdiomSolitaire
+  },
+  {
+    name: '古风绘意',
+    path: BuilderNameConstants.CULTURE_AIPainting
   }
 ]
 

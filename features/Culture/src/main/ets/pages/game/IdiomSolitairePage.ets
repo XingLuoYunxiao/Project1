@@ -43,6 +43,7 @@ export struct IdiomSolitairePage {
     this.lastChar = '';
     // 重置计时器
     this.textTimerController.reset();
+    this.textTimerController.start();
 
     MessageDataModel.data.length === 0
 
@@ -70,6 +71,7 @@ export struct IdiomSolitairePage {
       }
     }
     if (MessageDataModel.data.length !== 0) {
+      this.textTimerController.reset()
       this.textTimerController.start()
     }
 
@@ -149,6 +151,7 @@ export struct IdiomSolitairePage {
       }
       .margin($r('app.float.header_height_page'))
       .justifyContent(FlexAlign.SpaceBetween)
+      .backgroundImage($r('app.media.game_Idiom'))
 
     }
     .hideTitleBar(true); // 隐藏标题栏
@@ -161,7 +164,7 @@ export struct IdiomSolitairePage {
         this.IdiomList.push(temp);
         this.lastChar = temp.word[temp.word.length - 1];
         MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, temp.word));
-
+        this.textTimerController.reset()
       }
     } catch (error) {
       console.error("系统添加成语失败:", error.message);
@@ -184,14 +187,15 @@ export struct IdiomSolitairePage {
         if (isIdiom) {
           this.lastChar = idiom[3];
 
-          this.textTimerController.reset()
 
           this.systemAddIdiom();
+
 
         } else {
           console.log("这不是一个成语");
           MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, "这不是一个成语"));
         }
+
       }).catch((error: Error) => {
         console.error("检查成语失败:", error.message);
         MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, "系统出错，请稍后再试"));
@@ -202,11 +206,10 @@ export struct IdiomSolitairePage {
   aboutToDisappear(): void {
     clearTimeout(addEXPId)
 
-
     // 清理状态和资源
     this.textTimerController.reset();
-    this.dialogController.close();
-    this.GameOverDialogController.close();
+    //this.dialogController.close();
+    //this.GameOverDialogController.close();
     MessageDataModel.data = []
     MessageDataModel.notifyDataReload()
     LogUtil.info(TAG, '退出成语接龙页面');

@@ -21,11 +21,11 @@ export struct CulturalPage {
         Text('文化天地')
           .fontSize($r('app.float.large_text_size'))
 
-        Text('测试页面')
-          .fontSize($r('app.float.large_text_size'))
-          .onClick(() => {
-            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_TEST)
-          })
+        // Text('测试页面')
+        //   .fontSize($r('app.float.large_text_size'))
+        //   .onClick(() => {
+        //     buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_TEST)
+        //   })
 
         groupComponent({ groupName: "文学", groupData: literatureList })
         groupComponent({ groupName: "文化", groupData: traditionList })
@@ -56,11 +56,14 @@ struct groupComponent {
         Text(this.groupName).fontSize(24)
           .margin({ left: 15 })
       }
-      .backgroundColor($r('app.color.main_background'))
       .justifyContent(FlexAlign.Start)
       .height(60)
       .width('90%')
       .borderRadius(20)
+
+      Divider()
+        .strokeWidth(2)
+        .margin({ bottom: 10 })
 
       Grid() {
         ForEach(this.groupData, (item: category) => {
@@ -69,6 +72,7 @@ struct groupComponent {
               .fontSize(24)
               .borderRadius(20)
               .onClick(() => {
+                LogUtil.debug('你点击了' + item.name)
                 buildRouterModel(RouterNameConstants.ENTRY_HAP, item.path)
               })
 

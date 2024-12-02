@@ -8,6 +8,10 @@ export { CulturalPage } from '../Culture/src/main/ets/pages/CulturalPage'
 export function harInit(builderName: string): void {
   // 动态引入要跳转的页面
   switch (builderName) {
+    case BuilderNameConstants.CULTURE_SentenceFilling:
+      import("./src/main/ets/pages/game/SentenceFilling");
+      break;
+
     case BuilderNameConstants.CULTURE_SENTENCE:
       LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/Poem/SentencePage')
       import("./src/main/ets/pages/Poem/SentencePage");
@@ -43,18 +47,30 @@ export function harInit(builderName: string): void {
       LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/art/PaintingDetails')
       import("./src/main/ets/pages/art/PaintingDetails");
       break;
-
     case BuilderNameConstants.CULTURE_IdiomSolitaire:
       LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/art/PaintingDetails')
       import("./src/main/ets/pages/game/IdiomSolitairePage");
       break;
-
     case BuilderNameConstants.CULTURE_FlyingFlowerOder:
       import("./src/main/ets/pages/game/FlyingFlowerOrderPage");
       break;
     case BuilderNameConstants.CULTURE_TEST:
       import("./src/main/ets/pages/test");
       break;
+    case BuilderNameConstants.CULTURE_Building:
+      import("./src/main/ets/pages/BuildingPage");
+      break;
+    case BuilderNameConstants.CULTURE_AIPainting:
+      import("./src/main/ets/pages/AIPainting/AIPaintingPage");
+      break;
+    case BuilderNameConstants.CULTURE_FestivalPage2:
+      import("./src/main/ets/pages/tradictionalFestival/Festival");
+      break;
+    case BuilderNameConstants.CULTURE_GapFillingPage:
+      import("./src/main/ets/pages/game/GapFilling");
+      break;
+
+
     default:
       break;
   }

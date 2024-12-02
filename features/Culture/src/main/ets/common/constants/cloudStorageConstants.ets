@@ -1,5 +1,43 @@
 export class CloudStorageConstants {
   static readonly cacheFile: string = 'download/culture'
-  static readonly fuchunshanju1: string = 'culture/fuchunshanju.jpg'
-  static readonly fuchunshanju2: string = 'culture/富春山居图.jpg'
+  static readonly fuchunshanju1: string = 'fuchunshanju.jpg'
+  static readonly fuchunshanju2: string = '富春山居图.jpg'
+  static readonly alt: string = 'alt.png';
+  static readonly artPageBackground: string = 'artPageBackground.png';
+  static readonly beforeCreate: string = 'beforeCreate.png';
+  static readonly calligraphy_chaoshu: string = 'calligraphy_chaoshu.png';
+  static readonly calligraphy_jiajuewen: string = 'calligraphy_jiajuewen.png';
+  static readonly calligraphy_jinwen: string = 'calligraphy_jinwen.png';
+  static readonly calligraphy_kaishu: string = 'calligraphy_kaishu.png';
+  static readonly calligraphy_lishu: string = 'calligraphy_lishu.png';
+  static readonly calligraphy_xingshu: string = 'calligraphy_xingshu.png';
+  static readonly calligraphy_zhuanshu: string = 'calligraphy_zhuanshu.png';
+  static readonly calligraphy_background: string = 'calligraphy_background.png';
+  static readonly feihualang_svg: string = 'feihualang.svg';
+  static readonly idiomSystem_png: string = 'idiomSystem.png';
+  static readonly painting_background_png: string = 'painting_background.png';
+  static readonly painting_baihuazhengyan_png: string = 'painting_baihuazhengyan.png';
+  static readonly painting_chunxishuizutuan_png: string = 'painting_chunxishuizutuan.png';
+  static readonly painting_fuchunshanjutumain_png: string = 'painting_fuchunshanjutumain.png';
+  static readonly painting_guihaishanqima_png: string = 'painting_guihaishanqima.png';
+  static readonly painting_guoguoqiuren_png: string = 'painting_guoguoqiuren.png';
+  static readonly painting_hanxizaiyeyan_png: string = 'painting_hanxizaiyeyan.png';
+  static readonly painting_huishanshanyu_png: string = 'painting_huishanshanyu.png';
+  static readonly painting_luoshenfu_png: string = 'painting_luoshenfu.png';
+  static readonly painting_meishishuxianji_png: string = 'painting_meishishuxianji.png';
+  static readonly painting_mozhu_png: string = 'painting_mozhu.png';
+  static readonly painting_mudan_png: string = 'painting_mudan.png';
+  static readonly painting_pomojianren_png: string = 'painting_pomojianren.png';
+  static readonly painting_qianlijiangshangtu_png: string = 'painting_qianlijiangshangtu.png';
+  static readonly painting_qunyu_png: string = 'painting_qunyu.png';
+  static readonly painting_shanzhejiurenpng: string = 'painting_shanzhejiurenpng';
+  static readonly painting_title_png: string = 'painting_title.png';
+  static readonly painting_taoxiangpupng: string = 'painting_taoxiangpupng';
+  static readonly painting_xieshengzhengqu_png: string = 'painting_xieshengzhengqu.png';
+  static readonly painting_xishanxinglv_png: string = 'painting_xishanxinglv.png';
+  static readonly painting_yuxia_png: string = 'painting_yuxia.png';
+  static readonly painting_zanhuaqishi_png: string = 'painting_zanhuaqishi.png';
+  static readonly poetry_icon_svg: string = 'poetry_icon.svg';
+  static readonly poetryBackground_png: string = 'poetryBackground.png';
+  // ... Add more constants as needed.
 }

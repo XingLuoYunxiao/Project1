@@ -1,11 +1,10 @@
 import { ZhiPuImage2 } from "../../api/ApiService"; // 导入生成图片的 API 服务
 import { ChatMessageType, ChatMsg, ROLE } from "../../model/ChatMassageModel"; // 导入聊天消息类型和模型
 import { MessageType } from "@hw-agconnect/cloud/src/main/ets/database/sync/utils/MessageType"; // 导入消息类型定义
+import { BuilderNameConstants, RouterModule } from "routermodule";
+import { MessageComponent } from "../../view/MessageComponent";
+import { it } from "@ohos/hypium";
 
-@Builder
-export function AIPaintingPageBuilder(name: string, param: Object) {
-  AIPaintingPage(); // 创建 AIPaintingPage 组件
-}
 
 @Component
 export struct AIPaintingPage {
@@ -14,14 +13,17 @@ export struct AIPaintingPage {
   @State showImage: boolean = false; // 控制图片显示的状态
   @State ImageUrl: string = ''; // 存储生成的图片 URL
   @State chatList: ChatMsg[] = []; // 存储聊天消息的列表
+  @State preViewPicture: ResourceStr = $r('app.media.beforeCreate')
 
   build() {
     NavDestination() {
-      Column() { // 主列布局
+      Column() {
+
         List({ space: 12 }) { // 聊天消息列表
           ForEach(this.chatList, (item: ChatMsg, index) => {
             ListItem() {
               this.messageBuilder(item); // 渲染每一条消息
+              //MessageComponent(item)
             }
           }, (item: ChatMsg, index: number) => index.toString());
         }
@@ -42,23 +44,26 @@ export struct AIPaintingPage {
               this.inputText = value; // 更新输入框文本
             })
             .onSubmit(async (enterKey: EnterKeyType, event: SubmitEvent) => {
-              console.log("trigger richeditor onsubmit" + enterKey);
+              // console.log("trigger richeditor onsubmit" + enterKey);
               let tempText = this.inputText
               this.inputText = ''
               if (tempText !== '') {
-                // 添加用户消息
+                // 1.添加用户消息
                 this.chatList.push(new ChatMsg(ROLE.user, tempText, ChatMessageType.Text));
+                // 2.添加图片的正在生成的预览图
+                this.chatList.push(new ChatMsg(ROLE.system, '正在生成', ChatMessageType.Image));
                 // 调用 API 生成图片
                 this.ImageUrl = await ZhiPuImage2(tempText);
 
                 if (this.ImageUrl !== '') {
+                  this.chatList.pop()
                   // 添加系统消息（图片）
                   this.chatList.push(new ChatMsg(ROLE.system, this.ImageUrl, ChatMessageType.Image));
                   this.showImage = !this.showImage; // 切换图片显示状态
                 }
 
               }
-              this.inputText = ''; // 确保输入框清空
+
             });
         }
         .width('100%')
@@ -111,4 +116,15 @@ export struct AIPaintingPage {
     .alignItems(HorizontalAlign.Start) // 左对齐
     .width('100%'); // 宽度占满
   }
+}
+
+@Builder
+export function AIPaintingPageBuilder() {
+  AIPaintingPage();
+}
+
+const builderName = BuilderNameConstants.CULTURE_AIPainting
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(AIPaintingPageBuilder)
+  RouterModule.registerBuilder(builderName, builder)
 }

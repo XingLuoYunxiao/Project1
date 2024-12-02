@@ -106,28 +106,28 @@ struct realIdiomComp {
           .generalize()
 
         Row() {
-          Text('解释:')
+          Text('解释: ')
             .generalize()
 
 
           Text(this.idiom.data.explanation)
             .fontSize($r('app.float.title_text_size'))
         }
-        .padding({ right: 30 })
-        .margin({ right: 40 })
+        .padding({ right: 20 })
+        .margin({ right: 20 })
         .width('80%')
 
         if (this.idiom.data.sourceText) {
           Row() {
-            Text('出处:')
+            Text('出处: ')
               .generalize()
 
             Text(this.idiom.data.sourceText)
               .fontSize($r('app.float.title_text_size'))
               .width('80%')
           }
-          .padding({ right: 30 })
-          .margin({ right: 40 })
+          .padding({ right: 20 })
+          .margin({ right: 20 })
           .width('80%')
           .justifyContent(FlexAlign.Start)
 
@@ -143,14 +143,14 @@ struct realIdiomComp {
 
         if (this.idiom.data.exampleText !== '' && this.idiom.data.exampleText !== undefined) {
           Row() {
-            Text('用例:')
+            Text('用例: ')
               .generalize()
 
             Text(this.idiom.data.exampleText)
               .fontSize($r('app.float.title_text_size'))
           }
-          .padding({ right: 30 })
-          .margin({ right: 40 })
+          .padding({ right: 20 })
+          .margin({ right: 20 })
           .width('80%')
           .justifyContent(FlexAlign.Start)
         }
@@ -172,8 +172,8 @@ struct realIdiomComp {
             Text(this.idiom.data.story)
               .fontSize($r('app.float.title_text_size'))
           }
-          .padding({ right: 30 })
-          .margin({ right: 40 })
+          .padding({ right: 20 })
+          .margin({ right: 20 })
           .width('80%')
           .justifyContent(FlexAlign.Start)
         }
@@ -182,7 +182,7 @@ struct realIdiomComp {
       .backgroundColor($r('app.color.main_background'))
       .alignItems(HorizontalAlign.Center)
       .width('100%')
-      .padding(20)
+      .padding(10)
       .borderRadius(20)
     }
     .padding(15)
