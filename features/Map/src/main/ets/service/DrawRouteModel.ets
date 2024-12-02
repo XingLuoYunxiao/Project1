@@ -1,22 +1,59 @@
-/*
- * Copyright (c) 2024 Huawei Device Co., Ltd.
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 
 import { map, mapCommon, navi } from '@kit.MapKit';
 import Logger from 'utils/src/main/ets/utils/Logger';
 
 export class DrawRouteModel {
+  private index:number = 0;
+
+  //绘制所有路径
+  async drawRoutes(mapController: map.MapComponentController | undefined, routes: Array<navi.Route>) {
+    for(; this.index < routes.length; this.index++){
+      await this.drawRoute(mapController, routes[this.index].steps[0].roads);
+      if( this.index === 0 && mapController){
+        let start = routes[this.index].steps[0].startLocation;
+        let pointAnnotationOptions: mapCommon.PointAnnotationParams = {
+          // 定义点注释图标锚点
+          position: {
+            latitude: start.latitude,
+            longitude: start.longitude
+          },
+          // 定义点注释名称与地图poi名称相同时，是否支持去重
+          repeatable: false,
+          // 定义点注释的碰撞规则
+          collisionRule: mapCommon.CollisionRule.NAME,
+          // 定义点注释的标题，数组长度最小为1，最大为3
+          titles: [{
+            // 定义标题内容
+            content: '起点',
+            // 定义标题字体颜色
+            color: 0xFF000000,
+            // 定义标题字体大小
+            fontSize: 20,
+            // 定义标题描边颜色
+            strokeColor: 0xFFFFFFFF,
+            // 定义标题描边宽度
+            strokeWidth: 2,
+          }
+          ],
+          // 定义点注释的显示属性，为true时，在被碰撞后仍能显示
+          forceVisible: true,
+          // 定义碰撞优先级，数值越大，优先级越低
+          priority: 3,
+          // 定义点注释展示的最小层级
+          minZoom: 2,
+          // 定义点注释展示的最大层级
+          maxZoom: 22,
+          // 定义点注释是否可见
+          visible: true,
+          // 定义点注释叠加层级属性
+          zIndex: 10
+        }
+        await mapController.addPointAnnotation(pointAnnotationOptions);
+      }
+    }
+  }
+
+  //绘制两点之间的路径
   async drawRoute(mapController: map.MapComponentController | undefined, steps: Array<navi.RouteRoad>) {
     if (mapController === undefined) {
       Logger.info('Drawing failed');
@@ -45,28 +82,77 @@ export class DrawRouteModel {
       jointType: mapCommon.JointType.ROUND,
       width: 24
     };
-    this.addMarker(mapController, start).then(() => {
-      this.addMarker(mapController, end).then(() => {
+    if( this.index === 0){
+      this.addMarker(mapController, start).then(async () => {
+        this.addMarker(mapController, end).then(async () => {
+          mapController.addPolyline(polylineOption).then(() => {
+            Logger.info('Drawing success');
+          });
+        });
+      });
+    }else{
+      this.addMarker(mapController, end).then(async () => {
         mapController.addPolyline(polylineOption).then(() => {
           Logger.info('Drawing success');
         });
       });
-    });
+    }
+
   }
 
   async addMarker(mapController: map.MapComponentController, position: mapCommon.LatLng) {
-    let markerOptions: mapCommon.MarkerOptions = {
-      position: position,
-      rotation: 0,
+    let pointAnnotationOptions: mapCommon.PointAnnotationParams = {
+      // 定义点注释图标锚点
+      position: {
+        latitude: position.latitude,
+        longitude: position.longitude
+      },
+      // 定义点注释名称与地图poi名称相同时，是否支持去重
+      repeatable: false,
+      // 定义点注释的碰撞规则
+      collisionRule: mapCommon.CollisionRule.NAME,
+      // 定义点注释的标题，数组长度最小为1，最大为3
+      titles: [{
+        // 定义标题内容
+        content: `${this.index+1}`,
+        // 定义标题字体颜色
+        color: 0xFF000000,
+        // 定义标题字体大小
+        fontSize: 20,
+        // 定义标题描边颜色
+        strokeColor: 0xFFFFFFFF,
+        // 定义标题描边宽度
+        strokeWidth: 2,
+      }
+      ],
+      // 定义点注释的显示属性，为true时，在被碰撞后仍能显示
+      forceVisible: true,
+      // 定义碰撞优先级，数值越大，优先级越低
+      priority: 3,
+      // 定义点注释展示的最小层级
+      minZoom: 2,
+      // 定义点注释展示的最大层级
+      maxZoom: 22,
+      // 定义点注释是否可见
       visible: true,
-      zIndex: 0,
-      alpha: 1,
-      anchorU: 0.5,
-      anchorV: 1,
-      clickable: false,
-      draggable: false,
-      flat: false
-    };
-    await mapController.addMarker(markerOptions);
+      // 定义点注释叠加层级属性
+      zIndex: 10
+    }
+    await mapController.addPointAnnotation(pointAnnotationOptions);
+    if( this.index === 0 ){
+      let markerOptions: mapCommon.MarkerOptions = {
+        position: position,
+        rotation: 0,
+        visible: true,
+        zIndex: 0,
+        alpha: 1,
+        anchorU: 0.5,
+        anchorV: 1,
+        clickable: false,
+        draggable: false,
+        flat: false
+      };
+      await mapController.addMarker(markerOptions);
+    }
   }
 }

@@ -96,7 +96,7 @@ export class CommonConstants {
   /**
    * LatLng zoom.
    */
-  static readonly ZOOM: number = 17;
+  static readonly ZOOM: number = 16;
 
   static readonly OUTER_ZOOM: number = 13
 

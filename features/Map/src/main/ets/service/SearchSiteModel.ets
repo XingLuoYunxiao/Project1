@@ -18,6 +18,7 @@ import { geoLocationManager } from '@kit.LocationKit';
 import { i18n } from '@kit.LocalizationKit';
 import Logger from 'routermodule/src/main/ets/utils/Logger';
 import {  CommonConstants } from '../constants/CommonConstants';
+import { Spot } from 'travel';
 
 export const enum RouteType {
   DRIVING,
@@ -26,12 +27,7 @@ export const enum RouteType {
 }
 
 export class SearchSiteModel {
-  /**
-   * Search for nearby locations based on the input location.
-   * @param position
-   * @param text
-   * @returns
-   */
+  //搜索景点附近的景点，并和传过来的景点进行匹配
   async getNearByLocation(position: mapCommon.LatLng, text: string): Promise<site.NearbySearchResult | undefined> {
     let params: site.NearbySearchParams = {
       location: position,
@@ -49,12 +45,96 @@ export class SearchSiteModel {
     return result;
   }
 
-  /**
-   * Plan driving route.
-   * @param beginPoint
-   * @param terminalPoint
-   * @returns
-   */
+  //根据内部景点数组进行查询具体景点坐标信息
+  async getSearchByText(position: mapCommon.LatLng, spot: Spot, sites: string[]): Promise<site.NearbySearchResult | undefined> {
+    const locRes: site.SearchByTextResult = { totalCount: 0, sites: [] };
+    const uniqueSiteNames = new Set<string>();
+
+    // 使用 for...of 保证顺序执行
+    for (const element of sites) {
+      const params: site.SearchByTextParams = {
+        query: element,
+        location: position,
+        language: CommonConstants.languageMap.get(i18n.System.getSystemLanguage()),
+        radius: 5000,
+        cityId: spot.cityCode,
+        //poiTypes: ['TOURISM', 'LEISURE', 'SPORT_FITNESS']
+      };
+
+      try {
+        const result = await site.searchByText(params);
+        Logger.info('SearchByText success, result = ' + JSON.stringify(result));
+
+        // 检查结果是否包含有效数据(去除重复数据)
+        if (result && result.totalCount > 0) {
+          result.sites?.some((site: site.Site) => {
+            // 仅添加尚未存在的站点
+            if (site.name && !uniqueSiteNames.has(site.name)) {
+              uniqueSiteNames.add(site.name);
+              locRes.sites?.push(site);
+              return true;
+            }
+            return false
+          });
+        }
+      } catch (err) {
+        Logger.error('SearchByText fail, err = ' + JSON.stringify(err));
+      }
+    }
+
+    locRes.totalCount = locRes.sites?.length || 0;
+    return locRes;
+  }
+
+  //TODO 需要优化， 匹配景点不准确，绘制路线不是很明确
+  async getInnerRoutes(beginPoint: mapCommon.LatLng, nextPoint: site.Site[], type: RouteType): Promise<navi.RouteResult | undefined> {
+    if (nextPoint.length === 0)
+      return undefined;
+
+    // 使用 for...of 保证顺序和同步
+    const routes: navi.Route[] = [];
+    let prevLocation: mapCommon.LatLng = {
+      latitude: beginPoint.latitude,
+      longitude: beginPoint.longitude
+    };
+
+    for (let i = 0; i < nextPoint.length; i++) {
+      const site = nextPoint[i];
+
+      if (site.location?.longitude !== undefined && site.location?.latitude !== undefined) {
+        //let originPosition: mapCommon.LatLng = map.convertCoordinateSync(mapCommon.CoordinateType.WGS84, mapCommon.CoordinateType.GCJ02, prevLocation);
+
+        let paramsWalkCycle: navi.RouteParams = {
+          origins: [prevLocation],
+          destination: {
+            latitude: site.location.latitude,
+            longitude: site.location.longitude
+          },
+          language: CommonConstants.languageMap.get(i18n.System.getSystemLanguage()),
+          avoids: [8],
+        };
+
+        try {
+          let route = await navi.getWalkingRoutes(paramsWalkCycle);
+          if (route && route.routes && route.routes.length > 0) {
+            //TODO 将routes中的几个路线查看一下
+            routes.push(route.routes[0]);
+          }
+        } catch (error) {
+          // 错误处理
+          Logger.error(`Route planning error for site ${site.name}: ${error}`);
+        }
+
+        // 更新上一个位置为当前站点位置
+        prevLocation = routes[i].steps[0].endLocation
+
+      }
+    }
+
+    return { routes };
+  }
+
+  //获得两点之间的路线
   async getRoutes(beginPoint: geoLocationManager.Location, terminalPoint: mapCommon.LatLng,  type:RouteType): Promise<navi.RouteResult | undefined> {
     if (!terminalPoint || !terminalPoint) {
       return undefined;
@@ -83,7 +163,7 @@ export class SearchSiteModel {
       trafficMode: 0
     };
 
-    let paramsWalkCycle: navi.DrivingRouteParams = {
+    let paramsWalkCycle: navi.RouteParams = {
       origins: [
         originPosition
       ],
@@ -91,11 +171,8 @@ export class SearchSiteModel {
         latitude: terminalPoint.latitude,
         longitude: terminalPoint.longitude
       },
-      optimize: true,
       language: CommonConstants.languageMap.get(i18n.System.getSystemLanguage()),
-      alternatives: true,
       avoids: [8],
-      trafficMode: 0
     };
 
     let result: navi.RouteResult | undefined = undefined;
@@ -115,44 +192,6 @@ export class SearchSiteModel {
       }
     } catch (err) {
       Logger.error('routes plan fail, err = ' + JSON.stringify(err));
-    }
-    return result;
-  }
-
-  async getWalkingRoutes(beginPoint: geoLocationManager.Location, terminalPoint: mapCommon.LatLng){
-    if (!terminalPoint || !terminalPoint) {
-      return undefined;
-    }
-
-    let origin: mapCommon.LatLng = {
-      latitude: beginPoint.latitude,
-      longitude: beginPoint.longitude
-    };
-
-    let originPosition: mapCommon.LatLng =
-      map.convertCoordinateSync(mapCommon.CoordinateType.WGS84, mapCommon.CoordinateType.GCJ02, origin);
-
-    let params: navi.DrivingRouteParams = {
-      origins: [
-        originPosition
-      ],
-      destination: {
-        latitude: terminalPoint.latitude,
-        longitude: terminalPoint.longitude
-      },
-      optimize: true,
-      language: CommonConstants.languageMap.get(i18n.System.getSystemLanguage()),
-      alternatives: true,
-      avoids: [1,8],
-      trafficMode: 0
-    };
-
-    let result: navi.RouteResult | undefined = undefined;
-    try {
-      result = await navi.getWalkingRoutes(params);
-      Logger.info('Driving routes plan success, result = ' + JSON.stringify(result));
-    } catch (err) {
-      Logger.error('Driving routes plan fail, err = ' + JSON.stringify(err));
     }
     return result;
   }

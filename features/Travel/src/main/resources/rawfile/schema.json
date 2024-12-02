@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 97,
+  "schemaVersion": 95,
   "permissions": [
     {
       "permissions": [
@@ -43,17 +43,14 @@
         {
           "role": "World",
           "rights": [
-            "Read",
-            "Upsert",
-            "Delete"
+            "Read"
           ]
         },
         {
           "role": "Authenticated",
           "rights": [
             "Read",
-            "Upsert",
-            "Delete"
+            "Upsert"
           ]
         },
         {
@@ -113,17 +110,14 @@
         {
           "role": "World",
           "rights": [
-            "Read",
-            "Upsert",
-            "Delete"
+            "Read"
           ]
         },
         {
           "role": "Authenticated",
           "rights": [
             "Read",
-            "Upsert",
-            "Delete"
+            "Upsert"
           ]
         },
         {
@@ -243,39 +237,6 @@
           ]
         }
       ],
-      "objectTypeName": "Poem"
-    },
-    {
-      "permissions": [
-        {
-          "role": "World",
-          "rights": [
-            "Read"
-          ]
-        },
-        {
-          "role": "Authenticated",
-          "rights": [
-            "Read"
-          ]
-        },
-        {
-          "role": "Creator",
-          "rights": [
-            "Read",
-            "Upsert",
-            "Delete"
-          ]
-        },
-        {
-          "role": "Administrator",
-          "rights": [
-            "Read",
-            "Upsert",
-            "Delete"
-          ]
-        }
-      ],
       "objectTypeName": "Poet"
     },
     {
@@ -316,17 +277,14 @@
         {
           "role": "World",
           "rights": [
-            "Read",
-            "Upsert",
-            "Delete"
+            "Read"
           ]
         },
         {
           "role": "Authenticated",
           "rights": [
             "Read",
-            "Upsert",
-            "Delete"
+            "Upsert"
           ]
         },
         {
@@ -446,97 +404,6 @@
           "defaultValue": "4",
           "belongPrimaryKey": false,
           "fieldType": "Integer"
-        }
-      ]
-    },
-    {
-      "indexes": [
-        {
-          "indexName": "index",
-          "indexList": [
-            {
-              "fieldName": "id",
-              "sortType": "ASC"
-            }
-          ]
-        }
-      ],
-      "objectTypeName": "Poem",
-      "fields": [
-        {
-          "isNeedEncrypt": false,
-          "fieldName": "id",
-          "notNull": true,
-          "isSensitive": false,
-          "belongPrimaryKey": true,
-          "fieldType": "Integer"
-        },
-        {
-          "isNeedEncrypt": false,
-          "fieldName": "title",
-          "notNull": true,
-          "isSensitive": false,
-          "defaultValue": "",
-          "belongPrimaryKey": false,
-          "fieldType": "String"
-        },
-        {
-          "isNeedEncrypt": false,
-          "fieldName": "dynasty",
-          "notNull": false,
-          "isSensitive": false,
-          "belongPrimaryKey": false,
-          "fieldType": "String"
-        },
-        {
-          "isNeedEncrypt": false,
-          "fieldName": "writer",
-          "notNull": true,
-          "isSensitive": false,
-          "defaultValue": "",
-          "belongPrimaryKey": false,
-          "fieldType": "String"
-        },
-        {
-          "isNeedEncrypt": false,
-          "fieldName": "content",
-          "notNull": true,
-          "isSensitive": false,
-          "defaultValue": "",
-          "belongPrimaryKey": false,
-          "fieldType": "Text"
-        },
-        {
-          "isNeedEncrypt": false,
-          "fieldName": "type",
-          "notNull": false,
-          "isSensitive": false,
-          "belongPrimaryKey": false,
-          "fieldType": "String"
-        },
-        {
-          "isNeedEncrypt": false,
-          "fieldName": "remark",
-          "notNull": false,
-          "isSensitive": false,
-          "belongPrimaryKey": false,
-          "fieldType": "Text"
-        },
-        {
-          "isNeedEncrypt": false,
-          "fieldName": "shangxi",
-          "notNull": false,
-          "isSensitive": false,
-          "belongPrimaryKey": false,
-          "fieldType": "Text"
-        },
-        {
-          "isNeedEncrypt": false,
-          "fieldName": "translation",
-          "notNull": false,
-          "isSensitive": false,
-          "belongPrimaryKey": false,
-          "fieldType": "Text"
         }
       ]
     },
@@ -703,7 +570,7 @@
           "indexName": "index",
           "indexList": [
             {
-              "fieldName": "id",
+              "fieldName": "numId",
               "sortType": "ASC"
             }
           ]
@@ -713,7 +580,7 @@
       "fields": [
         {
           "isNeedEncrypt": false,
-          "fieldName": "id",
+          "fieldName": "numId",
           "notNull": true,
           "isSensitive": false,
           "belongPrimaryKey": true,
@@ -721,37 +588,42 @@
         },
         {
           "isNeedEncrypt": false,
-          "fieldName": "title",
+          "fieldName": "id",
           "notNull": true,
           "isSensitive": false,
           "defaultValue": "",
+          "belongPrimaryKey": false,
+          "fieldType": "String"
+        },
+        {
+          "isNeedEncrypt": false,
+          "fieldName": "title",
+          "notNull": false,
+          "isSensitive": false,
           "belongPrimaryKey": false,
           "fieldType": "String"
         },
         {
           "isNeedEncrypt": false,
           "fieldName": "dynasty",
-          "notNull": true,
+          "notNull": false,
           "isSensitive": false,
-          "defaultValue": "",
           "belongPrimaryKey": false,
           "fieldType": "String"
         },
         {
           "isNeedEncrypt": false,
           "fieldName": "writer",
-          "notNull": true,
+          "notNull": false,
           "isSensitive": false,
-          "defaultValue": "",
           "belongPrimaryKey": false,
           "fieldType": "String"
         },
         {
           "isNeedEncrypt": false,
           "fieldName": "content",
-          "notNull": true,
+          "notNull": false,
           "isSensitive": false,
-          "defaultValue": "",
           "belongPrimaryKey": false,
           "fieldType": "Text"
         },

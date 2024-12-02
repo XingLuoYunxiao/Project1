@@ -90,6 +90,10 @@
     {
       "name": "RouterModule",
       "srcPath": "./RouterModule",
+    },
+    {
+      "name": "AISpeech",
+      "srcPath": "./commons/AISpeech",
     }
   ]
 }
