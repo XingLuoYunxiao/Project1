@@ -4,9 +4,10 @@
  */
 import { cloudDatabase } from '@kit.CloudFoundationKit';
 
+@Observed
 class Sentence extends cloudDatabase.DatabaseObject {
-  id: number;
-  from: string;
+  id: number = 0;
+  from: string = '';
   text: string = "";
 
   naturalbase_ClassName(): string {

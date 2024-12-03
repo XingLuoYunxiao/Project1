@@ -8,10 +8,6 @@ export { CulturalPage } from '../Culture/src/main/ets/pages/CulturalPage'
 export function harInit(builderName: string): void {
   // 动态引入要跳转的页面
   switch (builderName) {
-    case BuilderNameConstants.CULTURE_SentenceFilling:
-      import("./src/main/ets/pages/game/SentenceFilling");
-      break;
-
     case BuilderNameConstants.CULTURE_SENTENCE:
       LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/Poem/SentencePage')
       import("./src/main/ets/pages/Poem/SentencePage");
@@ -69,8 +65,10 @@ export function harInit(builderName: string): void {
     case BuilderNameConstants.CULTURE_GapFillingPage:
       import("./src/main/ets/pages/game/GapFilling");
       break;
-
-
+    case BuilderNameConstants.CULTURE_FOLKART:
+      LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/FolkArt/FolkArtPage')
+      import("./src/main/ets/pages/FolkArt/FolkArtPage");
+      break;
     default:
       break;
   }

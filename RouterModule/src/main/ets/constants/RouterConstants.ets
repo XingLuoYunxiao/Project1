@@ -42,11 +42,12 @@ export class BuilderNameConstants {
   static readonly CULTURE_IdiomSolitaire: string = "culture_IdiomSolitaire"
   static readonly CULTURE_FlyingFlowerOder: string = 'culture_FlyingFlowerOder'
   static readonly CULTURE_TEST: string = 'culture_Test'
+  static readonly CULTURE_FOLKART: string = 'culture_FolkArt'
   static readonly CULTURE_Building: string = 'culture_Building'
   static readonly CULTURE_AIPainting: string = 'culture_AIPainting'
   static readonly CULTURE_FestivalPage2: string = 'culture_FestivalPage2'
-  static readonly CULTURE_GapFillingPage: string = 'GapFillingPage'
-  static readonly CULTURE_SentenceFilling: string = 'SentenceFilling'
+  static readonly CULTURE_GapFillingPage: string = 'culture_GapFillingPage'
+  static readonly CULTURE_SentenceFilling: string = 'culture_SentenceFilling'
 }
 
 // Indicates the key of the routerMap table in the RouterModule.

@@ -1,4 +1,4 @@
-import { BuilderNameConstants, RouterModule } from "routermodule"
+import { BuilderNameConstants } from "routermodule"
 
 
 export interface category {
@@ -41,7 +41,7 @@ export const traditionList: category[] = [
   },
   {
     name: "民间艺术",
-    path: ""
+    path: BuilderNameConstants.CULTURE_FOLKART
   }
 
 ]
@@ -55,10 +55,7 @@ export const gameList: category[] = [
     name: '诗句填空',
     path: BuilderNameConstants.CULTURE_GapFillingPage
   },
-  {
-    name: '填空',
-    path: BuilderNameConstants.CULTURE_SentenceFilling
-  },
+
   {
     name: "成语接龙",
     path: BuilderNameConstants.CULTURE_IdiomSolitaire

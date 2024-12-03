@@ -80,78 +80,85 @@ export struct IdiomSolitairePage {
 
   build() {
     NavDestination() {
-      Column() {
+      Stack() {
+        Image($r('app.media.game_Idiom'))
+          .objectFit(ImageFit.Cover)
+          .opacity(0.5)
+
         Column() {
+          Column() {
 
-          Row() {
+            Row() {
 
-            Text('游戏规则')
-              .fontSize($r('app.float.title_text_size'))
-              .onClick(() => {
-                this.dialogController.open()
-              })
+              Text('游戏规则')
+                .fontSize($r('app.float.title_text_size'))
+                .onClick(() => {
+                  this.dialogController.open()
+                })
 
-            Text('当前接龙汉字：' + this.lastChar)
-              .fontSize($r('app.float.title_text_size'))
-            // 计时器
-            TextTimer({ controller: this.textTimerController, isCountDown: this.isCountDown, count: 30000 })
-              .format(this.format)
-              .fontColor(Color.Black)
-              .fontSize(24)
-              .onTimer((utc: number, elapsedTime: number) => {
-                //LogUtil.info(`textTimer notCountDown utc is：${utc}, elapsedTime: ${elapsedTime}`);
-                if (elapsedTime === 3000) {
-                  this.GameOverDialogController.open()
+              Text('当前接龙汉字：' + this.lastChar)
+                .fontSize($r('app.float.title_text_size'))
+              // 计时器
+              TextTimer({ controller: this.textTimerController, isCountDown: this.isCountDown, count: 30000 })
+                .format(this.format)
+                .fontColor(Color.Black)
+                .fontSize(24)
+                .onTimer((utc: number, elapsedTime: number) => {
+                  //LogUtil.info(`textTimer notCountDown utc is：${utc}, elapsedTime: ${elapsedTime}`);
+                  if (elapsedTime === 3000) {
+                    this.GameOverDialogController.open()
+                  }
+                })
+
+            }
+            .height(50)
+            .width('100%')
+            .justifyContent(FlexAlign.SpaceAround)
+
+            // 聊天页面
+            List({ space: 10 }) {
+              LazyForEach(MessageDataModel, (item: ChatMsg) => {
+                ListItem() {
+                  MessageComponent({ role: item.role, roleHeadImg: item.roleHeadImg, msg: item.message });
                 }
-              })
-
-          }
-          .height(50)
-          .width('100%')
-          .justifyContent(FlexAlign.SpaceAround)
-
-          // 聊天页面
-          List({ space: 10 }) {
-            LazyForEach(MessageDataModel, (item: ChatMsg) => {
-              ListItem() {
-                MessageComponent({ role: item.role, roleHeadImg: item.roleHeadImg, msg: item.message });
-              }
-            });
-          }
-          .cachedCount(20);
-        }.height('80%')
+              });
+            }
+            .cachedCount(20);
+          }.height('80%')
 
 
-        Row() { // 输入框和发送按钮的行布局
-          TextInput({
-            controller: this.controller,
-            text: this.inputText
-          })
-            .width('80%')
-            .height(40)
-            .margin(20)
-            .fontSize(14)
-            .fontColor(Color.Black)
-            .enterKeyType(EnterKeyType.Send)// 设置回车键类型为发送
-            .onChange((value: string) => {
-              this.inputText = value; // 更新输入框文本
+          Row() { // 输入框和发送按钮的行布局
+            TextInput({
+              controller: this.controller,
+              text: this.inputText
             })
-            .onSubmit(async (enterKey: EnterKeyType, event: SubmitEvent) => {
-              LogUtil.debug(TAG, "触发输入框提交: " + enterKey);
-              let tempText = this.inputText;
-              this.inputText = '';
-              MessageDataModel.pushData(new ChatMsg(ROLE.user, tempText));
-              this.isValue(tempText);
-            });
+              .width('80%')
+              .height(40)
+              .margin(20)
+              .fontSize(14)
+              .fontColor(Color.Black)
+              .backgroundColor(Color.White)
+              .enterKeyType(EnterKeyType.Send)// 设置回车键类型为发送
+              .onChange((value: string) => {
+                this.inputText = value; // 更新输入框文本
+              })
+              .onSubmit(async (enterKey: EnterKeyType, event: SubmitEvent) => {
+                LogUtil.debug(TAG, "触发输入框提交: " + enterKey);
+                let tempText = this.inputText;
+                this.inputText = '';
+                MessageDataModel.pushData(new ChatMsg(ROLE.user, tempText));
+                this.isValue(tempText);
+              });
+          }
+          .width('100%')
+          .margin({ bottom: 20 })
+          .padding(10)
+
         }
-        .width('100%')
-        .margin({ bottom: 20 })
-        .padding(10)
+        .margin($r('app.float.header_height_page'))
+        .justifyContent(FlexAlign.SpaceBetween)
 
       }
-      .margin($r('app.float.header_height_page'))
-      .justifyContent(FlexAlign.SpaceBetween)
-      .backgroundImage($r('app.media.game_Idiom'))
 
     }
     .hideTitleBar(true); // 隐藏标题栏
@@ -187,9 +194,7 @@ export struct IdiomSolitairePage {
         if (isIdiom) {
           this.lastChar = idiom[3];
 
-
           this.systemAddIdiom();
-
 
         } else {
           console.log("这不是一个成语");
@@ -205,11 +210,8 @@ export struct IdiomSolitairePage {
 
   aboutToDisappear(): void {
     clearTimeout(addEXPId)
-
     // 清理状态和资源
     this.textTimerController.reset();
-    //this.dialogController.close();
-    //this.GameOverDialogController.close();
     MessageDataModel.data = []
     MessageDataModel.notifyDataReload()
     LogUtil.info(TAG, '退出成语接龙页面');

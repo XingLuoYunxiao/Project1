@@ -18,6 +18,7 @@ export function buildRouterModel(routerName: string, builderName: string, param?
   router.routerName = routerName;
   router.param = param;
   RouterModule.push(router);
+  console.log('buildRouterModel2')
 }
 
 
