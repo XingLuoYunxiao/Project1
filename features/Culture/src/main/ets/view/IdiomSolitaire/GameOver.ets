@@ -27,12 +27,8 @@ export struct GameOverDialog {
 
       Text(`您本局一共接住了${Math.floor(this.count)}` + '句')
 
-      // Button('再来一局')
-      //   .onClick(() => {
-      //     this.regame()
-      //   })
     }
-    .justifyContent(FlexAlign.SpaceBetween)
+    .justifyContent(FlexAlign.SpaceAround)
     .width(300)
     .height(300)
   }

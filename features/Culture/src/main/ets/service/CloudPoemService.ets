@@ -3,6 +3,7 @@ import { Poem } from '../model/Poem';
 import { BusinessError } from '@kit.BasicServicesKit';
 import { Writer } from '../model/Writer';
 import { Sentence } from '../model/Sentence';
+import cloud, { FunctionResult } from '@hw-agconnect/cloud';
 
 export class CloudPoemService {
   //不设置查询条件
@@ -238,6 +239,61 @@ export class CloudPoemService {
     }
   }
 
+  public static async fetchSentenceById(
+    id: number): Promise<Sentence | undefined> {
+    let databaseZone = cloudDatabase.zone('Travel');
+    let condition = new cloudDatabase.DatabaseQuery(Sentence);
+
+    try {
+      // 设定分页查询
+      condition.equalTo('id', id);
+
+      return new Promise((resolve, reject) => {
+        databaseZone.query(condition, (err: BusinessError, SentenceArray: Sentence[]) => {
+          if (err) {
+            console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
+            reject(err);
+          } else {
+            console.info(`查询成功，结果: ${JSON.stringify(SentenceArray)}`);
+            resolve(SentenceArray[0]);
+          }
+        });
+      });
+
+    } catch (err) {
+      console.error(`捕获到错误: ${err.message}`);
+      return undefined; // 确保函数返回 undefined
+    }
+  }
+
+  //  获取这个id往后的10条数据
+  public static async fetchSentencesAfterId(id: number): Promise<Sentence[]> {
+    let databaseZone = cloudDatabase.zone('Travel');
+    let condition = new cloudDatabase.DatabaseQuery(Sentence);
+
+    try {
+      condition.greaterThan('id', id).limit(10);
+      // 限制返回10条数据
+
+      return new Promise((resolve, reject) => {
+        databaseZone.query(condition, (err: BusinessError, SentenceArray: Sentence[]) => {
+          if (err) {
+            console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
+            reject(err);
+          } else {
+            console.info(`查询成功，结果: ${JSON.stringify(SentenceArray)}`);
+            resolve(SentenceArray);
+          }
+        });
+      });
+
+    } catch (err) {
+      console.error(`捕获到错误: ${err.message}`);
+      return []; // 确保函数返回空数组
+    }
+  }
+
+
   //诗句是否在数据库里
   public static async isPoemSentence(str: string): Promise<boolean> {
     try {
@@ -266,13 +322,13 @@ export class CloudPoemService {
 
   // 获取包含特定字符的诗句所在的整首诗
   public static async fetchPoemSentenceByChar(char: string, begins: number): Promise<Poem | undefined> {
-
+    console.log('根据字符获取诗句')
     try {
       let databaseZone = cloudDatabase.zone('Travel');
       let condition = new cloudDatabase.DatabaseQuery(Poem);
 
       // 设置查询条件：包含指定字符
-      condition.greaterThan('numId', begins).contains('content', char).limit(1);
+      condition.greaterThan('id', begins).contains('content', char).limit(1);
 
       return new Promise((resolve, reject) => {
         databaseZone.query(condition, (err: BusinessError, poemArray: Poem[]) => {
@@ -306,4 +362,14 @@ export class CloudPoemService {
       return undefined
     }
   }
+
+  // 从云函数获取诗歌数据
+  async getPoemData_cloundFunction() {
+    let funResult: FunctionResult = await cloud.callFunction({
+      name: "get-poem-data",
+    });
+    let poems: Poem[] = funResult.getValue().result; // 获取云函数返回的数据
+
+  }
 }
+

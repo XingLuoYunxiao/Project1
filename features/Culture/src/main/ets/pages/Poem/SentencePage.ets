@@ -7,6 +7,7 @@ import { CloudPoemService } from "../../service/CloudPoemService";
 import { Sentence } from '../../model/Sentence';
 import { addExp } from '../../common/util/addExp';
 import { BuilderNameConstants, RouterModule } from 'routermodule';
+import { CommonConstants } from '../../common/constants/commonConstants';
 
 let addEXPId: number = 0
 
@@ -33,7 +34,7 @@ export struct SentencePage { // 定义一个组件类PoemPage
 
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
-      addExp('Sentence', 5)
+      addExp(CommonConstants.expTypeKnowledge, 5)
     }, 10000)
   }
 
@@ -53,7 +54,7 @@ export struct SentencePage { // 定义一个组件类PoemPage
           LazyForEach(SentenceData, (item: Sentence) => {
             this.SentenceItem(item); // 渲染单个诗歌项
           },
-            (item: Sentence) => item.id) // 以numId为唯一标识
+            (item: Sentence) => item.id.toString()) // 以numId为唯一标识
         }
         .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
         .cachedCount(15) // 缓存项数

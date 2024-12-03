@@ -5,6 +5,11 @@ export class CommonConstants {
   static readonly ZhiPuKey: string = "e834ce28afda20edc1eb5ce580d4b747.bwuQUbcirioD3udl"
   static readonly ZhiPuCreateImageURL: string = "https://open.bigmodel.cn/api/paas/v4/images/generations?"
   static readonly IdiomSystemHeadImg: ResourceStr = $r('app.media.IdiomSystem')
+  static readonly expTypeKnowledge: string = 'knowledge'
+  static readonly expTypeCulture: string = 'culture'
+  static readonly expTypeGame: string = 'game'
 }
+
+
 
 

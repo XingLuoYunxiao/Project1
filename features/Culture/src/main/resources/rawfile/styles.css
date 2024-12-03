@@ -1,0 +1,62 @@
+/* 基础样式 */
+body {
+    font-family: '微软雅黑', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 15px;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+p {
+    text-indent: 2em;
+    line-height: 1.6;
+    color: #666;
+}
+
+img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 10px 0;
+}
+
+/* 标题样式 */
+
+.title {
+    font-size: 24px;
+    color: #333;
+    border-bottom: 2px solid #333;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+}
+
+/* 段落样式 */
+
+.content {
+    margin-bottom: 20px;
+}
+
+/* 图片容器样式 */
+
+.img-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* 底部样式 */
+
+.footer {
+    text-align: center;
+}

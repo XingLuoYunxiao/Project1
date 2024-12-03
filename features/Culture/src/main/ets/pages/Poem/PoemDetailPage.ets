@@ -1,19 +1,24 @@
-import { async } from "@hw-agconnect/cloud/src/main/ets/storage/upload/task"
 import { BuilderNameConstants, RouterModule } from "routermodule"
 import { CloudPoemService } from "../../service/CloudPoemService"
 import { addExp } from "../../common/util/addExp"
 import { Poem } from "../../model/Poem"
 import { Writer } from "../../model/Writer"
+import { CommonConstants } from '../../common/constants/commonConstants';
+import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
+import { talk } from "./talk"
 
 let addEXPId: number = 0
 
 @Component
 export struct PoemDetailPage {
-  @Consume('culturePathStack') culturePathStack: NavPathStack; // 导入导航路径栈，用于页面导航
-  @Prop poem: Poem
+  @Prop poem: Poem = new Poem()
+  @State value: object = new Object()
   @State writer: Writer = new Writer()
 
   async aboutToAppear(): Promise<void> {
+    LogUtil.debug("获取参数value：", JSON.stringify(this.value))
+    this.poem = JSON.parse(JSON.stringify(this.value))
+    LogUtil.debug("当前的poem:" + JSON.stringify(this.poem))
 
     let poets: Writer[] | undefined = await CloudPoemService.fetchWriterData(this.poem.writer)
     if (poets) {
@@ -22,7 +27,7 @@ export struct PoemDetailPage {
 
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
-      addExp('Poem', 5)
+      addExp(CommonConstants.expTypeKnowledge, 5)
     }, 10000)
 
   }
@@ -31,7 +36,6 @@ export struct PoemDetailPage {
     // 退出页面时取消对经验值的添加
     clearTimeout(addEXPId)
 
-    RouterModule.pop(BuilderNameConstants.CULTURE_POEMDETAIL)
   }
 
   build() {
@@ -43,13 +47,17 @@ export struct PoemDetailPage {
             Image($r('app.media.ic_back'))
               .width(40)
               .onClick(() => {
-                this.culturePathStack.pop()
+
               })
+
+            talk({ poem: this.poem })
+
           }
+          .margin({ top: 50 })
           .justifyContent(FlexAlign.Start)
           .width('100%')
 
-          //
+
           Row({ space: 10 }) {
             if (this.poem && this.poem.writer) {
               Text(this.poem.writer)
@@ -57,38 +65,41 @@ export struct PoemDetailPage {
             if (this.poem && this.poem.dynasty) {
               Text(this.poem.dynasty)
             }
-
-
           }
           .width('100%')
           .justifyContent(FlexAlign.Start)
 
-          if (this.poem && this.writer) {
-            Text(this.writer.simpleIntro)
-          }
 
-
+          //正文
           if (this.poem && this.poem.title) {
             Text(this.poem.title)
               .fontWeight(FontWeight.Medium)
               .margin({ top: 20 })
           }
 
-
+          //正文
           if (this.poem && this.poem.content) {
             Text(this.poem.content)
           }
 
-
+          //注解
           if (this.poem && this.poem.remark) {
             Text(this.poem.remark)
           }
 
-
-          Text('翻译')
+          //诗人简介
+          Text('诗人简介')
             .fontSize($r('app.float.title_text_size'))
             .fontWeight(FontWeight.Medium)
+            .margin({ top: 20 })
+          if (this.writer) {
+            Text(this.writer.simpleIntro)
+          }
+
+          Text('译文')
+            .fontSize($r('app.float.title_text_size'))
             .fontWeight(FontWeight.Medium)
+            .margin({ top: 20 })
           if (this.poem && this.poem.translation) {
             Text(this.poem.translation)
           }
@@ -96,6 +107,7 @@ export struct PoemDetailPage {
           Text('赏析')
             .fontSize($r('app.float.title_text_size'))
             .fontWeight(FontWeight.Medium)
+            .margin({ top: 20 })
           if (this.poem && this.poem.shangxi) {
             Text(this.poem.shangxi)
               .margin({ bottom: 10 })
@@ -111,19 +123,20 @@ export struct PoemDetailPage {
 
     }
     .hideTitleBar(true)
-    .onHidden(() => {
-      this.culturePathStack.pop()
-    })
 
   }
 }
 
 @Builder
-export function PoemDetailPageBuilder(param: object) {
-  PoemDetailPage({ poem: param as Poem })
+export function PoemDetailPageBuilder(params: object) {
+
+  PoemDetailPage({ value: params })
 }
+
 
 const buildName = BuilderNameConstants.CULTURE_POEMDETAIL
 if (!RouterModule.getBuilder(buildName)) {
   const builder: WrappedBuilder<[object]> = wrapBuilder(PoemDetailPageBuilder)
+  RouterModule.registerBuilder(buildName, builder)
 }
+

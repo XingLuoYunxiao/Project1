@@ -7,7 +7,10 @@ import { cultureFileUtil } from "../../common/util/FileUtil";
 import { FileUtil } from "utils/src/main/ets/puraUtils/FileUtil";
 import { BusinessError, request } from "@kit.BasicServicesKit";
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
+import { CommonConstants } from "../../common/constants/commonConstants";
+import { addExp } from "../../common/util/addExp";
 
+let addEXPId: number = 0
 
 @Component
 export struct ArtPage {
@@ -22,6 +25,10 @@ export struct ArtPage {
   async aboutToAppear() {
     ttf('STXINGKAFont', 'STXINGKA.TTF')
     this.animationData = await LottieController.getRawFileAnimationData(getContext(this), 'sroll.json')
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp(CommonConstants.expTypeCulture, 5)
+    }, 10000)
   }
 
   build() {

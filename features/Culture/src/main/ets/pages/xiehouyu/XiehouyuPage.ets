@@ -1,8 +1,11 @@
 import { BuilderNameConstants, RouterModule } from "routermodule"
-import { getXiehouyuFormCloud } from "../../common/constants/CloundDb/getXiehouyuDataFormCloudDb"
+import { CloudXiehouyuService } from "../../service/CloudXiehouyuService"
+import { CommonConstants } from "../../common/constants/commonConstants"
+import { addExp } from "../../common/util/addExp"
 import { BasicDataSource } from "../../model/poetryModel/PoetryModel"
 import { Xiehouyu } from "../../model/Xiehouyu"
 
+let addEXPId: number = 0
 
 @Component
 export struct XiehouyuPage {
@@ -15,7 +18,14 @@ export struct XiehouyuPage {
       xiehouyuModel.pushData(item)
     })
 
+    //每10秒浏览页面加5经验
+    addEXPId = setTimeout(() => {
+      addExp(CommonConstants.expTypeKnowledge, 5)
+    }, 10000)
+  }
 
+  aboutToDisappear(): void {
+    clearTimeout(addEXPId)
   }
 
   async getXiehouyuList(): Promise<Xiehouyu[]> {
@@ -38,7 +48,7 @@ export struct XiehouyuPage {
     // 使用 for...of 循环，支持异步操作
     let resXieList: Xiehouyu[] = []
     for (let id of resIds) {
-      let xieItem: Xiehouyu | undefined = await getXiehouyuFormCloud.fetchXiehouyuById(id)
+      let xieItem: Xiehouyu | undefined = await CloudXiehouyuService.fetchXiehouyuById(id)
       if (xieItem) {
         console.log('获取歇后语：' + JSON.stringify(xieItem))
         resXieList.push(xieItem)

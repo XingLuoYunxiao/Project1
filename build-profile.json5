@@ -5,13 +5,13 @@
         "name": "default",
         "type": "HarmonyOS",
         "material": {
-          "storePassword": "0000001AFC19914C94CDB7CDC7BFDFE7D9468C9BF95AC64BE310947818E74479E55FA20DF22CCCA6B8AD",
-          "certpath": "D:/HuaWei/certificate/key2/ProjectOneMap.cer",
+          "storePassword": "0000001A560B492B69F612163381C2EE18AFFE35359F9E56DB0326DF9EB82FF101071ED6666668B4494D",
+          "certpath": "D:/HUAWEI/key/ProjectOne.cer",
           "keyAlias": "ProjectOne",
-          "keyPassword": "0000001A103632B7C71365EA52C6DB1BFF1B90E3785A1910EFE7D81F7A17BB2652DABE7ED7443847B6B6",
-          "profile": "D:/HuaWei/certificate/key2/ProjectOneMapDebug.p7b",
+          "keyPassword": "0000001ACF58CF153327352096C95D2F384AD8079436A3C65347CB4AA593A1D10E21B0652F34A0E83E0B",
+          "profile": "D:/HUAWEI/key/ProjectOneProfileDebug.p7b",
           "signAlg": "SHA256withECDSA",
-          "storeFile": "D:/HuaWei/certificate/key2/.p12"
+          "storeFile": "D:/HUAWEI/key/.p12"
         }
       }
     ],
