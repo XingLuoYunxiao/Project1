@@ -3,6 +3,7 @@ import { Location } from "utils";
 import { TravelPlan } from "../service/TravelPlan";
 import { ISpot } from "./ISpot";
 import { TravelChat } from "./TravelChat";
+import { cloudDatabase } from "@kit.CloudFoundationKit";
 
 export interface custom{
   travelPlans: TravelPlan[];
@@ -10,47 +11,35 @@ export interface custom{
 }
 
 @Observed
-export class Spot extends IBaseProject implements ISpot {
-  id: string;
-  name: string;
-  summary: string;
-  category: string; // 分类
-  rating: number;
-  location: Location;
-  ticketPrice: number;
-  openingHours: string;
-  image: string
-  cityCode:string //城市编码
-  cityId:string //城市ID
-  cityName:string //城市名称
-  address?:string //地址
-  proId?:string //省份ID
-  proName?:string //省份名称
-  areaId?:string //镇ID
-  areaName?:string //镇名称
-
+export class Spot extends cloudDatabase.DatabaseObject implements ISpot {
+  public id: number | undefined;
+  public name: string | undefined;
+  public summary: string  | undefined;
+  public category : string | undefined; // 分类
+  public rating : number  | undefined;
+  public ticketPrice: number | undefined;
+  public openingHours: string | undefined;
+  public imageUrl: string | undefined
+  public latitude: number | undefined;
+  public longitude: number | undefined;
+  public cityCode:string | undefined //城市编码
+  public cityId:string | undefined//城市ID
+  public cityName:string | undefined//城市名称
+  public areaName?:string | undefined//镇名称
+  public address?:string | undefined//地址
+  public proId?:string | undefined//省份ID
+  public proName?:string | undefined//省份名称
+  public areaId?:string | undefined//镇ID
   chats: TravelChat[] = [new TravelChat(0 ,[])];
 
   static idCount = 0
   static resContent:string | undefined = undefined
   static customTravel:custom = {travelPlans:[], recommendedRoute:''}
 
-  constructor( id: string, name: string, summary: string, category: string, rating:number, location: Location, ticketPrice: number,
-  openingHours: string, image: string, cityCode:string, cityId:string, cityName:string, address?:string ) {
-    super(name);
-    this.id = id;
-    this.name = name;
-    this.summary = summary;
-    this.category = category;
-    this.rating = rating;
-    this.location = location;
-    this.ticketPrice = ticketPrice;
-    this.openingHours = openingHours;
-    this.image = image;
-    this.cityCode = cityCode;
-    this.cityId = cityId;
-    this.cityName = cityName;
-    this.address = address;
+
+
+  public naturalbase_ClassName(): string {
+    return 'mySpot';
   }
 
 

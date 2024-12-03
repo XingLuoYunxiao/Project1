@@ -8,7 +8,7 @@ import { common } from '@kit.AbilityKit';
 struct AttractionDetailPage {
   @Consume('appPathStack') appPathStack: NavPathStack
   @State value: object = new Object()
-  @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null', '', '', '', '');
+  @State spot: Spot = new Spot()
   @State orderData :string[] = ['可定今日', '可订明日', '更多日期']
   @State isSelected: number = 0
   @State selectedDate: Date = new Date()
@@ -20,22 +20,24 @@ struct AttractionDetailPage {
   }
 
   StartNavi = ()=>{
-    let petalMapWant: Want = {
-      bundleName: 'com.huawei.hmos.maps.app',
-      uri: 'maps://routes', // 路径规划
-      // uri: 'maps://navigation', // 导航
-      parameters: {
-        // 接入方业务名或包名，Link请求来源。
-        linkSource: '用户到景点的导航',
-        destinationLatitude: this.spot.location.latitude,
-        destinationLongitude: this.spot.location.longitude,
-        destinationName: `${this.spot.name}`,
-        vehicleType: 0 // 交通出行工具。0-驾车， 1-步行， 2-骑行。默认驾车
+    if( this.spot.latitude !== undefined && this.spot.longitude !== undefined){
+      let petalMapWant: Want = {
+        bundleName: 'com.huawei.hmos.maps.app',
+        uri: 'maps://routes', // 路径规划
+        // uri: 'maps://navigation', // 导航
+        parameters: {
+          // 接入方业务名或包名，Link请求来源。
+          linkSource: '用户到景点的导航',
+          destinationLatitude: this.spot.latitude!,
+          destinationLongitude: this.spot.longitude!,
+          destinationName: `${this.spot.name}`,
+          vehicleType: 0 // 交通出行工具。0-驾车， 1-步行， 2-骑行。默认驾车
+        }
       }
-    }
 
-    let context = getContext(this) as common.UIAbilityContext;
-    context.startAbility(petalMapWant);
+      let context = getContext(this) as common.UIAbilityContext;
+      context.startAbility(petalMapWant);
+    }
   }
 
 
@@ -62,7 +64,7 @@ struct AttractionDetailPage {
         Scroll() {
           Column() {
             Stack({ alignContent: Alignment.BottomEnd }) {
-              Image($r(`${this.spot.image}`))
+              Image($r(`${this.spot.imageUrl}`))
                 .width('100%')
                 .height(240)
                 .objectFit(ImageFit.Fill)
@@ -99,7 +101,7 @@ struct AttractionDetailPage {
 
               Row() {
                 Rating({ rating: this.spot.rating })
-                Text(this.spot.rating.toString())
+                Text(this.spot.rating!.toString())
                   .fontSize(Constants.FONT_CONTENT)
                   .fontWeight(FontWeight.Medium)
                   .margin({ left: 8 })

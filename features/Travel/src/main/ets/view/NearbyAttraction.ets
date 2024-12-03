@@ -105,8 +105,8 @@ export struct NearbyAttraction {
   NearbyItem(attraction: Spot) {
     Row() {
       Column() {
-        if ($r(`${attraction.image}`) !== undefined) {
-          Image($r(`${attraction.image}`))
+        if ($r(`${attraction.imageUrl}`) !== undefined) {
+          Image($r(`${attraction.imageUrl}`))
             .width('100%')
             .height(60)
         }
@@ -121,7 +121,7 @@ export struct NearbyAttraction {
       .alignItems(HorizontalAlign.Center)
 
       Column() {
-        Text(`距离 ${this.spotDistanceMap.get(attraction.id)}km`)
+        Text(`距离 ${this.spotDistanceMap.get(attraction.id?.toString())}km`)
           .fontSize(16)
         Text(attraction.summary)
           .fontSize(14)

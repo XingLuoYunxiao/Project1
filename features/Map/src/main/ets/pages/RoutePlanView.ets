@@ -53,8 +53,8 @@ export struct RouterPlanView {
     this.mapOptions = {
       position: {
         target: {
-          latitude: this.spot.location.latitude,
-          longitude: this.spot.location.longitude
+          latitude: this.spot.latitude ?? 0,
+          longitude: this.spot.longitude ?? 0
         },
         zoom: CommonConstants.ZOOM
       }
@@ -73,10 +73,10 @@ export struct RouterPlanView {
         mapController.setMyLocationStyle(this.style);
 
         //移动地图中心到 spot 的坐标
-        if (this.spot.location) {
+        if (this.spot.latitude && this.spot.longitude) {
           const spotLocation: mapCommon.LatLng = {
-            latitude: this.spot.location.latitude,
-            longitude: this.spot.location.longitude,
+            latitude: this.spot.latitude,
+            longitude: this.spot.longitude,
           };
 
           // 移动相机并缩放到合适的级别
@@ -88,8 +88,8 @@ export struct RouterPlanView {
         let pointAnnotationOptions: mapCommon.PointAnnotationParams = {
           // 定义点注释图标锚点
           position: {
-            latitude: this.spot.location.latitude,
-            longitude: this.spot.location.longitude
+            latitude: this.spot.latitude!,
+            longitude: this.spot.longitude!
           },
           // 定义点注释名称与地图poi名称相同时，是否支持去重
           repeatable: false,
@@ -98,7 +98,7 @@ export struct RouterPlanView {
           // 定义点注释的标题，数组长度最小为1，最大为3
           titles: [{
             // 定义标题内容
-            content: this.spot.name,
+            content: this.spot.name!,
             // 定义标题字体颜色
             color: 0xFF000000,
             // 定义标题字体大小
@@ -160,12 +160,12 @@ export struct RouterPlanView {
         })*/
 
       //获取具体景点坐标位置, 数组所有景点坐标
-      this.searchSiteModel.getSearchByText(this.spot.location, this.spot, this.travelPlan.sites)
+      this.searchSiteModel.getSearchByText({latitude: this.spot.latitude!, longitude: this.spot.longitude!}, this.spot, this.travelPlan.sites)
         .then((nearByResult: site.NearbySearchResult | undefined) => {
           if (nearByResult) {
             this.sites = nearByResult.sites;
             if( this.sites !== undefined && this.sites.length > 0){
-              this.searchSiteModel.getInnerRoutes(this.spot.location, this.sites, type)
+              this.searchSiteModel.getInnerRoutes({latitude: this.spot.latitude!, longitude: this.spot.longitude!}, this.sites, type)
                 .then(async (routeResult: navi.RouteResult | undefined) => {
                   if (routeResult !== undefined) {
                     Logger.info('Route plan success' + JSON.stringify(routeResult));
@@ -206,7 +206,7 @@ export struct RouterPlanView {
     .onClick(async () => {
       this.currentIndex = targetIndex;
       this.routeType = targetIndex;
-      await this.InitRoute(this.routeType)
+      this.InitRoute(this.routeType)
       this.tabsController.changeIndex(this.currentIndex);
     })
     .justifyContent(FlexAlign.Center)

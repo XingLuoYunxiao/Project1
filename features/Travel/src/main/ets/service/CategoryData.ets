@@ -201,7 +201,7 @@ export const cities: City[] = [
   { cityId: "0", cityName: "所有", cityCode: "000000", proId: "000", proName: "所有" },
   { cityId: "1", cityName: "北京", cityCode: "110000", proId: "010", proName: "北京" },
   { cityId: "2", cityName: "上海", cityCode: "310000", proId: "021", proName: "上海" },
-  { cityId: "9", cityName: "广州", cityCode: "440000", proId: "020", proName: "广东" },
+  { cityId: "9", cityName: "广州", cityCode: "440100", proId: "020", proName: "广东" },
   { cityId: "4", cityName: "深圳", cityCode: "440300", proId: "0755", proName: "广东" },
   { cityId: "5", cityName: "杭州", cityCode: "330000", proId: "0571", proName: "浙江" },
   { cityId: "6", cityName: "南京", cityCode: "320000", proId: "025", proName: "江苏" },

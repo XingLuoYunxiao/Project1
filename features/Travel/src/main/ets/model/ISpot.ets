@@ -1,8 +1,8 @@
 
 // ISpot.ets - 景点接口
 export interface ISpot {
-  id: string;
-  name: string;
-  summary: string;
+  id: number | undefined;
+  name: string | undefined;
+  summary: string | undefined;
 }
 

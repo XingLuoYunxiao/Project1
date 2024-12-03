@@ -1,12 +1,12 @@
 import { Classification } from '../view/Classficiation';
 import { NearbyAttraction } from '../view/NearbyAttraction';
 import { SearchHeader } from '../view/SearchHeader';
-import cloud, { Database } from '@hw-agconnect/cloud';
-import { mySpot } from '../model/mySpot';
-import  theSpot  from '../../resources/rawfile/ProjectOne_28_cn.json';
+import { Database } from '@hw-agconnect/cloud';
+import { BusinessError } from '@kit.BasicServicesKit';
 import { Spot } from '../model/Spot';
 import { SpotNetFunc } from '../service/SpotNetFunc';
 import { LoadingStatus } from 'utils';
+import { cloudDatabase } from '@kit.CloudFoundationKit';
 
 
 @Component
@@ -15,6 +15,7 @@ export struct TravelStartPage {
   @Consume('appPathStack') appPathStack: NavPathStack;
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance()
   @State loadAllState: string =LoadingStatus.OFF
+  @State swiperLoading: string = LoadingStatus.OFF
   @State spots: Spot[] = this.spotNetWork.spots
   private database:Database |null= null
 
@@ -29,14 +30,18 @@ export struct TravelStartPage {
     })
 
     // 初始化
-    this.database= cloud.database({
-      zoneName:'Travel',
-      objectTypeInfo: theSpot
+    let databaseZone = cloudDatabase.zone('Travel');
+    let condition = new cloudDatabase.DatabaseQuery(Spot)
+    databaseZone.query(condition, (err: BusinessError, res: Spot[]) => {
+      if (err) {
+        console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
+      } else {
+        console.info(`查询成功，结果: ${JSON.stringify(res)}`);
+        this.spots = res
+        this.swiperLoading = LoadingStatus.SUCCESS
+      }
     })
 
-    let result: mySpot[] = await this.database.collection(mySpot).query().limit(3).get()
-    this.spots = result.map(item => new Spot(item.id, item.name, item.summary, item.category, item.rating,
-      {latitude: item.latitude, longitude: item.longitude  }, item.ticketPrice, item.openingHours, item.imageUrl, item.cityCode, item.cityId, item.cityName));
 
   }
 
@@ -47,20 +52,21 @@ export struct TravelStartPage {
         SearchHeader()
 
         //轮播图
-        Swiper() {
-          ForEach(this.spots, ( item: Spot) => {
-            ListItem(){
-              this.AttractionItem(item)
-            }
-            .width('100%')
-            .height(230)
-          })
-
+        if( this.swiperLoading === LoadingStatus.SUCCESS){
+          Swiper() {
+            ForEach(this.spots, ( item: Spot) => {
+              ListItem(){
+                this.AttractionItem(item)
+              }
+              .width('100%')
+              .height(230)
+            })
+          }
+          .autoPlay(true)
+          .loop(true)
+          .indicator(false)
+          .width('100%')
         }
-        .autoPlay(true)
-        .loop(true)
-        .indicator(false)
-        .width('100%')
 
         //旅游分类
         Classification()
@@ -89,8 +95,8 @@ export struct TravelStartPage {
   @Builder
   AttractionItem(attraction: Spot){
     Stack() {
-      if( $r(`${attraction.image}`) !== undefined){
-        Image($r(`${attraction.image}`))
+      if( $r(`${attraction.imageUrl}`) !== undefined){
+        Image($r(`${attraction.imageUrl}`))
           .width('100%')
           .height(200)
           .borderRadius(10)

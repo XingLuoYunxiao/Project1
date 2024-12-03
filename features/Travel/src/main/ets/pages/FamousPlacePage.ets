@@ -118,7 +118,7 @@ export struct FamousPlacePage {
   FamousItem(spot: Spot, index:number){
     Row(){
       Column(){
-        Image($r(spot.image))
+        Image($r(spot.imageUrl))
           .width('100%')
           .borderRadius(10)
           .height(210)

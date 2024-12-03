@@ -12,7 +12,7 @@ const MAX_HISTORY_COUNT = 10;
 
 @Observed
 export class SpotNetFunc{
-  private spotFunNetwork: SpotModel;
+  private spotModel: SpotModel;
   private static instance: SpotNetFunc = new SpotNetFunc();
   private locationUtil: LocationUtil = LocationUtil.getInstance();
   private preferenceUtil: PreferenceUtil = PreferenceUtil.getInstance()
@@ -35,7 +35,7 @@ export class SpotNetFunc{
   isInitSpots: boolean = false;
 
   private constructor() {
-    this.spotFunNetwork = new SpotModel();
+    this.spotModel = new SpotModel();
     if( this.locationUtil.currentLocation !== undefined){
       this.currentUserLocation = this.locationUtil.currentLocation;
     }else{
@@ -60,7 +60,7 @@ export class SpotNetFunc{
   loadSpotsData(): Promise<void> {
     this.allLoadingStatus = LoadingStatus.LOADING
     return new Promise(async (resolve, reject) => {
-      await this.spotFunNetwork.getSpotData().then( (data: Array<Spot>) => {
+      await this.spotModel.getSpotData().then( (data: Array<Spot>) => {
         const result: Array<Spot> = [];
         data.forEach(spot => {
           result.push(spot);
@@ -78,6 +78,19 @@ export class SpotNetFunc{
         Logger.error( TAG, `SpotModel getSpotData failed ${e}` );
         reject();
       })
+      await this.spotModel.getSpotData().then( (data: Array<Spot>) => {
+        const result: Array<Spot> = [];
+        data.forEach(spot => {
+          result.push(spot);
+        })
+        this.spots = result;
+        this.allSpotsDataSource.clear();
+        this.allSpotsDataSource.pushArrayData(result)
+        this.allLoadingStatus = LoadingStatus.SUCCESS
+        this.isInitSpots = true
+        Logger.info(TAG, 'Get spot data success.')
+        resolve();
+      })
     })
   }
 
@@ -87,8 +100,10 @@ export class SpotNetFunc{
       this.loadSpotsData()
     }
     this.spots.map(spot => {
-      let distance = this.calculateDistance(this.currentUserLocation, spot.location);
-      this.spotDistanceMap.set(spot.id, distance.toFixed(2));
+    if(spot !== undefined && spot.latitude !== undefined && spot.longitude !== undefined && spot.id != undefined){
+        let distance = this.calculateDistance(this.currentUserLocation, {latitude: spot.latitude, longitude: spot.longitude});
+        this.spotDistanceMap.set(spot.id.toString(), distance.toFixed(2));
+      }
     })
   }
 
@@ -105,10 +120,12 @@ export class SpotNetFunc{
     if (this.currentUserLocation.latitude !== 0 && this.currentUserLocation.longitude !== 0) {
       try {
         const maxDistance = Number(this.maxDistance.slice(0, -2));
-        this.nearbySpots = this.spots.filter(spot => this.calculateDistance(this.currentUserLocation, spot.location) <= maxDistance);
+        this.nearbySpots = this.spots.filter(spot =>
+          this.calculateDistance(this.currentUserLocation, {latitude: spot.latitude!, longitude: spot.longitude!}) <= maxDistance
+        );
         this.nearbySpots.sort((a, b) => {
-          const distanceA = this.calculateDistance(this.currentUserLocation, a.location);
-          const distanceB = this.calculateDistance(this.currentUserLocation, b.location);
+          const distanceA = this.calculateDistance(this.currentUserLocation, {latitude: a.latitude!, longitude:a.longitude!});
+          const distanceB = this.calculateDistance(this.currentUserLocation,{latitude: b.latitude!, longitude: b.longitude!});
           return (distanceA - distanceB);
         });
         this.nearbyLoadingStatus = LoadingStatus.SUCCESS;
@@ -143,7 +160,7 @@ export class SpotNetFunc{
       this.searchHistory.pop();
     }
     this.preferenceUtil.putPreferenceValue<string[]>('searchHistory', this.searchHistory);
-    this.searchResult = this.spots.filter(spot => spot.name.toLowerCase().includes(value.toLowerCase()))
+    this.searchResult = this.spots.filter(spot => spot.name!.toLowerCase().includes(value.toLowerCase()))
     this.searchLoadingStatus = LoadingStatus.SUCCESS
 
   }
@@ -167,14 +184,14 @@ export class SpotNetFunc{
     if (currentCity.cityName !== '所有') {
       currentAttractions = this.spots
       currentAttractions = currentAttractions.filter(spot =>
-      spot.cityCode === currentCity.cityCode
+      spot.cityCode == currentCity.cityCode
       );
     }
 
     // (全部景点)
     if (currentCategory[0] !== '全部景点' && currentCategory[0] !== '全部分类' && currentCategory[0] !== classificationList[0].category) {
       currentAttractions = currentAttractions.filter(spot =>
-      spot.category.includes(currentCategory[0])
+      spot.category!.includes(currentCategory[0])
       );
     }
     let list1 = currentAttractions
@@ -185,7 +202,7 @@ export class SpotNetFunc{
       const maxDistance = Number(currentCategory[1].slice(0, -2));
 
       currentAttractions = currentAttractions.filter((spot) => {
-        const distance = this.calculateDistance(this.currentUserLocation, spot.location);
+        const distance = this.calculateDistance(this.currentUserLocation, {latitude: spot.latitude!, longitude: spot.longitude!});
         return distance <= maxDistance; // 返回布尔值，距离小于等于指定值的景点会被保留
       });
     }else{
@@ -196,18 +213,18 @@ export class SpotNetFunc{
     if (currentCategory[2] !== '综合排序') {
       switch (currentCategory[2]) {
         case '评分最高':
-          currentAttractions.sort((a, b) => b.rating - a.rating);
+          currentAttractions.sort((a, b) => b.rating! - a.rating!);
           break;
         case '价格最低':
-          currentAttractions.sort((a, b) => a.ticketPrice - b.ticketPrice);
+          currentAttractions.sort((a, b) => a.ticketPrice! - b.ticketPrice!);
           break;
         case '价格最高':
-          currentAttractions.sort((a, b) => b.ticketPrice - a.ticketPrice);
+          currentAttractions.sort((a, b) => b.ticketPrice! - a.ticketPrice!);
           break;
         case '最近距离':
           currentAttractions.sort((a, b) => {
-            const distanceA = this.calculateDistance(this.currentUserLocation, a.location);
-            const distanceB = this.calculateDistance(this.currentUserLocation, b.location);
+            const distanceA = this.calculateDistance(this.currentUserLocation, {latitude: a.latitude!, longitude:a.longitude!});
+            const distanceB = this.calculateDistance(this.currentUserLocation, {latitude: b.latitude!, longitude: b.longitude!});
             return (distanceA - distanceB)
           });
           break;

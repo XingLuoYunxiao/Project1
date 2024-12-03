@@ -10,7 +10,7 @@ export struct MapViewPage {
   //@State mapUtil: MapUtil = MapUtil.getInstance();
   @Consume('appPathStack') appPathStack: NavPathStack;
   @State value: object = new Object()
-  @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null', '', '', '', '');
+  @State spot: Spot = new Spot();
 
   aboutToAppear(): void {
     this.spot = JSON.parse(JSON.stringify(this.value).toString()).Object as Spot;
@@ -25,8 +25,8 @@ export struct MapViewPage {
       parameters: {
         // 接入方业务名或包名，Link请求来源。
         linkSource: '用户到景点的导航',
-        destinationLatitude: this.spot.location.latitude,
-        destinationLongitude: this.spot.location.longitude,
+        destinationLatitude: this.spot.latitude ?? 0,
+        destinationLongitude: this.spot.longitude ?? 0,
         destinationName: `${this.spot.name}`,
         vehicleType: 0 // 交通出行工具。0-驾车， 1-步行， 2-骑行。默认驾车
       }

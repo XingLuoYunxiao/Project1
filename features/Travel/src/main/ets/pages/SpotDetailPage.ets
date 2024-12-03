@@ -8,7 +8,7 @@ import { TipsDialog } from "@kit.ArkUI";
 
 @Component
 export struct SpotDetailPage {
-  @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null', '', '', '', '');
+  @State spot: Spot = new Spot()
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
   @State speechUtil: TextToSpeechManager = TextToSpeechManager.getInstance()
@@ -58,11 +58,11 @@ export struct SpotDetailPage {
 
   async aboutToAppear(): Promise<void> {
     lvText.setTextSize(16)
-    let spot = JSON.parse(JSON.stringify(this.value)).spot as Spot
     //let spot = await this.appPathStack.getParamByName('SpotDetailPage')[0] as Spot;
-    this.spot = new Spot(spot.id, spot.name, spot.summary, spot.category, spot.rating, spot.location, spot.ticketPrice, spot.openingHours, spot.image, spot.cityCode, spot.cityId, spot.cityName);
-    this.sendRequest(this.spot.name);
-
+    this.spot = JSON.parse(JSON.stringify(this.value)).spot as Spot
+    if( this.spot.name){
+      this.sendRequest(this.spot.name);
+    }
   }
 
   aboutToDisappear(): void {
@@ -176,7 +176,9 @@ export struct SpotDetailPage {
                 .padding(5)
                 .onClick(async ()=>{
                   this.isLoading = false;
-                  this.sendRequest(this.spot.name)
+                  if( this.spot.name){
+                    this.sendRequest(this.spot.name)
+                  }
                 })
             }
             .alignItems(VerticalAlign.Center)

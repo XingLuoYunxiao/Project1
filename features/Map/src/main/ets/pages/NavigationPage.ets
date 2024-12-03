@@ -16,8 +16,8 @@ export struct NavigationPage {
       parameters: {
         // 接入方业务名或包名，Link请求来源。
         linkSource: '用户到景点的导航',
-        destinationLatitude: this.spot.location.latitude,
-        destinationLongitude: this.spot.location.longitude,
+        destinationLatitude: this.spot.latitude ?? 0,
+        destinationLongitude: this.spot.longitude ?? 0,
         destinationName: `${this.spot.name}`,
         vehicleType: 0 // 交通出行工具。0-驾车， 1-步行， 2-骑行。默认驾车
       }
