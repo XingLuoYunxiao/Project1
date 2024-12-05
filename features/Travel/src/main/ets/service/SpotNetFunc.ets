@@ -30,6 +30,9 @@ export class SpotNetFunc{
   searchLoadingStatus: LoadingStatus = LoadingStatus.OFF;
   nearbyLoadingStatus: LoadingStatus = LoadingStatus.OFF;
 
+  //分页
+  private pageNum: number = 0;
+
   //当前位置经纬度
   private currentUserLocation: Location = { latitude: 0, longitude: 0}
   isInitSpots: boolean = false;
@@ -56,18 +59,30 @@ export class SpotNetFunc{
     return SpotNetFunc.instance;
   }
 
+
+  //获取hot景点数据，swiper
+  public getHotSpots(): Promise<Spot[]> {
+    return new Promise(async (resolve, reject) => {
+      try{
+        let data = await this.spotModel.getHotSpotData()
+        resolve(data);
+      }catch (e){
+        reject('getHotSpots failed' + e);
+      }
+    })
+  }
+
   //获取景点数据
   loadSpotsData(): Promise<void> {
     this.allLoadingStatus = LoadingStatus.LOADING
     return new Promise(async (resolve, reject) => {
-      await this.spotModel.getSpotData().then( (data: Array<Spot>) => {
+      await this.spotModel.getSpotData(++this.pageNum).then( (data: Array<Spot>) => {
         const result: Array<Spot> = [];
         data.forEach(spot => {
           result.push(spot);
         })
         this.spots = result;
-        this.allSpotsDataSource.clear();
-        this.allSpotsDataSource.pushArrayData(result)
+        this.allSpotsDataSource.appendArrayData(result)
         this.allLoadingStatus = LoadingStatus.SUCCESS
         this.isInitSpots = true
         Logger.info(TAG, 'Get spot data success.')
@@ -77,19 +92,6 @@ export class SpotNetFunc{
         this.allLoadingStatus = LoadingStatus.FAILED
         Logger.error( TAG, `SpotModel getSpotData failed ${e}` );
         reject();
-      })
-      await this.spotModel.getSpotData().then( (data: Array<Spot>) => {
-        const result: Array<Spot> = [];
-        data.forEach(spot => {
-          result.push(spot);
-        })
-        this.spots = result;
-        this.allSpotsDataSource.clear();
-        this.allSpotsDataSource.pushArrayData(result)
-        this.allLoadingStatus = LoadingStatus.SUCCESS
-        this.isInitSpots = true
-        Logger.info(TAG, 'Get spot data success.')
-        resolve();
       })
     })
   }

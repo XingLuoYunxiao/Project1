@@ -29,17 +29,9 @@ export struct TravelStartPage {
       this.loadAllState = LoadingStatus.FAILED
     })
 
-    // 初始化
-    let databaseZone = cloudDatabase.zone('Travel');
-    let condition = new cloudDatabase.DatabaseQuery(Spot)
-    databaseZone.query(condition, (err: BusinessError, res: Spot[]) => {
-      if (err) {
-        console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
-      } else {
-        console.info(`查询成功，结果: ${JSON.stringify(res)}`);
-        this.spots = res
-        this.swiperLoading = LoadingStatus.SUCCESS
-      }
+    this.spotNetWork.getHotSpots().then((data) => {
+      this.spots = data
+      this.swiperLoading = LoadingStatus.SUCCESS
     })
 
 

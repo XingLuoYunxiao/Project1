@@ -1,16 +1,18 @@
-import { lvMarkdownIn, lvText } from "@luvi/lv-markdown-in"
 import { TextToSpeechManager } from "aispeech";
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from "../constants/Constants";
-import { custom, Spot } from "../model/Spot";
 import { Params, TravelPlan } from "../service/TravelPlan";
 import { TipsDialog } from "@kit.ArkUI";
+import { Spot } from "../model/Spot";
+import { custom } from "../service/TravelChatsService";
+import { TravelChatsService } from "../service/TravelChatsService";
 
 @Component
 export struct SpotDetailPage {
   @State spot: Spot = new Spot()
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
+  @State chatsService: TravelChatsService = TravelChatsService.getInstance()
   @State speechUtil: TextToSpeechManager = TextToSpeechManager.getInstance()
   //@StorageLink('isTravelPlanLoad') isTravelPlanLoad: boolean = false;
   @State value: object = new Object()
@@ -57,7 +59,6 @@ export struct SpotDetailPage {
 
 
   async aboutToAppear(): Promise<void> {
-    lvText.setTextSize(16)
     //let spot = await this.appPathStack.getParamByName('SpotDetailPage')[0] as Spot;
     this.spot = JSON.parse(JSON.stringify(this.value)).spot as Spot
     if( this.spot.name){
@@ -74,15 +75,14 @@ export struct SpotDetailPage {
     this.isLoading = true;
     this.responseText = '';
     try {
-      if(this.spot.chats == undefined || this.spot.chats.length === 0)
-        this.spot.addChat();
+      if(this.chatsService !== undefined )
       /*this.spot.sendRequest(content, (chunk: string) => {
         this.responseText += chunk;
       });*/
-      await this.spot.sendTravelRequest(content).then((res) => {
+      await this.chatsService.sendTravelRequest(content).then((res) => {
         this.customTravel = res
-        if( Spot.resContent !== undefined){
-          this.responseText = Spot.resContent
+        if( this.chatsService.resContent !== undefined){
+          this.responseText = this.chatsService.resContent
         }
       })
     } catch (error) {
