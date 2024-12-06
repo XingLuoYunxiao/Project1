@@ -1,25 +1,43 @@
 import { BuilderNameConstants, RouterModule } from "routermodule"
 import { FolkArt, FolkArtList } from "../../model/folkArt/FolkArtModel"
 
+
 @Component
 export struct FolkArtPage {
   build() {
     NavDestination() {
       Column() {
-        ForEach(FolkArtList, (item: FolkArt) => {
-
-        })
+        List() {
+          ForEach(FolkArtList, (item: FolkArt) => {
+            ListItem() {
+              this.ArtBuilder(item)
+            }
+          }, (item: FolkArt) => item.title)
+        }
       }
-
     }
   }
 
   @Builder
   ArtBuilder(item: FolkArt) {
     Column() {
-      Text(item.title)
-        .fontSize(24)
-        .fontWeight(FontWeight.Medium)
+      Row() {
+        Text(item.title)
+          .fontSize(24)
+          .fontWeight(FontWeight.Medium)
+      }
+      .justifyContent(FlexAlign.Start)
+      .width('100%')
+
+      Divider()
+        .width('80%')
+
+      Text(item.description)
+        .fontSize(18)
+
+      Text(item.types)
+        .fontSize(18)
+
     }
   }
 }

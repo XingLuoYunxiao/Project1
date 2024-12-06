@@ -57,7 +57,7 @@ export function harInit(builderName: string): void {
       import("./src/main/ets/pages/BuildingPage");
       break;
     case BuilderNameConstants.CULTURE_AIPainting:
-      import("./src/main/ets/pages/AIPainting/AIPaintingPage");
+      import("./src/main/ets/pages/game/AIPaintingPage");
       break;
     case BuilderNameConstants.CULTURE_FestivalPage2:
       import("./src/main/ets/pages/tradictionalFestival/Festival");

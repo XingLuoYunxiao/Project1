@@ -47,7 +47,6 @@ export class BuilderNameConstants {
   static readonly CULTURE_AIPainting: string = 'culture_AIPainting'
   static readonly CULTURE_FestivalPage2: string = 'culture_FestivalPage2'
   static readonly CULTURE_GapFillingPage: string = 'culture_GapFillingPage'
-  static readonly CULTURE_SentenceFilling: string = 'culture_SentenceFilling'
 }
 
 // Indicates the key of the routerMap table in the RouterModule.

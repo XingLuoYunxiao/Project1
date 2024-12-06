@@ -1,10 +1,10 @@
-import { BuilderNameConstants, buildRouterModel, RouterModel, RouterNameConstants } from "routermodule";
+import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule";
 import { category, gameList, literatureList, traditionList, } from "../model/category";
 import { LogUtil } from 'utils/src/main/ets/puraUtils/LogUtil'
-import { cloudStorage } from '@kit.CloudFoundationKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+
+import { builderImageMap, cacheImage, downloadImage } from "../common/util/getImage";
+import { PreferencesUtil } from "utils/src/main/ets/puraUtils/PreferencesUtil";
 import { CloudStorageConstants } from "../common/constants/cloudStorageConstants";
-import { CloudStorageService } from "../service/CloudStorage";
 
 
 let TAG: string = "CulturalPage  "
@@ -15,17 +15,23 @@ export struct CulturalPage {
   @Consume('appPathStack') appPathStack: NavPathStack;
   @Consume('culturePathStack') culturePathStack: NavPathStack;
 
+  aboutToAppear(): void {
+    downloadImage(CloudStorageConstants.constantsMap)
+    
+
+  }
+
   build() {
     Navigation(this.culturePathStack) {
       Column({ space: 15 }) {
         Text('文化天地')
           .fontSize($r('app.float.large_text_size'))
 
-        // Text('测试页面')
-        //   .fontSize($r('app.float.large_text_size'))
-        //   .onClick(() => {
-        //     buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_TEST)
-        //   })
+        Text('测试页面')
+          .fontSize($r('app.float.large_text_size'))
+          .onClick(() => {
+            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_TEST)
+          })
 
         groupComponent({ groupName: "文学", groupData: literatureList })
         groupComponent({ groupName: "文化", groupData: traditionList })
