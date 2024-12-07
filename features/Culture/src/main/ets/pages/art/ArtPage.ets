@@ -6,6 +6,8 @@ import { CommonConstants } from "../../common/constants/commonConstants";
 import { addExp } from "../../common/util/addExp";
 import { downloadImage, downloadImage2, getPath } from "../../common/util/getImage";
 import { CloudStorageConstants } from "../../common/constants/cloudStorageConstants";
+import { ButtonWithWaterRipples } from "../../view/water";
+import { faceDetector } from "@kit.CoreVisionKit";
 
 
 let addEXPId: number = 0
@@ -87,31 +89,36 @@ export struct ArtPage {
 @Component
 struct calligraphyPage {
   @Consume('culturePathStack') culturePathStack: NavPathStack
-  @State intro: string = '中华书法，魅力非凡。它历经千年演变，从古老的甲骨文、金文，到篆书、隶书、楷书、行书、草书，种类丰富。每一种书体都有其独特风格，见证着中华文化的传承与发展。现在，让我们一同领略书法之美。'
+  @State intro: string = '中华书法，魅力非凡。它历经千年演变，从古老的甲骨文、金文，到篆书、隶书、楷书、行书、草书，种类丰富。'
   @StorageProp('ImgPathsMap') ImgPathsMap: Map<string, string> = new Map<string, string>()
+  @State isListen: boolean = false
 
   build() {
     Navigation(this.culturePathStack) {
       Stack() {
         Column() {
 
-
           Text(this.intro)
             .margin({ left: 200, right: 30 })
             .fontSize(26)
 
-
-          Text("进入")
-            .fontSize(24)
+          ButtonWithWaterRipples({ isListening: this.isListen })
             .onClick(() => {
-
-              buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_CALLIGRAPHY)
+              this.isListen = !this.isListen
             })
-            .fontColor(Color.White)
-            .backgroundColor(Color.Black)
-            .margin({ left: 40 })
-            .padding(10)
-            .borderRadius(20)
+            .enabled(!this.isListen)
+
+          // Text("进入")
+          //   .fontSize(24)
+          //   .onClick(() => {
+          //
+          //     buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_CALLIGRAPHY)
+          //   })
+          //   .fontColor(Color.White)
+          //   .backgroundColor(Color.Black)
+          //   .margin({ left: 40 })
+          //   .padding(10)
+          //   .borderRadius(20)
 
         }
         // getPath(CloudStorageConstants.getConstant('calligraphy_background.png'))
@@ -126,7 +133,6 @@ struct calligraphyPage {
     }
     .mode(NavigationMode.Stack)
     .hideTitleBar(true)
-
   }
 }
 

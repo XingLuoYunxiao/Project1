@@ -1,9 +1,28 @@
 import { BuilderNameConstants, RouterModule } from "routermodule"
+import { downloadImage2, getPath } from "../../common/util/getImage"
+import {
+  bambooImageList,
+  ceramicImageList,
+  ChineseShadowPuppetryImageList,
+  clayFigurineImageList,
+  DragonDanceAndLionDance,
+  embroideryImageList,
+  paperCuttingImageList
+} from "../../model/folkArt/FolkArtImageData"
 import { FolkArt, FolkArtList } from "../../model/folkArt/FolkArtModel"
-
 
 @Component
 export struct FolkArtPage {
+  aboutToAppear(): void {
+    downloadImage2(paperCuttingImageList)
+    downloadImage2(embroideryImageList)
+    downloadImage2(ceramicImageList)
+    downloadImage2(bambooImageList)
+    downloadImage2(clayFigurineImageList)
+    downloadImage2(ChineseShadowPuppetryImageList)
+    downloadImage2(DragonDanceAndLionDance)
+  }
+
   build() {
     NavDestination() {
       Column() {
@@ -30,14 +49,29 @@ export struct FolkArtPage {
       .width('100%')
 
       Divider()
-        .width('80%')
+        .width('90%')
+        .strokeWidth(2)
 
       Text(item.description)
         .fontSize(18)
 
-      Text(item.types)
-        .fontSize(18)
 
+      Swiper() {
+        ForEach(item.ImageList, (img: string) => {
+          Column() {
+            Image(getPath(img))
+              .width(400)
+              .objectFit(ImageFit.Contain)
+          }
+          .height(400)
+          .width(400)
+
+        })
+      }
+      .autoPlay(true)
+      .loop(true)
+      .interval(4000)
+      .vertical(false)
     }
   }
 }

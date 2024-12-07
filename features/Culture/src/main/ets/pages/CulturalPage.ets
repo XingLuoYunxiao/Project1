@@ -17,7 +17,6 @@ export struct CulturalPage {
 
   aboutToAppear(): void {
     downloadImage(CloudStorageConstants.constantsMap)
-    
 
   }
 
@@ -25,13 +24,13 @@ export struct CulturalPage {
     Navigation(this.culturePathStack) {
       Column({ space: 15 }) {
         Text('文化天地')
-          .fontSize($r('app.float.large_text_size'))
+          .fontSize($r('app.float.title_text_size'))
 
-        Text('测试页面')
-          .fontSize($r('app.float.large_text_size'))
-          .onClick(() => {
-            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_TEST)
-          })
+        // Text('测试页面')
+        //   .fontSize($r('app.float.large_text_size'))
+        //   .onClick(() => {
+        //     buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_TEST)
+        //   })
 
         groupComponent({ groupName: "文学", groupData: literatureList })
         groupComponent({ groupName: "文化", groupData: traditionList })

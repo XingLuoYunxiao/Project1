@@ -41,9 +41,9 @@ export async function downloadImage(map: Map<string, string>) {
   }
 }
 
-export async function downloadImage2(nums: string[]) {
+export async function downloadImage2(resourceStr: string[]) {
   LogUtil.debug('进入downloadImage2()函数')
-  for (const item of nums) {
+  for (const item of resourceStr) {
     download(CloudStorageConstants.dirPath + '/' + item)
     console.log(TAG, '正在下载' + item)
   }
