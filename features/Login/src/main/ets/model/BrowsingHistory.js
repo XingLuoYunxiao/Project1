@@ -9,7 +9,7 @@ class BrowsingHistory {
         this.viewTime = undefined;
         this.viewCount = undefined;
         this.type = "spot";
-        this.userId = "";
+        this.userId = "1544893736041851904";
         this.poemId = 1;
         this.spotId = 4;
     }

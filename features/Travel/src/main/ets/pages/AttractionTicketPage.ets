@@ -124,7 +124,7 @@ export default struct AttractionTicketPage {
           this.updateAttractionsList()
         })
         .onClick( () => {
-          buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_SEARCHPAGE)
+          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_SEARCHPAGE,)
           //this.appPathStack.replacePathByName('SearchPage', true)
         })
 

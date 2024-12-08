@@ -9,13 +9,13 @@
     "@luvi/lv-markdown-in": "^2.0.9",
     "@xsqd/component": "^1.1.0",
     "@ohos/lottie": "^2.0.14",
-    "@ohos/axios": "^2.2.4",
+    "@ohos/axios": "^2.2.4"
   },
   "devDependencies": {
+    "@hw-agconnect/auth": "^1.0.0-beta",
     "@ohos/hypium": "1.0.19",
     "@ohos/hamock": "1.0.0",
-    "@jjr/lottie_component": "^1.0.2",
-    "@hw-agconnect/auth": "^1.0.0-beta"
+    "@jjr/lottie_component": "^1.0.2"
   },
   "dynamicDependencies": {}
 }

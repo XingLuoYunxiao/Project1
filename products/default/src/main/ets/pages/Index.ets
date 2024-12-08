@@ -12,21 +12,16 @@ import { RouterModule, RouterNameConstants } from 'routermodule';
 @Component
 struct Index {
   @State currentIndex: number = TabBarType.TRAVEL;
-  @StorageLink('isHideBar') isHideBar: boolean = false;
   @Provide('travelPathStack') travelPathStack: NavPathStack = new NavPathStack();
   @Provide('appPathStack') appPathStack: NavPathStack = new NavPathStack();
   @Provide('loginPathStack') loginPathStack: NavPathStack = new NavPathStack();
   @Provide('culturePathStack') culturePathStack: NavPathStack = new NavPathStack();
-  private tabsController: TabsController = new TabsController();
 
   async aboutToAppear(): Promise<void> {
-
     await LocationUtil.getInstance().getCurrentLocation()
-
-    AppStorage.setOrCreate('isHideBar', false);
-
-    if (!this.appPathStack) {
+    if( !this.appPathStack){
       this.appPathStack = new NavPathStack();
+      AppStorage.setOrCreate('isHideBar', false);
     }
    RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
   }
@@ -36,6 +31,7 @@ struct Index {
     RouterModule.getBuilder(builderName).builder(param);
   };
 
+
   build() {
     Navigation(this.appPathStack) {
       Stack() {
@@ -44,11 +40,9 @@ struct Index {
             TabContent() {
               TravelStartPage()
             }
-
             TabContent() {
               CulturalPage()
             }
-
             TabContent() {
               Text('开发中')
                 .align(Alignment.Center)
@@ -57,12 +51,13 @@ struct Index {
             TabContent() {
               InfoMessagePage()
             }
-
           }
           .layoutWeight(1)
+          //隐藏掉默认的tabbar
           .barHeight(0)
           .scrollable(false)
           .vertical(false)
+          //分割线的线宽
           .divider({
             strokeWidth: 0.5,
             color: '#0D182431'
@@ -73,7 +68,6 @@ struct Index {
           .onChange((index) => {
             this.currentIndex = index;
           })
-
         }
         .width(AppConstants.FULL_PERCENT)
         .height(AppConstants.FULL_PERCENT)
@@ -81,6 +75,7 @@ struct Index {
         CustomTabBar({ currentIndex: $currentIndex })
 
       }
+      //Stack的属性,子组件的对齐方式
       .alignContent(Alignment.BottomEnd)
 
     }

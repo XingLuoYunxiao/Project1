@@ -21,6 +21,7 @@ export interface TabBarData {
 }
 
 export enum TabBarType {
+  //数字枚举： 默认情况下，枚举是数字的，可以不指定值，枚举成员会从0开始自动递增。
   TRAVEL = 0,
   CULTURE,
   //AI,

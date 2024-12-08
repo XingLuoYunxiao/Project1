@@ -1,12 +1,25 @@
-import auth from "@hw-agconnect/auth"
 import cloud, { Database, SignInResult, VerifyCodeAction, VerifyCodeResult } from "@hw-agconnect/cloud"
 import { myOrder } from "./myOrder";
 import schema from '../../resources/rawfile/schema.json'
 import { mySpot } from "./mySpot";
 import { Poem } from "./Poem";
 import { Collection } from "./Collection";
-import { BrowsingHistory } from "./BrowsingHistory";
 import { CollectionAdd } from "./CollectionAdd";
+import { BrowsingHistory } from "./BrowsingHistory";
+import { cloudCommon } from '@kit.CloudFoundationKit';
+import { request } from '@kit.BasicServicesKit';
+import auth from "@hw-agconnect/auth";
+
+let authProvider =  auth.getAuthProvider();
+authProvider.getAccessToken(false)
+
+cloudCommon.init({
+  region: cloudCommon.CloudRegion.CHINA,
+  authProvider: authProvider,
+  functionOptions:{timeout:10*1000},
+  storageOptions:{mode:request.agent.Mode.BACKGROUND, network:request.agent.Network.ANY},
+  databaseOptions:{schema:"schema", traceId:"traceId"}
+})
 
 export class UserModel{
   private static instance: UserModel = new UserModel();
@@ -14,6 +27,7 @@ export class UserModel{
   private poemPoint :number=0;
   private classicPoint :number=0;
   private artPoint :number=0;
+
   private constructor() {
     // 私有构造函数防止外部实例化
   }
@@ -113,17 +127,23 @@ export class UserModel{
   }
 
   async deletecollectData(cur:CollectionAdd){
-    this.database = cloud.database({
-      zoneName: "Travel",
-      objectTypeInfo: schema
-    })
-
-    await this.database.collection(Collection)//选择表
-      .delete(cur).then((val)=>{
-        console.log('删除1',val)
-      }).catch((e:Error)=>{
-        console.log('删除',e.message)
-      });
+   this.database = cloud.database({
+     zoneName: "Travel",
+     objectTypeInfo: schema
+   })
+    const del=await this.getspotData(cur.spotId)
+   await this.database.collection(Collection)//选择表
+     .delete(del[0]).then((val)=>{
+       console.log('删除1',val)
+     }).catch((e:Error)=>{
+       console.log('删除',e.name,e.message)
+     })
+   //  databaseZone.delete(del[0])
+   //    .then((val)=>{
+   //          console.log('删除1',val)
+   //        }).catch((e:Error)=>{
+   //          console.log('删除',e.name,e.message)
+   //        })
   }
 
   async gethistoryData(personUid: string): Promise<BrowsingHistory[]>{
@@ -135,6 +155,7 @@ export class UserModel{
     const itemlist =await this.database.collection(BrowsingHistory)//选择表
       .query()
       .equalTo('userId',personUid)
+      .orderByDesc('viewTime')
       .get()
 
     return itemlist

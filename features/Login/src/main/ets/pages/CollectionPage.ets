@@ -6,16 +6,12 @@ import { CollectHistoryItem } from '../view/CollectHistoryItem'
 import { ListDataSource } from '../service/ListDataSource'
 import { MineViewModel } from '../service/MineViewModel'
 import auth from '@hw-agconnect/auth'
-import  { Database } from '@hw-agconnect/cloud'
-import { OrderItem } from '../view/OrderItem'
-
-@Builder
-export function CollectionPageBuilder() {
-  CollectionPage()
-}
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
+import Constants from '../common/constants/Constants'
+import { SpotNetFunc } from 'travel/src/main/ets/service/SpotNetFunc'
 
 @Component
-export struct EveryItem {
+struct EveryItem {
   @Link manage?:string
   @ObjectLink spot:CollectionAdd
   build() {
@@ -48,6 +44,7 @@ export struct CollectionPage {
   @Provide collectspotListData: ListDataSource<CollectionAdd> = this.mineViewModel.collectspotListData
   @Provide collectpoemListData: ListDataSource<CollectionAdd> =this.mineViewModel.collectpoemListData
   @Provide searchListData: ListDataSource<CollectionAdd> = new ListDataSource();
+  @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
 
   @Builder
   bottomDelete(){
@@ -66,9 +63,26 @@ export struct CollectionPage {
           }
         }
       })
-    }.width('100%')
+    }
+    .backgroundColor(Color.White)
+    .width('100%')
+    .visibility(this.manage=='完成'?Visibility.Visible:Visibility.None)
   }
 
+@Builder
+listData(data:ListDataSource<CollectionAdd>){
+Column(){
+  List({space:Constants.SMALL_SPACE}){
+    LazyForEach(data,(spot:CollectionAdd)=>{
+      EveryItem({manage:$manage,spot:spot})
+        .onClick(()=>{
+          this.SpotNetWork.search(spot.spotname)
+          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
+        })
+    },(spot:CollectionAdd,index:number)=>JSON.stringify(spot)+Math.random()+index)
+  }.scrollBar(BarState.Off)
+}.height('100%')
+}
 
   async aboutToAppear() {
     auth.getCurrentUser().then(user=>{
@@ -81,75 +95,89 @@ export struct CollectionPage {
 
   build() {
     NavDestination(){
-      Column() {
-        Row(){
-          Image($r('app.media.swiper2')).width(30).onClick(()=>{
-            this.appPathStack.pop()
-          })
-          Text('收藏')
-          Search({placeholder:'请输入关键字'})
-            .onSubmit((val)=>{
-              this.isSearch=true;
-              this.searchListData.notifyDataDeleteAll()
-              for (let index = 0; index < this.collectspotListData.totalCount(); index++) {
-                const res=this.collectspotListData.getData(index)
-                if(res.spotname.includes(val)){
-                  this.searchListData.pushData(res)
-                }
+      Stack(){
+        Column() {
+          Row(){
+            Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(()=>{
+              this.appPathStack.pop()
+            })
+            Text('收藏').fontSize($r('app.float.poetry_fontSize'))
+            Text(this.manage).onClick(() => {
+              if(this.manage=='管理'){
+                this.manage = '完成'
+              }else{
+                this.manage='管理'
               }
-              this.searchListData.notifyDataReload()
-            }).width('50%')
-          Text(this.manage).onClick(() => {
-            if(this.manage=='管理'){
-              this.manage = '完成'
-            }else{
-              this.manage='管理'
-            }
-          })
-        }.width('100%')
-        .justifyContent(FlexAlign.SpaceBetween)
-        Tabs(){
-          TabContent(){
-            Column(){
-                List(){
-                  if(this.isSearch==true){
-                    LazyForEach(this.searchListData, (or: CollectionAdd) => {
-                      ListItem() {
-                        CollectHistoryItem({item:or})
+            })
+          }
+          .width('100%')
+          .height(Constants.TOP_HEIGHT_PAGE)
+          .justifyContent(FlexAlign.SpaceBetween)
+          Tabs(){
+            TabContent(){
+              Column(){
+                Search({placeholder:'请输入关键字'})
+                  .onSubmit((val)=>{
+                    this.isSearch=true;
+                    this.searchListData.notifyDataDeleteAll()
+                    for (let index = 0; index < this.collectspotListData.totalCount(); index++) {
+                      const res=this.collectspotListData.getData(index)
+                      if(res.spotname.includes(val)){
+                        this.searchListData.pushData(res)
                       }
-                    },(or: CollectionAdd,index:number) => JSON.stringify(or)+Math.random()+index)
-                  }else{
-                    LazyForEach(this.collectspotListData,(spot:CollectionAdd)=>{
-                      EveryItem({manage:$manage,spot:spot})
-                    },(spot:CollectionAdd,index:number)=>JSON.stringify(spot)+Math.random()+index)
-                  }
-                }
-            }.height('100%')
-            if(this.manage=='完成'){
-              this.bottomDelete()
-            }
-          }.tabBar('遗迹景点')
-          TabContent(){
-            Column(){
-              List(){
-                LazyForEach(this.collectpoemListData,(poem:CollectionAdd)=>{
-                  ListItem(){
-                    Row(){
-                      Text(poem.spotname)
-                      Text(poem.spot_img)
                     }
+                    this.searchListData.notifyDataReload()
+                  }).width('100%')
+                Scroll(){
+                  if(this.isSearch==true){
+                    this.listData(this.searchListData)
+                  }else {
+                    this.listData(this.collectspotListData)
                   }
-                },(poem:CollectionAdd)=>JSON.stringify(poem))
-
+                }.height('100%')
               }
-            }.height('100%')
-          }.tabBar('诗词歌赋')
+              if(this.manage=='完成'){
+                this.bottomDelete()
+              }
+            }.tabBar('遗迹景点')
+            TabContent(){
+              Column(){
+                Scroll(){
+                  Column(){
+                    LazyForEach(this.collectpoemListData,(poem:CollectionAdd)=>{
+                      ListItem(){
+                        Row(){
+                          Text(poem.spotname)
+                          Text(poem.spot_img)
+                        }
+                      }.onClick(()=>{
+
+                      })
+                    },(poem:CollectionAdd)=>JSON.stringify(poem))
+                  }
+                }.scrollBar(BarState.Off)
+              }.height('100%')
+            }.tabBar('诗词歌赋')
+          }.barHeight(Constants.BAR_HEIGHT_PAGE)
         }
-      }
-      .backgroundColor($r('app.color.page_background_grey'))
-      .width('100%')
+        .padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE,top:Constants.PADDING_PAGE})
+        .backgroundColor($r('app.color.page_background_grey'))
+        .width('100%')
+        this.bottomDelete()
+      }.alignContent(Alignment.Bottom)
     }
+    .margin({top:Constants.HEADER_HEIGHT_PAGE})
     .hideTitleBar(true)
   }
+}
 
+@Builder
+export function CollectionPageBuilder() {
+  CollectionPage()
+}
+
+const builderName = BuilderNameConstants.LOGIN_COLLECTIONPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(CollectionPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

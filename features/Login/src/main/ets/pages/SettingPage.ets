@@ -2,11 +2,9 @@ import { webview } from "@kit.ArkWeb";
 import { AlertDialog } from '@kit.ArkUI'
 import auth from "@hw-agconnect/auth";
 import { UserModel } from "../model/UserModel";
+import { BuilderNameConstants, RouterModule } from "routermodule";
+import Constants from "../common/constants/Constants";
 
-@Builder
-export function SettingPageBuilder() {
-  SettingPage()
-}
 @Component
 export struct SettingPage {
   @Consume('appPathStack') appPathStack: NavPathStack
@@ -46,6 +44,13 @@ export struct SettingPage {
   build() {
       NavDestination(){
         Column() {
+          Row(){
+            Image($r('app.media.ic_back'))
+              .width($r('app.float.md_topic_width'))
+              .onClick(()=>{
+              this.appPathStack.pop()
+            })
+          }.height(Constants.TOP_HEIGHT_PAGE)
           ForEach(this.settingarr,(item:string,idx:number)=>{
             if(idx==this.settingarr.length-1){
               Row(){
@@ -68,6 +73,18 @@ export struct SettingPage {
         }
         .width('100%')
       }
+      .hideTitleBar(true)
+      .margin({top:Constants.HEADER_HEIGHT_PAGE})
   }
+}
 
+@Builder
+export function SettingPageBuilder() {
+  SettingPage()
+}
+
+const builderName = BuilderNameConstants.LOGIN_SETTINGPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(SettingPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

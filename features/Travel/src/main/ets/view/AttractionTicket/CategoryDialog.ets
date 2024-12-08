@@ -7,7 +7,7 @@ export struct CategoryDialog {
 
   @Prop index:number
   @Prop categories: CategoryItem[];
-  onSelect: (category: CategoryItem, index:number) => void = () => {};
+  onSelect: (category: CategoryItem) => void = () => {};
 
   build() {
     Column() {
@@ -25,7 +25,7 @@ export struct CategoryDialog {
                   .height(60)
                   .padding(10)
                   .onClick(() => {
-                    this.onSelect(subCategory, this.index);
+                    this.onSelect(subCategory);
                     this.controller.close();
                   })
                 })

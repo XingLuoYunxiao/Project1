@@ -5,8 +5,10 @@ import { CollectionAdd } from "../model/CollectionAdd";
 import { BrowsingHistory } from "../model/BrowsingHistory";
 import { ListDataSource } from "./ListDataSource";
 import { HistoryAdd } from "../model/HistoryAdd";
-import { myOrder } from "../model/myOrder";
-import { myOrderAdd } from "../model/myOrderAdd";
+import {  myOrderAdd } from "../model/myOrderAdd";
+import { myOrder} from "../model/myOrder";
+import { CalendarData} from "../view/MyCalendar";
+
 
 @Observed
 export class MineViewModel{
@@ -20,7 +22,7 @@ export class MineViewModel{
   historyspotListData:ListDataSource<HistoryAdd> = new ListDataSource();
   historypoemListData:ListDataSource<HistoryAdd> = new ListDataSource();
   orderListData: ListDataSource<myOrderAdd> = new ListDataSource();
-
+  waitListData: ListDataSource<myOrderAdd> = new ListDataSource();
 
   private static instance: MineViewModel = new MineViewModel();
 
@@ -93,35 +95,57 @@ export class MineViewModel{
     await this.userModel.deletecollectData(cur)
   }
 
-  async historyDeal(personUid:string){
-    await this.userModel.gethistoryData(personUid)
+  isSameYearMonthDay(date1: Date, date2: CalendarData): boolean {
+    return (
+      date1.getFullYear() === date2.year &&
+        date1.getMonth()+1 === date2.month &&
+        date1.getDate() === date2.date
+    );
+  }
+
+
+  async historyDeal(personUid:string,date?:CalendarData){
+     this.userModel.gethistoryData(personUid)
       .then(async (value:BrowsingHistory[])=>{
         this.historyspotListData.notifyDataDeleteAll()
         this.historypoemListData.notifyDataDeleteAll()
         for (let index = 0; index < value.length; index++) {
           const cur=value[index]
-          if(cur.type=='spot'){
-            const spots=await this.userModel.getspotData(cur.spotId)
-            this.historyspotListData.pushData(new HistoryAdd(cur.id,cur.spotId,cur.viewTime,cur.viewCount,cur.type,cur.userId,cur.poemId,spots[0].name,spots[0].imageUrl,false))
-          }else{
-            const poem=await this.userModel.getpoemData(cur.spotId)
-            this.historypoemListData.pushData(new HistoryAdd(cur.id,cur.spotId,cur.viewTime,cur.viewCount,cur.type,cur.userId,cur.poemId,poem[0].title,poem[0].writer,false))
-          }
+            if(cur.type=='spot'){
+              const spots=await this.userModel.getspotData(cur.spotId)
+              const pushdata=new HistoryAdd(cur.id,cur.spotId,cur.viewTime,cur.viewCount,cur.type,cur.userId,cur.poemId,spots[0].name,spots[0].imageUrl,false)
+              if(date!=null){
+                const curday=cur.viewTime as Date
+                if(this.isSameYearMonthDay(curday,date)){
+                  this.historyspotListData.pushData(pushdata)
+                  this.historyspotListData.notifyDataReload()
+                }
+              }
+            }else{
+              const poem=await this.userModel.getpoemData(cur.spotId)
+              this.historypoemListData.pushData(new HistoryAdd(cur.id,cur.spotId,cur.viewTime,cur.viewCount,cur.type,cur.userId,cur.poemId,poem[0].title,poem[0].writer,false))
+            }
         }
       })
   }
+
 
   async orderDeal(personUid:string){
     await this.userModel.getorderData(personUid)
       .then((val:myOrder[])=>{
         this.orderListData.notifyDataDeleteAll()
+        this.waitListData.notifyDataDeleteAll()
         val.map(async (value)=>{
           const spots=await this.userModel.getspotData(value.spot_id)
+          if (value.order_type==0) {
+            this.waitListData.pushData(new myOrderAdd(value.order_id,value.spot_id,value.order_time,value.order_status,value.total_amount,value.quantity,value.order_type,value.user_id,spots[0].name,spots[0].imageUrl,spots[0].ticketPrice))
+          }
           this.orderListData.pushData(new myOrderAdd(value.order_id,value.spot_id,value.order_time,value.order_status,value.total_amount,value.quantity,value.order_type,value.user_id,spots[0].name,spots[0].imageUrl,spots[0].ticketPrice))
         })
       })
   }
 
 }
+
 
 
