@@ -1,10 +1,13 @@
 import Constants from "../../constants/Constants";
 import { Spot } from "../../model/Spot";
 
+
 @Reusable
 @Component
 export struct AttractionCard {
   @State item: Spot = new Spot()
+
+  //组件复用
   aboutToReuse(params: Record<string, object>): void {
     this.item = params.item as Spot;
   }

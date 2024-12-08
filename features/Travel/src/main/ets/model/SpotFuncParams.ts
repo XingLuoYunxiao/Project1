@@ -12,7 +12,7 @@ interface OrderBy {
 export interface SpotParams {
   type: OperationType;
   pageNum?: number;
-  filter?: Filter; // 可选属性，因为不是所有操作都需要过滤器
+  filter?: Filter[]; // 可选属性，因为不是所有操作都需要过滤器
   orderBy?: OrderBy; // 可选属性，因为不是所有操作都需要排序
   limit?: number; // 可选属性，用于限制返回的结果数量
   offset?: number; // 可选属性，用于分页时跳过的结果数量

@@ -29,8 +29,7 @@ export struct TravelStartPage {
       this.loadAllState = LoadingStatus.FAILED
     })
 
-    this.spotNetWork.getHotSpots().then((data) => {
-      this.spots = data
+    this.spotNetWork.getHotSpots().then(() => {
       this.swiperLoading = LoadingStatus.SUCCESS
     })
 

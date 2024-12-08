@@ -31,7 +31,7 @@ export class SpotNetFunc{
   nearbyLoadingStatus: LoadingStatus = LoadingStatus.OFF;
 
   //分页
-  private pageNum: number = 0;
+  pageNum: number = 1;
 
   //当前位置经纬度
   private currentUserLocation: Location = { latitude: 0, longitude: 0}
@@ -76,12 +76,13 @@ export class SpotNetFunc{
   loadSpotsData(): Promise<void> {
     this.allLoadingStatus = LoadingStatus.LOADING
     return new Promise(async (resolve, reject) => {
-      await this.spotModel.getSpotData(++this.pageNum).then( (data: Array<Spot>) => {
+      await this.spotModel.getSpotData(this.pageNum).then( (data: Array<Spot>) => {
+        this.pageNum += 1
         const result: Array<Spot> = [];
         data.forEach(spot => {
           result.push(spot);
+          this.spots.push(spot)
         })
-        this.spots = result;
         this.allSpotsDataSource.appendArrayData(result)
         this.allLoadingStatus = LoadingStatus.SUCCESS
         this.isInitSpots = true
@@ -144,6 +145,7 @@ export class SpotNetFunc{
 
 
   //搜索景点
+  //TODO 搜索需要直接从数据库完成
   search(value: string): void {
     // 判断是否已经存在
     this.searchLoadingStatus = LoadingStatus.LOADING
@@ -167,13 +169,26 @@ export class SpotNetFunc{
 
   }
 
-
-  public updateAttractionsList( currentCity: City, currentCategory: string[]) : Spot[] {
+  //TODO 分类选择有问题
+  public updateAttractionsList( currentCity: City, currentCategory: string[]) : LazyDataSource<Spot> {
     if( !this.isInitSpots){
       this.loadSpotsData()
     }
+
     let currentAttractions: Spot[] = [];
-    if( this.searchLoadingStatus === LoadingStatus.SUCCESS){
+
+    if(currentCity.cityName !== '所有' || (currentCategory[0] !== '全部景点' && currentCategory[0] !== '全部分类' && currentCategory[0] !== classificationList[0].category)){
+      this.spotModel.getSpotDataByCondition([currentCity.cityName, currentCategory[0]]).then((data)=>{
+        this.spots = data;
+        this.allSpotsDataSource.pushArrayData(data)
+        currentAttractions = data;
+      })
+    }else{
+      return this.allSpotsDataSource
+    }
+
+
+      if( this.searchLoadingStatus === LoadingStatus.SUCCESS){
       currentAttractions = this.searchResult;
       /*this.allSpotsDataSource.clear();
       this.allSpotsDataSource.pushArrayData(this.searchResult)*/
@@ -186,7 +201,7 @@ export class SpotNetFunc{
     if (currentCity.cityName !== '所有') {
       currentAttractions = this.spots
       currentAttractions = currentAttractions.filter(spot =>
-      spot.cityCode == currentCity.cityCode
+      (spot.cityCode == currentCity.cityCode) || spot.name?.includes(currentCity.cityName)
       );
     }
 
@@ -232,8 +247,9 @@ export class SpotNetFunc{
           break;
       }
     }
+    this.allSpotsDataSource.pushArrayData(currentAttractions)
 
-    return currentAttractions
+    return this.allSpotsDataSource
   }
 
   private calculateDistance(loc1: Location, loc2: Location): number {

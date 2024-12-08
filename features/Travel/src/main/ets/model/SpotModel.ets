@@ -51,6 +51,28 @@ export class SpotModel {
     })
   }
 
+  //获取特定条件的景点数据
+  public getSpotDataByCondition(condition: string[] ): Promise<Spot[]> {
+    // 初始化
+    return new Promise(async (resolve, reject) => {
+      try{
+        let params:SpotParams = {
+          type: 'query',
+          filter: [
+            condition[0] ? {cityName:`${condition[0]}`}: {cityName: '所有'},
+            condition[1] ? {category:`${condition[1]}`} : {category: '全部分类'}
+          ],
+        }
+        const res = await cloudFunction.call({ name: 'get-spot-data', data: params})
+        let data = res.result
+        resolve(JSON.parse(JSON.stringify(data)).data as Spot[])
+      }catch (e){
+        Logger.error(TAG, 'SpotModel getSpotDataByCondition failed', e);
+        reject(e)
+      }
+    })
+  }
+
   //获取火热景点数据
   public getHotSpotData(): Promise<Spot[]> {
     // 初始化

@@ -117,7 +117,6 @@ export class SearchSiteModel {
         try {
           let route = await navi.getWalkingRoutes(paramsWalkCycle);
           if (route && route.routes && route.routes.length > 0) {
-            //TODO 将routes中的几个路线查看一下
             routes.push(route.routes[0]);
           }
         } catch (error) {

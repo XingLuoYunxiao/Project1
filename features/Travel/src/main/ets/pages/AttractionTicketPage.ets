@@ -7,31 +7,39 @@ import { Spot } from '../model/Spot';
 import { SpotNetFunc } from '../service/SpotNetFunc';
 import { LoadingStatus } from 'utils/src/main/ets/common/CommonUtil';
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
+import { LazyDataSource } from 'utils';
+import { classificationList } from '../service/ClassficationData';
 
 //TODO 小bug，点太快进入该页面会获取不到数据
 @Component
 export default struct AttractionTicketPage {
   @Consume('appPathStack') appPathStack: NavPathStack
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance()
+  @Watch('updateAttractionsList')
   @State currentCity: City = { cityId: '0', cityName: '所有' };
   //四个选择
+  @Watch('updateAttractionsList')
   @State currentCategory :string[] = ['全部景点', '位置距离', '综合排序', '筛选'];
   //当前当前距离
   @State currentSubCategory: CategoryItem | null = null;
-  @State currentAttractions: Spot[] = [];
+  @State currentAttractions: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource;
   @State value: object = new Object()
+
+  @State isCategoryLoading: boolean = false
 
   async aboutToAppear(): Promise<void> {
     //let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
     let category = JSON.parse(JSON.stringify(this.value)).text as string
     if( category !== "")
       this.currentCategory[0] = category
-    this.spotNetWork.loadSpotsData()
-    this.currentAttractions = this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
+    this.currentAttractions =  this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
+
   }
 
   aboutToDisappear(): void {
-    this.currentAttractions = this.spotNetWork.spots
+    this.spotNetWork.allSpotsDataSource.clear();
+    this.currentAttractions.clear()
+    this.spotNetWork.pageNum = 0
     this.spotNetWork.searchLoadingStatus = LoadingStatus.OFF
   }
 
@@ -135,10 +143,32 @@ export default struct AttractionTicketPage {
     .backgroundColor(Color.White)
   }
 
-  updateAttractionsList() {
+  async updateAttractionsList() {
+    this.spotNetWork.allLoadingStatus = LoadingStatus.LOADING
     //遍历所有景点，将所有符合条件的景点插入到currentAttractions中,不符合则删除
-    this.currentAttractions = this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
+    if(this.currentCity.cityName !== '所有' || (this.currentCategory[0] !== '全部景点' && this.currentCategory[0] !== '全部分类'
+      && this.currentCategory[0] !== classificationList[0].category)){
+      this.isCategoryLoading = true
+      this.currentAttractions.clear()
+      this.currentAttractions = this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
+    }else{
+      await this.spotNetWork.loadSpotsData()
+      this.currentAttractions = this.spotNetWork.allSpotsDataSource
+    }
   }
+
+  @Builder itemFoot(){
+    Column(){
+      Text('-------到底了--------')
+        .fontSize(10)
+        .backgroundColor(Color.White)
+        .width('100%')
+        .textAlign(TextAlign.Center)
+        .height(30)
+        .margin({top:5})
+    }
+  }
+
 
 
   build() {
@@ -171,10 +201,29 @@ export default struct AttractionTicketPage {
         .width(Constants.FULL_WIDTH)
         .height(Constants.CATEGORY_HEIGHT)
 
+        WaterFlow({footer: this.itemFoot()}){
+          LazyForEach(this.currentAttractions, (item: Spot, index: number) => {
+            FlowItem() {
+              AttractionCard({ item: item })
+                .reuseId("attraction")
+            }
+            .onClick(() => {
+              buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item:item}))
+              //this.appPathStack.pushPathByName('AttractionDetailPage', item)
+            })
+            //触底加载数据
+            .onAppear(async () => {
+              if( this.spotNetWork.searchLoadingStatus !== LoadingStatus.LOADING && index + 5 == this.spotNetWork.allSpotsDataSource.totalCount()){
+                await this.updateAttractionsList()
+              }
+            })
+          }, (item: Spot) => item.name)
+        }
+        .scrollBar(BarState.On)
 
-
+/*
         List() {
-          ForEach(this.currentAttractions, (item: Spot) => {
+          LazyForEach(this.currentAttractions, (item: Spot, index: number) => {
             ListItem() {
                 AttractionCard({ item: item })
                   .reuseId("attraction")
@@ -183,8 +232,17 @@ export default struct AttractionTicketPage {
               buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item:item}))
               //this.appPathStack.pushPathByName('AttractionDetailPage', item)
             })
+            //触底加载数据
+            .onAppear(() => {
+              if( this.spotNetWork.searchLoadingStatus !== LoadingStatus.LOADING && index + 5 == this.spotNetWork.allSpotsDataSource.totalCount()){
+                this.spotNetWork.loadSpotsData().then( () => {
+                  this.currentAttractions = this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
+                })
+              }
+            })
           })
         }
+*/
 
         .width(Constants.FULL_WIDTH)
         .layoutWeight(1)
