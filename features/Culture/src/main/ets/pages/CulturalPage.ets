@@ -5,6 +5,7 @@ import { LogUtil } from 'utils/src/main/ets/puraUtils/LogUtil'
 import { builderImageMap, cacheImage, downloadImage } from "../common/util/getImage";
 import { PreferencesUtil } from "utils/src/main/ets/puraUtils/PreferencesUtil";
 import { CloudStorageConstants } from "../common/constants/cloudStorageConstants";
+import { BreakpointTypeEnum } from "utils";
 
 
 let TAG: string = "CulturalPage  "
@@ -14,7 +15,7 @@ let TAG: string = "CulturalPage  "
 export struct CulturalPage {
   @Consume('appPathStack') appPathStack: NavPathStack;
   @Consume('culturePathStack') culturePathStack: NavPathStack;
-
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
   aboutToAppear(): void {
     downloadImage(CloudStorageConstants.constantsMap)
 
@@ -22,6 +23,7 @@ export struct CulturalPage {
 
   build() {
     Navigation(this.culturePathStack) {
+
       Column({ space: 15 }) {
         Text('文化天地')
           .fontSize($r('app.float.title_text_size'))

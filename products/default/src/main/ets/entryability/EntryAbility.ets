@@ -70,7 +70,8 @@ export default class EntryAbility extends UIAbility {
 
 
     windowStage.loadContent('pages/LauncherPage', (err, data) => {
-      //设置软键盘为压缩模式
+
+      //设置软键盘为压缩模式,避让组件
       windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
 
       if (err.code) {
