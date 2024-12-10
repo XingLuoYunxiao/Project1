@@ -26,7 +26,7 @@ export async function cacheImage() {
   for (const item of CloudStorageConstants.constantsMap) {
     if (!ImgPaths.includes(item[1])) {
       download(CloudStorageConstants.dirPath + '/' + item[1])
-      console.log(TAG, '正在下载' + item[1])
+      console.log(TAG, 'cacheImage正在下载' + item[1])
     } else {
       console.log(TAG, item[1] + '已经存在')
     }
@@ -37,15 +37,22 @@ export async function downloadImage(map: Map<string, string>) {
   LogUtil.debug('进入downloadImage()函数')
   for (const item of map) {
     download(CloudStorageConstants.dirPath + '/' + item[1])
-    console.log(TAG, '正在下载' + item[1])
+    console.log(TAG, 'downloadImage正在下载' + item[1])
   }
 }
 
-export async function downloadImage2(resourceStr: string[]) {
-  LogUtil.debug('进入downloadImage2()函数')
-  for (const item of resourceStr) {
-    download(CloudStorageConstants.dirPath + '/' + item)
-    console.log(TAG, '正在下载' + item)
+export async function downloadImageList(Paths: string[]) {
+  LogUtil.debug('进入downloadImageList()函数')
+  for (const item of Paths) {
+    if (fs.accessSync(cacheDirPath + "/" + CloudStorageConstants.dirPath + '/' + item)) {
+      console.log(TAG, item + '已经存在')
+    } else {
+
+      download(CloudStorageConstants.dirPath + '/' + item)
+      console.log(TAG, 'downloadImage2正在下载' + item)
+    }
+
+
   }
 }
 

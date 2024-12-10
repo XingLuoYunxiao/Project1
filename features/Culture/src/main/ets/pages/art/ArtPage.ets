@@ -4,7 +4,7 @@ import { FileUtil } from "utils/src/main/ets/puraUtils/FileUtil";
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import { CommonConstants } from "../../common/constants/commonConstants";
 import { addExp } from "../../common/util/addExp";
-import { downloadImage, downloadImage2, getPath } from "../../common/util/getImage";
+import { downloadImage, downloadImageList, getPath } from "../../common/util/getImage";
 import { CloudStorageConstants } from "../../common/constants/cloudStorageConstants";
 import { ButtonWithWaterRipples } from "../../view/water";
 import { faceDetector } from "@kit.CoreVisionKit";
@@ -23,7 +23,7 @@ export struct ArtPage {
 
   async aboutToAppear() {
 
-    downloadImage2(CloudStorageConstants.imageFilenames)
+    downloadImageList(CloudStorageConstants.imageFilenames)
 
     ttf('STXINGKAFont', 'STXINGKA.TTF')
     this.animationData = await LottieController.getRawFileAnimationData(getContext(this), 'sroll.json')

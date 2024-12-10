@@ -16,6 +16,7 @@ export struct CulturalPage {
   @Consume('appPathStack') appPathStack: NavPathStack;
   @Consume('culturePathStack') culturePathStack: NavPathStack;
   @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
+
   aboutToAppear(): void {
     downloadImage(CloudStorageConstants.constantsMap)
 
@@ -28,11 +29,11 @@ export struct CulturalPage {
         Text('文化天地')
           .fontSize($r('app.float.title_text_size'))
 
-        // Text('测试页面')
-        //   .fontSize($r('app.float.large_text_size'))
-        //   .onClick(() => {
-        //     buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_TEST)
-        //   })
+        Text('测试页面')
+          .fontSize($r('app.float.large_text_size'))
+          .onClick(() => {
+            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_TEST)
+          })
 
         groupComponent({ groupName: "文学", groupData: literatureList })
         groupComponent({ groupName: "文化", groupData: traditionList })

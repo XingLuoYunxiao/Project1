@@ -1,5 +1,5 @@
 import { BuilderNameConstants, RouterModule } from "routermodule"
-import { downloadImage2, getPath } from "../../common/util/getImage"
+import { downloadImageList, getPath } from "../../common/util/getImage"
 import {
   bambooImageList,
   ceramicImageList,
@@ -14,13 +14,13 @@ import { FolkArt, FolkArtList } from "../../model/folkArt/FolkArtModel"
 @Component
 export struct FolkArtPage {
   aboutToAppear(): void {
-    downloadImage2(paperCuttingImageList)
-    downloadImage2(embroideryImageList)
-    downloadImage2(ceramicImageList)
-    downloadImage2(bambooImageList)
-    downloadImage2(clayFigurineImageList)
-    downloadImage2(ChineseShadowPuppetryImageList)
-    downloadImage2(DragonDanceAndLionDance)
+    downloadImageList(paperCuttingImageList)
+    downloadImageList(embroideryImageList)
+    downloadImageList(ceramicImageList)
+    downloadImageList(bambooImageList)
+    downloadImageList(clayFigurineImageList)
+    downloadImageList(ChineseShadowPuppetryImageList)
+    downloadImageList(DragonDanceAndLionDance)
   }
 
   build() {
