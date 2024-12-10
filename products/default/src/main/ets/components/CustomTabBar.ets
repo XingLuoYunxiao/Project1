@@ -19,7 +19,6 @@ import { TabBarData, TabBarType, TabsInfo } from '../model/TabBarModel';
 @Component
 export struct CustomTabBar {
   @Link currentIndex: TabBarType;
-  @StorageProp('isHideBar') isHideBar: boolean = false;
 
   onChange(index: TabBarType): void {
     this.currentIndex = index;
@@ -42,13 +41,12 @@ export struct CustomTabBar {
       width: { top: $r('app.float.tab_border_width') },
       color: $r('sys.color.ohos_id_color_text_field_sub_bg')
     })
-    .padding( { bottom: $r('app.float.md_padding_margin') })
+    .padding({ bottom: $r('app.float.md_padding_margin')})
     .clip(false)
     .height(AppConstants.TAB_HEIGHT)
     .width(AppConstants.FULL_PERCENT)
     .margin({bottom: $r('app.float.lg_padding_margin')})
     .backgroundColor($r('app.color.app_background_color'))
-    .visibility(this.isHideBar === false ? Visibility.Visible : Visibility.Hidden)
   }
 }
 

@@ -1,6 +1,6 @@
 {
   "module": {
-    "routerMap": "$profile:route_map",
+//    "routerMap": "$profile:route_map",
     "requestPermissions": [
       {
         "name": "ohos.permission.INTERNET"

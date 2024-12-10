@@ -80,7 +80,7 @@ struct SearchPage {
               .onClick(() => {
                 //跳转到搜索结果页面
                 this.SpotNetWork.search(this.searchText)
-                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE, new Object({text: ""}))
+                RouterModule.replacePath(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE, new Object({text: ""}))
                 //this.appPathStack.pushPathByName('AttractionTicketPage', "")
               })
           }
@@ -131,7 +131,7 @@ struct SearchPage {
                   .onClick( () => {
                     this.searchText = item
                     this.SpotNetWork.search(this.searchText);
-                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE, new Object({text: ""}))
+                    RouterModule.replacePath(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE, new Object({text: ""}))
                     //this.appPathStack.replacePathByName('AttractionTicketPage', "")
                   })
               })

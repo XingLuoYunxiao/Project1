@@ -1,6 +1,6 @@
 import "map/src/main/ets/pages/MapViewPage";
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
-import { LazyDataSource } from "utils";
+import { LazyDataSource, LoadingStatus } from "utils";
 import Constants from "../constants/Constants";
 import { otherItemList } from "../model/Attraction";
 import { Spot } from "../model/Spot";
@@ -40,9 +40,14 @@ export struct FamousPlacePage {
 
   async aboutToAppear(): Promise<void> {
     this.category = JSON.parse(JSON.stringify(this.value)).category as string
+    if( this.spotNetWork.allLoadingStatus !== LoadingStatus.SUCCESS){
+      this.spotNetWork.loadSpotsData()
+    }
+    this.spotDataSource = this.spotNetWork.allSpotsDataSource
     //this.category = this.appPathStack.getParamByName('FamousPlacePage')[0] as string
   }
 
+  //TODO 界面有重复景点
   build() {
     NavDestination(){
       Row({space:5}){
@@ -59,6 +64,7 @@ export struct FamousPlacePage {
             buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_SEARCHPAGE)
             //this.appPathStack.pushPathByName('SearchPage', true)
           })
+          .enableKeyboardOnFocus(false)
         Badge({count: 1, position: BadgePosition.RightTop, style:{fontSize:14, badgeColor: Color.Red}}){
           Image($r('app.media.ic_public_email'))
             .width(24)
@@ -68,45 +74,47 @@ export struct FamousPlacePage {
       .width('100%')
       .height(30)
 
-      Tabs(){
-        TabContent(){
-          Column(){
-            WaterFlow({footer: this.itemFoot(), scroller: this.scroller}){
-              LazyForEach( this.spotDataSource, (item: Spot, index) => {
-                FlowItem(){
-                  Column(){
-                    this.FamousItem(item, index)
-                    Divider()
-                      .color(Color.Gray)
-                      .height(1)
-                      .width('100%')
-                  }
+      Column(){
+        Row(){
+          Image($r('app.media.AI_icon'))
+            .width(24)
+            .height(24)
+            .fillColor('#ffb68ce7')
+          Text('智能导游')
+            .fontSize(Constants.FONT_HEADING)
+        }
+        .margin(10)
+        .justifyContent(FlexAlign.Center)
+        .width('95%')
+
+        Column(){
+          WaterFlow({footer: this.itemFoot(), scroller: this.scroller}){
+            LazyForEach( this.spotDataSource, (item: Spot, index) => {
+              FlowItem(){
+                Column(){
+                  this.FamousItem(item, index)
+                  Divider()
+                    .color(Color.Gray)
+                    .height(1)
+                    .width('100%')
                 }
-                /*// 用来避免有加载效果造成的卡顿
-                .onAppear(() => {
-                  // 即将触底时提前增加数据
-                  if (index + 5 == this.spotDataSource.totalCount()) {
-                    for (let i = 0; i < 5; i++) {
-                      this.spotDataSource.addData(this.spotDataSource.totalCount(), new Spot())
-                    }
-                    console.log('waterFlow ' + '即将触底了')
-                  }
-                })*/
-              })
-            }
-            .scrollBar(BarState.Off)
-            .width('100%')
-          }
-          .width('95%')
-          .height('100%')
-        }.tabBar('推荐')
-        /*TabContent(){
-
-        }.tabBar('地图')
-        TabContent(){
-
-        }.tabBar('自由行')*/
-
+              }
+              // 用来避免有加载效果造成的卡顿
+              /*.onAppear(() => {
+                if( this.spotNetWork.searchLoadingStatus !== LoadingStatus.LOADING && index + 5 == this.spotNetWork.allSpotsDataSource.totalCount()){
+                  this.spotNetWork.loadSpotsData()
+                }
+              })*/
+            })
+          }.onReachEnd(async () => {
+            await this.spotNetWork.loadSpotsData()
+          })
+          .scrollBar(BarState.Off)
+          .width('100%')
+        }
+        .width('95%')
+        .height('100%')
+        .borderRadius(Constants.BORDER_RADIUS_MD)
       }
     }
     .backgroundColor($r('app.color.app_background_color'))

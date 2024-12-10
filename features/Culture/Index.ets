@@ -1,5 +1,8 @@
 import { BuilderNameConstants } from 'routermodule';
 import { LogUtil } from 'utils/src/main/ets/puraUtils/LogUtil';
+export {EXP} from '../Culture/src/main/ets/model/EXP'
+export { FlyingFlowerOrderPage } from './src/main/ets/pages/game/FlyingFlowerOrderPage'
+
 
 export { CulturalHeritageStartPage } from '../Culture/src/main/ets/pages/CulturalHeritageStartPage'
 
@@ -73,3 +76,4 @@ export function harInit(builderName: string): void {
       break;
   }
 }
+

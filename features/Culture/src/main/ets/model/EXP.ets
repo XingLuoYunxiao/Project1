@@ -1,4 +1,4 @@
-export class EXP {
+class EXP {
   key: string = ''
   value: number = 0
 
@@ -7,3 +7,5 @@ export class EXP {
     this.value = value
   }
 }
+
+export {EXP}

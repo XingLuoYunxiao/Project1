@@ -1,1153 +1,1152 @@
 {
-	"schemaVersion": 99,
-	"permissions": [
+	"schemaVersion":99,
+	"permissions":[
 		{
-			"permissions": [
+			"permissions":[
 				{
-					"role": "World",
-					"rights": [
+					"role":"World",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Authenticated",
-					"rights": [
+					"role":"Authenticated",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Creator",
-					"rights": [
+					"role":"Creator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Administrator",
-					"rights": [
+					"role":"Administrator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				}
 			],
-			"objectTypeName": "BookInfo"
+			"objectTypeName":"BookInfo"
 		},
 		{
-			"permissions": [
+			"permissions":[
 				{
-					"role": "World",
-					"rights": [
+					"role":"World",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Authenticated",
-					"rights": [
+					"role":"Authenticated",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Creator",
-					"rights": [
+					"role":"Creator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Administrator",
-					"rights": [
+					"role":"Administrator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				}
 			],
-			"objectTypeName": "myOrder"
+			"objectTypeName":"myOrder"
 		},
 		{
-			"permissions": [
+			"permissions":[
 				{
-					"role": "World",
-					"rights": [
+					"role":"World",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Authenticated",
-					"rights": [
+					"role":"Authenticated",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Creator",
-					"rights": [
+					"role":"Creator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Administrator",
-					"rights": [
+					"role":"Administrator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				}
 			],
-			"objectTypeName": "Sentence"
+			"objectTypeName":"Sentence"
 		},
 		{
-			"permissions": [
+			"permissions":[
 				{
-					"role": "World",
-					"rights": [
+					"role":"World",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Authenticated",
-					"rights": [
+					"role":"Authenticated",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Creator",
-					"rights": [
+					"role":"Creator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Administrator",
-					"rights": [
+					"role":"Administrator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				}
 			],
-			"objectTypeName": "mySpot"
+			"objectTypeName":"mySpot"
 		},
 		{
-			"permissions": [
+			"permissions":[
 				{
-					"role": "World",
-					"rights": [
+					"role":"World",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Authenticated",
-					"rights": [
+					"role":"Authenticated",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Creator",
-					"rights": [
+					"role":"Creator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Administrator",
-					"rights": [
+					"role":"Administrator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				}
 			],
-			"objectTypeName": "Idiom"
+			"objectTypeName":"Idiom"
 		},
 		{
-			"permissions": [
+			"permissions":[
 				{
-					"role": "World",
-					"rights": [
+					"role":"World",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Authenticated",
-					"rights": [
+					"role":"Authenticated",
+					"rights":[
 						"Read",
 						"Upsert"
 					]
 				},
 				{
-					"role": "Creator",
-					"rights": [
+					"role":"Creator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Administrator",
-					"rights": [
+					"role":"Administrator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				}
 			],
-			"objectTypeName": "BrowsingHistory"
+			"objectTypeName":"BrowsingHistory"
 		},
 		{
-			"permissions": [
+			"permissions":[
 				{
-					"role": "World",
-					"rights": [
+					"role":"World",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Authenticated",
-					"rights": [
+					"role":"Authenticated",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Creator",
-					"rights": [
+					"role":"Creator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Administrator",
-					"rights": [
+					"role":"Administrator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				}
 			],
-			"objectTypeName": "Poem"
+			"objectTypeName":"Poem"
 		},
 		{
-			"permissions": [
+			"permissions":[
 				{
-					"role": "World",
-					"rights": [
+					"role":"World",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Authenticated",
-					"rights": [
+					"role":"Authenticated",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Creator",
-					"rights": [
+					"role":"Creator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Administrator",
-					"rights": [
+					"role":"Administrator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				}
 			],
-			"objectTypeName": "Poet"
+			"objectTypeName":"Poet"
 		},
 		{
-			"permissions": [
+			"permissions":[
 				{
-					"role": "World",
-					"rights": [
+					"role":"World",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Authenticated",
-					"rights": [
+					"role":"Authenticated",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Creator",
-					"rights": [
+					"role":"Creator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Administrator",
-					"rights": [
+					"role":"Administrator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				}
 			],
-			"objectTypeName": "Xiehouyu"
+			"objectTypeName":"Xiehouyu"
 		},
 		{
-			"permissions": [
+			"permissions":[
 				{
-					"role": "World",
-					"rights": [
+					"role":"World",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Authenticated",
-					"rights": [
+					"role":"Authenticated",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Creator",
-					"rights": [
+					"role":"Creator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Administrator",
-					"rights": [
+					"role":"Administrator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				}
 			],
-			"objectTypeName": "Collection"
+			"objectTypeName":"Collection"
 		},
 		{
-			"permissions": [
+			"permissions":[
 				{
-					"role": "World",
-					"rights": [
+					"role":"World",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Authenticated",
-					"rights": [
+					"role":"Authenticated",
+					"rights":[
 						"Read"
 					]
 				},
 				{
-					"role": "Creator",
-					"rights": [
+					"role":"Creator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				},
 				{
-					"role": "Administrator",
-					"rights": [
+					"role":"Administrator",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
 					]
 				}
 			],
-			"objectTypeName": "Writer"
+			"objectTypeName":"Writer"
 		}
 	],
-	"objectTypes": [
+	"objectTypes":[
 		{
-			"indexes": [],
-			"objectTypeName": "BrowsingHistory",
-			"fields": [
+			"indexes":[],
+			"objectTypeName":"BrowsingHistory",
+			"fields":[
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "id",
-					"notNull": true,
-					"isSensitive": false,
-					"belongPrimaryKey": true,
-					"fieldType": "IntAutoIncrement"
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"IntAutoIncrement"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "viewTime",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Date"
+					"isNeedEncrypt":false,
+					"fieldName":"viewTime",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Date"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "viewCount",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Integer"
+					"isNeedEncrypt":false,
+					"fieldName":"viewCount",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Integer"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "type",
-					"notNull": false,
-					"isSensitive": false,
-					"defaultValue": "spot",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"type",
+					"notNull":false,
+					"isSensitive":false,
+					"defaultValue":"spot",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "userId",
-					"notNull": false,
-					"isSensitive": false,
-					"defaultValue": "1544893736041851904",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"userId",
+					"notNull":false,
+					"isSensitive":false,
+					"defaultValue":"1544893736041851904",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "poemId",
-					"notNull": false,
-					"isSensitive": false,
-					"defaultValue": "1",
-					"belongPrimaryKey": false,
-					"fieldType": "Integer"
+					"isNeedEncrypt":false,
+					"fieldName":"poemId",
+					"notNull":false,
+					"isSensitive":false,
+					"defaultValue":"1",
+					"belongPrimaryKey":false,
+					"fieldType":"Integer"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "spotId",
-					"notNull": false,
-					"isSensitive": false,
-					"defaultValue": "4",
-					"belongPrimaryKey": false,
-					"fieldType": "Integer"
+					"isNeedEncrypt":false,
+					"fieldName":"spotId",
+					"notNull":false,
+					"isSensitive":false,
+					"defaultValue":"4",
+					"belongPrimaryKey":false,
+					"fieldType":"Integer"
 				}
 			]
 		},
 		{
-			"indexes": [
+			"indexes":[
 				{
-					"indexName": "index",
-					"indexList": [
+					"indexName":"index",
+					"indexList":[
 						{
-							"fieldName": "id",
-							"sortType": "ASC"
+							"fieldName":"id",
+							"sortType":"ASC"
 						}
 					]
 				}
 			],
-			"objectTypeName": "Poem",
-			"fields": [
+			"objectTypeName":"Poem",
+			"fields":[
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "id",
-					"notNull": true,
-					"isSensitive": false,
-					"belongPrimaryKey": true,
-					"fieldType": "Integer"
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"Integer"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "title",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"title",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "dynasty",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"dynasty",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "writer",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"writer",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "content",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "",
-					"belongPrimaryKey": false,
-					"fieldType": "Text"
+					"isNeedEncrypt":false,
+					"fieldName":"content",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"",
+					"belongPrimaryKey":false,
+					"fieldType":"Text"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "type",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"type",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "remark",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Text"
+					"isNeedEncrypt":false,
+					"fieldName":"remark",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Text"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "shangxi",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Text"
+					"isNeedEncrypt":false,
+					"fieldName":"shangxi",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Text"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "translation",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Text"
+					"isNeedEncrypt":false,
+					"fieldName":"translation",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Text"
 				}
 			]
 		},
 		{
-			"indexes": [
+			"indexes":[
 				{
-					"indexName": "order_id_idx",
-					"indexList": [
+					"indexName":"order_id_idx",
+					"indexList":[
 						{
-							"fieldName": "order_id",
-							"sortType": "DESC"
+							"fieldName":"order_id",
+							"sortType":"DESC"
 						}
 					]
 				}
 			],
-			"objectTypeName": "myOrder",
-			"fields": [
+			"objectTypeName":"myOrder",
+			"fields":[
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "order_id",
-					"notNull": true,
-					"isSensitive": false,
-					"belongPrimaryKey": true,
-					"fieldType": "IntAutoIncrement"
+					"isNeedEncrypt":false,
+					"fieldName":"order_id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"IntAutoIncrement"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "spot_id",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "0",
-					"belongPrimaryKey": false,
-					"fieldType": "Integer"
+					"isNeedEncrypt":false,
+					"fieldName":"spot_id",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"0",
+					"belongPrimaryKey":false,
+					"fieldType":"Integer"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "order_time",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Date"
+					"isNeedEncrypt":false,
+					"fieldName":"order_time",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Date"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "order_status",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "1",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"order_status",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"1",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "total_amount",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "1.0",
-					"belongPrimaryKey": false,
-					"fieldType": "Double"
+					"isNeedEncrypt":false,
+					"fieldName":"total_amount",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"1.0",
+					"belongPrimaryKey":false,
+					"fieldType":"Double"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "quantity",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Byte"
+					"isNeedEncrypt":false,
+					"fieldName":"quantity",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Byte"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "order_type",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Byte"
+					"isNeedEncrypt":false,
+					"fieldName":"order_type",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Byte"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "user_id",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "0",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"user_id",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"0",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				}
 			]
 		},
 		{
-			"indexes": [
+			"indexes":[
 				{
-					"indexName": "bookName",
-					"indexList": [
+					"indexName":"bookName",
+					"indexList":[
 						{
-							"fieldName": "bookName",
-							"sortType": "ASC"
+							"fieldName":"bookName",
+							"sortType":"ASC"
 						}
 					]
 				}
 			],
-			"objectTypeName": "BookInfo",
-			"fields": [
+			"objectTypeName":"BookInfo",
+			"fields":[
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "id",
-					"notNull": true,
-					"isSensitive": false,
-					"belongPrimaryKey": true,
-					"fieldType": "Integer"
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"Integer"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "bookName",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"bookName",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "author",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"author",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "price",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Double"
+					"isNeedEncrypt":false,
+					"fieldName":"price",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Double"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "publisher",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"publisher",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "publishTime",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Date"
+					"isNeedEncrypt":false,
+					"fieldName":"publishTime",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Date"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "shadowFlag",
-					"notNull": false,
-					"isSensitive": false,
-					"defaultValue": "true",
-					"belongPrimaryKey": false,
-					"fieldType": "Boolean"
+					"isNeedEncrypt":false,
+					"fieldName":"shadowFlag",
+					"notNull":false,
+					"isSensitive":false,
+					"defaultValue":"true",
+					"belongPrimaryKey":false,
+					"fieldType":"Boolean"
 				}
 			]
 		},
 		{
-			"indexes": [
+			"indexes":[
 				{
-					"indexName": "index",
-					"indexList": [
+					"indexName":"index",
+					"indexList":[
 						{
-							"fieldName": "id",
-							"sortType": "ASC"
+							"fieldName":"id",
+							"sortType":"ASC"
 						}
 					]
 				}
 			],
-			"objectTypeName": "Poet",
-			"fields": [
+			"objectTypeName":"Poet",
+			"fields":[
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "id",
-					"notNull": true,
-					"isSensitive": false,
-					"belongPrimaryKey": true,
-					"fieldType": "Integer"
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"Integer"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "title",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"title",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "dynasty",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"dynasty",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "writer",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"writer",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "content",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "",
-					"belongPrimaryKey": false,
-					"fieldType": "Text"
+					"isNeedEncrypt":false,
+					"fieldName":"content",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"",
+					"belongPrimaryKey":false,
+					"fieldType":"Text"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "type",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"type",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				}
 			]
 		},
 		{
-			"indexes": [],
-			"objectTypeName": "Collection",
-			"fields": [
+			"indexes":[],
+			"objectTypeName":"Collection",
+			"fields":[
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "id",
-					"notNull": true,
-					"isSensitive": false,
-					"belongPrimaryKey": true,
-					"fieldType": "IntAutoIncrement"
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"IntAutoIncrement"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "spotId",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "0",
-					"belongPrimaryKey": false,
-					"fieldType": "Integer"
+					"isNeedEncrypt":false,
+					"fieldName":"spotId",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"0",
+					"belongPrimaryKey":false,
+					"fieldType":"Integer"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "userId",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "1",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"userId",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"1",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "type",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "spot",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"type",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"spot",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				}
 			]
 		},
 		{
-			"indexes": [
+			"indexes":[
 				{
-					"indexName": "id",
-					"indexList": [
+					"indexName":"id",
+					"indexList":[
 						{
-							"fieldName": "id",
-							"sortType": "ASC"
+							"fieldName":"id",
+							"sortType":"ASC"
 						}
 					]
 				}
 			],
-			"objectTypeName": "Xiehouyu",
-			"fields": [
+			"objectTypeName":"Xiehouyu",
+			"fields":[
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "id",
-					"notNull": true,
-					"isSensitive": false,
-					"belongPrimaryKey": true,
-					"fieldType": "Integer"
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"Integer"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "riddle",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "无",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"riddle",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"无",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "answer",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": " 无",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"answer",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":" 无",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				}
 			]
 		},
 		{
-			"indexes": [
+			"indexes":[
 				{
-					"indexName": "index",
-					"indexList": [
+					"indexName":"index",
+					"indexList":[
 						{
-							"fieldName": "id",
-							"sortType": "ASC"
+							"fieldName":"id",
+							"sortType":"ASC"
 						}
 					]
 				}
 			],
-			"objectTypeName": "Sentence",
-			"fields": [
+			"objectTypeName":"Sentence",
+			"fields":[
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "id",
-					"notNull": true,
-					"isSensitive": false,
-					"belongPrimaryKey": true,
-					"fieldType": "Integer"
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"Integer"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "from",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"from",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "text",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "",
-					"belongPrimaryKey": false,
-					"fieldType": "Text"
+					"isNeedEncrypt":false,
+					"fieldName":"text",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"",
+					"belongPrimaryKey":false,
+					"fieldType":"Text"
 				}
 			]
 		},
 		{
-			"indexes": [
+			"indexes":[
 				{
-					"indexName": "idx_spot_category",
-					"indexList": [
+					"indexName":"idx_spot_category",
+					"indexList":[
 						{
-							"fieldName": "category",
-							"sortType": "ASC"
+							"fieldName":"category",
+							"sortType":"ASC"
 						},
 						{
-							"fieldName": "rating",
-							"sortType": "ASC"
+							"fieldName":"rating",
+							"sortType":"ASC"
 						}
 					]
 				},
 				{
-					"indexName": "idx_spot_location",
-					"indexList": [
+					"indexName":"idx_spot_location",
+					"indexList":[
 						{
-							"fieldName": "cityId",
-							"sortType": "ASC"
+							"fieldName":"cityId",
+							"sortType":"ASC"
 						},
 						{
-							"fieldName": "areaName",
-							"sortType": "ASC"
+							"fieldName":"areaName",
+							"sortType":"ASC"
 						}
 					]
 				}
 			],
-			"objectTypeName": "mySpot",
-			"fields": [
+			"objectTypeName":"mySpot",
+			"fields":[
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "id",
-					"notNull": true,
-					"isSensitive": false,
-					"belongPrimaryKey": true,
-					"fieldType": "IntAutoIncrement"
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"IntAutoIncrement"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "name",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "null",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"name",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"null",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "summary",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Text"
+					"isNeedEncrypt":false,
+					"fieldName":"summary",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Text"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "category",
-					"notNull": true,
-					"isSensitive": false,
-					"defaultValue": "所有分类",
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"category",
+					"notNull":true,
+					"isSensitive":false,
+					"defaultValue":"所有分类",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "rating",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Float"
+					"isNeedEncrypt":false,
+					"fieldName":"rating",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Float"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "ticketPrice",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Float"
+					"isNeedEncrypt":false,
+					"fieldName":"ticketPrice",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Float"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "openingHours",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"openingHours",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "imageUrl",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"imageUrl",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "latitude",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Double"
+					"isNeedEncrypt":false,
+					"fieldName":"latitude",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Double"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "longitude",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Double"
+					"isNeedEncrypt":false,
+					"fieldName":"longitude",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Double"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "cityCode",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"cityCode",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "cityId",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"cityId",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "cityName",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"cityName",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "areaName",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"areaName",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "address",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"address",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "proId",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Long"
+					"isNeedEncrypt":false,
+					"fieldName":"proId",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Long"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "proName",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"proName",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				}
 			]
 		},
 		{
-			"indexes": [
+			"indexes":[
 				{
-					"indexName": "index",
-					"indexList": [
+					"indexName":"index",
+					"indexList":[
 						{
-							"fieldName": "id",
-							"sortType": "ASC"
+							"fieldName":"id",
+							"sortType":"ASC"
 						}
 					]
 				}
 			],
-			"objectTypeName": "Writer",
-			"fields": [
+			"objectTypeName":"Writer",
+			"fields":[
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "id",
-					"notNull": true,
-					"isSensitive": false,
-					"belongPrimaryKey": true,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "name",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"name",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "simpleIntro",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Text"
+					"isNeedEncrypt":false,
+					"fieldName":"simpleIntro",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Text"
 				}
 			]
 		},
 		{
-			"indexes": [
+			"indexes":[
 				{
-					"indexName": "id",
-					"indexList": [
+					"indexName":"id",
+					"indexList":[
 						{
-							"fieldName": "id",
-							"sortType": "ASC"
+							"fieldName":"id",
+							"sortType":"ASC"
 						}
 					]
 				}
 			],
-			"objectTypeName": "Idiom",
-			"fields": [
+			"objectTypeName":"Idiom",
+			"fields":[
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "id",
-					"notNull": true,
-					"isSensitive": false,
-					"belongPrimaryKey": true,
-					"fieldType": "Integer"
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"Integer"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "word",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"word",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "abbr",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "String"
+					"isNeedEncrypt":false,
+					"fieldName":"abbr",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				},
 				{
-					"isNeedEncrypt": false,
-					"fieldName": "data",
-					"notNull": false,
-					"isSensitive": false,
-					"belongPrimaryKey": false,
-					"fieldType": "Text"
+					"isNeedEncrypt":false,
+					"fieldName":"data",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Text"
 				}
 			]
 		}
 	]
 }
-
