@@ -1,21 +1,33 @@
 import Constants from "../../constants/Constants";
 import { Spot } from "../../model/Spot";
+import { CloudStorageService } from "../../service/CloudStorageService";
 
-
-@Reusable
+//@Reusable
 @Component
 export struct AttractionCard {
   @State item: Spot = new Spot()
+  @State cloudService: CloudStorageService = CloudStorageService.getInstance()
+  @State url: string | undefined = undefined
+  @State isLoading: boolean = false
+
+  aboutToAppear(){
+    if( this.item && this.item.imageUrl)
+      this.cloudService.getTravelSpotURL(this.item.imageUrl).then(url => {
+        this.url = url
+        this.isLoading = true
+      })
+  }
 
   //组件复用
-  aboutToReuse(params: Record<string, object>): void {
+  /*aboutToReuse(params: Record<string, object>): void {
     this.item = params.item as Spot;
-  }
+
+  }*/
 
   build() {
     if( this.item !== undefined){
       Row() {
-        Image($r(`${this.item.imageUrl}`))
+        Image(this.url == undefined ? $r(`${this.item.imageUrl}`) : this.url)
           .width(160)
           .height(200)
           .borderRadius(Constants.BORDER_RADIUS)

@@ -1,5 +1,5 @@
 {
-	"schemaVersion":99,
+	"schemaVersion":100,
 	"permissions":[
 		{
 			"permissions":[
@@ -316,6 +316,41 @@
 				{
 					"role":"World",
 					"rights":[
+						"Read"
+					]
+				},
+				{
+					"role":"Authenticated",
+					"rights":[
+						"Read",
+						"Upsert",
+						"Delete"
+					]
+				},
+				{
+					"role":"Creator",
+					"rights":[
+						"Read",
+						"Upsert",
+						"Delete"
+					]
+				},
+				{
+					"role":"Administrator",
+					"rights":[
+						"Read",
+						"Upsert",
+						"Delete"
+					]
+				}
+			],
+			"objectTypeName":"FriendMoment"
+		},
+		{
+			"permissions":[
+				{
+					"role":"World",
+					"rights":[
 						"Read",
 						"Upsert",
 						"Delete"
@@ -446,6 +481,69 @@
 					"defaultValue":"4",
 					"belongPrimaryKey":false,
 					"fieldType":"Integer"
+				}
+			]
+		},
+		{
+			"indexes":[],
+			"objectTypeName":"FriendMoment",
+			"fields":[
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"id",
+					"notNull":true,
+					"isSensitive":false,
+					"belongPrimaryKey":true,
+					"fieldType":"IntAutoIncrement"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"userId",
+					"notNull":false,
+					"isSensitive":false,
+					"defaultValue":"1544893736041851904",
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"text",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"image",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"video",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"good",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"Integer"
+				},
+				{
+					"isNeedEncrypt":false,
+					"fieldName":"location",
+					"notNull":false,
+					"isSensitive":false,
+					"belongPrimaryKey":false,
+					"fieldType":"String"
 				}
 			]
 		},

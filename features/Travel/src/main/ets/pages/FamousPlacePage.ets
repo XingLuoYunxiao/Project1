@@ -5,7 +5,7 @@ import Constants from "../constants/Constants";
 import { otherItemList } from "../model/Attraction";
 import { Spot } from "../model/Spot";
 import { SpotNetFunc } from "../service/SpotNetFunc";
-import { router } from "@kit.ArkUI";
+import { CloudStorageService } from "../service/CloudStorageService";
 
 //评分数组，最高10分
 const scoreList: number[] = [9.7, 10.0, 8.8, 9.5, 9.2, 9.9, 9.0];
@@ -17,6 +17,116 @@ export interface  LoadParams{
 }
 
 @Component
+export struct FamousItem {
+  @Prop spot: Spot
+  @Prop index:number
+  @State cloudService: CloudStorageService = CloudStorageService.getInstance()
+  @State url: string | undefined = undefined
+  @State isLoading: boolean = false
+
+  aboutToAppear(){
+    if( this.spot && this.spot.imageUrl)
+      this.cloudService.getTravelSpotURL(this.spot.imageUrl).then(url => {
+        this.url = url
+        this.isLoading = true
+      })
+  }
+
+
+  build() {
+    Row(){
+      Column(){
+        Image(this.url == undefined ? $r(`${this.spot.imageUrl}`) : this.url)
+          .width('100%')
+          .borderRadius(10)
+          .height(210)
+      }
+      .width('40%')
+      .padding(8)
+      .alignItems(HorizontalAlign.Center)
+
+      Column(){
+        Text(this.spot.name)
+          .fontSize(20)
+          .padding({top:5, bottom:10})
+          .fontColor(Color.Black)
+          .fontWeight(500)
+        Text(){
+          Span(scoreList[this.index%7].toFixed(1) + '分')
+            .fontSize(16)
+            .fontColor(Color.White)
+        }
+        .backgroundColor('#ff52bdd7')
+        .fontSize(14)
+        .padding(5)
+        .borderRadius(10)
+        .margin({bottom:8})
+        Text(this.spot.summary)
+          .fontSize(14)
+          .fontColor(Color.Gray)
+          .textOverflow({overflow: TextOverflow.Ellipsis})
+          .maxLines(3)
+
+        Row(){
+          Column({space:8}) {
+            Row(){
+              Image($r('app.media.hotel_icon'))
+                .width(16)
+                .height(16)
+              Text(`【${otherItemList[this.index%7].hotel}】`)
+                .fontSize(14)
+                .fontColor(Color.Gray)
+            }
+            Row(){
+              Image($r('app.media.guide_icon'))
+                .width(16)
+                .height(16)
+              Text(`【${otherItemList[this.index%7].guide}】`)
+                .fontSize(14)
+                .fontColor(Color.Gray)
+            }
+            Text(`${otherItemList[this.index%7].people}人出行`)
+              .fontSize(14)
+              .fontColor(Color.Gray)
+          }
+          .alignItems(HorizontalAlign.Start)
+          Column(){
+            Button('AI导游')
+              .type(ButtonType.Capsule)
+              .fontSize(16)
+              .backgroundColor(Color.Orange)
+              .fontColor(Color.White)
+              .onClick( () => {
+                let params: LoadParams = {
+                  param1: "SpotDetailPage", // 第一个参数
+                  param2: this.spot  // 第二个参数
+                };
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_LOADINGANIMATION, new Object({params:params}));
+                //this.appPathStack.pushPathByName('LoadingAnimation', params)
+              })
+          }
+          .alignItems(HorizontalAlign.End)
+          .justifyContent(FlexAlign.End)
+          .height(80)
+          .layoutWeight(1)
+
+        }
+        .margin({top:8})
+      }
+      .justifyContent(FlexAlign.Start)
+      .alignItems(HorizontalAlign.Start)
+      .height(230)
+      .padding(10)
+      .layoutWeight(1)
+    }
+    .backgroundColor(Color.White)
+    .height(250)
+    .width('100%')
+    .padding(10)
+  }
+}
+
+@Component
 export struct FamousPlacePage {
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
@@ -24,6 +134,7 @@ export struct FamousPlacePage {
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance();
   @State category: string = "";
   @State spotDataSource: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource
+  @State cloudService: CloudStorageService = CloudStorageService.getInstance()
   scroller: Scroller = new Scroller()
 
   @Builder itemFoot(){
@@ -47,7 +158,7 @@ export struct FamousPlacePage {
     //this.category = this.appPathStack.getParamByName('FamousPlacePage')[0] as string
   }
 
-  //TODO 界面有重复景点
+
   build() {
     NavDestination(){
       Row({space:5}){
@@ -92,7 +203,7 @@ export struct FamousPlacePage {
             LazyForEach( this.spotDataSource, (item: Spot, index) => {
               FlowItem(){
                 Column(){
-                  this.FamousItem(item, index)
+                  FamousItem({spot: item, index: index})
                   Divider()
                     .color(Color.Gray)
                     .height(1)
@@ -122,100 +233,8 @@ export struct FamousPlacePage {
     .margin({top:Constants.HEADER_HEIGHT_PAGE})
   }
 
-  @Builder
-  FamousItem(spot: Spot, index:number){
-    Row(){
-      Column(){
-        Image($r(spot.imageUrl))
-          .width('100%')
-          .borderRadius(10)
-          .height(210)
-      }
-      .width('40%')
-      .padding(8)
-      .alignItems(HorizontalAlign.Center)
-
-      Column(){
-        Text(spot.name)
-          .fontSize(20)
-          .padding({top:5, bottom:10})
-          .fontColor(Color.Black)
-          .fontWeight(500)
-        Text(){
-          Span(scoreList[index%7].toFixed(1) + '分')
-          .fontSize(16)
-          .fontColor(Color.White)
-          }
-          .backgroundColor('#ff52bdd7')
-          .fontSize(14)
-          .padding(5)
-          .borderRadius(10)
-          .margin({bottom:8})
-        Text(spot.summary)
-          .fontSize(14)
-          .fontColor(Color.Gray)
-          .textOverflow({overflow: TextOverflow.Ellipsis})
-          .maxLines(3)
-
-        Row(){
-          Column({space:8}) {
-            Row(){
-              Image($r('app.media.hotel_icon'))
-                .width(16)
-                .height(16)
-              Text(`【${otherItemList[index%7].hotel}】`)
-                .fontSize(14)
-                .fontColor(Color.Gray)
-            }
-            Row(){
-              Image($r('app.media.guide_icon'))
-                .width(16)
-                .height(16)
-              Text(`【${otherItemList[index%7].guide}】`)
-                .fontSize(14)
-                .fontColor(Color.Gray)
-            }
-            Text(`${otherItemList[index%7].people}人出行`)
-              .fontSize(14)
-              .fontColor(Color.Gray)
-          }
-          .alignItems(HorizontalAlign.Start)
-          Column(){
-            Button('AI导游')
-              .type(ButtonType.Capsule)
-              .fontSize(16)
-              .backgroundColor(Color.Orange)
-              .fontColor(Color.White)
-              .onClick( () => {
-                let params: LoadParams = {
-                  param1: "SpotDetailPage", // 第一个参数
-                  param2: spot  // 第二个参数
-                };
-                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_LOADINGANIMATION, new Object({params:params}));
-                //this.appPathStack.pushPathByName('LoadingAnimation', params)
-              })
-          }
-          .alignItems(HorizontalAlign.End)
-          .justifyContent(FlexAlign.End)
-          .height(80)
-          .layoutWeight(1)
-
-        }
-        .margin({top:8})
-      }
-      .justifyContent(FlexAlign.Start)
-      .alignItems(HorizontalAlign.Start)
-      .height(230)
-      .padding(10)
-      .layoutWeight(1)
-    }
-    .backgroundColor(Color.White)
-    .height(250)
-    .width('100%')
-    .padding(10)
-  }
-
 }
+
 
 @Builder
 export function FamousPlacePageBuilder(value: object){

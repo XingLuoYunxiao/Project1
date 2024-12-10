@@ -10,6 +10,8 @@ import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 import {abilityAccessCtrl,AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
 import { calendarManager } from '@kit.CalendarKit';
 import { window } from '@kit.ArkUI';
+import { KeyboardAvoidMode } from '@kit.ArkUI';
+
 const TAG: string = 'EntryAbility';
 const domain = 0x0011; //定位模块
 
@@ -62,17 +64,22 @@ export default class EntryAbility extends UIAbility {
       PreferencesUtil.putSync("EXP", JSON.stringify(exp))
     }
 
-    
+
     // Main window is created, set main page for this ability
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onWindowStageCreate');
     requestFullScreen(windowStage, this.context);
 
 
     windowStage.loadContent('pages/LauncherPage', (err, data) => {
+
+      //设置软键盘为压缩模式,避让组件
+      windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
+
       if (err.code) {
         hilog.error(0x0000, 'testTag', 'Failed to load the content. Cause: %{public}s', JSON.stringify(err) ?? '');
         return;
       }
+
       hilog.info(0x0000, 'testTag', 'Succeeded in loading the content. Data: %{public}s', JSON.stringify(data) ?? '');
     });
 

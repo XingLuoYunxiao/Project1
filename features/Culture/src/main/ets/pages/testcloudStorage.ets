@@ -32,12 +32,14 @@ export struct testPage2 {
 
   getURL() {
     // cloudPath是云侧文件路径
-    storageBucket.getDownloadURL(CloudStorageConstants.fuchunshanju1).then((downloadURL: string) => {
-      console.info(`downloadURL: ${downloadURL}`);
-      this.url = downloadURL
-    }).catch((err: BusinessError) => {
-      console.error(`getDownloadURL failed! Code: ${err.code}, message: ${err.message}`);
-    });
+    storageBucket.getDownloadURL(CloudStorageConstants.constantsMap.get('painting_mozhu'))
+      .then((downloadURL: string) => {
+        console.info(`downloadURL: ${downloadURL}`);
+        this.url = downloadURL
+      })
+      .catch((err: BusinessError) => {
+        console.error(`getDownloadURL failed! Code: ${err.code}, message: ${err.message}`);
+      });
   }
 
   //下载云侧文件至本地

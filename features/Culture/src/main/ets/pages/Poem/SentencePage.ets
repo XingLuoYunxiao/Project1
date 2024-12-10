@@ -8,12 +8,14 @@ import { Sentence } from '../../model/Sentence';
 import { addExp } from '../../common/util/addExp';
 import { BuilderNameConstants, RouterModule } from 'routermodule';
 import { CommonConstants } from '../../common/constants/commonConstants';
+import { BreakpointTypeEnum } from 'utils';
 
 let addEXPId: number = 0
 
 @Component
 export struct SentencePage { // 定义一个组件类PoemPage
   @Consume('culturePathStack') culturePathStack: NavPathStack; // 导入导航路径栈，用于页面导航
+  @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
   @State pageNumber: number = 1; // 分页页码
   @State poemType: string = '全部'; // 当前筛选的诗歌类型
   @State poets: string = '全部'; // 当前筛选的诗人
@@ -23,6 +25,7 @@ export struct SentencePage { // 定义一个组件类PoemPage
 
   // 生命周期方法：组件加载时调用，获取初始数据
   async aboutToAppear(): Promise<void> {
+    console.log("当前的断点" + this.currentBreakpoint)
     // 从云数据库获取诗歌数据
     let sentence: Sentence [] | undefined = await CloudPoemService.fetchSentence(this.pageNumber);
     if (sentence) {
@@ -47,30 +50,61 @@ export struct SentencePage { // 定义一个组件类PoemPage
   build() {
     NavDestination() {
       Column() {
-
-        // 展示数据的列表组件
-        List({ space: 10 }) {
-          // 使用LazyForEach动态加载诗歌数据
-          LazyForEach(SentenceData, (item: Sentence) => {
-            this.SentenceItem(item); // 渲染单个诗歌项
-          },
-            (item: Sentence) => item.id.toString()) // 以numId为唯一标识
-        }
-        .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
-        .cachedCount(15) // 缓存项数
-        .id('poemList') // 列表ID
-        .onReachEnd(async () => { // 滑动到底部时触发
-          this.pageNumber++; // 页码增加
-          let res: Sentence[] | undefined =
-            await CloudPoemService.fetchSentence(this.pageNumber);
-          if (res) {
-            console.log('滑倒底部触发更新');
-            res.forEach(sentence => {
-              SentenceData.pushData(sentence); // 添加数据
-            });
-            SentenceData.notifyDataReload(); // 通知数据更新
+        if (this.currentBreakpoint === 'sm' || this.currentBreakpoint === 'md') {
+          // 展示数据的列表组件
+          List({ space: 10 }) {
+            // 使用LazyForEach动态加载诗歌数据
+            LazyForEach(SentenceData, (item: Sentence) => {
+              this.SentenceItem(item, true); // 渲染单个诗歌项
+            },
+              (item: Sentence) => item.id.toString()) // 以numId为唯一标识
           }
-        });
+          .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
+          .cachedCount(15) // 缓存项数
+          .id('poemList') // 列表ID
+          .onReachEnd(async () => { // 滑动到底部时触发
+            this.pageNumber++; // 页码增加
+            let res: Sentence[] | undefined =
+              await CloudPoemService.fetchSentence(this.pageNumber);
+            if (res) {
+              console.log('滑倒底部触发更新');
+              res.forEach(sentence => {
+                SentenceData.pushData(sentence); // 添加数据
+              });
+              SentenceData.notifyDataReload(); // 通知数据更新
+            }
+          });
+        } else {
+
+          Grid() {
+            // 使用LazyForEach动态加载诗歌数据
+            LazyForEach(SentenceData, (item: Sentence, index: number) => {
+              GridItem() {
+                this.SentenceItem(item, true); // 渲染单个诗歌项
+              }
+
+            },
+              (item: Sentence) => item.id.toString()) // 以numId为唯一标识
+          }
+          .rowsGap(8)
+          .columnsTemplate('1fr 1fr')
+          .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
+          .cachedCount(15) // 缓存项数
+          .id('poemList') // 列表ID
+          .onReachEnd(async () => { // 滑动到底部时触发
+            this.pageNumber++; // 页码增加
+            let res: Sentence[] | undefined =
+              await CloudPoemService.fetchSentence(this.pageNumber);
+            if (res) {
+              console.log('滑倒底部触发更新');
+              res.forEach(sentence => {
+                SentenceData.pushData(sentence); // 添加数据
+              });
+              SentenceData.notifyDataReload(); // 通知数据更新
+            }
+          });
+
+        }
 
       }
 
@@ -81,7 +115,7 @@ export struct SentencePage { // 定义一个组件类PoemPage
 
   // 渲染单个诗歌项
   @Builder
-  SentenceItem(sentence: Sentence) {
+  SentenceItem(sentence: Sentence, a: boolean) {
     Column({ space: 10 }) {
 
       Row() {
@@ -103,7 +137,7 @@ export struct SentencePage { // 定义一个组件类PoemPage
     .backgroundColor('#fff5eee6') // 背景颜色
     .padding(20) // 内边距
     .justifyContent(FlexAlign.Center) // 垂直居中
-    .width('100%') // 宽度
+    .width(a ? '100%' : '50%') // 宽度
     .onClick(async () => { // 点击事件
       let name: string | null = extractPoet(sentence.from)
       let title: string | null = extractTitle(sentence.from)
