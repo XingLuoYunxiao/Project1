@@ -20,6 +20,7 @@ export default struct AttractionTicketPage {
   //四个选择
   @Watch('updateAttractionsList')
   @State currentCategory :string[] = ['全部景点', '位置距离', '综合排序', '筛选'];
+  @StorageLink('personUid') personUid: string = '';
   //当前当前距离
   @State currentSubCategory: CategoryItem | null = null;
   @State currentAttractions: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource;
@@ -32,16 +33,18 @@ export default struct AttractionTicketPage {
     let category = JSON.parse(JSON.stringify(this.value)).text as string
     if( category !== "")
       this.currentCategory[0] = category
+    this.spotNetWork.allSpotsDataSource.clear();
     this.currentAttractions =  this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
-
   }
 
   aboutToDisappear(): void {
     this.spotNetWork.allSpotsDataSource.clear();
     this.currentAttractions.clear()
     this.spotNetWork.pageNum = 0
-    this.spotNetWork.searchLoadingStatus = LoadingStatus.OFF
+    this.spotNetWork.allLoadingStatus = LoadingStatus.OFF
   }
+
+
 
 
   cityPickerController: CustomDialogController = new CustomDialogController({
@@ -143,11 +146,12 @@ export default struct AttractionTicketPage {
     .backgroundColor(Color.White)
   }
 
+
+
   async updateAttractionsList() {
     this.spotNetWork.allLoadingStatus = LoadingStatus.LOADING
     //遍历所有景点，将所有符合条件的景点插入到currentAttractions中,不符合则删除
-    if(this.currentCity.cityName !== '所有' || (this.currentCategory[0] !== '全部景点' && this.currentCategory[0] !== '全部分类'
-      && this.currentCategory[0] !== classificationList[0].category)){
+    if(!judgeLoadData(this.currentCity, this.currentCategory)){
       this.isCategoryLoading = true
       this.currentAttractions.clear()
       this.currentAttractions = this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
@@ -201,6 +205,7 @@ export default struct AttractionTicketPage {
         .width(Constants.FULL_WIDTH)
         .height(Constants.CATEGORY_HEIGHT)
 
+        //TODO 添加数据
         WaterFlow({footer: this.itemFoot()}){
           LazyForEach(this.currentAttractions, (item: Spot, index: number) => {
             FlowItem() {
@@ -208,6 +213,9 @@ export default struct AttractionTicketPage {
                 .reuseId("attraction")
             }
             .onClick(() => {
+              if( item.id && this.personUid != ''){
+                this.spotNetWork.addBrowse(item.id, this.personUid);
+              }
               buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item:item}))
               //this.appPathStack.pushPathByName('AttractionDetailPage', item)
             })
@@ -255,6 +263,16 @@ export default struct AttractionTicketPage {
     .margin({ top: Constants.HEADER_HEIGHT_PAGE })
 
   }
+
+}
+export function
+judgeLoadData(currentCity:City, currentCategory:String[]){
+  if(currentCity.cityName !== '所有' || (currentCategory[0] !== '全部景点' && currentCategory[0] !== '全部分类'
+    && currentCategory[0] !== classificationList[0].category) || (currentCategory[1] != '位置距离' &&
+    currentCategory[1] != '不限距离') || currentCategory[2] !== '综合排序'){
+    return false;
+  }
+  return true;
 }
 
 @Builder

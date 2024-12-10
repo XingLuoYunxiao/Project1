@@ -99,6 +99,7 @@ export struct InfoMessagePage {
             })
           })
         }
+        .justifyContent(FlexAlign.SpaceAround)
         .padding($r('app.float.lg_padding_margin'))
         .backgroundColor(Color.White)
         .borderRadius($r('app.float.regular_border_radius'))
@@ -131,7 +132,7 @@ export struct InfoMessagePage {
           LazyForEach(this.spotDataSource,(item:Spot,index:number)=>{
             FlowItem() {
               Column({space:Constants.SMALL_SPACE}) {
-                Image($r(item.image))
+                Image($r(item.imageUrl))
                   .width('50%')
                   .borderRadius(10)
                   .height(200)

@@ -100,13 +100,15 @@ export struct FamousPlacePage {
                 }
               }
               // 用来避免有加载效果造成的卡顿
-              .onAppear(() => {
+              /*.onAppear(() => {
                 if( this.spotNetWork.searchLoadingStatus !== LoadingStatus.LOADING && index + 5 == this.spotNetWork.allSpotsDataSource.totalCount()){
                   this.spotNetWork.loadSpotsData()
                 }
-              })
+              })*/
             })
-          }
+          }.onReachEnd(async () => {
+            await this.spotNetWork.loadSpotsData()
+          })
           .scrollBar(BarState.Off)
           .width('100%')
         }

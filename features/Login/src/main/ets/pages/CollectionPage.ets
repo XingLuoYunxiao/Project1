@@ -101,7 +101,7 @@ Column(){
             Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(()=>{
               this.appPathStack.pop()
             })
-            Text('收藏').fontSize($r('app.float.poetry_fontSize'))
+            Text('收藏').fontSize(20)
             Text(this.manage).onClick(() => {
               if(this.manage=='管理'){
                 this.manage = '完成'

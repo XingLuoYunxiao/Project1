@@ -3,13 +3,17 @@ import Constants from '../constants/Constants'
 import { Spot } from '../model/Spot'
 import { Want } from '@kit.AbilityKit';
 import { common } from '@kit.AbilityKit';
+import { SpotNetFunc } from '../service/SpotNetFunc';
+import { promptAction } from '@kit.ArkUI';
 
 @Component
 struct AttractionDetailPage {
   @Consume('appPathStack') appPathStack: NavPathStack
   @State value: object = new Object()
   @State spot: Spot = new Spot()
+  @StorageLink('personUid') personUid: string = '';
   @State orderData :string[] = ['可定今日', '可订明日', '更多日期']
+  @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance()
   @State isSelected: number = 0
   @State selectedDate: Date = new Date()
 
@@ -56,6 +60,21 @@ struct AttractionDetailPage {
             .fontSize(Constants.FONT_TITLE)
             .fontWeight(FontWeight.Medium)
             .margin({ left: 12 })
+          Blank()
+          //TODO 需要完善
+          Image($r('app.media.ic_collection'))
+            .fillColor(Color.Orange)
+            .width(24)
+            .height(24)
+            .margin({ right: 16 })
+            .onClick(() => {
+              // 收藏
+              if(this.personUid !== '' && this.spot && this.spot.id){
+                this.spotNetWork.addCollection(this.spot.id, this.personUid)
+              }else{
+                promptAction.showToast({message: '请先登录', duration: 2000})
+              }
+            })
         }
         .width('100%')
         .height(48)

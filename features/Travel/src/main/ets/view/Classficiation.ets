@@ -46,9 +46,15 @@ export struct Classification {
     }
     .alignItems(HorizontalAlign.Center)
     .justifyContent(FlexAlign.Center)
-    .width(80)
+    .width('15%')
     .borderRadius(20)
     .height(70)
     .backgroundColor(colorList[index].color)
+    .shadow({
+      color: '#cccccc',
+      radius: 5,
+      offsetX: 0,
+      offsetY: 2,
+    });
   }
 }

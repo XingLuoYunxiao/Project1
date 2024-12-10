@@ -2,6 +2,8 @@ import { Spot } from "./Spot";
 import Logger from "utils/src/main/ets/utils/Logger";
 import { cloudFunction } from "@kit.CloudFoundationKit";
 import { SpotParams } from "./SpotFuncParams";
+import { BusinessError } from "@kit.BasicServicesKit";
+import { promptAction } from "@kit.ArkUI";
 
 const TAG = '[SpotModel]';
 
@@ -73,6 +75,27 @@ export class SpotModel {
     })
   }
 
+  //获取特定条件的景点数据
+  public getSearchNameCondition(condition: string ): Promise<Spot[]> {
+    // 初始化
+    return new Promise(async (resolve, reject) => {
+      try{
+        let params:SpotParams = {
+          type: 'query',
+          filter: [
+            {name:`${condition}`}
+          ]
+        }
+        const res = await cloudFunction.call({ name: 'get-spot-data', data: params})
+        let data = res.result
+        resolve(JSON.parse(JSON.stringify(data)).data as Spot[])
+      }catch (e){
+        Logger.error(TAG, 'SpotModel getSpotDataByCondition failed', e);
+        reject(e)
+      }
+    })
+  }
+
   //获取火热景点数据
   public getHotSpotData(): Promise<Spot[]> {
     // 初始化
@@ -90,6 +113,40 @@ export class SpotModel {
         Logger.error(TAG, 'SpotModel getHotSpotData failed', e);
         reject(e)
       }
+    })
+  }
+
+  async addCollectData(spotid:number,personUid:string){
+    cloudFunction.call({
+      name: 'get-hiscol-data',
+      data: {
+        personUid:personUid,
+        fiel:spotid,
+        sort:"spot",
+        table:'collectadd'
+      }
+    }).then((value: cloudFunction.FunctionResult) => {
+      console.info(`成功添加 ${JSON.stringify(value.result)}`);
+      promptAction.showToast({message: '收藏成功', duration: 2000})
+    }).catch((err: BusinessError) => {
+      console.error(`添加失败, Code: ${err.code}, message: ${err.message}`);
+      promptAction.showToast({message: `收藏失败 ${err.message}`, duration: 2000})
+    })
+  }
+
+  async addHistoryData(spotid:number,personUid:string){
+    cloudFunction.call({
+      name: 'get-hiscol-data',
+      data: {
+        personUid:personUid,
+        fiel:spotid,
+        sort:"spot",
+        table:'browsingadd'
+      }
+    }).then((value: cloudFunction.FunctionResult) => {
+      console.info(`成功添加 ${JSON.stringify(value.result)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`添加失败, Code: ${err.code}, message: ${err.message}`);
     })
   }
 

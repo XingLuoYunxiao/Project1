@@ -14,9 +14,8 @@ export struct SpotDetailPage {
   @Consume('appPathStack') appPathStack: NavPathStack;
   @State chatsService: TravelChatsService = TravelChatsService.getInstance()
   @State speechUtil: TextToSpeechManager = TextToSpeechManager.getInstance()
-  //@StorageLink('isTravelPlanLoad') isTravelPlanLoad: boolean = false;
   @State value: object = new Object()
-  @State  myScale: number = 1
+  @State myScale: number = 1
   @Watch('speechText')
   @State voice: boolean = false;
   @State isLoading: boolean = false;
@@ -26,6 +25,8 @@ export struct SpotDetailPage {
   @State responseText: string = '';
   @State aImage: Resource = $r('app.media.avator');
   @State customTravel:custom | undefined = undefined
+
+  // 对话框控制器
   dialogControllerImage: CustomDialogController = new CustomDialogController({
     builder: TipsDialog({
       imageRes: $r('sys.media.ohos_ic_public_select_all'),
@@ -34,7 +35,6 @@ export struct SpotDetailPage {
         value: '取消',
         action: () => {
           this.isChecked = false;
-          console.info('Callback when the first button is clicked')
         },
       },
       secondaryButton: {
@@ -46,23 +46,16 @@ export struct SpotDetailPage {
             spot: this.spot,
             travelPlan: this.customTravel!.travelPlans[this.currentPlanSelected]
           }
-          buildRouterModel(RouterNameConstants.ENTRY_HAP,BuilderNameConstants.MAP_ROUTEPLANVIEW, new Object({params:params}))
-
-          console.info('Callback when the second button is clicked')
+          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.MAP_ROUTEPLANVIEW, new Object({params:params}))
         }
       },
-      onCheckedChange: () => {
-        console.info('Callback when the checkbox is clicked')
-      }
     }),
   })
 
-
   async aboutToAppear(): Promise<void> {
-    //let spot = await this.appPathStack.getParamByName('SpotDetailPage')[0] as Spot;
     this.spot = JSON.parse(JSON.stringify(this.value)).spot as Spot
-    if( this.spot.name){
-      this.sendRequest(this.spot.name);
+    if (this.spot.name) {
+      await this.sendRequest(this.spot.name);
     }
   }
 
@@ -70,18 +63,13 @@ export struct SpotDetailPage {
     this.speechUtil.stop()
   }
 
-
   async sendRequest(content:string) {
     this.isLoading = true;
     this.responseText = '';
     try {
-      if(this.chatsService !== undefined )
-      /*this.spot.sendRequest(content, (chunk: string) => {
-        this.responseText += chunk;
-      });*/
       await this.chatsService.sendTravelRequest(content).then((res) => {
         this.customTravel = res
-        if( this.chatsService.resContent !== undefined){
+        if (this.chatsService.resContent !== undefined) {
           this.responseText = this.chatsService.resContent
         }
       })
@@ -93,197 +81,245 @@ export struct SpotDetailPage {
     }
   }
 
-  speechText(){
-    if(this.voice){
+  speechText() {
+    if (this.voice) {
       this.speechUtil.speak(this.responseText)
-    }else{
+    } else {
       this.speechUtil.stop()
     }
   }
 
-  build() {
-    NavDestination(){
-      Scroll(){
-        Column() {
-          Row(){
-            Image($r('app.media.ic_back'))
-              .width(30)
-              .height(30)
-              .onClick( () => {
-                //this.appPathStack.pop();
-                this.speechUtil.stop()
-                RouterModule.popToName(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_FAMOUSPLACEPAGE)
-              })
-            Row(){
-              Text(this.spot.name)
-                .fontSize(20)
-                .fontWeight(FontWeight.Bold)
-                .margin({right:15})
-              Blank()
-              if( this.voice === false){
-                Image($r('app.media.voice_close'))
-                  .width(30)
-                  .height(30)
-                  .margin({left:15})
-                  .onClick( () => {
-                    this.voice = !this.voice;
-                  })
-              }else{
-                Image($r('app.media.voice_open'))
-                  .width(30)
-                  .height(30)
-                  .margin({left:15})
-                  .onClick( () => {
-                    this.voice = false;
-                  })
-              }
-            }
-            .padding(5)
-            .layoutWeight(1)
-            .justifyContent(FlexAlign.Center)
-          }
-          .width(Constants.FULL_WIDTH)
-          .justifyContent(FlexAlign.Start)
-
-          /*Image($r('app.media.gugong_map'))
-            .width(Constants.FULL_WIDTH)
-            .height(300)
-            .borderRadius(10)
-            .margin({top:10})
-            .onClick( () => {
-              this.travelPathStack.pushPathByName('MapDemo', true);
-            })*/
-
-          /*Column(){
-            Button('点我查询')
-              .onClick(async ()=>{
-                await this.queryAll()
-              })
-          }
-  */
-          Column(){
-            Row(){
-              Text(`${this.spot.name}路径规划`)
-                .fontSize(24)
-                .fontColor(Color.White)
-                .backgroundColor(Color.Orange)
-                .borderRadius(10)
-                .padding(5)
-                .margin({top:10})
-              Blank()
-              Button('重新生成')
-                .backgroundColor(Color.Orange)
-                .padding(5)
-                .onClick(async ()=>{
-                  this.isLoading = false;
-                  if( this.spot.name){
-                    this.sendRequest(this.spot.name)
-                  }
-                })
-            }
-            .alignItems(VerticalAlign.Center)
-            .width(Constants.FULL_WIDTH)
-            if (this.isLoading) {
-              LoadingProgress().width(50).height(50)
-            }
-            /*Scroll(){
-              Column(){
-                lvMarkdownIn({ text: this.responseText.toString() })
-                  .width(Constants.OUTER_WIDTH) // content为文本内容
-                  .padding(10)
-              }
-              .width(Constants.FULL_WIDTH)
-            }
-            .edgeEffect(EdgeEffect.Spring)
-            .scrollable(ScrollDirection.Vertical)*/
-          }
-          .margin({bottom:Constants.MARGIN_MD})
-
-          .alignItems(HorizontalAlign.Start)
-          if(this.customTravel !== undefined){
-            Column(){
-              List({space: 10}){
-                ForEach(this.customTravel.travelPlans, (item:TravelPlan, index) => {
-                  ListItem(){
-                    Column({space: 10}){
-                      Text(`方案${index+1}`)
-                        .width(Constants.FULL_WIDTH)
-                        .textAlign(TextAlign.Center)
-                        .fontSize(20)
-                        .fontWeight(FontWeight.Bold)
-                        .margin({right:15})
-                      Row(){
-                        Text(`路线:`)
-                          .fontSize(18)
-                          .fontWeight(FontWeight.Bold)
-                          .margin({right:15})
-                        Flex({wrap: FlexWrap.Wrap, direction:FlexDirection.Row}){
-                          ForEach(item.sites, (site:string, index) => {
-                            if( index !== item.sites.length-1){
-                              Text(`${site}->`)
-                                .textAlign(TextAlign.Center)
-                                .fontSize(16)
-                                .fontWeight(FontWeight.Bold)
-                            }else{
-                              Text(`${site}`)
-                                .textAlign(TextAlign.Center)
-                                .fontSize(16)
-                                .fontWeight(FontWeight.Bold)
-                                .margin({right:15})
-                            }
-                          })
-                        }
-                        .padding(10)
-                        .width(Constants.FULL_WIDTH)
-                      }
-                      .justifyContent(FlexAlign.Start)
-
-                      Text(`  ${item.description}`)
-                        .fontSize(16)
-                        .fontWeight(FontWeight.Bold)
-                        .margin({right:15})
-                    }
-                    .padding(5)
-                    .alignItems(HorizontalAlign.Start)
-                    .backgroundColor(Constants.ROUTE_PLAN_CARD)
-                    .width(Constants.FULL_WIDTH)
-                    .borderRadius(Constants.BORDER_RADIUS_MD)
-                    .justifyContent(FlexAlign.Center)
-                    .onClick(() => {
-                      this.currentPlanSelected = index;
-                      this.dialogControllerImage.open()
-                    })
-                  }
-                })
-              }
-              Column({space: 10}){
-                Text(`推荐路线`)
-                  .width(Constants.FULL_WIDTH)
-                  .textAlign(TextAlign.Center)
-                  .fontSize(20)
-                  .fontWeight(FontWeight.Bold)
-                Text(`${this.customTravel.recommendedRoute}`)
-                  .fontSize(16)
-                  .fontWeight(FontWeight.Bold)
-                  .margin({left:15})
-              }
-              .padding(5)
-              .margin(10)
-              .borderRadius(Constants.BORDER_RADIUS_MD)
-              .width(Constants.FULL_WIDTH)
-              .backgroundColor(Constants.ROUTE_PLAN_CARD)
-              .alignItems(HorizontalAlign.Start)
-
-            }
-          }
-        }
-        .width(Constants.OUTER_WIDTH)
-        .height(Constants.FULL_HEIGHT)
-        .layoutWeight(1)
+  // 语音状态切换构建器
+  @Builder
+  voiceToggleBuilder() {
+    Row() {
+      if( this.voice === false){
+        Image($r('app.media.voice_close'))
+          .width(30)
+          .height(30)
+          .margin({left:15})
+          .onClick( () => {
+            this.voice = !this.voice;
+          })
+      }else{
+        Image($r('app.media.voice_open'))
+          .width(30)
+          .height(30)
+          .margin({left:15})
+          .onClick( () => {
+            this.voice = false;
+          })
       }
+      Text('语音播报')
+        .fontSize(16)
+        .fontColor('#333333')
+        .margin({ right: 10 })
+
+      Toggle({ type: ToggleType.Switch, isOn: this.voice })
+        .onChange((isOn: boolean) => {
+          this.voice = isOn
+          this.speechText()
+        })
+        .selectedColor('#4CAF50')
     }
+    .alignItems(VerticalAlign.Center)
+  }
+
+  // 路线方案卡片构建器
+  @Builder
+  routePlanCardBuilder(plan: TravelPlan, index: number) {
+    Column() {
+      // 方案标题
+      Row() {
+        Text(`方案 ${index + 1}`)
+          .fontSize(18)
+          .fontWeight(FontWeight.Bold)
+          .fontColor('#333333')
+
+        Blank()
+
+        Text('详情')
+          .fontSize(14)
+          .fontColor('#666666')
+      }
+      .width('100%')
+      .margin({ bottom: 10 })
+
+      // 路线
+      Flex({ wrap: FlexWrap.Wrap, direction: FlexDirection.Row }) {
+        ForEach(plan.sites, (site: string, siteIndex: number) => {
+          Row() {
+            Text(site)
+              .fontSize(16)
+              .fontColor('#333333')
+              .margin(4)
+
+            if (siteIndex < plan.sites.length - 1) {
+              Image($r('app.media.arrow_right'))
+                .width(16)
+                .height(16)
+                .margin({ left: 4, right: 4 })
+            }
+          }
+        })
+      }
+      .margin({ bottom: 10 })
+
+      // 描述
+      Text(plan.description)
+        .fontSize(14)
+        .fontColor('#666666')
+        .margin({ bottom: 10 })
+        .maxLines(2)
+        .textOverflow({ overflow: TextOverflow.Ellipsis })
+
+      // 选择按钮
+      Button('选择此方案')
+        .type(ButtonType.Normal)
+        .backgroundColor('#2196F3')
+        .fontColor(Color.White)
+        .width('100%')
+        .onClick(() => {
+          this.currentPlanSelected = index;
+          this.dialogControllerImage.open()
+        })
+    }
+    .width('100%')
+    .padding(15)
+    .backgroundColor(Color.White)
+    .borderRadius(12)
+    .shadow({
+      radius: 5,
+      color: '#10000000',
+      offsetX: 0,
+      offsetY: 2
+    })
+    .margin({ bottom: 10 })
+  }
+
+  build() {
+    NavDestination() {
+      Column() {
+        // 顶部导航栏
+        Row() {
+          Image($r('app.media.ic_back'))
+            .width(30)
+            .height(30)
+            .margin({ right: 15 })
+            .onClick(() => {
+              this.speechUtil.stop()
+              RouterModule.popToName(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_FAMOUSPLACEPAGE)
+            })
+
+          Text(this.spot.name)
+            .fontSize(20)
+            .fontWeight(FontWeight.Bold)
+            .layoutWeight(1)
+
+          this.voiceToggleBuilder()
+        }
+        .width('100%')
+        .padding(15)
+        .backgroundColor('#F5F5F5')
+        .alignItems(VerticalAlign.Center)
+
+        // 主内容区
+        Scroll() {
+          Column() {
+            // 路径规划标题区
+            Row() {
+              Text(`${this.spot.name}路径规划`)
+                .fontSize(18)
+                .fontWeight(FontWeight.Bold)
+                .fontColor('#333333')
+
+              Blank()
+
+              Button('重新生成')
+                .type(ButtonType.Normal)
+                .backgroundColor('#2196F3')
+                .fontColor(Color.White)
+                .onClick(async () => {
+                  if (this.spot.name) {
+                    await this.sendRequest(this.spot.name)
+                  }
+                })
+            }
+            .width('100%')
+            .padding(15)
+            .backgroundColor('#F5F5F5')
+
+            // 加载中
+            if (this.isLoading) {
+              Column() {
+                LoadingProgress()
+                  .width(50)
+                  .height(50)
+                  .color('#2196F3')
+              }
+              .width('100%')
+              .justifyContent(FlexAlign.Center)
+              .padding(20)
+            }
+
+            // 旅行方案列表
+            if (this.customTravel !== undefined) {
+              Column() {
+                // 方案列表
+                List() {
+                  ForEach(this.customTravel.travelPlans, (item: TravelPlan, index) => {
+                    ListItem() {
+                      this.routePlanCardBuilder(item, index)
+                    }
+                  })
+                }
+                .width('100%')
+                .divider({
+                  strokeWidth: 1,
+                  color: '#F0F0F0',
+                  startMargin: 0,
+                  endMargin: 0
+                })
+
+                // 推荐路线
+                Column() {
+                  Text('推荐路线')
+                    .fontSize(18)
+                    .fontWeight(FontWeight.Bold)
+                    .fontColor('#333333')
+                    .margin({ bottom: 10 })
+
+                  Text(this.customTravel.recommendedRoute)
+                    .fontSize(16)
+                    .fontColor('#666666')
+                }
+                .width('100%')
+                .padding(15)
+                .backgroundColor(Color.White)
+                .borderRadius(12)
+                .shadow({
+                  radius: 5,
+                  color: '#10000000',
+                  offsetX: 0,
+                  offsetY: 2
+                })
+                .margin({ top: 10 })
+              }
+              .width('100%')
+              .padding(15)
+            }
+          }
+          .width('100%')
+        }
+        .edgeEffect(EdgeEffect.Spring)
+        .scrollBar(BarState.Off)
+      }
+      .width('100%')
+      .height('100%')
+      .backgroundColor('#F5F5F5')
+    }
+    .margin({top:$r('app.float.header_height_page')})
     .hideTitleBar(true)
-    .margin({top:Constants.HEADER_HEIGHT_PAGE})
   }
 }
 

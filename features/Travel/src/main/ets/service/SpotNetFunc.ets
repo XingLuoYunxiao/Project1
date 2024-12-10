@@ -5,6 +5,8 @@ import { City } from "./CategoryData";
 import Logger from "utils/src/main/ets/utils/Logger";
 import { SpotModel } from "../model/SpotModel";
 import { classificationList } from "./ClassficationData";
+import { judgeLoadData } from "../pages/AttractionTicketPage";
+import { promptAction } from "@kit.ArkUI";
 
 const TAG = '[SpotModel]';
 const domain = 0x0011;
@@ -164,8 +166,12 @@ export class SpotNetFunc{
       this.searchHistory.pop();
     }
     this.preferenceUtil.putPreferenceValue<string[]>('searchHistory', this.searchHistory);
-    this.searchResult = this.spots.filter(spot => spot.name!.toLowerCase().includes(value.toLowerCase()))
-    this.searchLoadingStatus = LoadingStatus.SUCCESS
+    this.spotModel.getSearchNameCondition(value).then((data) => {
+      this.searchResult = data
+      this.allSpotsDataSource.pushArrayData(this.searchResult)
+      this.searchLoadingStatus = LoadingStatus.SUCCESS
+    })
+
   }
 
   //TODO 分类选择有问题
@@ -176,18 +182,22 @@ export class SpotNetFunc{
 
     let currentAttractions: Spot[] = [];
 
-    if(currentCity.cityName !== '所有' || (currentCategory[0] !== '全部景点' && currentCategory[0] !== '全部分类' && currentCategory[0] !== classificationList[0].category)){
-      this.spotModel.getSpotDataByCondition([currentCity.cityName, currentCategory[0]]).then((data)=>{
-        this.spots = data;
-        this.allSpotsDataSource.pushArrayData(data)
-        currentAttractions = data;
-      })
+    if(!judgeLoadData(currentCity, currentCategory)){
+      if(this.searchResult){
+
+      }else{
+        this.spotModel.getSpotDataByCondition([currentCity.cityName, currentCategory[0]]).then((data)=>{
+          this.spots = data;
+          this.allSpotsDataSource.pushArrayData(data)
+          currentAttractions = data;
+        })
+      }
     }else{
       return this.allSpotsDataSource
     }
 
 
-      if( this.searchLoadingStatus === LoadingStatus.SUCCESS){
+    if( this.searchLoadingStatus === LoadingStatus.SUCCESS){
       currentAttractions = this.searchResult;
       /*this.allSpotsDataSource.clear();
       this.allSpotsDataSource.pushArrayData(this.searchResult)*/
@@ -200,7 +210,7 @@ export class SpotNetFunc{
     if (currentCity.cityName !== '所有') {
       currentAttractions = this.spots
       currentAttractions = currentAttractions.filter(spot =>
-      (spot.cityCode == currentCity.cityCode) || spot.name?.includes(currentCity.cityName)
+      (spot.cityCode == currentCity.cityCode) || spot.name?.includes(currentCity.cityName) || currentCity.cityName.includes(spot.name!)
       );
     }
 
@@ -285,6 +295,20 @@ export class SpotNetFunc{
       this.searchHistory = [];
       Logger.error(TAG, 'Delete search History success.' + JSON.stringify(res));
     }).catch((err: BusinessError) => Logger.error(TAG, 'Delete search History Failed. Cause: ' + err));
+  }
+
+  //添加收藏记录
+  addCollection(id: number, userId: string){
+    this.spotModel.addCollectData(id, userId).then((res)=>{
+      Logger.info(TAG, 'addCollection success.' + JSON.stringify(res));
+    }).catch((err: BusinessError) => Logger.error(TAG, 'addCollection Failed. Cause: ' + err));
+  }
+
+  // 添加浏览记录
+  addBrowse(id: number, userId: string){
+    this.spotModel.addHistoryData(id, userId).then((res)=>{
+      Logger.info(TAG, 'addBrowse success.' + JSON.stringify(res));
+    }).catch((err: BusinessError) => Logger.error(TAG, 'addBrowse Failed. Cause: ' + err));
   }
 
 
