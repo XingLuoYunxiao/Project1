@@ -52,6 +52,10 @@
     {
       "name": "Harmony_navi_permission_reason",
       "value": "导航申请需要权限"
+    },
+    {
+      "name": "Harmony_calendar_permission_reason",
+      "value": "日程申请需要权限"
     }
   ]
 }

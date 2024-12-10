@@ -26,7 +26,6 @@ export default class EntryAbility extends UIAbility {
     let json: string = buffer.from(value).toString('utf8');
     console.log('json testTag: ' + json)
     initialize(this.context, JSON.parse(json));
-
   }
 
   onDestroy(): void {

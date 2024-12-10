@@ -1,5 +1,6 @@
+import { cloudDatabase } from '@kit.CloudFoundationKit';
 @Observed
-class myOrderAdd {
+class myOrderAdd{
   // 属性定义
   order_id: number;
   spot_id: number;

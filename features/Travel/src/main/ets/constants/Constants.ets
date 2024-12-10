@@ -31,6 +31,8 @@ export default class Constants {
   static readonly COLOR_TEXT = '#323233';
   static readonly COLOR_TEXT_LIGHT = '#969799';
   static readonly COLOR_BG = '#f7f8fa';
+  static readonly ROUTE_PLAN_CARD = '#ffa4f884'
+
 
   // 分类高度
   static readonly CATEGORY_HEIGHT = 30;

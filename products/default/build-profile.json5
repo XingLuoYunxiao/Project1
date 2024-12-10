@@ -14,7 +14,7 @@
       }
     }
   },
-  "buildOptionSet": [//
+  "buildOptionSet": [
     {
       "name": "release",
       "arkOptions": {

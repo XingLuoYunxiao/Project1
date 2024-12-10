@@ -21,7 +21,6 @@ export struct Classification {
             buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE, new Object({text: item.category}));
           else
             buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_FAMOUSPLACEPAGE, new Object({category: item.category}));
-
         })
       })
     }
@@ -47,9 +46,15 @@ export struct Classification {
     }
     .alignItems(HorizontalAlign.Center)
     .justifyContent(FlexAlign.Center)
-    .width(80)
+    .width('15%')
     .borderRadius(20)
     .height(70)
     .backgroundColor(colorList[index].color)
+    .shadow({
+      color: '#cccccc',
+      radius: 5,
+      offsetX: 0,
+      offsetY: 2,
+    });
   }
 }

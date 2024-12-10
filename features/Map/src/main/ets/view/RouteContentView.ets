@@ -32,18 +32,58 @@ export struct RouteContentView {
   aboutToAppear(): void {
     if (this.routes !== undefined && this.mapController) {
       this.mapController.clear();
-      this.drawRouteModel.drawRoute(this.mapController, this.routes[0].steps[0].roads).then(() => {
+      /*this.drawRouteModel.drawRoute(this.mapController, this.routes[0].steps[0].roads).then(() => {
+        Logger.info('First draw route success');
+      });*/
+      this.drawRouteModel.drawRoutes(this.mapController, this.routes).then(() => {
         Logger.info('First draw route success');
       });
     }
   }
 
 
+
   build() {
     if (this.routes !== undefined) {
       if (this.columnHeight > CommonConstants.HEIGHT_MIDDLE) {
         List() {
-          ForEach(this.routes, (item: navi.Route, index: number) => {
+          ListItem() {
+            Row() {
+              Column() {
+                Text(`我的方案`)
+                  .fontSize(18)
+                  .fontWeight(FontWeight.Bold)
+                  .fontColor($r('app.color.font_color_heavy_selected') )
+                  .margin({ bottom: $r('app.float.text_image_margin') })
+                Text(this.calculateMode.getRoutesTotalDistance(this.routes).toString() + RouteConstants.KILOMETRES)
+                  .fontSize(14)
+                  .fontWeight(FontWeight.Medium)
+                  .fontColor($r('app.color.font_color_light_selected'))
+              }
+              .alignItems(HorizontalAlign.Start)
+              .margin({ left: $r('app.float.list_margin_border') })
+
+              Text(this.calculateMode.getRoutesTotalTime(this.routes))
+                .fontSize($r('app.float.font_size_big'))
+                .fontWeight(FontWeight.Bold)
+                .fontColor($r('app.color.font_color_heavy_selected'))
+                .margin({ right: $r('app.float.list_margin_border') })
+            }
+            .width(CommonConstants.FULL_WIDTH)
+            .justifyContent(FlexAlign.SpaceBetween)
+            .height($r('app.float.list_group_height'))
+            .borderRadius($r('app.float.list_group_border_radius'))
+            .shadow({
+              radius: $r('app.float.route_radius'),
+              color: $r('app.color.route_radius')
+            })
+          }
+          .padding({
+            top: $r('app.float.list_row_padding_top')
+          })
+          .width(CommonConstants.FULL_WIDTH)
+          .height($r('app.float.list_row_height'))
+          /*ForEach(this.routes, (item: navi.Route, index: number) => {
             ListItem() {
               Row() {
                 Column() {
@@ -90,7 +130,7 @@ export struct RouteContentView {
             })
             .width(CommonConstants.FULL_WIDTH)
             .height($r('app.float.list_row_height'))
-          })
+          })*/
         }
         .width(CommonConstants.FULL_WIDTH)
         .height(CommonConstants.FULL_HEIGHT)

@@ -1,13 +1,17 @@
-@Builder
-export function PrivacyPageBuilder() {
-  PrivacyPage()
-}
+import { BuilderNameConstants, RouterModule } from "routermodule"
+import Constants from "../common/constants/Constants"
+
 @Component
 export struct PrivacyPage {
   @Consume('appPathStack') appPathStack: NavPathStack
 
   build() {
     NavDestination(){
+      Row(){
+        Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(()=>{
+          this.appPathStack.pop()
+        })
+      }.height(Constants.TOP_HEIGHT_PAGE)
       Scroll() {
         Text('感谢您使用虚拟旅游导览应用（以下简称“本应用”）。本应用致力于为您提供便捷、高效的在线旅游导览服务。为了保护您的隐私权益，我们根据《中华人民共和国网络安全法》、《中华人民共和国个人信息保护法》等相关法律法规，制定本隐私策略。本隐私策略详细说明了本应用在收集、使用、存储、共享和保护您的个人信息方面的具体做法。\n' +
           '\n' +
@@ -63,5 +67,17 @@ export struct PrivacyPage {
       }
       .width('100%')
     }
+    .hideTitleBar(true)
+    .margin({top:Constants.HEADER_HEIGHT_PAGE})
   }
+}
+@Builder
+export function PrivacyPageBuilder() {
+  PrivacyPage()
+}
+
+const builderName = BuilderNameConstants.LOGIN_PRIVACYPAGE;
+if (!RouterModule.getBuilder(builderName)) {
+  const builder: WrappedBuilder<[object]> = wrapBuilder(PrivacyPageBuilder);
+  RouterModule.registerBuilder(builderName, builder);
 }

@@ -7,6 +7,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "utils": "file:../../commons/utils",
-    "uicomponents": "file:../../commons/uicomponents"
+    "uicomponents": "file:../../commons/uicomponents",
+    "routermodule": "file:../../RouterModule",
+    "travel": "file:../Travel",
+    "culture": "file:../Culture"
   }
 }
