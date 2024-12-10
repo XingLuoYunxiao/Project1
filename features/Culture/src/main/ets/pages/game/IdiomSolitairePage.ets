@@ -172,6 +172,7 @@ export struct IdiomSolitairePage {
         this.lastChar = temp.word[temp.word.length - 1];
         MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, temp.word));
         this.textTimerController.reset()
+        this.textTimerController.start()
       }
     } catch (error) {
       console.error("系统添加成语失败:", error.message);

@@ -8,6 +8,7 @@ import { CommonConstants } from '../../common/constants/commonConstants';
 import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 import { PoemModel } from '../../viewmodel/PoemViewModel';
 import { talk } from './talk';
+import { BreakpointTypeEnum } from 'utils';
 
 let addEXPId: number = 0
 
@@ -16,6 +17,7 @@ const TAG: string = 'PoemPage'
 @Component
 export struct PoemPage { // 定义一个组件类PoemPage
   @Consume('culturePathStack') culturePathStack: NavPathStack; // 导入导航路径栈，用于页面导航
+  @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
   @State poems: Poem[] = []; // 诗歌数据的状态管理
   @State pageNumber: number = 1; // 分页页码
   @State poemType: string = '全部'; // 当前筛选的诗歌类型
@@ -108,11 +110,9 @@ export struct PoemPage { // 定义一个组件类PoemPage
           }
           .width('100%')
         }
-
       }
       .width('100%'); // 设置宽度
     }
-
   }
 
   // 渲染单个诗歌项
@@ -140,7 +140,6 @@ export struct PoemPage { // 定义一个组件类PoemPage
     });
   }
 }
-
 
 const PoemData: PoemModel = new PoemModel(); // 诗歌数据实例
 

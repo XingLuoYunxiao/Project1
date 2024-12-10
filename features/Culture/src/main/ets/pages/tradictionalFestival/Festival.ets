@@ -45,22 +45,43 @@ export struct FestivalPage2 {
 
   }
 
+  // 自定义方式2：使用系统提供的多种默认效果(平移、缩放、透明度等)
+  pageTransition() {
+    PageTransitionEnter({ duration: 200 })
+      .slide(SlideEffect.Right) //Right
+    PageTransitionExit({ delay: 100 })
+      .slide(SlideEffect.END) //Right
+  }
+
   @Builder
   festivalItem(festival: Festival) {
+    Stack() {
+      Image(festival.path)
+        .objectFit(ImageFit.Cover)
+        .width('100%')
+        .opacity(0.6)
+      Column({ space: 10 }) {
+        Text(festival.getSummary())
+          .padding(30)
+          .fontSize(24)
+        Row() {
+          Text(festival.name + "习俗:")
+            .padding(30)
+            .fontSize(24)
 
-    Column({ space: 10 }) {
-      Text(festival.getSummary())
-        .padding(30)
-        .fontSize(24)
-      Text(festival.name + "的习俗有:")
-        .padding(30)
-        .fontSize(24)
-      ForEach(festival.customs, (cust: Custom) => {
-        CustomBuilder({ cust: cust })
-      })
+          Row() {
+            ForEach(festival.customs, (cust: Custom) => {
+              CustomBuilder({ cust: cust })
+            })
+          }
+
+        }
+
+      }
+      .width('100%')
+      .height('100%')
     }
-    .width('100%')
-    .height('100%')
+
   }
 }
 
@@ -70,21 +91,19 @@ export struct CustomBuilder {
   @State handlePopup: boolean = false
 
   build() {
-    NavDestination() {
-      Column() {
-        Text(this.cust.name)
-          .fontSize(18)
-          .onClick(() => {
-            this.handlePopup = !this.handlePopup
-          })
-          .bindPopup(this.handlePopup, {
-            message: this.cust.description,
-          })
-      }
-      .width('100%')
-      .height('100%')
+    Column() {
+      Text(this.cust.name)
+        .fontSize(18)
+        .onClick(() => {
+          this.handlePopup = !this.handlePopup
+        })
+        .bindPopup(this.handlePopup, {
+          message: this.cust.description,
+        })
     }
-
+    .justifyContent(FlexAlign.Center)
+    .width('20%')
+    .height(100)
   }
 }
 

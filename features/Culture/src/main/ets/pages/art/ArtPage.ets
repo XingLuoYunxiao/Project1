@@ -1,14 +1,14 @@
 import { Lottie, LottieController } from "@jjr/lottie_component"
 import { ttf } from "../../common/util/ttf"
-import { MyButton } from "../../view/Mybutton"
-import { PaintingDetails } from "./PaintingDetails"
-import { cloudStorage } from '@kit.CloudFoundationKit';
-import { cultureFileUtil } from "../../common/util/FileUtil";
 import { FileUtil } from "utils/src/main/ets/puraUtils/FileUtil";
-import { BusinessError, request } from "@kit.BasicServicesKit";
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import { CommonConstants } from "../../common/constants/commonConstants";
 import { addExp } from "../../common/util/addExp";
+import { downloadImage, downloadImageList, getPath } from "../../common/util/getImage";
+import { CloudStorageConstants } from "../../common/constants/cloudStorageConstants";
+import { ButtonWithWaterRipples } from "../../view/water";
+import { faceDetector } from "@kit.CoreVisionKit";
+
 
 let addEXPId: number = 0
 
@@ -17,12 +17,14 @@ export struct ArtPage {
   @Consume('culturePathStack') culturePathStack: NavPathStack
   // 从 rawfile 资源文件夹加载 json data
   @State animationData?: Object = undefined
+  @StorageProp('ImgPathsMap') ImgPathsMap: Map<string, string> = new Map<string, string>()
   private artController: LottieController = new LottieController()
   private swiperController: SwiperController = new SwiperController()
 
-  // 无控制动画需求时 LottieController 可不传
-
   async aboutToAppear() {
+
+    downloadImageList(CloudStorageConstants.imageFilenames)
+
     ttf('STXINGKAFont', 'STXINGKA.TTF')
     this.animationData = await LottieController.getRawFileAnimationData(getContext(this), 'sroll.json')
     //每10秒浏览页面加5经验
@@ -35,7 +37,9 @@ export struct ArtPage {
     NavDestination() {
       Swiper(this.swiperController) {
         Stack() {
-          Image($r('app.media.artPageBackground'))
+          //$r('app.media.artPageBackground')
+          // this.ImgPathsMap.get('artPageBackground.png')
+          Image(getPath('artPageBackground.png'))
             .width('100%')
             .height('100%')
 
@@ -85,37 +89,41 @@ export struct ArtPage {
 @Component
 struct calligraphyPage {
   @Consume('culturePathStack') culturePathStack: NavPathStack
-  t: string[] = ['书法如行云流水', "墨香似古木参天", "一笔一划皆风骨", "字字珠玑映心间"]
-  @State intro: string = '中华书法，魅力非凡。它历经千年演变，从古老的甲骨文、金文，到篆书、隶书、楷书、行书、草书，种类丰富。每一种书体都有其独特风格，见证着中华文化的传承与发展。现在，让我们一同领略书法之美。'
-  @State imageFileName: string = 'background.jpg' // 背景图片文件名
-  @State imageDir: string = FileUtil.getFilesDirPath('context.cacheDir') // 图片目录路径
-  @State imagePath: string = ''
+  @State intro: string = '中华书法，魅力非凡。它历经千年演变，从古老的甲骨文、金文，到篆书、隶书、楷书、行书、草书，种类丰富。'
+  @StorageProp('ImgPathsMap') ImgPathsMap: Map<string, string> = new Map<string, string>()
+  @State isListen: boolean = false
 
   build() {
     Navigation(this.culturePathStack) {
       Stack() {
         Column() {
 
-
           Text(this.intro)
             .margin({ left: 200, right: 30 })
             .fontSize(26)
 
-
-          Text("进入")
-            .fontSize(24)
+          ButtonWithWaterRipples({ isListening: this.isListen })
             .onClick(() => {
-
-              buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_CALLIGRAPHY)
+              this.isListen = !this.isListen
             })
-            .fontColor(Color.White)
-            .backgroundColor(Color.Black)
-            .margin({ left: 40 })
-            .padding(10)
-            .borderRadius(20)
+            .enabled(!this.isListen)
+
+          // Text("进入")
+          //   .fontSize(24)
+          //   .onClick(() => {
+          //
+          //     buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_CALLIGRAPHY)
+          //   })
+          //   .fontColor(Color.White)
+          //   .backgroundColor(Color.Black)
+          //   .margin({ left: 40 })
+          //   .padding(10)
+          //   .borderRadius(20)
 
         }
-        .backgroundImage($r('app.media.Calligrapy_background'))
+        // getPath(CloudStorageConstants.getConstant('calligraphy_background.png'))
+        .backgroundImage(getPath('calligraphy_background.png'))
+
         .backgroundImageSize(ImageSize.Cover)
         .justifyContent(FlexAlign.SpaceAround)
         .alignItems(HorizontalAlign.Center)
@@ -125,7 +133,6 @@ struct calligraphyPage {
     }
     .mode(NavigationMode.Stack)
     .hideTitleBar(true)
-
   }
 }
 
@@ -133,6 +140,7 @@ struct calligraphyPage {
 struct PaintingPage {
   @Consume('culturePathStack') culturePathStack: NavPathStack
   @State intro: string = ' 中华绘画，博大精深。自古老的彩陶岩画逐步演变，涵盖工笔的精致、写意的奔放等多样风格，蕴含中华文化深厚内涵。让我们共同探寻绘画之妙。'
+  @StorageProp('ImgPathsMap') ImgPathsMap: Map<string, string> = new Map<string, string>()
 
   build() {
     Navigation(this.culturePathStack) {
@@ -158,7 +166,8 @@ struct PaintingPage {
       .alignItems(HorizontalAlign.Center)
       .width('100%')
       .height('100%')
-      .backgroundImage($r('app.media.painting_background'))
+      .backgroundImage(getPath(CloudStorageConstants.getConstant('painting_background')))
+
       .backgroundImageSize(ImageSize.Cover)
     }
     .mode(NavigationMode.Stack)

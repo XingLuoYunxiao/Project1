@@ -5,6 +5,8 @@ import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 import { addExp } from "../../common/util/addExp"
 import { BuilderNameConstants, RouterModule } from "routermodule"
 import { CommonConstants } from "../../common/constants/commonConstants"
+import { downloadImage } from "../../common/util/getImage"
+import { CloudStorageConstants } from "../../common/constants/cloudStorageConstants"
 
 
 const TAG: string = 'CalligraphyDetails  '
@@ -17,6 +19,7 @@ export struct CalligraphyDetails {
   @State modernApplication: string = '在现代社会，书法不仅是一种艺术表现形式，也在设计、教育等领域得到了广泛应用。'
 
   aboutToAppear(): void {
+    downloadImage(CloudStorageConstants.calligraphyMap)
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
       addExp(CommonConstants.expTypeCulture, 5)
