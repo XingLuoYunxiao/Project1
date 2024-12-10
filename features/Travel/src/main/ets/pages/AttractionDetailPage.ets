@@ -5,6 +5,7 @@ import { Want } from '@kit.AbilityKit';
 import { common } from '@kit.AbilityKit';
 import { SpotNetFunc } from '../service/SpotNetFunc';
 import { promptAction } from '@kit.ArkUI';
+import { CloudStorageService } from '../service/CloudStorageService';
 
 @Component
 struct AttractionDetailPage {
@@ -16,11 +17,17 @@ struct AttractionDetailPage {
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance()
   @State isSelected: number = 0
   @State selectedDate: Date = new Date()
+  @State cloudService: CloudStorageService = CloudStorageService.getInstance()
+  @State url: string | undefined = undefined
 
   aboutToAppear(): void {
     //获取路由参数
     this.spot = JSON.parse(JSON.stringify(this.value)).item as Spot
     //this.spot = this.appPathStack.getParamByName('AttractionDetailPage')[0] as Spot;
+    if( this.spot && this.spot.imageUrl)
+      this.cloudService.getTravelSpotURL(this.spot.imageUrl).then(url => {
+        this.url = url
+      })
   }
 
   StartNavi = ()=>{
@@ -83,7 +90,7 @@ struct AttractionDetailPage {
         Scroll() {
           Column() {
             Stack({ alignContent: Alignment.BottomEnd }) {
-              Image($r(`${this.spot.imageUrl}`))
+              Image(this.url == undefined ? $r(`${this.spot.imageUrl}`) : this.url)
                 .width('100%')
                 .height(240)
                 .objectFit(ImageFit.Fill)

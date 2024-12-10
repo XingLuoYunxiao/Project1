@@ -3,6 +3,7 @@ import { NearbyAttraction } from '../view/NearbyAttraction';
 import { SearchHeader } from '../view/SearchHeader';
 import { SpotNetFunc } from '../service/SpotNetFunc';
 import { LoadingStatus } from 'utils';
+import { router } from '@kit.ArkUI';
 
 
 @Component

@@ -29,6 +29,11 @@
       "name": "AttractionDetailPage",
       "pageSourceFile": "src/main/ets/pages/AttractionDetailPage.ets",
       "buildFunction": "AttractionDetailPageBuilder"
+    },
+    {
+      "name": "testStorage",
+      "pageSourceFile": "src/main/ets/pages/testStorage.ets",
+      "buildFunction": "testStoragePageBuilder"
     }
   ]
 }
