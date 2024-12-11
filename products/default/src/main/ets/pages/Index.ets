@@ -6,6 +6,8 @@ import { CustomTabBar } from '../components/CustomTabBar';
 import { AppConstants } from '../constants/AppConstants';
 import { BreakpointSystem, BreakpointTypeEnum, LocationUtil } from 'utils';
 import { RouterModule, RouterNameConstants } from 'routermodule';
+import { SharePage } from 'share';
+import lpreferencesUtil from 'login/src/main/ets/common/utils/PreferenceUtil';
 
 @Entry
 @Component
@@ -26,11 +28,14 @@ struct Index {
       this.appPathStack = new NavPathStack();
       AppStorage.setOrCreate('isHideBar', false);
     }
-    RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
-  }
+   RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
 
-  aboutToDisappear(): void {
-    this.breakpointSystem.unregister(); // 注销断点系统
+    const personUid=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personUid','')
+    const personPhoto=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personPhoto','')
+    const personName=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personName','')
+    AppStorage.setOrCreate('personName',personName)
+    AppStorage.setOrCreate('personPhoto',personPhoto)
+    AppStorage.setOrCreate('personUid',personUid)
   }
 
   @Builder
@@ -51,8 +56,7 @@ struct Index {
               CulturalPage()
             }
             TabContent() {
-              Text('开发中')
-                .align(Alignment.Center)
+              SharePage()
             }
 
             TabContent() {
@@ -84,7 +88,6 @@ struct Index {
       }
       //Stack的属性,子组件的对齐方式
       .alignContent(Alignment.BottomEnd)
-
     }
     .hideTitleBar(true)
     .mode(NavigationMode.Stack)

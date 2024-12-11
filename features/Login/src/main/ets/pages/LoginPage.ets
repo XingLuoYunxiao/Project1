@@ -1,4 +1,3 @@
-import { webview } from '@kit.ArkWeb'
 import { CustomContentDialog } from '@kit.ArkUI'
 import { MineViewModel } from '../service/MineViewModel';
 import { BuilderNameConstants, RouterModule } from 'routermodule';
@@ -12,6 +11,7 @@ export struct LoginPage {
   @State isEnable: boolean = true;
   @StorageLink('personName') personName: string = ''
   @StorageLink('personPhoto') personPhoto: string = ''
+  @StorageLink('personUid') personUid: string = ''
   @State isChecked: boolean = false;
   @State phoneNumber: string = '';
   @State mineViewModel:MineViewModel=MineViewModel.getInstance();
@@ -101,9 +101,9 @@ export struct LoginPage {
                 this.mineViewModel.loginDeal(code,this.phoneNumber).then((val)=>{
                   this.personName=this.mineViewModel.personName
                   this.personPhoto=this.mineViewModel.personPhoto
+                  this.personUid=this.mineViewModel.personUid
                   this.appPathStack.pop()
                 })
-
               }
             })
           Row() {

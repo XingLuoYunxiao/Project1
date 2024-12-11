@@ -10,6 +10,7 @@ import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstan
 import { LazyDataSource } from 'utils';
 import { classificationList } from '../service/ClassficationData';
 
+
 //TODO 小bug，点太快进入该页面会获取不到数据
 @Component
 export default struct AttractionTicketPage {
@@ -25,6 +26,7 @@ export default struct AttractionTicketPage {
   @State currentSubCategory: CategoryItem | null = null;
   @State currentAttractions: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource;
   @State value: object = new Object()
+
 
   @State isCategoryLoading: boolean = false
 
@@ -238,7 +240,6 @@ export default struct AttractionTicketPage {
             }
             .onClick(() => {
               buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item:item}))
-              //this.appPathStack.pushPathByName('AttractionDetailPage', item)
             })
             //触底加载数据
             .onAppear(() => {

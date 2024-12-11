@@ -31,6 +31,9 @@ export class BuilderNameConstants {
   static readonly LOGIN_MYORDER:string='login_Myorder';
   static readonly LOGIN_PRIVACYPAGE:string='login_PrivacyPage';
   static readonly LOGIN_SETTINGPAGE:string='login_SettingPage';
+
+  //Share
+  static readonly SHARE_PUBLISHPAGE:string='share_PublishPage';
   //Travel
   // Feature: Travel中的AI导游页面
   static readonly TRAVEL_FAMOUSPLACEPAGE: string = 'travel_FamousPlacePage';
