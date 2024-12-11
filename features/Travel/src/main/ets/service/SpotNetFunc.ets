@@ -148,6 +148,8 @@ export class SpotNetFunc{
 
   //搜索景点
   search(value: string): void {
+    if( value === '')
+      return
     // 判断是否已经存在
     this.searchLoadingStatus = LoadingStatus.LOADING
     if (!this.searchHistory.includes(value)) {

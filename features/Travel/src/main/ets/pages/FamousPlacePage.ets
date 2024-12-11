@@ -133,6 +133,8 @@ export struct FamousPlacePage {
   @State value:object = new Object()
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance();
   @State category: string = "";
+  @Watch("getSearchData")
+  @State searchText: string = "";
   @State spotDataSource: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource
   @State cloudService: CloudStorageService = CloudStorageService.getInstance()
   scroller: Scroller = new Scroller()
@@ -158,6 +160,14 @@ export struct FamousPlacePage {
     //this.category = this.appPathStack.getParamByName('FamousPlacePage')[0] as string
   }
 
+  getSearchData(){
+    let data = new LazyDataSource<Spot>()
+    if(data.totalCount() > 0){
+      data.pushArrayData(this.spotNetWork.searchResult)
+      this.spotDataSource = data
+    }
+  }
+
 
   build() {
     NavDestination(){
@@ -171,11 +181,15 @@ export struct FamousPlacePage {
         Search({placeholder:"搜索想要去的景点"})
           .height(30)
           .layoutWeight(1)
+          .onChange( (value: string) => {
+            this.searchText = value
+            this.spotNetWork.search(value)
+          })
           .onClick( () => {
-            buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_SEARCHPAGE)
+           // buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_SEARCHPAGE)
             //this.appPathStack.pushPathByName('SearchPage', true)
           })
-          .enableKeyboardOnFocus(false)
+          //.enableKeyboardOnFocus(false)
         Badge({count: 1, position: BadgePosition.RightTop, style:{fontSize:14, badgeColor: Color.Red}}){
           Image($r('app.media.ic_public_email'))
             .width(24)
@@ -216,7 +230,7 @@ export struct FamousPlacePage {
                   this.spotNetWork.loadSpotsData()
                 }
               })*/
-            })
+            }, (item:Spot)=> item.name)
           }.onReachEnd(async () => {
             await this.spotNetWork.loadSpotsData()
           })
