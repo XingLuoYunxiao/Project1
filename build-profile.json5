@@ -14,14 +14,13 @@
         }
       }
     ],
-    "buildModeSet": [
+    "buildModeSet": [//
       {
         "name": "debug"
       },
       {
         "name": "release"
       }
-
     ],
     "signingConfigs": [
       {
@@ -37,7 +36,6 @@
           "storeFile": "D:/Huawei/realphone/.p12"
         }
       }
-
     ]
   },
   "modules": [
@@ -47,7 +45,8 @@
       "targets": [
         {
           "name": "default",
-          "applyToProducts": [//
+          "applyToProducts": [
+            //
             "default"
           ]
         }
@@ -92,6 +91,10 @@
     {
       "name": "RouterModule",
       "srcPath": "./RouterModule",
+    },
+    {
+      "name": "Share",
+      "srcPath": "./features/Share",
     }
   ]
 }

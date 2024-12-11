@@ -7,14 +7,15 @@ import { AppUtil } from "utils/src/main/ets/puraUtils/AppUtil"
 import { PreferencesUtil } from "utils/src/main/ets/puraUtils/PreferencesUtil"
 import { EXP } from "culture/src/main/ets/model/EXP"
 import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
+import lpreferencesUtil from 'login/src/main/ets/common/utils/PreferenceUtil'
 import {abilityAccessCtrl,AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
-import { calendarManager } from '@kit.CalendarKit';
 import { window } from '@kit.ArkUI';
 const TAG: string = 'EntryAbility';
 const domain = 0x0011; //定位模块
 
 export default class EntryAbility extends UIAbility {
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
+    await lpreferencesUtil.loadPreference(this.context,'UserInfoPreference')
 
     // 初始化方法,缓存全局变量
     AppUtil.init(this.context);
@@ -55,12 +56,14 @@ export default class EntryAbility extends UIAbility {
   onWindowStageCreate(windowStage: window.WindowStage): void {
 
     // 将经验首选项初始化为[],方便之后取出后直接解析成数组
-    let EXPString: string = PreferencesUtil.getSync("EXP", "") as string;
-    LogUtil.debug("EXPstring:" + EXPString)
-    if (EXPString === '') {
-      let exp: EXP[] = []
-      PreferencesUtil.putSync("EXP", JSON.stringify(exp))
-    }
+    // let EXPString: string = PreferencesUtil.getSync("EXP", "") as string;
+    // LogUtil.debug("EXPstring:" + EXPString)
+    // if (EXPString === '') {
+    //   let exp: EXP[] = []
+    //   PreferencesUtil.putSync("EXP", JSON.stringify(exp))
+    // }
+
+
 
     
     // Main window is created, set main page for this ability

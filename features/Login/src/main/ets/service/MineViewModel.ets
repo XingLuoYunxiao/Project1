@@ -5,10 +5,10 @@ import { CollectionAdd } from "../model/CollectionAdd";
 import { BrowsingHistory } from "../model/BrowsingHistory";
 import { ListDataSource } from "./ListDataSource";
 import { HistoryAdd } from "../model/HistoryAdd";
-import {  myOrderAdd } from "../model/myOrderAdd";
+import { myOrderAdd } from "../model/myOrderAdd";
 import { myOrder} from "../model/myOrder";
 import { CalendarData} from "../view/MyCalendar";
-
+import lpreferencesUtil from "../common/utils/PreferenceUtil";
 
 @Observed
 export class MineViewModel{
@@ -57,14 +57,17 @@ export class MineViewModel{
               photoUrl: "https://tse3-mm.cn.bing.net/th/id/OIP-C.VMyV_ymHWH14JQ3RPoezwgHaFj?rs=1&pid=ImgDetMain"
             })
             .then(() => {
-              console.log('修改成功')
+              console.log('初次修改昵称头像成功')
             })
             .catch((e: Error) => {
-              hilog.error(0, '修改信息失败', JSON.stringify(e));
+              hilog.error(0, '初次修改信息失败', JSON.stringify(e));
             })
         }
         this.personName = user.getUser().getDisplayName()
         this.personPhoto = user.getUser().getPhotoUrl()
+        lpreferencesUtil.putPreferenceValue('UserInfoPreference','personUid',this.personUid)
+        lpreferencesUtil.putPreferenceValue('UserInfoPreference','personPhoto',this.personName)
+        lpreferencesUtil.putPreferenceValue('UserInfoPreference','personName',this.personPhoto)
       }).catch((error: Error) => {
       //登录失败
       console.log('登录失败', JSON.stringify(error))
@@ -81,7 +84,7 @@ export class MineViewModel{
           const cur=value[index]
           if(cur.type=="spot"){
             const spots=await this.userModel.getspotData(cur.spotId)
-            this.collectspotListData.pushData(new CollectionAdd(cur.id,cur.spotId,cur.userId,cur.type,spots[0].name,spots[0].imageUrl,false))
+            this.collectspotListData.pushData(new CollectionAdd(cur.id,cur.spotId,cur.userId,cur.type,spots[0].name,spots[0].imageUrl,false,spots[0].rating,spots[0].ticketPrice,spots[0].openingHours,spots[0].areaName))
           }else{
             const poems=await this.userModel.getpoemData(cur.spotId)
             this.collectpoemListData.pushData(new CollectionAdd(cur.id,cur.spotId,cur.userId,cur.type,poems[0].title,poems[0].writer,false))
@@ -91,8 +94,8 @@ export class MineViewModel{
       })
   }
 
-  async collectiondelete(cur:CollectionAdd){
-    await this.userModel.deletecollectData(cur)
+  async collectiondelete(spotid:number,personid:string){
+    await this.userModel.deletecollectData(spotid,personid)
   }
 
   isSameYearMonthDay(date1: Date, date2: CalendarData): boolean {

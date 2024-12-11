@@ -1,4 +1,4 @@
-import auth from "@hw-agconnect/auth"
+import auth, { AuthUser } from "@hw-agconnect/auth"
 import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule"
 import { Spot } from "travel"
 import { SpotNetFunc } from "travel/src/main/ets/service/SpotNetFunc"
@@ -9,8 +9,9 @@ import { functionItem } from "../model/functionItem"
 @Component
 export struct InfoMessagePage {
   @Consume('appPathStack') appPathStack: NavPathStack
-  @StorageLink('personName') personName: string =''
-  @StorageLink('personPhoto') personPhoto: string =''
+  @StorageLink ('personUid') personUid: string = ''
+  @StorageLink ('personPhoto') personPhoto: string = ''
+  @StorageLink ('personName') personName: string = ''
   @Consume('loginPathStack') loginPathStack: NavPathStack
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance();
   @State spotDataSource: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource
@@ -28,13 +29,7 @@ export struct InfoMessagePage {
   }
 
   aboutToAppear() {
-    auth.getCurrentUser().then(user=>{
-      if(user){
-        AppStorage.setOrCreate('personName',user.getDisplayName())
-        AppStorage.setOrCreate('personPhoto',user.getPhotoUrl())
-        AppStorage.setOrCreate('personUid',user.getUid())
-      }
-    });
+
   }
 
   build() {
@@ -174,7 +169,7 @@ const FUNCTION_PATHS: functionItem[]=[
   new functionItem($r('app.media.history'), "浏览记录",BuilderNameConstants.LOGIN_BROWSHISTORYPAGE),
   new functionItem($r('app.media.order'), "我的订单",BuilderNameConstants.LOGIN_MYORDER),
   new functionItem($r('app.media.knowledge'), "知识等级",BuilderNameConstants.LOGIN_KNOWLEDGEPAGE),
-  new functionItem($r('app.media.message'),"消息",'Message',$r('app.media.ic_arrow')),
+  new functionItem($r('app.media.message'),"古韵天地",'Message',$r('app.media.ic_arrow')),
   new functionItem($r('app.media.privacy'),"隐私",BuilderNameConstants.LOGIN_PRIVACYPAGE,$r('app.media.ic_arrow')),
   new functionItem($r('app.media.advice'),"意见",BuilderNameConstants.LOGIN_ADVICEPAGE,$r('app.media.ic_arrow')),
   // new functionItem($r('app.media.account'),"分享",'SharePage',$r('app.media.ic_arrow'))

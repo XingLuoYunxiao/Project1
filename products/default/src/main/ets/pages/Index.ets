@@ -7,6 +7,8 @@ import { AppConstants } from '../constants/AppConstants';
 import auth from '@hw-agconnect/auth';
 import { LocationUtil } from 'utils';
 import { RouterModule, RouterNameConstants } from 'routermodule';
+import { SharePage } from 'share';
+import lpreferencesUtil from 'login/src/main/ets/common/utils/PreferenceUtil';
 
 @Entry
 @Component
@@ -24,6 +26,13 @@ struct Index {
       AppStorage.setOrCreate('isHideBar', false);
     }
    RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
+
+    const personUid=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personUid','')
+    const personPhoto=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personPhoto','')
+    const personName=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personName','')
+    AppStorage.setOrCreate('personName',personName)
+    AppStorage.setOrCreate('personPhoto',personPhoto)
+    AppStorage.setOrCreate('personUid',personUid)
   }
 
   @Builder
@@ -44,8 +53,7 @@ struct Index {
               CulturalPage()
             }
             TabContent() {
-              Text('开发中')
-                .align(Alignment.Center)
+              SharePage()
             }
 
             TabContent() {
@@ -77,7 +85,6 @@ struct Index {
       }
       //Stack的属性,子组件的对齐方式
       .alignContent(Alignment.BottomEnd)
-
     }
     .hideTitleBar(true)
     .mode(NavigationMode.Stack)

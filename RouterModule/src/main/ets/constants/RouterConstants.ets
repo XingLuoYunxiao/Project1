@@ -34,7 +34,8 @@ export class BuilderNameConstants {
   static readonly LOGIN_PRIVACYPAGE:string='login_PrivacyPage';
   static readonly LOGIN_SETTINGPAGE:string='login_SettingPage';
   static readonly MAP_ROUTEPLANVIEW: string = 'map_RoutePlanView';
-
+  //Share
+  static readonly SHARE_PUBLISHPAGE:string='share_PublishPage';
   //Travel
   // Feature: Travel中的AI导游页面
   // Feature: Travel中的景点分类页面

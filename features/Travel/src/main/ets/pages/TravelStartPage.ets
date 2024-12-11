@@ -7,6 +7,7 @@ import  theSpot  from '../../resources/rawfile/ProjectOne_28_cn.json';
 import { Spot } from '../model/Spot';
 import { SpotNetFunc } from '../service/SpotNetFunc';
 import { LoadingStatus } from 'utils';
+import auth from '@hw-agconnect/auth';
 
 
 @Component
@@ -37,7 +38,6 @@ export struct TravelStartPage {
     let result: mySpot[] = await this.database.collection(mySpot).query().limit(3).get()
     this.spots = result.map(item => new Spot(item.id, item.name, item.summary, item.category, item.rating,
       {latitude: item.latitude, longitude: item.longitude  }, item.ticketPrice, item.openingHours, item.imageUrl, item.cityCode, item.cityId, item.cityName));
-
   }
 
   build() {

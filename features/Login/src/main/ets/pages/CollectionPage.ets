@@ -2,32 +2,57 @@ import { Collection } from '../model/Collection'
 import { CollectionAdd } from '../model/CollectionAdd'
 import { mySpot } from '../model/mySpot'
 import { Poem } from '../model/Poem'
-import { CollectHistoryItem } from '../view/CollectHistoryItem'
 import { ListDataSource } from '../service/ListDataSource'
 import { MineViewModel } from '../service/MineViewModel'
-import auth from '@hw-agconnect/auth'
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from '../common/constants/Constants'
 import { SpotNetFunc } from 'travel/src/main/ets/service/SpotNetFunc'
+import auth from '@hw-agconnect/auth'
 
 @Component
 struct EveryItem {
+  @Link delcount:number
   @Link manage?:string
   @ObjectLink spot:CollectionAdd
   build() {
     ListItem(){
       Row(){
-        if(this.manage=='完成'){
-          Checkbox()
-            .onChange((isChecked: boolean) => {
-              this.spot.isChoose=isChecked
-            })
-        }
-        CollectHistoryItem({item:this.spot})
+        Checkbox()
+          .onChange((isChecked: boolean) => {
+            if (isChecked) {
+              this.delcount++
+            }else this.delcount--
+            this.spot.isChoose=isChecked
+          }).visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
+        // CollectHistoryItem({item:this.spot})
+        Row() {
+          Image($r(this.spot.spot_img)).width(80).height(80)
+          Column({space:Constants.MIDDLE_SPACE}){
+            Text(this.spot.spotname).fontSize(16).fontWeight(500)
+            Row({space:Constants.MIDDLE_SPACE}){
+              Text(`⭐ ${this.spot.rating}`).fontColor(Color.Orange)
+              Text(`￥${this.spot.ticketPrice}/人`)
+            }
+            Text(this.spot.areaName).fontSize(12).opacity(0.8)
+          }
+          .width(140)
+          .margin({left:$r('app.float.md_padding_margin')})
+          .alignItems(HorizontalAlign.Start)
+          Column(){
+            Text('开放时间').fontSize(12).opacity(0.8).fontColor(Color.Orange)
+            Text(this.spot.openningHours)
+              .fontSize(12).opacity(0.8)
+          }.alignItems(HorizontalAlign.Start)
+          .padding({left:$r('app.float.xl_padding_margin')})
+        }.borderRadius(10)
+        .width('100%')
+        .backgroundColor(Color.White)
+        .padding(12)
       }
     }
   }
 }
+
 @Component
 export struct CollectionPage {
   @Consume('appPathStack') appPathStack: NavPathStack
@@ -45,53 +70,12 @@ export struct CollectionPage {
   @Provide collectpoemListData: ListDataSource<CollectionAdd> =this.mineViewModel.collectpoemListData
   @Provide searchListData: ListDataSource<CollectionAdd> = new ListDataSource();
   @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
-
-  @Builder
-  bottomDelete(){
-    Row(){
-      Checkbox()
-      Text('全选')
-      Blank()
-      Button('清空全部')
-      Button('删除').onClick(()=>{
-        for (let index = this.collectspotListData.totalCount()-1; index >= 0; index--) {
-          const cur=this.collectspotListData.getData(index)
-          if(cur.isChoose==true){
-            this.mineViewModel.collectiondelete(cur);
-            this.mineViewModel.collectspotListData.deleteData(index);
-            this.collectspotListData= this.mineViewModel.collectspotListData
-          }
-        }
-      })
-    }
-    .backgroundColor(Color.White)
-    .width('100%')
-    .visibility(this.manage=='完成'?Visibility.Visible:Visibility.None)
-  }
-
-@Builder
-listData(data:ListDataSource<CollectionAdd>){
-Column(){
-  List({space:Constants.SMALL_SPACE}){
-    LazyForEach(data,(spot:CollectionAdd)=>{
-      EveryItem({manage:$manage,spot:spot})
-        .onClick(()=>{
-          this.SpotNetWork.search(spot.spotname)
-          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
-        })
-    },(spot:CollectionAdd,index:number)=>JSON.stringify(spot)+Math.random()+index)
-  }.scrollBar(BarState.Off)
-}.height('100%')
-}
+  @State deletecount:number=0
 
   async aboutToAppear() {
-    auth.getCurrentUser().then(user=>{
-      if(user){
-        this.personUid=user.getUid()
-        this.mineViewModel.collectionDeal(this.personUid)
-      }
-    })
+    this.mineViewModel.collectionDeal(this.personUid)
   }
+
 
   build() {
     NavDestination(){
@@ -104,7 +88,7 @@ Column(){
             Text('收藏').fontSize($r('app.float.poetry_fontSize'))
             Text(this.manage).onClick(() => {
               if(this.manage=='管理'){
-                this.manage = '完成'
+                this.manage = '退出管理'
               }else{
                 this.manage='管理'
               }
@@ -136,7 +120,7 @@ Column(){
                   }
                 }.height('100%')
               }
-              if(this.manage=='完成'){
+              if(this.manage=='退出管理'){
                 this.bottomDelete()
               }
             }.tabBar('遗迹景点')
@@ -146,10 +130,17 @@ Column(){
                   Column(){
                     LazyForEach(this.collectpoemListData,(poem:CollectionAdd)=>{
                       ListItem(){
-                        Row(){
-                          Text(poem.spotname)
-                          Text(poem.spot_img)
+                        Row({space:Constants.MIDDLE_SPACE}){
+                          Text(`《${poem.spotname}》`).fontSize(16)
+                          Text(poem.spot_img).fontSize(16)
                         }
+                        .justifyContent(FlexAlign.Start)
+                        .width('100%')
+                        .height(80)
+                        .padding({left:$r('app.float.sm_padding_margin')})
+                        .margin($r('app.float.sm_padding_margin'))
+                        .borderRadius(8)
+                        .backgroundColor($r('app.color.dialog_background_blue'))
                       }.onClick(()=>{
 
                       })
@@ -169,7 +160,47 @@ Column(){
     .margin({top:Constants.HEADER_HEIGHT_PAGE})
     .hideTitleBar(true)
   }
+
+  @Builder
+  bottomDelete(){
+    Row(){
+      Checkbox()
+      Text('全选')
+      Blank()
+      Button('清空全部')
+      Button(`删除${this.deletecount}`).onClick(()=>{
+        for (let index = this.collectspotListData.totalCount()-1; index >= 0; index--) {
+          const cur=this.collectspotListData.getData(index)
+          if(cur.isChoose==true){
+            this.mineViewModel.collectiondelete(cur.spotId,this.personUid);
+            this.mineViewModel.collectspotListData.deleteData(index);
+            this.collectspotListData= this.mineViewModel.collectspotListData
+          }
+        }
+        this.manage='管理'
+      })
+    }
+    .backgroundColor(Color.White)
+    .width('100%')
+    .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
+  }
+
+  @Builder
+  listData(data:ListDataSource<CollectionAdd>){
+    Column(){
+      List({space:Constants.SMALL_SPACE}){
+        LazyForEach(data,(spot:CollectionAdd)=>{
+          EveryItem({manage:$manage,spot:spot,delcount:$deletecount})
+            .onClick(()=>{
+              this.SpotNetWork.search(spot.spotname)
+              buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
+            })
+        },(spot:CollectionAdd,index:number)=>JSON.stringify(spot)+Math.random()+index)
+      }.scrollBar(BarState.Off)
+    }.height('100%')
+  }
 }
+
 
 @Builder
 export function CollectionPageBuilder() {

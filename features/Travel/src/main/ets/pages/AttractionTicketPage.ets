@@ -7,6 +7,8 @@ import { Spot } from '../model/Spot';
 import { SpotNetFunc } from '../service/SpotNetFunc';
 import { LoadingStatus } from 'utils/src/main/ets/common/CommonUtil';
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
+import { cloudFunction } from '@kit.CloudFoundationKit';
+
 
 //TODO 小bug，点太快进入该页面会获取不到数据
 @Component
@@ -20,6 +22,8 @@ export default struct AttractionTicketPage {
   @State currentSubCategory: CategoryItem | null = null;
   @State currentAttractions: Spot[] = [];
   @State value: object = new Object()
+  @StorageLink ('personUid') personUid: string = ''
+
 
   async aboutToAppear(): Promise<void> {
     //let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
@@ -182,7 +186,6 @@ export default struct AttractionTicketPage {
             }
             .onClick(() => {
               buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item:item}))
-              //this.appPathStack.pushPathByName('AttractionDetailPage', item)
             })
           })
         }

@@ -4,6 +4,7 @@ import { common } from '@kit.AbilityKit'
 import { PreferenceUtil  as preferenceUtil } from 'utils'
 import { BusinessError } from '@kit.BasicServicesKit'
 import Logger from 'utils/src/main/ets/utils/Logger'
+import auth, { AGCAuthError } from '@hw-agconnect/auth'
 
 const PREF_KEY = 'GuYunUserKey'
 const TAG: string = '[LauncherPage]';
@@ -21,6 +22,10 @@ struct LauncherPage {
       cancel: (): void => this.exitApp()
     })
   })
+
+  aboutToAppear(): void {
+
+  }
 
   async onPageShow(): Promise<void> {
     // 加载首选项
