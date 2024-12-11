@@ -145,8 +145,11 @@ export class SpotModel {
       }
     }).then((value: cloudFunction.FunctionResult) => {
       console.info(`成功添加 ${JSON.stringify(value.result)}`);
+      promptAction.showToast({message: '收藏成功', duration: 2000})
     }).catch((err: BusinessError) => {
       console.error(`添加失败, Code: ${err.code}, message: ${err.message}`);
+      promptAction.showToast({message: `收藏失败 ${err.message}`, duration: 2000})
+
     })
   }
 

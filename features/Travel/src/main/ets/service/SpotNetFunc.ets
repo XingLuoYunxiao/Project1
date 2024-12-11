@@ -147,7 +147,6 @@ export class SpotNetFunc{
 
 
   //搜索景点
-  //TODO 搜索需要直接从数据库完成
   search(value: string): void {
     // 判断是否已经存在
     this.searchLoadingStatus = LoadingStatus.LOADING

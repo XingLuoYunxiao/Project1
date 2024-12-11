@@ -8,10 +8,13 @@ export class TravelChat extends IChat {
   id: number;
   protected messages: Array<Info>;
 
+  //标志数据接收完毕
+  isEnd: boolean = false;
+
   private static travelPassword:string = 'MvZBmiYOGqZwMwImGcDs:RnzZhRIwimchQTzsnMss'
   private static useTravelModel:string = 'generalv3.5';
   private static travelUrl:string = 'https://spark-api-open.xf-yun.com/v1/chat/completions';
-  private static travelTemplate = '请按照下面模板回答(纯文本格式)，路线需要具体（根据该景点，给出至少10个该景点的具体内部景点的游玩路线，以及从哪里进入，哪里出去）：\n' +
+  private static travelTemplate = '请按照下面模板回答(纯文本格式)，路线需要具体（根据该景点，给出至少10个该景点的具体内部景点的游玩路线，入口和出口根据实际路径给出）：\n' +
     '路线方案\n' +
     '路线方案一：入口名称->具体景点->具体景点->具体景点->具体景点->具体景点->具体景点->具体景点->...->出口名称\n' +
     '路线方案二：\n' +
@@ -30,6 +33,7 @@ export class TravelChat extends IChat {
     this.messages = messages;
   }
 
+  //流式返回
   async getData(content: string, onUpdate: (chunk: string) => void): Promise<string>{
     let fullContent = '';
     let httpRequest = http.createHttp();
@@ -73,6 +77,11 @@ export class TravelChat extends IChat {
       }
     });
 
+    httpRequest.on("dataEnd", () => {
+      console.log("Data end");
+      return fullContent;
+    })
+
     try {
       let response = await httpRequest.requestInStream(
         TravelChat.travelUrl,
@@ -104,18 +113,17 @@ export class TravelChat extends IChat {
         }
       );
       console.log("TagTest ", response.toString())
-      if (response.toString() === '200') {
-        return fullContent;
-      } else {
+      if (response.toString() !== '200') {
         throw new Error(`HTTP request failed with status ${response.toString()}`);
       }
     }catch (error){
       console.log(error)
     } finally {
       httpRequest.off("dataReceive");
+      httpRequest.off("dataEnd");
       httpRequest.destroy();
     }
-    return "error"
+    return fullContent
   }
 
   async getTravelDetail(content:string): Promise<string>{
