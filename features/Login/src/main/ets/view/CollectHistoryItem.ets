@@ -6,7 +6,7 @@ export struct CollectHistoryItem {
   @ObjectLink item:CollectionAdd|HistoryAdd
   build() {
     Row() {
-      Image($r(this.item.spot_img)).width(80).height(80)
+      Image(this.item.spot_img).width(80).height(80)
       Text(this.item.spotname)
       Text()
     }.borderRadius(20)

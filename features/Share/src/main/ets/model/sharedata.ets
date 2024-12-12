@@ -67,11 +67,11 @@ export class Sharedata{
     })
   }
 
-  async addcommentData(data:Comment){
+  async addcommentData(commentdata:Comment){
     cloudFunction.call({
       name: 'get-share-data',
       data: {
-        comment:data,
+        comment:commentdata,
         type:'addcomment'
       }
     }).then((value: cloudFunction.FunctionResult) => {

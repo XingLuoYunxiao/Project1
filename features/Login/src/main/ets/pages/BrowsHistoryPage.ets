@@ -13,7 +13,7 @@ import { MyCalendar ,CalendarData} from "../view/MyCalendar";
 export struct BrowsHistoryPage {
   @Consume('appPathStack') appPathStack: NavPathStack
   @State manage:string='管理'
-  @StorageLink('personUid') personUid: string = ''
+  @StorageProp('personUid') personUid: string = ''
   @State historyitem:BrowsingHistory[]=[]
   @State spots: mySpot[] = []
   @State isChecked:boolean=false;

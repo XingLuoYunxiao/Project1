@@ -13,9 +13,6 @@ export function harInit(builderName: string): void {
     case BuilderNameConstants.LOGIN_BROWSHISTORYPAGE:
       import("./src/main/ets/pages/BrowsHistoryPage");
       break;
-    case BuilderNameConstants.LOGIN_CHANGEPHOTO:
-      import("./src/main/ets/pages/ChangePhoto");
-      break;
     case BuilderNameConstants.LOGIN_CUSSERVICEPAGE:
       import("./src/main/ets/pages/CusServicePage");
       break;

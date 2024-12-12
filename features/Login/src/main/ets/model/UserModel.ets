@@ -1,6 +1,5 @@
 import cloud, { Database, SignInResult, VerifyCodeAction, VerifyCodeResult } from "@hw-agconnect/cloud"
 import { myOrder } from "./myOrder";
-import schema from '../../resources/rawfile/schema.json'
 import { mySpot } from "./mySpot";
 import { Poem } from "./Poem";
 import { Collection } from "./Collection";
@@ -9,17 +8,9 @@ import { BrowsingHistory } from "./BrowsingHistory";
 import { cloudCommon, cloudFunction } from '@kit.CloudFoundationKit';
 import { BusinessError, request } from '@kit.BasicServicesKit';
 import auth from "@hw-agconnect/auth";
+import { cloudStorage } from '@kit.CloudFoundationKit';
 
-// let authProvider =  auth.getAuthProvider();
-// authProvider.getAccessToken(true)
-//
-// cloudCommon.init({
-//   region: cloudCommon.CloudRegion.CHINA,
-//   authProvider: authProvider,
-//   functionOptions:{timeout:10*1000},
-//   storageOptions:{mode:request.agent.Mode.BACKGROUND, network:request.agent.Network.ANY},
-//   databaseOptions:{schema:"schema", traceId:"traceId"}
-// })
+let bucket: cloudStorage.StorageBucket = cloudStorage.bucket();
 
 export class UserModel{
   private static instance: UserModel = new UserModel();
@@ -101,6 +92,19 @@ export class UserModel{
       }).catch((err: BusinessError) => {
         console.error(`Failed to call the function, Code: ${err.code}, message: ${err.message}`);
       })
+    })
+  }
+
+  getUrl(img:string):Promise<string> {
+    return new Promise((resolve,reject)=>{
+      // 获取云存储默认实例中screenshot_xxx.jpg文件的下载地址
+      bucket.getDownloadURL(`travel/spot/${img}.png`).then((downloadURL: string) => {
+        resolve(downloadURL)
+        console.info(`getDownloadURL: ${downloadURL}`);
+      }).catch((err: BusinessError) => {
+        resolve('')
+        console.error(`getDownloadURL failed, Code: ${err.code}, message: ${err.message}`);
+      });
     })
   }
 

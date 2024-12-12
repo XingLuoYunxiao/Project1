@@ -17,7 +17,6 @@ export struct OneMoment {
   @State imageInComment: ResourceStr = ''; // 评论中的图片列表
   @StorageLink ('personUid') personUid: string = ''
   @StorageLink ('personPhoto') personPhoto: string = ''
-  @StorageLink ('personName') personName: string = ''
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
   aboutToReuse(params: Record<string, Object>): void {
     this.moment = params.moment as FriendMomentAdd;
@@ -43,7 +42,7 @@ export struct OneMoment {
   publishComment(): void {
     if (this.textInComment||this.imageInComment) {
         const comment: Comment =new Comment();
-        comment.setMomentid(this.moment.id);
+        comment.setMomentid(`${this.moment.id}`);
         comment.setText(this.textInComment);
         comment.setImage(this.imageInComment);
         comment.setUid(this.personUid)
@@ -171,6 +170,9 @@ export struct OneMoment {
         right: $r('app.integer.publish_multimedia_updates_handler_padding_right')
       })
     }
+    .onClick(()=>{
+
+    })
     .width($r('app.string.publish_multimedia_updates_layout_100'))
   }
 }

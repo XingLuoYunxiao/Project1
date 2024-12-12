@@ -14,7 +14,7 @@ import { SpotNetFunc } from 'travel/src/main/ets/service/SpotNetFunc'
 export struct MyOrderPage {
   @Consume('appPathStack') appPathStack: NavPathStack;
   @State order: myOrder[] = [];
-  @StorageLink('personUid') personUid: string = '';
+  @StorageProp('personUid') personUid: string = '';
   @State spots: mySpot[] = [];
   @State isSearch:boolean=false;
   @State mineViewModel:MineViewModel=MineViewModel.getInstance();

@@ -20,8 +20,7 @@ export struct SharePage {
   @Provide commentList: CommentData<FriendMomentAdd> = this.shareViewModel.shareList
   private cachedCountNumber: number = 5; // 懒加载缓存数
   @State dialogType: string = typeText; // 弹窗类型
-  @State location: string = '钟楼';
-  @StorageLink ('personPhoto') personPhoto: string = ''
+  @StorageProp ('personPhoto') personPhoto: string = ''
   private scroller: ListScroller = new ListScroller();
 
 

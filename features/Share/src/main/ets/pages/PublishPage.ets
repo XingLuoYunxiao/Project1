@@ -7,51 +7,38 @@ import { FriendMomentAdd } from "../model/FriendMomentAdd";
 import { FriendMoment } from "../model/FriendMoment";
 import { ShareViewModel } from "../service/ShareViewModel";
 import auth from '@hw-agconnect/auth'
+import { StoreViewModel } from "../service/StoreVielModel";
 
 @Component
 struct PublishPage {
   @Consume('appPathStack') appPathStack: NavPathStack
   @State selectedImages: ResourceStr = $r('app.media.add');
-  @State textInPublish: string = ""; // 文字
-  @StorageLink ('personUid') personUid: string = ''
-  @StorageLink ('personPhoto') personPhoto: string = ''
-  @StorageLink ('personName') personName: string = ''
+  @State textInPublish: string = "";
+  @StorageProp ('personUid') personUid: string = ''
+  @StorageProp ('personPhoto') personPhoto: string = ''
+  @StorageProp ('personName') personName: string = ''
+  @State location:string=''
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
-  @State selectedImagesArr:ResourceStr[]=[]
-  // @Consume commentList: CommentData
-
-  async getPictureFromAlbum() {
-    // 拉起相册，选择图片
-    let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
-    // 选择图库内媒体资源种类
-    PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
-    // 设置最大媒体文件选择数量
-    PhotoSelectOptions.maxSelectNumber = 9;
-    // 创建photoPicker
-    let photoPicker = new photoAccessHelper.PhotoViewPicker();
-    // 使用photoAccessHelper获取媒体资源信息
-    let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoPicker.select(PhotoSelectOptions);
-    // 获取对应资源文件uri地址
-    //TODO 多图实现
-    this.selectedImages = photoSelectResult.photoUris[0];
-    this.selectedImagesArr=photoSelectResult.photoUris
-  }
+  @State storeViewModel:StoreViewModel=StoreViewModel.getInstance();
+  time:string=''
+  // @State selectedImagesArr:ResourceStr[]=[]
 
   getCurrentDate(): string {
     const date: Date = new Date();
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
   }
 
-  publish(): void {
+  async publish(img:string): Promise<void> {
     const content: FriendMoment = new FriendMoment();
+    //添加图片的时间
     content.setUserId(this.personUid)
     content.setText(this.textInPublish)
-    content.setImage(this.selectedImages)
+    content.setImage(img)
     content.setGood(0)
-    content.setLocation('后海')
+    content.setLocation(this.location)
     content.setUserPhoto(this.personPhoto)
     content.setUserName(this.personName)
-    this.shareViewModel.shareAdd(content)
+    this.shareViewModel.shareAdd(content,this.personPhoto,this.personName)
     // this.scroller.scrollToIndex(0, true, ScrollAlign.START);
 
       if(!(this.textInPublish||this.selectedImages)){
@@ -69,8 +56,9 @@ struct PublishPage {
           Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(()=>{
             this.appPathStack.pop()
           })
-          Button('发表').onClick(()=>{
-            this.publish()
+          Button('发表').onClick(async ()=>{
+            const img=await this.storeViewModel.getUrl(this.personUid,this.time)
+            this.publish(img)
             this.appPathStack.pop()
           })
         }
@@ -87,8 +75,17 @@ struct PublishPage {
           .height(100)
           .margin({left:15})
           .alignSelf(ItemAlign.Start)
-          .onClick(()=>{this.getPictureFromAlbum()})
+          .onClick(()=>{
+            this.time=new Date().toString()
+            this.storeViewModel.upload(this.personUid,this.time).then((val)=>{
+              this.selectedImages=val.photoUris[0]
+            })
+          })
       }.padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE,top:Constants.PADDING_PAGE})
+      TextInput({placeholder:'分享您的位置:'})
+        .onChange((val)=>{
+          this.location=val
+        })
     }
     .margin({top:Constants.HEADER_HEIGHT_PAGE})
     .hideTitleBar(true)

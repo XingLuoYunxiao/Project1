@@ -26,7 +26,7 @@ struct EveryItem {
           }).visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
         // CollectHistoryItem({item:this.spot})
         Row() {
-          Image($r(this.spot.spot_img)).width(80).height(80)
+          Image(this.spot.spot_img).width(80).height(80)
           Column({space:Constants.MIDDLE_SPACE}){
             Text(this.spot.spotname).fontSize(16).fontWeight(500)
             Row({space:Constants.MIDDLE_SPACE}){
@@ -64,7 +64,7 @@ export struct CollectionPage {
   @State spotres:CollectionAdd[]=[]
   @State poemres:CollectionAdd[]=[]
   @State isSearch:boolean=false
-  @StorageLink ('personUid') personUid: string = ''
+  @StorageProp ('personUid') personUid: string = ''
   @State mineViewModel:MineViewModel=MineViewModel.getInstance();
   @Provide collectspotListData: ListDataSource<CollectionAdd> = this.mineViewModel.collectspotListData
   @Provide collectpoemListData: ListDataSource<CollectionAdd> =this.mineViewModel.collectpoemListData

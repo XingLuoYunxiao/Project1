@@ -61,8 +61,9 @@ export struct OrderItem {
         Text(this.item.order_status)
       }.width('100%')
       Row() {
-        Image($r(this.item.spot_img)).width(80).height(80)
-        Text(`下单:${this.item.order_time}`)
+        Image(this.item.spot_img).width(80).height(80)
+        Text(`下单:${this.item.order_time.toString().slice(0,10)}`).margin({left:30,right:30})
+        // Text(`下单:${this.item.order_time.getMonth()}-${this.item.order_time}-${this.item.order_time} ${this.item.order_time}`)
         Column() {
           Text(`￥${this.item.quantity* this.item.spot_price}`)
           Text(`共${this.item.quantity}件`)

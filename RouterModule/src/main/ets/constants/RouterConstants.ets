@@ -36,6 +36,7 @@ export class BuilderNameConstants {
   static readonly MAP_ROUTEPLANVIEW: string = 'map_RoutePlanView';
   //Share
   static readonly SHARE_PUBLISHPAGE:string='share_PublishPage';
+  static readonly SHARE_DETAILSHPAGE:string='share_ShareDetail';
   //Travel
   // Feature: Travel中的AI导游页面
   // Feature: Travel中的景点分类页面

@@ -40,11 +40,11 @@ export class ShareViewModel{
       })
   }
 
-  async shareAdd(data:FriendMoment){
+  async shareAdd(data:FriendMoment,photo:string,name:string){
     this.sharedata.addshareData(data)
       .then(async ()=>{
         //TODO 换成用户名和头像
-          this.shareList.pushData(new FriendMomentAdd(data.id,data.userId,data.text,data.image,data.good,data.location,'app.media.Zoologist','用户名'))
+          this.shareList.pushData(new FriendMomentAdd(data.id,data.userId,data.text,data.image,data.good,data.location,photo,name))
       })
   }
 
