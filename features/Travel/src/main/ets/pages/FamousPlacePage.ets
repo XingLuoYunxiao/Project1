@@ -6,6 +6,7 @@ import { otherItemList } from "../model/Attraction";
 import { Spot } from "../model/Spot";
 import { SpotNetFunc } from "../service/SpotNetFunc";
 import { CloudStorageService } from "../service/CloudStorageService";
+import { promptAction } from "@kit.ArkUI";
 
 //评分数组，最高10分
 const scoreList: number[] = [9.7, 10.0, 8.8, 9.5, 9.2, 9.9, 9.0];
@@ -23,6 +24,10 @@ export struct FamousItem {
   @State cloudService: CloudStorageService = CloudStorageService.getInstance()
   @State url: string | undefined = undefined
   @State isLoading: boolean = false
+  @StorageLink('personUid') personUid: string = '';
+  @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance()
+
+
 
   aboutToAppear(){
     if( this.spot && this.spot.imageUrl)
@@ -97,6 +102,11 @@ export struct FamousItem {
               .backgroundColor(Color.Orange)
               .fontColor(Color.White)
               .onClick( () => {
+                if( this.spot.id && this.personUid != ''){
+                  this.spotNetWork.addBrowse(this.spot.id, this.personUid);
+                }else{
+                  promptAction.showToast({message: '请先登录'})
+                }
                 let params: LoadParams = {
                   param1: "SpotDetailPage", // 第一个参数
                   param2: this.spot  // 第二个参数
@@ -133,6 +143,7 @@ export struct FamousPlacePage {
   @State value:object = new Object()
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance();
   @State category: string = "";
+  @StorageLink('personUid') personUid: string = '';
   @Watch("getSearchData")
   @State searchText: string = "";
   @State spotDataSource: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource

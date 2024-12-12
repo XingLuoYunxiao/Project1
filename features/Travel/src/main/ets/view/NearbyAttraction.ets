@@ -6,6 +6,7 @@ import { Spot } from "../model/Spot"
 import { CloudStorageService } from "../service/CloudStorageService"
 import { SpotNetFunc } from "../service/SpotNetFunc"
 import { NearbyItem } from "./NearbyItem"
+import { promptAction } from "@kit.ArkUI"
 
 
 @Component
@@ -15,6 +16,9 @@ export struct NearbyAttraction {
   @State locationUtil: LocationUtil = LocationUtil.getInstance()
   @State currentCityName: string = '当前城市'
   @State CityNameJudge: boolean = false
+  @StorageLink('personUid') personUid: string = '';
+
+
   spotDistanceMap: Map<string, string> = new Map()
 
   async aboutToAppear(): Promise<void> {
@@ -83,6 +87,11 @@ export struct NearbyAttraction {
                 .reuseId('nearby')
             }
             .onClick(() => {
+              if( item.id && this.personUid != ''){
+                this.spotNetWork.addBrowse(item.id, this.personUid);
+              }else{
+                promptAction.showToast({message: '请先登录'})
+              }
               buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item: item}))
               //this.appPathStack.pushPathByName('AttractionDetailPage', item)
             })

@@ -9,6 +9,7 @@ import { BrowsingHistory } from "./BrowsingHistory";
 import { cloudCommon, cloudFunction } from '@kit.CloudFoundationKit';
 import { BusinessError, request } from '@kit.BasicServicesKit';
 import auth from "@hw-agconnect/auth";
+import { SpotParams } from "travel/src/main/ets/model/SpotFuncParams";
 
 // let authProvider =  auth.getAuthProvider();
 // authProvider.getAccessToken(true)
@@ -196,5 +197,24 @@ export class UserModel{
     })
   }
 
+}
 
+
+//并发查询
+@Concurrent
+export async function queryCollection(condition:string){
+  try{
+    let params:SpotParams = {
+      type: 'query',
+      filter: [
+        {name:`${condition}`}
+      ]
+    }
+    const res = await cloudFunction.call({ name: 'get-spot-data', data: params})
+    let data = res.result
+    return JSON.parse(JSON.stringify(data)).data
+  }catch (e){
+    console.error('[SpotModel]', 'SpotModel getSpotDataByCondition failed', e);
+  }
+  return []
 }

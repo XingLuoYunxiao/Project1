@@ -7,6 +7,7 @@ import { promptAction } from "@kit.ArkUI";
 
 const TAG = '[SpotModel]';
 
+
 export class SpotModel {
 
   //获取景点数据
@@ -126,11 +127,30 @@ export class SpotModel {
         table:'collectadd'
       }
     }).then((value: cloudFunction.FunctionResult) => {
-      console.info(`成功添加 ${JSON.stringify(value.result)}`);
+      console.info(`收藏成功添加 ${JSON.stringify(value.result)}`);
       promptAction.showToast({message: '收藏成功', duration: 2000})
     }).catch((err: BusinessError) => {
-      console.error(`添加失败, Code: ${err.code}, message: ${err.message}`);
+      console.error(`收藏添加失败, Code: ${err.code}, message: ${err.message}`);
       promptAction.showToast({message: `收藏失败 ${err.message}`, duration: 2000})
+    })
+  }
+
+  //删除收藏记录
+  async delCollectData(spotid:number,personUid:string){
+    cloudFunction.call({
+      name: 'get-hiscol-data',
+      data: {
+        personUid:personUid,
+        fiel:spotid,
+        sort:"spot",
+        table:'collectdel'
+      }
+    }).then((value: cloudFunction.FunctionResult) => {
+      console.info(`收藏成功删除 ${JSON.stringify(value.result)}`);
+      promptAction.showToast({message: '收藏删除成功', duration: 2000})
+    }).catch((err: BusinessError) => {
+      console.error(`收藏删除失败, Code: ${err.code}, message: ${err.message}`);
+      promptAction.showToast({message: `收藏删除失败 ${err.message}`, duration: 2000})
     })
   }
 
@@ -144,11 +164,11 @@ export class SpotModel {
         table:'browsingadd'
       }
     }).then((value: cloudFunction.FunctionResult) => {
-      console.info(`成功添加 ${JSON.stringify(value.result)}`);
-      promptAction.showToast({message: '收藏成功', duration: 2000})
+      console.info(`浏览记录成功添加 ${JSON.stringify(value.result)}`);
+      promptAction.showToast({message: '浏览记录提添加成功', duration: 2000})
     }).catch((err: BusinessError) => {
-      console.error(`添加失败, Code: ${err.code}, message: ${err.message}`);
-      promptAction.showToast({message: `收藏失败 ${err.message}`, duration: 2000})
+      console.error(`浏览记录添加失败, Code: ${err.code}, message: ${err.message}`);
+      promptAction.showToast({message: `浏览记录添加失败 ${err.message}`, duration: 2000})
 
     })
   }

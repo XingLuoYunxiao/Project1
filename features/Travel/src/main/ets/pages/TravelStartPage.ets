@@ -3,6 +3,7 @@ import { NearbyAttraction } from '../view/NearbyAttraction';
 import { SearchHeader } from '../view/SearchHeader';
 import { SpotNetFunc } from '../service/SpotNetFunc';
 import { LoadingStatus } from 'utils';
+import { PreferenceUtil } from "utils";
 import { router } from '@kit.ArkUI';
 
 
@@ -12,6 +13,7 @@ export struct TravelStartPage {
   @Consume('appPathStack') appPathStack: NavPathStack;
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance();
   @State loadAllState: string = LoadingStatus.OFF;
+  PreferenceUtil: PreferenceUtil = PreferenceUtil.getInstance()
   @State swiperImage: Resource[] = [ $r('app.media.swiper_xian'), $r('app.media.swiper_hangzhou'), $r('app.media.swiper_other1')]
 
   async aboutToAppear(): Promise<void> {

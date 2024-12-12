@@ -192,8 +192,11 @@ export struct CollectionPage {
         LazyForEach(data,(spot:CollectionAdd)=>{
           EveryItem({manage:$manage,spot:spot,delcount:$deletecount})
             .onClick(()=>{
-              this.SpotNetWork.search(spot.spotname)
-              buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
+              this.mineViewModel.taskPoolExecuteQuery(spot.spotname).then((res) => {
+                if(res.length !== 0){
+                  buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
+                }
+              })
             })
         },(spot:CollectionAdd,index:number)=>JSON.stringify(spot)+Math.random()+index)
       }.scrollBar(BarState.Off)

@@ -9,7 +9,6 @@ import auth, { AGCAuthError } from '@hw-agconnect/auth'
 const PREF_KEY = 'GuYunUserKey'
 const TAG: string = '[LauncherPage]';
 
-// TODO 第一次安装应用时弹出定位点击同意后，不出现隐私服务弹窗
 @Entry
 @Component
 struct LauncherPage {

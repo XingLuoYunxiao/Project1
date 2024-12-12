@@ -1,4 +1,4 @@
-import { UserModel } from "../model/UserModel";
+import { queryCollection, UserModel } from "../model/UserModel";
 import { hilog } from "@kit.PerformanceAnalysisKit";
 import { Collection } from "../model/Collection";
 import { CollectionAdd } from "../model/CollectionAdd";
@@ -9,6 +9,9 @@ import { myOrderAdd } from "../model/myOrderAdd";
 import { myOrder} from "../model/myOrder";
 import { CalendarData} from "../view/MyCalendar";
 import lpreferencesUtil from "../common/utils/PreferenceUtil";
+import { taskpool as taskPool } from '@kit.ArkTS';
+import { Spot } from "travel";
+
 
 @Observed
 export class MineViewModel{
@@ -146,6 +149,19 @@ export class MineViewModel{
           this.orderListData.pushData(new myOrderAdd(value.order_id,value.spot_id,value.order_time,value.order_status,value.total_amount,value.quantity,value.order_type,value.user_id,spots[0].name,spots[0].imageUrl,spots[0].ticketPrice))
         })
       })
+  }
+
+
+  //使用taskPool执行查询任务（收藏查询）
+  async taskPoolExecuteQuery(condition:string): Promise<Array<Spot>> {
+    try {
+      let task: taskPool.Task = new taskPool.Task(queryCollection, condition); // query函数调用 需使用装饰器@Concurrent
+      let result: Array<Spot> = await taskPool.execute(task) as Array<Spot>;
+      return result;
+    } catch (err) {
+      console.error('taskPoolQuery', 'query error:' + `${err}`);
+      return [];
+    }
   }
 
 }

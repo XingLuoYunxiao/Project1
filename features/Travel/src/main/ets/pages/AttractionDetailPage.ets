@@ -17,8 +17,10 @@ struct AttractionDetailPage {
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance()
   @State isSelected: number = 0
   @State selectedDate: Date = new Date()
+  @State isCollectLoading: boolean = false
   @State cloudService: CloudStorageService = CloudStorageService.getInstance()
   @State url: string | undefined = undefined
+
 
   aboutToAppear(): void {
     //获取路由参数
@@ -28,6 +30,13 @@ struct AttractionDetailPage {
       this.cloudService.getTravelSpotURL(this.spot.imageUrl).then(url => {
         this.url = url
       })
+    //TODO 收藏状态和Login不同步问题,卸载应用后，会出现该页面收藏丢失的情况, 这里可以使用多线程来解决景点的查询匹配问题
+    this.spotNetWork.getCollection().then(() => {
+      if(  this.spot && this.spot.id && this.spotNetWork.collection.indexOf(this.spot.id) > 0){
+        this.isCollectLoading = true
+      }
+    })
+
   }
 
   StartNavi = ()=>{
@@ -68,8 +77,8 @@ struct AttractionDetailPage {
             .fontWeight(FontWeight.Medium)
             .margin({ left: 12 })
           Blank()
-          //TODO 需要完善
-          Image($r('app.media.ic_collection'))
+          //TODO 首选项和用户模块的收藏数据不同步
+          Image( this.isCollectLoading ? $r('app.media.ic_collection_fill') : $r('app.media.ic_collection'))
             .fillColor(Color.Orange)
             .width(24)
             .height(24)
@@ -77,11 +86,13 @@ struct AttractionDetailPage {
             .onClick(() => {
               // 收藏
               if(this.personUid !== '' && this.spot && this.spot.id){
-                this.spotNetWork.addCollection(this.spot.id, this.personUid)
+                this.spotNetWork.updateCollection(this.spot.id, this.personUid)
+                this.isCollectLoading = !this.isCollectLoading
               }else{
                 promptAction.showToast({message: '请先登录', duration: 2000})
               }
             })
+
         }
         .width('100%')
         .height(48)
@@ -90,10 +101,12 @@ struct AttractionDetailPage {
         Scroll() {
           Column() {
             Stack({ alignContent: Alignment.BottomEnd }) {
-              Image(this.url == undefined ? $r(`${this.spot.imageUrl}`) : this.url)
-                .width('100%')
-                .height(240)
-                .objectFit(ImageFit.Fill)
+              if( this.spot && this.spot.imageUrl){
+                Image(this.url == undefined ? $r(`${this.spot.imageUrl}`) : this.url)
+                  .width('100%')
+                  .height(240)
+                  .objectFit(ImageFit.Fill)
+              }
             }
 
             // 注意
@@ -316,6 +329,8 @@ function getRandomNumber(): number {
 
 
 function isBusinessTime(businessHours: string): boolean {
+  if(businessHours === '全天开放')
+    return true
   try {
     //获取当前时间
     let currentTime = new Date();
