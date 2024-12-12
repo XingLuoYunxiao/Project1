@@ -25,6 +25,8 @@ export function harInit(builderName: string): void {
     case BuilderNameConstants.TRAVEL_SPOTDETAILPAGE:
       import("./src/main/ets/pages/SpotDetailPage");
       break;
+    case BuilderNameConstants.TRAVEL_SPOTDETAILCOMMENT:
+      import("./src/main/ets/pages/SpotDetailComment")
     default:
       break;
   }

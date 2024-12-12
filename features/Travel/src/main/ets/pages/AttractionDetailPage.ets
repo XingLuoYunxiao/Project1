@@ -6,6 +6,7 @@ import { common } from '@kit.AbilityKit';
 import { SpotNetFunc } from '../service/SpotNetFunc';
 import { promptAction } from '@kit.ArkUI';
 import { CloudStorageService } from '../service/CloudStorageService';
+import { SpotComment } from '../view/SpotComment';
 
 @Component
 struct AttractionDetailPage {
@@ -167,6 +168,7 @@ struct AttractionDetailPage {
             .alignItems(HorizontalAlign.Start)
             .padding(16)
 
+            //景点信息
             Column() {
               Row() {
                 Text( isBusinessTime(this.spot.openingHours) === true ? '营业中' :'未营业')
@@ -304,6 +306,9 @@ struct AttractionDetailPage {
             }
             .margin({ top: 8 })
             .backgroundColor(Color.White)
+
+            // 评论
+            SpotComment({spot: this.spot})
           }
         }
         .width('100%')

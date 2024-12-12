@@ -43,6 +43,8 @@ export class BuilderNameConstants {
   static readonly TRAVEL_LOADINGANIMATION: string = 'travel_LoadingAnimation';
   static readonly TRAVEL_SPOTDETAILPAGE: string = 'travel_SpotDetailPage';
   static readonly TRAVEL_SEARCHPAGE: string = 'travel_SearchPage';
+  // Feature: Travel中的评论页面
+  static readonly TRAVEL_SPOTDETAILCOMMENT: string = 'travel_SpotDetailComment';
 
   //Culture
   static readonly CULTURE_POEM: string = 'culture_PoemPage'
