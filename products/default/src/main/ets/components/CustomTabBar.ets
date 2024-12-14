@@ -13,12 +13,15 @@
  * limitations under the License.
  */
 
+import { BreakpointConstants, BreakpointType } from 'utils';
 import { AppConstants } from '../constants/AppConstants';
 import { TabBarData, TabBarType, TabsInfo } from '../model/TabBarModel';
 
 @Component
 export struct CustomTabBar {
   @Link currentIndex: TabBarType;
+  @StorageLink('currentHeightBreakpoint') currentHeightBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
+  @StorageLink('currentWidthBreakpoint') currentWidthBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
 
   onChange(index: TabBarType): void {
     this.currentIndex = index;
@@ -26,6 +29,7 @@ export struct CustomTabBar {
 
   build() {
     Flex({
+      direction: this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_LG ? FlexDirection.Column : FlexDirection.Row,
       alignItems: ItemAlign.Center,
       justifyContent: FlexAlign.SpaceAround
     }) {
@@ -38,13 +42,21 @@ export struct CustomTabBar {
       }, (item: TabBarData) => item.id.toString())
     }
     .border({
-      width: { top: $r('app.float.tab_border_width') },
+      width: this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_LG ? { right: $r('app.float.tab_border_width')} : { top: $r('app.float.tab_border_width') },
       color: $r('sys.color.ohos_id_color_text_field_sub_bg')
     })
     .padding({ bottom: $r('app.float.md_padding_margin')})
     .clip(false)
-    .height(AppConstants.TAB_HEIGHT)
-    .width(AppConstants.FULL_PERCENT)
+    .height(new BreakpointType<Length>({
+      sm: AppConstants.TAB_HEIGHT,
+      md: AppConstants.TAB_HEIGHT,
+      lg: AppConstants.FULL_PERCENT
+    }).getValue(this.currentWidthBreakpoint))
+    .width(new BreakpointType<Length>({
+      sm: AppConstants.FULL_PERCENT,
+      md: AppConstants.FULL_PERCENT,
+      lg: $r('app.float.tool_bar_width')
+    }).getValue(this.currentWidthBreakpoint))
     .margin({bottom: $r('app.float.lg_padding_margin')})
     .backgroundColor($r('app.color.app_background_color'))
   }
@@ -54,6 +66,8 @@ export struct CustomTabBar {
 struct TabItem {
   @Prop index: number
   @Prop selectedIndex: number;
+  @StorageLink('currentWidthBreakpoint') currentWidthBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
+
   onChange: (index: number) => void = () => {
   };
 
@@ -78,7 +92,9 @@ struct TabItem {
     .padding(
       { left: $r('app.float.ss_padding_margin'), right: $r('app.float.ss_padding_margin') })
     .layoutWeight(1)
-    .size({ height: AppConstants.FULL_PERCENT })
+    .size(this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_LG ?
+      { width: AppConstants.FULL_PERCENT } :
+      { height: AppConstants.FULL_PERCENT })
     .justifyContent(FlexAlign.Center)
     .onClick(() => {
       if (this.selectedIndex !== this.index) {

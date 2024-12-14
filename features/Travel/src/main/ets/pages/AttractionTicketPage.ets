@@ -9,6 +9,10 @@ import { LoadingStatus } from 'utils/src/main/ets/common/CommonUtil';
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
 import { LazyDataSource } from 'utils';
 import { classificationList } from '../service/ClassficationData';
+import { promptAction } from '@kit.ArkUI';
+
+
+
 
 //TODO 小bug，点太快进入该页面会获取不到数据
 @Component
@@ -26,7 +30,7 @@ export default struct AttractionTicketPage {
   @State currentAttractions: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource;
   @State value: object = new Object()
 
-  @State isCategoryLoading: boolean = false
+
 
   async aboutToAppear(): Promise<void> {
     //let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
@@ -34,7 +38,7 @@ export default struct AttractionTicketPage {
     if( category !== "")
       this.currentCategory[0] = category
     this.spotNetWork.allSpotsDataSource.clear();
-    this.currentAttractions =  this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
+    this.currentAttractions =  await this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
   }
 
   aboutToDisappear(): void {
@@ -43,7 +47,6 @@ export default struct AttractionTicketPage {
     this.spotNetWork.pageNum = 0
     this.spotNetWork.allLoadingStatus = LoadingStatus.OFF
   }
-
 
 
 
@@ -152,10 +155,13 @@ export default struct AttractionTicketPage {
     this.spotNetWork.allLoadingStatus = LoadingStatus.LOADING
     //遍历所有景点，将所有符合条件的景点插入到currentAttractions中,不符合则删除
     if(!judgeLoadData(this.currentCity, this.currentCategory)){
-      this.isCategoryLoading = true
       this.currentAttractions.clear()
-      this.currentAttractions = this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
+      this.currentAttractions = await this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
     }else{
+      if( this.spotNetWork.isRefresh === true){
+        this.spotNetWork.pageNum = 1
+        this.spotNetWork.isRefresh = false
+      }
       await this.spotNetWork.loadSpotsData()
       this.currentAttractions = this.spotNetWork.allSpotsDataSource
     }
@@ -205,7 +211,6 @@ export default struct AttractionTicketPage {
         .width(Constants.FULL_WIDTH)
         .height(Constants.CATEGORY_HEIGHT)
 
-        //TODO 添加数据
         WaterFlow({footer: this.itemFoot()}){
           LazyForEach(this.currentAttractions, (item: Spot, index: number) => {
             FlowItem() {
@@ -215,6 +220,8 @@ export default struct AttractionTicketPage {
             .onClick(() => {
               if( item.id && this.personUid != ''){
                 this.spotNetWork.addBrowse(item.id, this.personUid);
+              }else{
+                promptAction.showToast({message: '请先登录'})
               }
               buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item:item}))
               //this.appPathStack.pushPathByName('AttractionDetailPage', item)
@@ -238,7 +245,6 @@ export default struct AttractionTicketPage {
             }
             .onClick(() => {
               buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item:item}))
-              //this.appPathStack.pushPathByName('AttractionDetailPage', item)
             })
             //触底加载数据
             .onAppear(() => {

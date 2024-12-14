@@ -8,7 +8,7 @@ export struct CollectHistoryItem {
     Row() {
       Image($r(this.item.spot_img)).width(80).height(80)
       Text(this.item.spotname)
-      Text('15km')
+      Text()
     }.borderRadius(20)
     .width('100%')
     .backgroundColor(Color.White)

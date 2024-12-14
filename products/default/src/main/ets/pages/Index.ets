@@ -4,8 +4,10 @@ import { CulturalPage } from 'culture';
 import { TabBarType } from '../model/TabBarModel';
 import { CustomTabBar } from '../components/CustomTabBar';
 import { AppConstants } from '../constants/AppConstants';
-import { BreakpointSystem, BreakpointTypeEnum, LocationUtil } from 'utils';
+import { BreakpointConstants, BreakpointSystem, BreakpointTypeEnum, LocationUtil, WindowUtil } from 'utils';
 import { RouterModule, RouterNameConstants } from 'routermodule';
+import { SharePage } from 'share';
+import lpreferencesUtil from 'login/src/main/ets/common/utils/PreferenceUtil';
 
 @Entry
 @Component
@@ -16,6 +18,9 @@ struct Index {
   @Provide('loginPathStack') loginPathStack: NavPathStack = new NavPathStack();
   @Provide('culturePathStack') culturePathStack: NavPathStack = new NavPathStack();
   @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
+  @StorageLink('currentHeightBreakpoint') currentHeightBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
+  @StorageLink('currentWidthBreakpoint') currentWidthBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
+
   private tabsController: TabsController = new TabsController();
   private breakpointSystem: BreakpointSystem = new BreakpointSystem(); // 断点系统实例
 
@@ -26,11 +31,22 @@ struct Index {
       this.appPathStack = new NavPathStack();
       AppStorage.setOrCreate('isHideBar', false);
     }
-    RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
+   RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
+
+    const personUid=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personUid','')
+    const personPhoto=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personPhoto','')
+    const personName=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personName','')
+    AppStorage.setOrCreate('personName',personName)
+    AppStorage.setOrCreate('personPhoto',personPhoto)
+    AppStorage.setOrCreate('personUid',personUid)
   }
 
   aboutToDisappear(): void {
-    this.breakpointSystem.unregister(); // 注销断点系统
+    let windowUtil: WindowUtil | undefined = WindowUtil.getInstance();
+    if (windowUtil === undefined) {
+      return;
+    }
+    windowUtil.offWindowSizeChange();
   }
 
   @Builder
@@ -42,7 +58,8 @@ struct Index {
   build() {
     Navigation(this.appPathStack) {
       Stack() {
-        Flex({ direction: FlexDirection.RowReverse }) {
+        Flex({ direction: this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_LG ? FlexDirection.RowReverse : FlexDirection.Column })
+        {
           Tabs({ index: this.currentIndex }) {
             TabContent() {
               TravelStartPage()
@@ -51,8 +68,7 @@ struct Index {
               CulturalPage()
             }
             TabContent() {
-              Text('开发中')
-                .align(Alignment.Center)
+              SharePage()
             }
 
             TabContent() {
@@ -71,20 +87,20 @@ struct Index {
           })
           .scrollable(false)
           .backgroundColor('#F1F3F5')
-          .padding({ top: 36, bottom: 28 })
+          .padding({ top: 36})
           .onChange((index) => {
             this.currentIndex = index;
           })
+
+          CustomTabBar({ currentIndex: $currentIndex })
         }
         .width(AppConstants.FULL_PERCENT)
         .height(AppConstants.FULL_PERCENT)
 
-        CustomTabBar({ currentIndex: $currentIndex })
 
       }
       //Stack的属性,子组件的对齐方式
-      .alignContent(Alignment.BottomEnd)
-
+      //.alignContent(Alignment.BottomEnd)
     }
     .hideTitleBar(true)
     .mode(NavigationMode.Stack)

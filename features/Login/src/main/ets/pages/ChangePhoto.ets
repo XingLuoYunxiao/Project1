@@ -2,9 +2,6 @@ import { photoAccessHelper } from "@kit.MediaLibraryKit";
 import { BusinessError } from "@kit.BasicServicesKit";
 import auth from "@hw-agconnect/auth";
 import { hilog } from "@kit.PerformanceAnalysisKit";
-import { image } from "@kit.ImageKit";
-import fileio from '@ohos.fileio';
-import { fileIo as fs } from '@kit.CoreFileKit';
 import { BuilderNameConstants, RouterModule } from "routermodule";
 import Constants from "../common/constants/Constants";
 

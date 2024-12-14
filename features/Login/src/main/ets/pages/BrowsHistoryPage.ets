@@ -4,7 +4,6 @@ import { mySpot } from "../model/mySpot";
 import { CollectHistoryItem } from "../view/CollectHistoryItem";
 import { ListDataSource } from "../service/ListDataSource";
 import { MineViewModel } from "../service/MineViewModel";
-import auth from "@hw-agconnect/auth";
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from "../common/constants/Constants";
 import { SpotNetFunc } from "travel/src/main/ets/service/SpotNetFunc";
@@ -23,7 +22,7 @@ export struct BrowsHistoryPage {
   @State historypoemListData: ListDataSource<HistoryAdd> = this.mineViewModel.historypoemListData
   @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
   @State calendarspotListData:ListDataSource<HistoryAdd> = new ListDataSource();
-
+  @State delcount:number=0
 
   @Builder
 bottomDelete(){
@@ -46,7 +45,7 @@ bottomDelete(){
       // })
     }
     .backgroundColor(Color.White)
-    .visibility(this.manage=='完成'?Visibility.Visible:Visibility.None).width('100%')
+    .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None).width('100%')
 }
 
 
@@ -61,7 +60,7 @@ bottomDelete(){
             Text('浏览历史')
             Text(this.manage).onClick(() => {
               if (this.manage == '管理') {
-                this.manage = '完成'
+                this.manage = '退出管理'
               } else {
                 this.manage = '管理'
               }
@@ -81,13 +80,13 @@ bottomDelete(){
                   LazyForEach(this.historyspotListData, (history: HistoryAdd) => {
                     ListItem() {
                       Row() {
-                        if (this.manage == '完成') {
                           Checkbox()
-                            .select(this.isChecked)
                             .onChange((isChecked: boolean) => {
-                              history.isChoose = isChecked
-                            })
-                        }
+                              if (isChecked) {
+                                this.delcount++
+                              }else this.delcount--
+                              history.isChoose=isChecked
+                            }).visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
                         CollectHistoryItem({ item: history })
                       }
                     }.onClick(()=>{
@@ -106,7 +105,7 @@ bottomDelete(){
                   LazyForEach(this.historypoemListData, (history: HistoryAdd) => {
                     ListItem() {
                       Row() {
-                        if (this.manage == '完成') {
+                        if (this.manage == '退出管理') {
                           Checkbox()
                             .select(this.isChecked)
                             .onChange((isChecked: boolean) => {

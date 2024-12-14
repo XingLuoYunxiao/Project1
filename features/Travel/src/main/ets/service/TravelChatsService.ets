@@ -48,14 +48,23 @@ export class TravelChatsService{
     }
   }
 
-  sendRequest(content:string, onUpdate: (chunk: string) => void): void {
+  async sendRequest(content:string, onUpdate: (chunk: string) => void){
+    let str = ""
     if(TravelChatsService.chats === undefined){
       this.init()
+      str = await TravelChatsService.chats![0].getData(content, onUpdate);
     }else{
-      TravelChatsService.chats[0].getData(content, onUpdate);
+      str = await TravelChatsService.chats[0].getData(content, onUpdate);
     }
+    this.resContent = str
+    let result: custom = this.parseTravelPlans(str);
+    console.log('travelPlanTest result:', result)
+    return result
   }
 
+  //
+
+  // 发送请求，获取推荐路线
   async sendTravelRequest(context:string){
     if(TravelChatsService.chats === undefined){
       this.init()
@@ -67,7 +76,7 @@ export class TravelChatsService{
     return result
   }
 
-
+  // 解析AI生成内容，返回路线方案
   parseTravelPlans(template: string): custom{
     // 正则表达式匹配路线方案
     const routeOptionsRegex = /路线方案[一二三]：\s*(.*?)(?=路线方案[一二三]|对比说明)/gs;
