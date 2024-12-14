@@ -9,7 +9,7 @@ import { BrowsingHistory } from "./BrowsingHistory";
 import { cloudCommon, cloudFunction } from '@kit.CloudFoundationKit';
 import { BusinessError, request } from '@kit.BasicServicesKit';
 import auth from "@hw-agconnect/auth";
-import { SpotParams } from "travel/src/main/ets/model/SpotFuncParams";
+import { Params } from "travel/src/main/ets/model/FuncParams";
 
 // let authProvider =  auth.getAuthProvider();
 // authProvider.getAccessToken(true)
@@ -204,7 +204,7 @@ export class UserModel{
 @Concurrent
 export async function queryCollection(condition:string){
   try{
-    let params:SpotParams = {
+    let params:Params = {
       type: 'query',
       filter: [
         {name:`${condition}`}

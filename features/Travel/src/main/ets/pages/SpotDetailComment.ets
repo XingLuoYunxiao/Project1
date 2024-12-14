@@ -3,163 +3,188 @@ import { spotComment } from "../model/spotComment"
 import { promptAction } from "@kit.ArkUI"
 import { Spot } from "../model/Spot"
 import { CommentService } from "../service/CommentService"
+import { LoadingStatus } from "utils"
 
 @Component
 struct SpotDetailComment {
   @Consume('appPathStack') appPathStack: NavPathStack
   @State commentService: CommentService = CommentService.getInstance()
+  @StorageLink('personUid') userId: string = '';
   @State spot: Spot = new Spot()
   @State value: object = new Object()
   @State comments: spotComment[] = []
   @State currentUserAvatar: Resource = $r('app.media.avator')
   @State selectedTopComment: spotComment | null = null
   @State userName: string | undefined = '用户'
-  @State isShowDialog: Array<boolean> = []
+  @State commentInput: string = ''
+  @State isReplySheetShow: boolean = false
+  // 新增：用于跟踪回复数量的响应式状态
+  @State replyCountMap: Map<number, number> = new Map()
 
-  aboutToAppear(): void {
-    //this.spot.id = this.appPathStack.getParamByName('spotId')[0]
-    this.spot = JSON.parse(JSON.stringify(this.value)).spot as Spot
-
-    if( this.spot && this.spot.id){
-      this.commentService.loadMoreComments(this.spot.id).then(() => {
-        this.comments = this.commentService.comments
-        this.isShowDialog = new Array<boolean>(this.commentService.topComments.length).fill(false);
-      })
+  // 时间格式化方法
+  formatTime(timeStr: string): string {
+    try {
+      const date = new Date(timeStr);
+      const year = date.getFullYear();
+      const month = (date.getMonth() + 1).toString().padStart(2, '0');
+      const day = date.getDate().toString().padStart(2, '0');
+      const hours = date.getHours().toString().padStart(2, '0');
+      const minutes = date.getMinutes().toString().padStart(2, '0');
+      return `${year}/${month}/${day} ${hours}:${minutes}`;
+    } catch (error) {
+      return timeStr;
     }
-
   }
 
+  async aboutToAppear(): Promise<void> {
+    this.spot = JSON.parse(JSON.stringify(this.value)).spot as Spot
 
-  // 获取某个顶级评论的回复列表
-  getReplies(topCommentId: number): spotComment[] {
-    return this.comments.filter(comment =>
-    comment.spotId === this.spot.id && comment.parentId === topCommentId
-    )
+    if (this.spot && this.spot.id) {
+      await this.commentService.loadMoreComments(this.spot.id).then(() => {
+        this.comments = this.commentService.comments
+
+        // 初始化回复数量映射
+        this.commentService.topComments.forEach(comment => {
+          if (comment.id) {
+            this.replyCountMap.set(
+              comment.id,
+              this.commentService.getReplies(comment.id, this.spot.id!).length
+            )
+          }
+        })
+      })
+    }
+  }
+  aboutToDisappear(): void {
+    this.commentService.pageNum = 1
+    this.commentService.comments = []
+    this.commentService.topComments = []
+  }
+
+  async postComment(parentId: number): Promise<void> {
+    if (this.spot && this.spot.id) {
+      if (parentId === -1) {
+        this.commentService.postComment(this.commentInput, this.spot.id, this.userId, -1)
+      } else if(parentId){
+        this.commentService.postComment(this.commentInput, this.spot.id, this.userId, parentId)
+
+        // 更新特定评论的回复数量
+        if (parentId) {
+          const currentCount = this.replyCountMap.get(parentId) || 0
+          this.replyCountMap.set(parentId, currentCount + 1)
+        }
+      }
+      this.commentInput = ''
+      this.isReplySheetShow = false
+    } else {
+      promptAction.showToast({ message: '评论失败[景点未定义]', duration: 2000 })
+    }
+  }
+
+  @Builder
+  replySheetBuilder() {
+    Column() {
+      Column() {
+        Text(`回复: ${this.selectedTopComment?.content}`)
+          .fontSize(16)
+          .fontColor(Color.Gray)
+          .margin({ bottom: 10 })
+
+        // 回复列表
+        List() {
+          ForEach(this.commentService.getReplies(this.selectedTopComment?.id!, this.spot.id!), (reply: spotComment) => {
+            ListItem() {
+              Row() {
+                Image(this.currentUserAvatar)
+                  .width(40)
+                  .height(40)
+                  .borderRadius(20)
+                  .margin({ right: 10 })
+
+                Column() {
+                  Text(reply.userId?.toString() || '')
+                    .fontSize(14)
+                    .fontWeight(FontWeight.Medium)
+
+                  Text(reply.replyTime ? this.formatTime(reply.replyTime?.toString()) : '')
+                    .fontSize(12)
+                    .fontColor(Color.Gray)
+
+                  Text(reply.content || '')
+                    .fontSize(14)
+                    .margin({ top: 5 })
+                }
+                .alignItems(HorizontalAlign.Start)
+                .layoutWeight(1)
+              }
+              .padding(10)
+              .borderRadius(12)
+              .backgroundColor('#F5F6F7')
+              .margin({ bottom: 8 })
+            }
+          })
+        }
+        .height(300)
+        .width('100%')
+        .padding({ bottom: 20 })
+      }
+      .width('100%')
+
+      Row() {
+        TextInput({ placeholder: '输入回复...', text: this.commentInput })
+          .layoutWeight(1)
+          .margin({ right: 10 })
+          .onChange((value: string) => {
+            this.commentInput = value
+          })
+
+        Button('发送')
+          .backgroundColor('#007bff')
+          .fontColor(Color.White)
+          .onClick(() => {
+            if (this.selectedTopComment?.id) {
+              this.postComment(this.selectedTopComment?.id!)
+            }
+          })
+      }
+      .width('100%')
+      .padding(10)
+      .backgroundColor(Color.White)
+    }
+    .width('100%')
+    .height('80%')
+    .padding(16)
+    .backgroundColor(Color.White)
+    .borderRadius({ topLeft: 20, topRight: 20 })
   }
 
   build() {
     NavDestination() {
       Column() {
-        // 返回按钮
-        Row() {
+        // 顶部导航栏
+        Row()
+          {
           Image($r('app.media.ic_back'))
-            .width(40)
-            .height(40)
+            .width(24)
+            .height(24)
             .onClick(() => this.appPathStack.pop())
+
           Text('全部评论')
-            .fontSize(20)
+            .fontSize(18)
             .fontWeight(FontWeight.Bold)
-            .margin({ left: 12 })
+
+          Blank()
         }
         .width('100%')
-        .padding(16)
+        .height(56)
+        .backgroundColor('#F5F6F7')
+        .padding({ left: 16, right: 16 })
+        .justifyContent(FlexAlign.SpaceBetween)
+        .alignItems(VerticalAlign.Center)
 
         // 评论列表
         List() {
-          LazyForEach(this.commentService.topCommentsSource, (comment: spotComment, index: number) => {
-            ListItem() {
-              Column() {
-                Column() {
-                  Row() {
-                    Image(this.currentUserAvatar)
-                      .width(40)
-                      .height(40)
-                      .borderRadius(20)
-                      .margin({ right: 10 })
-                    Column() {
-                      Row() {
-                        Text(this.userName?.toString() || '')
-                          .fontSize(16)
-                          .fontWeight(FontWeight.Medium)
-                      }
-
-                      Text(comment.replyTime?.toLocaleString() || '')
-                        .fontSize(12)
-                        .fontColor(Color.Gray)
-                    }
-                  }
-                  .justifyContent(FlexAlign.Start)
-                  .width('100%')
-
-                  Row() {
-                    Text(comment.content || '')
-                      .fontWeight(500)
-                      .fontSize(16)
-                      .margin({ top: 8 })
-                  }
-                  .width('100%')
-                  .justifyContent(FlexAlign.Start)
-                  .margin({ left: 40 })
-                }
-
-                Row() {
-                  Blank()
-                  Text('回复')
-                    .fontSize(14)
-                    .fontColor(Color.Gray)
-                    .margin({right: 10})
-                  if (this.commentService.getReplies(comment.id!, this.spot.id!).length > 0) {
-                    Badge({
-                      count: this.commentService.getReplies(comment.id!, this.spot.id!).length,
-                      style: { fontSize: 10, badgeColor: Color.Gray, borderColor: Color.Gray }
-                    }) {
-                      Image($r('app.media.ic_reply'))
-                        .width(30)
-                        .height(30)
-                        .onClick(() => {
-                          this.selectedTopComment = comment
-                          this.isShowDialog[index] = true
-                        })
-                        .bindSheet(this.isShowDialog[index], this.replyDialogBuilder(), {
-                          detents: [600, SheetSize.LARGE],
-                          backgroundColor: '#ffe7e7e7',
-                          blurStyle: BlurStyle.Thick,
-                          showClose: false,
-                          enableOutsideInteractive: true,
-                          dragBar: true,
-                          preferType: SheetType.BOTTOM,
-                          onDisappear: () => {
-                            this.isShowDialog[index] = false;
-                          }
-                        })
-                    }
-                    .margin({ right: 8 })
-                  }
-                }
-                .justifyContent(FlexAlign.Center)
-                .alignItems(VerticalAlign.Center)
-                .height(40)
-                .width('100%')
-                .margin({ top: 8 })
-
-              }
-              .width('100%')
-              .padding(10)
-              .margin({ bottom: 8 })
-              .backgroundColor('#F5F6F7')
-              .borderRadius(12)
-            }
-          }, (item: spotComment, index: number) => item.id + 'comment' + index)
-
-        }
-      }
-    }
-    .margin({ top: $r('app.float.header_height_page')})
-    .hideTitleBar(true)
-  }
-
-  // 显示回复弹窗
-  @Builder
-  replyDialogBuilder() {
-    Column() {
-      Text(`${this.selectedTopComment?.id}的回复`)
-        .fontSize(18)
-        .fontWeight(FontWeight.Bold)
-        .margin({ bottom: 16 })
-
-      if (this.selectedTopComment) {
-        List() {
-          ForEach(this.commentService.getReplies(this.selectedTopComment.id!, this.spot.id!), (reply: spotComment) => {
+          LazyForEach(this.commentService.topCommentsSource, (comment: spotComment) => {
             ListItem() {
               Column() {
                 Row() {
@@ -167,46 +192,80 @@ struct SpotDetailComment {
                     .width(40)
                     .height(40)
                     .borderRadius(20)
-                    .margin({ right: 8 })
-                  Column() {
-                    Row() {
-                      Text(reply.userId?.toString() || '')
-                        .fontSize(16)
-                        .fontWeight(FontWeight.Medium)
-                    }
+                    .margin({ right: 10 })
 
-                    Text(reply.replyTime?.toLocaleString() || '')
+                  Column() {
+                    Text(this.userName?.toString() || '')
+                      .fontSize(16)
+                      .fontWeight(FontWeight.Medium)
+
+                    Text(comment.replyTime ? this.formatTime(comment.replyTime?.toString()) : '')
                       .fontSize(12)
                       .fontColor(Color.Gray)
                   }
                 }
-                .justifyContent(FlexAlign.Start)
                 .width('100%')
+                .margin({ bottom: 10 })
+
+                Text(comment.content || '')
+                  .fontSize(16)
+                  .textAlign(TextAlign.Start)
+                  .width('100%')
+                  .margin({ bottom: 10 })
 
                 Row() {
-                  Text(reply.content || '')
-                    .fontSize(16)
-                    .fontWeight(500)
-                    .margin({ top: 8 })
-                }
-                .justifyContent(FlexAlign.Start)
-                .width('100%')
-                .margin({ left: 30 })
+                  Blank()
+                  Text('回复')
+                    .fontSize(14)
+                    .fontColor(Color.Gray)
 
+                  Badge({
+                    // 使用响应式的 replyCountMap
+                    count: this.replyCountMap.get(comment.id!) || 0,
+                    style: {
+                      fontSize: 10,
+                      badgeColor: Color.Gray,
+                      borderColor: Color.Gray
+                    }
+                  }) {
+                    Image($r('app.media.ic_reply'))
+                      .width(30)
+                      .height(30)
+                  }
+                  .margin({ right: 10 })
+                }
+                .width('100%')
+                .onClick(() => {
+                  this.selectedTopComment = comment
+                  this.isReplySheetShow = true
+                })
               }
               .width('100%')
-              .padding(10)
-              .margin({ bottom: 8 })
+              .padding(16)
               .backgroundColor('#F5F6F7')
               .borderRadius(12)
+              .margin({ bottom: 10 })
             }
           })
         }
-        .height(300)
         .width('100%')
+        .height('70%')
+        .padding(16)
       }
+      .bindSheet(this.isReplySheetShow, this.replySheetBuilder(), {
+        detents: [500],
+        dragBar: true,
+        backgroundColor: Color.White,
+        showClose: true,
+        preferType: SheetType.BOTTOM,
+        onDisappear: () => {
+          this.isReplySheetShow = false
+          this.commentInput = ''
+        }
+      })
     }
-    .padding(16)
+    .margin({ top: $r('app.float.header_height_page') })
+    .hideTitleBar(true)
   }
 }
 

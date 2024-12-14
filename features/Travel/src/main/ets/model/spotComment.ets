@@ -2,7 +2,7 @@ import { cloudDatabase } from "@kit.CloudFoundationKit"
 
 export class spotComment extends cloudDatabase.DatabaseObject{
   public id: number | undefined
-  public userId: number | undefined
+  public userId: string | undefined
   public spotId: number | undefined
   public content: string | undefined
   // 回复时间
