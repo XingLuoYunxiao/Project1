@@ -1,6 +1,6 @@
 import { Poem } from "../../model/Poem";
 import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil";
-import { GameRuleDialog } from "../../view/Dialog/gameRuleDialog";
+import { GameRuleDialog } from "../../Diaog/gameRuleDialog";
 import { BuilderNameConstants, RouterModule } from "routermodule";
 import { ChatMsgModel } from "../../viewmodel/MessageViewModel";
 import { ChatMsg, ROLE } from "../../model/ChatMassageModel";

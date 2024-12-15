@@ -17,3 +17,4 @@ export { CommonConstants } from './src/main/ets/constants/CommonConstants'
 export { BreakpointConstants } from './src/main/ets/constants/BreakpointConstants'
 
 
+export { CacheUtil } from './src/main/ets/puraUtils/CacheUtil'

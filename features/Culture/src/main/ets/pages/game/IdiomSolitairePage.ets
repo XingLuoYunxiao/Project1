@@ -5,7 +5,7 @@ import { realIdiom } from "../../model/Idiom/RealIdiom";
 import { MessageComponent } from "../../view/MessageComponent";
 import { ChatMsgModel } from "../../viewmodel/MessageViewModel";
 import { BuilderNameConstants, RouterModule } from "routermodule";
-import { GameRuleDialog } from "../../view/Dialog/gameRuleDialog";
+import { GameRuleDialog } from "../../Diaog/gameRuleDialog";
 import { GameOverDialog } from "../../view/IdiomSolitaire/GameOver";
 import { addExp } from "../../common/util/addExp";
 import { CommonConstants } from "../../common/constants/commonConstants";

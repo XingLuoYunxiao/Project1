@@ -1,5 +1,5 @@
-import { Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'; // 导入UI工具和筛选器相关模块
-import { dynastyList, poets, TypeList } from '../../common/constants/poemType'; // 导入诗词相关常量数据
+import { Filter, FilterParams, FilterResult, FilterType, promptAction } from '@kit.ArkUI'; // 导入UI工具和筛选器相关模块
+import { poets, TypeList } from '../../common/constants/poemType'; // 导入诗词相关常量数据
 import { Poem } from '../../model/Poem'; // 导入诗歌模型类
 import { addExp } from '../../common/util/addExp';
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
@@ -7,12 +7,15 @@ import { CloudPoemService } from '../../service/CloudPoemService';
 import { CommonConstants } from '../../common/constants/commonConstants';
 import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 import { PoemModel } from '../../viewmodel/PoemViewModel';
-import { talk } from './talk';
-import { BreakpointTypeEnum } from 'utils';
+import { BreakpointTypeEnum, CacheUtil } from 'utils';
+import { CustomDialogType } from '../../Diaog/type';
+import { selectComponent } from '../../view/poem/TypeSelectComponent';
+import { PoetsCustomDialog } from '../../Diaog/poets';
 
 let addEXPId: number = 0
 
 const TAG: string = 'PoemPage'
+
 
 @Component
 export struct PoemPage { // 定义一个组件类PoemPage
@@ -20,11 +23,45 @@ export struct PoemPage { // 定义一个组件类PoemPage
   @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
   @State poems: Poem[] = []; // 诗歌数据的状态管理
   @State pageNumber: number = 1; // 分页页码
-  @State poemType: string = '全部'; // 当前筛选的诗歌类型
-  @State poets: string = '全部'; // 当前筛选的诗人
-  @State dynasty: string = '全部'; // 当前筛选的朝代
-  private filterParam: Array<FilterParams> = [{ name: '类型', options: TypeList }, { name: '诗人', options: poets },
-    { name: '朝代', options: dynastyList }]; // 筛选器参数
+  @State @Watch('changeType') curPoemType: string = '全部'; // 当前筛选的诗歌类型
+  @State @Watch('changePoet') curPoets: string = '全部'; // 当前筛选的诗人
+  @State curDynastyIndex: number | number[] = 0; // 当前筛选的朝代
+  @State cacheList: string[] = []
+  @State IsTypeExpand: boolean = true
+  @State dynastyList: string[] = [
+    "全部", "先秦", "两汉", "魏晋", "南北朝", "隋代", "唐代", "宋代", "金朝", "元代", "明代", "清代"
+  ];
+  @State @Watch('changeDynasty') curDynasty: string = '全部'; // 当前筛选的朝代
+  @State changeValue: string = ''
+  dialogController: CustomDialogController = new CustomDialogController({
+    builder: CustomDialogType({
+      type: this.curPoemType
+    }),
+  })
+  PoetDialogController: CustomDialogController = new CustomDialogController({
+    builder: PoetsCustomDialog({
+      poets: this.curPoets
+    }),
+  })
+
+  async changeType() {
+    this.pageNumber = 0
+    PoemDataModel.data = []
+    this.fetchData()
+  }
+
+  changeDynasty() {
+    this.pageNumber = 0
+
+    PoemDataModel.data = []
+    this.fetchData()
+  }
+
+  changePoet() {
+    this.pageNumber = 0
+    PoemDataModel.data = []
+    this.fetchData()
+  }
 
   // 生命周期方法：组件加载时调用，获取初始数据
   async aboutToAppear(): Promise<void> {
@@ -36,82 +73,131 @@ export struct PoemPage { // 定义一个组件类PoemPage
       });
     }
     this.pageNumber++; // 增加页码
-
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
       addExp(CommonConstants.expTypeKnowledge, 5)
     }, 10000)
-
   }
 
-  aboutToDisappear(): void {
-    // 退出页面时取消对经验值的添加
-    clearTimeout(addEXPId)
+  async fetchData() {
+    this.pageNumber++; // 页码增加
+    let res: Poem[] | undefined =
+      await CloudPoemService.fetchPoem(this.curPoets, this.curPoemType, this.curDynasty, this.pageNumber);
+    if (res) {
+      console.log('触发数据获取');
+      res.forEach(poem => {
+        PoemDataModel.pushData(poem); // 添加数据
+      });
+      PoemDataModel.notifyDataReload(); // 通知数据更新
+    }
   }
 
   // 构建组件UI结构
   build() {
     NavDestination() {
-      Column() {
-        // 筛选器组件
-        Filter({
-          multiFilters: this.filterParam, // 多个筛选条件
-          filterType: FilterType.MULTI_LINE_FILTER, // 筛选类型
-          onFilterChanged: async (select: Array<FilterResult>) => { // 筛选条件变化时的回调函数
-            console.log('rec filter change');
-            for (let filter of select) {
-              console.log('name:' + filter.name + ',index:' + filter.index + ',value:' + filter.value);
-              if (filter.name === '类型') {
-                this.poemType = filter.value.toString(); // 更新筛选的诗歌类型
-              } else if (filter.name === '诗人') {
-                this.poets = filter.value.toString(); // 更新筛选的诗人
-              } else if (filter.name = '朝代') {
-                this.dynasty = filter.value.toString(); // 更新筛选的朝代
-              }
-            }
-            this.pageNumber = 1; // 重置页码
-            PoemDataModel.data = []; // 清空当前数据
-            PoemDataModel.notifyDataReload(); // 通知数据重载
-            // 根据筛选条件从云数据库获取数据
-            let res: Poem[] | undefined =
-              await CloudPoemService.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
-            if (res) {
-              res.forEach(poem => {
-                PoemDataModel.pushData(poem); // 添加数据到PoemData
-              });
-              PoemDataModel.notifyDataReload(); // 通知数据更新
-            }
-          }
-        }) {
-          Column() {
-            // 展示数据的列表组件
-            List({ space: 10 }) {
-              // 使用LazyForEach动态加载诗歌数据
-              LazyForEach(PoemDataModel, (item: Poem) => {
-                this.PoemItem(item); // 渲染单个诗歌项
+      Search({ value: this.changeValue, placeholder: '搜你想搜的诗词吧' })
+        .searchButton('搜索')
+        .width('95%')
+        .height(40)
+        .backgroundColor('#F5F5F5')
+        .placeholderColor(Color.Grey)
+        .placeholderFont({ size: 14, weight: 400 })
+        .textFont({ size: 14, weight: 400 })
+        .onSubmit(async (value: string) => {
+          LogUtil.debug('点击了搜索')
+          
+        })
+        .onChange((value: string) => {
+          this.changeValue = value
+        })
+        .margin(20)
+
+      Row() {
+        Text('类型： ' + this.curPoemType)
+          .fontSize(20)
+          .onClick(() => {
+            this.dialogController.open()
+          })
+
+        Text('诗人：' + this.curPoets)
+          .fontSize(20)
+          .onClick(() => {
+            this.PoetDialogController.open()
+          })
+
+        Text('朝代：' + this.curDynasty)
+          .fontSize(20)
+          .onClick(() => {
+            TextPickerDialog.show({
+              // 建议使用 this.getUIContext().showTextPickerDialog()接口
+              range: this.dynastyList,
+              selected: this.curDynastyIndex,
+              textStyle: { color: Color.Black, font: { size: 20, weight: FontWeight.Normal } },
+              selectedTextStyle: { color: Color.Blue, font: { size: 30, weight: FontWeight.Bolder } },
+              onAccept: (value: TextPickerResult) => {
+                // 设置select为按下确定按钮时候的选中项index，这样当弹窗再次弹出时显示选中的是上一次确定的选项
+                this.curDynastyIndex = value.index
+                this.curDynasty = this.dynastyList[this.curDynastyIndex as number]
+                console.log(this.curDynastyIndex + '')
               },
-                (item: Poem) => item.id.toString()) // 以numId为唯一标识
-            }
-            .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
-            .cachedCount(15) // 缓存项数
-            .id('poemList') // 列表ID
-            .onReachEnd(async () => { // 滑动到底部时触发
-              this.pageNumber++; // 页码增加
-              let res: Poem[] | undefined =
-                await CloudPoemService.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
-              if (res) {
-                console.log('滑倒底部触发更新');
-                res.forEach(poem => {
-                  PoemDataModel.pushData(poem); // 添加数据
-                });
-                //PoemData.notifyDataReload(); // 通知数据更新
+              onCancel: () => {
+                console.info("TextPickerDialog:onCancel()")
               }
             })
-          }
-          .width('100%')
-        }
+          })
       }
-      .width('100%'); // 设置宽度
+      .justifyContent(FlexAlign.SpaceAround)
+      .width('100%')
+      .height(50)
+
+      Scroll() {
+        Column() {
+          // selectComponent({
+          //   curPoemType: this.curPoemType,
+          //   curPoets: this.curPoets,
+          //   curDynasty: this.curDynasty,
+          //   curDynastyIndex: this.curDynastyIndex
+          // })
+
+
+          // 展示数据的列表组件
+          List({ space: 10 }) {
+            // 使用LazyForEach动态加载诗歌数据
+            LazyForEach(PoemDataModel, (item: Poem) => {
+              this.PoemItem(item); // 渲染单个诗歌项
+            }, (item: Poem) => item.id.toString()) // 以numId为唯一标识
+          }
+          .margin({ top: 50 })
+          .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
+          .cachedCount(15) // 缓存项数
+          .id('poemList') // 列表ID
+          .onReachEnd(async () => { // 滑动到底部时触发
+            this.fetchData()
+            LogUtil.debug('触底刷新成功')
+          })
+
+          .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
+            console.info('first' + firstIndex)
+            console.info('last' + lastIndex)
+            console.info('center' + centerIndex)
+          })
+
+          .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => {
+            console.log(' start index: ' + start.index +
+              ' start item group area: ' + start.itemGroupArea +
+              ' start index in group: ' + start.itemIndexInGroup)
+            console.log(' end index: ' + end.index +
+              ' end item group area: ' + end.itemGroupArea +
+              ' end index in group: ' + end.itemIndexInGroup)
+          })
+
+        }
+        .width('100%')
+
+      }
+      .width('100%') // 设置宽度
+      .scrollable(ScrollDirection.Vertical)
+      .enableScrollInteraction(true)
     }
   }
 
@@ -138,6 +224,11 @@ export struct PoemPage { // 定义一个组件类PoemPage
       buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_POEMDETAIL,
         new Object(poem))
     });
+  }
+
+  aboutToDisappear(): void {
+    // 退出页面时取消对经验值的添加
+    clearTimeout(addEXPId)
   }
 }
 
