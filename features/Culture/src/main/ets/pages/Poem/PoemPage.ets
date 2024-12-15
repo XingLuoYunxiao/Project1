@@ -32,7 +32,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
     let poems: Poem[] | undefined = await CloudPoemService.fetchAllData(this.pageNumber);
     if (poems) {
       poems.forEach(item => {
-        PoemData.pushData(item); // 添加数据到PoemData
+        PoemDataModel.pushData(item); // 添加数据到PoemData
       });
     }
     this.pageNumber++; // 增加页码
@@ -70,16 +70,16 @@ export struct PoemPage { // 定义一个组件类PoemPage
               }
             }
             this.pageNumber = 1; // 重置页码
-            PoemData.data = []; // 清空当前数据
-            PoemData.notifyDataReload(); // 通知数据重载
+            PoemDataModel.data = []; // 清空当前数据
+            PoemDataModel.notifyDataReload(); // 通知数据重载
             // 根据筛选条件从云数据库获取数据
             let res: Poem[] | undefined =
               await CloudPoemService.fetchPoem(this.poets, this.poemType, this.dynasty, this.pageNumber);
             if (res) {
               res.forEach(poem => {
-                PoemData.pushData(poem); // 添加数据到PoemData
+                PoemDataModel.pushData(poem); // 添加数据到PoemData
               });
-              PoemData.notifyDataReload(); // 通知数据更新
+              PoemDataModel.notifyDataReload(); // 通知数据更新
             }
           }
         }) {
@@ -87,7 +87,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
             // 展示数据的列表组件
             List({ space: 10 }) {
               // 使用LazyForEach动态加载诗歌数据
-              LazyForEach(PoemData, (item: Poem) => {
+              LazyForEach(PoemDataModel, (item: Poem) => {
                 this.PoemItem(item); // 渲染单个诗歌项
               },
                 (item: Poem) => item.id.toString()) // 以numId为唯一标识
@@ -102,7 +102,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
               if (res) {
                 console.log('滑倒底部触发更新');
                 res.forEach(poem => {
-                  PoemData.pushData(poem); // 添加数据
+                  PoemDataModel.pushData(poem); // 添加数据
                 });
                 //PoemData.notifyDataReload(); // 通知数据更新
               }
@@ -141,7 +141,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
   }
 }
 
-const PoemData: PoemModel = new PoemModel(); // 诗歌数据实例
+const PoemDataModel: PoemModel = new PoemModel(); // 诗歌数据实例
 
 @Builder
 export function PoemPageBuilder() {

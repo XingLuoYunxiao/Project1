@@ -55,20 +55,28 @@ export class CloudIdiomService {
       let condition = new cloudDatabase.DatabaseQuery(Idiom);
 
       // 设置查询条件：分页查询
-      condition.contains('word', word).limit(1)
+      condition.contains('word', word).limit(1);
 
       return new Promise((resolve, reject) => {
         databaseZone.query(condition, (err: BusinessError, IdiomArray: Idiom[]) => {
           if (err) {
             console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
-            reject(err);
+
+            reject(undefined);
           } else {
             console.info(`查询成功，结果: ${JSON.stringify(IdiomArray)}`);
 
-            let real: realIdiom = new realIdiom()
-            real.id = IdiomArray[0].id
-            real.word = IdiomArray[0].word
-            real.abbr = IdiomArray[0].abbr
+            // 检查是否有匹配的结果
+            if (IdiomArray.length === 0) {
+              console.log('未找到相关成语');
+              resolve(undefined); // 成语不存在时返回undefined
+              return;
+            }
+
+            let real: realIdiom = new realIdiom();
+            real.id = IdiomArray[0].id;
+            real.word = IdiomArray[0].word;
+            real.abbr = IdiomArray[0].abbr;
 
             // 尝试解析JSON数据，并处理可能的错误
             try {
@@ -78,14 +86,13 @@ export class CloudIdiomService {
               reject(parseError);
               return;
             }
-
             resolve(real);
           }
         });
       });
     } catch (err) {
       console.error(`捕获到错误: ${err.message}`);
-      return undefined;
+      return undefined // 确保总是返回一个Promise
     }
   }
 

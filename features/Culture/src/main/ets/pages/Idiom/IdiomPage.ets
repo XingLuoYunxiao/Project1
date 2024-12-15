@@ -5,6 +5,7 @@ import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 import { addExp } from "../../common/util/addExp"
 import { BuilderNameConstants, RouterModule } from "routermodule"
 import { CommonConstants } from "../../common/constants/commonConstants"
+import { promptAction } from "@kit.ArkUI"
 
 let addEXPId: number = 0
 
@@ -50,6 +51,10 @@ export struct IdiomPage {
               LogUtil.debug('获取成语：' + JSON.stringify(this.idiom))
             } else {
               LogUtil.debug('没有该成语哟')
+              promptAction.showToast({
+                message: "没有这个成语",
+                duration: 2000
+              })
             }
 
           })
