@@ -8,7 +8,7 @@ export struct LoadingAnimation {  // 定义LoadingAnimation组件
   @Consume('appPathStack') appPathStack: NavPathStack;
   @State value:object = new Object()
 
-  private steps: string[] = ['正在为您智能规划路径', '正在生成虚拟人为您讲解', '已完成']  // 定义路径规划的不同阶段文本
+  private steps: string[] = ['正在为您智能规划路径', '正在加载中', '已完成']  // 定义路径规划的不同阶段文本
   private intervalID: number = -1  // 定义定时器ID，用于管理计时器
 
   // 生命周期方法，在组件即将出现时调用

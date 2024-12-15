@@ -24,11 +24,7 @@ export struct MyOrderPage {
   @State waitListData: ListDataSource<myOrderAdd> =this.mineViewModel.waitListData;
 
   async aboutToAppear() {
-    auth.getCurrentUser().then(user=>{
-      if(user){
-        this.mineViewModel.orderDeal(user.getUid())
-      }
-    })
+        this.mineViewModel.orderDeal(this.personUid)
   }
 
   @Builder

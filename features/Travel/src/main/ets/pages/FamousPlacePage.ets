@@ -6,6 +6,7 @@ import { otherItemList } from "../model/Attraction";
 import { Spot } from "../model/Spot";
 import { SpotNetFunc } from "../service/SpotNetFunc";
 import { CloudStorageService } from "../service/CloudStorageService";
+import { promptAction } from "@kit.ArkUI";
 
 //评分数组，最高10分
 const scoreList: number[] = [9.7, 10.0, 8.8, 9.5, 9.2, 9.9, 9.0];
@@ -23,6 +24,10 @@ export struct FamousItem {
   @State cloudService: CloudStorageService = CloudStorageService.getInstance()
   @State url: string | undefined = undefined
   @State isLoading: boolean = false
+  @StorageLink('personUid') personUid: string = '';
+  @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance()
+
+
 
   aboutToAppear(){
     if( this.spot && this.spot.imageUrl)
@@ -97,6 +102,11 @@ export struct FamousItem {
               .backgroundColor(Color.Orange)
               .fontColor(Color.White)
               .onClick( () => {
+                if( this.spot.id && this.personUid != ''){
+                  this.spotNetWork.addBrowse(this.spot.id, this.personUid);
+                }else{
+                  promptAction.showToast({message: '请先登录'})
+                }
                 let params: LoadParams = {
                   param1: "SpotDetailPage", // 第一个参数
                   param2: this.spot  // 第二个参数
@@ -133,6 +143,9 @@ export struct FamousPlacePage {
   @State value:object = new Object()
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance();
   @State category: string = "";
+  @StorageLink('personUid') personUid: string = '';
+  @Watch("getSearchData")
+  @State searchText: string = "";
   @State spotDataSource: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource
   @State cloudService: CloudStorageService = CloudStorageService.getInstance()
   scroller: Scroller = new Scroller()
@@ -158,6 +171,14 @@ export struct FamousPlacePage {
     //this.category = this.appPathStack.getParamByName('FamousPlacePage')[0] as string
   }
 
+  getSearchData(){
+    let data = new LazyDataSource<Spot>()
+    if(data.totalCount() > 0){
+      data.pushArrayData(this.spotNetWork.searchResult)
+      this.spotDataSource = data
+    }
+  }
+
 
   build() {
     NavDestination(){
@@ -171,15 +192,15 @@ export struct FamousPlacePage {
         Search({placeholder:"搜索想要去的景点"})
           .height(30)
           .layoutWeight(1)
+          .onChange( (value: string) => {
+            this.searchText = value
+            this.spotNetWork.search(value)
+          })
           .onClick( () => {
-            buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_SEARCHPAGE)
+           // buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_SEARCHPAGE)
             //this.appPathStack.pushPathByName('SearchPage', true)
           })
-          .enableKeyboardOnFocus(false)
-        Badge({count: 1, position: BadgePosition.RightTop, style:{fontSize:14, badgeColor: Color.Red}}){
-          Image($r('app.media.ic_public_email'))
-            .width(24)
-        }
+          //.enableKeyboardOnFocus(false)
       }
       .margin({top:5})
       .width('100%')
@@ -216,7 +237,7 @@ export struct FamousPlacePage {
                   this.spotNetWork.loadSpotsData()
                 }
               })*/
-            })
+            }, (item:Spot)=> item.name)
           }.onReachEnd(async () => {
             await this.spotNetWork.loadSpotsData()
           })

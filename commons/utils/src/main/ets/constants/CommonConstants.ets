@@ -32,5 +32,10 @@ export class CommonConstants {
    */
   static readonly ZOOM: number = 15;
 
+  static readonly DEVICE_TYPES: string[] = ['2in1', 'tablet', 'phone'];
+
+  static readonly WINDOW_UTIL: string = 'windowUtil';
+
+
 
 }

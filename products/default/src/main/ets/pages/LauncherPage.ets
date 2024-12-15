@@ -4,11 +4,11 @@ import { common } from '@kit.AbilityKit'
 import { PreferenceUtil  as preferenceUtil } from 'utils'
 import { BusinessError } from '@kit.BasicServicesKit'
 import Logger from 'utils/src/main/ets/utils/Logger'
+import auth, { AGCAuthError } from '@hw-agconnect/auth'
 
 const PREF_KEY = 'GuYunUserKey'
 const TAG: string = '[LauncherPage]';
 
-// TODO 第一次安装应用时弹出定位点击同意后，不出现隐私服务弹窗
 @Entry
 @Component
 struct LauncherPage {
@@ -21,6 +21,10 @@ struct LauncherPage {
       cancel: (): void => this.exitApp()
     })
   })
+
+  aboutToAppear(): void {
+
+  }
 
   async onPageShow(): Promise<void> {
     // 加载首选项

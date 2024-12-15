@@ -6,27 +6,25 @@ import { Poem } from "./Poem";
 import { Collection } from "./Collection";
 import { CollectionAdd } from "./CollectionAdd";
 import { BrowsingHistory } from "./BrowsingHistory";
-import { cloudCommon } from '@kit.CloudFoundationKit';
-import { request } from '@kit.BasicServicesKit';
+import { cloudCommon, cloudFunction } from '@kit.CloudFoundationKit';
+import { BusinessError, request } from '@kit.BasicServicesKit';
 import auth from "@hw-agconnect/auth";
+import { Params } from "travel/src/main/ets/model/FuncParams";
 
-let authProvider =  auth.getAuthProvider();
-authProvider.getAccessToken(false)
-
-cloudCommon.init({
-  region: cloudCommon.CloudRegion.CHINA,
-  authProvider: authProvider,
-  functionOptions:{timeout:10*1000},
-  storageOptions:{mode:request.agent.Mode.BACKGROUND, network:request.agent.Network.ANY},
-  databaseOptions:{schema:"schema", traceId:"traceId"}
-})
+// let authProvider =  auth.getAuthProvider();
+// authProvider.getAccessToken(true)
+//
+// cloudCommon.init({
+//   region: cloudCommon.CloudRegion.CHINA,
+//   authProvider: authProvider,
+//   functionOptions:{timeout:10*1000},
+//   storageOptions:{mode:request.agent.Mode.BACKGROUND, network:request.agent.Network.ANY},
+//   databaseOptions:{schema:"schema", traceId:"traceId"}
+// })
 
 export class UserModel{
   private static instance: UserModel = new UserModel();
   private database: Database | null = null;
-  private poemPoint :number=0;
-  private classicPoint :number=0;
-  private artPoint :number=0;
 
   private constructor() {
     // 私有构造函数防止外部实例化
@@ -69,97 +67,154 @@ export class UserModel{
       await auth.signOut()
   }
 
-  async getorderData( personUid: string): Promise<myOrder[]>{
-    this.database = cloud.database({
-      zoneName: "Travel",
-      objectTypeInfo: schema
+  async getorderData(personUid: string): Promise<myOrder[]>{
+    return new Promise((resolve,reject)=>{
+      cloudFunction.call({
+        name: 'get-hiscol-data',
+        data: {
+          personUid:personUid,
+          fiel:'user_id',
+          sort:'order_id',
+          table:'myOrder'
+        }
+      }).then((value: cloudFunction.FunctionResult) => {
+        resolve(JSON.parse(JSON.stringify(value.result)).data as myOrder[])
+        console.info(`成功666 ${JSON.stringify(value.result)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to call the function, Code: ${err.code}, message: ${err.message}`);
+      })
     })
-
-    const itemlist =await this.database.collection(myOrder)//选择表
-      .query()
-      .equalTo('user_id',personUid)
-      .orderByDesc('order_id')
-      .get()
-
-    return itemlist
   }
 
   async getspotData(spotid:number): Promise<mySpot[]>{
-    this.database = cloud.database({
-      zoneName: "Travel",
-      objectTypeInfo: schema
+    return new Promise((resolve,reject)=>{
+      cloudFunction.call({
+        name: 'get-hiscol-data',
+        data: {
+          personUid:spotid,
+          fiel:'id',
+          sort:'id',
+          table:'mySpot'
+        }
+      }).then((value: cloudFunction.FunctionResult) => {
+        resolve(JSON.parse(JSON.stringify(value.result)).data as mySpot[])
+        console.info(`成功666 ${JSON.stringify(value.result)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to call the function, Code: ${err.code}, message: ${err.message}`);
+      })
     })
-
-    const itemlist =await this.database.collection(mySpot)//选择表
-      .query()
-      .equalTo('id', spotid)
-      .get()
-
-    return itemlist
   }
 
   async getpoemData(poemid:number): Promise<Poem[]>{
-    this.database = cloud.database({
-      zoneName: "Travel",
-      objectTypeInfo: schema
+    return new Promise((resolve,reject)=>{
+      cloudFunction.call({
+        name: 'get-hiscol-data',
+        data: {
+          personUid:poemid,
+          fiel:'id',
+          sort:'id',
+          table:'Poem'
+        }
+      }).then((value: cloudFunction.FunctionResult) => {
+        resolve(JSON.parse(JSON.stringify(value.result)).data as Poem[])
+        console.info(`成功666 ${JSON.stringify(value.result)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to call the function, Code: ${err.code}, message: ${err.message}`);
+      })
     })
-
-    const itemlist =await this.database.collection(Poem)//选择表
-      .query()
-      .equalTo('numId', poemid)
-      .get()
-
-    return itemlist
   }
 
  async getcollectData(personUid: string): Promise<Collection[]>{
-    this.database = cloud.database({
-      zoneName: "Travel",
-      objectTypeInfo: schema
+      return new Promise((resolve,reject)=>{
+        cloudFunction.call({
+          name: 'get-hiscol-data',
+          data: {
+            personUid:personUid,
+            fiel:'userId',
+            sort:'id',
+            table:'Collection'
+          }
+        }).then((value: cloudFunction.FunctionResult) => {
+          resolve(JSON.parse(JSON.stringify(value.result)).data as Collection[])
+          console.info(`成功666 ${JSON.stringify(value.result)}`);
+        }).catch((err: BusinessError) => {
+          console.error(`Failed to call the function, Code: ${err.code}, message: ${err.message}`);
+        })
+      })
+  }
+
+  async deletecollectData(spotid:number,personUid:string){
+    cloudFunction.call({
+      name: 'get-hiscol-data',
+      data: {
+        personUid:personUid,
+        //条件
+        fiel:spotid,
+        sort:'Collection',
+        table:'delete'
+      }
+    }).then((value: cloudFunction.FunctionResult) => {
+      console.info(`成功删除 ${JSON.stringify(value.result)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`删除失败, Code: ${err.code}, message: ${err.message}`);
     })
-
-    const itemlist =await this.database.collection(Collection)//选择表
-      .query()
-      .equalTo('userId',personUid)
-      .get()
-
-    return itemlist
   }
 
-  async deletecollectData(cur:CollectionAdd){
-   this.database = cloud.database({
-     zoneName: "Travel",
-     objectTypeInfo: schema
-   })
-    const del=await this.getspotData(cur.spotId)
-   await this.database.collection(Collection)//选择表
-     .delete(del[0]).then((val)=>{
-       console.log('删除1',val)
-     }).catch((e:Error)=>{
-       console.log('删除',e.name,e.message)
-     })
-   //  databaseZone.delete(del[0])
-   //    .then((val)=>{
-   //          console.log('删除1',val)
-   //        }).catch((e:Error)=>{
-   //          console.log('删除',e.name,e.message)
-   //        })
+  //添加收藏
+  async addcollectData(spotid:number,personUid:string,type:string){
+    cloudFunction.call({
+      name: 'get-hiscol-data',
+      data: {
+        personUid:personUid,
+        fiel:spotid,
+        sort:type,
+        table:'collectadd'
+      }
+    }).then((value: cloudFunction.FunctionResult) => {
+      console.info(`成功添加 ${JSON.stringify(value.result)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`添加失败, Code: ${err.code}, message: ${err.message}`);
+    })
   }
+
 
   async gethistoryData(personUid: string): Promise<BrowsingHistory[]>{
-    this.database = cloud.database({
-      zoneName: "Travel",
-      objectTypeInfo: schema
+    return new Promise((resolve,reject)=>{
+      cloudFunction.call({
+        name: 'get-hiscol-data',
+        data: {
+          personUid:personUid,
+          fiel:'userId',
+          sort:'viewTime',
+          table:'BrowsingHistory'
+        }
+      }).then((value: cloudFunction.FunctionResult) => {
+        resolve(JSON.parse(JSON.stringify(value.result)).data as BrowsingHistory[])
+        console.info(`成功666 ${JSON.stringify(value.result)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to call the function, Code: ${err.code}, message: ${err.message}`);
+      })
     })
-
-    const itemlist =await this.database.collection(BrowsingHistory)//选择表
-      .query()
-      .equalTo('userId',personUid)
-      .orderByDesc('viewTime')
-      .get()
-
-    return itemlist
   }
 
+}
 
+
+//并发查询
+@Concurrent
+export async function queryCollection(condition:string){
+  try{
+    let params:Params = {
+      type: 'query',
+      filter: [
+        {name:`${condition}`}
+      ]
+    }
+    const res = await cloudFunction.call({ name: 'get-spot-data', data: params})
+    let data = res.result
+    return JSON.parse(JSON.stringify(data)).data
+  }catch (e){
+    console.error('[SpotModel]', 'SpotModel getSpotDataByCondition failed', e);
+  }
+  return []
 }

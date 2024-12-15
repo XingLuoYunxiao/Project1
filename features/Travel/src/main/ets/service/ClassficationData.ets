@@ -50,3 +50,27 @@ export const classificationList: classification[] = [
     image: $r('app.media.class_5'),
   }
 ];
+
+export const classificationListPhone: classification[] = [
+  {
+    category: '旅游景点',
+    image: $r('app.media.phone_class1')
+  },
+  {
+    category: '必游榜单',
+    image: $r('app.media.phone_class2')
+  },
+  {
+    category: 'AI导游',
+    image: $r('app.media.phone_class3'),
+    page: 'FamousPlacePage'
+  },
+  {
+    category: '动植物园',
+    image: $r('app.media.phone_class4')
+  },
+  {
+    category: '一日游玩',
+    image: $r('app.media.phone_class5')
+  }
+];

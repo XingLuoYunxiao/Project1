@@ -12,7 +12,7 @@
     "@ohos/axios": "^2.2.4"
   },
   "devDependencies": {
-    "@hw-agconnect/auth": "^1.0.0-beta",
+    "@hw-agconnect/auth": "^1.0.2",
     "@ohos/hypium": "1.0.19",
     "@ohos/hamock": "1.0.0",
     "@jjr/lottie_component": "^1.0.2"

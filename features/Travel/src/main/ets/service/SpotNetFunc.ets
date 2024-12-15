@@ -6,11 +6,14 @@ import Logger from "utils/src/main/ets/utils/Logger";
 import { SpotModel } from "../model/SpotModel";
 import { classificationList } from "./ClassficationData";
 import { judgeLoadData } from "../pages/AttractionTicketPage";
-import { promptAction } from "@kit.ArkUI";
+
+
 
 const TAG = '[SpotModel]';
 const domain = 0x0011;
 const MAX_HISTORY_COUNT = 10;
+
+
 
 @Observed
 export class SpotNetFunc{
@@ -25,6 +28,8 @@ export class SpotNetFunc{
   private maxDistance: string = '50公里';
   searchHistory: string[] = [];
   searchResult: Spot[] = [];
+  //收藏记录
+  collection: number[] = []
   nearbySpots: Spot[] = [];
   allSpotsDataSource: LazyDataSource<Spot> = new LazyDataSource();
   //加载状态
@@ -34,6 +39,8 @@ export class SpotNetFunc{
 
   //分页
   pageNum: number = 1;
+  //记录是否刷新
+  isRefresh: boolean = false;
 
   //当前位置经纬度
   private currentUserLocation: Location = { latitude: 0, longitude: 0}
@@ -52,6 +59,7 @@ export class SpotNetFunc{
       )
     }
   }
+
 
   //获取实例
   public static getInstance(): SpotNetFunc {
@@ -75,7 +83,7 @@ export class SpotNetFunc{
   }
 
   //获取景点数据
-  loadSpotsData(): Promise<void> {
+  async loadSpotsData(): Promise<void> {
     this.allLoadingStatus = LoadingStatus.LOADING
     return new Promise(async (resolve, reject) => {
       await this.spotModel.getSpotData(this.pageNum).then( (data: Array<Spot>) => {
@@ -147,8 +155,9 @@ export class SpotNetFunc{
 
 
   //搜索景点
-  //TODO 搜索需要直接从数据库完成
   search(value: string): void {
+    if( value === '')
+      return
     // 判断是否已经存在
     this.searchLoadingStatus = LoadingStatus.LOADING
     if (!this.searchHistory.includes(value)) {
@@ -168,14 +177,14 @@ export class SpotNetFunc{
     this.preferenceUtil.putPreferenceValue<string[]>('searchHistory', this.searchHistory);
     this.spotModel.getSearchNameCondition(value).then((data) => {
       this.searchResult = data
+      this.isRefresh = true
       this.allSpotsDataSource.pushArrayData(this.searchResult)
       this.searchLoadingStatus = LoadingStatus.SUCCESS
     })
 
   }
 
-  //TODO 分类选择有问题
-  public updateAttractionsList( currentCity: City, currentCategory: string[]) : LazyDataSource<Spot> {
+  public async updateAttractionsList( currentCity: City, currentCategory: string[]) : Promise<LazyDataSource<Spot>> {
     if( !this.isInitSpots){
       this.loadSpotsData()
     }
@@ -183,10 +192,11 @@ export class SpotNetFunc{
     let currentAttractions: Spot[] = [];
 
     if(!judgeLoadData(currentCity, currentCategory)){
-      if(this.searchResult){
+      if(this.searchResult.length !== 0){
 
       }else{
-        this.spotModel.getSpotDataByCondition([currentCity.cityName, currentCategory[0]]).then((data)=>{
+        this.isRefresh = true
+        await this.spotModel.getSpotDataByCondition([currentCity.cityName, currentCategory[0]]).then((data)=>{
           this.spots = data;
           this.allSpotsDataSource.pushArrayData(data)
           currentAttractions = data;
@@ -293,22 +303,62 @@ export class SpotNetFunc{
   clearSearchHistory(): void {
     this.preferenceUtil.deleteValue('searchHistory').then(res => {
       this.searchHistory = [];
-      Logger.error(TAG, 'Delete search History success.' + JSON.stringify(res));
+      Logger.info(TAG, 'Delete search History success.' + JSON.stringify(res));
     }).catch((err: BusinessError) => Logger.error(TAG, 'Delete search History Failed. Cause: ' + err));
   }
 
-  //添加收藏记录
-  addCollection(id: number, userId: string){
-    this.spotModel.addCollectData(id, userId).then((res)=>{
-      Logger.info(TAG, 'addCollection success.' + JSON.stringify(res));
-    }).catch((err: BusinessError) => Logger.error(TAG, 'addCollection Failed. Cause: ' + err));
+  //获取收藏记录
+  getCollection(){
+    return new Promise<number[]>((resolve, reject) => {
+      this.preferenceUtil.getPreferenceValue<number[]>('isCollection').then(res => {
+        this.collection = res ?? [];
+        Logger.info(TAG, 'Get collection success.');
+        resolve(this.collection)
+      }).catch((err: BusinessError) => {
+        Logger.error(TAG, 'Get collection Failed. Cause: ' + err);
+        reject(err)
+      });
+    })
   }
+
+  //收藏记录处理
+  updateCollection(id: number, userId: string){
+    // 判断是否已经存在
+    if (!this.collection.includes(id)) {
+      // 将新元素添加到数组开头
+      this.collection.push(id);
+      this.spotModel.addCollectData(id, userId).then((res)=>{
+        Logger.info(TAG, 'addCollection success.' + JSON.stringify(res));
+      }).catch((err: BusinessError) => Logger.error(TAG, 'addCollection Failed. Cause: ' + err));
+    }else{
+      // 删除元素
+      this.collection.splice(this.collection.indexOf(id), 1);
+      this.spotModel.delCollectData(id, userId).then((res)=>{
+        Logger.info(TAG, 'addCollection success.' + JSON.stringify(res));
+      }).catch((err: BusinessError) => Logger.error(TAG, 'addCollection Failed. Cause: ' + err));
+    }
+    this.preferenceUtil.putPreferenceValue<number[]>('isCollection', this.collection)
+
+  }
+
 
   // 添加浏览记录
   addBrowse(id: number, userId: string){
     this.spotModel.addHistoryData(id, userId).then((res)=>{
       Logger.info(TAG, 'addBrowse success.' + JSON.stringify(res));
     }).catch((err: BusinessError) => Logger.error(TAG, 'addBrowse Failed. Cause: ' + err));
+  }
+
+  //重置
+  reset(){
+    this.spots = [];
+    this.allSpotsDataSource.clear();
+    this.searchResult = [];
+    this.allLoadingStatus = LoadingStatus.OFF
+    this.searchLoadingStatus = LoadingStatus.OFF
+    this.nearbyLoadingStatus = LoadingStatus.OFF
+    this.pageNum = 1
+    this.isRefresh = false
   }
 
 
