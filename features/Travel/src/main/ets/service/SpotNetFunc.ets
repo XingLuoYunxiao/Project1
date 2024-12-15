@@ -349,7 +349,17 @@ export class SpotNetFunc{
     }).catch((err: BusinessError) => Logger.error(TAG, 'addBrowse Failed. Cause: ' + err));
   }
 
-
+  //重置
+  reset(){
+    this.spots = [];
+    this.allSpotsDataSource.clear();
+    this.searchResult = [];
+    this.allLoadingStatus = LoadingStatus.OFF
+    this.searchLoadingStatus = LoadingStatus.OFF
+    this.nearbyLoadingStatus = LoadingStatus.OFF
+    this.pageNum = 1
+    this.isRefresh = false
+  }
 
 
 }

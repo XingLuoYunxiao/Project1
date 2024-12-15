@@ -1,17 +1,19 @@
 import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule";
-import { classification, classificationList, colorList } from "../service/ClassficationData";
+import { BreakpointConstants } from "utils";
+import { classification, classificationList, classificationListPhone, colorList } from "../service/ClassficationData";
 
 
 @Component
 export struct Classification {
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
+  @StorageLink('currentWidthBreakpoint') currentWidthBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
 
 
   build() {
     //景点分类
     Row() {
-      ForEach(classificationList, (item:classification, index) => {
+      ForEach(this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_SM ? classificationListPhone : classificationList, (item:classification, index) => {
         ListItem(){
           this.myClassBuilder(item, index)
         }
@@ -37,7 +39,9 @@ export struct Classification {
         .width(30)
         .height(30)
       Text(item.category)
-        .fontSize(16)
+        .maxFontSize(20)
+        .minFontSize(12)
+        .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
         .fontColor(Color.White)
         .margin({top:10})
         .width('100%')
