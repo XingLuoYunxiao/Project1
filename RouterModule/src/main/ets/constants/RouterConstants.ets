@@ -18,11 +18,9 @@ export class BuilderNameConstants {
   // Map
   static readonly MAP_MAPVIEWPAGE: string = 'map_MapViewPage';
   static readonly MAP_NAVIGATIONPAGE: string = 'map_NavigationPage';
-  //Travel
-  // Feature: Travel中的AI导游页面
-  static readonly TRAVEL_FAMOUSPLACEPAGE: string = 'travel_FamousPlacePage';
+  static readonly MAP_ROUTEPLANVIEW: string = 'map_RoutePlanView';
+
   //Login
-  static readonly TRAVEL_ATTRACTIONDETAILPAGE:string='travel_AttractionDetailPage';
   static readonly LOGIN_COLLECTIONPAGE: string = 'login_CollectionPage';
   static readonly LOGIN_LOGINPAGE:string='login_LoginPage';
   static readonly LOGIN_ADVICEPAGE:string='login_AdvicePage';
@@ -33,17 +31,21 @@ export class BuilderNameConstants {
   static readonly LOGIN_MYORDER:string='login_Myorder';
   static readonly LOGIN_PRIVACYPAGE:string='login_PrivacyPage';
   static readonly LOGIN_SETTINGPAGE:string='login_SettingPage';
-  static readonly MAP_ROUTEPLANVIEW: string = 'map_RoutePlanView';
+
   //Share
   static readonly SHARE_PUBLISHPAGE:string='share_PublishPage';
   static readonly SHARE_DETAILSHPAGE:string='share_ShareDetail';
   //Travel
   // Feature: Travel中的AI导游页面
+  static readonly TRAVEL_FAMOUSPLACEPAGE: string = 'travel_FamousPlacePage';
   // Feature: Travel中的景点分类页面
+  static readonly TRAVEL_ATTRACTIONDETAILPAGE:string='travel_AttractionDetailPage';
   static readonly TRAVEL_ATTRACTIONTICKETPAGE: string = 'travel_AttractionTicketPage';
   static readonly TRAVEL_LOADINGANIMATION: string = 'travel_LoadingAnimation';
   static readonly TRAVEL_SPOTDETAILPAGE: string = 'travel_SpotDetailPage';
   static readonly TRAVEL_SEARCHPAGE: string = 'travel_SearchPage';
+  // Feature: Travel中的评论页面
+  static readonly TRAVEL_SPOTDETAILCOMMENT: string = 'travel_SpotDetailComment';
 
   //Culture
   static readonly CULTURE_POEM: string = 'culture_PoemPage'
@@ -59,6 +61,11 @@ export class BuilderNameConstants {
   static readonly CULTURE_IdiomSolitaire: string = "culture_IdiomSolitaire"
   static readonly CULTURE_FlyingFlowerOder: string = 'culture_FlyingFlowerOder'
   static readonly CULTURE_TEST: string = 'culture_Test'
+  static readonly CULTURE_FOLKART: string = 'culture_FolkArt'
+  static readonly CULTURE_Building: string = 'culture_Building'
+  static readonly CULTURE_AIPainting: string = 'culture_AIPainting'
+  static readonly CULTURE_FestivalPage2: string = 'culture_FestivalPage2'
+  static readonly CULTURE_GapFillingPage: string = 'culture_GapFillingPage'
 }
 
 // Indicates the key of the routerMap table in the RouterModule.

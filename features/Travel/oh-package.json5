@@ -8,7 +8,8 @@
   "dependencies": {
     "utils": "file:../../commons/utils",
     "uicomponents": "file:../../commons/uicomponents",
-//    "login": "file:../Login",
-    "routermodule": "file:../../RouterModule"
+    //"login": "file:../Login",
+    "routermodule": "file:../../RouterModule",
+    "aispeech": "file:../../commons/AISpeech"
   }
 }

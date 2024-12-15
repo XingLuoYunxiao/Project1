@@ -28,7 +28,7 @@ export struct MyCalendar {
     @Prop @Watch("setWeek") contains: Map<string, string> = new Map()
 
      //选择日历后的回调, 返回的函数为更新当前页面的回调函数
-    onCalendarClick: (item:CalendarData)=>void = ()=>{};
+    onCalendarClick: (item:Date)=>void = ()=>{};
 
     aboutToAppear(): void {
       // 当前年月日
@@ -40,11 +40,7 @@ export struct MyCalendar {
       this.setWeekDaysIs();
       this.setWeek();
 
-      this.onCalendarClick({
-        date: this.date,
-        month: this.month,
-        year: this.year
-      })
+      // this.onCalendarClick(new Date())
     }
 
     //设置选中项的状态
@@ -149,11 +145,7 @@ export struct MyCalendar {
           }
           this.date = day.dayNum;
 
-          this.onCalendarClick({
-            date: this.date,
-            year: this.year,
-            month: this.month
-          })
+          this.onCalendarClick(new Date(this.year, this.month-1, this.date+1))
         })
 
         if (day.containIs){

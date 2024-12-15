@@ -12,11 +12,13 @@ export class RouterModel {
 
 // Create routing information and put it into the routing stack table.
 export function buildRouterModel(routerName: string, builderName: string, param?: object) {
+  console.log('buildRouterModel')
   let router: RouterModel = new RouterModel();
   router.builderName = builderName;
   router.routerName = routerName;
   router.param = param;
   RouterModule.push(router);
+  console.log('buildRouterModel2')
 }
 
 

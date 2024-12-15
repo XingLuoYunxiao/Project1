@@ -46,17 +46,31 @@ export function harInit(builderName: string): void {
       LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/art/PaintingDetails')
       import("./src/main/ets/pages/art/PaintingDetails");
       break;
-
     case BuilderNameConstants.CULTURE_IdiomSolitaire:
       LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/art/PaintingDetails')
       import("./src/main/ets/pages/game/IdiomSolitairePage");
       break;
-
     case BuilderNameConstants.CULTURE_FlyingFlowerOder:
       import("./src/main/ets/pages/game/FlyingFlowerOrderPage");
       break;
     case BuilderNameConstants.CULTURE_TEST:
       import("./src/main/ets/pages/test");
+      break;
+    case BuilderNameConstants.CULTURE_Building:
+      import("./src/main/ets/pages/BuildingPage");
+      break;
+    case BuilderNameConstants.CULTURE_AIPainting:
+      import("./src/main/ets/pages/game/AIPaintingPage");
+      break;
+    case BuilderNameConstants.CULTURE_FestivalPage2:
+      import("./src/main/ets/pages/tradictionalFestival/Festival");
+      break;
+    case BuilderNameConstants.CULTURE_GapFillingPage:
+      import("./src/main/ets/pages/game/GapFilling");
+      break;
+    case BuilderNameConstants.CULTURE_FOLKART:
+      LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/FolkArt/FolkArtPage')
+      import("./src/main/ets/pages/FolkArt/FolkArtPage");
       break;
     default:
       break;

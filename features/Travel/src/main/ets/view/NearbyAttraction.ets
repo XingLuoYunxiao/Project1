@@ -3,7 +3,10 @@ import { LoadingStatus, LocationUtil } from "utils"
 import Logger from "utils/src/main/ets/utils/Logger"
 import Constants from "../constants/Constants"
 import { Spot } from "../model/Spot"
+import { CloudStorageService } from "../service/CloudStorageService"
 import { SpotNetFunc } from "../service/SpotNetFunc"
+import { NearbyItem } from "./NearbyItem"
+import { promptAction } from "@kit.ArkUI"
 
 
 @Component
@@ -13,6 +16,8 @@ export struct NearbyAttraction {
   @State locationUtil: LocationUtil = LocationUtil.getInstance()
   @State currentCityName: string = '当前城市'
   @State CityNameJudge: boolean = false
+  @StorageLink('personUid') personUid: string = '';
+
 
   spotDistanceMap: Map<string, string> = new Map()
 
@@ -78,9 +83,15 @@ export struct NearbyAttraction {
         List() {
           ForEach(this.spotNetWork.nearbySpots, (item: Spot) => {
             ListItem(){
-              this.NearbyItem(item)
+              NearbyItem({attraction: item, spotDistanceMap: this.spotDistanceMap})
+                .reuseId('nearby')
             }
             .onClick(() => {
+              if( item.id && this.personUid != ''){
+                this.spotNetWork.addBrowse(item.id, this.personUid);
+              }else{
+                promptAction.showToast({message: '请先登录'})
+              }
               buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item: item}))
               //this.appPathStack.pushPathByName('AttractionDetailPage', item)
             })
@@ -101,45 +112,5 @@ export struct NearbyAttraction {
     }
   }
 
-  @Builder
-  NearbyItem(attraction: Spot) {
-    Row() {
-      Column() {
-        if ($r(`${attraction.image}`) !== undefined) {
-          Image($r(`${attraction.image}`))
-            .width('100%')
-            .height(60)
-        }
-        Text(attraction.name)
-          .fontSize(14)
-          .padding({ top: 5 })
-          .fontColor(Color.Black)
-          .fontWeight(500)
-      }
-      .width('40%')
-      .padding(8)
-      .alignItems(HorizontalAlign.Center)
 
-      Column() {
-        Text(`距离 ${this.spotDistanceMap.get(attraction.id)}km`)
-          .fontSize(16)
-        Text(attraction.summary)
-          .fontSize(14)
-          .padding({ top: 5 })
-          .fontColor(Color.Gray)
-          .textOverflow({ overflow: TextOverflow.Ellipsis })
-          .maxLines(3)
-      }
-      .layoutWeight(1)
-      .alignItems(HorizontalAlign.End)
-
-    }
-    .borderRadius(Constants.BORDER_RADIUS_MD)
-    .backgroundColor(Color.White)
-    .height(100)
-    .width('100%')
-    .padding(10)
-    .margin(5)
-
-  }
 }

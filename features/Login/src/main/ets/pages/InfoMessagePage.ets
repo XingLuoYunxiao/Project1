@@ -9,6 +9,7 @@ import { photoAccessHelper } from "@kit.MediaLibraryKit"
 import { BusinessError } from "@kit.BasicServicesKit"
 import { AGCError } from "@hw-agconnect/hmcore/src/main/ets/error/AGCError"
 import { hilog } from "@kit.PerformanceAnalysisKit"
+import {MineWaterflow} from "../view/MineWaterflow"
 
 @Component
 export struct InfoMessagePage {
@@ -132,6 +133,7 @@ export struct InfoMessagePage {
             })
           })
         }
+        .justifyContent(FlexAlign.SpaceAround)
         .padding($r('app.float.lg_padding_margin'))
         .backgroundColor(Color.White)
         .borderRadius($r('app.float.regular_border_radius'))
@@ -163,17 +165,7 @@ export struct InfoMessagePage {
         WaterFlow(){
           LazyForEach(this.spotDataSource,(item:Spot,index:number)=>{
             FlowItem() {
-              Column({space:Constants.SMALL_SPACE}) {
-                Image($r(item.image))
-                  .width('50%')
-                  .borderRadius(10)
-                  .height(200)
-                Text(item.name)
-                Row({space:Constants.SMALL_SPACE}){
-                  Text(`￥${item.ticketPrice}`)
-                  Text('已售500+')
-                }
-              }
+              MineWaterflow({listitem:item})
             }.onClick(()=>{
               buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:item}))
             })

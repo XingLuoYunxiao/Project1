@@ -7,7 +7,6 @@ import { MineViewModel } from '../service/MineViewModel'
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from '../common/constants/Constants'
 import { SpotNetFunc } from 'travel/src/main/ets/service/SpotNetFunc'
-import auth from '@hw-agconnect/auth'
 
 @Component
 struct EveryItem {
@@ -85,7 +84,7 @@ export struct CollectionPage {
             Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(()=>{
               this.appPathStack.pop()
             })
-            Text('收藏').fontSize($r('app.float.poetry_fontSize'))
+            Text('收藏').fontSize(20)
             Text(this.manage).onClick(() => {
               if(this.manage=='管理'){
                 this.manage = '退出管理'
@@ -192,8 +191,11 @@ export struct CollectionPage {
         LazyForEach(data,(spot:CollectionAdd)=>{
           EveryItem({manage:$manage,spot:spot,delcount:$deletecount})
             .onClick(()=>{
-              this.SpotNetWork.search(spot.spotname)
-              buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
+              this.mineViewModel.taskPoolExecuteQuery(spot.spotname).then((res) => {
+                if(res.length !== 0){
+                  buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
+                }
+              })
             })
         },(spot:CollectionAdd,index:number)=>JSON.stringify(spot)+Math.random()+index)
       }.scrollBar(BarState.Off)

@@ -1,5 +1,5 @@
 import { CommonConstants } from "../common/constants/commonConstants"
-import { ROLE } from "../model/ChatMassageModel"
+import { ChatMessageType, ROLE } from "../model/ChatMassageModel"
 
 
 @Component
@@ -7,6 +7,8 @@ export struct MessageComponent {
   @Prop role: ROLE = ROLE.system
   @Prop msg: string
   @Prop roleHeadImg: ResourceStr = $r('app.media.ic_system_head')
+  @Prop msgType: ChatMessageType = ChatMessageType.Text
+  @Prop ImageURL?: string | ResourceStr
 
   build() {
     // 左边是用户头像，右边是用户姓名和信息
@@ -17,12 +19,10 @@ export struct MessageComponent {
         Column() {
           if (this.role === ROLE.IdiomSystem) {
             Image(CommonConstants.IdiomSystemHeadImg)
-              .width(60)
-              .borderRadius(100) //设置为圆形
+              .roleHeadImg()
           } else {
             Image(this.roleHeadImg)
-              .width(60)
-              .borderRadius(100) //设置为圆形
+              .roleHeadImg()
           }
 
         }
@@ -30,22 +30,14 @@ export struct MessageComponent {
         .width(60)
 
         //消息
-        Text(this.msg)
-          .borderRadius({ topRight: 20, bottomLeft: 20, bottomRight: 20 })
-          .padding({
-            left: 15,
-            right: 15,
-            top: 8,
-            bottom: 8
-          })
+        if (this.msgType === ChatMessageType.Text) {
+          Text(this.msg)
+            .borderRadius({ topRight: 20, bottomLeft: 20, bottomRight: 20 })
+            .msg()
+        } else {
+          Image(this.msg)
+        }
 
-          .borderRadius({
-            topLeft: 0,
-            topRight: 20,
-            bottomLeft: 20,
-            bottomRight: 20
-          })
-          .backgroundColor($r('app.color.massage_background'))
       }
       .justifyContent(FlexAlign.Start)
       .width('100%')
@@ -53,28 +45,20 @@ export struct MessageComponent {
     } else {
       Row() {
         //消息
-        Text(this.msg)
-          .borderRadius({ topRight: 20, bottomLeft: 20, bottomRight: 20 })
-          .borderRadius({ topRight: 20, bottomLeft: 20, bottomRight: 20 })
-          .padding({
-            left: 15,
-            right: 15,
-            top: 8,
-            bottom: 8
-          })
+        if (this.msgType === ChatMessageType.Text) {
+          Text(this.msg)
+            .borderRadius({ topRight: 20, bottomLeft: 20, bottomRight: 20 })
+            .msg()
+        } else {
+          Image(this.ImageURL)
 
-          .borderRadius({
-            topLeft: 20,
-            topRight: 0,
-            bottomLeft: 20,
-            bottomRight: 20
-          })
-          .backgroundColor($r('app.color.massage_background'))
+        }
+
+
         //用户头像
         Column() {
           Image($r('app.media.ic_system_head'))
-            .width(60)
-            .borderRadius(100) //设置为圆形
+            .roleHeadImg()
         }
         .justifyContent(FlexAlign.Start)
         .width(60)
@@ -86,4 +70,22 @@ export struct MessageComponent {
     }
 
   }
+}
+
+@Extend(Text)
+function msg() {
+  .padding({
+    left: 15,
+    right: 15,
+    top: 8,
+    bottom: 8
+  })
+  .backgroundColor($r('app.color.massage_background'))
+}
+
+@Extend(Image)
+function roleHeadImg() {
+  .width(45)
+  .borderRadius(100) //设置为圆形
+  .margin(5)
 }

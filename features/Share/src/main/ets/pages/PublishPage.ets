@@ -1,13 +1,8 @@
 import { BuilderNameConstants, RouterModule } from "routermodule";
-import { photoAccessHelper } from "@kit.MediaLibraryKit";
 import Constants from "../common/constants/Constants";
-import { CommentData, friendMoment} from "../model/BasicDataSource";
 import { promptAction } from "@kit.ArkUI";
-import { FriendMomentAdd } from "../model/FriendMomentAdd";
 import { FriendMoment } from "../model/FriendMoment";
 import { ShareViewModel } from "../service/ShareViewModel";
-import auth from '@hw-agconnect/auth'
-import { StoreViewModel } from "../service/StoreVielModel";
 
 @Component
 struct PublishPage {
@@ -19,7 +14,6 @@ struct PublishPage {
   @StorageProp ('personName') personName: string = ''
   @State location:string=''
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
-  @State storeViewModel:StoreViewModel=StoreViewModel.getInstance();
   time:string=''
   // @State selectedImagesArr:ResourceStr[]=[]
 
@@ -28,8 +22,9 @@ struct PublishPage {
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
   }
 
-  async publish(img:string): Promise<void> {
+  async publish(uid:string,time:string): Promise<void> {
     const content: FriendMoment = new FriendMoment();
+    const img=`share/moment/${uid+time.replace(/\s/g, "").slice(0,20)}`
     //添加图片的时间
     content.setUserId(this.personUid)
     content.setText(this.textInPublish)
@@ -57,8 +52,7 @@ struct PublishPage {
             this.appPathStack.pop()
           })
           Button('发表').onClick(async ()=>{
-            const img=await this.storeViewModel.getUrl(this.personUid,this.time)
-            this.publish(img)
+            this.publish(this.personUid,this.time)
             this.appPathStack.pop()
           })
         }
@@ -75,11 +69,10 @@ struct PublishPage {
           .height(100)
           .margin({left:15})
           .alignSelf(ItemAlign.Start)
-          .onClick(()=>{
+          .onClick(async ()=>{
             this.time=new Date().toString()
-            this.storeViewModel.upload(this.personUid,this.time).then((val)=>{
-              this.selectedImages=val.photoUris[0]
-            })
+            //上传到云存储,this.selectedImages是res.photoUris[0]
+            this.selectedImages=await this.shareViewModel.upload(this.personUid,this.time)
           })
       }.padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE,top:Constants.PADDING_PAGE})
       TextInput({placeholder:'分享您的位置:'})

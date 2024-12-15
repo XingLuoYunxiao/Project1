@@ -1,10 +1,11 @@
-import { BuilderNameConstants, buildRouterModel, RouterModel, RouterNameConstants } from "routermodule";
+import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule";
 import { category, gameList, literatureList, traditionList, } from "../model/category";
 import { LogUtil } from 'utils/src/main/ets/puraUtils/LogUtil'
-import { cloudStorage } from '@kit.CloudFoundationKit';
-import { BusinessError } from '@kit.BasicServicesKit';
+
+import { builderImageMap, cacheImage, downloadImage } from "../common/util/getImage";
+import { PreferencesUtil } from "utils/src/main/ets/puraUtils/PreferencesUtil";
 import { CloudStorageConstants } from "../common/constants/cloudStorageConstants";
-import { CloudStorageService } from "../service/CloudStorage";
+import { BreakpointTypeEnum } from "utils";
 
 
 let TAG: string = "CulturalPage  "
@@ -14,12 +15,19 @@ let TAG: string = "CulturalPage  "
 export struct CulturalPage {
   @Consume('appPathStack') appPathStack: NavPathStack;
   @Consume('culturePathStack') culturePathStack: NavPathStack;
+  @StorageProp('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
+
+  aboutToAppear(): void {
+    downloadImage(CloudStorageConstants.constantsMap)
+
+  }
 
   build() {
     Navigation(this.culturePathStack) {
+
       Column({ space: 15 }) {
         Text('文化天地')
-          .fontSize($r('app.float.large_text_size'))
+          .fontSize($r('app.float.title_text_size'))
 
         Text('测试页面')
           .fontSize($r('app.float.large_text_size'))
@@ -56,11 +64,14 @@ struct groupComponent {
         Text(this.groupName).fontSize(24)
           .margin({ left: 15 })
       }
-      .backgroundColor($r('app.color.main_background'))
       .justifyContent(FlexAlign.Start)
       .height(60)
       .width('90%')
       .borderRadius(20)
+
+      Divider()
+        .strokeWidth(2)
+        .margin({ bottom: 10 })
 
       Grid() {
         ForEach(this.groupData, (item: category) => {
@@ -69,6 +80,7 @@ struct groupComponent {
               .fontSize(24)
               .borderRadius(20)
               .onClick(() => {
+                LogUtil.debug('你点击了' + item.name)
                 buildRouterModel(RouterNameConstants.ENTRY_HAP, item.path)
               })
 

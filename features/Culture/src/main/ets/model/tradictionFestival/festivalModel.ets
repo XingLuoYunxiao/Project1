@@ -2,9 +2,10 @@ export class Festival {
   name: string = ""; // 节日名称
   date: string = ""; // 节日日期
   origin: string = ""; // 节日起源
-  customs: Custom[] = []; // 节日习俗，存储为 Custom 对象数组
   description: string = ""; // 节日描述
-  path?: string = ""; // 文件路径
+  customs: Custom[] = []; // 节日习俗，存储为 Custom 对象数组
+
+  path?: ResourceStr = ""; // 文件路径
 
   constructor(
     name: string = "",
@@ -12,12 +13,14 @@ export class Festival {
     origin: string = "",
     customs: Custom[] = [],
     description: string = "",
+    path?: ResourceStr
   ) {
     this.name = name;
     this.date = date;
     this.origin = origin;
     this.customs = customs;
     this.description = description;
+    this.path = path
   }
 
   // 获取节日信息的简要描述
@@ -30,6 +33,7 @@ export class Custom {
   name: string = ""; // 习俗名称
   description: string = ""; // 习俗的详细描述
   region: string = ""; // 流行地区，可以用于多地区文化区分
+
 
   constructor(
     name: string = "",
@@ -47,6 +51,7 @@ export const festivalList: Festival[] = [
     "春节",
     "农历正月初一",
     "起源于古代年终岁首的祭祀活动。春节的前身是上古时期的“岁首”，后来逐渐演变为庆祝丰收和迎接新年的活动。",
+
     [
       new Custom(
         "贴春联",
@@ -65,6 +70,7 @@ export const festivalList: Festival[] = [
       )
     ],
     "春节象征团圆和新年伊始，通过贴春联、放鞭炮、吃饺子等习俗庆祝。",
+    $r('app.media.background_springfestval'),
   ),
 
   new Festival(
@@ -83,7 +89,8 @@ export const festivalList: Festival[] = [
         "全国"
       )
     ],
-    "清明节是祭祀祖先和踏青赏春的日子，象征着思念和春天的到来。"
+    "清明节是祭祀祖先和踏青赏春的日子，象征着思念和春天的到来。",
+    $r('app.media.background_qingming'),
   ),
 
   new Festival(
@@ -102,7 +109,8 @@ export const festivalList: Festival[] = [
         "南方"
       )
     ],
-    "端午节纪念屈原，人们吃粽子、赛龙舟，以表达对他的崇敬。"
+    "端午节纪念屈原，人们吃粽子、赛龙舟，以表达对他的崇敬。",
+    $r('app.media.background_dragonBoatFestival'),
   ),
 
   new Festival(
@@ -121,7 +129,8 @@ export const festivalList: Festival[] = [
         "全国"
       )
     ],
-    "七夕节是中国传统的情人节，象征着爱情和美满的婚姻。"
+    "七夕节是中国传统的情人节，象征着爱情和美满的婚姻。",
+    $r('app.media.background_qixi'),
   ),
 
   new Festival(
@@ -140,7 +149,8 @@ export const festivalList: Festival[] = [
         "全国"
       )
     ],
-    "中秋节象征着团圆，家人共聚、赏月、吃月饼，共享温馨时光。"
+    "中秋节象征着团圆，家人共聚、赏月、吃月饼，共享温馨时光。",
+    $r('app.media.background_midAutomn'),
   ),
 
   new Festival(
@@ -159,7 +169,8 @@ export const festivalList: Festival[] = [
         "全国"
       )
     ],
-    "重阳节又称“老人节”，人们登高祈福、赏菊，表达对长辈的敬爱。"
+    "重阳节又称“老人节”，人们登高祈福、赏菊，表达对长辈的敬爱。",
+    $r('app.media.background_chongyang'),
   )
 ];
 

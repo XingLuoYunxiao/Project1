@@ -18,6 +18,42 @@ import Logger from 'utils/src/main/ets/utils/Logger';
 
 
 export class CalculateModel {
+
+  //获取总路径时间
+  getRoutesTotalTime(routes: navi.Route[]){
+    if (routes === undefined) {
+      return "0";
+    }
+    let time: number = 0;
+    for(let i = 0; i < routes.length; i++){
+      for (let index = 0; index < routes[i].steps.length; index++) {
+        if (routes[i].steps[index] !== undefined && routes[i].steps[index].duration !== undefined) {
+          time += routes[i].steps[index].duration!;
+          Logger.info('Time is ' + time);
+        }
+      }
+    }
+
+    return this.formatTime(time/60);
+  }
+
+
+  //获取总路径长度
+  getRoutesTotalDistance(routes: navi.Route[]){
+    if (routes === undefined ) {
+      return 0;
+    }
+    let distance: number = 0;
+    for(let i = 0; i < routes.length; i++){
+      for (let index = 0; index < routes[i].steps.length; index++) {
+        if (routes[i].steps[index] !== undefined && routes[i].steps[index].distance !== undefined) {
+          distance += routes[i].steps[index].distance!;
+          Logger.info('Distance is ' + distance);
+        }
+      }
+    }
+    return distance / 1000;
+  }
   /**
    * Get the total duration of the route.
    * @param route

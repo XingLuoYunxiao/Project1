@@ -2,7 +2,9 @@ import { CommentData } from "../model/BasicDataSource";
 import { Comment } from "../model/Comment";
 import { FriendMoment } from "../model/FriendMoment";
 import { FriendMomentAdd } from "../model/FriendMomentAdd";
-import { Sharedata } from "../model/sharedata";
+import { queryCollection, queryComment, shareData, Sharedata } from "../model/sharedata";
+import { taskpool } from "@kit.ArkTS";
+import { Spot } from "travel";
 
 export class ShareViewModel{
   private static instance: ShareViewModel = new ShareViewModel();
@@ -13,37 +15,39 @@ export class ShareViewModel{
   public static getInstance(): ShareViewModel {
     return ShareViewModel.instance;
   }
-  shareList: CommentData<FriendMomentAdd> = new CommentData(); // 评论列表
+  shareList: CommentData<FriendMomentAdd> = new CommentData(); // 朋友圈列表
+  commentList: CommentData<Comment> = new CommentData(); // 评论列表
   sharedata: Sharedata = Sharedata.getInstance()
+  count:number=0
 
   async shareDeal(){
-    this.sharedata.shareData()
-      .then(async (value: FriendMoment[])=>{
-        this.shareList.notifyDataDeleteAll()
-        for (let index = 0; index < value.length; index++) {
-          //遍历的每一项
-          const cur=value[index]
-          this.shareList.pushData(new FriendMomentAdd(cur.id,cur.userId,cur.text,cur.image,cur.good,cur.location,cur.userPhoto,cur.userName))
-        }
-      })
+    let task: taskpool.Task = new taskpool.Task(shareData);
+    const value=await taskpool.execute(task) as FriendMoment[]
+    this.shareList.notifyDataDeleteAll()
+    for (let index = 0; index < value.length; index++) {
+      //遍历的每一项
+      const cur=value[index]
+      const img=await this.sharedata.getUrl(cur.image)
+      this.shareList.pushData(new FriendMomentAdd(cur.id,cur.userId,cur.text,img,cur.good,cur.location,cur.userPhoto,cur.userName))
+    }
   }
 
-  async commentDeal(momentid:number){
-    this.sharedata.commentData(momentid)
-      .then(async (value: Comment[])=>{
-        this.shareList.notifyDataDeleteAll()
-        for (let index = 0; index < value.length; index++) {
-          //每条评论
-          const cur=value[index]
-
-        }
-      })
+  //评论查询
+  async commentDeal(momentid:string){
+    let task:taskpool.Task=new taskpool.Task(queryComment,momentid)
+    let value:Array<Comment>= await taskpool.execute(task) as Array<Comment>
+    this.commentList.notifyDataDeleteAll()
+    for (let index = 0; index < value.length; index++) {
+      //每条评论
+      const cur=value[index]
+      this.commentList.pushData(cur)
+    }
+    this.count=this.commentList.totalCount()
   }
 
   async shareAdd(data:FriendMoment,photo:string,name:string){
     this.sharedata.addshareData(data)
       .then(async ()=>{
-        //TODO 换成用户名和头像
           this.shareList.pushData(new FriendMomentAdd(data.id,data.userId,data.text,data.image,data.good,data.location,photo,name))
       })
   }
@@ -61,4 +65,23 @@ export class ShareViewModel{
   //       //修改成功
   //     })
   // }
+
+  async upload(uid:string,time:string): Promise<string>{
+    const res=await this.sharedata.upload(uid,time)
+    return res.photoUris[0]
+  }
+
+  //使用taskPool执行查询任务（收藏查询）
+  async taskPoolExecuteQuery(condition:string): Promise<Array<Spot>> {
+    try {
+      //创建任务
+      let task: taskpool.Task = new taskpool.Task(queryCollection, condition); // query函数调用 需使用装饰器@Concurrent
+      let result: Array<Spot> = await taskpool.execute(task) as Array<Spot>;
+      return result;
+    } catch (err) {
+      console.error('taskPoolQuery', 'query error:' + `${err}`);
+      return [];
+    }
+  }
+
 }

@@ -1,17 +1,3 @@
-/*
-* Copyright (C) 2024 Huawei Device Co., Ltd.
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-* http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
 import { RouterModel } from '../model/RouterModel';
 import Logger from './Logger';
 
@@ -43,7 +29,7 @@ export class RouterModule {
   public static getRouter(routerName: string): NavPathStack {
     return RouterModule.routerMap.get(routerName) as NavPathStack;
   }
-  
+
 
   // Jumping to a Specified Page by Obtaining the Page Stack.
   public static async push(router: RouterModel): Promise<void> {
@@ -68,5 +54,11 @@ export class RouterModule {
   // Directly jump to the specified route.
   public static popToName(routerName: string, builderName: string): void {
     RouterModule.getRouter(routerName).popToName(builderName);
+  }
+
+  public static async replacePath(routerName: string, builderName: string, params: object): Promise<void> {
+    const harName = builderName.split('_')[0];
+    await import(harName).then((ns: ESObject): Promise<void> => ns.harInit(builderName));
+    RouterModule.getRouter(routerName).replacePathByName(builderName, params);
   }
 }

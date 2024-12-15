@@ -29,6 +29,11 @@
       "name": "AttractionDetailPage",
       "pageSourceFile": "src/main/ets/pages/AttractionDetailPage.ets",
       "buildFunction": "AttractionDetailPageBuilder"
+    },
+    {
+      "name": "SpotDetailCommentPage",
+      "pageSourceFile": "src/main/ets/pages/SpotDetailComment.ets",
+      "buildFunction": "SpotDetailCommentPageBuilder"
     }
   ]
 }

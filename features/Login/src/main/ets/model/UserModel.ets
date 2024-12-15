@@ -9,6 +9,9 @@ import { cloudCommon, cloudFunction } from '@kit.CloudFoundationKit';
 import { BusinessError, request } from '@kit.BasicServicesKit';
 import auth from "@hw-agconnect/auth";
 import { cloudStorage } from '@kit.CloudFoundationKit';
+import { SpotParams } from "travel/src/main/ets/model/SpotFuncParams";
+import { CalendarData } from "./CalendarModel";
+
 
 let bucket: cloudStorage.StorageBucket = cloudStorage.bucket();
 
@@ -97,7 +100,6 @@ export class UserModel{
 
   getUrl(img:string):Promise<string> {
     return new Promise((resolve,reject)=>{
-      // 获取云存储默认实例中screenshot_xxx.jpg文件的下载地址
       bucket.getDownloadURL(`travel/spot/${img}.png`).then((downloadURL: string) => {
         resolve(downloadURL)
         console.info(`getDownloadURL: ${downloadURL}`);
@@ -181,11 +183,12 @@ export class UserModel{
   }
 
 
-  async gethistoryData(personUid: string): Promise<BrowsingHistory[]>{
+  async gethistoryData(personUid: string,date:Date): Promise<BrowsingHistory[]>{
     return new Promise((resolve,reject)=>{
       cloudFunction.call({
         name: 'get-hiscol-data',
         data: {
+          date:date,
           personUid:personUid,
           fiel:'userId',
           sort:'viewTime',
@@ -200,5 +203,24 @@ export class UserModel{
     })
   }
 
+}
 
+
+//并发查询
+@Concurrent
+export async function queryCollection(condition:string){
+  try{
+    let params:SpotParams = {
+      type: 'query',
+      filter: [
+        {name:`${condition}`}
+      ]
+    }
+    const res = await cloudFunction.call({ name: 'get-spot-data', data: params})
+    let data = res.result
+    return JSON.parse(JSON.stringify(data)).data
+  }catch (e){
+    console.error('[SpotModel]', 'SpotModel getSpotDataByCondition failed', e);
+  }
+  return []
 }

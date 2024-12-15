@@ -5,6 +5,8 @@ import { ttf } from "../../common/util/ttf"
 import { addExp } from "../../common/util/addExp"
 import { BuilderNameConstants, RouterModule } from "routermodule"
 import { CommonConstants } from "../../common/constants/commonConstants"
+import { CloudStorageConstants } from "../../common/constants/cloudStorageConstants"
+import { downloadImage } from "../../common/util/getImage"
 
 
 let addEXPId: number = 0
@@ -43,22 +45,22 @@ export struct PaintingDetails {
         })
       }
     }
-    .hideTitleBar(true) // 隐藏标题栏
+    .hideTitleBar(true)
   }
 
   // paintingItem方法，负责渲染单个绘画项目
   @Builder
   paintingItem(item: PaintingModel) {
-    Column({ space: 15 }) { // 嵌套Column显示绘画详细信息
+    Column({ space: 15 }) {
       Row() {
         Text(item.name)// 显示绘画名称
-          .fontSize(30) // 设置字体大小
+          .fontSize(30)
       }
       .justifyContent(FlexAlign.Center) // 水平居中对齐
       .width('100%') // 宽度占满
 
-      Text("简介：" + item.introduction) // 显示简介
-      Text('起源:' + item.originPeriod) // 显示起源
+      Text("简介：" + item.introduction)
+      Text('起源:' + item.originPeriod)
 
       Text("特征：" + item.characteristics) // 显示特征
       Text("代表画家：" + item.famousArtists.toString()) // 显示代表画家
@@ -112,7 +114,7 @@ struct ShowPainting {
           Image(this.painting.path)// 展示绘画图片
             .height(300)// 设置图片高度
             .objectFit(ImageFit.Cover)
-
+            .alt($r('app.media.alt'))
         }
         .scrollable(ScrollDirection.Horizontal) // 可水平滚动
 

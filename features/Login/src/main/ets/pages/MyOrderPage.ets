@@ -34,9 +34,13 @@ export struct MyOrderPage {
         LazyForEach(data, (or: myOrderAdd) => {
           ListItem() {
             OrderItem({ item: or, reviewname: or.spotname })
-          }.onClick(()=>{
-            this.SpotNetWork.search(or.spotname)
-            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
+          }
+          .onClick(()=>{
+            this.mineViewModel.taskPoolExecuteQuery(or.spotname).then((res) => {
+              if(res.length !== 0){
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
+              }
+            })
           })
         },(or: myOrderAdd, index: number) => JSON.stringify(or) + Math.random() + index)
         // }

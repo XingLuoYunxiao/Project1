@@ -5,7 +5,6 @@ import { OneMoment } from "../components/OneMoment";
 import { CommentData, friendMoment} from "../model/BasicDataSource";
 import { FriendMomentAdd } from "../model/FriendMomentAdd";
 import { ShareViewModel } from "../service/ShareViewModel";
-import auth from "@hw-agconnect/auth";
 
 const typeVideo: string = 'video';
 const typeText: string = 'text';
@@ -79,10 +78,7 @@ export struct SharePage {
   build() {
     Navigation(this.loginPathStack){
         Row(){
-          Image(this.personPhoto)
-            .width($r('app.integer.publish_multimedia_updates_user_image_width'))
-            .height($r('app.integer.publish_multimedia_updates_user_image_height'))
-            .borderRadius($r('app.integer.publish_multimedia_updates_user_image_border_radius'))
+          Text('我的')
           Text('古韵天地').fontSize(20).layoutWeight(1).textAlign(TextAlign.Center)
           // Image($r('sys.media.ohos_ic_public_add'))
           //   .bindMenu(this.MyMenu())

@@ -23,7 +23,8 @@ export struct LoadingAnimation {  // 定义LoadingAnimation组件
         this.currentStep++  // 当前步骤递增
       } else {
         clearInterval(this.intervalID)  // 完成所有步骤后清除定时器
-        buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_SPOTDETAILPAGE, new Object({ spot: object.param2}))
+        RouterModule.replacePath(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_SPOTDETAILPAGE, new Object({ spot: object.param2}))
+        //buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_SPOTDETAILPAGE, new Object({ spot: object.param2}))
         //this.appPathStack.replacePathByName(object.param1, object.param2)  // 完成后替换路径
       }
     }, 1000)  // 每秒执行一次

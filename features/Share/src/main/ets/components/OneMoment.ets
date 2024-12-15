@@ -17,6 +17,7 @@ export struct OneMoment {
   @State imageInComment: ResourceStr = ''; // 评论中的图片列表
   @StorageLink ('personUid') personUid: string = ''
   @StorageLink ('personPhoto') personPhoto: string = ''
+  @StorageLink ('personName') personName: string = ''
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
   aboutToReuse(params: Record<string, Object>): void {
     this.moment = params.moment as FriendMomentAdd;
@@ -45,7 +46,8 @@ export struct OneMoment {
         comment.setMomentid(`${this.moment.id}`);
         comment.setText(this.textInComment);
         comment.setImage(this.imageInComment);
-        comment.setUid(this.personUid)
+        comment.setPhoto(this.personPhoto)
+        comment.setName(this.personName)
         this.shareViewModel.commentAdd(comment)
     } else {
       promptAction.showToast({
@@ -139,8 +141,11 @@ export struct OneMoment {
           text: this.moment.location
         })
           .onClick(() => {
-            this.SpotNetWork.search(this.moment.location)
-            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
+            this.shareViewModel.taskPoolExecuteQuery(this.moment.location).then((res)=>{
+              if(res.length!=0){
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
+              }
+            })
           })
         ImageText({
           imageStr: $r("app.media.publish_multimedia_updates_ic_thumbsup"),
@@ -171,7 +176,7 @@ export struct OneMoment {
       })
     }
     .onClick(()=>{
-
+      buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.SHARE_DETAILSHPAGE,new Object({item:this.moment}))
     })
     .width($r('app.string.publish_multimedia_updates_layout_100'))
   }

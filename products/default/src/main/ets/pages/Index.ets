@@ -1,11 +1,10 @@
 import { TravelStartPage } from 'travel';
 import { InfoMessagePage } from 'login';
-import {  CulturalPage } from 'culture';
+import { CulturalPage } from 'culture';
 import { TabBarType } from '../model/TabBarModel';
 import { CustomTabBar } from '../components/CustomTabBar';
 import { AppConstants } from '../constants/AppConstants';
-import auth from '@hw-agconnect/auth';
-import { LocationUtil } from 'utils';
+import { BreakpointSystem, BreakpointTypeEnum, LocationUtil } from 'utils';
 import { RouterModule, RouterNameConstants } from 'routermodule';
 import { SharePage } from 'share';
 import lpreferencesUtil from 'login/src/main/ets/common/utils/PreferenceUtil';
@@ -18,8 +17,12 @@ struct Index {
   @Provide('appPathStack') appPathStack: NavPathStack = new NavPathStack();
   @Provide('loginPathStack') loginPathStack: NavPathStack = new NavPathStack();
   @Provide('culturePathStack') culturePathStack: NavPathStack = new NavPathStack();
+  @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
+  private tabsController: TabsController = new TabsController();
+  private breakpointSystem: BreakpointSystem = new BreakpointSystem(); // 断点系统实例
 
   async aboutToAppear(): Promise<void> {
+    this.breakpointSystem.register(); // 注册断点系统
     await LocationUtil.getInstance().getCurrentLocation()
     if( !this.appPathStack){
       this.appPathStack = new NavPathStack();

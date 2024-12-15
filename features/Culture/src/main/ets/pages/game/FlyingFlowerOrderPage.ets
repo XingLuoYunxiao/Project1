@@ -1,7 +1,6 @@
 import { Poem } from "../../model/Poem";
 import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil";
 import { GameRuleDialog } from "../../view/Dialog/gameRuleDialog";
-import { EXP } from "../../model/EXP";
 import { BuilderNameConstants, RouterModule } from "routermodule";
 import { ChatMsgModel } from "../../viewmodel/MessageViewModel";
 import { ChatMsg, ROLE } from "../../model/ChatMassageModel";
@@ -38,15 +37,20 @@ export struct FlyingFlowerOrderPage {
       addExp(CommonConstants.expTypeGame, 5)
     }, 10000)
 
-    this.textTimerController.start()
+
     if (this.PoemList.length === 0) {
       this.systemAddSentence()
+
     } else {
       LogUtil.debug('this.PoemList.length !== 0')
     }
   }
 
   aboutToDisappear(): void {
+    this.PoemList = []
+    this.poemMap.clear()
+    MessageDataModel.data = []
+    MessageDataModel.notifyDataReload()
     //退出页面，取消对经验值的添加
     clearTimeout(addEXPId)
   }
@@ -64,92 +68,102 @@ export struct FlyingFlowerOrderPage {
         }
       }
     }
+    this.textTimerController.reset()
+    this.textTimerController.start()
+
   }
 
   build() {
     NavDestination() {
-      Column() {
+      Stack() {
+        Image($r('app.media.game_flyFlower'))
+          .objectFit(ImageFit.Cover)
+          .opacity(0.7)
         Column() {
-          // 头部
-          Row() {
+          Column() {
+            // 头部
+            Row() {
 
-            Text('游戏规则')
-              .fontSize($r('app.float.title_text_size'))
-              .onClick(() => {
-                this.dialogController.open()
-              })
+              Text('游戏规则')
+                .fontSize($r('app.float.title_text_size'))
+                .onClick(() => {
+                  this.dialogController.open()
+                })
 
-            Text('今日令词：' + this.commonWord)
-              .fontSize($r('app.float.title_text_size'))
-            // 计时器
-            TextTimer({ controller: this.textTimerController, isCountDown: this.isCountDown, count: 30000 })
-              .format(this.format)
-              .fontColor(Color.Black)
-              .fontSize(24)
-              .onTimer((utc: number, elapsedTime: number) => {
-                LogUtil.info(`textTimer notCountDown utc is：${utc}, elapsedTime: ${elapsedTime}`);
-                if (elapsedTime === 3000) {
-                  //this.GameOverDialogController.open()
+              Text('今日令词：' + this.commonWord)
+                .fontSize($r('app.float.title_text_size'))
+              // 计时器
+              TextTimer({ controller: this.textTimerController, isCountDown: this.isCountDown, count: 40000 })
+                .format(this.format)
+                .fontColor(Color.Black)
+                .fontSize(24)
+                .onTimer((utc: number, elapsedTime: number) => {
+                  LogUtil.info(`textTimer notCountDown utc is：${utc}, elapsedTime: ${elapsedTime}`);
+                  if (elapsedTime === 4000) {
+                    //this.GameOverDialogController.open()
+                  }
+                })
+
+            }
+            .height(50)
+            .width('100%')
+            .justifyContent(FlexAlign.SpaceAround)
+
+
+            // 聊天页面
+            List({ space: 10 }) {
+              LazyForEach(MessageDataModel, (item: ChatMsg) => {
+                ListItem() {
+                  MessageComponent({ role: item.role, roleHeadImg: item.roleHeadImg, msg: item.message });
                 }
-              })
-
+              });
+            }
+            .cachedCount(20);
           }
-          .height(50)
-          .width('100%')
-          .justifyContent(FlexAlign.SpaceAround)
 
-
-          // 聊天页面
-          List({ space: 10 }) {
-            LazyForEach(MessageDataModel, (item: ChatMsg) => {
-              ListItem() {
-                MessageComponent({ role: item.role, roleHeadImg: item.roleHeadImg, msg: item.message });
-              }
-            });
-          }
-          .cachedCount(20);
-        }
-
-        Row() { // 输入框和发送按钮的行布局
-          TextInput({
-            controller: this.controller,
-            text: this.inputText
-          })
-            .width('80%')
-            .height(40)
-            .margin(20)
-            .fontSize(14)
-            .fontColor(Color.Black)
-            .enterKeyType(EnterKeyType.Send)// 设置回车键类型为发送
-            .onChange((value: string) => {
-              this.inputText = value; // 更新输入框文本
+          Row() { // 输入框和发送按钮的行布局
+            TextInput({
+              controller: this.controller,
+              text: this.inputText
             })
-            .onSubmit(async (enterKey: EnterKeyType, event: SubmitEvent) => {
-              LogUtil.debug(TAG, "触发输入框提交: " + enterKey);
-              let tempText = this.inputText;
-              this.inputText = '';
-              MessageDataModel.pushData(new ChatMsg(ROLE.user, tempText));
-              CloudPoemService.isPoemSentence(tempText).then(isPoSen => {
-                if (isPoSen) { //是诗词
-                  this.systemAddSentence()
-                } else {
-                  MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, "这看起来不是一句诗句"));
-                  MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, "我接着继续"));
-                  this.systemAddSentence()
-                }
+              .width('80%')
+              .height(40)
+              .margin(20)
+              .fontSize(14)
+              .fontColor(Color.Black)
+              .enterKeyType(EnterKeyType.Send)// 设置回车键类型为发送
+              .onChange((value: string) => {
+                this.inputText = value; // 更新输入框文本
               })
+              .onSubmit(async (enterKey: EnterKeyType, event: SubmitEvent) => {
+                LogUtil.debug(TAG, "触发输入框提交: " + enterKey);
+                let tempText = this.inputText;
+                this.inputText = '';
+                MessageDataModel.pushData(new ChatMsg(ROLE.user, tempText));
+                CloudPoemService.isPoemSentence(tempText).then(isPoSen => {
+                  if (isPoSen) { //是诗词
+                    this.systemAddSentence()
+                  } else {
+                    MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, "这看起来不是一句诗句"));
+                    MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, "我接着继续"));
+                    this.systemAddSentence()
+                  }
+                })
 
-            });
+              });
+          }
+          .width('100%')
+          .margin({ bottom: 40 })
+          .padding(10)
+
         }
+        .backgroundImageSize(ImageSize.Cover)
+        .margin({ top: $r('app.float.header_height_page') })
         .width('100%')
-        .margin({ bottom: 40 })
-        .padding(10)
-
+        .height('100%')
+        .justifyContent(FlexAlign.SpaceBetween)
       }
-      .margin({ top: $r('app.float.header_height_page') })
-      .width('100%')
-      .height('100%')
-      .justifyContent(FlexAlign.SpaceBetween)
+
     }
     .hideTitleBar(true)
   }

@@ -1,21 +1,66 @@
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
 import Constants from '../constants/Constants'
 import { Spot } from '../model/Spot'
+import { Want } from '@kit.AbilityKit';
+import { common } from '@kit.AbilityKit';
+import { SpotNetFunc } from '../service/SpotNetFunc';
+import { promptAction } from '@kit.ArkUI';
+import { CloudStorageService } from '../service/CloudStorageService';
+import { SpotComment } from '../view/SpotComment';
 
 @Component
 struct AttractionDetailPage {
   @Consume('appPathStack') appPathStack: NavPathStack
   @State value: object = new Object()
-  @State spot: Spot = new Spot('-1','null' , "null", 'null', 0, {"latitude": 0, "longitude": 0}, 0, 'null', 'null', '', '', '', '');
+  @State spot: Spot = new Spot()
+  @StorageLink('personUid') personUid: string = '';
   @State orderData :string[] = ['可定今日', '可订明日', '更多日期']
+  @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance()
   @State isSelected: number = 0
   @State selectedDate: Date = new Date()
+  @State isCollectLoading: boolean = false
+  @State cloudService: CloudStorageService = CloudStorageService.getInstance()
+  @State url: string | undefined = undefined
+
 
   aboutToAppear(): void {
     //获取路由参数
     this.spot = JSON.parse(JSON.stringify(this.value)).item as Spot
     //this.spot = this.appPathStack.getParamByName('AttractionDetailPage')[0] as Spot;
+    if( this.spot && this.spot.imageUrl)
+      this.cloudService.getTravelSpotURL(this.spot.imageUrl).then(url => {
+        this.url = url
+      })
+    //TODO 收藏状态和Login不同步问题,卸载应用后，会出现该页面收藏丢失的情况, 这里可以使用多线程来解决景点的查询匹配问题
+    this.spotNetWork.getCollection().then(() => {
+      if(  this.spot && this.spot.id && this.spotNetWork.collection.indexOf(this.spot.id) > 0){
+        this.isCollectLoading = true
+      }
+    })
+
   }
+
+  StartNavi = ()=>{
+    if( this.spot.latitude !== undefined && this.spot.longitude !== undefined){
+      let petalMapWant: Want = {
+        bundleName: 'com.huawei.hmos.maps.app',
+        uri: 'maps://routes', // 路径规划
+        // uri: 'maps://navigation', // 导航
+        parameters: {
+          // 接入方业务名或包名，Link请求来源。
+          linkSource: '用户到景点的导航',
+          destinationLatitude: this.spot.latitude!,
+          destinationLongitude: this.spot.longitude!,
+          destinationName: `${this.spot.name}`,
+          vehicleType: 0 // 交通出行工具。0-驾车， 1-步行， 2-骑行。默认驾车
+        }
+      }
+
+      let context = getContext(this) as common.UIAbilityContext;
+      context.startAbility(petalMapWant);
+    }
+  }
+
 
   build() {
     NavDestination(){
@@ -32,6 +77,23 @@ struct AttractionDetailPage {
             .fontSize(Constants.FONT_TITLE)
             .fontWeight(FontWeight.Medium)
             .margin({ left: 12 })
+          Blank()
+          //TODO 首选项和用户模块的收藏数据不同步
+          Image( this.isCollectLoading ? $r('app.media.ic_collection_fill') : $r('app.media.ic_collection'))
+            .fillColor(Color.Orange)
+            .width(24)
+            .height(24)
+            .margin({ right: 16 })
+            .onClick(() => {
+              // 收藏
+              if(this.personUid !== '' && this.spot && this.spot.id){
+                this.spotNetWork.updateCollection(this.spot.id, this.personUid)
+                this.isCollectLoading = !this.isCollectLoading
+              }else{
+                promptAction.showToast({message: '请先登录', duration: 2000})
+              }
+            })
+
         }
         .width('100%')
         .height(48)
@@ -40,10 +102,12 @@ struct AttractionDetailPage {
         Scroll() {
           Column() {
             Stack({ alignContent: Alignment.BottomEnd }) {
-              Image($r(`${this.spot.image}`))
-                .width('100%')
-                .height(240)
-                .objectFit(ImageFit.Fill)
+              if( this.spot && this.spot.imageUrl){
+                Image(this.url == undefined ? $r(`${this.spot.imageUrl}`) : this.url)
+                  .width('100%')
+                  .height(240)
+                  .objectFit(ImageFit.Fill)
+              }
             }
 
             // 注意
@@ -77,7 +141,7 @@ struct AttractionDetailPage {
 
               Row() {
                 Rating({ rating: this.spot.rating })
-                Text(this.spot.rating.toString())
+                Text(this.spot.rating!.toString())
                   .fontSize(Constants.FONT_CONTENT)
                   .fontWeight(FontWeight.Medium)
                   .margin({ left: 8 })
@@ -93,7 +157,7 @@ struct AttractionDetailPage {
                   .width(72)
                   .height(40)
                   .onClick( () => {
-                    buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.MAP_ROUTEPLANVIEW, new Object({Object: this.spot}))
+                    this.StartNavi()
                   })
 
               }
@@ -104,6 +168,7 @@ struct AttractionDetailPage {
             .alignItems(HorizontalAlign.Start)
             .padding(16)
 
+            //景点信息
             Column() {
               Row() {
                 Text( isBusinessTime(this.spot.openingHours) === true ? '营业中' :'未营业')
@@ -241,6 +306,9 @@ struct AttractionDetailPage {
             }
             .margin({ top: 8 })
             .backgroundColor(Color.White)
+
+            // 评论
+            SpotComment({spot: this.spot})
           }
         }
         .width('100%')
@@ -266,6 +334,8 @@ function getRandomNumber(): number {
 
 
 function isBusinessTime(businessHours: string): boolean {
+  if(businessHours === '全天开放')
+    return true
   try {
     //获取当前时间
     let currentTime = new Date();

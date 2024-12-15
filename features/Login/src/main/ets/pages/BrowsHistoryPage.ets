@@ -1,13 +1,28 @@
 import { BrowsingHistory } from "../model/BrowsingHistory";
 import { HistoryAdd } from "../model/HistoryAdd";
 import { mySpot } from "../model/mySpot";
-import { CollectHistoryItem } from "../view/CollectHistoryItem";
 import { ListDataSource } from "../service/ListDataSource";
 import { MineViewModel } from "../service/MineViewModel";
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from "../common/constants/Constants";
 import { SpotNetFunc } from "travel/src/main/ets/service/SpotNetFunc";
 import { MyCalendar ,CalendarData} from "../view/MyCalendar";
+import { CollectionAdd } from "../model/CollectionAdd";
+
+@Component
+struct CollectHistoryItem {
+  @ObjectLink item:CollectionAdd|HistoryAdd
+  build() {
+    Row() {
+      Image(this.item.spot_img).width(80).height(80)
+      Text(this.item.spotname)
+      Text()
+    }.borderRadius(20)
+    .width('100%')
+    .backgroundColor(Color.White)
+    .padding(12)
+  }
+}
 
 @Component
 export struct BrowsHistoryPage {
@@ -25,7 +40,7 @@ export struct BrowsHistoryPage {
   @State delcount:number=0
 
   @Builder
-bottomDelete(){
+  bottomDelete(){
     Row(){
       Checkbox()
         .select(this.isChecked)
@@ -48,6 +63,16 @@ bottomDelete(){
     .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None).width('100%')
 }
 
+  async aboutToAppear() {
+    let currentDate = new Date();
+    // 增加一天到当前日期
+    let tomorrow = new Date(currentDate);
+    tomorrow.setDate(currentDate.getDate() + 1);
+
+    // 设置时间为0点
+    tomorrow.setHours(0, 0, 0, 0);
+    this.mineViewModel.historyDeal(this.personUid,tomorrow)
+  }
 
   build() {
     NavDestination() {
@@ -71,8 +96,7 @@ bottomDelete(){
           .width('100%')
           .justifyContent(FlexAlign.SpaceBetween)
 
-          MyCalendar({onCalendarClick: (item: CalendarData): Promise<void> => this.mineViewModel.historyDeal(this.personUid,
-            item)})
+          MyCalendar({onCalendarClick: (item: Date): Promise<void> => this.mineViewModel.historyDeal(this.personUid,item)})
           Tabs() {
             TabContent() {
               Column() {
@@ -89,9 +113,13 @@ bottomDelete(){
                             }).visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
                         CollectHistoryItem({ item: history })
                       }
-                    }.onClick(()=>{
-                      this.SpotNetWork.search(history.spotname)
-                      buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
+                    }
+                    .onClick(()=>{
+                      this.mineViewModel.taskPoolExecuteQuery(history.spotname).then((res) => {
+                        if(res.length !== 0){
+                          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
+                        }
+                      })
                     })
                   }, (history: HistoryAdd) => JSON.stringify(history))
                 }.scrollBar(BarState.Off)
@@ -113,6 +141,13 @@ bottomDelete(){
                             })
                         }
                         CollectHistoryItem({ item: history })
+                          .onClick(()=>{
+                            this.mineViewModel.taskPoolExecuteQuery(history.spotname).then((res) => {
+                              if(res.length !== 0){
+                                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
+                              }
+                            })
+                          })
                       }
                     }.onClick(()=>{
 

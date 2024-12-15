@@ -1,4 +1,4 @@
-import { UserModel } from "../model/UserModel";
+import { queryCollection, UserModel } from "../model/UserModel";
 import { hilog } from "@kit.PerformanceAnalysisKit";
 import { Collection } from "../model/Collection";
 import { CollectionAdd } from "../model/CollectionAdd";
@@ -7,8 +7,10 @@ import { ListDataSource } from "./ListDataSource";
 import { HistoryAdd } from "../model/HistoryAdd";
 import { myOrderAdd } from "../model/myOrderAdd";
 import { myOrder} from "../model/myOrder";
-import { CalendarData} from "../view/MyCalendar";
 import lpreferencesUtil from "../common/utils/PreferenceUtil";
+import { taskpool as taskPool } from '@kit.ArkTS';
+import { Spot } from "travel";
+
 
 @Observed
 export class MineViewModel{
@@ -66,8 +68,8 @@ export class MineViewModel{
         this.personName = user.getUser().getDisplayName()
         this.personPhoto = user.getUser().getPhotoUrl()
         lpreferencesUtil.putPreferenceValue('UserInfoPreference','personUid',this.personUid)
-        lpreferencesUtil.putPreferenceValue('UserInfoPreference','personPhoto',this.personName)
-        lpreferencesUtil.putPreferenceValue('UserInfoPreference','personName',this.personPhoto)
+        lpreferencesUtil.putPreferenceValue('UserInfoPreference','personPhoto',this.personPhoto)
+        lpreferencesUtil.putPreferenceValue('UserInfoPreference','personName',this.personName)
       }).catch((error: Error) => {
       //登录失败
       console.log('登录失败', JSON.stringify(error))
@@ -99,17 +101,9 @@ export class MineViewModel{
     await this.userModel.deletecollectData(spotid,personid)
   }
 
-  isSameYearMonthDay(date1: Date, date2: CalendarData): boolean {
-    return (
-      date1.getFullYear() === date2.year &&
-        date1.getMonth()+1 === date2.month &&
-        date1.getDate() === date2.date
-    );
-  }
 
-
-  async historyDeal(personUid:string,date?:CalendarData){
-     this.userModel.gethistoryData(personUid)
+  async historyDeal(personUid:string,date:Date){
+     this.userModel.gethistoryData(personUid,date)
       .then(async (value:BrowsingHistory[])=>{
         this.historyspotListData.notifyDataDeleteAll()
         this.historypoemListData.notifyDataDeleteAll()
@@ -119,13 +113,8 @@ export class MineViewModel{
               const spots=await this.userModel.getspotData(cur.spotId)
               const img= await this.userModel.getUrl(spots[0].imageUrl)
               const pushdata=new HistoryAdd(cur.id,cur.spotId,cur.viewTime,cur.viewCount,cur.type,cur.userId,cur.poemId,spots[0].name,img,false)
-              if(date!=null){
-                const curday=cur.viewTime as Date
-                if(this.isSameYearMonthDay(curday,date)){
-                  this.historyspotListData.pushData(pushdata)
-                  this.historyspotListData.notifyDataReload()
-                }
-              }
+              this.historyspotListData.pushData(pushdata)
+              this.historyspotListData.notifyDataReload()
             }else{
               const poem=await this.userModel.getpoemData(cur.spotId)
               this.historypoemListData.pushData(new HistoryAdd(cur.id,cur.spotId,cur.viewTime,cur.viewCount,cur.type,cur.userId,cur.poemId,poem[0].title,poem[0].writer,false))
@@ -151,6 +140,24 @@ export class MineViewModel{
       })
   }
 
+
+  //使用taskPool执行查询任务（收藏查询）
+  async taskPoolExecuteQuery(condition:string): Promise<Array<Spot>> {
+    try {
+      //创建任务
+      let task: taskPool.Task = new taskPool.Task(queryCollection, condition); // query函数调用 需使用装饰器@Concurrent
+      let result: Array<Spot> = await taskPool.execute(task) as Array<Spot>;
+      return result;
+    } catch (err) {
+      console.error('taskPoolQuery', 'query error:' + `${err}`);
+      return [];
+    }
+  }
+
+  //我的瀑布流图片获取
+  async waterList(img:string):Promise<string>{
+    return await this.userModel.getUrl(img)
+  }
 }
 
 

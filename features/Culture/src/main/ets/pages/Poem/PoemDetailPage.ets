@@ -36,7 +36,6 @@ export struct PoemDetailPage {
     // 退出页面时取消对经验值的添加
     clearTimeout(addEXPId)
 
-    // RouterModule.pop(BuilderNameConstants.CULTURE_POEMDETAIL)
   }
 
   build() {
