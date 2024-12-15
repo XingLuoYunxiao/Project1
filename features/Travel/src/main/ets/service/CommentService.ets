@@ -118,5 +118,15 @@ export class CommentService{
     }
   }
 
+  //重置
+  reset(){
+    this.comments = []
+    this.commentsSource.clear()
+    this.topComments = []
+    this.topCommentsSource.clear()
+    this.commentsLoadingState = LoadingStatus.OFF
+    this.pageNum = 1
+  }
+
 
 }

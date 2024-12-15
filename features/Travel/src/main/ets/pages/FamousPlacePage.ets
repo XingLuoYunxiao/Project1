@@ -201,10 +201,6 @@ export struct FamousPlacePage {
             //this.appPathStack.pushPathByName('SearchPage', true)
           })
           //.enableKeyboardOnFocus(false)
-        Badge({count: 1, position: BadgePosition.RightTop, style:{fontSize:14, badgeColor: Color.Red}}){
-          Image($r('app.media.ic_public_email'))
-            .width(24)
-        }
       }
       .margin({top:5})
       .width('100%')
