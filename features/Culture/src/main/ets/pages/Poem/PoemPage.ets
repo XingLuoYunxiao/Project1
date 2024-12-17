@@ -1,4 +1,3 @@
-import { Filter, FilterParams, FilterResult, FilterType, promptAction } from '@kit.ArkUI'; // 导入UI工具和筛选器相关模块
 import { poets, TypeList } from '../../common/constants/poemType'; // 导入诗词相关常量数据
 import { Poem } from '../../model/Poem'; // 导入诗歌模型类
 import { addExp } from '../../common/util/addExp';
@@ -9,13 +8,11 @@ import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 import { PoemModel } from '../../viewmodel/PoemViewModel';
 import { BreakpointTypeEnum, CacheUtil } from 'utils';
 import { CustomDialogType } from '../../Diaog/type';
-import { selectComponent } from '../../view/poem/TypeSelectComponent';
 import { PoetsCustomDialog } from '../../Diaog/poets';
 
 let addEXPId: number = 0
 
 const TAG: string = 'PoemPage'
-
 
 @Component
 export struct PoemPage { // 定义一个组件类PoemPage
@@ -23,6 +20,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
   @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
   @State poems: Poem[] = []; // 诗歌数据的状态管理
   @State pageNumber: number = 1; // 分页页码
+  @State changeValue: string = ''
   @State @Watch('changeType') curPoemType: string = '全部'; // 当前筛选的诗歌类型
   @State @Watch('changePoet') curPoets: string = '全部'; // 当前筛选的诗人
   @State curDynastyIndex: number | number[] = 0; // 当前筛选的朝代
@@ -32,7 +30,6 @@ export struct PoemPage { // 定义一个组件类PoemPage
     "全部", "先秦", "两汉", "魏晋", "南北朝", "隋代", "唐代", "宋代", "金朝", "元代", "明代", "清代"
   ];
   @State @Watch('changeDynasty') curDynasty: string = '全部'; // 当前筛选的朝代
-  @State changeValue: string = ''
   dialogController: CustomDialogController = new CustomDialogController({
     builder: CustomDialogType({
       type: this.curPoemType
@@ -50,14 +47,14 @@ export struct PoemPage { // 定义一个组件类PoemPage
     this.fetchData()
   }
 
-  changeDynasty() {
+  async changeDynasty() {
     this.pageNumber = 0
 
     PoemDataModel.data = []
     this.fetchData()
   }
 
-  changePoet() {
+  async changePoet() {
     this.pageNumber = 0
     PoemDataModel.data = []
     this.fetchData()
@@ -96,21 +93,9 @@ export struct PoemPage { // 定义一个组件类PoemPage
   build() {
     NavDestination() {
       Search({ value: this.changeValue, placeholder: '搜你想搜的诗词吧' })
-        .searchButton('搜索')
-        .width('95%')
-        .height(40)
-        .backgroundColor('#F5F5F5')
-        .placeholderColor(Color.Grey)
-        .placeholderFont({ size: 14, weight: 400 })
-        .textFont({ size: 14, weight: 400 })
-        .onSubmit(async (value: string) => {
-          LogUtil.debug('点击了搜索')
-          
+        .onClick(() => {
+          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_SearchPage)
         })
-        .onChange((value: string) => {
-          this.changeValue = value
-        })
-        .margin(20)
 
       Row() {
         Text('类型： ' + this.curPoemType)
@@ -169,8 +154,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
           }
           .margin({ top: 50 })
           .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
-          .cachedCount(15) // 缓存项数
-          .id('poemList') // 列表ID
+          .cachedCount(25) // 缓存项数
           .onReachEnd(async () => { // 滑动到底部时触发
             this.fetchData()
             LogUtil.debug('触底刷新成功')
@@ -182,14 +166,14 @@ export struct PoemPage { // 定义一个组件类PoemPage
             console.info('center' + centerIndex)
           })
 
-          .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => {
-            console.log(' start index: ' + start.index +
-              ' start item group area: ' + start.itemGroupArea +
-              ' start index in group: ' + start.itemIndexInGroup)
-            console.log(' end index: ' + end.index +
-              ' end item group area: ' + end.itemGroupArea +
-              ' end index in group: ' + end.itemIndexInGroup)
-          })
+          // .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => {
+          //   console.log(' start index: ' + start.index +
+          //     ' start item group area: ' + start.itemGroupArea +
+          //     ' start index in group: ' + start.itemIndexInGroup)
+          //   console.log(' end index: ' + end.index +
+          //     ' end item group area: ' + end.itemGroupArea +
+          //     ' end index in group: ' + end.itemIndexInGroup)
+          // })
 
         }
         .width('100%')

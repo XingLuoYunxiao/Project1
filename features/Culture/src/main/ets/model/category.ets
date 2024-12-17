@@ -26,7 +26,7 @@ export const literatureList: category[] = [
   },
   {
     name: "歇后语",
-    path: BuilderNameConstants.CULTURE_XIEHOUYU,
+    path: BuilderNameConstants.CULTURE_XIEHOUYULIST,
     ic: $r('app.media.ic_xiehouyuPage')
   }
 ]

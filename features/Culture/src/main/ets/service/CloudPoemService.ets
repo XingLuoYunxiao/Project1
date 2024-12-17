@@ -206,6 +206,33 @@ export class CloudPoemService {
     }
   }
 
+  public static async fetchDataByTitle(title: string): Promise<Poem[] | undefined> {
+    try {
+      let databaseZone = cloudDatabase.zone('Travel');
+      let condition = new cloudDatabase.DatabaseQuery(Poem);
+
+
+      // 设置查询条件：分页查询
+      condition.equalTo('title', title).limit(10)
+
+
+      return new Promise((resolve, reject) => {
+        databaseZone.query(condition, (err: BusinessError, poemArray: Poem[]) => {
+          if (err) {
+            console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
+            reject(err);
+          } else {
+            console.info(`查询成功，结果: ${JSON.stringify(poemArray)}`);
+            resolve(poemArray);
+          }
+        });
+      });
+    } catch (err) {
+      console.error(`捕获到错误: ${err.message}`);
+      return undefined; // 确保函数返回 undefined
+    }
+  }
+
   //获取名句数据
   public static async fetchSentence(
     pageNumber: number = 1): Promise<Sentence[] | undefined> {
@@ -280,6 +307,7 @@ export class CloudPoemService {
           if (err) {
             console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
             reject(err);
+
           } else {
             console.info(`查询成功，结果: ${JSON.stringify(SentenceArray)}`);
             resolve(SentenceArray);
@@ -317,6 +345,40 @@ export class CloudPoemService {
     } catch (err) {
       console.error(`捕获到错误: ${err.message}`);
       return false; // 确保函数返回 false
+    }
+  }
+
+  // 根据输入的字符串，模糊匹配查询，返回最相似的10条结果
+  public static async fetchPoemsByFuzzySearch(searchTerm: string, label?: string): Promise<Poem[] | undefined> {
+    let databaseZone = cloudDatabase.zone('Travel');
+    let condition = new cloudDatabase.DatabaseQuery(Poem);
+
+    // 每次查询 10 条记录
+    const limit = 12;
+    if (label === '按标题') {
+      condition.contains('title', searchTerm).limit(limit)
+    } else if (label === '按诗人') {
+      condition.contains('writer', searchTerm).limit(limit)
+    } else {
+      condition.contains('content', searchTerm).limit(limit)
+    }
+
+    try {
+      return new Promise((resolve, reject) => {
+        databaseZone.query(condition, (err: BusinessError, poemArray: Poem[]) => {
+          if (err) {
+            console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
+            reject(err);
+          } else {
+            console.info(`查询成功，结果: ${JSON.stringify(poemArray)}`)
+            resolve(poemArray)
+          }
+        });
+      });
+
+    } catch (err) {
+      console.error(`捕获到错误: ${err.message}`);
+      return undefined; // 确保函数返回 undefined
     }
   }
 

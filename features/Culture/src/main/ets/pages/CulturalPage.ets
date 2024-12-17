@@ -1,9 +1,9 @@
-import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule";
+import { buildRouterModel, RouterNameConstants } from "routermodule";
 import { category, gameList, literatureList, traditionList, } from "../model/category";
 import { LogUtil } from 'utils/src/main/ets/puraUtils/LogUtil'
 
-import { builderImageMap, cacheImage, downloadImage } from "../common/util/getImage";
-import { PreferencesUtil } from "utils/src/main/ets/puraUtils/PreferencesUtil";
+import { downloadImage } from "../common/util/getImage";
+
 import { CloudStorageConstants } from "../common/constants/cloudStorageConstants";
 import { BreakpointTypeEnum } from "utils";
 
@@ -39,7 +39,6 @@ export struct CulturalPage {
           groupComponent({ groupName: "文学", groupData: literatureList })
           groupComponent({ groupName: "文化", groupData: traditionList })
           groupComponent({ groupName: "小游戏", groupData: gameList })
-
 
         }
         .width('100%')
