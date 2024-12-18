@@ -33,6 +33,7 @@ export default struct AttractionTicketPage {
 
 
   async aboutToAppear(): Promise<void> {
+    this.spotNetWork.reset()
     //let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
     let category = JSON.parse(JSON.stringify(this.value)).text as string
     if( category !== "")
