@@ -29,7 +29,7 @@ export struct Classification {
     .borderRadius(12)
     .justifyContent(FlexAlign.SpaceAround)
     .width('100%')
-    .height(100)
+    .padding(10)
     .backgroundColor(Color.White)
   }
 
@@ -42,7 +42,7 @@ export struct Classification {
         .maxFontSize(20)
         .minFontSize(12)
         .heightAdaptivePolicy(TextHeightAdaptivePolicy.MAX_LINES_FIRST)
-        .fontColor(Color.White)
+        .fontColor(this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_LG || this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_MD ?  Color.White : Color.Black)
         .margin({top:10})
         .width('100%')
         .maxLines(1)
@@ -53,12 +53,12 @@ export struct Classification {
     .width('15%')
     .borderRadius(20)
     .height(70)
-    .backgroundColor(colorList[index].color)
-    .shadow({
+    .backgroundColor(this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_LG || this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_MD ? colorList[index].color : Color.White)
+    .shadow(this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_LG ? {
       color: '#cccccc',
       radius: 5,
       offsetX: 0,
       offsetY: 2,
-    });
+    } : {radius:0, offsetX: 0, offsetY: 0} );
   }
 }
