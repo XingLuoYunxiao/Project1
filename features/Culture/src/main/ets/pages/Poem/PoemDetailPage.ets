@@ -16,9 +16,9 @@ export struct PoemDetailPage {
   @State writer: Writer = new Writer()
 
   async aboutToAppear(): Promise<void> {
-    LogUtil.debug("获取参数value：", JSON.stringify(this.value))
+    //LogUtil.debug("获取参数value：", JSON.stringify(this.value))
     this.poem = JSON.parse(JSON.stringify(this.value))
-    LogUtil.debug("当前的poem:" + JSON.stringify(this.poem))
+   // LogUtil.debug("当前的poem:" + JSON.stringify(this.poem))
 
     let poets: Writer[] | undefined = await CloudPoemService.fetchWriterData(this.poem.writer)
     if (poets) {

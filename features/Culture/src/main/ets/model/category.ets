@@ -21,7 +21,7 @@ export const literatureList: category[] = [
   },
   {
     name: '成语',
-    path: BuilderNameConstants.CULTURE_IDIOM,
+    path: BuilderNameConstants.CULTURE_IDIOMWATERFLOW,
     ic: $r('app.media.ic_Idiom')
   },
   {

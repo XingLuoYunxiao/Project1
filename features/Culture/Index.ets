@@ -31,6 +31,10 @@ export function harInit(builderName: string): void {
       LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/IdiomPage')
       import("./src/main/ets/pages/Idiom/IdiomPage");
       break;
+    case BuilderNameConstants.CULTURE_IDIOMWATERFLOW:
+      LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/IdiomPage')
+      import("./src/main/ets/pages/Idiom/IdiomWaterFlowPage");
+      break;
 
     case BuilderNameConstants.CULTURE_XIEHOUYULIST:
       LogUtil.debug('准备动态import  culture 模块下的 "./src/main/ets/pages/xiehouyu/XiehouyuListPage')

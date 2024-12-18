@@ -11,10 +11,13 @@ let addEXPId: number = 0
 
 @Component
 export struct IdiomPage {
+  @Prop value: object = new Object()
   @State idiom: realIdiom | undefined = new realIdiom()
   @State changeValue: string = ''
 
   aboutToAppear(): void {
+
+    this.idiom = JSON.parse(JSON.stringify(this.value))
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
       addExp(CommonConstants.expTypeKnowledge, 5)
@@ -203,8 +206,8 @@ function generalize() {
 }
 
 @Builder
-export function IdiomPageBuilder() {
-  IdiomPage()
+export function IdiomPageBuilder(value: object) {
+  IdiomPage({ value: value })
 }
 
 const builderName = BuilderNameConstants.CULTURE_IDIOM

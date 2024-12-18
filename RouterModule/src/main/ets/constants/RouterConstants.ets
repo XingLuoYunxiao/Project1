@@ -49,6 +49,7 @@ export class BuilderNameConstants {
   static readonly CULTURE_POEMENETER: string = 'culture_PoemEnterPage'
   static readonly CULTURE_SENTENCE: string = "culture_SentencePage"
   static readonly CULTURE_IDIOM: string = "culture_IdiomPage"
+  static readonly CULTURE_IDIOMWATERFLOW: string = "culture_IdiomWaterFlowPage"
   static readonly CULTURE_XIEHOUYU: string = "culture_XiehouyuPage"
   static readonly CULTURE_XIEHOUYULIST: string = "culture_XiehouyuListPage"
   static readonly CULTURE_ART: string = "culture_ArtPage"
