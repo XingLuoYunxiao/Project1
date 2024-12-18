@@ -8,10 +8,19 @@ import { MessageComponent } from "../../view/MessageComponent";
 import { CloudPoemService } from "../../service/CloudPoemService";
 import { addExp } from "../../common/util/addExp";
 import { CommonConstants } from '../../common/constants/commonConstants';
+import { RandomUtil } from "utils/src/main/ets/puraUtils/RandomUtil";
 
 const TAG: string = ' FlyingFlowerOrderPage ';
 let MessageDataModel: ChatMsgModel = new ChatMsgModel();
 let addEXPId: number = 0
+const lingCi: string[] = [
+  "花", "春", "秋", "风", "月",
+  "水", "山", "雪", "夜", "心",
+  "人", "日", "江", "梅", "竹",
+  "松", "柳", "雨", "云", "桃",
+  "梨", "兰", "菊", "河", "海",
+  "楼", "庭", "林", "桥"
+];
 
 @Component
 export struct FlyingFlowerOrderPage {
@@ -32,6 +41,8 @@ export struct FlyingFlowerOrderPage {
   })
 
   aboutToAppear(): void {
+    let index: number = RandomUtil.randomLimit(29)
+    this.commonWord = lingCi[index]
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
       addExp(CommonConstants.expTypeGame, 5)

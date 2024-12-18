@@ -47,7 +47,8 @@ export struct CulturalPage {
       }
       .scrollable(ScrollDirection.Vertical)
     }
-    .mode(NavigationMode.Stack)
+    .mode((this.currentBreakpoint === BreakpointTypeEnum.MD || BreakpointTypeEnum.SM) ? NavigationMode.Stack :
+    NavigationMode.Split)
     .hideTitleBar(true)
 
   }

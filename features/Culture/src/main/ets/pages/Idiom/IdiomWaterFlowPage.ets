@@ -1,4 +1,5 @@
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
+import { BreakpointTypeEnum } from "utils";
 import { RandomUtil } from "utils/src/main/ets/puraUtils/RandomUtil";
 import { realIdiomDataModel } from "../../model/Idiom/DataModel";
 
@@ -13,6 +14,7 @@ export struct IdiomWaterFlowPage {
   @State pageNumber: number = 1
   @State startId: number = 0
   scroller: Scroller = new Scroller()
+  @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
 
@@ -50,38 +52,72 @@ export struct IdiomWaterFlowPage {
   build() {
     NavDestination() {
       Column() {
+        if (this.currentBreakpoint === 'sm' || this.currentBreakpoint === 'md') {
+          WaterFlow() {
+            LazyForEach(this.data, (item: realIdiom, index: number) => {
+              FlowItem() {
+                Column() {
 
-        WaterFlow() {
-          LazyForEach(this.data, (item: realIdiom, index: number) => {
-            FlowItem() {
-              Column() {
+                  Text(item.word)
+                    .fontSize(16)
+                }
 
-                Text(item.word)
-                  .fontSize(16)
               }
+              .onAppear(() => {
+                // 即将触底时提前增加数据
+                this.fetchData()
+              })
+              .onClick(() => {
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_IDIOM,
+                  new Object(item))
+              })
+              .backgroundColor($r('app.color.main_background'))
+              .height(this.itemHeightArray[index % 100])
+              .margin(5)
+              .width('100%')
+            }, (item: realIdiom) => item.id.toString())
+          }
+          .cachedCount(40)
+          .columnsTemplate("1fr 1fr 1fr ")
+          .columnsGap(10)
+          .rowsGap(5)
+          .backgroundColor(Color.White)
+          .width('100%')
+          .height('100%')
+        } else {
+          WaterFlow() {
+            LazyForEach(this.data, (item: realIdiom, index: number) => {
+              FlowItem() {
+                Column() {
 
-            }
-            .onAppear(() => {
-              // 即将触底时提前增加数据
-              this.fetchData()
-            })
-            .onClick(() => {
-              buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_IDIOM,
-                new Object(item))
-            })
-            .backgroundColor($r('app.color.main_background'))
-            .height(this.itemHeightArray[index % 100])
-            .margin(5)
-            .width('100%')
-          }, (item: realIdiom) => item.id.toString())
+                  Text(item.word)
+                    .fontSize(16)
+                }
+
+              }
+              .onAppear(() => {
+                // 即将触底时提前增加数据
+                this.fetchData()
+              })
+              .onClick(() => {
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_IDIOM,
+                  new Object(item))
+              })
+              .backgroundColor($r('app.color.main_background'))
+              .height(this.itemHeightArray[index % 100])
+              .margin(5)
+              .width('100%')
+            }, (item: realIdiom) => item.id.toString())
+          }
+          .cachedCount(40)
+          .columnsTemplate("1fr 1fr 1fr 1fr 1fr")
+          .columnsGap(10)
+          .rowsGap(5)
+          .backgroundColor(Color.White)
+          .width('100%')
+          .height('100%')
         }
-        .cachedCount(40)
-        .columnsTemplate("1fr 1fr 1fr ")
-        .columnsGap(10)
-        .rowsGap(5)
-        .backgroundColor(Color.White)
-        .width('100%')
-        .height('100%')
+
       }
     }
 

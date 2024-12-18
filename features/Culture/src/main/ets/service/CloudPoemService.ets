@@ -90,20 +90,20 @@ export class CloudPoemService {
           // 1.1.1 如果诗人 = '全部', 类型 = '全部', 朝代 = '全部'，不设置任何条件
           if (dynasty === '全部') {
             // 不设置任何查询条件
-            condition.limit(15, skip);
+            condition.limit(limit, skip);
           } else {
             // 1.1.2 如果诗人 = '全部', 类型 = '全部', 朝代 ≠ '全部'，查询指定朝代的诗歌
-            condition.equalTo('dynasty', dynasty);
+            condition.equalTo('dynasty', dynasty).limit(limit, skip);
           }
         }
         // 1.2 如果诗人 = '全部', 类型 ≠ '全部'
         else {
           // 1.2.1 如果诗人 = '全部', 类型 ≠ '全部', 朝代 = '全部'，查询指定类型的诗歌
           if (dynasty === '全部') {
-            condition.contains('type', type);
+            condition.contains('type', type).limit(limit, skip);
           } else {
             // 1.2.2 如果诗人 = '全部', 类型 ≠ '全部', 朝代 ≠ '全部'，查询指定类型和朝代的诗歌
-            condition.contains('type', type).equalTo('dynasty', dynasty);
+            condition.contains('type', type).equalTo('dynasty', dynasty).limit(limit, skip);
           }
         }
       }
@@ -113,26 +113,24 @@ export class CloudPoemService {
         if (type === '全部') {
           // 2.1.1 如果诗人 ≠ '全部', 类型 = '全部', 朝代 = '全部'，只查询指定诗人的诗歌
           if (dynasty === '全部') {
-            condition.equalTo('writer', poet);
+            condition.equalTo('writer', poet).limit(limit, skip);
           } else {
             // 2.1.2 如果诗人 ≠ '全部', 类型 = '全部', 朝代 ≠ '全部'，查询指定诗人和朝代的诗歌
-            condition.equalTo('writer', poet).equalTo('dynasty', dynasty);
+            condition.equalTo('writer', poet).equalTo('dynasty', dynasty).limit(limit, skip);
           }
         }
         // 2.2 如果诗人 ≠ '全部', 类型 ≠ '全部'
         else {
           // 2.2.1 如果诗人 ≠ '全部', 类型 ≠ '全部', 朝代 = '全部'，查询指定诗人和类型的诗歌
           if (dynasty === '全部') {
-            condition.equalTo('writer', poet).contains('type', type);
+            condition.equalTo('writer', poet).contains('type', type).limit(limit, skip);
           } else {
             // 2.2.2 如果诗人 ≠ '全部', 类型 ≠ '全部', 朝代 ≠ '全部'，查询指定诗人、类型和朝代的诗歌
-            condition.equalTo('writer', poet).contains('type', type).equalTo('dynasty', dynasty);
+            condition.equalTo('writer', poet).contains('type', type).equalTo('dynasty', dynasty).limit(limit, skip);
           }
         }
       }
 
-      // 设定分页查询
-      condition.limit(limit, skip);
 
       return new Promise((resolve, reject) => {
         databaseZone.query(condition, (err: BusinessError, poemArray: Poem[]) => {

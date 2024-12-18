@@ -1,7 +1,5 @@
-import cloud, { FunctionResult } from '@hw-agconnect/cloud'; // 导入云函数库
 import { BasicDataSource } from '../../model/poetryModel/PoetryModel'; // 导入基本数据源
-import { componentUtils, Filter, FilterParams, FilterResult, FilterType } from '@kit.ArkUI'; // 导入UI工具和筛选器相关模块
-import { poets, TypeList } from '../../common/constants/poemType'; // 导入诗词相关常量数据
+
 import { Poem } from '../../model/Poem'; // 导入诗歌模型类
 import { CloudPoemService } from "../../service/CloudPoemService";
 import { Sentence } from '../../model/Sentence';
@@ -20,7 +18,7 @@ export struct SentencePage { // 定义一个组件类PoemPage
   @State poemType: string = '全部'; // 当前筛选的诗歌类型
   @State poets: string = '全部'; // 当前筛选的诗人
   @State dynasty: string = '全部'; // 当前筛选的朝代
-  
+
   // 生命周期方法：组件加载时调用，获取初始数据
   async aboutToAppear(): Promise<void> {
     console.log("当前的断点" + this.currentBreakpoint)

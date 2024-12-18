@@ -16,6 +16,7 @@ const TAG: string = 'PoemPage'
 
 @Component
 export struct PoemPage { // 定义一个组件类PoemPage
+  @State PoemDataModel: PoemModel = new PoemModel(); // 诗歌数据实例
   @Consume('culturePathStack') culturePathStack: NavPathStack; // 导入导航路径栈，用于页面导航
   @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
   @State poems: Poem[] = []; // 诗歌数据的状态管理
@@ -27,7 +28,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
   @State cacheList: string[] = []
   @State IsTypeExpand: boolean = true
   @State dynastyList: string[] = [
-    "全部", "先秦", "两汉", "魏晋", "南北朝", "隋代", "唐代", "宋代", "金朝", "元代", "明代", "清代"
+    "全部", "先秦", "两汉", "魏晋", "南北朝", "隋代", "唐代", "宋代", "元代", "明代", "清代"
   ];
   @State @Watch('changeDynasty') curDynasty: string = '全部'; // 当前筛选的朝代
   dialogController: CustomDialogController = new CustomDialogController({
@@ -42,35 +43,27 @@ export struct PoemPage { // 定义一个组件类PoemPage
   })
 
   async changeType() {
-    this.pageNumber = 0
-    PoemDataModel.data = []
+    this.pageNumber = 1
+    this.PoemDataModel.data = []
     this.fetchData()
   }
 
   async changeDynasty() {
-    this.pageNumber = 0
+    this.pageNumber = 1
 
-    PoemDataModel.data = []
+    this.PoemDataModel.data = []
     this.fetchData()
   }
 
   async changePoet() {
-    this.pageNumber = 0
-    PoemDataModel.data = []
+    this.pageNumber = 1
+    this.PoemDataModel.data = []
     this.fetchData()
   }
 
   // 生命周期方法：组件加载时调用，获取初始数据
   async aboutToAppear(): Promise<void> {
-    // 从云数据库获取诗歌数据
-    let poems: Poem[] | undefined = await CloudPoemService.fetchAllData(this.pageNumber);
-    if (poems) {
-      poems.forEach(item => {
-        PoemDataModel.pushData(item); // 添加数据到PoemData
-      });
-    }
-    this.pageNumber++; // 增加页码
-    //每10秒浏览页面加5经验
+    this.fetchData()
     addEXPId = setTimeout(() => {
       addExp(CommonConstants.expTypeKnowledge, 5)
     }, 10000)
@@ -83,9 +76,10 @@ export struct PoemPage { // 定义一个组件类PoemPage
     if (res) {
       console.log('触发数据获取');
       res.forEach(poem => {
-        PoemDataModel.pushData(poem); // 添加数据
+        this.PoemDataModel.pushData(poem); // 添加数据
       });
-      PoemDataModel.notifyDataReload(); // 通知数据更新
+
+      this.PoemDataModel.notifyDataReload(); // 通知数据更新
     }
   }
 
@@ -96,7 +90,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
         .onClick(() => {
           buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_SearchPage)
         })
-
+      // 切换类型，诗人，朝代
       Row() {
         Text('类型： ' + this.curPoemType)
           .fontSize(20)
@@ -135,53 +129,51 @@ export struct PoemPage { // 定义一个组件类PoemPage
       .width('100%')
       .height(50)
 
-      Scroll() {
-        Column() {
-          // selectComponent({
-          //   curPoemType: this.curPoemType,
-          //   curPoets: this.curPoets,
-          //   curDynasty: this.curDynasty,
-          //   curDynastyIndex: this.curDynastyIndex
-          // })
+      //Scroll() {
+      Column() {
 
-
-          // 展示数据的列表组件
-          List({ space: 10 }) {
-            // 使用LazyForEach动态加载诗歌数据
-            LazyForEach(PoemDataModel, (item: Poem) => {
-              this.PoemItem(item); // 渲染单个诗歌项
-            }, (item: Poem) => item.id.toString()) // 以numId为唯一标识
-          }
-          .margin({ top: 50 })
-          .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
-          .cachedCount(25) // 缓存项数
-          .onReachEnd(async () => { // 滑动到底部时触发
-            this.fetchData()
-            LogUtil.debug('触底刷新成功')
-          })
-
-          .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
-            console.info('first' + firstIndex)
-            console.info('last' + lastIndex)
-            console.info('center' + centerIndex)
-          })
-
-          // .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => {
-          //   console.log(' start index: ' + start.index +
-          //     ' start item group area: ' + start.itemGroupArea +
-          //     ' start index in group: ' + start.itemIndexInGroup)
-          //   console.log(' end index: ' + end.index +
-          //     ' end item group area: ' + end.itemGroupArea +
-          //     ' end index in group: ' + end.itemIndexInGroup)
-          // })
-
+        // 展示数据的列表组件
+        List({ space: 10 }) {
+          // 使用LazyForEach动态加载诗歌数据
+          LazyForEach(this.PoemDataModel, (item: Poem) => {
+            this.PoemItem(item); // 渲染单个诗歌项
+          }, (item: Poem) => item.id.toString()) // 以numId为唯一标识
         }
-        .width('100%')
+        .margin({ top: 45 })
+        .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
+        .cachedCount(25) // 缓存项数
+        .onReachEnd(() => { // 滑动到底部时触发
+          this.fetchData()
+          LogUtil.debug('触底刷新成功')
+        })
+        .onAppear(() => {
+          this.fetchData()
+
+          LogUtil.debug('onAppear刷新成功')
+        })
+
+        .onScrollIndex((firstIndex: number, lastIndex: number, centerIndex: number) => {
+          console.info('first' + firstIndex)
+          console.info('last' + lastIndex)
+          console.info('center' + centerIndex)
+        })
+
+        // .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => {
+        //   console.log(' start index: ' + start.index +
+        //     ' start item group area: ' + start.itemGroupArea +
+        //     ' start index in group: ' + start.itemIndexInGroup)
+        //   console.log(' end index: ' + end.index +
+        //     ' end item group area: ' + end.itemGroupArea +
+        //     ' end index in group: ' + end.itemIndexInGroup)
+        // })
 
       }
-      .width('100%') // 设置宽度
-      .scrollable(ScrollDirection.Vertical)
-      .enableScrollInteraction(true)
+      .width('100%')
+
+      // }
+      // .width('100%') // 设置宽度
+      // .scrollable(ScrollDirection.Vertical)
+      // .enableScrollInteraction(true)
     }
   }
 
@@ -216,7 +208,6 @@ export struct PoemPage { // 定义一个组件类PoemPage
   }
 }
 
-const PoemDataModel: PoemModel = new PoemModel(); // 诗歌数据实例
 
 @Builder
 export function PoemPageBuilder() {

@@ -14,6 +14,7 @@ const TAG: string = 'IdiomSolitaire.ets ';
 let MessageDataModel: ChatMsgModel = new ChatMsgModel();
 let addEXPId: number = 0
 
+
 @Component
 export struct IdiomSolitairePage {
   @State inputText: string = ''; // 输入框的文本状态
@@ -104,7 +105,7 @@ export struct IdiomSolitairePage {
                 .fontColor(Color.Black)
                 .fontSize(24)
                 .onTimer((utc: number, elapsedTime: number) => {
-                  //LogUtil.info(`textTimer notCountDown utc is：${utc}, elapsedTime: ${elapsedTime}`);
+
                   if (elapsedTime === 3000) {
                     this.GameOverDialogController.open()
                   }
