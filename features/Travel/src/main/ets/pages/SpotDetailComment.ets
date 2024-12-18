@@ -3,14 +3,31 @@ import { spotComment } from "../model/spotComment"
 import { promptAction } from "@kit.ArkUI"
 import { Spot } from "../model/Spot"
 import { CommentService } from "../service/CommentService"
-import { LoadingStatus } from "utils"
+import { BreakpointConstants, LoadingStatus } from "utils"
+
+
+// 时间格式化方法
+export function
+formatTime(timeStr: string): string {
+  try {
+    const date = new Date(timeStr);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${year}/${month}/${day} ${hours}:${minutes}`;
+  } catch (error) {
+    return timeStr;
+  }
+}
 
 @Component
-struct SpotDetailComment {
+export struct SpotDetailComment {
   @Consume('appPathStack') appPathStack: NavPathStack
   @State commentService: CommentService = CommentService.getInstance()
   @StorageLink('personUid') userId: string = '';
-  @State spot: Spot = new Spot()
+  @State spot: Spot | undefined = undefined
   @State value: object = new Object()
   @State comments: spotComment[] = []
   @State currentUserAvatar: Resource = $r('app.media.avator')
@@ -21,23 +38,13 @@ struct SpotDetailComment {
   // 新增：用于跟踪回复数量的响应式状态
   @State replyCountMap: Map<number, number> = new Map()
 
-  // 时间格式化方法
-  formatTime(timeStr: string): string {
-    try {
-      const date = new Date(timeStr);
-      const year = date.getFullYear();
-      const month = (date.getMonth() + 1).toString().padStart(2, '0');
-      const day = date.getDate().toString().padStart(2, '0');
-      const hours = date.getHours().toString().padStart(2, '0');
-      const minutes = date.getMinutes().toString().padStart(2, '0');
-      return `${year}/${month}/${day} ${hours}:${minutes}`;
-    } catch (error) {
-      return timeStr;
-    }
-  }
+  @StorageLink('currentWidthBreakpoint') currentWidthBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
+
 
   async aboutToAppear(): Promise<void> {
-    this.spot = JSON.parse(JSON.stringify(this.value)).spot as Spot
+    if( this.spot === undefined){
+      this.spot = JSON.parse(JSON.stringify(this.value)).spot as Spot
+    }
 
     if (this.spot && this.spot.id) {
       await this.commentService.loadMoreComments(this.spot.id).then(() => {
@@ -48,7 +55,7 @@ struct SpotDetailComment {
           if (comment.id) {
             this.replyCountMap.set(
               comment.id,
-              this.commentService.getReplies(comment.id, this.spot.id!).length
+              this.commentService.getReplies(comment.id, this.spot!.id!).length
             )
           }
         })
@@ -56,15 +63,15 @@ struct SpotDetailComment {
     }
   }
   aboutToDisappear(): void {
-    this.commentService.pageNum = 1
-    this.commentService.comments = []
-    this.commentService.topComments = []
+    this.commentService.reset()
   }
 
   async postComment(parentId: number): Promise<void> {
     if (this.spot && this.spot.id) {
       if (parentId === -1) {
         this.commentService.postComment(this.commentInput, this.spot.id, this.userId, -1)
+        this.commentService.reset()
+        this.commentService.loadMoreComments(this.spot.id)
       } else if(parentId){
         this.commentService.postComment(this.commentInput, this.spot.id, this.userId, parentId)
 
@@ -92,7 +99,7 @@ struct SpotDetailComment {
 
         // 回复列表
         List() {
-          ForEach(this.commentService.getReplies(this.selectedTopComment?.id!, this.spot.id!), (reply: spotComment) => {
+          ForEach(this.commentService.getReplies(this.selectedTopComment?.id!, this.spot!.id!), (reply: spotComment) => {
             ListItem() {
               Row() {
                 Image(this.currentUserAvatar)
@@ -106,7 +113,7 @@ struct SpotDetailComment {
                     .fontSize(14)
                     .fontWeight(FontWeight.Medium)
 
-                  Text(reply.replyTime ? this.formatTime(reply.replyTime?.toString()) : '')
+                  Text(reply.replyTime ? formatTime(reply.replyTime?.toString()) : '')
                     .fontSize(12)
                     .fontColor(Color.Gray)
 
@@ -138,9 +145,10 @@ struct SpotDetailComment {
             this.commentInput = value
           })
 
-        Button('发送')
-          .backgroundColor('#007bff')
-          .fontColor(Color.White)
+        Image($r('app.media.ic_send'))
+          .fillColor(Color.Gray)
+          .width(24)
+          .height(24)
           .onClick(() => {
             if (this.selectedTopComment?.id) {
               this.postComment(this.selectedTopComment?.id!)
@@ -168,12 +176,17 @@ struct SpotDetailComment {
             .width(24)
             .height(24)
             .onClick(() => this.appPathStack.pop())
+            .visibility(this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_LG ? Visibility.None : Visibility.Visible)
 
           Text('全部评论')
             .fontSize(18)
             .fontWeight(FontWeight.Bold)
 
           Blank()
+
+          Text(`共 ${this.commentService.topComments.length} 条评论`)
+            .fontSize(14)
+            .fontColor(Color.Gray)
         }
         .width('100%')
         .height(56)
@@ -199,7 +212,7 @@ struct SpotDetailComment {
                       .fontSize(16)
                       .fontWeight(FontWeight.Medium)
 
-                    Text(comment.replyTime ? this.formatTime(comment.replyTime?.toString()) : '')
+                    Text(comment.replyTime ? formatTime(comment.replyTime?.toString()) : '')
                       .fontSize(12)
                       .fontColor(Color.Gray)
                   }
@@ -251,6 +264,25 @@ struct SpotDetailComment {
         .width('100%')
         .height('70%')
         .padding(16)
+
+        Row() {
+          TextInput({ placeholder: '说点什么...', text: this.commentInput })
+            .layoutWeight(1)
+            .margin({ right: 10 })
+            .onChange((value: string) => {
+              this.commentInput = value
+            })
+
+          Image($r('app.media.ic_send'))
+            .fillColor(Color.Gray)
+            .width(24)
+            .height(24)
+            .onClick(() => this.postComment(-1))
+        }
+        .width('100%')
+        .padding(16)
+        .backgroundColor('#F5F6F7')
+
       }
       .bindSheet(this.isReplySheetShow, this.replySheetBuilder(), {
         detents: [500],
@@ -264,7 +296,7 @@ struct SpotDetailComment {
         }
       })
     }
-    .margin({ top: $r('app.float.header_height_page') })
+    .margin({ top: this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_LG ? 0 : $r('app.float.header_height_page') })
     .hideTitleBar(true)
   }
 }

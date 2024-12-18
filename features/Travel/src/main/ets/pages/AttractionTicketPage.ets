@@ -33,6 +33,7 @@ export default struct AttractionTicketPage {
 
 
   async aboutToAppear(): Promise<void> {
+    this.spotNetWork.reset()
     //let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
     let category = JSON.parse(JSON.stringify(this.value)).text as string
     if( category !== "")
@@ -42,10 +43,8 @@ export default struct AttractionTicketPage {
   }
 
   aboutToDisappear(): void {
-    this.spotNetWork.allSpotsDataSource.clear();
-    this.currentAttractions.clear()
-    this.spotNetWork.pageNum = 0
-    this.spotNetWork.allLoadingStatus = LoadingStatus.OFF
+    this.spotNetWork.reset()
+    this.currentCategory = ['全部景点', '位置距离', '综合排序', '筛选']
   }
 
 
@@ -227,13 +226,17 @@ export default struct AttractionTicketPage {
               //this.appPathStack.pushPathByName('AttractionDetailPage', item)
             })
             //触底加载数据
-            .onAppear(async () => {
+            /*.onAppear(async () => {
               if( this.spotNetWork.searchLoadingStatus !== LoadingStatus.LOADING && index + 5 == this.spotNetWork.allSpotsDataSource.totalCount()){
                 await this.updateAttractionsList()
               }
-            })
+            })*/
           }, (item: Spot) => item.name)
         }
+        .onReachEnd(async () => {
+            await this.updateAttractionsList()
+
+        })
         .scrollBar(BarState.On)
 
 /*

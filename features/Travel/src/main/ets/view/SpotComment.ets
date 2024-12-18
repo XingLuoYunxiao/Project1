@@ -3,6 +3,7 @@ import { promptAction, Router } from "@kit.ArkUI"
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule"
 import { Spot } from "../model/Spot"
 import { CommentService } from "../service/CommentService"
+import { formatTime } from "../pages/SpotDetailComment"
 
 @Component
 export struct SpotComment {
@@ -39,9 +40,7 @@ export struct SpotComment {
   }
 
   aboutToDisappear(): void {
-    this.commentService.pageNum = 1
-    this.commentService.comments = []
-    this.commentService.topComments = []
+    this.commentService.reset()
   }
 
 
@@ -52,6 +51,7 @@ export struct SpotComment {
         this.commentService.postComment(this.commentInput, this.spot.id, this.userId, -1)
         this.commentList = this.commentService.topComments.slice(0, 3)
         this.totalCommentCount = this.commentService.topComments.length
+        this.commentService.reset()
       }else{
         this.commentService.postComment(this.commentInput, this.spot.id, this.userId, parentId)
 
@@ -97,7 +97,7 @@ export struct SpotComment {
                     .fontWeight(FontWeight.Medium)
                 }
 
-                Text(comment.replyTime?.toLocaleString() || '')
+                Text(comment.replyTime ? formatTime(comment.replyTime?.toString()) : '')
                   .fontSize(12)
                   .fontColor(Color.Gray)
               }
@@ -147,7 +147,10 @@ export struct SpotComment {
             this.commentInput = value
           })
 
-        Button('发送')
+        Image($r('app.media.ic_send'))
+          .fillColor(Color.Gray)
+          .width(24)
+          .height(24)
           .onClick(() => this.postComment(-1))
       }
       .width('100%')
