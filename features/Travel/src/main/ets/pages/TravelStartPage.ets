@@ -21,9 +21,10 @@ export struct TravelStartPage {
 
   async aboutToAppear(): Promise<void> {
     this.loadAllState = LoadingStatus.LOADING;
-    this.spotNetWork.loadSpotsData()
-      .then(() => {
+    await this.spotNetWork.getAllSpots()
+      .then((data) => {
         this.loadAllState = LoadingStatus.SUCCESS;
+        this.spotNetWork.spots = data
       })
       .catch(() => {
         this.loadAllState = LoadingStatus.FAILED;

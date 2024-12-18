@@ -82,6 +82,18 @@ export class SpotNetFunc{
     })
   }
 
+  //获取所有景点数据
+  public getAllSpots(): Promise<Spot[]> {
+    return new Promise(async (resolve, reject) => {
+      try{
+        let data = await this.spotModel.getAllSpotData()
+        resolve(data);
+      }catch (e){
+        reject('getAllSpots failed' + e);
+      }
+    })
+  }
+
   //获取景点数据
   async loadSpotsData(): Promise<void> {
     this.allLoadingStatus = LoadingStatus.LOADING
@@ -132,6 +144,8 @@ export class SpotNetFunc{
     // 获取成功后再进行景点加载
     if (this.currentUserLocation.latitude !== 0 && this.currentUserLocation.longitude !== 0) {
       try {
+        //this.spots = await this.spotModel.getAllSpotData();
+        //this.allSpotsDataSource.pushArrayData(this.spots);
         const maxDistance = Number(this.maxDistance.slice(0, -2));
         this.nearbySpots = this.spots.filter(spot =>
           this.calculateDistance(this.currentUserLocation, {latitude: spot.latitude!, longitude: spot.longitude!}) <= maxDistance
