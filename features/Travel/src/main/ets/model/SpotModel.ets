@@ -1,7 +1,7 @@
 import { Spot } from "./Spot";
 import Logger from "utils/src/main/ets/utils/Logger";
 import { cloudFunction } from "@kit.CloudFoundationKit";
-import { Params } from "./FuncParams";
+import { OrderBy, Params } from "./FuncParams";
 import { BusinessError } from "@kit.BasicServicesKit";
 import { promptAction } from "@kit.ArkUI";
 
@@ -31,6 +31,7 @@ export class SpotModel {
     })
   }
 
+
   //获取更多的景点数据
   public getSpotData(pageNum: number): Promise<Spot[]> {
     // 初始化
@@ -55,7 +56,32 @@ export class SpotModel {
   }
 
   //获取特定条件的景点数据
-  public getSpotDataByCondition(condition: string[] ): Promise<Spot[]> {
+  public getSpotDataByCondition(condition: string[] , pageNum: number, orderBy: OrderBy): Promise<Spot[]> {
+    // 初始化
+    return new Promise(async (resolve, reject) => {
+      try{
+        let params: Params = {
+          type: 'query',
+          filter: [
+            condition[0] ? {cityName:`${condition[0]}`}: {cityName: '所有'},
+            condition[1] ? {category:`${condition[1]}`} : {category: '全部分类'}
+          ],
+          limit: 20,
+          pageNum: pageNum,
+          orderBy: orderBy ? orderBy : {field: '', type: null}
+        }
+        const res = await cloudFunction.call({ name: 'get-spot-data', data: params})
+        let data = res.result
+        resolve(JSON.parse(JSON.stringify(data)).data as Spot[])
+      }catch (e){
+        Logger.error(TAG, 'SpotModel getSpotDataByCondition failed', e);
+        reject(e)
+      }
+    })
+  }
+
+  //获取附近的景点数据
+  public getSpotDataByCityName(condition: string[] ): Promise<Spot[]> {
     // 初始化
     return new Promise(async (resolve, reject) => {
       try{
