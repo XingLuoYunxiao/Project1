@@ -2,7 +2,7 @@ import { CommentData } from "../model/BasicDataSource";
 import { Comment } from "../model/Comment";
 import { FriendMoment } from "../model/FriendMoment";
 import { FriendMomentAdd } from "../model/FriendMomentAdd";
-import { queryCollection, queryComment, shareData, Sharedata } from "../model/sharedata";
+import { queryCollection, queryComment, shareData, Sharedata, updateGood } from "../model/sharedata";
 import { taskpool } from "@kit.ArkTS";
 import { Spot } from "travel";
 
@@ -45,11 +45,12 @@ export class ShareViewModel{
     this.count=this.commentList.totalCount()
   }
 
-  async shareAdd(data:FriendMoment,photo:string,name:string){
+  async shareAdd(data:FriendMoment,photo:string,name:string,seletimg:string){
     this.sharedata.addshareData(data)
-      .then(async ()=>{
-          this.shareList.pushData(new FriendMomentAdd(data.id,data.userId,data.text,data.image,data.good,data.location,photo,name))
-      })
+      // .then(async ()=>{
+          // this.shareList.addDataFirst(new FriendMomentAdd(data.id,data.userId,data.text,seletimg,data.good,data.location,photo,name))
+      //   this.shareList.notifyDataReload()
+      // })
   }
 
   async commentAdd(data:Comment){
@@ -59,12 +60,15 @@ export class ShareViewModel{
       })
   }
 
-  // async shareUpdate(data:Comment){
-  //   this.sharedata.updateshareData(data)
-  //     .then(async ()=>{
-  //       //修改成功
-  //     })
-  // }
+  async updateGood(momentid:string,good:number){
+    try {
+      //创建任务
+      let task: taskpool.Task = new taskpool.Task(updateGood, momentid,good);
+      await taskpool.execute(task);
+    } catch (err) {
+      console.error('点赞失败', 'query error:' + `${err}`);
+    }
+  }
 
   async upload(uid:string,time:string): Promise<string>{
     const res=await this.sharedata.upload(uid,time)

@@ -38,4 +38,7 @@ export default class Constants {
   static readonly CATEGORY_HEIGHT = 30;
   //页面距离顶部高度
   static readonly HEADER_HEIGHT_PAGE = 30;
+
+  static readonly COMMENT_TAG = '[CommentModel]'
+
 }

@@ -58,7 +58,6 @@ export struct OrderItem {
         Text(this.item.spotname)
         Image($r('app.media.ic_arrow')).width(30)
         Blank()
-        Text(this.item.order_status)
       }.width('100%')
       Row() {
         Image(this.item.spot_img).width(80).height(80)

@@ -18,6 +18,7 @@ export struct OneMoment {
   @StorageLink ('personUid') personUid: string = ''
   @StorageLink ('personPhoto') personPhoto: string = ''
   @StorageLink ('personName') personName: string = ''
+  @State good:Resource=$r("app.media.publish_multimedia_updates_ic_thumbsup")
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
   aboutToReuse(params: Record<string, Object>): void {
     this.moment = params.moment as FriendMomentAdd;
@@ -81,11 +82,14 @@ export struct OneMoment {
             .lineHeight($r('app.integer.publish_multimedia_updates_userText_line_height'))
             .opacity($r('app.float.publish_multimedia_updates_opacity'))
             .margin({ top: $r('app.integer.publish_multimedia_updates_userText_margin_top') })
+            .maxLines(3)
+            .textOverflow({ overflow: TextOverflow.Ellipsis })
         }
         .margin({ left: $r('app.integer.publish_multimedia_updates_user_col_margin_left') })
         .layoutWeight(ListConstants.LAYOUT_WEIGHT)
         .alignItems(HorizontalAlign.Start)
       }
+      .alignItems(VerticalAlign.Top)
       .width($r('app.string.publish_multimedia_updates_layout_100'))
       .constraintSize({ minHeight: $r('app.integer.publish_multimedia_updates_oneMoment_height') })
       .padding({
@@ -99,9 +103,8 @@ export struct OneMoment {
         if (this.moment.image && JSON.stringify(this.moment.image) !== JSON.stringify($r('app.media.add'))) {
           Column() {
             Image(this.moment.image)
-              .width($r('app.integer.publish_multimedia_updates_single_image_width'))
-              .height($r('app.integer.publish_multimedia_updates_single_image_height'))
-              .borderRadius($r('app.integer.publish_multimedia_updates_single_image_radius'))
+              .width(160)
+              .height(200)
           }
           .alignItems(HorizontalAlign.Start)
           .width($r('app.string.publish_multimedia_updates_layout_100'))
@@ -139,7 +142,7 @@ export struct OneMoment {
         ImageText({
           imageStr: $r("app.media.location"),
           text: this.moment.location
-        })
+        }).width(80)
           .onClick(() => {
             this.shareViewModel.taskPoolExecuteQuery(this.moment.location).then((res)=>{
               if(res.length!=0){
@@ -148,12 +151,20 @@ export struct OneMoment {
             })
           })
         ImageText({
-          imageStr: $r("app.media.publish_multimedia_updates_ic_thumbsup"),
+          imageStr: this.good as Resource,
           text: $r('app.string.publish_multimedia_updates_thumbs_up')
         })
-          .margin({ left: $r('app.integer.publish_multimedia_updates_thumbsup_margin_left') })
+          .margin({ left:60})
           .onClick(() => {
-
+            if(this.good.id==$r("app.media.publish_multimedia_updates_ic_thumbsup").id){
+              this.good=$r('app.media.good')
+              const count=++this.moment.good
+              this.shareViewModel.updateGood(this.moment.id.toString(),count)
+            }else {
+              const count=--this.moment.good
+              this.good=$r("app.media.publish_multimedia_updates_ic_thumbsup")
+              this.shareViewModel.updateGood(this.moment.id.toString(),count)
+            }
           })
         ImageText({
           imageStr: $r("app.media.publish_multimedia_updates_ic_message"),
@@ -164,7 +175,6 @@ export struct OneMoment {
             this.dialogController.open();
           })
       }
-      .justifyContent(FlexAlign.SpaceBetween)
       .width($r('app.string.publish_multimedia_updates_layout_100'))
       .margin({
         top: $r('app.integer.publish_multimedia_updates_handler_margin_top'),

@@ -8,15 +8,15 @@ import Constants from "../common/constants/Constants";
 import { SpotNetFunc } from "travel/src/main/ets/service/SpotNetFunc";
 import { MyCalendar ,CalendarData} from "../view/MyCalendar";
 import { CollectionAdd } from "../model/CollectionAdd";
+import { promptAction } from "@kit.ArkUI";
 
 @Component
 struct CollectHistoryItem {
   @ObjectLink item:CollectionAdd|HistoryAdd
   build() {
     Row() {
-      Image(this.item.spot_img).width(80).height(80)
+      Image(this.item.spot_img).width(80).height(80).margin({left:10,right:10})
       Text(this.item.spotname)
-      Text()
     }.borderRadius(20)
     .width('100%')
     .backgroundColor(Color.White)
@@ -37,31 +37,51 @@ export struct BrowsHistoryPage {
   @State historypoemListData: ListDataSource<HistoryAdd> = this.mineViewModel.historypoemListData
   @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
   @State calendarspotListData:ListDataSource<HistoryAdd> = new ListDataSource();
-  @State delcount:number=0
+  @State deletecount:number=0
 
   @Builder
   bottomDelete(){
     Row(){
-      Checkbox()
-        .select(this.isChecked)
-        .onChange((isChecked: boolean) => {
-          if(isChecked==true){
-          }else{
+      CheckboxGroup({ group: 'checkboxGroup' })
+        .checkboxShape(CheckBoxShape.CIRCLE)
+        .selectedColor(Color.Blue)
+        .onChange((itemName: CheckboxGroupResult) => {
+          console.info("checkbox group content" + JSON.stringify(itemName))
+          if(itemName.status==SelectStatus.All){
+            this.deletecount=this.historyspotListData.totalCount()
+            for (let index = this.historyspotListData.totalCount()-1; index >= 0; index--) {
+              const cur=this.historyspotListData.getData(index)
+              cur.isChoose=true
+            }
           }
         })
+        .mark({
+          strokeColor:Color.White,
+          size: 40,
+          strokeWidth: 2
+        })
+        .unselectedColor(Color.Gray)
       Text('全选')
       Blank()
       Button('清空全部')
-      Button('删除')
-      // .onClick(()=>{
-      //   for (let index = 0; index < this.historyspotListData.totalCount(); index++) {
-      //
-      //   }
-      // })
+      Button(`删除${this.deletecount}`).onClick(()=>{
+        for (let index = this.historyspotListData.totalCount()-1; index >= 0; index--) {
+          const cur=this.historyspotListData.getData(index)
+          if(cur.isChoose==true){
+            this.mineViewModel.historydelete(cur.id,this.personUid);
+            this.mineViewModel.historyspotListData.deleteData(index);
+            this.deletecount=0
+          }
+        }
+        this.manage='管理'
+        promptAction.showToast({message: '删除成功', duration: 2000})
+      })
     }
+    .padding({left:20,right:20,top:15,bottom:15})
     .backgroundColor(Color.White)
-    .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None).width('100%')
-}
+    .width('100%')
+    .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
+  }
 
   async aboutToAppear() {
     let currentDate = new Date();
@@ -104,13 +124,19 @@ export struct BrowsHistoryPage {
                   LazyForEach(this.historyspotListData, (history: HistoryAdd) => {
                     ListItem() {
                       Row() {
-                          Checkbox()
+                          Checkbox({ name:history.spotname, group: 'checkboxGroup' })
                             .onChange((isChecked: boolean) => {
                               if (isChecked) {
-                                this.delcount++
-                              }else this.delcount--
+                                this.deletecount++
+                              }else this.deletecount--
                               history.isChoose=isChecked
-                            }).visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
+                            })
+                            .mark({
+                              strokeColor:Color.White,
+                              size: 50,
+                              strokeWidth: 5
+                            })
+                            .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
                         CollectHistoryItem({ item: history })
                       }
                     }
@@ -141,13 +167,13 @@ export struct BrowsHistoryPage {
                             })
                         }
                         CollectHistoryItem({ item: history })
-                          .onClick(()=>{
-                            this.mineViewModel.taskPoolExecuteQuery(history.spotname).then((res) => {
-                              if(res.length !== 0){
-                                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
-                              }
-                            })
-                          })
+                          // .onClick(()=>{
+                          //   this.mineViewModel.taskPoolExecuteQuery(history.spotname).then((res) => {
+                          //     if(res.length !== 0){
+                          //       buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
+                          //     }
+                          //   })
+                          // })
                       }
                     }.onClick(()=>{
 

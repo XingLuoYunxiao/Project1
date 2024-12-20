@@ -56,7 +56,7 @@ export struct MyOrderPage {
             .width($r('app.float.md_topic_width'))
             .onClick(() => {
               this.appPathStack.pop()
-              })
+              }).margin({right:10})
           Search({ placeholder: '搜索我的订单' })
             .onSubmit((val) => {
               this.isSearch = true

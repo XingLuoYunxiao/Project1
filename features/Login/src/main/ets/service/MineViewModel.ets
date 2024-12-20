@@ -96,11 +96,14 @@ export class MineViewModel{
 
       })
   }
-
+//收藏删除
   async collectiondelete(spotid:number,personid:string){
     await this.userModel.deletecollectData(spotid,personid)
   }
-
+//历史删除
+  async historydelete(id:number,personid:string){
+    await this.userModel.deletehistoryData(id,personid)
+  }
 
   async historyDeal(personUid:string,date:Date){
      this.userModel.gethistoryData(personUid,date)

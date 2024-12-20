@@ -1,7 +1,7 @@
 import { Spot } from "./Spot";
 import Logger from "utils/src/main/ets/utils/Logger";
 import { cloudFunction } from "@kit.CloudFoundationKit";
-import { SpotParams } from "./SpotFuncParams";
+import { Params } from "./FuncParams";
 import { BusinessError } from "@kit.BasicServicesKit";
 import { promptAction } from "@kit.ArkUI";
 
@@ -15,7 +15,7 @@ export class SpotModel {
     // 初始化
     return new Promise(async (resolve, reject) => {
       try{
-        let params:SpotParams = {
+        let params: Params = {
           type: 'query',
         }
         const res = await cloudFunction.call({ name: 'get-spot-data', data: params})
@@ -36,7 +36,7 @@ export class SpotModel {
     // 初始化
     return new Promise(async (resolve, reject) => {
       try{
-        let params:SpotParams = {
+        let params: Params = {
           type: 'query',
           limit: 20,
           pageNum: pageNum
@@ -59,7 +59,7 @@ export class SpotModel {
     // 初始化
     return new Promise(async (resolve, reject) => {
       try{
-        let params:SpotParams = {
+        let params: Params = {
           type: 'query',
           filter: [
             condition[0] ? {cityName:`${condition[0]}`}: {cityName: '所有'},
@@ -81,7 +81,7 @@ export class SpotModel {
     // 初始化
     return new Promise(async (resolve, reject) => {
       try{
-        let params:SpotParams = {
+        let params: Params = {
           type: 'query',
           filter: [
             {name:`${condition}`}
@@ -102,7 +102,7 @@ export class SpotModel {
     // 初始化
     return new Promise(async (resolve, reject) => {
       try{
-        let params:SpotParams = {
+        let params: Params = {
           type: 'query',
           limit: 3,
           orderBy: {field: 'rating', type: 'desc'}

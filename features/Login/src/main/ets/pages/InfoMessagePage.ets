@@ -41,12 +41,10 @@ export struct InfoMessagePage {
         Text(title)
           .fontSize($r('app.float.large_text_size'))
     }
+    .margin({left:5})
     .justifyContent(FlexAlign.Center)
   }
 
-  aboutToAppear() {
-
-  }
 
   build() {
     Navigation(this.loginPathStack) {
@@ -54,7 +52,7 @@ export struct InfoMessagePage {
         //登录
         Row({ space:Constants.MIDDLE_SPACE }) {
           Image(this.personName ==''? $r('app.media.defaultphoto') : this.personPhoto)
-            .width($r('app.float.lg_topic_width'))
+            .width($r('app.float.topic_height'))
             .height($r('app.float.topic_height'))
             .borderRadius($r('app.float.large_border_radius'))
             .onClick(()=>{
@@ -122,19 +120,21 @@ export struct InfoMessagePage {
             .height($r('app.float.row_height'))
 
         // 卡片
-        Row({space:Constants.LLARGE_SPACE}) {
+        Row({space:5}) {
           ForEach(FUNCTION_PATHS,(item:functionItem,index)=>{
             ListItem() {
               if(index<4){
                 this.myListItem(item.img, item.title)
               }
-            }.onClick(() => {
+            }
+
+            .onClick(() => {
               buildRouterModel(RouterNameConstants.ENTRY_HAP, item.turnname)
             })
           })
         }
-        .justifyContent(FlexAlign.SpaceAround)
-        .padding($r('app.float.lg_padding_margin'))
+        .justifyContent(FlexAlign.SpaceBetween)
+        .padding({left:20})
         .backgroundColor(Color.White)
         .borderRadius($r('app.float.regular_border_radius'))
         .height($r('app.float.row_height'))
@@ -207,16 +207,21 @@ struct CustomDialogChange {
         Text('修改昵称')
           .fontSize(20)
           .height(50)
-        Image($r('app.media.ic_close')).width(30)
+          .margin({left:100})
+        Blank()
+        Image($r("app.media.iclose")).width(20)
           .onClick(()=>{
             this.controller.close()
           })
       }
+      .padding({left:25,right:20})
+      .width('100%')
       TextInput({text:this.personName})
+        .width('90%')
         .onChange((val)=>{
           this.newName=val
         })
-      Text('昵称限制1-30个字符')
+      Text('昵称限制1-30个字符').margin({top:5,bottom:5})
       Button('保存').onClick(()=>{
         auth.getCurrentUser().then((curuser)=>{
           hilog.info(1,'获取用户成功',JSON.stringify(curuser))
@@ -231,7 +236,7 @@ struct CustomDialogChange {
           }
         })
       })
-    }
+    }.padding({bottom:15})
   }
 }
 

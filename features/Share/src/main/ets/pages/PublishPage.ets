@@ -24,7 +24,7 @@ struct PublishPage {
 
   async publish(uid:string,time:string): Promise<void> {
     const content: FriendMoment = new FriendMoment();
-    const img=`share/moment/${uid+time.replace(/\s/g, "").slice(0,20)}`
+    const img=`share/moment/${uid+time.replace(/[:\s]/g, '').slice(0,18)}`
     //添加图片的时间
     content.setUserId(this.personUid)
     content.setText(this.textInPublish)
@@ -33,7 +33,9 @@ struct PublishPage {
     content.setLocation(this.location)
     content.setUserPhoto(this.personPhoto)
     content.setUserName(this.personName)
-    this.shareViewModel.shareAdd(content,this.personPhoto,this.personName)
+    this.shareViewModel.shareAdd(content,this.personPhoto,this.personName,this.selectedImages as string).then((res)=>{
+      this.shareViewModel.shareDeal()
+    })
     // this.scroller.scrollToIndex(0, true, ScrollAlign.START);
 
       if(!(this.textInPublish||this.selectedImages)){

@@ -6,7 +6,7 @@ import { cloudStorage } from '@kit.CloudFoundationKit';
 import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError, request } from '@kit.BasicServicesKit';
-import { SpotParams } from 'travel/src/main/ets/model/SpotFuncParams';
+import { Params } from 'travel/src/main/ets/model/FuncParams';
 
 let bucket: cloudStorage.StorageBucket = cloudStorage.bucket(); // 将启动异步任务查询云侧默认实例
 
@@ -21,25 +21,6 @@ export class Sharedata{
   public static getInstance(): Sharedata {
     return Sharedata.instance;
   }
-
-  // async commentData(momentid:number):Promise<Comment[]> {
-  //   return new Promise((resolve,reject)=>{
-  //     cloudFunction.call({
-  //       name: 'get-share-data',
-  //       data:{
-  //         type:'commentquery',
-  //         data:{
-  //           momentid:momentid
-  //         }
-  //       }
-  //     }).then((value: cloudFunction.FunctionResult) => {
-  //       resolve(JSON.parse(JSON.stringify(value.result)).data as Comment[])
-  //       console.info(`成功666 ${JSON.stringify(value.result)}`);
-  //     }).catch((err: BusinessError) => {
-  //       console.error(`Failed to call the function, Code: ${err.code}, message: ${err.message}`);
-  //     })
-  //   })
-  // }
 
   //添加
   async addshareData(data:FriendMoment){
@@ -70,20 +51,6 @@ export class Sharedata{
     })
   }
 
-  //修改
-  // async updateshareData(data:Comment){
-  //   cloudFunction.call({
-  //     name: 'get-share-data',
-  //     data: {
-  //       update:data,
-  //       type:'update'
-  //     }
-  //   }).then((value: cloudFunction.FunctionResult) => {
-  //     console.info(`成功修改 ${JSON.stringify(value.result)}`);
-  //   }).catch((err: BusinessError) => {
-  //     console.error(`修改失败, Code: ${err.code}, message: ${err.message}`);
-  //   })
-  // }
 
   // 只初始化一次云存储实例
   upload(uid:string,time:string):Promise<photoAccessHelper.PhotoSelectResult> {
@@ -96,12 +63,13 @@ export class Sharedata{
       photoViewPicker.select(photoSelectOptions).then((photoSelectResult: photoAccessHelper.PhotoSelectResult) => {
         let fileUri = photoSelectResult.photoUris[0];
         console.info(`pick file ${fileUri}`);
-        let file = uid+time.replace(/\s/g, "").slice(0,20)
+
+        let file = uid+time.replace(/[:\s]/g, '').slice(0,18)
         // console.info(`file name ${fileName}`);
-        let fileName = `share/moment/${file}.png`;
         let cacheFile = `${Date.now()}.png`;
-        console.info(`cacheFile ${cacheFile}`);
+        // console.info(`cacheFile ${cacheFile}`);
         let cacheFilePath = getContext().cacheDir + '/' + cacheFile;
+        let fileName = `share/moment/${file}.png`;
 
         // 将选中文件copy至cache目录下，文件名为cacheFile
         try {
@@ -119,7 +87,6 @@ export class Sharedata{
         bucket.uploadFile(getContext(this), {
           localPath: cacheFile, // 本地文件路径，context.cacheDir目录下的文件
           cloudPath: fileName,    // 云侧路径
-          metadata:{contentType:'image/png'}
         }).then((task: request.agent.Task) => {
           task.on('progress', (progress) => {
             console.info(`on progress ${JSON.stringify(progress)}`);
@@ -152,10 +119,11 @@ export class Sharedata{
 
   //获取云侧文件下载地址
   getUrl(imgurl:string):Promise<string> {
+    let bucket: cloudStorage.StorageBucket = cloudStorage.bucket();
     // 获取云存储默认实例中screenshot_xxx.jpg文件的下载地址
     return new Promise((resolve,reject)=>{
-      // bucket.getDownloadURL(`${imgurl}.png`)
-      bucket.getDownloadURL(`travel/spot/baiyunshan.png`)
+      bucket.getDownloadURL(`${imgurl}.png`)
+      // bucket.getDownloadURL(`share/moment/1544893736041851904ThuDec192024213940.png`)
         .then((downloadURL: string) => {
         resolve(downloadURL)
         console.info(`getDownloadURL: ${downloadURL}`);
@@ -187,7 +155,7 @@ export async function shareData(){
 @Concurrent
 export async function queryCollection(condition:string){
   try{
-    let params:SpotParams = {
+    let params:Params = {
       type: 'query',
       filter: [
         {name:`${condition}`}
@@ -216,6 +184,24 @@ export async function queryComment(momentid:string){
     return JSON.parse(JSON.stringify(comments.result)).data as Comment[]
   }catch (e){
     console.error('查询朋友圈失败')
+  }
+  return []
+}
+
+//点赞更新
+@Concurrent
+export async function updateGood(momentid:string,good:number){
+  try{
+    await cloudFunction.call({
+      name: 'get-share-data',
+      data:{
+        type:'update',
+        momentid:momentid,
+        update:good
+      }
+    })
+  }catch (e){
+    console.error('修改点赞失败')
   }
   return []
 }

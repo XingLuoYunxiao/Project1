@@ -7,6 +7,7 @@ import { MineViewModel } from '../service/MineViewModel'
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from '../common/constants/Constants'
 import { SpotNetFunc } from 'travel/src/main/ets/service/SpotNetFunc'
+import { promptAction } from '@kit.ArkUI'
 
 @Component
 struct EveryItem {
@@ -16,14 +17,19 @@ struct EveryItem {
   build() {
     ListItem(){
       Row(){
-        Checkbox()
+        Checkbox({ name:this.spot.spotname, group: 'checkboxGroup' })
           .onChange((isChecked: boolean) => {
             if (isChecked) {
               this.delcount++
             }else this.delcount--
             this.spot.isChoose=isChecked
-          }).visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
-        // CollectHistoryItem({item:this.spot})
+          })
+          .mark({
+            strokeColor:Color.White,
+            size: 50,
+            strokeWidth: 5
+          })
+          .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
         Row() {
           Image(this.spot.spot_img).width(80).height(80)
           Column({space:Constants.MIDDLE_SPACE}){
@@ -117,7 +123,11 @@ export struct CollectionPage {
                   }else {
                     this.listData(this.collectspotListData)
                   }
-                }.height('100%')
+                }
+                .margin({bottom:40})
+                .layoutWeight(1)
+                .scrollBar(BarState.Off)
+                .height('100%')
               }
               if(this.manage=='退出管理'){
                 this.bottomDelete()
@@ -163,7 +173,25 @@ export struct CollectionPage {
   @Builder
   bottomDelete(){
     Row(){
-      Checkbox()
+      CheckboxGroup({ group: 'checkboxGroup' })
+        .checkboxShape(CheckBoxShape.CIRCLE)
+        .selectedColor(Color.Blue)
+        .onChange((itemName: CheckboxGroupResult) => {
+          console.info("checkbox group content" + JSON.stringify(itemName))
+          if(itemName.status==SelectStatus.All){
+            this.deletecount=this.collectspotListData.totalCount()
+            for (let index = this.collectspotListData.totalCount()-1; index >= 0; index--) {
+                const cur=this.collectspotListData.getData(index)
+                cur.isChoose=true
+              }
+          }
+        })
+        .mark({
+          strokeColor:Color.White,
+          size: 40,
+          strokeWidth: 2
+        })
+        .unselectedColor(Color.Gray)
       Text('全选')
       Blank()
       Button('清空全部')
@@ -173,12 +201,14 @@ export struct CollectionPage {
           if(cur.isChoose==true){
             this.mineViewModel.collectiondelete(cur.spotId,this.personUid);
             this.mineViewModel.collectspotListData.deleteData(index);
-            this.collectspotListData= this.mineViewModel.collectspotListData
+            this.deletecount=0
           }
         }
         this.manage='管理'
+        promptAction.showToast({message: '删除成功', duration: 2000})
       })
     }
+    .padding({left:20,right:20,top:15,bottom:15})
     .backgroundColor(Color.White)
     .width('100%')
     .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
@@ -186,7 +216,6 @@ export struct CollectionPage {
 
   @Builder
   listData(data:ListDataSource<CollectionAdd>){
-    Column(){
       List({space:Constants.SMALL_SPACE}){
         LazyForEach(data,(spot:CollectionAdd)=>{
           EveryItem({manage:$manage,spot:spot,delcount:$deletecount})
@@ -198,8 +227,9 @@ export struct CollectionPage {
               })
             })
         },(spot:CollectionAdd,index:number)=>JSON.stringify(spot)+Math.random()+index)
-      }.scrollBar(BarState.Off)
-    }.height('100%')
+      }
+      .height('100%')
+      .scrollBar(BarState.Off)
   }
 }
 

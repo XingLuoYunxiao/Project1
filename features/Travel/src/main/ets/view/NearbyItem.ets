@@ -54,7 +54,7 @@ export struct NearbyItem{
     .backgroundColor(Color.White)
     .height(100)
     .width('100%')
-    .padding(10)
-    .margin(5)
+    .padding(5)
+    .margin({ top: 5, bottom: 5, left: 10, right: 10})
   }
 }

@@ -3,14 +3,14 @@ import { myOrder } from "./myOrder";
 import { mySpot } from "./mySpot";
 import { Poem } from "./Poem";
 import { Collection } from "./Collection";
-import { CollectionAdd } from "./CollectionAdd";
 import { BrowsingHistory } from "./BrowsingHistory";
 import { cloudCommon, cloudFunction } from '@kit.CloudFoundationKit';
 import { BusinessError, request } from '@kit.BasicServicesKit';
 import auth from "@hw-agconnect/auth";
 import { cloudStorage } from '@kit.CloudFoundationKit';
-import { SpotParams } from "travel/src/main/ets/model/SpotFuncParams";
-import { CalendarData } from "./CalendarModel";
+
+import { Params } from "travel/src/main/ets/model/FuncParams";
+
 
 
 let bucket: cloudStorage.StorageBucket = cloudStorage.bucket();
@@ -148,6 +148,7 @@ export class UserModel{
       })
   }
 
+  //收藏删除
   async deletecollectData(spotid:number,personUid:string){
     cloudFunction.call({
       name: 'get-hiscol-data',
@@ -159,9 +160,27 @@ export class UserModel{
         table:'delete'
       }
     }).then((value: cloudFunction.FunctionResult) => {
-      console.info(`成功删除 ${JSON.stringify(value.result)}`);
+      console.info(`收藏成功删除 ${JSON.stringify(value.result)}`);
     }).catch((err: BusinessError) => {
-      console.error(`删除失败, Code: ${err.code}, message: ${err.message}`);
+      console.error(`收藏删除失败, Code: ${err.code}, message: ${err.message}`);
+    })
+  }
+
+  //历史删除
+  async deletehistoryData(id:number,personUid:string){
+    cloudFunction.call({
+      name: 'get-hiscol-data',
+      data: {
+        personUid:personUid,
+        //条件
+        fiel:id,
+        sort:'BrowsingHistory',
+        table:'hisdelete'
+      }
+    }).then((value: cloudFunction.FunctionResult) => {
+      console.info(`历史成功删除 ${JSON.stringify(value.result)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`历史删除失败, Code: ${err.code}, message: ${err.message}`);
     })
   }
 
@@ -210,7 +229,7 @@ export class UserModel{
 @Concurrent
 export async function queryCollection(condition:string){
   try{
-    let params:SpotParams = {
+    let params:Params = {
       type: 'query',
       filter: [
         {name:`${condition}`}

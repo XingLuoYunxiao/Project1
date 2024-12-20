@@ -269,7 +269,9 @@ export struct MyCalendar {
               })
             })
           }
-        }.width("100%")
+        }
+        .borderRadius(5)
+        .width("100%")
         .id("calendar")
         .backgroundColor(this.Color.backgroundColor?this.Color.backgroundColor:"#fff")
       }

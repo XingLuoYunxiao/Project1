@@ -1,4 +1,4 @@
-import { BuilderNameConstants, RouterModule } from 'routermodule';
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
 import { LazyDataSource } from 'utils';
 import Constants from '../common/constants/Constants'
 import { CommentData } from '../model/BasicDataSource';
@@ -26,13 +26,28 @@ struct ShareDetail {
           Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(()=>{
             this.appPathStack.pop()
           })
-          Image(this.everymoment?.userphoto).width(40)
+          Image(this.everymoment?.userphoto)
+            .width(40)
             .height(40)
             .margin({left:12,right:12})
             .borderRadius(20)
           Text(this.everymoment?.username).fontSize(16)
           Blank()
-          Text(this.everymoment?.location)
+          Row(){
+            Image($r('app.media.locationdetail'))
+              .height($r('app.integer.publish_multimedia_updates_handler_icon_height'))
+              .width($r('app.integer.publish_multimedia_updates_handler_icon_width'))
+              .objectFit(ImageFit.Contain)
+              .autoResize(false)
+            Text(this.everymoment?.location)
+          }
+          .onClick(() => {
+            this.shareViewModel.taskPoolExecuteQuery(this.everymoment?.location as string).then((res)=>{
+              if(res.length!=0){
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
+              }
+            })
+          })
         }
         .padding({left:12,right:12})
         .width('100%')
@@ -40,6 +55,12 @@ struct ShareDetail {
           .width('100%')
           .height(400)
           .margin({top:10,bottom:10})
+        Text(`${this.everymoment?.text.slice(0,9)}...`)
+          .width('100%')
+          .fontSize(20)
+          .margin({bottom:5})
+          .padding({left:12,right:12})
+          .fontWeight(500)
         Text(this.everymoment?.text).width('100%').padding({left:12,right:12})
         Text(`共${this.shareViewModel.count}条评论`).padding({left:12,right:12})
           .fontSize($r('app.integer.publish_multimedia_updates_userText_fontSize'))
@@ -60,7 +81,9 @@ struct ShareDetail {
                   .margin({ top: $r('app.integer.publish_multimedia_updates_userText_margin_top') })
                 Text(item.text)
               }
-            }.width('100%')
+            }
+            .margin({bottom:10})
+            .width('100%')
           }
           .padding({left:12,right:12})
         })
