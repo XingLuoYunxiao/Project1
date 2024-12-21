@@ -71,6 +71,11 @@ export class ListDataSource<T> extends BasicDataSource<T> {
       this.notifyDataAdd(this.listData.length - 1);
   }
 
+  public appendArrayData(addData: Array<T>): void {
+    this.listData.push(...addData);
+    this.notifyDataReload();
+  }
+
   public deleteData(index: number): void {
     this.listData.splice(index, 1);
     this.notifyDataDelete(index);

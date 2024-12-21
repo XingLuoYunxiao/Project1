@@ -26,9 +26,11 @@ export struct SharePage {
   @State refreshState: RefreshStatus = RefreshStatus.Inactive;
   @State canLoad: boolean = false;//控制防止在到底加载新数据时重复触发加载操作
   @State isLoading: boolean = false;//是否正在加载
+  @State non:number=this.shareViewModel.none
 
 
   aboutToAppear(): void {
+    this.shareViewModel.reset()
     this.shareViewModel.shareDeal()
     // 加载初始数据
   }
@@ -60,12 +62,19 @@ export struct SharePage {
   footer() {
     Row() {
       LoadingProgress().height(32).width(48)
-      Text("加载中")
+      // Text("加载中").fontColor(Color.Black)
     }.width("100%")
-    .height(64)
+    .height(30)
     .justifyContent(FlexAlign.Center)
     // 当不处于加载中状态时隐藏组件
-    .visibility(this.isLoading ? Visibility.Visible : Visibility.Hidden)
+    .visibility(this.isLoading==false? Visibility.Visible : Visibility.Hidden)
+  }
+
+  @Builder
+  none(){
+    Text('ʅ（´◔౪◔）ʃ 到底了哦').width('100%').height(30)
+      .textAlign(TextAlign.Center)
+      .visibility(this.non==1&&this.commentList.totalCount()!=0?Visibility.Visible:Visibility.Hidden)
   }
 
   build() {
@@ -95,50 +104,34 @@ export struct SharePage {
                 OneMoment({ moment: moment});
               }
             }, (moment: FriendMomentAdd) => `${moment.id}`)
-            ListItem() {
-              this.footer();
+            ListItem(){
+              this.none()
+            }
+            ListItem(){
+              this.footer()
             }
           }
+          .edgeEffect(EdgeEffect.None)
+          .onReachEnd(()=>{
+            if(this.commentList.totalCount()){
+              this.isLoading=true
+              this.non=this.shareViewModel.none
+              this.shareViewModel.shareDeal().then(()=>{
+                if(this.non==1){
+                  this.isLoading=true
+                }
+              })
+            }
+          })
           // TODO：高性能知识点：为保证滑动流畅，采用cachedCount缓存前后节点。
           .scrollBar(BarState.Off)
           .cachedCount(this.cachedCountNumber)
           .width($r('app.string.publish_multimedia_updates_layout_100'))
           .height($r('app.string.publish_multimedia_updates_layout_94'))
           .listDirection(Axis.Vertical)
-          .divider({
-            strokeWidth: $r('app.integer.publish_multimedia_updates_divider_width'),
-            color: $r('app.color.publish_multimedia_updates_divider_color'),
-            startMargin: $r('app.integer.publish_multimedia_updates_list_divider_margin'),
-            endMargin: $r('app.integer.publish_multimedia_updates_list_divider_margin')
-          })
-          //有子组件划入或划出List显示区域时触发。
-          //end:List显示区域内最后一个子组件的索引值。
-          .onScrollIndex((end: number) => {
-            // 当达到列表末尾时，触发新数据加载
-            if (this.canLoad && end >= this.commentList.totalCount()- 1) {
-              this.canLoad = false;
-              this.isLoading = true;
-              // 模拟新数据加载
-              //TODO
-              // this.isLoading = false;
-            }
-          })
-          //列表开始滑动时触发
-          .onScrollFrameBegin((offset: number) => {
-            // 只有当向上滑动时触发新数据加载
-            if (offset > 5 && !this.isLoading) {
-              this.canLoad = true;
-            }
-            return { offsetRemain: offset };
-          })
+
           .scrollBar(BarState.Off)
-          // 开启边缘滑动效果
-          .edgeEffect(EdgeEffect.Spring, { alwaysEnabled: true })
         }
-        //下拉距离发生变化时触发回调。
-        .onOffsetChange((offset: number) => {
-          this.refreshOffset = offset;
-        })
         //当前刷新状态变更时，触发回调
         .onStateChange((state: RefreshStatus) => {
           this.refreshState = state;
@@ -149,6 +142,7 @@ export struct SharePage {
           setTimeout(() => {
             this.refreshing = false;
           }, 2000)
+          this.shareViewModel.reset()
           this.shareViewModel.shareDeal()
         })
         .padding({

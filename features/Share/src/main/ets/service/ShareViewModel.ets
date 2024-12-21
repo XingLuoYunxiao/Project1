@@ -19,17 +19,30 @@ export class ShareViewModel{
   commentList: CommentData<Comment> = new CommentData(); // 评论列表
   sharedata: Sharedata = Sharedata.getInstance()
   count:number=0
+  none:number=0
+  pageNum: number = 1;
+
+  reset(){
+    this.pageNum=1
+    this.none=0
+    this.shareList.notifyDataDeleteAll()
+  }
 
   async shareDeal(){
-    let task: taskpool.Task = new taskpool.Task(shareData);
+    let task: taskpool.Task = new taskpool.Task(shareData,this.pageNum);
     const value=await taskpool.execute(task) as FriendMoment[]
-    this.shareList.notifyDataDeleteAll()
+    this.pageNum++
+    const result: Array<FriendMomentAdd> = [];
     for (let index = 0; index < value.length; index++) {
       //遍历的每一项
       const cur=value[index]
       const img=await this.sharedata.getUrl(cur.image)
-      this.shareList.pushData(new FriendMomentAdd(cur.id,cur.userId,cur.text,img,cur.good,cur.location,cur.userPhoto,cur.userName))
+      result.push(new FriendMomentAdd(cur.id,cur.userId,cur.text,img,cur.good,cur.location,cur.userPhoto,cur.userName))
     }
+    if(result.length<5){
+      this.none=1
+    }
+    this.shareList.appendArrayData(result)
   }
 
   //评论查询

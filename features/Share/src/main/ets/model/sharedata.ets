@@ -136,12 +136,13 @@ export class Sharedata{
 
 //查询
 @Concurrent
-export async function shareData(){
+export async function shareData(pageNum:number){
   try {
     const value=await cloudFunction.call({
       name: 'get-share-data',
       data:{
-        type:'sharequery'
+        type:'sharequery',
+        pageNum:pageNum
       }
     })
     return JSON.parse(JSON.stringify(value.result)).data as FriendMoment[]

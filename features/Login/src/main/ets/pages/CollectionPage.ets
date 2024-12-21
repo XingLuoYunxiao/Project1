@@ -14,6 +14,7 @@ struct EveryItem {
   @Link delcount:number
   @Link manage?:string
   @ObjectLink spot:CollectionAdd
+
   build() {
     ListItem(){
       Row(){
@@ -76,11 +77,33 @@ export struct CollectionPage {
   @Provide searchListData: ListDataSource<CollectionAdd> = new ListDataSource();
   @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
   @State deletecount:number=0
+  @State canLoad: boolean = false;//控制防止在到底加载新数据时重复触发加载操作
+  @State isLoading: boolean = false;//是否正在加载
+  @State non:number=this.mineViewModel.none
 
   async aboutToAppear() {
+    this.mineViewModel.reset()
     this.mineViewModel.collectionDeal(this.personUid)
   }
 
+  @Builder
+  footer() {
+    Row() {
+      LoadingProgress().height(32).width(48)
+      // Text("加载中").fontColor(Color.Black)
+    }.width("100%")
+    .height(30)
+    .justifyContent(FlexAlign.Center)
+    // 当不处于加载中状态时隐藏组件
+    .visibility((this.isLoading||this.collectspotListData.totalCount()==0)&&this.isSearch==false? Visibility.Visible : Visibility.Hidden)
+  }
+
+  @Builder
+  none(){
+    Text('ʅ（´◔౪◔）ʃ 到底了哦').width('100%').height(30)
+      .textAlign(TextAlign.Center)
+      .visibility(this.non==1&&this.collectspotListData.totalCount()!=0?Visibility.Visible:Visibility.Hidden)
+  }
 
   build() {
     NavDestination(){
@@ -117,13 +140,14 @@ export struct CollectionPage {
                     }
                     this.searchListData.notifyDataReload()
                   }).width('100%')
-                Scroll(){
+                List(){
                   if(this.isSearch==true){
                     this.listData(this.searchListData)
                   }else {
                     this.listData(this.collectspotListData)
                   }
                 }
+
                 .margin({bottom:40})
                 .layoutWeight(1)
                 .scrollBar(BarState.Off)
@@ -195,7 +219,8 @@ export struct CollectionPage {
       Text('全选')
       Blank()
       Button('清空全部')
-      Button(`删除${this.deletecount}`).onClick(()=>{
+        .margin({right:8})
+      Button(`删除`).onClick(()=>{
         for (let index = this.collectspotListData.totalCount()-1; index >= 0; index--) {
           const cur=this.collectspotListData.getData(index)
           if(cur.isChoose==true){
@@ -227,7 +252,25 @@ export struct CollectionPage {
               })
             })
         },(spot:CollectionAdd,index:number)=>JSON.stringify(spot)+Math.random()+index)
+        ListItem(){
+          this.none()
+        }
+        ListItem(){
+          this.footer()
+        }
       }
+      .edgeEffect(EdgeEffect.None)
+      .onReachEnd(()=>{
+        if(this.collectspotListData.totalCount()){
+          this.isLoading=true
+          this.non=this.mineViewModel.none
+          this.mineViewModel.collectionDeal(this.personUid).then(()=>{
+            if(this.non==1){
+              this.isLoading=false
+            }
+          })
+        }
+      })
       .height('100%')
       .scrollBar(BarState.Off)
   }

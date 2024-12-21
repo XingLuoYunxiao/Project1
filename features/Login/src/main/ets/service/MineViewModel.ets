@@ -25,6 +25,8 @@ export class MineViewModel{
   historypoemListData:ListDataSource<HistoryAdd> = new ListDataSource();
   orderListData: ListDataSource<myOrderAdd> = new ListDataSource();
   waitListData: ListDataSource<myOrderAdd> = new ListDataSource();
+  pageNum: number = 1;
+  none:number=0
 
   private static instance: MineViewModel = new MineViewModel();
 
@@ -76,24 +78,35 @@ export class MineViewModel{
     })
   }
 
+  reset(){
+    this.pageNum=1
+    this.none=0
+    this.collectspotListData.notifyDataDeleteAll()
+    this.collectpoemListData.notifyDataDeleteAll()
+  }
   async collectionDeal(personUid:string){
-    this.userModel.getcollectData(personUid)
+    this.userModel.getcollectData(personUid,this.pageNum)
       .then(async (value: Collection[])=>{
-        this.collectspotListData.notifyDataDeleteAll()
-        this.collectpoemListData.notifyDataDeleteAll()
+        this.pageNum++
+        const spotresult: Array<CollectionAdd> = [];
+        const poemresult: Array<CollectionAdd> = [];
         for (let index = 0; index < value.length; index++) {
           //遍历的每一项
           const cur=value[index]
           if(cur.type=="spot"){
             const spots=await this.userModel.getspotData(cur.spotId)
             const img= await this.userModel.getUrl(spots[0].imageUrl)
-            this.collectspotListData.pushData(new CollectionAdd(cur.id,cur.spotId,cur.userId,cur.type,spots[0].name,img,false,spots[0].rating,spots[0].ticketPrice,spots[0].openingHours,spots[0].areaName))
+            spotresult.push(new CollectionAdd(cur.id,cur.spotId,cur.userId,cur.type,spots[0].name,img,false,spots[0].rating,spots[0].ticketPrice,spots[0].openingHours,spots[0].areaName))
           }else{
             const poems=await this.userModel.getpoemData(cur.spotId)
-            this.collectpoemListData.pushData(new CollectionAdd(cur.id,cur.spotId,cur.userId,cur.type,poems[0].title,poems[0].writer,false))
+            poemresult.push(new CollectionAdd(cur.id,cur.spotId,cur.userId,cur.type,poems[0].title,poems[0].writer,false))
           }
         }
-
+        if(spotresult.length<10){
+          this.none=1
+        }
+        this.collectspotListData.appendArrayData(spotresult)
+        this.collectpoemListData.appendArrayData(poemresult)
       })
   }
 //收藏删除

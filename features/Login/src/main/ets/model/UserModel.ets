@@ -129,7 +129,7 @@ export class UserModel{
     })
   }
 
- async getcollectData(personUid: string): Promise<Collection[]>{
+ async getcollectData(personUid: string,pageNum:number): Promise<Collection[]>{
       return new Promise((resolve,reject)=>{
         cloudFunction.call({
           name: 'get-hiscol-data',
@@ -137,7 +137,8 @@ export class UserModel{
             personUid:personUid,
             fiel:'userId',
             sort:'id',
-            table:'Collection'
+            table:'Collection',
+            pageNum:pageNum
           }
         }).then((value: cloudFunction.FunctionResult) => {
           resolve(JSON.parse(JSON.stringify(value.result)).data as Collection[])
