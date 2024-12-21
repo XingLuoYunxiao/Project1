@@ -5,7 +5,7 @@ import { realIdiom } from "../../model/Idiom/RealIdiom";
 import { MessageComponent } from "../../view/MessageComponent";
 import { ChatMsgModel } from "../../viewmodel/MessageViewModel";
 import { BuilderNameConstants, RouterModule } from "routermodule";
-import { GameRuleDialog } from "../../view/Dialog/gameRuleDialog";
+import { GameRuleDialog } from "../../Diaog/gameRuleDialog";
 import { GameOverDialog } from "../../view/IdiomSolitaire/GameOver";
 import { addExp } from "../../common/util/addExp";
 import { CommonConstants } from "../../common/constants/commonConstants";
@@ -13,6 +13,7 @@ import { CommonConstants } from "../../common/constants/commonConstants";
 const TAG: string = 'IdiomSolitaire.ets ';
 let MessageDataModel: ChatMsgModel = new ChatMsgModel();
 let addEXPId: number = 0
+
 
 @Component
 export struct IdiomSolitairePage {
@@ -104,7 +105,7 @@ export struct IdiomSolitairePage {
                 .fontColor(Color.Black)
                 .fontSize(24)
                 .onTimer((utc: number, elapsedTime: number) => {
-                  //LogUtil.info(`textTimer notCountDown utc is：${utc}, elapsedTime: ${elapsedTime}`);
+
                   if (elapsedTime === 3000) {
                     this.GameOverDialogController.open()
                   }

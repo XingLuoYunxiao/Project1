@@ -90,20 +90,20 @@ export class CloudPoemService {
           // 1.1.1 如果诗人 = '全部', 类型 = '全部', 朝代 = '全部'，不设置任何条件
           if (dynasty === '全部') {
             // 不设置任何查询条件
-            condition.limit(15, skip);
+            condition.limit(limit, skip);
           } else {
             // 1.1.2 如果诗人 = '全部', 类型 = '全部', 朝代 ≠ '全部'，查询指定朝代的诗歌
-            condition.equalTo('dynasty', dynasty);
+            condition.equalTo('dynasty', dynasty).limit(limit, skip);
           }
         }
         // 1.2 如果诗人 = '全部', 类型 ≠ '全部'
         else {
           // 1.2.1 如果诗人 = '全部', 类型 ≠ '全部', 朝代 = '全部'，查询指定类型的诗歌
           if (dynasty === '全部') {
-            condition.contains('type', type);
+            condition.contains('type', type).limit(limit, skip);
           } else {
             // 1.2.2 如果诗人 = '全部', 类型 ≠ '全部', 朝代 ≠ '全部'，查询指定类型和朝代的诗歌
-            condition.contains('type', type).equalTo('dynasty', dynasty);
+            condition.contains('type', type).equalTo('dynasty', dynasty).limit(limit, skip);
           }
         }
       }
@@ -113,26 +113,24 @@ export class CloudPoemService {
         if (type === '全部') {
           // 2.1.1 如果诗人 ≠ '全部', 类型 = '全部', 朝代 = '全部'，只查询指定诗人的诗歌
           if (dynasty === '全部') {
-            condition.equalTo('writer', poet);
+            condition.equalTo('writer', poet).limit(limit, skip);
           } else {
             // 2.1.2 如果诗人 ≠ '全部', 类型 = '全部', 朝代 ≠ '全部'，查询指定诗人和朝代的诗歌
-            condition.equalTo('writer', poet).equalTo('dynasty', dynasty);
+            condition.equalTo('writer', poet).equalTo('dynasty', dynasty).limit(limit, skip);
           }
         }
         // 2.2 如果诗人 ≠ '全部', 类型 ≠ '全部'
         else {
           // 2.2.1 如果诗人 ≠ '全部', 类型 ≠ '全部', 朝代 = '全部'，查询指定诗人和类型的诗歌
           if (dynasty === '全部') {
-            condition.equalTo('writer', poet).contains('type', type);
+            condition.equalTo('writer', poet).contains('type', type).limit(limit, skip);
           } else {
             // 2.2.2 如果诗人 ≠ '全部', 类型 ≠ '全部', 朝代 ≠ '全部'，查询指定诗人、类型和朝代的诗歌
-            condition.equalTo('writer', poet).contains('type', type).equalTo('dynasty', dynasty);
+            condition.equalTo('writer', poet).contains('type', type).equalTo('dynasty', dynasty).limit(limit, skip);
           }
         }
       }
 
-      // 设定分页查询
-      condition.limit(limit, skip);
 
       return new Promise((resolve, reject) => {
         databaseZone.query(condition, (err: BusinessError, poemArray: Poem[]) => {
@@ -187,6 +185,33 @@ export class CloudPoemService {
 
       // 设置查询条件：分页查询
       condition.equalTo('writer', writer).and().equalTo('title', title).limit(1)
+
+
+      return new Promise((resolve, reject) => {
+        databaseZone.query(condition, (err: BusinessError, poemArray: Poem[]) => {
+          if (err) {
+            console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
+            reject(err);
+          } else {
+            console.info(`查询成功，结果: ${JSON.stringify(poemArray)}`);
+            resolve(poemArray);
+          }
+        });
+      });
+    } catch (err) {
+      console.error(`捕获到错误: ${err.message}`);
+      return undefined; // 确保函数返回 undefined
+    }
+  }
+
+  public static async fetchDataByTitle(title: string): Promise<Poem[] | undefined> {
+    try {
+      let databaseZone = cloudDatabase.zone('Travel');
+      let condition = new cloudDatabase.DatabaseQuery(Poem);
+
+
+      // 设置查询条件：分页查询
+      condition.equalTo('title', title).limit(10)
 
 
       return new Promise((resolve, reject) => {
@@ -280,6 +305,7 @@ export class CloudPoemService {
           if (err) {
             console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
             reject(err);
+
           } else {
             console.info(`查询成功，结果: ${JSON.stringify(SentenceArray)}`);
             resolve(SentenceArray);
@@ -317,6 +343,40 @@ export class CloudPoemService {
     } catch (err) {
       console.error(`捕获到错误: ${err.message}`);
       return false; // 确保函数返回 false
+    }
+  }
+
+  // 根据输入的字符串，模糊匹配查询，返回最相似的10条结果
+  public static async fetchPoemsByFuzzySearch(searchTerm: string, label?: string): Promise<Poem[] | undefined> {
+    let databaseZone = cloudDatabase.zone('Travel');
+    let condition = new cloudDatabase.DatabaseQuery(Poem);
+
+    // 每次查询 10 条记录
+    const limit = 12;
+    if (label === '按标题') {
+      condition.contains('title', searchTerm).limit(limit)
+    } else if (label === '按诗人') {
+      condition.contains('writer', searchTerm).limit(limit)
+    } else {
+      condition.contains('content', searchTerm).limit(limit)
+    }
+
+    try {
+      return new Promise((resolve, reject) => {
+        databaseZone.query(condition, (err: BusinessError, poemArray: Poem[]) => {
+          if (err) {
+            console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
+            reject(err);
+          } else {
+            console.info(`查询成功，结果: ${JSON.stringify(poemArray)}`)
+            resolve(poemArray)
+          }
+        });
+      });
+
+    } catch (err) {
+      console.error(`捕获到错误: ${err.message}`);
+      return undefined; // 确保函数返回 undefined
     }
   }
 

@@ -16,10 +16,7 @@ export struct PoemDetailPage {
   @State writer: Writer = new Writer()
 
   async aboutToAppear(): Promise<void> {
-    LogUtil.debug("获取参数value：", JSON.stringify(this.value))
     this.poem = JSON.parse(JSON.stringify(this.value))
-    LogUtil.debug("当前的poem:" + JSON.stringify(this.poem))
-
     let poets: Writer[] | undefined = await CloudPoemService.fetchWriterData(this.poem.writer)
     if (poets) {
       this.writer = poets[0]
@@ -54,7 +51,7 @@ export struct PoemDetailPage {
 
           }
           .margin({ top: 50 })
-          .justifyContent(FlexAlign.Start)
+          .justifyContent(FlexAlign.SpaceBetween)
           .width('100%')
 
 
@@ -69,7 +66,15 @@ export struct PoemDetailPage {
           .width('100%')
           .justifyContent(FlexAlign.Start)
 
+          //诗人简介
 
+          if (this.writer) {
+            Text('诗人简介')
+              .fontSize($r('app.float.title_text_size'))
+              .fontWeight(FontWeight.Medium)
+              .margin({ top: 20 })
+            Text(this.writer.simpleIntro)
+          }
           //正文
           if (this.poem && this.poem.title) {
             Text(this.poem.title)
@@ -84,31 +89,29 @@ export struct PoemDetailPage {
 
           //注解
           if (this.poem && this.poem.remark) {
+            Text('注解')
+              .fontSize($r('app.float.title_text_size'))
+              .fontWeight(FontWeight.Medium)
+              .margin({ top: 20 })
+              .align(Alignment.Start)
             Text(this.poem.remark)
           }
 
-          //诗人简介
-          Text('诗人简介')
-            .fontSize($r('app.float.title_text_size'))
-            .fontWeight(FontWeight.Medium)
-            .margin({ top: 20 })
-          if (this.writer) {
-            Text(this.writer.simpleIntro)
-          }
 
-          Text('译文')
-            .fontSize($r('app.float.title_text_size'))
-            .fontWeight(FontWeight.Medium)
-            .margin({ top: 20 })
           if (this.poem && this.poem.translation) {
+            Text('译文')
+              .fontSize($r('app.float.title_text_size'))
+              .fontWeight(FontWeight.Medium)
+              .margin({ top: 20 })
             Text(this.poem.translation)
           }
 
-          Text('赏析')
-            .fontSize($r('app.float.title_text_size'))
-            .fontWeight(FontWeight.Medium)
-            .margin({ top: 20 })
+
           if (this.poem && this.poem.shangxi) {
+            Text('赏析')
+              .fontSize($r('app.float.title_text_size'))
+              .fontWeight(FontWeight.Medium)
+              .margin({ top: 20 })
             Text(this.poem.shangxi)
               .margin({ bottom: 10 })
           }

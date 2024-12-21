@@ -108,18 +108,6 @@ struct calligraphyPage {
             })
             .enabled(!this.isListen)
 
-          // Text("进入")
-          //   .fontSize(24)
-          //   .onClick(() => {
-          //
-          //     buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_CALLIGRAPHY)
-          //   })
-          //   .fontColor(Color.White)
-          //   .backgroundColor(Color.Black)
-          //   .margin({ left: 40 })
-          //   .padding(10)
-          //   .borderRadius(20)
-
         }
         // getPath(CloudStorageConstants.getConstant('calligraphy_background.png'))
         .backgroundImage(getPath('calligraphy_background.png'))

@@ -1,6 +1,8 @@
 import { BuilderNameConstants } from 'routermodule';
 import { LogUtil } from 'utils/src/main/ets/puraUtils/LogUtil';
-export {EXP} from '../Culture/src/main/ets/model/EXP'
+
+export { EXP } from '../Culture/src/main/ets/model/EXP'
+
 export { FlyingFlowerOrderPage } from './src/main/ets/pages/game/FlyingFlowerOrderPage'
 
 
@@ -29,10 +31,14 @@ export function harInit(builderName: string): void {
       LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/IdiomPage')
       import("./src/main/ets/pages/Idiom/IdiomPage");
       break;
+    case BuilderNameConstants.CULTURE_IDIOMWATERFLOW:
+      LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/IdiomPage')
+      import("./src/main/ets/pages/Idiom/IdiomWaterFlowPage");
+      break;
 
-    case BuilderNameConstants.CULTURE_XIEHOUYU:
-      LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/xiehouyu/XiehouyuPage')
-      import("./src/main/ets/pages/xiehouyu/XiehouyuPage");
+    case BuilderNameConstants.CULTURE_XIEHOUYULIST:
+      LogUtil.debug('准备动态import  culture 模块下的 "./src/main/ets/pages/xiehouyu/XiehouyuListPage')
+      import("./src/main/ets/pages/xiehouyu/XiehouyuListPage");
       break;
     case BuilderNameConstants.CULTURE_ART:
       LogUtil.debug('准备动态import  culture 模块下的"./src/main/ets/pages/art/ArtPage')
@@ -71,6 +77,10 @@ export function harInit(builderName: string): void {
     case BuilderNameConstants.CULTURE_FOLKART:
       LogUtil.debug('准备动态import  culture 模块下的 ./src/main/ets/pages/FolkArt/FolkArtPage')
       import("./src/main/ets/pages/FolkArt/FolkArtPage");
+      break;
+    case BuilderNameConstants.CULTURE_SearchPage:
+      LogUtil.debug('准备动态import  culture 模块下的 "./src/main/ets/pages/Poem/PoemSearchPage"')
+      import("./src/main/ets/pages/Poem/PoemSearchPage");
       break;
     default:
       break;
