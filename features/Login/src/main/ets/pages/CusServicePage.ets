@@ -44,7 +44,7 @@ export struct CusServicePage {
   // 聊天信息数据
   @State textDetailData: ListDataSource<MessageBase> = new ListDataSource();
   wordLibrary: Set<string> = new Set(['退款', '预约', '优惠券']);
-  answers: Set<string> = new Set(['好的,已帮您退款', '预约', '优惠券在首页右上角']);
+  answers: Set<string> = new Set(['好的,小古已帮您退款,若您还有其他问题可以继续询问小古~', '您好!预约景点需要您在景点详情页面进行预约,若您还有其他问题可以继续询问小古~', '您好!优惠券在首页右上角,若您还有其他问题可以继续询问小古~']);
 
   checkSentence(sentence: string): string {
     const processedSentence = sentence.replace(/[\p{P}\p{S}]/gu, '');
@@ -57,7 +57,7 @@ export struct CusServicePage {
         }
       }
     }
-    return '为了匹配更合适的客服解决您的问题,请选择您要咨询的业务哦~';
+    return '为了匹配更合适的客服解决您的问题,请详细说明您的需求哦~';
   }
 
   /**
@@ -80,7 +80,6 @@ export struct CusServicePage {
         const otherspanItem: SpanItem = new SpanItem(SpanType.TEXT, othertextMsg, '');
         msgBase.spanItems.push(spanItem)
         otherBase.spanItems.push(otherspanItem)
-        // }
       })
     } else {
       const othertextMsg = this.checkSentence(message)
@@ -189,7 +188,7 @@ export struct CusServicePage {
         }
         .width('100%')
         .backgroundColor($r('app.color.skeleton_color_light'))
-        .height(Constants.TOP_HEIGHT_PAGE)
+        .height(50)
         .justifyContent(FlexAlign.Start)
 
         List({
@@ -261,15 +260,16 @@ export struct CusServicePage {
                 this.sendChatMsg();
               })
           }
-          .margin({ bottom: 40 })
+          .margin({ bottom: 35})
           .alignItems(VerticalAlign.Center)
           .width('100%')
           .height(40)
-        }.backgroundColor($r('app.color.skeleton_color_light'))
+        }
+        .padding({ left: Constants.PADDING_PAGE, right: Constants.PADDING_PAGE, top: Constants.PADDING_PAGE })
+        .backgroundColor($r('app.color.skeleton_color_light'))
 
         // TODO 知识点：通过变量控制表情键盘的显示
       }
-      .padding({ left: Constants.PADDING_PAGE, right: Constants.PADDING_PAGE, top: Constants.PADDING_PAGE })
       .width('100%')
       .height('100%')
       .backgroundColor($r('app.color.app_background_color'))

@@ -1,57 +1,41 @@
 import { BuilderNameConstants, RouterModule } from "routermodule";
-import { photoAccessHelper } from "@kit.MediaLibraryKit";
 import Constants from "../common/constants/Constants";
-import { CommentData, friendMoment} from "../model/BasicDataSource";
 import { promptAction } from "@kit.ArkUI";
-import { FriendMomentAdd } from "../model/FriendMomentAdd";
 import { FriendMoment } from "../model/FriendMoment";
 import { ShareViewModel } from "../service/ShareViewModel";
-import auth from '@hw-agconnect/auth'
 
 @Component
 struct PublishPage {
   @Consume('appPathStack') appPathStack: NavPathStack
   @State selectedImages: ResourceStr = $r('app.media.add');
-  @State textInPublish: string = ""; // 文字
-  @StorageLink ('personUid') personUid: string = ''
-  @StorageLink ('personPhoto') personPhoto: string = ''
-  @StorageLink ('personName') personName: string = ''
+  @State textInPublish: string = "";
+  @StorageProp ('personUid') personUid: string = ''
+  @StorageProp ('personPhoto') personPhoto: string = ''
+  @StorageProp ('personName') personName: string = ''
+  @State location:string=''
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
-  @State selectedImagesArr:ResourceStr[]=[]
-  // @Consume commentList: CommentData
-
-  async getPictureFromAlbum() {
-    // 拉起相册，选择图片
-    let PhotoSelectOptions = new photoAccessHelper.PhotoSelectOptions();
-    // 选择图库内媒体资源种类
-    PhotoSelectOptions.MIMEType = photoAccessHelper.PhotoViewMIMETypes.IMAGE_TYPE;
-    // 设置最大媒体文件选择数量
-    PhotoSelectOptions.maxSelectNumber = 9;
-    // 创建photoPicker
-    let photoPicker = new photoAccessHelper.PhotoViewPicker();
-    // 使用photoAccessHelper获取媒体资源信息
-    let photoSelectResult: photoAccessHelper.PhotoSelectResult = await photoPicker.select(PhotoSelectOptions);
-    // 获取对应资源文件uri地址
-    //TODO 多图实现
-    this.selectedImages = photoSelectResult.photoUris[0];
-    this.selectedImagesArr=photoSelectResult.photoUris
-  }
+  time:string=''
+  // @State selectedImagesArr:ResourceStr[]=[]
 
   getCurrentDate(): string {
     const date: Date = new Date();
     return `${date.getFullYear()}-${date.getMonth()}-${date.getDay()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
   }
 
-  publish(): void {
+  async publish(uid:string,time:string): Promise<void> {
     const content: FriendMoment = new FriendMoment();
+    const img=`share/moment/${uid+time.replace(/[:\s]/g, '').slice(0,18)}`
+    //添加图片的时间
     content.setUserId(this.personUid)
     content.setText(this.textInPublish)
-    content.setImage(this.selectedImages)
+    content.setImage(img)
     content.setGood(0)
-    content.setLocation('后海')
+    content.setLocation(this.location)
     content.setUserPhoto(this.personPhoto)
     content.setUserName(this.personName)
-    this.shareViewModel.shareAdd(content)
+    this.shareViewModel.shareAdd(content,this.personPhoto,this.personName,this.selectedImages as string).then((res)=>{
+      this.shareViewModel.shareDeal()
+    })
     // this.scroller.scrollToIndex(0, true, ScrollAlign.START);
 
       if(!(this.textInPublish||this.selectedImages)){
@@ -69,8 +53,8 @@ struct PublishPage {
           Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(()=>{
             this.appPathStack.pop()
           })
-          Button('发表').onClick(()=>{
-            this.publish()
+          Button('发表').onClick(async ()=>{
+            this.publish(this.personUid,this.time)
             this.appPathStack.pop()
           })
         }
@@ -87,8 +71,16 @@ struct PublishPage {
           .height(100)
           .margin({left:15})
           .alignSelf(ItemAlign.Start)
-          .onClick(()=>{this.getPictureFromAlbum()})
+          .onClick(async ()=>{
+            this.time=new Date().toString()
+            //上传到云存储,this.selectedImages是res.photoUris[0]
+            this.selectedImages=await this.shareViewModel.upload(this.personUid,this.time)
+          })
       }.padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE,top:Constants.PADDING_PAGE})
+      TextInput({placeholder:'分享您的位置:'})
+        .onChange((val)=>{
+          this.location=val
+        })
     }
     .margin({top:Constants.HEADER_HEIGHT_PAGE})
     .hideTitleBar(true)

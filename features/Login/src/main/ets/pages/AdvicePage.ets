@@ -71,7 +71,7 @@ export struct AdvicePage {
               confirm: {
                 value: '确定',
                 action: () => {
-                  console.info('Button-clicking callback')
+                  this.appPathStack.pop()
                 }
               }
             })

@@ -1,4 +1,4 @@
-import { TextToSpeechManager } from "aispeech";
+import {TextToSpeechManager} from "aispeech"
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from "../constants/Constants";
 import { Params, TravelPlan } from "../service/TravelPlan";

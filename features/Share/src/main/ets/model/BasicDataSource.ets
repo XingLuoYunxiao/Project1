@@ -93,6 +93,10 @@ export class CommentData<T> extends BasicDataSource<T> {
     return this.comments[index];
   }
 
+  public appendArrayData(addData: Array<T>): void {
+    this.comments.push(...addData);
+    this.notifyDataReload();
+  }
   pushData(data: T): void {
     this.comments.push(data);
     // 在数组头部添加数据
