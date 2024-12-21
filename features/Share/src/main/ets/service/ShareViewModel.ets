@@ -68,9 +68,6 @@ export class ShareViewModel{
 
   async commentAdd(data:Comment){
     this.sharedata.addcommentData(data)
-      .then(async ()=>{
-
-      })
   }
 
   async updateGood(momentid:string,good:number){

@@ -27,6 +27,7 @@ export class MineViewModel{
   waitListData: ListDataSource<myOrderAdd> = new ListDataSource();
   pageNum: number = 1;
   none:number=0
+  datetime:Date=new Date()
 
   private static instance: MineViewModel = new MineViewModel();
 
@@ -83,6 +84,8 @@ export class MineViewModel{
     this.none=0
     this.collectspotListData.notifyDataDeleteAll()
     this.collectpoemListData.notifyDataDeleteAll()
+    this.historyspotListData.notifyDataDeleteAll()
+    this.historypoemListData.notifyDataDeleteAll()
   }
   async collectionDeal(personUid:string){
     this.userModel.getcollectData(personUid,this.pageNum)
@@ -119,23 +122,32 @@ export class MineViewModel{
   }
 
   async historyDeal(personUid:string,date:Date){
-     this.userModel.gethistoryData(personUid,date)
+     this.userModel.gethistoryData(personUid,date,this.pageNum)
       .then(async (value:BrowsingHistory[])=>{
-        this.historyspotListData.notifyDataDeleteAll()
-        this.historypoemListData.notifyDataDeleteAll()
+        this.pageNum++
+        const spotresult: Array<HistoryAdd> = [];
+        const poemresult: Array<HistoryAdd> = [];
         for (let index = 0; index < value.length; index++) {
-          const cur=value[index]
+          const cur = value[index] as BrowsingHistory
+          if(index==9){
+            this.datetime=cur.viewTime
+          }
             if(cur.type=='spot'){
               const spots=await this.userModel.getspotData(cur.spotId)
               const img= await this.userModel.getUrl(spots[0].imageUrl)
               const pushdata=new HistoryAdd(cur.id,cur.spotId,cur.viewTime,cur.viewCount,cur.type,cur.userId,cur.poemId,spots[0].name,img,false)
-              this.historyspotListData.pushData(pushdata)
-              this.historyspotListData.notifyDataReload()
+              spotresult.push(pushdata)
+              // this.historyspotListData.notifyDataReload()
             }else{
               const poem=await this.userModel.getpoemData(cur.spotId)
-              this.historypoemListData.pushData(new HistoryAdd(cur.id,cur.spotId,cur.viewTime,cur.viewCount,cur.type,cur.userId,cur.poemId,poem[0].title,poem[0].writer,false))
+              poemresult.push(new HistoryAdd(cur.id,cur.spotId,cur.viewTime,cur.viewCount,cur.type,cur.userId,cur.poemId,poem[0].title,poem[0].writer,false))
             }
+          if(spotresult.length<10){
+            this.none=1
+          }
         }
+        this.historyspotListData.appendArrayData(spotresult)
+        this.historypoemListData.appendArrayData(poemresult)
       })
   }
 

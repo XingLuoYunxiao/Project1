@@ -38,6 +38,9 @@ export struct BrowsHistoryPage {
   @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
   @State calendarspotListData:ListDataSource<HistoryAdd> = new ListDataSource();
   @State deletecount:number=0
+  @State canLoad: boolean = false;//控制防止在到底加载新数据时重复触发加载操作
+  @State isLoading: boolean = false;//是否正在加载
+  @State non:number=this.mineViewModel.none
 
   @Builder
   bottomDelete(){
@@ -91,7 +94,27 @@ export struct BrowsHistoryPage {
 
     // 设置时间为0点
     tomorrow.setHours(0, 0, 0, 0);
+    this.mineViewModel.reset()
     this.mineViewModel.historyDeal(this.personUid,tomorrow)
+  }
+
+  @Builder
+  footer() {
+    Row() {
+      LoadingProgress().height(32).width(48)
+      // Text("加载中").fontColor(Color.Black)
+    }.width("100%")
+    .height(30)
+    .justifyContent(FlexAlign.Center)
+    // 当不处于加载中状态时隐藏组件
+    .visibility((this.isLoading||this.historyspotListData.totalCount()==0)? Visibility.Visible : Visibility.Hidden)
+  }
+
+  @Builder
+  none(){
+    Text('ʅ（´◔౪◔）ʃ 到底了哦').width('100%').height(30)
+      .textAlign(TextAlign.Center)
+      .visibility(this.non==1&&this.historyspotListData.totalCount()!=0?Visibility.Visible:Visibility.Hidden)
   }
 
   build() {
@@ -148,8 +171,25 @@ export struct BrowsHistoryPage {
                       })
                     })
                   }, (history: HistoryAdd) => JSON.stringify(history))
-                }.scrollBar(BarState.Off)
-                Text('已经到底了').fontSize(20).fontColor($r('app.color.page_background_grey'))
+                  ListItem(){
+                    this.none()
+                  }
+                  ListItem(){
+                    this.footer()
+                  }
+                }
+                .onReachEnd(()=>{
+                  if(this.historyspotListData.totalCount()){
+                    this.isLoading=true
+                    this.non=this.mineViewModel.none
+                    this.mineViewModel.historyDeal(this.personUid,this.mineViewModel.datetime).then(()=>{
+                      if(this.non==1){
+                        this.isLoading=false
+                      }
+                    })
+                  }
+                })
+                .scrollBar(BarState.Off)
               }.height('100%')
             }.tabBar('遗迹景点')
 
@@ -180,7 +220,6 @@ export struct BrowsHistoryPage {
                     })
                   }, (history: HistoryAdd) => JSON.stringify(history))
                 }.scrollBar(BarState.Off)
-                Text('已经到底了').fontSize(20).fontColor($r('app.color.page_background_grey'))
               }
             }.tabBar('诗词歌赋')
           }

@@ -23,7 +23,7 @@ export struct CommentInputDialog {
   @State text: string = "";
   // 使用@Link将CustomDialog内的数据进行链接
   @Link textInComment: string;
-  @Link imagesInComment: ResourceStr;
+  @Link imageInComment: ResourceStr;
   @Prop momentid: number;
   maxSelectMedia: number = 9;
   controller: CustomDialogController;
@@ -83,11 +83,11 @@ export struct CommentInputDialog {
           .fontColor(Color.White)
           .onClick(() => {
               this.textInComment = this.text;
-              this.imagesInComment = this.selectedImages;
+              this.imageInComment = this.selectedImages;
               this.publish();
               this.controller.close();
               this.textInComment = '';
-              this.imagesInComment = '';
+              this.imageInComment = '';
           })
           .alignRules({
             top: { anchor: "__container__", align: VerticalAlign.Top },

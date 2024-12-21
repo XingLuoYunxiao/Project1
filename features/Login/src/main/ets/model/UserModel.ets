@@ -203,7 +203,7 @@ export class UserModel{
   }
 
 
-  async gethistoryData(personUid: string,date:Date): Promise<BrowsingHistory[]>{
+  async gethistoryData(personUid: string,date:Date,pageNum:number): Promise<BrowsingHistory[]>{
     return new Promise((resolve,reject)=>{
       cloudFunction.call({
         name: 'get-hiscol-data',
@@ -212,7 +212,8 @@ export class UserModel{
           personUid:personUid,
           fiel:'userId',
           sort:'viewTime',
-          table:'BrowsingHistory'
+          table:'BrowsingHistory',
+          pageNum:pageNum
         }
       }).then((value: cloudFunction.FunctionResult) => {
         resolve(JSON.parse(JSON.stringify(value.result)).data as BrowsingHistory[])

@@ -10,6 +10,7 @@ import { BusinessError } from "@kit.BasicServicesKit"
 import { AGCError } from "@hw-agconnect/hmcore/src/main/ets/error/AGCError"
 import { hilog } from "@kit.PerformanceAnalysisKit"
 import {MineWaterflow} from "../view/MineWaterflow"
+import lpreferencesUtil from "../common/utils/PreferenceUtil"
 
 @Component
 export struct InfoMessagePage {
@@ -71,6 +72,7 @@ export struct InfoMessagePage {
                   auth.getCurrentUser().then((curuser)=>{
                     if(curuser&&typeof this.personPhoto==='string'){
                       curuser.updateProfile({displayName:this.personName,photoUrl:PhotoSelectResult.photoUris[0]}).then((val)=>{
+                        lpreferencesUtil.putPreferenceValue('UserInfoPreference','personPhoto',this.personPhoto)
                         this.personName=curuser.getDisplayName()
                         this.personPhoto=curuser.getPhotoUrl()
                       }).catch((e:Error)=>{
@@ -227,6 +229,7 @@ struct CustomDialogChange {
           hilog.info(1,'获取用户成功',JSON.stringify(curuser))
           if(curuser){
             curuser.updateProfile({displayName:this.newName,photoUrl:this.personPhoto}).then((val)=>{
+              lpreferencesUtil.putPreferenceValue('UserInfoPreference','personName',this.newName)
               this.personName=curuser.getDisplayName()
               this.personPhoto=curuser.getPhotoUrl()
               this.controller.close()

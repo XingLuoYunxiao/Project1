@@ -14,7 +14,7 @@ export struct OneMoment {
   @Prop moment: FriendMomentAdd;
   @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
   @State textInComment: string = ""; // 评论中的文字
-  @State imageInComment: ResourceStr = ''; // 评论中的图片列表
+  @State imageInComment: ResourceStr|Resource = ''; // 评论中的图片列表
   @StorageLink ('personUid') personUid: string = ''
   @StorageLink ('personPhoto') personPhoto: string = ''
   @StorageLink ('personName') personName: string = ''
@@ -28,7 +28,7 @@ export struct OneMoment {
     builder: CommentInputDialog({
       //需要从弹窗中获取
       textInComment: $textInComment,
-      imagesInComment: $imageInComment,
+      imageInComment: $imageInComment,
       //一点击就知道到了分享的类型,传给弹窗
       momentid:this.moment.id,
       publish: () => this.publishComment()
@@ -42,13 +42,13 @@ export struct OneMoment {
   });
 
   publishComment(): void {
-    if (this.textInComment||this.imageInComment) {
+    if (this.textInComment!=''||(this.imageInComment as Resource).id!=$r('app.media.add').id) {
         const comment: Comment =new Comment();
         comment.setMomentid(`${this.moment.id}`);
         comment.setText(this.textInComment);
-        comment.setImage(this.imageInComment);
         comment.setPhoto(this.personPhoto)
         comment.setName(this.personName)
+        comment.setImage(this.imageInComment);
         this.shareViewModel.commentAdd(comment)
     } else {
       promptAction.showToast({
