@@ -157,7 +157,7 @@ export const mainCategories: CategoryItem[] = [
         subCategories: [
           { id: 31, name: '评分最高' },
           { id: 32, name: '价格最低' },
-          { id: 33, name: '最近距离' }
+          //{ id: 33, name: '最近距离' }
         ]
       }
     ]

@@ -1,4 +1,4 @@
-import { TextToSpeechManager } from "aispeech";
+import {TextToSpeechManager} from "aispeech"
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from "../constants/Constants";
 import { Params, TravelPlan } from "../service/TravelPlan";
@@ -25,7 +25,6 @@ export struct SpotDetailPage {
   @Watch('speechText')
   //AI回答内容
   @State responseText: string = '';
-  @State aImage: Resource = $r('app.media.avator');
   //计划列表
   @State customTravel:custom | undefined = undefined
 

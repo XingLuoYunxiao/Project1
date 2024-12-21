@@ -4,9 +4,9 @@ interface Filter {
   [key: string]: any;
 }
 
-interface OrderBy {
+export interface OrderBy {
   field: string;
-  type: 'asc' | 'desc'
+  type: 'asc' | 'desc' | null
 }
 
 export interface Params {

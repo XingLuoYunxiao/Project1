@@ -5,15 +5,19 @@ import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
 import { addExp } from "../../common/util/addExp"
 import { BuilderNameConstants, RouterModule } from "routermodule"
 import { CommonConstants } from "../../common/constants/commonConstants"
+import { promptAction } from "@kit.ArkUI"
 
 let addEXPId: number = 0
 
 @Component
 export struct IdiomPage {
+  @Prop value: object = new Object()
   @State idiom: realIdiom | undefined = new realIdiom()
   @State changeValue: string = ''
 
   aboutToAppear(): void {
+
+    this.idiom = JSON.parse(JSON.stringify(this.value))
     //每10秒浏览页面加5经验
     addEXPId = setTimeout(() => {
       addExp(CommonConstants.expTypeKnowledge, 5)
@@ -50,6 +54,10 @@ export struct IdiomPage {
               LogUtil.debug('获取成语：' + JSON.stringify(this.idiom))
             } else {
               LogUtil.debug('没有该成语哟')
+              promptAction.showToast({
+                message: "没有这个成语",
+                duration: 2000
+              })
             }
 
           })
@@ -198,8 +206,8 @@ function generalize() {
 }
 
 @Builder
-export function IdiomPageBuilder() {
-  IdiomPage()
+export function IdiomPageBuilder(value: object) {
+  IdiomPage({ value: value })
 }
 
 const builderName = BuilderNameConstants.CULTURE_IDIOM

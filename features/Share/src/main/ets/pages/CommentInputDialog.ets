@@ -99,8 +99,8 @@ export struct CommentInputDialog {
       .height($r('app.integer.image_comment_relative_container_input_height'))
 
         Image(this.selectedImages)
-          .width($r('app.integer.publish_multimedia_updates_single_image_width'))
-          .height($r('app.integer.publish_multimedia_updates_single_image_height'))
+          .width(100)
+          .height(120)
           .borderRadius($r('app.integer.publish_multimedia_updates_single_image_radius'))
           .offset({ right: $r('app.integer.media_offset_to_right') })
           .onClick(() => {

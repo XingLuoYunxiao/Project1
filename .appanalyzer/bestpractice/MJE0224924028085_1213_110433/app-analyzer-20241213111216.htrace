@@ -1,0 +1,8 @@
+# tracer: nop
+#                                          _-----=> irqs-off
+#                                         / _----=> need-resched
+#                                        | / _---=> hardirq/softirq
+#                                        || / _--=> preempt-depth
+#                                        ||| /     delay
+#           TASK-PID       TGID    CPU#  ||||   TIMESTAMP  FUNCTION
+#              | |           |       |   ||||      |         |

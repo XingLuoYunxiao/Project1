@@ -9,11 +9,11 @@ import { formatTime } from "../pages/SpotDetailComment"
 export struct SpotComment {
   @Prop spot: Spot
   @State commentService: CommentService = CommentService.getInstance()
-  @State userName: string | undefined = '用户'
   @StorageLink('personUid') userId: string = '';
   @State commentList: spotComment[] = []
   @State totalCommentCount: number = 0
-  @State currentUserAvatar: Resource = $r('app.media.avator')
+  @StorageLink('personName') userName: string = ''
+  @StorageLink('personPhoto') personPhoto: string = ''
   @State currentUserId: string = 'user123'
   @State commentInput: string = ''
   @State comments: spotComment[] = []
@@ -85,7 +85,7 @@ export struct SpotComment {
 
           Column(){
             Row() {
-              Image(this.currentUserAvatar)
+              Image(this.personPhoto)
                 .width(40)
                 .height(40)
                 .borderRadius(20)

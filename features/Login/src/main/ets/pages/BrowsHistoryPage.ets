@@ -1,19 +1,34 @@
 import { BrowsingHistory } from "../model/BrowsingHistory";
 import { HistoryAdd } from "../model/HistoryAdd";
 import { mySpot } from "../model/mySpot";
-import { CollectHistoryItem } from "../view/CollectHistoryItem";
 import { ListDataSource } from "../service/ListDataSource";
 import { MineViewModel } from "../service/MineViewModel";
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from "../common/constants/Constants";
 import { SpotNetFunc } from "travel/src/main/ets/service/SpotNetFunc";
 import { MyCalendar ,CalendarData} from "../view/MyCalendar";
+import { CollectionAdd } from "../model/CollectionAdd";
+import { promptAction } from "@kit.ArkUI";
+
+@Component
+struct CollectHistoryItem {
+  @ObjectLink item:CollectionAdd|HistoryAdd
+  build() {
+    Row() {
+      Image(this.item.spot_img).width(80).height(80).margin({left:10,right:10})
+      Text(this.item.spotname)
+    }.borderRadius(20)
+    .width('100%')
+    .backgroundColor(Color.White)
+    .padding(12)
+  }
+}
 
 @Component
 export struct BrowsHistoryPage {
   @Consume('appPathStack') appPathStack: NavPathStack
   @State manage:string='管理'
-  @StorageLink('personUid') personUid: string = ''
+  @StorageProp('personUid') personUid: string = ''
   @State historyitem:BrowsingHistory[]=[]
   @State spots: mySpot[] = []
   @State isChecked:boolean=false;
@@ -22,32 +37,62 @@ export struct BrowsHistoryPage {
   @State historypoemListData: ListDataSource<HistoryAdd> = this.mineViewModel.historypoemListData
   @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
   @State calendarspotListData:ListDataSource<HistoryAdd> = new ListDataSource();
-  @State delcount:number=0
+  @State deletecount:number=0
 
   @Builder
-bottomDelete(){
+  bottomDelete(){
     Row(){
-      Checkbox()
-        .select(this.isChecked)
-        .onChange((isChecked: boolean) => {
-          if(isChecked==true){
-          }else{
+      CheckboxGroup({ group: 'checkboxGroup' })
+        .checkboxShape(CheckBoxShape.CIRCLE)
+        .selectedColor(Color.Blue)
+        .onChange((itemName: CheckboxGroupResult) => {
+          console.info("checkbox group content" + JSON.stringify(itemName))
+          if(itemName.status==SelectStatus.All){
+            this.deletecount=this.historyspotListData.totalCount()
+            for (let index = this.historyspotListData.totalCount()-1; index >= 0; index--) {
+              const cur=this.historyspotListData.getData(index)
+              cur.isChoose=true
+            }
           }
         })
+        .mark({
+          strokeColor:Color.White,
+          size: 40,
+          strokeWidth: 2
+        })
+        .unselectedColor(Color.Gray)
       Text('全选')
       Blank()
       Button('清空全部')
-      Button('删除')
-      // .onClick(()=>{
-      //   for (let index = 0; index < this.historyspotListData.totalCount(); index++) {
-      //
-      //   }
-      // })
+      Button(`删除${this.deletecount}`).onClick(()=>{
+        for (let index = this.historyspotListData.totalCount()-1; index >= 0; index--) {
+          const cur=this.historyspotListData.getData(index)
+          if(cur.isChoose==true){
+            this.mineViewModel.historydelete(cur.id,this.personUid);
+            this.mineViewModel.historyspotListData.deleteData(index);
+            this.deletecount=0
+          }
+        }
+        this.manage='管理'
+        promptAction.showToast({message: '删除成功', duration: 2000})
+      })
     }
+    .padding({left:20,right:20,top:15,bottom:15})
     .backgroundColor(Color.White)
-    .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None).width('100%')
-}
+    .width('100%')
+    .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
+  }
 
+  async aboutToAppear() {
+    let currentDate = new Date();
+    // 增加一天到当前日期
+    let tomorrow = new Date(currentDate);
+    tomorrow.setDate(currentDate.getDate() + 1);
+
+    // 设置时间为0点
+    tomorrow.setHours(0, 0, 0, 0);
+    this.mineViewModel.historyDeal(this.personUid,tomorrow)
+  }
 
   build() {
     NavDestination() {
@@ -71,8 +116,7 @@ bottomDelete(){
           .width('100%')
           .justifyContent(FlexAlign.SpaceBetween)
 
-          MyCalendar({onCalendarClick: (item: CalendarData): Promise<void> => this.mineViewModel.historyDeal(this.personUid,
-            item)})
+          MyCalendar({onCalendarClick: (item: Date): Promise<void> => this.mineViewModel.historyDeal(this.personUid,item)})
           Tabs() {
             TabContent() {
               Column() {
@@ -80,18 +124,28 @@ bottomDelete(){
                   LazyForEach(this.historyspotListData, (history: HistoryAdd) => {
                     ListItem() {
                       Row() {
-                          Checkbox()
+                          Checkbox({ name:history.spotname, group: 'checkboxGroup' })
                             .onChange((isChecked: boolean) => {
                               if (isChecked) {
-                                this.delcount++
-                              }else this.delcount--
+                                this.deletecount++
+                              }else this.deletecount--
                               history.isChoose=isChecked
-                            }).visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
+                            })
+                            .mark({
+                              strokeColor:Color.White,
+                              size: 50,
+                              strokeWidth: 5
+                            })
+                            .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
                         CollectHistoryItem({ item: history })
                       }
-                    }.onClick(()=>{
-                      this.SpotNetWork.search(history.spotname)
-                      buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
+                    }
+                    .onClick(()=>{
+                      this.mineViewModel.taskPoolExecuteQuery(history.spotname).then((res) => {
+                        if(res.length !== 0){
+                          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
+                        }
+                      })
                     })
                   }, (history: HistoryAdd) => JSON.stringify(history))
                 }.scrollBar(BarState.Off)
@@ -113,6 +167,13 @@ bottomDelete(){
                             })
                         }
                         CollectHistoryItem({ item: history })
+                          // .onClick(()=>{
+                          //   this.mineViewModel.taskPoolExecuteQuery(history.spotname).then((res) => {
+                          //     if(res.length !== 0){
+                          //       buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
+                          //     }
+                          //   })
+                          // })
                       }
                     }.onClick(()=>{
 

@@ -2,7 +2,7 @@ import { Classification } from '../view/Classficiation';
 import { NearbyAttraction } from '../view/NearbyAttraction';
 import { SearchHeader } from '../view/SearchHeader';
 import { SpotNetFunc } from '../service/SpotNetFunc';
-import { BreakpointConstants, BreakpointType, LoadingStatus } from 'utils';
+import { BreakpointConstants, BreakpointType, LoadingStatus, LocationUtil } from 'utils';
 import { PreferenceUtil } from "utils";
 import { router } from '@kit.ArkUI';
 
@@ -21,7 +21,7 @@ export struct TravelStartPage {
 
   async aboutToAppear(): Promise<void> {
     this.loadAllState = LoadingStatus.LOADING;
-    await this.spotNetWork.getAllSpots()
+    await this.spotNetWork.getNearbySpots()
       .then((data) => {
         this.loadAllState = LoadingStatus.SUCCESS;
         this.spotNetWork.spots = data

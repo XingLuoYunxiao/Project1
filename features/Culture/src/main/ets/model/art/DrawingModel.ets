@@ -1,4 +1,3 @@
-import { CloudStorageConstants } from "../../common/constants/cloudStorageConstants";
 import { getPath } from "../../common/util/getImage";
 
 export class paintingData {
