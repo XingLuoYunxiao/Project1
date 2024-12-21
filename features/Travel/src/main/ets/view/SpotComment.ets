@@ -15,7 +15,7 @@ export struct SpotComment {
   @StorageLink('personName') userName: string = ''
   @StorageLink('personPhoto') personPhoto: string = ''
   @State currentUserId: string = 'user123'
-  @State commentInput: string = ''it
+  @State commentInput: string = ''
   @State comments: spotComment[] = []
   @State selectedTopComment: spotComment | null = null
 
