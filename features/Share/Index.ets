@@ -6,6 +6,9 @@ export function harInit(builderName: string): void {
     case BuilderNameConstants.SHARE_PUBLISHPAGE:
       import("./src/main/ets/pages/PublishPage");
       break;
+    case BuilderNameConstants.SHARE_DETAILSHPAGE:
+      import("./src/main/ets/pages/ShareDetail");
+      break;
     default:
       break;
   }

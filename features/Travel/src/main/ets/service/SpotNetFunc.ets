@@ -6,7 +6,7 @@ import Logger from "utils/src/main/ets/utils/Logger";
 import { SpotModel } from "../model/SpotModel";
 import { classificationList } from "./ClassficationData";
 import { judgeLoadData } from "../pages/AttractionTicketPage";
-
+import { OrderBy } from "../model/FuncParams";
 
 
 const TAG = '[SpotModel]';
@@ -36,9 +36,12 @@ export class SpotNetFunc{
   allLoadingStatus: LoadingStatus = LoadingStatus.OFF;
   searchLoadingStatus: LoadingStatus = LoadingStatus.OFF;
   nearbyLoadingStatus: LoadingStatus = LoadingStatus.OFF;
+  //是否还有数据
+  isHasMore: boolean = true;
 
   //分页
   pageNum: number = 1;
+  pageSize:number = 20;
   //记录是否刷新
   isRefresh: boolean = false;
 
@@ -94,11 +97,27 @@ export class SpotNetFunc{
     })
   }
 
+  //获取附近景点数据
+  public getNearbySpots(): Promise<Spot[]> {
+    return new Promise(async (resolve, reject) => {
+      try{
+        let cityName = (await this.locationUtil.getCityName()).substring(0, 1)
+        let data = await this.spotModel.getSpotDataByCityName([cityName])
+        resolve(data);
+      }catch (e){
+        reject('getNearbySpots failed' + e);
+      }
+    })
+  }
+
   //获取景点数据
   async loadSpotsData(): Promise<void> {
     this.allLoadingStatus = LoadingStatus.LOADING
     return new Promise(async (resolve, reject) => {
       await this.spotModel.getSpotData(this.pageNum).then( (data: Array<Spot>) => {
+        if(data.length < this.pageSize){
+          this.isHasMore = false
+        }
         this.pageNum += 1
         const result: Array<Spot> = [];
         data.forEach(spot => {
@@ -118,6 +137,53 @@ export class SpotNetFunc{
       })
     })
   }
+
+  async loadConditionalSpots( currentCity: City, currentCategory: string[]): Promise<void> {
+
+    this.allLoadingStatus = LoadingStatus.LOADING
+
+    //根据currentCategory[2]判断字段是否排序
+    let order:OrderBy = {
+      field: '',
+      type: null
+    }
+    if( currentCategory[2] === '评分最高'){
+      order = {
+        field: 'rating',
+        type: 'desc'
+      }
+    }else if( currentCategory[2] === '价格最低'){
+      order = {
+        field: 'ticketPrice',
+        type: 'asc'
+      }
+    }
+
+    return new Promise(async (resolve, reject) => {
+      await this.spotModel.getSpotDataByCondition([currentCity.cityName, currentCategory[0]], this.pageNum++, order).then( (data: Array<Spot>) => {
+        if(data.length < this.pageSize){
+          this.isHasMore = false
+        }
+        this.pageNum += 1
+        const result: Array<Spot> = [];
+        data.forEach(spot => {
+          result.push(spot);
+          this.spots.push(spot)
+        })
+        this.allSpotsDataSource.appendArrayData(result)
+        this.allLoadingStatus = LoadingStatus.SUCCESS
+        this.isInitSpots = true
+        Logger.info(TAG, 'Get spot data success.')
+        resolve();
+      })
+        .catch((e:Error) => {
+          this.allLoadingStatus = LoadingStatus.FAILED
+          Logger.error( TAG, `SpotModel getSpotData failed ${e}` );
+          reject();
+        })
+    })
+  }
+
 
   //获取景点距离
   public getAllDistance(): void {
@@ -198,7 +264,24 @@ export class SpotNetFunc{
 
   }
 
+  //TODO 城市选择出现问题
   public async updateAttractionsList( currentCity: City, currentCategory: string[]) : Promise<LazyDataSource<Spot>> {
+    //根据currentCategory[2]判断字段是否排序
+    let order:OrderBy = {
+      field: '',
+      type: null
+    }
+    if( currentCategory[2] === '评分最高'){
+      order = {
+        field: 'rating',
+        type: 'desc'
+      }
+    }else if( currentCategory[2] === '价格最低'){
+      order = {
+        field: 'ticketPrice',
+        type: 'asc'
+      }
+    }
     if( !this.isInitSpots){
       this.loadSpotsData()
     }
@@ -209,8 +292,13 @@ export class SpotNetFunc{
       if(this.searchResult.length !== 0){
 
       }else{
+        this.pageNum = 1
+        this.isHasMore = true
         this.isRefresh = true
-        await this.spotModel.getSpotDataByCondition([currentCity.cityName, currentCategory[0]]).then((data)=>{
+        await this.spotModel.getSpotDataByCondition([currentCity.cityName, currentCategory[0]], this.pageNum++, order ).then((data)=>{
+          if(data.length < this.pageSize){
+            this.isHasMore = false
+          }
           this.spots = data;
           this.allSpotsDataSource.pushArrayData(data)
           currentAttractions = data;
@@ -248,6 +336,12 @@ export class SpotNetFunc{
 
     //(位置距离之内)
     if (currentCategory[1] !== '不限距离' && currentCategory[1] !== '位置距离') {
+      if( currentCity.cityName === '所有'){
+        this.spots = await this.getAllSpots();
+        this.allSpotsDataSource.pushArrayData(this.spots)
+        this.isHasMore = false;
+        currentAttractions = this.spots
+      }
       // 假设距离格式是 "5km"，需要提取数字部分
       const maxDistance = Number(currentCategory[1].slice(0, -2));
 
@@ -372,6 +466,7 @@ export class SpotNetFunc{
     this.searchLoadingStatus = LoadingStatus.OFF
     this.nearbyLoadingStatus = LoadingStatus.OFF
     this.pageNum = 1
+    this.isHasMore = true
     this.isRefresh = false
   }
 

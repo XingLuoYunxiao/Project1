@@ -1,0 +1,6 @@
+ n.ictprojectone-39712   (  39712) [010] .... 1172890.526603: tracing_mark_write: B|39712|H:Napi complete, name:getRawFileContent, traceid:0x0 
+ n.ictprojectone-39712   (  39712) [010] .... 1172890.527197: tracing_mark_write: E|39712|
+ n.ictprojectone-39712   (  39712) [010] .... 1172890.528255: tracing_mark_write: B|39712|H:Napi complete, name:getRawFileContent, traceid:0x0 
+ n.ictprojectone-39712   (  39712) [010] .... 1172890.528540: tracing_mark_write: E|39712|
+ s.location:core-39946   (  39946) [009] .... 1172895.445895: tracing_mark_write: B|39946|H:Napi complete, name:getRawFileContent, traceid:0x0 
+ s.location:core-39946   (  39946) [009] .... 1172895.445994: tracing_mark_write: E|39946|

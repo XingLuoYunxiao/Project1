@@ -7,26 +7,32 @@ import { MineViewModel } from '../service/MineViewModel'
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from '../common/constants/Constants'
 import { SpotNetFunc } from 'travel/src/main/ets/service/SpotNetFunc'
-import auth from '@hw-agconnect/auth'
+import { promptAction } from '@kit.ArkUI'
 
 @Component
 struct EveryItem {
   @Link delcount:number
   @Link manage?:string
   @ObjectLink spot:CollectionAdd
+
   build() {
     ListItem(){
       Row(){
-        Checkbox()
+        Checkbox({ name:this.spot.spotname, group: 'checkboxGroup' })
           .onChange((isChecked: boolean) => {
             if (isChecked) {
               this.delcount++
             }else this.delcount--
             this.spot.isChoose=isChecked
-          }).visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
-        // CollectHistoryItem({item:this.spot})
+          })
+          .mark({
+            strokeColor:Color.White,
+            size: 50,
+            strokeWidth: 5
+          })
+          .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
         Row() {
-          Image($r(this.spot.spot_img)).width(80).height(80)
+          Image(this.spot.spot_img).width(80).height(80)
           Column({space:Constants.MIDDLE_SPACE}){
             Text(this.spot.spotname).fontSize(16).fontWeight(500)
             Row({space:Constants.MIDDLE_SPACE}){
@@ -64,18 +70,40 @@ export struct CollectionPage {
   @State spotres:CollectionAdd[]=[]
   @State poemres:CollectionAdd[]=[]
   @State isSearch:boolean=false
-  @StorageLink ('personUid') personUid: string = ''
+  @StorageProp ('personUid') personUid: string = ''
   @State mineViewModel:MineViewModel=MineViewModel.getInstance();
   @Provide collectspotListData: ListDataSource<CollectionAdd> = this.mineViewModel.collectspotListData
   @Provide collectpoemListData: ListDataSource<CollectionAdd> =this.mineViewModel.collectpoemListData
   @Provide searchListData: ListDataSource<CollectionAdd> = new ListDataSource();
   @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
   @State deletecount:number=0
+  @State canLoad: boolean = false;//控制防止在到底加载新数据时重复触发加载操作
+  @State isLoading: boolean = false;//是否正在加载
+  @State non:number=this.mineViewModel.none
 
   async aboutToAppear() {
+    this.mineViewModel.reset()
     this.mineViewModel.collectionDeal(this.personUid)
   }
 
+  @Builder
+  footer() {
+    Row() {
+      LoadingProgress().height(32).width(48)
+      // Text("加载中").fontColor(Color.Black)
+    }.width("100%")
+    .height(30)
+    .justifyContent(FlexAlign.Center)
+    // 当不处于加载中状态时隐藏组件
+    .visibility((this.isLoading||this.collectspotListData.totalCount()==0)&&this.isSearch==false? Visibility.Visible : Visibility.Hidden)
+  }
+
+  @Builder
+  none(){
+    Text('ʅ（´◔౪◔）ʃ 到底了哦').width('100%').height(30)
+      .textAlign(TextAlign.Center)
+      .visibility(this.non==1&&this.collectspotListData.totalCount()!=0?Visibility.Visible:Visibility.Hidden)
+  }
 
   build() {
     NavDestination(){
@@ -112,13 +140,18 @@ export struct CollectionPage {
                     }
                     this.searchListData.notifyDataReload()
                   }).width('100%')
-                Scroll(){
+                List(){
                   if(this.isSearch==true){
                     this.listData(this.searchListData)
                   }else {
                     this.listData(this.collectspotListData)
                   }
-                }.height('100%')
+                }
+
+                .margin({bottom:40})
+                .layoutWeight(1)
+                .scrollBar(BarState.Off)
+                .height('100%')
               }
               if(this.manage=='退出管理'){
                 this.bottomDelete()
@@ -164,22 +197,43 @@ export struct CollectionPage {
   @Builder
   bottomDelete(){
     Row(){
-      Checkbox()
+      CheckboxGroup({ group: 'checkboxGroup' })
+        .checkboxShape(CheckBoxShape.CIRCLE)
+        .selectedColor(Color.Blue)
+        .onChange((itemName: CheckboxGroupResult) => {
+          console.info("checkbox group content" + JSON.stringify(itemName))
+          if(itemName.status==SelectStatus.All){
+            this.deletecount=this.collectspotListData.totalCount()
+            for (let index = this.collectspotListData.totalCount()-1; index >= 0; index--) {
+                const cur=this.collectspotListData.getData(index)
+                cur.isChoose=true
+              }
+          }
+        })
+        .mark({
+          strokeColor:Color.White,
+          size: 40,
+          strokeWidth: 2
+        })
+        .unselectedColor(Color.Gray)
       Text('全选')
       Blank()
       Button('清空全部')
-      Button(`删除${this.deletecount}`).onClick(()=>{
+        .margin({right:8})
+      Button(`删除`).onClick(()=>{
         for (let index = this.collectspotListData.totalCount()-1; index >= 0; index--) {
           const cur=this.collectspotListData.getData(index)
           if(cur.isChoose==true){
             this.mineViewModel.collectiondelete(cur.spotId,this.personUid);
             this.mineViewModel.collectspotListData.deleteData(index);
-            this.collectspotListData= this.mineViewModel.collectspotListData
+            this.deletecount=0
           }
         }
         this.manage='管理'
+        promptAction.showToast({message: '删除成功', duration: 2000})
       })
     }
+    .padding({left:20,right:20,top:15,bottom:15})
     .backgroundColor(Color.White)
     .width('100%')
     .visibility(this.manage=='退出管理'?Visibility.Visible:Visibility.None)
@@ -187,7 +241,6 @@ export struct CollectionPage {
 
   @Builder
   listData(data:ListDataSource<CollectionAdd>){
-    Column(){
       List({space:Constants.SMALL_SPACE}){
         LazyForEach(data,(spot:CollectionAdd)=>{
           EveryItem({manage:$manage,spot:spot,delcount:$deletecount})
@@ -199,8 +252,27 @@ export struct CollectionPage {
               })
             })
         },(spot:CollectionAdd,index:number)=>JSON.stringify(spot)+Math.random()+index)
-      }.scrollBar(BarState.Off)
-    }.height('100%')
+        ListItem(){
+          this.none()
+        }
+        ListItem(){
+          this.footer()
+        }
+      }
+      .edgeEffect(EdgeEffect.None)
+      .onReachEnd(()=>{
+        if(this.collectspotListData.totalCount()){
+          this.isLoading=true
+          this.non=this.mineViewModel.none
+          this.mineViewModel.collectionDeal(this.personUid).then(()=>{
+            if(this.non==1){
+              this.isLoading=false
+            }
+          })
+        }
+      })
+      .height('100%')
+      .scrollBar(BarState.Off)
   }
 }
 

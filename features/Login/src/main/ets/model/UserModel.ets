@@ -1,26 +1,19 @@
 import cloud, { Database, SignInResult, VerifyCodeAction, VerifyCodeResult } from "@hw-agconnect/cloud"
 import { myOrder } from "./myOrder";
-import schema from '../../resources/rawfile/schema.json'
 import { mySpot } from "./mySpot";
 import { Poem } from "./Poem";
 import { Collection } from "./Collection";
-import { CollectionAdd } from "./CollectionAdd";
 import { BrowsingHistory } from "./BrowsingHistory";
 import { cloudCommon, cloudFunction } from '@kit.CloudFoundationKit';
 import { BusinessError, request } from '@kit.BasicServicesKit';
 import auth from "@hw-agconnect/auth";
+import { cloudStorage } from '@kit.CloudFoundationKit';
+
 import { Params } from "travel/src/main/ets/model/FuncParams";
 
-// let authProvider =  auth.getAuthProvider();
-// authProvider.getAccessToken(true)
-//
-// cloudCommon.init({
-//   region: cloudCommon.CloudRegion.CHINA,
-//   authProvider: authProvider,
-//   functionOptions:{timeout:10*1000},
-//   storageOptions:{mode:request.agent.Mode.BACKGROUND, network:request.agent.Network.ANY},
-//   databaseOptions:{schema:"schema", traceId:"traceId"}
-// })
+
+
+let bucket: cloudStorage.StorageBucket = cloudStorage.bucket();
 
 export class UserModel{
   private static instance: UserModel = new UserModel();
@@ -105,6 +98,18 @@ export class UserModel{
     })
   }
 
+  getUrl(img:string):Promise<string> {
+    return new Promise((resolve,reject)=>{
+      bucket.getDownloadURL(`travel/spot/${img}.png`).then((downloadURL: string) => {
+        resolve(downloadURL)
+        console.info(`getDownloadURL: ${downloadURL}`);
+      }).catch((err: BusinessError) => {
+        resolve('')
+        console.error(`getDownloadURL failed, Code: ${err.code}, message: ${err.message}`);
+      });
+    })
+  }
+
   async getpoemData(poemid:number): Promise<Poem[]>{
     return new Promise((resolve,reject)=>{
       cloudFunction.call({
@@ -124,7 +129,7 @@ export class UserModel{
     })
   }
 
- async getcollectData(personUid: string): Promise<Collection[]>{
+ async getcollectData(personUid: string,pageNum:number): Promise<Collection[]>{
       return new Promise((resolve,reject)=>{
         cloudFunction.call({
           name: 'get-hiscol-data',
@@ -132,7 +137,8 @@ export class UserModel{
             personUid:personUid,
             fiel:'userId',
             sort:'id',
-            table:'Collection'
+            table:'Collection',
+            pageNum:pageNum
           }
         }).then((value: cloudFunction.FunctionResult) => {
           resolve(JSON.parse(JSON.stringify(value.result)).data as Collection[])
@@ -143,6 +149,7 @@ export class UserModel{
       })
   }
 
+  //收藏删除
   async deletecollectData(spotid:number,personUid:string){
     cloudFunction.call({
       name: 'get-hiscol-data',
@@ -154,9 +161,27 @@ export class UserModel{
         table:'delete'
       }
     }).then((value: cloudFunction.FunctionResult) => {
-      console.info(`成功删除 ${JSON.stringify(value.result)}`);
+      console.info(`收藏成功删除 ${JSON.stringify(value.result)}`);
     }).catch((err: BusinessError) => {
-      console.error(`删除失败, Code: ${err.code}, message: ${err.message}`);
+      console.error(`收藏删除失败, Code: ${err.code}, message: ${err.message}`);
+    })
+  }
+
+  //历史删除
+  async deletehistoryData(id:number,personUid:string){
+    cloudFunction.call({
+      name: 'get-hiscol-data',
+      data: {
+        personUid:personUid,
+        //条件
+        fiel:id,
+        sort:'BrowsingHistory',
+        table:'hisdelete'
+      }
+    }).then((value: cloudFunction.FunctionResult) => {
+      console.info(`历史成功删除 ${JSON.stringify(value.result)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`历史删除失败, Code: ${err.code}, message: ${err.message}`);
     })
   }
 
@@ -178,11 +203,12 @@ export class UserModel{
   }
 
 
-  async gethistoryData(personUid: string): Promise<BrowsingHistory[]>{
+  async gethistoryData(personUid: string,date:Date): Promise<BrowsingHistory[]>{
     return new Promise((resolve,reject)=>{
       cloudFunction.call({
         name: 'get-hiscol-data',
         data: {
+          date:date,
           personUid:personUid,
           fiel:'userId',
           sort:'viewTime',

@@ -14,7 +14,7 @@ import { SpotNetFunc } from 'travel/src/main/ets/service/SpotNetFunc'
 export struct MyOrderPage {
   @Consume('appPathStack') appPathStack: NavPathStack;
   @State order: myOrder[] = [];
-  @StorageLink('personUid') personUid: string = '';
+  @StorageProp('personUid') personUid: string = '';
   @State spots: mySpot[] = [];
   @State isSearch:boolean=false;
   @State mineViewModel:MineViewModel=MineViewModel.getInstance();
@@ -34,9 +34,13 @@ export struct MyOrderPage {
         LazyForEach(data, (or: myOrderAdd) => {
           ListItem() {
             OrderItem({ item: or, reviewname: or.spotname })
-          }.onClick(()=>{
-            this.SpotNetWork.search(or.spotname)
-            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:this.SpotNetWork.searchResult[0]}))
+          }
+          .onClick(()=>{
+            this.mineViewModel.taskPoolExecuteQuery(or.spotname).then((res) => {
+              if(res.length !== 0){
+                buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
+              }
+            })
           })
         },(or: myOrderAdd, index: number) => JSON.stringify(or) + Math.random() + index)
         // }
@@ -52,7 +56,7 @@ export struct MyOrderPage {
             .width($r('app.float.md_topic_width'))
             .onClick(() => {
               this.appPathStack.pop()
-              })
+              }).margin({right:10})
           Search({ placeholder: '搜索我的订单' })
             .onSubmit((val) => {
               this.isSearch = true

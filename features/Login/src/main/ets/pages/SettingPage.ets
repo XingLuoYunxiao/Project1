@@ -49,31 +49,48 @@ export struct SettingPage {
               .onClick(()=>{
               this.appPathStack.pop()
             })
-          }.height(Constants.TOP_HEIGHT_PAGE)
-          ForEach(this.settingarr,(item:string,idx:number)=>{
-            if(idx==this.settingarr.length-1){
-              Row(){
-                Text(item)
-                Blank()
-                Image($r('app.media.ic_arrow')).width(30)
-              }.onClick(()=>{
-                //弹出确认退出框
-                this.dialogControllerConfirm.open()
-                // this.appPathStack.pushPathByName()
-              })
-            }else{
-              Row(){
-                Text(item)
-                Blank()
-                Image($r('app.media.ic_arrow')).width(30)
+          }
+          .width('100%')
+          .margin({bottom:15})
+          .height(Constants.TOP_HEIGHT_PAGE)
+          Column({space:10}){
+            ForEach(this.settingarr,(item:string,idx:number)=>{
+              if(idx==this.settingarr.length-1){
+                Row(){
+                  Text(item)
+                  Blank()
+                  Image($r('app.media.ic_arrow')).width(30)
+                }
+                .padding({left:15,right:15})
+                .backgroundColor($r('app.color.dialog_background_blue'))
+                .width('100%')
+                .borderRadius(5)
+                .height(60)
+                .onClick(()=>{
+                  //弹出确认退出框
+                  this.dialogControllerConfirm.open()
+                })
+              }else{
+                Row(){
+                  Text(item)
+                  Blank()
+                  Image($r('app.media.ic_arrow')).width(30)
+                }
+                .padding({left:15,right:15})
+                .borderRadius(5)
+                .height(60)
+                .backgroundColor($r('app.color.dialog_background_blue'))
+                .width('100%')
               }
-            }
-          })
+            })
+          }
+          .alignItems(HorizontalAlign.Start)
+          .width('100%')
         }
         .width('100%')
       }
       .hideTitleBar(true)
-      .margin({top:Constants.HEADER_HEIGHT_PAGE})
+      .margin({top:30,left:20,right:20})
   }
 }
 
