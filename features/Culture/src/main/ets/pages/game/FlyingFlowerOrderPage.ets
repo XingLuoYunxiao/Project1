@@ -9,6 +9,8 @@ import { CloudPoemService } from "../../service/CloudPoemService";
 import { addExp } from "../../common/util/addExp";
 import { CommonConstants } from '../../common/constants/commonConstants';
 import { RandomUtil } from "utils/src/main/ets/puraUtils/RandomUtil";
+import { BreakpointTypeEnum } from "utils";
+import { it } from "@ohos/hypium";
 
 const TAG: string = ' FlyingFlowerOrderPage ';
 let MessageDataModel: ChatMsgModel = new ChatMsgModel();
@@ -27,6 +29,7 @@ export struct FlyingFlowerOrderPage {
   @State inputText: string = ''; // 输入框的文本状态
   controller: TextInputController = new TextInputController(); // 控制输入框的控制器
   //
+  @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
   @State format: string = 'mm:ss.SS';
   @State isCountDown: boolean = true;
   textTimerController: TextTimerController = new TextTimerController();
@@ -35,6 +38,8 @@ export struct FlyingFlowerOrderPage {
   @State commonWord: string = '月'; // 当前每句诗词必须包含的汉字
   @State poemMap: Map<string, Poem> = new Map<string, Poem>()
   @State StartId: number = 0
+  @State gameOver: boolean = false
+  @State ansArr: string[] = []
   //
   dialogController: CustomDialogController = new CustomDialogController({
     builder: GameRuleDialog({ str: $r('app.string.FlyingFlowerOrderRule') }),
@@ -71,8 +76,9 @@ export struct FlyingFlowerOrderPage {
     if (tempPoem) {
       let res: string | undefined = CloudPoemService.extractSentence(tempPoem, this.commonWord)
       if (res) {
-        if (!this.poemMap.has(res)) {
+        if (!this.ansArr.includes(res)) {
           this.PoemList.push(tempPoem)
+          this.ansArr.push(res)
           MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, res));
 
           this.StartId = tempPoem.id
@@ -86,93 +92,125 @@ export struct FlyingFlowerOrderPage {
 
   build() {
     NavDestination() {
-      Stack() {
-        Image($r('app.media.game_flyFlower'))
-          .objectFit(ImageFit.Cover)
-          .opacity(0.7)
-        Column() {
+      Flex({ direction: FlexDirection.Row, wrap: FlexWrap.NoWrap }) {
+
+        Stack() {
+          Image($r('app.media.game_flyFlower'))
+            .objectFit(ImageFit.Cover)
+            .opacity(0.7)
           Column() {
-            // 头部
-            Row() {
+            Column() {
+              // 头部
+              Row() {
 
-              Text('游戏规则')
-                .fontSize($r('app.float.title_text_size'))
-                .onClick(() => {
-                  this.dialogController.open()
-                })
+                Text('游戏规则')
+                  .fontSize($r('app.float.title_text_size'))
+                  .onClick(() => {
+                    this.dialogController.open()
+                  })
 
-              Text('今日令词：' + this.commonWord)
-                .fontSize($r('app.float.title_text_size'))
-              // 计时器
-              TextTimer({ controller: this.textTimerController, isCountDown: this.isCountDown, count: 40000 })
-                .format(this.format)
-                .fontColor(Color.Black)
-                .fontSize(24)
-                .onTimer((utc: number, elapsedTime: number) => {
-                  LogUtil.info(`textTimer notCountDown utc is：${utc}, elapsedTime: ${elapsedTime}`);
-                  if (elapsedTime === 4000) {
-                    //this.GameOverDialogController.open()
+                Text('今日令词：' + this.commonWord)
+                  .fontSize($r('app.float.title_text_size'))
+                // 计时器
+                TextTimer({ controller: this.textTimerController, isCountDown: this.isCountDown, count: 40000 })
+                  .format(this.format)
+                  .fontColor(Color.Black)
+                  .fontSize(24)
+                  .onTimer((utc: number, elapsedTime: number) => {
+                    LogUtil.info(`textTimer notCountDown utc is：${utc}, elapsedTime: ${elapsedTime}`);
+                    if (elapsedTime === 4000) {
+                      this.gameOver = true
+                    }
+                  })
+
+              }
+              .height(50)
+              .width('100%')
+              .justifyContent(FlexAlign.SpaceAround)
+
+
+              // 聊天页面
+              List({ space: 10 }) {
+                LazyForEach(MessageDataModel, (item: ChatMsg) => {
+                  ListItem() {
+                    MessageComponent({ role: item.role, roleHeadImg: item.roleHeadImg, msg: item.message });
                   }
-                })
-
+                });
+              }
+              .cachedCount(20);
             }
-            .height(50)
-            .width('100%')
-            .justifyContent(FlexAlign.SpaceAround)
 
-
-            // 聊天页面
-            List({ space: 10 }) {
-              LazyForEach(MessageDataModel, (item: ChatMsg) => {
-                ListItem() {
-                  MessageComponent({ role: item.role, roleHeadImg: item.roleHeadImg, msg: item.message });
-                }
-              });
-            }
-            .cachedCount(20);
-          }
-
-          Row() { // 输入框和发送按钮的行布局
-            TextInput({
-              controller: this.controller,
-              text: this.inputText
-            })
-              .width('80%')
-              .height(40)
-              .margin(20)
-              .fontSize(14)
-              .fontColor(Color.Black)
-              .enterKeyType(EnterKeyType.Send)// 设置回车键类型为发送
-              .onChange((value: string) => {
-                this.inputText = value; // 更新输入框文本
+            Row() { // 输入框和发送按钮的行布局
+              TextInput({
+                controller: this.controller,
+                text: this.inputText
               })
-              .onSubmit(async (enterKey: EnterKeyType, event: SubmitEvent) => {
-                LogUtil.debug(TAG, "触发输入框提交: " + enterKey);
-                let tempText = this.inputText;
-                this.inputText = '';
-                MessageDataModel.pushData(new ChatMsg(ROLE.user, tempText));
-                CloudPoemService.isPoemSentence(tempText).then(isPoSen => {
-                  if (isPoSen) { //是诗词
-                    this.systemAddSentence()
-                  } else {
-                    MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, "这看起来不是一句诗句"));
-                    MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, "我接着继续"));
-                    this.systemAddSentence()
-                  }
+                .width('80%')
+                .height(40)
+                .margin(20)
+                .fontSize(14)
+                .fontColor(Color.Black)
+                .enterKeyType(EnterKeyType.Send)// 设置回车键类型为发送
+                .onChange((value: string) => {
+                  this.inputText = value; // 更新输入框文本
                 })
+                .onSubmit(async (enterKey: EnterKeyType, event: SubmitEvent) => {
+                  LogUtil.debug(TAG, "触发输入框提交: " + enterKey);
+                  let tempText = this.inputText;
+                  this.inputText = '';
+                  MessageDataModel.pushData(new ChatMsg(ROLE.user, tempText)); //输入到聊天界面
+                  CloudPoemService.isPoemSentence(tempText).then(async isPoSen => {
+                    if (isPoSen > 0) { //是诗词
+                      if (!this.ansArr.includes(tempText)) {
+                        this.ansArr.push(tempText)
+                        let poem: Poem | undefined = await CloudPoemService.fetchDataById(isPoSen)
+                        if (poem) {
+                          this.poemMap.set(tempText, poem)
+                          this.ansArr.push(tempText)
+                        }
+                        this.systemAddSentence()
+                      }
 
-              });
+                    } else {
+                      MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, "这看起来不是一句诗句"));
+                      MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, "我接着继续"));
+                      this.systemAddSentence()
+                    }
+                  })
+
+                });
+            }
+            .width('100%')
+            .margin({ bottom: 40 })
+            .padding(10)
+
           }
+          .backgroundImageSize(ImageSize.Cover)
+          .margin({ top: $r('app.float.header_height_page') })
           .width('100%')
-          .margin({ bottom: 40 })
-          .padding(10)
-
+          .height('100%')
+          .justifyContent(FlexAlign.SpaceBetween)
         }
-        .backgroundImageSize(ImageSize.Cover)
-        .margin({ top: $r('app.float.header_height_page') })
-        .width('100%')
-        .height('100%')
-        .justifyContent(FlexAlign.SpaceBetween)
+
+        if (this.currentBreakpoint === BreakpointTypeEnum.LG || this.gameOver === true) {
+          Column() {
+            ForEach(this.ansArr, (item: string) => {
+              Text(item)
+                .fontSize($r('app.float.normal_text_size1'))
+              Divider()
+                .width('80%')
+                .margin(5)
+            })
+          }
+          .animation({
+            duration: 1500,
+            curve: Curve.Linear
+          })
+          .justifyContent(FlexAlign.SpaceAround)
+          .alignItems(HorizontalAlign.Center)
+        }
+
+
       }
 
     }

@@ -204,6 +204,7 @@ export class CloudPoemService {
     }
   }
 
+  //根据poem的title获取poem数据
   public static async fetchDataByTitle(title: string): Promise<Poem[] | undefined> {
     try {
       let databaseZone = cloudDatabase.zone('Travel');
@@ -213,6 +214,60 @@ export class CloudPoemService {
       // 设置查询条件：分页查询
       condition.equalTo('title', title).limit(10)
 
+
+      return new Promise((resolve, reject) => {
+        databaseZone.query(condition, (err: BusinessError, poemArray: Poem[]) => {
+          if (err) {
+            console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
+            reject(err);
+          } else {
+            console.info(`查询成功，结果: ${JSON.stringify(poemArray)}`);
+            resolve(poemArray);
+          }
+        });
+      });
+    } catch (err) {
+      console.error(`捕获到错误: ${err.message}`);
+      return undefined; // 确保函数返回 undefined
+    }
+  }
+
+  //根据poem的title获取poem数据
+  public static async fetchDataById(id: number): Promise<Poem | undefined> {
+    try {
+      let databaseZone = cloudDatabase.zone('Travel');
+      let condition = new cloudDatabase.DatabaseQuery(Poem);
+
+
+      // 设置查询条件：分页查询
+      condition.equalTo('id', id).limit(1)
+
+
+      return new Promise((resolve, reject) => {
+        databaseZone.query(condition, (err: BusinessError, poemArray: Poem[]) => {
+          if (err) {
+            console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
+            reject(err);
+          } else {
+            console.info(`查询成功，结果: ${JSON.stringify(poemArray)}`);
+            resolve(poemArray[0]);
+          }
+        });
+      });
+    } catch (err) {
+      console.error(`捕获到错误: ${err.message}`);
+      return undefined; // 确保函数返回 undefined
+    }
+  }
+
+  //根据内容获取数据
+  public static async fetchDataByContent(content: string): Promise<Poem[] | undefined> {
+    try {
+      let databaseZone = cloudDatabase.zone('Travel');
+      let condition = new cloudDatabase.DatabaseQuery(Poem);
+
+      // 设置查询条件：分页查询
+      condition.contains('content', content).limit(1)
 
       return new Promise((resolve, reject) => {
         databaseZone.query(condition, (err: BusinessError, poemArray: Poem[]) => {
@@ -264,6 +319,7 @@ export class CloudPoemService {
     }
   }
 
+  // 获取名句根据id
   public static async fetchSentenceById(
     id: number): Promise<Sentence | undefined> {
     let databaseZone = cloudDatabase.zone('Travel');
@@ -320,8 +376,8 @@ export class CloudPoemService {
   }
 
 
-  //诗句是否在数据库里
-  public static async isPoemSentence(str: string): Promise<boolean> {
+  //诗句是否在数据库里   如果在，返回该数据所在的数据的id,如果不在，返回 -1 ,(所有诗句的id>0)
+  public static async isPoemSentence(str: string): Promise<number> {
     try {
       let databaseZone = cloudDatabase.zone('Travel');
       let condition = new cloudDatabase.DatabaseQuery(Poem);
@@ -336,13 +392,13 @@ export class CloudPoemService {
             reject(false);
           } else {
             console.info(`查询成功，结果: ${JSON.stringify(poemArray)}`);
-            resolve(poemArray.length > 0);
+            resolve(poemArray[0].id);
           }
         });
       });
     } catch (err) {
       console.error(`捕获到错误: ${err.message}`);
-      return false; // 确保函数返回 false
+      return -1; // 确保函数返回 false
     }
   }
 
@@ -379,6 +435,7 @@ export class CloudPoemService {
       return undefined; // 确保函数返回 undefined
     }
   }
+
 
   // 获取包含特定字符的诗句所在的整首诗
   public static async fetchPoemSentenceByChar(char: string, begins: number): Promise<Poem | undefined> {

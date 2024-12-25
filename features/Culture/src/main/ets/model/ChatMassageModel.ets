@@ -8,6 +8,7 @@ export enum ChatMessageType {
 export enum ROLE {
   system = 'system',
   IdiomSystem = '成语接龙',
+  FlyFlowerSystem = '飞花令',
   user = '用户'
 }
 
