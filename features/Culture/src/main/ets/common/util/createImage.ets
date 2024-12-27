@@ -22,7 +22,7 @@ export class CreateImage {
         {
           method: http.RequestMethod.POST,
           extraData: JSON.stringify({
-            model: "cogview-3-plus",
+            model: CommonConstants.CreateImageModelCode,
             prompt: prompt // 使用传入的prompt参数
           }),
           expectDataType: http.HttpDataType.STRING,

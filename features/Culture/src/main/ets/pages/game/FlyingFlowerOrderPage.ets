@@ -10,7 +10,6 @@ import { addExp } from "../../common/util/addExp";
 import { CommonConstants } from '../../common/constants/commonConstants';
 import { RandomUtil } from "utils/src/main/ets/puraUtils/RandomUtil";
 import { BreakpointTypeEnum } from "utils";
-import { it } from "@ohos/hypium";
 
 const TAG: string = ' FlyingFlowerOrderPage ';
 let MessageDataModel: ChatMsgModel = new ChatMsgModel();
@@ -40,6 +39,7 @@ export struct FlyingFlowerOrderPage {
   @State StartId: number = 0
   @State gameOver: boolean = false
   @State ansArr: string[] = []
+  @State count: number = 0 //用户回答的次数统计
   //
   dialogController: CustomDialogController = new CustomDialogController({
     builder: GameRuleDialog({ str: $r('app.string.FlyingFlowerOrderRule') }),
@@ -112,13 +112,13 @@ export struct FlyingFlowerOrderPage {
                 Text('今日令词：' + this.commonWord)
                   .fontSize($r('app.float.title_text_size'))
                 // 计时器
-                TextTimer({ controller: this.textTimerController, isCountDown: this.isCountDown, count: 40000 })
+                TextTimer({ controller: this.textTimerController, isCountDown: this.isCountDown, count: 60000 })
                   .format(this.format)
                   .fontColor(Color.Black)
                   .fontSize(24)
                   .onTimer((utc: number, elapsedTime: number) => {
                     LogUtil.info(`textTimer notCountDown utc is：${utc}, elapsedTime: ${elapsedTime}`);
-                    if (elapsedTime === 4000) {
+                    if (elapsedTime === 6000) {
                       this.gameOver = true
                     }
                   })
@@ -191,29 +191,42 @@ export struct FlyingFlowerOrderPage {
           .height('100%')
           .justifyContent(FlexAlign.SpaceBetween)
         }
+        .visibility((this.gameOver === true && this.currentBreakpoint !== BreakpointTypeEnum.LG) ?
+        Visibility.None : Visibility.Visible)
 
-        if (this.currentBreakpoint === BreakpointTypeEnum.LG || this.gameOver === true) {
-          Column() {
-            ForEach(this.ansArr, (item: string) => {
-              Text(item)
-                .fontSize($r('app.float.normal_text_size1'))
-              Divider()
-                .width('80%')
-                .margin(5)
-            })
+        // if (this.currentBreakpoint === BreakpointTypeEnum.LG || this.gameOver === true) {
+        Column() {
+          if (this.gameOver) {
+            Text('游戏结束，你本次共接上了' + this.count + '句')
+              .fontSize($r('app.float.normal_text_size1'))
+              .margin(40)
           }
-          .animation({
-            duration: 1500,
-            curve: Curve.Linear
+          ForEach(this.ansArr, (item: string) => {
+            Text(item)
+              .fontSize($r('app.float.normal_text_size1'))
+            Divider()
+              .width('80%')
+              .margin(5)
           })
-          .justifyContent(FlexAlign.SpaceAround)
-          .alignItems(HorizontalAlign.Center)
         }
+        .visibility((this.currentBreakpoint === BreakpointTypeEnum.LG || this.gameOver === true) ?
+        Visibility.Visible : Visibility.None)
+        .width('100%')
+        .margin({ top: 50 })
+        .animation({
+          duration: 2000,
+          curve: Curve.EaseOut,
+          iterations: 1,
+          playMode: PlayMode.Normal
+        })
 
 
+        .justifyContent(FlexAlign.SpaceAround)
+        .alignItems(HorizontalAlign.Center)
       }
 
     }
+    .margin({ top: $r('app.float.header_height_page') })
     .hideTitleBar(true)
   }
 }
