@@ -15,7 +15,7 @@ let addEXPId: number = 0
 const TAG: string = 'PoemPage'
 
 @Component
-export struct PoemPage { // 定义一个组件类PoemPage
+export struct PoemSplitPage { // 定义一个组件类PoemPage
   @State PoemDataModel: PoemModel = new PoemModel(); // 诗歌数据实例
   @Consume('culturePathStack') culturePathStack: NavPathStack; // 导入导航路径栈，用于页面导航
   @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
@@ -91,6 +91,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
           buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_SearchPage)
         })
       // 切换类型，诗人，朝代
+
       Row() {
         Text('类型： ' + this.curPoemType)
           .fontSize(20)
@@ -129,7 +130,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
       .width('100%')
       .height(50)
 
-      //Scroll() {
+
       Column() {
 
         // 展示数据的列表组件
@@ -146,6 +147,7 @@ export struct PoemPage { // 定义一个组件类PoemPage
           this.fetchData()
           LogUtil.debug('触底刷新成功')
         })
+
         .onAppear(() => {
           this.fetchData()
 
@@ -158,22 +160,9 @@ export struct PoemPage { // 定义一个组件类PoemPage
           console.info('center' + centerIndex)
         })
 
-        // .onScrollVisibleContentChange((start: VisibleListContentInfo, end: VisibleListContentInfo) => {
-        //   console.log(' start index: ' + start.index +
-        //     ' start item group area: ' + start.itemGroupArea +
-        //     ' start index in group: ' + start.itemIndexInGroup)
-        //   console.log(' end index: ' + end.index +
-        //     ' end item group area: ' + end.itemGroupArea +
-        //     ' end index in group: ' + end.itemIndexInGroup)
-        // })
-
       }
       .width('100%')
 
-      // }
-      // .width('100%') // 设置宽度
-      // .scrollable(ScrollDirection.Vertical)
-      // .enableScrollInteraction(true)
     }
   }
 
@@ -209,13 +198,3 @@ export struct PoemPage { // 定义一个组件类PoemPage
 }
 
 
-@Builder
-export function PoemPageBuilder() {
-  PoemPage()
-}
-
-const builderName = BuilderNameConstants.CULTURE_POEM
-if (!RouterModule.getBuilder(builderName)) {
-  const builder: WrappedBuilder<[object]> = wrapBuilder(PoemPageBuilder)
-  RouterModule.registerBuilder(builderName, builder)
-}

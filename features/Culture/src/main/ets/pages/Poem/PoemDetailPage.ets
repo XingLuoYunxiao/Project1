@@ -1,11 +1,13 @@
-import { BuilderNameConstants, RouterModule } from "routermodule"
+import { BuilderNameConstants, RouterModule, RouterNameConstants } from "routermodule"
 import { CloudPoemService } from "../../service/CloudPoemService"
 import { addExp } from "../../common/util/addExp"
 import { Poem } from "../../model/Poem"
 import { Writer } from "../../model/Writer"
 import { CommonConstants } from '../../common/constants/commonConstants';
-import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
-import { talk } from "./talk"
+import { httpToAI } from "../../common/util/httpUtil"
+import { promptMap, PromptWords } from "../../model/promptWords"
+import { lvMarkdownIn } from "@luvi/lv-markdown-in"
+import { Header } from "../../view/poemDetail/Header"
 
 let addEXPId: number = 0
 
@@ -14,6 +16,14 @@ export struct PoemDetailPage {
   @Prop poem: Poem = new Poem()
   @State value: object = new Object()
   @State writer: Writer = new Writer()
+  @State AITranslation: string = ''
+  @State AIShangxi: string = ''
+  @State isGetAITranslation: boolean = false
+  @State isGetAIAIShangxi: boolean = false
+  //
+  @State showTranslation: boolean = true
+  @State showShangxi: boolean = true
+  @State showRemark: boolean = true
 
   async aboutToAppear(): Promise<void> {
     this.poem = JSON.parse(JSON.stringify(this.value))
@@ -40,39 +50,24 @@ export struct PoemDetailPage {
       Scroll() {
         Column({ space: 12 }) {
 
-          Row() {
-            Image($r('app.media.ic_back'))
-              .width(40)
-              .onClick(() => {
 
-              })
-
-            talk({ poem: this.poem })
-
-          }
-          .margin({ top: 50 })
-          .justifyContent(FlexAlign.SpaceBetween)
-          .width('100%')
-
-
-          Row({ space: 10 }) {
-            if (this.poem && this.poem.writer) {
-              Text(this.poem.writer)
-            }
-            if (this.poem && this.poem.dynasty) {
-              Text(this.poem.dynasty)
-            }
-          }
-          .width('100%')
-          .justifyContent(FlexAlign.Start)
+          Header({
+            poem: this.poem,
+            showTranslation: this.showTranslation,
+            showShangxi: this.showShangxi,
+            showRemark: this.showRemark
+          })
 
           //诗人简介
-
           if (this.writer) {
-            Text('诗人简介')
-              .fontSize($r('app.float.title_text_size'))
-              .fontWeight(FontWeight.Medium)
-              .margin({ top: 20 })
+            Row() {
+              Text('诗人简介')
+                .fontSize($r('app.float.title_text_size'))
+                .fontWeight(FontWeight.Medium)
+                .margin({ top: 20 })
+            }.width('100%')
+            .justifyContent(FlexAlign.Start)
+
             Text(this.writer.simpleIntro)
           }
           //正文
@@ -87,35 +82,87 @@ export struct PoemDetailPage {
             Text(this.poem.content)
           }
 
-          //注解
-          if (this.poem && this.poem.remark) {
-            Text('注解')
-              .fontSize($r('app.float.title_text_size'))
-              .fontWeight(FontWeight.Medium)
-              .margin({ top: 20 })
-              .align(Alignment.Start)
-            Text(this.poem.remark)
+          if (this.showRemark) {
+            //注解
+            if (this.poem && this.poem.remark) {
+              Row() {
+                Text('注解')
+                  .fontSize($r('app.float.title_text_size'))
+                  .fontWeight(FontWeight.Medium)
+                  .margin({ top: 20 })
+                  .align(Alignment.Start)
+              }.width('100%')
+              .justifyContent(FlexAlign.Start)
+
+              Text(this.poem.remark)
+            }
+          }
+
+          if (this.showTranslation) {
+            //译文
+            if (this.poem && this.poem.translation) {
+              Row() {
+                Text('译文')
+                  .fontSize($r('app.float.title_text_size'))
+                  .fontWeight(FontWeight.Medium)
+                  .margin({ top: 20 })
+              }
+              .width('100%')
+              .justifyContent(FlexAlign.Start)
+
+              Text(this.poem.translation)
+            } else {
+              Text('获取AI译文')
+                .fontSize($r('app.float.title_text_size'))
+                .fontWeight(FontWeight.Medium)
+                .margin({ top: 20 })
+                .onClick(() => {
+                  if (!this.isGetAITranslation) {
+                    this.isGetAITranslation = true
+                    httpToAI.askAI(this.poem.content, promptMap.get('译') as PromptWords, (chunk: string) => {
+                      this.AITranslation += chunk
+                    })
+                  }
+
+                }
+                )
+
+              lvMarkdownIn({ text: this.AITranslation })
+            }
           }
 
 
-          if (this.poem && this.poem.translation) {
-            Text('译文')
-              .fontSize($r('app.float.title_text_size'))
-              .fontWeight(FontWeight.Medium)
-              .margin({ top: 20 })
-            Text(this.poem.translation)
+          //赏析
+          if (this.showShangxi) {
+            if (this.poem && this.poem.shangxi) {
+              Row() {
+                Text('赏析')
+                  .fontSize($r('app.float.title_text_size'))
+                  .fontWeight(FontWeight.Medium)
+                  .margin({ top: 20 })
+              }
+              .width('100%')
+              .justifyContent(FlexAlign.Start)
+
+              Text(this.poem.shangxi)
+                .margin({ bottom: 10 })
+            } else {
+              Text('获取AI赏析')
+                .fontSize($r('app.float.title_text_size'))
+                .fontWeight(FontWeight.Medium)
+                .margin({ top: 20 })
+                .onClick(() => {
+                  if (!this.isGetAIAIShangxi) {
+                    this.isGetAIAIShangxi = true
+                    httpToAI.askAI(this.poem.content, promptMap.get('赏') as PromptWords, (chunk: string) => {
+                      this.AIShangxi += chunk
+                    })
+                  }
+                }
+                )
+              lvMarkdownIn({ text: this.AIShangxi })
+            }
           }
-
-
-          if (this.poem && this.poem.shangxi) {
-            Text('赏析')
-              .fontSize($r('app.float.title_text_size'))
-              .fontWeight(FontWeight.Medium)
-              .margin({ top: 20 })
-            Text(this.poem.shangxi)
-              .margin({ bottom: 10 })
-          }
-
 
         }
         .alignItems(HorizontalAlign.Center)
@@ -125,6 +172,7 @@ export struct PoemDetailPage {
       }
 
     }
+
     .hideTitleBar(true)
 
   }

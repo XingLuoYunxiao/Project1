@@ -72,10 +72,10 @@ export const gameList: category[] = [
     path: BuilderNameConstants.CULTURE_IdiomSolitaire,
     ic: $r("app.media.ic_chengyujielongPaage")
   },
-// {
-//   name: '古风绘意',
-//   path: BuilderNameConstants.CULTURE_AIPainting
-// }
+  {
+    name: '古风绘意',
+    path: BuilderNameConstants.CULTURE_AIPainting
+  }
 ]
 
 
