@@ -32,8 +32,7 @@ export class BuilderNameConstants {
   static readonly LOGIN_SETTINGPAGE: string = 'login_SettingPage';
   //Share
   static readonly SHARE_PUBLISHPAGE: string = 'share_PublishPage';
-
-  static readonly SHARE_DETAILSHPAGE:string='share_ShareDetail';
+  static readonly SHARE_DETAILSHPAGE: string = 'share_ShareDetail';
   //Travel
   // Feature: Travel中的AI导游页面
   static readonly TRAVEL_FAMOUSPLACEPAGE: string = 'travel_FamousPlacePage';
@@ -72,4 +71,5 @@ export class BuilderNameConstants {
 // Indicates the key of the routerMap table in the RouterModule.
 export class RouterNameConstants {
   static readonly ENTRY_HAP: string = 'AppPath_Router';
+  static readonly CULTURE_POEMLIST: string = 'poempage_split_nav';
 }

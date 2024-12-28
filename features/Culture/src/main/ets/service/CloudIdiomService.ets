@@ -2,7 +2,7 @@ import { cloudDatabase } from "@kit.CloudFoundationKit";
 import { Idiom } from "../model/Idiom/Idiom";
 import { BusinessError } from "@kit.BasicServicesKit";
 import { realIdiom } from "../model/Idiom/RealIdiom";
-import Logger from "utils/src/main/ets/utils/Logger"
+import { CommonConstants } from '../common/constants/commonConstants';
 
 // 从云数据库获取成语
 export class CloudIdiomService {
@@ -40,7 +40,8 @@ export class CloudIdiomService {
     let condition = new cloudDatabase.DatabaseQuery(Idiom)
 
     try {
-      condition.greaterThan('id', id).limit(40)
+
+      condition.greaterThan('id', id).limit(CommonConstants.fetchNumber)
 
       return new Promise((resolve, reject) => {
         databaseZone.query(condition, (err: BusinessError, Idiom: Idiom[]) => {

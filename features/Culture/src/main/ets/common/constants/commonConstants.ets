@@ -12,6 +12,7 @@ export class CommonConstants {
   static readonly expTypeKnowledge: string = 'knowledge'
   static readonly expTypeCulture: string = 'culture'
   static readonly expTypeGame: string = 'game'
+  static readonly fetchNumber: number = 40
 }
 
 

@@ -18,6 +18,7 @@ const TAG: string = 'PoemPage'
 export struct PoemSplitPage { // 定义一个组件类PoemPage
   @State PoemDataModel: PoemModel = new PoemModel(); // 诗歌数据实例
   @Consume('culturePathStack') culturePathStack: NavPathStack; // 导入导航路径栈，用于页面导航
+  @Consume('PoemListStack') PoemListStack: NavPathStack
   @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
   @State poems: Poem[] = []; // 诗歌数据的状态管理
   @State pageNumber: number = 1; // 分页页码
@@ -27,6 +28,7 @@ export struct PoemSplitPage { // 定义一个组件类PoemPage
   @State curDynastyIndex: number | number[] = 0; // 当前筛选的朝代
   @State cacheList: string[] = []
   @State IsTypeExpand: boolean = true
+  @State selectId: number = 1
   @State dynastyList: string[] = [
     "全部", "先秦", "两汉", "隋代", "唐代", "宋代", "明代", "清代"
   ];
@@ -41,6 +43,11 @@ export struct PoemSplitPage { // 定义一个组件类PoemPage
       poets: this.curPoets
     }),
   })
+
+  @Builder
+  routerMap(builderName: string, param?: object) {
+    RouterModule.getBuilder(builderName).builder(param);
+  };
 
   async changeType() {
     this.pageNumber = 1
@@ -63,10 +70,26 @@ export struct PoemSplitPage { // 定义一个组件类PoemPage
 
   // 生命周期方法：组件加载时调用，获取初始数据
   async aboutToAppear(): Promise<void> {
-    this.fetchData()
+    await this.fetchData()
     addEXPId = setTimeout(() => {
       addExp(CommonConstants.expTypeKnowledge, 5)
     }, 10000)
+    this.jumpDetails(this.PoemDataModel.data[0])
+  }
+
+  jumpDetails(poem: Poem) {
+    if (this.currentBreakpoint === BreakpointTypeEnum.LG) {
+      if (poem.id === this.selectId) {
+        return
+      }
+      RouterModule.replacePath(RouterNameConstants.CULTURE_POEMLIST, BuilderNameConstants.CULTURE_POEMDETAIL,
+        new Object(poem))
+
+    } else {
+      buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_POEMDETAIL,
+        new Object(poem))
+    }
+    this.selectId = poem.id
   }
 
   async fetchData() {
@@ -85,7 +108,7 @@ export struct PoemSplitPage { // 定义一个组件类PoemPage
 
   // 构建组件UI结构
   build() {
-    NavDestination() {
+    Navigation(this.PoemListStack) {
       Search({ value: this.changeValue, placeholder: '搜你想搜的诗词吧' })
         .onClick(() => {
           buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_SearchPage)
@@ -132,12 +155,17 @@ export struct PoemSplitPage { // 定义一个组件类PoemPage
 
 
       Column() {
-
         // 展示数据的列表组件
         List({ space: 10 }) {
           // 使用LazyForEach动态加载诗歌数据
           LazyForEach(this.PoemDataModel, (item: Poem) => {
-            this.PoemItem(item); // 渲染单个诗歌项
+            ListItem() {
+              this.PoemItem(item);
+            }
+            .onClick(() => {
+              this.jumpDetails(item)
+            })
+
           }, (item: Poem) => item.id.toString()) // 以numId为唯一标识
         }
         .margin({ top: 45 })
@@ -164,6 +192,10 @@ export struct PoemSplitPage { // 定义一个组件类PoemPage
       .width('100%')
 
     }
+    .hideTitleBar(true)
+    .navDestination(this.routerMap)
+    .mode(this.currentBreakpoint === BreakpointTypeEnum.LG ? NavigationMode.Split : NavigationMode.Stack)
+    .navBarWidth(450)
   }
 
   // 渲染单个诗歌项
@@ -185,10 +217,7 @@ export struct PoemSplitPage { // 定义一个组件类PoemPage
     .padding(20) // 内边距
     .justifyContent(FlexAlign.Center) // 垂直居中
     .width('100%') // 宽度
-    .onClick(() => { // 点击事件
-      buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_POEMDETAIL,
-        new Object(poem))
-    });
+
   }
 
   aboutToDisappear(): void {

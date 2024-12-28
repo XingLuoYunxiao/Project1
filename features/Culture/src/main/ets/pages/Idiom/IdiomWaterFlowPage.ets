@@ -5,6 +5,7 @@ import { realIdiomDataModel } from "../../model/Idiom/DataModel";
 
 import { realIdiom } from "../../model/Idiom/RealIdiom";
 import { CloudIdiomService } from "../../service/CloudIdiomService";
+import { CommonConstants } from '../../common/constants/commonConstants';
 
 @Component
 export struct IdiomWaterFlowPage {
@@ -13,15 +14,26 @@ export struct IdiomWaterFlowPage {
   @State maxSize: number = 160
   @State pageNumber: number = 1
   @State startId: number = 0
+  @State count: number = 0
   scroller: Scroller = new Scroller()
   @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
+  private heightMap: Map<number, number> = new Map<number, number>()
 
   // 计算FlowItem宽/高
   getSize() {
     let ret = Math.floor(Math.random() * this.maxSize)
     return (ret > this.minSize ? ret : this.minSize)
+  }
+
+  getHeight(id: number): number {
+    if (!this.heightMap.has(id)) {
+      // 如果没有为给定ID设置高度，则创建一个新的随机高度并保存。
+      const height = this.getSize();
+      this.heightMap.set(id, height);
+    }
+    return this.heightMap.get(id) as number;
   }
 
   // 设置FlowItem宽/高数组
@@ -40,8 +52,8 @@ export struct IdiomWaterFlowPage {
 
   async fetchData() {
     let realIdiomData: realIdiom[] | undefined =
-      await CloudIdiomService.fetchIdiomsAfterId(this.startId) //获取startId 后面20条数据
-    this.startId += 40
+      await CloudIdiomService.fetchIdiomsAfterId(this.startId) //获取startId 后面40条数据
+    this.startId += CommonConstants.fetchNumber
     if (realIdiomData) {
       realIdiomData.forEach((r) => {
         this.data.pushData(r)
@@ -65,14 +77,20 @@ export struct IdiomWaterFlowPage {
               }
               .onAppear(() => {
                 // 即将触底时提前增加数据
-                this.fetchData()
+
+                this.count++
+                if (this.count === CommonConstants.fetchNumber - 3) {
+                  this.fetchData()
+                  this.count = 0
+                }
               })
+
               .onClick(() => {
                 buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_IDIOM,
                   new Object(item))
               })
               .backgroundColor($r('app.color.main_background'))
-              .height(this.itemHeightArray[index % 100])
+              .height(this.getHeight(item.id))
               .margin(5)
               .width('100%')
             }, (item: realIdiom) => item.id.toString())
@@ -89,9 +107,7 @@ export struct IdiomWaterFlowPage {
             LazyForEach(this.data, (item: realIdiom, index: number) => {
               FlowItem() {
                 Column() {
-
-                  Text(item.word)
-                    .fontSize(16)
+                  this.itemBuilder(item.word)
                 }
 
               }
@@ -109,7 +125,7 @@ export struct IdiomWaterFlowPage {
               .width('100%')
             }, (item: realIdiom) => item.id.toString())
           }
-          .cachedCount(40)
+          .cachedCount(80)
           .columnsTemplate("1fr 1fr 1fr 1fr 1fr")
           .columnsGap(10)
           .rowsGap(5)
@@ -121,6 +137,12 @@ export struct IdiomWaterFlowPage {
       }
     }
 
+  }
+
+  @Builder
+  itemBuilder(word: string) {
+    Text(word)
+      .fontSize(16)
   }
 }
 

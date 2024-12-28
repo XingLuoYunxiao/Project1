@@ -81,6 +81,7 @@ export struct IdiomSolitairePage {
 
   build() {
     NavDestination() {
+      
       Stack() {
         Image($r('app.media.game_Idiom'))
           .objectFit(ImageFit.Cover)
