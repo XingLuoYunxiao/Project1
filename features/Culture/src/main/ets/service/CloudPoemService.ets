@@ -389,16 +389,20 @@ export class CloudPoemService {
         databaseZone.query(condition, (err: BusinessError, poemArray: Poem[]) => {
           if (err) {
             console.error(`查询失败，错误代码: ${err.code}, 错误信息: ${err.message}`);
-            reject(false);
+            reject(-1); // 使用 -1 表示查询失败
           } else {
             console.info(`查询成功，结果: ${JSON.stringify(poemArray)}`);
-            resolve(poemArray[0].id);
+            if (poemArray.length > 0) {
+              resolve(poemArray[0].id);
+            } else {
+              resolve(-1); // 如果诗句不在数据库中，返回 -1
+            }
           }
         });
       });
     } catch (err) {
       console.error(`捕获到错误: ${err.message}`);
-      return -1; // 确保函数返回 false
+      return -1; // 确保函数返回 -1 表示发生错误
     }
   }
 
@@ -407,8 +411,8 @@ export class CloudPoemService {
     let databaseZone = cloudDatabase.zone('Travel');
     let condition = new cloudDatabase.DatabaseQuery(Poem);
 
-    // 每次查询 10 条记录
-    const limit = 12;
+    // 每次查询 15 条记录
+    const limit = 15;
     if (label === '按标题') {
       condition.contains('title', searchTerm).limit(limit)
     } else if (label === '按诗人') {

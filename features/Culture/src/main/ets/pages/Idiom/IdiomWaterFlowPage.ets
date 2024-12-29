@@ -7,6 +7,8 @@ import { realIdiom } from "../../model/Idiom/RealIdiom";
 import { CloudIdiomService } from "../../service/CloudIdiomService";
 import { CommonConstants } from '../../common/constants/commonConstants';
 
+let heightMap: Map<number, number> = new Map<number, number>()
+
 @Component
 export struct IdiomWaterFlowPage {
   @State data: realIdiomDataModel = new realIdiomDataModel()
@@ -19,7 +21,6 @@ export struct IdiomWaterFlowPage {
   @StorageLink('currentBreakpoint') currentBreakpoint: string = BreakpointTypeEnum.MD;
   private itemWidthArray: number[] = []
   private itemHeightArray: number[] = []
-  private heightMap: Map<number, number> = new Map<number, number>()
 
   // 计算FlowItem宽/高
   getSize() {
@@ -28,12 +29,12 @@ export struct IdiomWaterFlowPage {
   }
 
   getHeight(id: number): number {
-    if (!this.heightMap.has(id)) {
+    if (!heightMap.has(id)) {
       // 如果没有为给定ID设置高度，则创建一个新的随机高度并保存。
       const height = this.getSize();
-      this.heightMap.set(id, height);
+      heightMap.set(id, height);
     }
-    return this.heightMap.get(id) as number;
+    return heightMap.get(id) as number;
   }
 
   // 设置FlowItem宽/高数组
@@ -120,7 +121,7 @@ export struct IdiomWaterFlowPage {
                   new Object(item))
               })
               .backgroundColor($r('app.color.main_background'))
-              .height(this.itemHeightArray[index % 100])
+              .height(this.getHeight(item.id))
               .margin(5)
               .width('100%')
             }, (item: realIdiom) => item.id.toString())
