@@ -10,6 +10,7 @@ import { addExp } from "../../common/util/addExp";
 import { CommonConstants } from '../../common/constants/commonConstants';
 import { RandomUtil } from "utils/src/main/ets/puraUtils/RandomUtil";
 import { BreakpointTypeEnum } from "utils";
+import { ansComponent } from "../../view/game/FlowerComponent/ansComponent";
 
 const TAG: string = ' FlyingFlowerOrderPage ';
 let MessageDataModel: ChatMsgModel = new ChatMsgModel();
@@ -33,8 +34,7 @@ export struct FlyingFlowerOrderPage {
   @State isCountDown: boolean = true;
   textTimerController: TextTimerController = new TextTimerController();
   //
-  @State PoemList: Poem[] = []; // 存储诗词的的列表
-  @State commonWord: string = '月'; // 当前每句诗词必须包含的汉字
+  @State commonWord: string = '月'; // 令词，当前每句诗词必须包含的汉字
   @State poemMap: Map<string, Poem> = new Map<string, Poem>()
   @State StartId: number = 0
   @State gameOver: boolean = false
@@ -53,22 +53,12 @@ export struct FlyingFlowerOrderPage {
       addExp(CommonConstants.expTypeGame, 5)
     }, 10000)
 
-
-    if (this.PoemList.length === 0) {
+    if (this.ansArr.length === 0) {
       this.systemAddSentence()
 
     } else {
       LogUtil.debug('this.PoemList.length !== 0')
     }
-  }
-
-  aboutToDisappear(): void {
-    this.PoemList = []
-    this.poemMap.clear()
-    MessageDataModel.data = []
-    MessageDataModel.notifyDataReload()
-    //退出页面，取消对经验值的添加
-    clearTimeout(addEXPId)
   }
 
   async systemAddSentence() {
@@ -77,7 +67,7 @@ export struct FlyingFlowerOrderPage {
       let res: string | undefined = CloudPoemService.extractSentence(tempPoem, this.commonWord)
       if (res) {
         if (!this.ansArr.includes(res)) {
-          this.PoemList.push(tempPoem)
+          this.poemMap.set(res, tempPoem)
           this.ansArr.push(res)
           MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, res));
 
@@ -93,7 +83,6 @@ export struct FlyingFlowerOrderPage {
   build() {
     NavDestination() {
       Flex({ direction: FlexDirection.Row, wrap: FlexWrap.NoWrap }) {
-
         Stack() {
           Image($r('app.media.game_flyFlower'))
             .objectFit(ImageFit.Cover)
@@ -162,7 +151,7 @@ export struct FlyingFlowerOrderPage {
                   CloudPoemService.isPoemSentence(tempText).then(async isPoSen => {
                     if (isPoSen > 0) { //是诗词
                       if (!this.ansArr.includes(tempText)) {
-                        this.ansArr.push(tempText)
+                        // this.ansArr.push(tempText)
                         let poem: Poem | undefined = await CloudPoemService.fetchDataById(isPoSen)
                         if (poem) {
                           this.poemMap.set(tempText, poem)
@@ -194,40 +183,28 @@ export struct FlyingFlowerOrderPage {
         .visibility((this.gameOver === true && this.currentBreakpoint !== BreakpointTypeEnum.LG) ?
         Visibility.None : Visibility.Visible)
 
-        // if (this.currentBreakpoint === BreakpointTypeEnum.LG || this.gameOver === true) {
-        Column() {
-          if (this.gameOver) {
-            Text('游戏结束，你本次共接上了' + this.count + '句')
-              .fontSize($r('app.float.normal_text_size1'))
-              .margin(40)
-          }
-          ForEach(this.ansArr, (item: string) => {
-            Text(item)
-              .fontSize($r('app.float.normal_text_size1'))
-            Divider()
-              .width('80%')
-              .margin(5)
-          })
-        }
-        .visibility((this.currentBreakpoint === BreakpointTypeEnum.LG || this.gameOver === true) ?
-        Visibility.Visible : Visibility.None)
-        .width('100%')
-        .margin({ top: 50 })
-        .animation({
-          duration: 2000,
-          curve: Curve.EaseOut,
-          iterations: 1,
-          playMode: PlayMode.Normal
+        ansComponent({
+          gameOver: this.gameOver,
+          count: this.count,
+          ansArr: this.ansArr,
+          commonWord: this.commonWord,
+          poemMap: this.poemMap
         })
 
-
-        .justifyContent(FlexAlign.SpaceAround)
-        .alignItems(HorizontalAlign.Center)
       }
 
     }
     .margin({ top: $r('app.float.header_height_page') })
     .hideTitleBar(true)
+  }
+
+  aboutToDisappear(): void {
+    this.ansArr = []
+    this.poemMap.clear()
+    MessageDataModel.data = []
+    MessageDataModel.notifyDataReload()
+    //退出页面，取消对经验值的添加
+    clearTimeout(addEXPId)
   }
 }
 

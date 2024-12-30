@@ -1,6 +1,6 @@
 import { RouterModule, RouterNameConstants } from "routermodule"
 import { Poem } from "../../model/Poem"
-import { talk } from "../../pages/Poem/talk"
+import { talk } from "../poem/talk"
 
 @Component
 export struct Header {

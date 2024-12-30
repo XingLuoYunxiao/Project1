@@ -1,10 +1,8 @@
-import map from "@hms.core.map.map";
-
 export class PromptWords {
-  text: string = '';
+  text: string = ''
   fulltext: string = ''
-  prompt: string = '';
-  description: string = '';
+  prompt: string = ''
+  description: string = ''
 }
 
 const PromptList: PromptWords[] = [
@@ -26,9 +24,71 @@ const PromptList: PromptWords[] = [
     fulltext: '赏析',
     prompt: "你是一个中华文化专家，对于诗歌典籍有着极高的理解，接下你要赏析我给你的诗词，从创作背景（如果有）到作品的艺术风格，表达情感等多个角度",
     description: "赏析诗词"
+  },
+  {
+    text: '意',
+    fulltext: '意境解析',
+    prompt: "你是一个诗词鉴赏专家，请帮助我分析这首诗歌的意境和情感表达，结合诗词的语言和表现手法，解释诗人所要表达的思想和情感。",
+    description: '分析诗歌的意境与情感表达'
+  },
+  {
+    text: '写',
+    fulltext: '写作风格分析',
+    prompt: "你是一个诗词专家，请分析这首诗歌的写作风格，包括但不限于修辞手法、语言风格、节奏韵律等方面的特点，并解释这些特点是如何帮助表达诗人的主题和情感的。",
+    description: '分析诗歌的写作风格及其表达'
+  }
+]
+
+const AIImagePromptList: PromptWords[] = [
+  {
+    "text": "写意画",
+    "fulltext": "写意画",
+    "prompt": "运用简练的笔墨表达事物的精神实质，不追求具体的形状，强调画家个人情感和意境的表现。",
+    "description": "这是画写意画的提示词"
+  },
+  {
+    "text": "工笔画",
+    "fulltext": "工笔画",
+    "prompt": "运用精细的笔触和鲜艳色彩，注重细节刻画，追求形似和神似的统一。",
+    "description": "这是画工笔画的提示词"
+  },
+  {
+    "text": "水墨画",
+    "fulltext": "水墨画",
+    "prompt": "运用淡墨和浓墨对比，展现山水层次与意境，强调墨色变化和水分运用。",
+    "description": "这是画水墨画的提示词"
+  },
+  {
+    "text": "青绿山水",
+    "fulltext": "青绿山水",
+    "prompt": "运用石青、石绿颜料绘制，突出装饰性和华丽感，表现壮丽自然景观。",
+    "description": "这是画青绿山水的提示词"
+  },
+  {
+    "text": "白描画",
+    "fulltext": "白描画",
+    "prompt": "运用流畅的墨线勾勒物象轮廓，展现物体的形态和质感。",
+    "description": "这是画白描的提示词"
+  },
+  {
+    "text": "没骨画",
+    "fulltext": "没骨画",
+    "prompt": "运用直接彩色渲染的方法，创造出色彩柔和且画面朦胧美的效果。",
+    "description": "这是画没骨画的提示词"
+  },
+
+  {
+    "text": "文人画",
+    "fulltext": "文人画",
+    "prompt": "运用融合诗歌、书法和绘画的艺术形式，展现文化内涵和个人修养。",
+    "description": "这是画文人画的提示词"
   }
 ];
 
 export const promptMap: Map<string, PromptWords> = new Map<string, PromptWords>(
   PromptList.map(prompt => [prompt.text, prompt])
-);
+)
+
+export const AIPaintingPromptMap: Map<string, PromptWords> = new Map<string, PromptWords>(
+  AIImagePromptList.map(prompt => [prompt.text, prompt])
+)

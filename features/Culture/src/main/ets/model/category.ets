@@ -74,7 +74,8 @@ export const gameList: category[] = [
   },
   {
     name: '古风绘意',
-    path: BuilderNameConstants.CULTURE_AIPainting
+    path: BuilderNameConstants.CULTURE_AIPainting,
+    ic: $r("app.media.ic_AIPainting")
   }
 ]
 

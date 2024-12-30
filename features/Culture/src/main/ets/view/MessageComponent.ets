@@ -1,7 +1,6 @@
 import { CommonConstants } from "../common/constants/commonConstants"
 import { ChatMessageType, ROLE } from "../model/ChatMassageModel"
 
-
 @Component
 export struct MessageComponent {
   @Prop role: ROLE = ROLE.system
@@ -12,7 +11,6 @@ export struct MessageComponent {
 
   build() {
     // 左边是用户头像，右边是用户姓名和信息
-
     if (this.role != ROLE.user) {
       Row() {
         //用户头像
@@ -36,13 +34,16 @@ export struct MessageComponent {
             .msg()
         } else {
           Image(this.msg)
+            .alt($r('app.media.alt'))
+            .width(400)
         }
 
       }
       .justifyContent(FlexAlign.Start)
       .width('100%')
 
-    } else {
+    }
+    else {
       Row() {
         //消息
         if (this.msgType === ChatMessageType.Text) {
@@ -50,8 +51,9 @@ export struct MessageComponent {
             .borderRadius({ topRight: 20, bottomLeft: 20, bottomRight: 20 })
             .msg()
         } else {
-          Image(this.ImageURL)
-
+          Image(this.msg)
+            .alt($r('app.media.alt'))
+            .width(400)
         }
 
 
