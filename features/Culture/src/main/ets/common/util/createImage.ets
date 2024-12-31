@@ -13,7 +13,7 @@ interface ApiResponse {
 }
 
 export class CreateImage {
-  static ZhiPuImage(prompt: string): Promise<string> {
+  static async ZhiPuImage(prompt: string): Promise<string> {
     return new Promise((resolve, reject) => {
       let httpRequest = http.createHttp();
 

@@ -70,14 +70,12 @@ export struct FlyingFlowerOrderPage {
           this.poemMap.set(res, tempPoem)
           this.ansArr.push(res)
           MessageDataModel.pushData(new ChatMsg(ROLE.IdiomSystem, res));
-
           this.StartId = tempPoem.id
         }
       }
     }
     this.textTimerController.reset()
     this.textTimerController.start()
-
   }
 
   build() {
@@ -91,7 +89,6 @@ export struct FlyingFlowerOrderPage {
             Column() {
               // 头部
               Row() {
-
                 Text('游戏规则')
                   .fontSize($r('app.float.title_text_size'))
                   .onClick(() => {
@@ -111,7 +108,6 @@ export struct FlyingFlowerOrderPage {
                       this.gameOver = true
                     }
                   })
-
               }
               .height(50)
               .width('100%')
@@ -122,7 +118,7 @@ export struct FlyingFlowerOrderPage {
               List({ space: 10 }) {
                 LazyForEach(MessageDataModel, (item: ChatMsg) => {
                   ListItem() {
-                    MessageComponent({ role: item.role, roleHeadImg: item.roleHeadImg, msg: item.message });
+                    MessageComponent({ role: item.role, roleHeadImg: item.roleHeadImg, content: item.content });
                   }
                 });
               }

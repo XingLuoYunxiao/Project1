@@ -6,6 +6,7 @@ import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil";
 import { ChatMsgModel } from "../../viewmodel/MessageViewModel";
 import { CreateImage } from "../../common/util/createImage";
 import { AIPaintingPromptMap } from "../../model/promptWords";
+import { async } from "@hw-agconnect/cloud/src/main/ets/storage/upload/task";
 
 
 @Component
@@ -26,7 +27,7 @@ export struct AIPaintingPage {
     let s = AIPaintingPromptMap.get(this.searchLabel)
     let url: string = await CreateImage.ZhiPuImage("“请创作一幅" + this.searchLabel +
       "风格的画作，描绘" + view + ",运用" + AIPaintingPromptMap.get(this.searchLabel))
-    this.MessageDataModel.pushData(new ChatMsg(ROLE.system, url, ChatMessageType.Image)); //输入到聊天界面
+    this.MessageDataModel.pushData(new ChatMsg(ROLE.system, url as string, ChatMessageType.Image)); //输入到聊天界面
     this.scroller.scrollBy(0, 400)
   }
 
@@ -42,7 +43,7 @@ export struct AIPaintingPage {
                 MessageComponent({
                   role: item.role,
                   roleHeadImg: item.roleHeadImg,
-                  msg: item.message,
+                  content: item.content,
                   msgType: item.messageType
                 })
               }

@@ -81,7 +81,7 @@ export struct IdiomSolitairePage {
 
   build() {
     NavDestination() {
-      
+
       Stack() {
         Image($r('app.media.game_Idiom'))
           .objectFit(ImageFit.Cover)
@@ -121,7 +121,7 @@ export struct IdiomSolitairePage {
             List({ space: 10 }) {
               LazyForEach(MessageDataModel, (item: ChatMsg) => {
                 ListItem() {
-                  MessageComponent({ role: item.role, roleHeadImg: item.roleHeadImg, msg: item.message });
+                  MessageComponent({ role: item.role, roleHeadImg: item.roleHeadImg, content: item.content });
                 }
               });
             }

@@ -28,4 +28,15 @@ export const axiosInstance = axios.create({
   },
 });
 
+// 创建 axios 实例
+export const TalkAI_axiosInstance = axios.create({
+  baseURL: 'https://api.example.com', // 默认的基本 URL
+  timeout: 50000, // 超时时间
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer ' + CommonConstants.AIPassword, // 替换为实际的 token
+  },
+
+});
+
 

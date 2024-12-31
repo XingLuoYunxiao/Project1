@@ -11,7 +11,7 @@ export struct chatComponent {
       List({ space: 10 }) {
         LazyForEach(this.MessageDataModel, (item: ChatMsg) => {
           ListItem() {
-            MessageComponent({ role: item.role, roleHeadImg: item.roleHeadImg, msg: item.message });
+            MessageComponent({ role: item.role, roleHeadImg: item.roleHeadImg, content: item.content });
           }
         });
       }

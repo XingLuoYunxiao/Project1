@@ -1,3 +1,4 @@
+import { async } from "@hw-agconnect/cloud/src/main/ets/storage/upload/task";
 import { AxiosError, AxiosResponse } from "@ohos/axios";
 import { CommonConstants } from "../common/constants/commonConstants";
 import { apiRequestData, ApiResponse, axiosInstance } from "./api";
@@ -24,3 +25,4 @@ export const ZhiPuImage2 = async (prompt: string): Promise<string> => {
     throw new Error('获取图片失败: ' + axiosError.message); // 抛出错误
   }
 };
+
