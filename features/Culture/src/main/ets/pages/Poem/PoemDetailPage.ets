@@ -126,8 +126,13 @@ export struct PoemDetailPage {
 
                 }
                 )
+              if (this.isGetAITranslation === true && this.AITranslation === '') {
+                LoadingProgress()
+                  .width(50)
+              } else {
+                lvMarkdownIn({ text: this.AITranslation })
+              }
 
-              lvMarkdownIn({ text: this.AITranslation })
             }
           }
 
@@ -152,7 +157,7 @@ export struct PoemDetailPage {
                 .fontWeight(FontWeight.Medium)
                 .margin({ top: 20 })
                 .onClick(() => {
-                  if (!this.isGetAIAIShangxi) {
+                  if (this.isGetAIAIShangxi === false) {
                     this.isGetAIAIShangxi = true
                     httpToAI.askAI(this.poem.content, promptMap.get('赏') as PromptWords, (chunk: string) => {
                       this.AIShangxi += chunk
@@ -160,6 +165,12 @@ export struct PoemDetailPage {
                   }
                 }
                 )
+              if (this.isGetAIAIShangxi === true) {
+                if (this.AIShangxi === '') {
+                  LoadingProgress()
+                    .width(50)
+                }
+              }
               lvMarkdownIn({ text: this.AIShangxi })
             }
           }

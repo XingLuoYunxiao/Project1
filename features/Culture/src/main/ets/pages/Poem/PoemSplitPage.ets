@@ -187,8 +187,8 @@ export struct PoemSplitPage { // 定义一个组件类PoemPage
           console.info('last' + lastIndex)
           console.info('center' + centerIndex)
         })
-
       }
+
       .width('100%')
 
     }

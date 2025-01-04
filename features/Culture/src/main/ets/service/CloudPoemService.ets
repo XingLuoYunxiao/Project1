@@ -177,7 +177,7 @@ export class CloudPoemService {
   }
 
   //诗人name和poem的title获取poem数据
-  public static async fetchDataByWriterAndTitle(writer: string, title: string): Promise<Poem[] | undefined> {
+  public static async fetchDataByWriterAndTitle(writer: string, title: string): Promise<Poem | undefined> {
     try {
       let databaseZone = cloudDatabase.zone('Travel');
       let condition = new cloudDatabase.DatabaseQuery(Poem);
@@ -194,7 +194,7 @@ export class CloudPoemService {
             reject(err);
           } else {
             console.info(`查询成功，结果: ${JSON.stringify(poemArray)}`);
-            resolve(poemArray);
+            resolve(poemArray[0]);
           }
         });
       });

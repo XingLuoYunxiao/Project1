@@ -4,7 +4,7 @@ import { Poem } from '../../model/Poem'; // 导入诗歌模型类
 import { CloudPoemService } from "../../service/CloudPoemService";
 import { Sentence } from '../../model/Sentence';
 import { addExp } from '../../common/util/addExp';
-import { BuilderNameConstants, RouterModule } from 'routermodule';
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
 import { CommonConstants } from '../../common/constants/commonConstants';
 import { BreakpointTypeEnum } from 'utils';
 
@@ -55,39 +55,38 @@ export struct SentencePage { // 定义一个组件类PoemPage
             },
               (item: Sentence) => item.id.toString()) // 以numId为唯一标识
           }
-          .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
-          .cachedCount(15) // 缓存项数
-          .id('poemList') // 列表ID
-          .onReachEnd(async () => { // 滑动到底部时触发
+          .edgeEffect(EdgeEffect.Spring)
+          .cachedCount(15)
+          .id('poemList')
+          .onReachEnd(async () => {
             this.pageNumber++; // 页码增加
             let res: Sentence[] | undefined =
               await CloudPoemService.fetchSentence(this.pageNumber);
             if (res) {
               console.log('滑倒底部触发更新');
               res.forEach(sentence => {
-                SentenceData.pushData(sentence); // 添加数据
+                SentenceData.pushData(sentence);
               });
-              SentenceData.notifyDataReload(); // 通知数据更新
+              SentenceData.notifyDataReload();
             }
           });
         } else {
 
           Grid() {
-            // 使用LazyForEach动态加载诗歌数据
             LazyForEach(SentenceData, (item: Sentence, index: number) => {
               GridItem() {
-                this.SentenceItem(item, true); // 渲染单个诗歌项
+                this.SentenceItem(item, true);
               }
 
             },
-              (item: Sentence) => item.id.toString()) // 以numId为唯一标识
+              (item: Sentence) => item.id.toString())
           }
           .rowsGap(8)
           .columnsTemplate('1fr 1fr')
-          .edgeEffect(EdgeEffect.Spring) // 滑动边缘效果
-          .cachedCount(15) // 缓存项数
-          .id('poemList') // 列表ID
-          .onReachEnd(async () => { // 滑动到底部时触发
+          .edgeEffect(EdgeEffect.Spring)
+          .cachedCount(15)
+          .id('poemList')
+          .onReachEnd(async () => {
             this.pageNumber++; // 页码增加
             let res: Sentence[] | undefined =
               await CloudPoemService.fetchSentence(this.pageNumber);
@@ -129,15 +128,15 @@ export struct SentencePage { // 定义一个组件类PoemPage
       .justifyContent(FlexAlign.End)
 
     }
-    .borderRadius(25) // 圆角
-    .backgroundColor('#fff5eee6') // 背景颜色
+    .borderRadius(25)
+    .backgroundColor('#fff5eee6')
     .padding(20) // 内边距
-    .justifyContent(FlexAlign.Center) // 垂直居中
-    .width(a ? '100%' : '50%') // 宽度
-    .onClick(async () => { // 点击事件
+    .justifyContent(FlexAlign.Center)
+    .width(a ? '100%' : '50%')
+    .onClick(async () => {
       let name: string | null = extractPoet(sentence.from)
       let title: string | null = extractTitle(sentence.from)
-      let poem: Poem[] | undefined = undefined
+      let poem: Poem | undefined = undefined
       console.log(name)
       console.log(title)
       if (name && title) {
@@ -145,7 +144,9 @@ export struct SentencePage { // 定义一个组件类PoemPage
         console.log(JSON.stringify(poem));
       }
       if (poem) {
-        this.culturePathStack.pushPathByName("PoemDetailPage", poem[0]); // 跳转到诗歌详情页
+        //this.culturePathStack.pushPathByName("PoemDetailPage", poem[0]);
+        buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_POEMDETAIL,
+          new Object(poem))
       }
 
     });

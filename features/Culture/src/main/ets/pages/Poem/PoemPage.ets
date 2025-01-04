@@ -1,14 +1,6 @@
-import { poets, TypeList } from '../../common/constants/poemType'; // 导入诗词相关常量数据
-import { Poem } from '../../model/Poem'; // 导入诗歌模型类
-import { addExp } from '../../common/util/addExp';
+
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
-import { CloudPoemService } from '../../service/CloudPoemService';
-import { CommonConstants } from '../../common/constants/commonConstants';
-import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
-import { PoemModel } from '../../viewmodel/PoemViewModel';
-import { BreakpointTypeEnum, CacheUtil } from 'utils';
-import { CustomDialogType } from '../../Diaog/type';
-import { PoetsCustomDialog } from '../../Diaog/poets';
+
 import { PoemSplitPage } from './PoemSplitPage';
 
 let addEXPId: number = 0

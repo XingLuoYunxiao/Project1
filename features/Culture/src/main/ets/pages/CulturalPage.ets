@@ -19,7 +19,6 @@ export struct CulturalPage {
 
   aboutToAppear(): void {
     downloadImage(CloudStorageConstants.constantsMap)
-
   }
 
   build() {
