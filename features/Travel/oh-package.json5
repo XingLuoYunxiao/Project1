@@ -10,6 +10,5 @@
     "uicomponents": "file:../../commons/uicomponents",
     //"login": "file:../Login",
     "routermodule": "file:../../RouterModule",
-    "aispeech": "file:../../commons/AISpeech"
   }
 }

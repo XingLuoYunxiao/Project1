@@ -16,5 +16,7 @@ export { CommonConstants } from './src/main/ets/constants/CommonConstants'
 
 export { BreakpointConstants } from './src/main/ets/constants/BreakpointConstants'
 
+export { TextReaderManager } from './src/main/ets/utils/TextReaderManager'
+
 
 export { CacheUtil } from './src/main/ets/puraUtils/CacheUtil'
