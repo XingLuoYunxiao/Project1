@@ -148,10 +148,7 @@ struct AttractionDetailPage {
                   .fontSize(Constants.FONT_CONTENT)
                   .fontWeight(FontWeight.Medium)
                   .margin({ left: 8 })
-                Text(`${getRandomNumber()}条点评`)
-                  .fontSize(Constants.FONT_CAPTION)
-                  .fontColor('#666666')
-                  .margin({ left: 16 })
+
                 Blank()
                 Button('导航')
                   .fontColor(Color.White)
@@ -371,10 +368,7 @@ struct AttractionDetailPage {
                     .fontSize(Constants.FONT_CONTENT)
                     .fontWeight(FontWeight.Medium)
                     .margin({ left: 8 })
-                  Text(`${getRandomNumber()}条点评`)
-                    .fontSize(Constants.FONT_CAPTION)
-                    .fontColor('#666666')
-                    .margin({ left: 16 })
+
                   Blank()
                   Button('导航')
                     .fontColor(Color.White)
@@ -558,11 +552,6 @@ struct AttractionDetailPage {
 //获取0-100.0%之内的随机数，保存1为小数
 function getRandomPercentage(): number {
   return Math.floor(Math.random() * 1000) / 10;
-}
-
-//获取到1-100000之间的随机整数
-function getRandomNumber(): number {
-  return Math.floor(Math.random() * 100000) + 1;
 }
 
 

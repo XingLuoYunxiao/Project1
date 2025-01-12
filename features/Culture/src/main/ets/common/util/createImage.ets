@@ -13,30 +13,28 @@ interface ApiResponse {
 }
 
 export class CreateImage {
-  static ZhiPuImage(prompt: string): Promise<string> {
+  static async ZhiPuImage(prompt: string): Promise<string> {
     return new Promise((resolve, reject) => {
       let httpRequest = http.createHttp();
 
-      httpRequest.request(
-        CommonConstants.ZhiPuCreateImageURL,
-        {
-          method: http.RequestMethod.POST,
-          extraData: JSON.stringify({
-            model: "cogview-3-plus",
-            prompt: prompt // 使用传入的prompt参数
-          }),
-          expectDataType: http.HttpDataType.STRING,
-          usingCache: true,
-          priority: 1,
-          header: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + CommonConstants.ZhiPuKey
-          },
-          readTimeout: 60000,
-          connectTimeout: 60000,
-          usingProtocol: http.HttpProtocol.HTTP1_1,
-          usingProxy: false,
+      httpRequest.request(CommonConstants.ZhiPuCreateImageURL, {
+        method: http.RequestMethod.POST,
+        extraData: JSON.stringify({
+          model: CommonConstants.CreateImageModelCode,
+          prompt: prompt // 使用传入的prompt参数
+        }),
+        expectDataType: http.HttpDataType.STRING,
+        usingCache: true,
+        priority: 1,
+        header: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + CommonConstants.ZhiPuKey
         },
+        readTimeout: 60000,
+        connectTimeout: 60000,
+        usingProtocol: http.HttpProtocol.HTTP1_1,
+        usingProxy: false,
+      },
 
         (err: BusinessError, data: http.HttpResponse) => {
           httpRequest.off('headersReceive');

@@ -25,7 +25,7 @@ export class PaintingModel implements ArtModel {
 
   ImageArr?: paintingData[] = [];
 
-  public static getInfro() {
+  public static getInformation() {
     return
   }
 }

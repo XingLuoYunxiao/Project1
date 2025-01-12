@@ -24,13 +24,15 @@ export struct NearbyAttraction {
   spotDistanceMap: Map<string, string> = new Map()
 
   async aboutToAppear(): Promise<void> {
-
     this.spotNetWork.loadNearbyAttractions().then(()=>{
       this.spotNetWork.getAllDistance()
       this.spotDistanceMap = this.spotNetWork.spotDistanceMap
     })
     this.getCurrentCityName()
   }
+
+
+
 
   getCurrentCityName(): void{
     this.locationUtil.getCityName().then(cityName => {

@@ -27,12 +27,13 @@ export struct SpotDetailComment {
   @Consume('appPathStack') appPathStack: NavPathStack
   @State commentService: CommentService = CommentService.getInstance()
   @StorageLink('personUid') userId: string = '';
+  @StorageLink('personName') userName: string = ''
+  @StorageLink('personPhoto') personPhoto: string = ''
   @State spot: Spot | undefined = undefined
   @State value: object = new Object()
   @State comments: spotComment[] = []
   @State currentUserAvatar: Resource = $r('app.media.avator')
   @State selectedTopComment: spotComment | null = null
-  @State userName: string | undefined = '用户'
   @State commentInput: string = ''
   @State isReplySheetShow: boolean = false
   // 新增：用于跟踪回复数量的响应式状态
@@ -201,7 +202,7 @@ export struct SpotDetailComment {
             ListItem() {
               Column() {
                 Row() {
-                  Image(this.currentUserAvatar)
+                  Image(this.personPhoto)
                     .width(40)
                     .height(40)
                     .borderRadius(20)
@@ -262,16 +263,19 @@ export struct SpotDetailComment {
           })
         }
         .width('100%')
-        .height('70%')
+        .height( this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_LG ? '70%' :'80%')
         .padding(16)
+
+        Blank()
+          .visibility(this.currentWidthBreakpoint === BreakpointConstants.BREAKPOINT_LG ? Visibility.None : Visibility.Visible)
 
         Row() {
           TextInput({ placeholder: '说点什么...', text: this.commentInput })
-            .layoutWeight(1)
             .margin({ right: 10 })
             .onChange((value: string) => {
               this.commentInput = value
             })
+            .width('95%')
 
           Image($r('app.media.ic_send'))
             .fillColor(Color.Gray)
@@ -279,11 +283,16 @@ export struct SpotDetailComment {
             .height(24)
             .onClick(() => this.postComment(-1))
         }
+        //.offset({bottom:16})
+        .alignSelf(ItemAlign.End)
+        .justifyContent(FlexAlign.Center)
+        .alignItems(VerticalAlign.Center)
         .width('100%')
         .padding(16)
         .backgroundColor('#F5F6F7')
 
       }
+      .height('100%')
       .bindSheet(this.isReplySheetShow, this.replySheetBuilder(), {
         detents: [500],
         dragBar: true,

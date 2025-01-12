@@ -2,7 +2,7 @@ import { Classification } from '../view/Classficiation';
 import { NearbyAttraction } from '../view/NearbyAttraction';
 import { SearchHeader } from '../view/SearchHeader';
 import { SpotNetFunc } from '../service/SpotNetFunc';
-import { BreakpointConstants, BreakpointType, LoadingStatus } from 'utils';
+import { BreakpointConstants, BreakpointType, LoadingStatus, LocationUtil } from 'utils';
 import { PreferenceUtil } from "utils";
 import { router } from '@kit.ArkUI';
 
@@ -21,9 +21,10 @@ export struct TravelStartPage {
 
   async aboutToAppear(): Promise<void> {
     this.loadAllState = LoadingStatus.LOADING;
-    this.spotNetWork.loadSpotsData()
-      .then(() => {
+    await this.spotNetWork.getNearbySpots()
+      .then((data) => {
         this.loadAllState = LoadingStatus.SUCCESS;
+        this.spotNetWork.spots = data
       })
       .catch(() => {
         this.loadAllState = LoadingStatus.FAILED;
@@ -84,11 +85,11 @@ export struct TravelStartPage {
         ListItem(){
           Column(){
             // 旅游分类
-            Text('热门分类')
+            /*Text('热门分类')
               .fontSize(20)
               .fontWeight(FontWeight.Bold)
               .margin({ left: 10 })
-              .fontColor('#444444');
+              .fontColor('#444444');*/
 
             Classification()
               .padding({ top: 10, bottom: 10 });

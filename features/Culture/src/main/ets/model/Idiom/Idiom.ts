@@ -16,3 +16,5 @@ class Idiom extends cloudDatabase.DatabaseObject {
 }
 
 export { Idiom };
+
+

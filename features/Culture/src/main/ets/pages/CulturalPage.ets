@@ -2,8 +2,8 @@ import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "rou
 import { category, gameList, literatureList, traditionList, } from "../model/category";
 import { LogUtil } from 'utils/src/main/ets/puraUtils/LogUtil'
 
-import { builderImageMap, cacheImage, downloadImage } from "../common/util/getImage";
-import { PreferencesUtil } from "utils/src/main/ets/puraUtils/PreferencesUtil";
+import { downloadImage } from "../common/util/getImage";
+
 import { CloudStorageConstants } from "../common/constants/cloudStorageConstants";
 import { BreakpointTypeEnum } from "utils";
 
@@ -19,34 +19,35 @@ export struct CulturalPage {
 
   aboutToAppear(): void {
     downloadImage(CloudStorageConstants.constantsMap)
-
   }
 
   build() {
     Navigation(this.culturePathStack) {
+      Scroll() {
 
-      Column({ space: 15 }) {
-        Text('文化天地')
-          .fontSize($r('app.float.title_text_size'))
+        Column({ space: 15 }) {
+          // Text('文化天地')
+          //   .fontSize($r('app.float.title_text_size'))
 
-        Text('测试页面')
-          .fontSize($r('app.float.large_text_size'))
-          .onClick(() => {
-            buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_TEST)
-          })
+          /*Text('测试页面')
+            .fontSize($r('app.float.large_text_size'))
+            .onClick(() => {
+              buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.CULTURE_TEST)
+            })*/
 
-        groupComponent({ groupName: "文学", groupData: literatureList })
-        groupComponent({ groupName: "文化", groupData: traditionList })
-        groupComponent({ groupName: "小游戏", groupData: gameList })
+          groupComponent({ groupName: "文学", groupData: literatureList })
+          groupComponent({ groupName: "文化", groupData: traditionList })
+          groupComponent({ groupName: "小游戏", groupData: gameList })
 
-
+        }
+        .width('100%')
+        .alignItems(HorizontalAlign.Center)
+        .justifyContent(FlexAlign.SpaceAround)
       }
-      .height('90%')
-      .width('100%')
-      .alignItems(HorizontalAlign.Center)
-      .justifyContent(FlexAlign.SpaceAround)
+      .scrollable(ScrollDirection.Vertical)
     }
-    .mode(NavigationMode.Stack)
+    .mode((this.currentBreakpoint === BreakpointTypeEnum.MD || BreakpointTypeEnum.SM) ? NavigationMode.Stack :
+    NavigationMode.Split)
     .hideTitleBar(true)
 
   }
@@ -76,20 +77,27 @@ struct groupComponent {
       Grid() {
         ForEach(this.groupData, (item: category) => {
           GridItem() {
-            Text(item.name)
-              .fontSize(24)
-              .borderRadius(20)
-              .onClick(() => {
-                LogUtil.debug('你点击了' + item.name)
-                buildRouterModel(RouterNameConstants.ENTRY_HAP, item.path)
-              })
+            Column() {
+              Image(item.ic)
+                .width(200)
+                .borderRadius(20)
+              Text(item.name)
+                .fontSize(24)
+                .borderRadius(20)
+            }
+            .onClick(() => {
+              LogUtil.debug('你点击了' + item.name)
+              buildRouterModel(RouterNameConstants.ENTRY_HAP, item.path)
+            })
 
           }
         })
 
       }
+      .enableScrollInteraction(false)
+      .scrollBar(BarState.Off)
       .width('80%')
-      .height(100)
+      // .height(300)
       .columnsGap(10)
       .rowsGap(30)
       .columnsTemplate('1fr 1fr')

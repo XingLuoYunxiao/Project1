@@ -19,10 +19,13 @@ struct EveryItem {
     ListItem(){
       Row(){
         Checkbox({ name:this.spot.spotname, group: 'checkboxGroup' })
+          .select(this.spot.isChoose)
           .onChange((isChecked: boolean) => {
             if (isChecked) {
               this.delcount++
-            }else this.delcount--
+            }else {
+              this.delcount--
+            }
             this.spot.isChoose=isChecked
           })
           .mark({
@@ -141,14 +144,13 @@ export struct CollectionPage {
                     }
                     this.searchListData.notifyDataReload()
                   }).width('100%')
-                List(){
-                  if(this.isSearch==true){
-                    this.listData(this.searchListData)
-                  }else {
-                    this.listData(this.collectspotListData)
+                  List(){
+                    if(this.isSearch==true){
+                      this.listData(this.searchListData)
+                    }else {
+                      this.listData(this.collectspotListData)
+                    }
                   }
-                }
-
                 .margin({bottom:40})
                 .layoutWeight(1)
                 .scrollBar(BarState.Off)
@@ -198,21 +200,24 @@ export struct CollectionPage {
   @Builder
   bottomDelete(){
     Row(){
-      CheckboxGroup({ group: 'checkboxGroup' })
-        .selectAll(this.selectall)
+      CheckboxGroup({group: 'checkboxGroup'})
         .checkboxShape(CheckBoxShape.CIRCLE)
         .selectedColor(Color.Blue)
         //CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调
         .onChange((itemName: CheckboxGroupResult) => {
           console.info("checkbox group content" + JSON.stringify(itemName))
           if(itemName.status==SelectStatus.All){
-            this.selectall=true
-          }
-          if(this.selectall){
             this.deletecount=this.collectspotListData.totalCount()
             for (let index = this.collectspotListData.totalCount()-1; index >= 0; index--) {
               const cur=this.collectspotListData.getData(index)
               cur.isChoose=true
+            }
+          }
+          if(itemName.status==SelectStatus.None){
+            // this.deletecount=0
+            for (let index = this.collectspotListData.totalCount()-1; index >= 0; index--) {
+              const cur=this.collectspotListData.getData(index)
+              cur.isChoose=false
             }
           }
         })
@@ -224,7 +229,7 @@ export struct CollectionPage {
         .unselectedColor(Color.Gray)
       Text('全选')
       Blank()
-      Button(`删除`).onClick(()=>{
+      Button(`删除 (${this.deletecount})`).onClick(()=>{
         for (let index = this.collectspotListData.totalCount()-1; index >= 0; index--) {
           const cur=this.collectspotListData.getData(index)
           if(cur.isChoose==true){
@@ -263,6 +268,7 @@ export struct CollectionPage {
           this.footer()
         }
       }
+      .cachedCount(50)
       .edgeEffect(EdgeEffect.None)
       .onReachEnd(()=>{
         if(this.collectspotListData.totalCount()){
@@ -273,9 +279,6 @@ export struct CollectionPage {
               this.isLoading=false
             }
           })
-          // if(this.selectall){
-          //   this.selectall=true
-          // }
         }
       })
       .height('100%')

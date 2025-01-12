@@ -24,6 +24,10 @@ export default struct AttractionTicketPage {
   //四个选择
   @Watch('updateAttractionsList')
   @State currentCategory :string[] = ['全部景点', '位置距离', '综合排序', '筛选'];
+  //记录上一次分类选择
+  @State lastCategory: string[] = ['全部景点', '位置距离', '综合排序', '筛选'];
+  //记录上一次城市选择
+  @State lastCityName: string = '所有'
   @StorageLink('personUid') personUid: string = '';
   //当前当前距离
   @State currentSubCategory: CategoryItem | null = null;
@@ -33,6 +37,7 @@ export default struct AttractionTicketPage {
 
 
   async aboutToAppear(): Promise<void> {
+    this.spotNetWork.reset()
     //let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
     let category = JSON.parse(JSON.stringify(this.value)).text as string
     if( category !== "")
@@ -153,8 +158,15 @@ export default struct AttractionTicketPage {
     this.spotNetWork.allLoadingStatus = LoadingStatus.LOADING
     //遍历所有景点，将所有符合条件的景点插入到currentAttractions中,不符合则删除
     if(!judgeLoadData(this.currentCity, this.currentCategory)){
-      this.currentAttractions.clear()
-      this.currentAttractions = await this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
+      //如果分类没有变化，则继续加载数据
+      if(this.lastCategory.every((item, index) => item === this.currentCategory[index]) && this.currentCity.cityName === this.lastCityName && this.spotNetWork.isHasMore){
+        await this.spotNetWork.loadConditionalSpots(this.currentCity, this.currentCategory)
+        this.currentAttractions = this.spotNetWork.allSpotsDataSource
+      }else if(!(this.lastCategory.every((item, index) => item === this.currentCategory[index])) || this.currentCity.cityName !== this.lastCityName){
+        this.currentAttractions.clear()
+        this.currentAttractions = await this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
+      }
+
     }else{
       if( this.spotNetWork.isRefresh === true){
         this.spotNetWork.pageNum = 1
@@ -163,17 +175,43 @@ export default struct AttractionTicketPage {
       await this.spotNetWork.loadSpotsData()
       this.currentAttractions = this.spotNetWork.allSpotsDataSource
     }
+    // 将分类记录的值更新
+    if (this.currentCategory.length >= this.lastCategory.length) {
+      this.lastCategory.forEach((_, index) => {
+        this.lastCategory[index] = this.currentCategory[index];
+      });
+    } else {
+      console.warn("currentCategory 长度小于 lastCategory，无法完全更新");
+    }
+    // 更新 lastCityName
+    this.lastCityName = this.currentCity.cityName
   }
 
   @Builder itemFoot(){
-    Column(){
-      Text('-------到底了--------')
-        .fontSize(10)
-        .backgroundColor(Color.White)
-        .width('100%')
-        .textAlign(TextAlign.Center)
-        .height(30)
-        .margin({top:5})
+    if(this.spotNetWork.isHasMore === true){
+      Column(){
+        LoadingProgress()
+          .width(30)
+          .height(30)
+        Text('加载中...')
+          .fontSize(10)
+          .fontColor(Color.Gray)
+          .width('100%')
+          .textAlign(TextAlign.Center)
+      }
+      .alignItems(HorizontalAlign.Center)
+      .justifyContent(FlexAlign.Center)
+      .width('100%')
+    }else{
+      Column(){
+        Text('-------到底了--------')
+          .fontSize(10)
+          .backgroundColor(Color.White)
+          .width('100%')
+          .textAlign(TextAlign.Center)
+          .height(30)
+          .margin({top:5})
+      }
     }
   }
 

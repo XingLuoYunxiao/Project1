@@ -92,10 +92,6 @@
       "srcPath": "./RouterModule",
     },
     {
-      "name": "AISpeech",
-      "srcPath": "./commons/AISpeech",
-    },
-    {
       "name": "Share",
       "srcPath": "./features/Share",
     }

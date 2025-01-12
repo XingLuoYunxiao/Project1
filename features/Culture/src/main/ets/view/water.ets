@@ -26,7 +26,7 @@ export struct ButtonWithWaterRipples {
   @State delayScale: Scale = { x: 1, y: 1 };
   private readonly BUTTON_SIZE: number = 72; // 按钮大小常量
   private readonly BUTTON_CLICK_SCALE: number = 0.8; // 按钮点击时的缩放比例
-  private readonly ANIMATION_DURATION: number = 1600; // 动画持续时间
+  private readonly ANIMATION_DURATION: number = 1000; // 动画持续时间
 
   @Styles
   ripplesStyle() {
@@ -73,12 +73,12 @@ export struct ButtonWithWaterRipples {
           animateTo({
             duration: this.ANIMATION_DURATION,
             iterations: 1,
-            curve: Curve.EaseInOut
+            curve: Curve.EaseOut
           }, () => {
-            this.immediatelyOpacity = 0.3;
+            this.immediatelyOpacity = 0.5;
             this.immediatelyScale = {
-              x: 20,
-              y: 20
+              x: 24,
+              y: 24
             };
           })
           // animateTo({
@@ -103,7 +103,7 @@ export struct ButtonWithWaterRipples {
             y: 1
           };
           this.isListening = !this.isListening
-        }, 1700)
+        }, this.ANIMATION_DURATION)
 
       })
     }
