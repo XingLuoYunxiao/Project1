@@ -1,4 +1,4 @@
-import {TextToSpeechManager} from "aispeech"
+import { TextReaderManager } from "utils"
 import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
 import Constants from "../constants/Constants";
 import { Params, TravelPlan } from "../service/TravelPlan";
@@ -14,7 +14,7 @@ export struct SpotDetailPage {
   @Consume('travelPathStack') travelPathStack: NavPathStack;
   @Consume('appPathStack') appPathStack: NavPathStack;
   @State chatsService: TravelChatsService = TravelChatsService.getInstance()
-  @State speechUtil: TextToSpeechManager = TextToSpeechManager.getInstance()
+  @State textReaderManager: TextReaderManager = TextReaderManager.getInstance()
   @State value: object = new Object()
   @State myScale: number = 1
   @Watch('speechText')
@@ -59,13 +59,20 @@ export struct SpotDetailPage {
 
   async aboutToAppear(): Promise<void> {
     this.spot = JSON.parse(JSON.stringify(this.value)).spot as Spot
+    await this.textReaderManager.init();
     if (this.spot.name) {
-      await this.sendRequest(this.spot.name);
+      await this.sendRequest(this.spot.name).then(() => {
+
+      })
     }
+    // 注册事件监听
+    this.textReaderManager.setEventListeners();
   }
 
-  aboutToDisappear(): void {
-    this.speechUtil.stop()
+  aboutToDisappear() {
+    // 页面离开时停止朗读并释放资源
+    this.textReaderManager.stop();
+    this.textReaderManager.release();
   }
 
   // AI对话请求
@@ -97,10 +104,22 @@ export struct SpotDetailPage {
   }
 
   speechText() {
+    // 设置默认的朗读内容
+    if(this.responseText !== '' && this.spot.name ){
+      this.textReaderManager.readInfoList = [
+        {
+          id: '001',
+          title: { text: `${this.spot.name}路径规划`, isClickable: false },
+          bodyInfo: this.responseText
+        }
+      ];
+      this.textReaderManager.selectedArticleId = this.textReaderManager.readInfoList[0].id;
+
+    }
     if (this.voice) {
-      this.speechUtil.speak(this.responseText)
+      this.textReaderManager.start()
     } else {
-      this.speechUtil.stop()
+      this.textReaderManager.stop()
     }
   }
 
@@ -137,6 +156,7 @@ export struct SpotDetailPage {
         })
         .selectedColor('#4CAF50')
     }
+    .visibility(this.isShowPlan === true ? Visibility.Visible : Visibility.Hidden)
     .alignItems(VerticalAlign.Center)
   }
 
@@ -222,7 +242,6 @@ export struct SpotDetailPage {
             .height(30)
             .margin({ right: 15 })
             .onClick(() => {
-              this.speechUtil.stop()
               RouterModule.popToName(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_FAMOUSPLACEPAGE)
             })
 
@@ -269,6 +288,7 @@ export struct SpotDetailPage {
                     if (this.spot.name) {
                       await this.sendRequest(this.spot.name)
                       this.isShowPlan = false
+                      this.voice = false
                     }
                   })
               }
@@ -338,6 +358,7 @@ export struct SpotDetailPage {
             }
             .width('100%')
           }
+          .align(Alignment.TopStart)
           .layoutWeight(1)
           .edgeEffect(EdgeEffect.Spring)
           .scrollBar(BarState.Off)

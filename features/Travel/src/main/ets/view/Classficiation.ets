@@ -26,10 +26,11 @@ export struct Classification {
         })
       })
     }
-    .borderRadius(12)
     .justifyContent(FlexAlign.SpaceAround)
     .width('100%')
     .padding(10)
+    .borderRadius(20)
+    .margin({left: 10, right: 10})
     .backgroundColor(Color.White)
   }
 
