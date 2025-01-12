@@ -7,6 +7,7 @@ import { CommentInputDialog } from '../pages/CommentInputDialog';
 import { promptAction } from '@kit.ArkUI';
 import { Comment } from '../model/Comment';
 import { ShareViewModel } from '../service/ShareViewModel';
+import { Good } from '../model/Good';
 
 @Reusable
 @Component
@@ -20,8 +21,16 @@ export struct OneMoment {
   @StorageLink ('personName') personName: string = ''
   @State good:Resource=$r("app.media.publish_multimedia_updates_ic_thumbsup")
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
+
   aboutToReuse(params: Record<string, Object>): void {
     this.moment = params.moment as FriendMomentAdd;
+  }
+
+  async aboutToAppear(): Promise<void> {
+    const isGood=await this.shareViewModel.goodsDeal(this.moment.id,this.personUid)
+    if(isGood){
+      this.good=$r('app.media.good')
+    }
   }
 
   dialogController: CustomDialogController= new CustomDialogController({
@@ -156,14 +165,18 @@ export struct OneMoment {
         })
           .margin({ left:60})
           .onClick(() => {
+            const good=new Good()
+            good.setItemId(this.moment.id)
+            good.setUserId(this.personUid)
+            //未点赞
             if(this.good.id==$r("app.media.publish_multimedia_updates_ic_thumbsup").id){
               this.good=$r('app.media.good')
-              const count=++this.moment.good
-              this.shareViewModel.updateGood(this.moment.id.toString(),count)
+              this.shareViewModel.updateGood(this.moment.id.toString(),1)
+              this.shareViewModel.goodUpdate(good,true)
             }else {
-              const count=--this.moment.good
               this.good=$r("app.media.publish_multimedia_updates_ic_thumbsup")
-              this.shareViewModel.updateGood(this.moment.id.toString(),count)
+              this.shareViewModel.updateGood(this.moment.id.toString(),-1)
+              this.shareViewModel.goodUpdate(good,false)
             }
           })
         ImageText({

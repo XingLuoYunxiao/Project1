@@ -7,6 +7,7 @@ import { photoAccessHelper } from '@kit.MediaLibraryKit';
 import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError, request } from '@kit.BasicServicesKit';
 import { Params } from 'travel/src/main/ets/model/FuncParams';
+import { Good } from './Good';
 
 let bucket: cloudStorage.StorageBucket = cloudStorage.bucket(); // 将启动异步任务查询云侧默认实例
 
@@ -51,6 +52,21 @@ export class Sharedata{
     })
   }
 
+  //点赞更新(用户和moment的对应)
+  async updateGoods(good:Good,isAdd:boolean){
+      cloudFunction.call({
+        name: 'get-share-data',
+        data:{
+          type:'updateGood',
+          good:good,
+          isAdd:isAdd
+        }
+      }).then((value: cloudFunction.FunctionResult) => {
+        console.info(`成功更新 ${JSON.stringify(value.result)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`更新失败, Code: ${err.code}, message: ${err.message}`);
+      })
+  }
 
   // 只初始化一次云存储实例
   upload(uid:string,time:string):Promise<photoAccessHelper.PhotoSelectResult> {
@@ -189,7 +205,7 @@ export async function queryComment(momentid:string){
   return []
 }
 
-//点赞更新
+//点赞数量更新
 @Concurrent
 export async function updateGood(momentid:string,good:number){
   try{
@@ -201,6 +217,24 @@ export async function updateGood(momentid:string,good:number){
         update:good
       }
     })
+  }catch (e){
+    console.error('修改点赞失败')
+  }
+}
+
+//点赞查询
+@Concurrent
+export async function queryGoods(momentid:number,userid:string){
+  try{
+    const goods=await cloudFunction.call({
+      name: 'get-share-data',
+      data:{
+        type:'queryGood',
+        momentid:momentid,
+        userid:userid
+      }
+    })
+    return JSON.parse(JSON.stringify(goods.result)).data as Good[]
   }catch (e){
     console.error('修改点赞失败')
   }

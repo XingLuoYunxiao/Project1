@@ -80,6 +80,7 @@ export struct CollectionPage {
   @State canLoad: boolean = false;//控制防止在到底加载新数据时重复触发加载操作
   @State isLoading: boolean = false;//是否正在加载
   @State non:number=this.mineViewModel.none
+  @State selectall:boolean=false
 
   async aboutToAppear() {
     this.mineViewModel.reset()
@@ -198,16 +199,21 @@ export struct CollectionPage {
   bottomDelete(){
     Row(){
       CheckboxGroup({ group: 'checkboxGroup' })
+        .selectAll(this.selectall)
         .checkboxShape(CheckBoxShape.CIRCLE)
         .selectedColor(Color.Blue)
+        //CheckboxGroup的选中状态或群组内的Checkbox的选中状态发生变化时，触发回调
         .onChange((itemName: CheckboxGroupResult) => {
           console.info("checkbox group content" + JSON.stringify(itemName))
           if(itemName.status==SelectStatus.All){
+            this.selectall=true
+          }
+          if(this.selectall){
             this.deletecount=this.collectspotListData.totalCount()
             for (let index = this.collectspotListData.totalCount()-1; index >= 0; index--) {
-                const cur=this.collectspotListData.getData(index)
-                cur.isChoose=true
-              }
+              const cur=this.collectspotListData.getData(index)
+              cur.isChoose=true
+            }
           }
         })
         .mark({
@@ -218,8 +224,6 @@ export struct CollectionPage {
         .unselectedColor(Color.Gray)
       Text('全选')
       Blank()
-      Button('清空全部')
-        .margin({right:8})
       Button(`删除`).onClick(()=>{
         for (let index = this.collectspotListData.totalCount()-1; index >= 0; index--) {
           const cur=this.collectspotListData.getData(index)
@@ -269,6 +273,9 @@ export struct CollectionPage {
               this.isLoading=false
             }
           })
+          // if(this.selectall){
+          //   this.selectall=true
+          // }
         }
       })
       .height('100%')

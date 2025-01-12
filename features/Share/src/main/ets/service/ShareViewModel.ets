@@ -2,9 +2,13 @@ import { CommentData } from "../model/BasicDataSource";
 import { Comment } from "../model/Comment";
 import { FriendMoment } from "../model/FriendMoment";
 import { FriendMomentAdd } from "../model/FriendMomentAdd";
-import { queryCollection, queryComment, shareData, Sharedata, updateGood } from "../model/sharedata";
+import { queryCollection, queryComment,
+  queryGoods,
+  shareData, Sharedata, updateGood} from "../model/sharedata";
 import { taskpool } from "@kit.ArkTS";
 import { Spot } from "travel";
+import auth, { AuthUser } from "@hw-agconnect/auth"
+import { Good } from "../model/Good";
 
 export class ShareViewModel{
   private static instance: ShareViewModel = new ShareViewModel();
@@ -58,6 +62,13 @@ export class ShareViewModel{
     this.count=this.commentList.totalCount()
   }
 
+  //点赞查询
+  async goodsDeal(momentid:number,userid:string): Promise<boolean>{
+    let task:taskpool.Task=new taskpool.Task(queryGoods,momentid,userid)
+    let value:Array<Good>= await taskpool.execute(task) as Array<Good>
+    return value.length==0?false:true
+  }
+
   async shareAdd(data:FriendMoment,photo:string,name:string,seletimg:string){
     this.sharedata.addshareData(data)
       // .then(async ()=>{
@@ -68,6 +79,10 @@ export class ShareViewModel{
 
   async commentAdd(data:Comment){
     this.sharedata.addcommentData(data)
+  }
+
+  async goodUpdate(data:Good,isAdd:boolean){
+    this.sharedata.updateGoods(data,isAdd)
   }
 
   async updateGood(momentid:string,good:number){
@@ -97,5 +112,7 @@ export class ShareViewModel{
       return [];
     }
   }
+
+
 
 }
