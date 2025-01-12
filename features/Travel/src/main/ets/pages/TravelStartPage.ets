@@ -85,11 +85,11 @@ export struct TravelStartPage {
         ListItem(){
           Column(){
             // 旅游分类
-            Text('热门分类')
+            /*Text('热门分类')
               .fontSize(20)
               .fontWeight(FontWeight.Bold)
               .margin({ left: 10 })
-              .fontColor('#444444');
+              .fontColor('#444444');*/
 
             Classification()
               .padding({ top: 10, bottom: 10 });

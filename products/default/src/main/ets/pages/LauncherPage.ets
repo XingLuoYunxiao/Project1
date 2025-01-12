@@ -52,9 +52,6 @@ struct LauncherPage {
     }
   }
 
-  checkAgreedPrivacy(): void {
-
-  }
 
   jumpToIndex(){
     setTimeout( () => {
