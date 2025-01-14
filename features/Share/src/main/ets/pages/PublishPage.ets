@@ -31,6 +31,7 @@ struct PublishPage {
     content.setImage(img)
     content.setGood(0)
     content.setLocation(this.location)
+    content.setTime(new Date().toString())
     // content.setUserPhoto(this.personPhoto)
     // content.setUserName(this.personName)
     this.shareViewModel.shareAdd(content).then((res)=>{

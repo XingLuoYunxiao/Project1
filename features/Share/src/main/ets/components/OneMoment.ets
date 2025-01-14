@@ -62,7 +62,8 @@ export struct OneMoment {
         comment.setMomentid(`${this.moment.id}`);
         comment.setText(this.textInComment);
         comment.setUid(this.personUid)
-        comment.setImage(this.imageInComment);
+        comment.setImage(this.imageInComment.toString());
+        comment.setTime(new Date().toString());
         this.shareViewModel.commentAdd(comment)
     } else {
       promptAction.showToast({

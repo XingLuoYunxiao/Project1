@@ -43,7 +43,7 @@ export class ShareViewModel{
       //遍历的每一项
       const cur=value[index]
       const img=await this.sharedata.getUrl(cur.image)
-      result.push(new FriendMomentAdd(cur.id,cur.userId,cur.text,img,cur.good,cur.location,cur.userPhoto,cur.userName))
+      result.push(new FriendMomentAdd(cur.id,cur.userId,cur.text,img,cur.good,cur.location,cur.userPhoto,cur.userName,cur.time))
     }
     if(result.length<5){
       this.none=1
@@ -55,6 +55,7 @@ export class ShareViewModel{
   async commentDeal(momentid:string){
     let task:taskpool.Task=new taskpool.Task(queryComment,momentid)
     let value:Array<Comment>= await taskpool.execute(task) as Array<Comment>
+    this.count=value.length
     this.commentList.notifyDataDeleteAll()
     for (let index = 0; index < value.length; index++) {
       //每条评论
@@ -62,10 +63,9 @@ export class ShareViewModel{
       this.getUserinfo(cur.uid).then((info)=>{
         const photo=info.userPhoto as string
         const name=info.userName as string
-        this.commentList.pushData(new CommentAdd(cur.id,cur.momentid,cur.text,cur.image,photo,name))
+        this.commentList.pushData(new CommentAdd(cur.id,cur.momentid,cur.text,cur.image,photo,name,cur.time))
       })
     }
-    this.count=value.length
   }
 
   //点赞查询

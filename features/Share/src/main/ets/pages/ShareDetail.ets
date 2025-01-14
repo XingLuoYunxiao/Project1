@@ -14,13 +14,16 @@ struct ShareDetail {
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
   @State userPhoto:string=''
   @State userName:string=''
-  @State count:number=this.shareViewModel.count
+  @State count:number=0
   @Provide commentListData: CommentData<CommentAdd> = this.shareViewModel.commentList
-  everymoment:FriendMomentAdd|null=null
+  @State everymoment:FriendMomentAdd|null=null
+  @State date:Date=new Date(this.everymoment?.time as string)
   //获取路由参数
   aboutToAppear(): void {
    this.everymoment=JSON.parse(JSON.stringify(this.value)).item as FriendMomentAdd
-    this.shareViewModel.commentDeal(this.everymoment.id.toString())
+    this.shareViewModel.commentDeal(this.everymoment.id.toString()).then((val)=>{
+      this.count=this.shareViewModel.count
+    })
     this.shareViewModel.getUserinfo(this.everymoment.userId).then((info)=>{
       this.userPhoto=info.userPhoto
       this.userName=info.userName
@@ -71,34 +74,46 @@ struct ShareDetail {
               .padding({left:12,right:12})
               .fontWeight(500)
             Text(this.everymoment?.text).width('100%').padding({left:12,right:12})
-            Text(`共${this.count}条评论`).padding({left:12,right:12})
+            Text(`${new Date(this.everymoment?.time as string).getFullYear()}-${new Date(this.everymoment?.time as string).getMonth()+1}-${new Date(this.everymoment?.time as string).getDate()}`)
+              .padding({left:12,right:12})
+              .fontSize(12)
+              .fontColor($r('app.color.publish_multimedia_updates_title_font_color'))
+              .opacity($r('app.float.publish_multimedia_updates_opacity'))
+              .margin({top:10,bottom:10})
+              .width('100%')
+            Divider()
+            Text(`共${this.count}条评论`)
+              .padding({left:12,right:12})
               .fontSize($r('app.integer.publish_multimedia_updates_userText_fontSize'))
               .fontColor($r('app.color.publish_multimedia_updates_title_font_color'))
               .opacity($r('app.float.publish_multimedia_updates_opacity'))
               .margin({top:10,bottom:10})
               .width('100%')
-            LazyForEach(this.commentListData,(item:CommentAdd)=>{
-              ListItem(){
-                Row({space:10}){
-                  Image(item.photo).width(40).height(40).borderRadius(20)
-                  Column(){
-                    Text(item.name)
-                      .fontSize($r('app.integer.publish_multimedia_updates_userText_fontSize'))
-                      .fontColor($r('app.color.publish_multimedia_updates_title_font_color'))
-                      .lineHeight($r('app.integer.publish_multimedia_updates_userText_line_height'))
-                      .opacity($r('app.float.publish_multimedia_updates_opacity'))
-                      .margin({ top: $r('app.integer.publish_multimedia_updates_userText_margin_top') })
-                    Text(item.text)
-                    if(item.image!=''){
-                      // Image()
-                    }
-                  }.alignItems(HorizontalAlign.Start)
+            if(this.count){
+              LazyForEach(this.commentListData,(item:CommentAdd)=>{
+                ListItem(){
+                  Row({space:10}){
+                    Image(item.photo).width(40).height(40).borderRadius(20)
+                    Column(){
+                      Text(item.name)
+                        .fontSize($r('app.integer.publish_multimedia_updates_userText_fontSize'))
+                        .fontColor($r('app.color.publish_multimedia_updates_title_font_color'))
+                        .lineHeight($r('app.integer.publish_multimedia_updates_userText_line_height'))
+                        .opacity($r('app.float.publish_multimedia_updates_opacity'))
+                        .margin({ top: $r('app.integer.publish_multimedia_updates_userText_margin_top') })
+                      Text(item.text).margin({bottom:5})
+                      if(item.image!='[object Object]'){
+                        Image(item.image).height(100)
+                      }
+                    }.alignItems(HorizontalAlign.Start)
+                  }
+                  .alignItems(VerticalAlign.Top)
+                  .margin({bottom:10})
+                  .width('100%')
                 }
-                .margin({bottom:10})
-                .width('100%')
-              }
-              .padding({left:12,right:12})
-            })
+                .padding({left:12,right:12})
+              })
+            }
           }
         }.scrollBar(BarState.Off)
       .padding({bottom:30})

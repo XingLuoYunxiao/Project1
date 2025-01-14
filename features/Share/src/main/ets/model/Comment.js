@@ -10,6 +10,7 @@ class Comment {
         this.text = undefined;
         this.image = undefined;
         this.uid = undefined;
+        this.time = undefined;
     }
 
     setId(id) {
@@ -50,6 +51,14 @@ class Comment {
 
     getUid() {
         return this.uid;
+    }
+
+    setTime(time) {
+        this.time = time;
+    }
+
+    getTime() {
+        return this.time;
     }
 }
 
