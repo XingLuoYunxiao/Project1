@@ -19,6 +19,8 @@ export struct OneMoment {
   @StorageLink ('personUid') personUid: string = ''
   @StorageLink ('personPhoto') personPhoto: string = ''
   @StorageLink ('personName') personName: string = ''
+  @State userPhoto:string=''
+  @State userName:string=''
   @State good:Resource=$r("app.media.publish_multimedia_updates_ic_thumbsup")
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
 
@@ -31,6 +33,10 @@ export struct OneMoment {
     if(isGood){
       this.good=$r('app.media.good')
     }
+    this.shareViewModel.getUserinfo(this.moment.userId).then((info)=>{
+      this.userPhoto=info.userPhoto
+      this.userName=info.userName
+    })
   }
 
   dialogController: CustomDialogController= new CustomDialogController({
@@ -55,8 +61,7 @@ export struct OneMoment {
         const comment: Comment =new Comment();
         comment.setMomentid(`${this.moment.id}`);
         comment.setText(this.textInComment);
-        comment.setPhoto(this.personPhoto)
-        comment.setName(this.personName)
+        comment.setUid(this.personUid)
         comment.setImage(this.imageInComment);
         this.shareViewModel.commentAdd(comment)
     } else {
@@ -71,14 +76,14 @@ export struct OneMoment {
     Column() {
       Row() {
         //发表用户的头像
-        Image(this.moment.userphoto)
+        Image(this.userPhoto)
           .autoResize(false)
           .width($r('app.integer.publish_multimedia_updates_user_image_width'))
           .height($r('app.integer.publish_multimedia_updates_user_image_height'))
           .borderRadius($r('app.integer.publish_multimedia_updates_user_image_border_radius'))
         Column() {
           //发表用户的用户名
-          Text(this.moment.username)
+          Text(this.userName)
             .fontSize($r('app.integer.publish_multimedia_updates_useName_fontSize'))
             .fontColor($r('app.color.publish_multimedia_updates_title_font_color'))
             .lineHeight($r('app.integer.publish_multimedia_updates_useName_line_height'))

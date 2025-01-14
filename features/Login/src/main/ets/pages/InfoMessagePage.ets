@@ -1,4 +1,3 @@
-import auth, { AuthUser } from "@hw-agconnect/auth"
 import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule"
 import { Spot } from "travel"
 import { SpotNetFunc } from "travel/src/main/ets/service/SpotNetFunc"
@@ -7,9 +6,8 @@ import Constants from "../common/constants/Constants"
 import { functionItem } from "../model/functionItem"
 import { photoAccessHelper } from "@kit.MediaLibraryKit"
 import { BusinessError } from "@kit.BasicServicesKit"
-import { AGCError } from "@hw-agconnect/hmcore/src/main/ets/error/AGCError"
-import { hilog } from "@kit.PerformanceAnalysisKit"
 import {MineWaterflow} from "../view/MineWaterflow"
+import { MineViewModel } from "../service/MineViewModel"
 import lpreferencesUtil from "../common/utils/PreferenceUtil"
 
 @Component
@@ -17,9 +15,11 @@ export struct InfoMessagePage {
   @Consume('appPathStack') appPathStack: NavPathStack
   @StorageLink ('personPhoto') personPhoto: string = ''
   @StorageLink ('personName') personName: string = ''
+  @StorageLink('personUid') personUid: string = ''
   @Consume('loginPathStack') loginPathStack: NavPathStack
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance();
   @State spotDataSource: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource
+  @State mineViewModel:MineViewModel=MineViewModel.getInstance();
 
   dialogController: CustomDialogController= new CustomDialogController({
     builder: CustomDialogChange({
@@ -46,6 +46,15 @@ export struct InfoMessagePage {
     .justifyContent(FlexAlign.Center)
   }
 
+aboutToAppear(): void {
+  // this.mineViewModel.getUserinfo(this.personUid).then((val)=>{
+  //   this.personName=val[0].userName
+  //   this.personPhoto=val[0].userPhoto
+  // })
+  // AppStorage.setOrCreate('personName',this.personName)
+  // AppStorage.setOrCreate('personPhoto',this.personPhoto)
+  // AppStorage.setOrCreate('personUid',this.personUid)
+}
 
   build() {
     Navigation(this.loginPathStack) {
@@ -69,18 +78,25 @@ export struct InfoMessagePage {
                 let photoPicker = new photoAccessHelper.PhotoViewPicker();
                 photoPicker.select(PhotoSelectOptions).then((PhotoSelectResult: photoAccessHelper.PhotoSelectResult) => {
                   console.info('PhotoViewPicker.select成功, PhotoSelectResult uri: ' + JSON.stringify(PhotoSelectResult.photoUris[0]));
-                  auth.getCurrentUser().then((curuser)=>{
-                    if(curuser&&typeof this.personPhoto==='string'){
-                      curuser.updateProfile({displayName:this.personName,photoUrl:PhotoSelectResult.photoUris[0]}).then((val)=>{
-                        lpreferencesUtil.putPreferenceValue('UserInfoPreference','personPhoto',this.personPhoto)
-                        this.personName=curuser.getDisplayName()
-                        this.personPhoto=curuser.getPhotoUrl()
-                      }).catch((e:Error)=>{
-                        console.log('修改头像失败'+JSON.stringify(e))
+                  // auth.getCurrentUser().then((curuser)=>{
+                  //   if(curuser&&typeof this.personPhoto==='string'){
+                  //     curuser.updateProfile({displayName:this.personName,photoUrl:PhotoSelectResult.photoUris[0]}).then((val)=>{
+                  //       lpreferencesUtil.putPreferenceValue('UserInfoPreference','personPhoto',this.personPhoto)
+                  //       this.personName=curuser.getDisplayName()
+                  //       this.personPhoto=curuser.getPhotoUrl()
+                  //     }).catch((e:Error)=>{
+                  //       console.log('修改头像失败'+JSON.stringify(e))
+                  //     })
+                  //   }
+                  // }).catch((e:AGCError)=>{
+                  //   console.log('接口还是有问题',e.code,e.message)
+                  // })
+                  this.mineViewModel.userupdate(PhotoSelectResult.photoUris[0],this.personUid,1).then(
+                    async (val)=>{
+                      this.mineViewModel.getUserinfo(this.personUid).then((info)=>{
+                        this.personPhoto=info.userPhoto
+                        lpreferencesUtil.putPreferenceValue('UserInfoPreference','personPhoto',info.userPhoto)
                       })
-                    }
-                  }).catch((e:AGCError)=>{
-                    console.log('接口还是有问题',e.code,e.message)
                   })
                 }).catch((err: BusinessError) => {
                   console.error(`PhotoViewPicker.select失败,err: ${err.code}, ${err.message}`);
@@ -201,6 +217,8 @@ export struct InfoMessagePage {
 struct CustomDialogChange {
   @StorageLink('personName') personName: string =''
   @StorageLink('personPhoto') personPhoto: string =''
+  @State mineViewModel:MineViewModel=MineViewModel.getInstance();
+  @StorageLink('personUid') personUid: string = ''
   newName:string=''
   controller: CustomDialogController
   build() {
@@ -225,19 +243,28 @@ struct CustomDialogChange {
         })
       Text('昵称限制1-30个字符').margin({top:5,bottom:5})
       Button('保存').onClick(()=>{
-        auth.getCurrentUser().then((curuser)=>{
-          hilog.info(1,'获取用户成功',JSON.stringify(curuser))
-          if(curuser){
-            curuser.updateProfile({displayName:this.newName,photoUrl:this.personPhoto}).then((val)=>{
-              lpreferencesUtil.putPreferenceValue('UserInfoPreference','personName',this.newName)
-              this.personName=curuser.getDisplayName()
-              this.personPhoto=curuser.getPhotoUrl()
+        // auth.getCurrentUser().then((curuser)=>{
+        //   hilog.info(1,'获取用户成功',JSON.stringify(curuser))
+        //   if(curuser){
+        //     curuser.updateProfile({displayName:this.newName,photoUrl:this.personPhoto}).then((val)=>{
+        //       lpreferencesUtil.putPreferenceValue('UserInfoPreference','personName',this.newName)
+        //       this.personName=curuser.getDisplayName()
+        //       this.personPhoto=curuser.getPhotoUrl()
+        //       this.controller.close()
+        //     }).catch((e:Error)=>{
+        //       console.log('修改昵称失败'+JSON.stringify(e))
+        //     })
+        //   }
+        // })
+        this.mineViewModel.userupdate(this.newName,this.personUid,0).then(
+          async (val)=>{
+            this.mineViewModel.getUserinfo(this.personUid).then((info)=>{
+              this.personName=info.userName
+              lpreferencesUtil.putPreferenceValue('UserInfoPreference','personName',info.userName)
               this.controller.close()
-            }).catch((e:Error)=>{
-              console.log('修改昵称失败'+JSON.stringify(e))
             })
           }
-        })
+        )
       })
     }.padding({bottom:15})
   }

@@ -10,7 +10,7 @@ import auth from "@hw-agconnect/auth";
 import { cloudStorage } from '@kit.CloudFoundationKit';
 
 import { Params } from "travel/src/main/ets/model/FuncParams";
-
+import { User } from "./User";
 
 
 let bucket: cloudStorage.StorageBucket = cloudStorage.bucket();
@@ -53,6 +53,56 @@ export class UserModel{
       //默认就是60秒
       sendInterval: 60
     })
+    })
+  }
+
+  //添加用户信息
+  async addUser(user:User){
+    cloudFunction.call({
+      name:'get-hiscol-data',
+      data:{
+        table:'userAdd',
+        user:user
+      }
+    }).then((value: cloudFunction.FunctionResult) => {
+      console.info(`成功添加 ${JSON.stringify(value.result)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`添加失败, Code: ${err.code}, message: ${err.message}`);
+    })
+  }
+
+  //查询用户信息
+  async getuserData(userid:string): Promise<User[]>{
+    return new Promise((resolve,reject)=>{
+      cloudFunction.call({
+        name: 'get-hiscol-data',
+        data: {
+          personUid:userid,
+          table:'userQuery'
+        }
+      }).then((value: cloudFunction.FunctionResult) => {
+        resolve(JSON.parse(JSON.stringify(value.result)).data as User[])
+        console.info(`成功666 ${JSON.stringify(value.result)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to call the function, Code: ${err.code}, message: ${err.message}`);
+      })
+    })
+  }
+
+  //修改用户信息
+  async updateUser(info:string,uid:string,type:number){
+    cloudFunction.call({
+      name: 'get-hiscol-data',
+      data:{
+        table:'updateUser',
+        info:info,
+        uid:uid,
+        updatedata:type
+      }
+    }).then((value: cloudFunction.FunctionResult) => {
+      console.info(`成功更新 ${JSON.stringify(value.result)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`更新失败, Code: ${err.code}, message: ${err.message}`);
     })
   }
 

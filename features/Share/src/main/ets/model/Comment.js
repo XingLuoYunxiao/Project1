@@ -9,8 +9,7 @@ class Comment {
         this.momentid = undefined;
         this.text = undefined;
         this.image = undefined;
-        this.photo = undefined;
-        this.name = undefined;
+        this.uid = undefined;
     }
 
     setId(id) {
@@ -45,20 +44,12 @@ class Comment {
         return this.image;
     }
 
-    setPhoto(photo) {
-        this.photo = photo;
+    setUid(uid) {
+        this.uid = uid;
     }
 
-    getPhoto() {
-        return this.photo;
-    }
-
-    setName(name) {
-        this.name = name;
-    }
-
-    getName() {
-        return this.name;
+    getUid() {
+        return this.uid;
     }
 }
 

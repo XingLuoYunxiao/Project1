@@ -9,6 +9,8 @@ import { taskpool } from "@kit.ArkTS";
 import { Spot } from "travel";
 import auth, { AuthUser } from "@hw-agconnect/auth"
 import { Good } from "../model/Good";
+import { User } from "../model/User";
+import { CommentAdd } from "../model/CommentAdd";
 
 export class ShareViewModel{
   private static instance: ShareViewModel = new ShareViewModel();
@@ -20,7 +22,7 @@ export class ShareViewModel{
     return ShareViewModel.instance;
   }
   shareList: CommentData<FriendMomentAdd> = new CommentData(); // 朋友圈列表
-  commentList: CommentData<Comment> = new CommentData(); // 评论列表
+  commentList: CommentData<CommentAdd> = new CommentData(); // 评论列表
   sharedata: Sharedata = Sharedata.getInstance()
   count:number=0
   none:number=0
@@ -57,9 +59,13 @@ export class ShareViewModel{
     for (let index = 0; index < value.length; index++) {
       //每条评论
       const cur=value[index]
-      this.commentList.pushData(cur)
+      this.getUserinfo(cur.uid).then((info)=>{
+        const photo=info.userPhoto as string
+        const name=info.userName as string
+        this.commentList.pushData(new CommentAdd(cur.id,cur.momentid,cur.text,cur.image,photo,name))
+      })
     }
-    this.count=this.commentList.totalCount()
+    this.count=value.length
   }
 
   //点赞查询
@@ -69,7 +75,18 @@ export class ShareViewModel{
     return value.length==0?false:true
   }
 
-  async shareAdd(data:FriendMoment,photo:string,name:string,seletimg:string){
+  //获取用户信息
+  async getUserinfo(userid:string):Promise<User>{
+    return new Promise((resolve,reject)=>{
+      this.sharedata.getuserData(userid).then(
+        ((value:User[])=>{
+          resolve(value[0]) ;
+        })
+      );
+    })
+  }
+
+  async shareAdd(data:FriendMoment){
     this.sharedata.addshareData(data)
       // .then(async ()=>{
           // this.shareList.addDataFirst(new FriendMomentAdd(data.id,data.userId,data.text,seletimg,data.good,data.location,photo,name))

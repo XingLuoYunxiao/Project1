@@ -31,9 +31,9 @@ struct PublishPage {
     content.setImage(img)
     content.setGood(0)
     content.setLocation(this.location)
-    content.setUserPhoto(this.personPhoto)
-    content.setUserName(this.personName)
-    this.shareViewModel.shareAdd(content,this.personPhoto,this.personName,this.selectedImages as string).then((res)=>{
+    // content.setUserPhoto(this.personPhoto)
+    // content.setUserName(this.personName)
+    this.shareViewModel.shareAdd(content).then((res)=>{
       this.shareViewModel.shareDeal()
     })
     // this.scroller.scrollToIndex(0, true, ScrollAlign.START);

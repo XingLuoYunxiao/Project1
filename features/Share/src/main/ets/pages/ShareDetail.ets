@@ -3,6 +3,7 @@ import { LazyDataSource } from 'utils';
 import Constants from '../common/constants/Constants'
 import { CommentData } from '../model/BasicDataSource';
 import { Comment } from '../model/Comment';
+import { CommentAdd } from '../model/CommentAdd';
 import { FriendMomentAdd } from '../model/FriendMomentAdd';
 import { ShareViewModel } from '../service/ShareViewModel';
 
@@ -11,12 +12,19 @@ struct ShareDetail {
   @State value: object = new Object()
   @Consume('appPathStack') appPathStack: NavPathStack
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
-  @Provide commentListData: CommentData<Comment> = this.shareViewModel.commentList
+  @State userPhoto:string=''
+  @State userName:string=''
+  @State count:number=this.shareViewModel.count
+  @Provide commentListData: CommentData<CommentAdd> = this.shareViewModel.commentList
   everymoment:FriendMomentAdd|null=null
   //获取路由参数
   aboutToAppear(): void {
    this.everymoment=JSON.parse(JSON.stringify(this.value)).item as FriendMomentAdd
     this.shareViewModel.commentDeal(this.everymoment.id.toString())
+    this.shareViewModel.getUserinfo(this.everymoment.userId).then((info)=>{
+      this.userPhoto=info.userPhoto
+      this.userName=info.userName
+    })
   }
 
   build() {
@@ -25,12 +33,12 @@ struct ShareDetail {
           Image($r('app.media.ic_back')).width($r('app.float.md_topic_width')).onClick(()=>{
             this.appPathStack.pop()
           })
-          Image(this.everymoment?.userphoto)
+          Image(this.userPhoto)
             .width(40)
             .height(40)
             .margin({left:12,right:12})
             .borderRadius(20)
-          Text(this.everymoment?.username).fontSize(16)
+          Text(this.userName).fontSize(16)
           Blank()
           Row(){
             Image($r('app.media.locationdetail'))
@@ -63,13 +71,13 @@ struct ShareDetail {
               .padding({left:12,right:12})
               .fontWeight(500)
             Text(this.everymoment?.text).width('100%').padding({left:12,right:12})
-            Text(`共${this.shareViewModel.count}条评论`).padding({left:12,right:12})
+            Text(`共${this.count}条评论`).padding({left:12,right:12})
               .fontSize($r('app.integer.publish_multimedia_updates_userText_fontSize'))
               .fontColor($r('app.color.publish_multimedia_updates_title_font_color'))
               .opacity($r('app.float.publish_multimedia_updates_opacity'))
               .margin({top:10,bottom:10})
               .width('100%')
-            LazyForEach(this.commentListData,(item:Comment)=>{
+            LazyForEach(this.commentListData,(item:CommentAdd)=>{
               ListItem(){
                 Row({space:10}){
                   Image(item.photo).width(40).height(40).borderRadius(20)

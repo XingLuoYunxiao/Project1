@@ -8,6 +8,7 @@ import { fileIo as fs } from '@kit.CoreFileKit';
 import { BusinessError, request } from '@kit.BasicServicesKit';
 import { Params } from 'travel/src/main/ets/model/FuncParams';
 import { Good } from './Good';
+import { User } from './User';
 
 let bucket: cloudStorage.StorageBucket = cloudStorage.bucket(); // 将启动异步任务查询云侧默认实例
 
@@ -66,6 +67,24 @@ export class Sharedata{
       }).catch((err: BusinessError) => {
         console.error(`更新失败, Code: ${err.code}, message: ${err.message}`);
       })
+  }
+
+  //查询用户头像昵称
+  async getuserData(userid:string): Promise<User[]>{
+    return new Promise((resolve,reject)=>{
+      cloudFunction.call({
+        name: 'get-hiscol-data',
+        data: {
+          personUid:userid,
+          table:'userQuery'
+        }
+      }).then((value: cloudFunction.FunctionResult) => {
+        resolve(JSON.parse(JSON.stringify(value.result)).data as User[])
+        console.info(`成功666 ${JSON.stringify(value.result)}`);
+      }).catch((err: BusinessError) => {
+        console.error(`Failed to call the function, Code: ${err.code}, message: ${err.message}`);
+      })
+    })
   }
 
   // 只初始化一次云存储实例
@@ -167,6 +186,7 @@ export async function shareData(pageNum:number){
   }
   return []
 }
+
 
 //并发查询
 @Concurrent

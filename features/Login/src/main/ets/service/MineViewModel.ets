@@ -10,6 +10,7 @@ import { myOrder} from "../model/myOrder";
 import lpreferencesUtil from "../common/utils/PreferenceUtil";
 import { taskpool as taskPool } from '@kit.ArkTS';
 import { Spot } from "travel";
+import { User } from "../model/User";
 
 
 @Observed
@@ -49,7 +50,7 @@ export class MineViewModel{
 
   async loginDeal(code:string,phoneNumber:string){
     await this.userModel.goLogin(code,phoneNumber)
-      .then(user => {
+      .then(async user => {
         //登录成功
         this.personUid=user.getUser().getUid()
         this.phoneNumber = user.getUser().getPhone().slice(4)
@@ -67,9 +68,18 @@ export class MineViewModel{
             .catch((e: Error) => {
               hilog.error(0, '初次修改信息失败', JSON.stringify(e));
             })
+          this.personName = initname
+          this.personPhoto = "https://tse3-mm.cn.bing.net/th/id/OIP-C.VMyV_ymHWH14JQ3RPoezwgHaFj?rs=1&pid=ImgDetMain"
+          const userInfo=new User()
+          userInfo.setUserId(this.personUid)
+          userInfo.setUserName(this.personName)
+          userInfo.setUserPhoto(this.personPhoto)
+          this.userModel.addUser(userInfo)
+        }else{
+          const info=await this.getUserinfo(this.personUid)
+            this.personPhoto=info.userPhoto
+            this.personName=info.userName
         }
-        this.personName = user.getUser().getDisplayName()
-        this.personPhoto = user.getUser().getPhotoUrl()
         lpreferencesUtil.putPreferenceValue('UserInfoPreference','personUid',this.personUid)
         lpreferencesUtil.putPreferenceValue('UserInfoPreference','personPhoto',this.personPhoto)
         lpreferencesUtil.putPreferenceValue('UserInfoPreference','personName',this.personName)
@@ -77,6 +87,22 @@ export class MineViewModel{
       //登录失败
       console.log('登录失败', JSON.stringify(error))
     })
+  }
+
+  //获取用户信息
+  async getUserinfo(userid:string):Promise<User>{
+    return new Promise((resolve,reject)=>{
+      this.userModel.getuserData(userid).then(
+        ((value:User[])=>{
+          resolve(value[0]) ;
+        })
+      );
+    })
+  }
+
+  //修改用户信息
+  async userupdate(info:string,uid:string,type:number){
+    await this.userModel.updateUser(info,uid,type)
   }
 
   reset(){
