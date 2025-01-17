@@ -7,6 +7,7 @@ import { CommentInputDialog } from '../pages/CommentInputDialog';
 import { promptAction } from '@kit.ArkUI';
 import { Comment } from '../model/Comment';
 import { ShareViewModel } from '../service/ShareViewModel';
+import { Good } from '../model/Good';
 
 @Reusable
 @Component
@@ -14,21 +15,35 @@ export struct OneMoment {
   @Prop moment: FriendMomentAdd;
   @State SpotNetWork:SpotNetFunc = SpotNetFunc.getInstance()
   @State textInComment: string = ""; // 评论中的文字
-  @State imageInComment: ResourceStr = ''; // 评论中的图片列表
+  @State imageInComment: ResourceStr|Resource = ''; // 评论中的图片列表
   @StorageLink ('personUid') personUid: string = ''
   @StorageLink ('personPhoto') personPhoto: string = ''
   @StorageLink ('personName') personName: string = ''
+  @State userPhoto:string=''
+  @State userName:string=''
   @State good:Resource=$r("app.media.publish_multimedia_updates_ic_thumbsup")
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
+
   aboutToReuse(params: Record<string, Object>): void {
     this.moment = params.moment as FriendMomentAdd;
+  }
+
+  async aboutToAppear(): Promise<void> {
+    const isGood=await this.shareViewModel.goodsDeal(this.moment.id,this.personUid)
+    if(isGood){
+      this.good=$r('app.media.good')
+    }
+    this.shareViewModel.getUserinfo(this.moment.userId).then((info)=>{
+      this.userPhoto=info.userPhoto
+      this.userName=info.userName
+    })
   }
 
   dialogController: CustomDialogController= new CustomDialogController({
     builder: CommentInputDialog({
       //需要从弹窗中获取
       textInComment: $textInComment,
-      imagesInComment: $imageInComment,
+      imageInComment: $imageInComment,
       //一点击就知道到了分享的类型,传给弹窗
       momentid:this.moment.id,
       publish: () => this.publishComment()
@@ -42,13 +57,13 @@ export struct OneMoment {
   });
 
   publishComment(): void {
-    if (this.textInComment||this.imageInComment) {
+    if (this.textInComment!=''||(this.imageInComment as Resource).id!=$r('app.media.add').id) {
         const comment: Comment =new Comment();
         comment.setMomentid(`${this.moment.id}`);
         comment.setText(this.textInComment);
-        comment.setImage(this.imageInComment);
-        comment.setPhoto(this.personPhoto)
-        comment.setName(this.personName)
+        comment.setUid(this.personUid)
+        comment.setImage(this.imageInComment.toString());
+        comment.setTime(new Date().toString());
         this.shareViewModel.commentAdd(comment)
     } else {
       promptAction.showToast({
@@ -62,14 +77,14 @@ export struct OneMoment {
     Column() {
       Row() {
         //发表用户的头像
-        Image(this.moment.userphoto)
+        Image(this.userPhoto)
           .autoResize(false)
           .width($r('app.integer.publish_multimedia_updates_user_image_width'))
           .height($r('app.integer.publish_multimedia_updates_user_image_height'))
           .borderRadius($r('app.integer.publish_multimedia_updates_user_image_border_radius'))
         Column() {
           //发表用户的用户名
-          Text(this.moment.username)
+          Text(this.userName)
             .fontSize($r('app.integer.publish_multimedia_updates_useName_fontSize'))
             .fontColor($r('app.color.publish_multimedia_updates_title_font_color'))
             .lineHeight($r('app.integer.publish_multimedia_updates_useName_line_height'))
@@ -156,14 +171,18 @@ export struct OneMoment {
         })
           .margin({ left:60})
           .onClick(() => {
+            const good=new Good()
+            good.setItemId(this.moment.id)
+            good.setUserId(this.personUid)
+            //未点赞
             if(this.good.id==$r("app.media.publish_multimedia_updates_ic_thumbsup").id){
               this.good=$r('app.media.good')
-              const count=++this.moment.good
-              this.shareViewModel.updateGood(this.moment.id.toString(),count)
+              this.shareViewModel.updateGood(this.moment.id.toString(),1)
+              this.shareViewModel.goodUpdate(good,true)
             }else {
-              const count=--this.moment.good
               this.good=$r("app.media.publish_multimedia_updates_ic_thumbsup")
-              this.shareViewModel.updateGood(this.moment.id.toString(),count)
+              this.shareViewModel.updateGood(this.moment.id.toString(),-1)
+              this.shareViewModel.goodUpdate(good,false)
             }
           })
         ImageText({

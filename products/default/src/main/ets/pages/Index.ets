@@ -37,9 +37,11 @@ struct Index {
     const personUid=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personUid','')
     const personPhoto=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personPhoto','')
     const personName=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personName','')
+
+    AppStorage.setOrCreate('personUid',personUid)
     AppStorage.setOrCreate('personName',personName)
     AppStorage.setOrCreate('personPhoto',personPhoto)
-    AppStorage.setOrCreate('personUid',personUid)
+
   }
 
   aboutToDisappear(): void {

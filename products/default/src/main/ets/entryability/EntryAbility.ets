@@ -63,7 +63,6 @@ export default class EntryAbility extends UIAbility {
 
     // 将经验首选项初始化为[],方便之后取出后直接解析成数组
     // let EXPString: string = PreferencesUtil.getSync("EXP", "") as string;
-    // LogUtil.debug("EXPstring:" + EXPString)
     // if (EXPString === '') {
     //   let exp: EXP[] = []
     //   PreferencesUtil.putSync("EXP", JSON.stringify(exp))

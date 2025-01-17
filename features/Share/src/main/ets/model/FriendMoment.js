@@ -14,6 +14,7 @@ class FriendMoment {
         this.location = undefined;
         this.userPhoto = undefined;
         this.userName = undefined;
+        this.time = undefined;
     }
 
     setId(id) {
@@ -86,6 +87,14 @@ class FriendMoment {
 
     getUserName() {
         return this.userName;
+    }
+
+    setTime(time) {
+        this.time = time;
+    }
+
+    getTime() {
+        return this.time;
     }
 }
 

@@ -99,9 +99,9 @@ export struct LoginPage {
                 })
               } else if (code.length == 6) {
                 this.mineViewModel.loginDeal(code,this.phoneNumber).then((val)=>{
+                  this.personUid=this.mineViewModel.personUid
                   this.personName=this.mineViewModel.personName
                   this.personPhoto=this.mineViewModel.personPhoto
-                  this.personUid=this.mineViewModel.personUid
                   this.appPathStack.pop()
                 })
               }

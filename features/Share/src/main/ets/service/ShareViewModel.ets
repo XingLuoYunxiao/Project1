@@ -2,9 +2,15 @@ import { CommentData } from "../model/BasicDataSource";
 import { Comment } from "../model/Comment";
 import { FriendMoment } from "../model/FriendMoment";
 import { FriendMomentAdd } from "../model/FriendMomentAdd";
-import { queryCollection, queryComment, shareData, Sharedata, updateGood } from "../model/sharedata";
+import { queryCollection, queryComment,
+  queryGoods,
+  shareData, Sharedata, updateGood} from "../model/sharedata";
 import { taskpool } from "@kit.ArkTS";
 import { Spot } from "travel";
+import auth, { AuthUser } from "@hw-agconnect/auth"
+import { Good } from "../model/Good";
+import { User } from "../model/User";
+import { CommentAdd } from "../model/CommentAdd";
 
 export class ShareViewModel{
   private static instance: ShareViewModel = new ShareViewModel();
@@ -16,7 +22,7 @@ export class ShareViewModel{
     return ShareViewModel.instance;
   }
   shareList: CommentData<FriendMomentAdd> = new CommentData(); // 朋友圈列表
-  commentList: CommentData<Comment> = new CommentData(); // 评论列表
+  commentList: CommentData<CommentAdd> = new CommentData(); // 评论列表
   sharedata: Sharedata = Sharedata.getInstance()
   count:number=0
   none:number=0
@@ -37,7 +43,7 @@ export class ShareViewModel{
       //遍历的每一项
       const cur=value[index]
       const img=await this.sharedata.getUrl(cur.image)
-      result.push(new FriendMomentAdd(cur.id,cur.userId,cur.text,img,cur.good,cur.location,cur.userPhoto,cur.userName))
+      result.push(new FriendMomentAdd(cur.id,cur.userId,cur.text,img,cur.good,cur.location,cur.userPhoto,cur.userName,cur.time))
     }
     if(result.length<5){
       this.none=1
@@ -49,16 +55,38 @@ export class ShareViewModel{
   async commentDeal(momentid:string){
     let task:taskpool.Task=new taskpool.Task(queryComment,momentid)
     let value:Array<Comment>= await taskpool.execute(task) as Array<Comment>
+    this.count=value.length
     this.commentList.notifyDataDeleteAll()
     for (let index = 0; index < value.length; index++) {
       //每条评论
       const cur=value[index]
-      this.commentList.pushData(cur)
+      this.getUserinfo(cur.uid).then((info)=>{
+        const photo=info.userPhoto as string
+        const name=info.userName as string
+        this.commentList.pushData(new CommentAdd(cur.id,cur.momentid,cur.text,cur.image,photo,name,cur.time))
+      })
     }
-    this.count=this.commentList.totalCount()
   }
 
-  async shareAdd(data:FriendMoment,photo:string,name:string,seletimg:string){
+  //点赞查询
+  async goodsDeal(momentid:number,userid:string): Promise<boolean>{
+    let task:taskpool.Task=new taskpool.Task(queryGoods,momentid,userid)
+    let value:Array<Good>= await taskpool.execute(task) as Array<Good>
+    return value.length==0?false:true
+  }
+
+  //获取用户信息
+  async getUserinfo(userid:string):Promise<User>{
+    return new Promise((resolve,reject)=>{
+      this.sharedata.getuserData(userid).then(
+        ((value:User[])=>{
+          resolve(value[0]) ;
+        })
+      );
+    })
+  }
+
+  async shareAdd(data:FriendMoment){
     this.sharedata.addshareData(data)
       // .then(async ()=>{
           // this.shareList.addDataFirst(new FriendMomentAdd(data.id,data.userId,data.text,seletimg,data.good,data.location,photo,name))
@@ -68,9 +96,10 @@ export class ShareViewModel{
 
   async commentAdd(data:Comment){
     this.sharedata.addcommentData(data)
-      .then(async ()=>{
+  }
 
-      })
+  async goodUpdate(data:Good,isAdd:boolean){
+    this.sharedata.updateGoods(data,isAdd)
   }
 
   async updateGood(momentid:string,good:number){
@@ -100,5 +129,7 @@ export class ShareViewModel{
       return [];
     }
   }
+
+
 
 }
