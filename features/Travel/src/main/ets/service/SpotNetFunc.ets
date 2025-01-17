@@ -235,7 +235,7 @@ export class SpotNetFunc{
 
 
   //搜索景点
-  search(value: string): void {
+  async search(value: string): Promise<void> {
     if( value === '')
       return
     // 判断是否已经存在
@@ -255,16 +255,25 @@ export class SpotNetFunc{
       this.searchHistory.pop();
     }
     this.preferenceUtil.putPreferenceValue<string[]>('searchHistory', this.searchHistory);
-    this.spotModel.getSearchNameCondition(value).then((data) => {
-      this.searchResult = data
-      this.isRefresh = true
-      this.allSpotsDataSource.pushArrayData(this.searchResult)
-      this.searchLoadingStatus = LoadingStatus.SUCCESS
+    return new Promise(async (resolve, reject) => {
+      this.spotModel.getSearchNameCondition(value).then((data) => {
+        //获取所有结果
+        this.isHasMore = false
+        this.searchResult = data
+        this.isRefresh = true
+        this.allSpotsDataSource.pushArrayData(this.searchResult)
+        this.searchLoadingStatus = LoadingStatus.SUCCESS
+        resolve()
+      })
+      .catch((e:Error) => {
+        this.searchLoadingStatus = LoadingStatus.FAILED
+        Logger.error( TAG, `SpotModel getSearchNameCondition failed ${e}` );
+        reject();
+      })
     })
 
   }
 
-  //TODO 城市选择出现问题
   public async updateAttractionsList( currentCity: City, currentCategory: string[]) : Promise<LazyDataSource<Spot>> {
     //根据currentCategory[2]判断字段是否排序
     let order:OrderBy = {

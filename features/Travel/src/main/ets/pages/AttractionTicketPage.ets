@@ -37,13 +37,14 @@ export default struct AttractionTicketPage {
 
 
   async aboutToAppear(): Promise<void> {
-    this.spotNetWork.reset()
     //let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
     let category = JSON.parse(JSON.stringify(this.value)).text as string
     if( category !== "")
       this.currentCategory[0] = category
-    this.spotNetWork.allSpotsDataSource.clear();
-    this.currentAttractions =  await this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
+    if(this.spotNetWork.searchLoadingStatus === LoadingStatus.OFF){
+      this.spotNetWork.allSpotsDataSource.clear();
+      this.currentAttractions =  await this.spotNetWork.updateAttractionsList(this.currentCity, this.currentCategory)
+    }
   }
 
   aboutToDisappear(): void {
@@ -129,6 +130,7 @@ export default struct AttractionTicketPage {
         .width('70%')
         .height(36)
         .margin({ left: Constants.MARGIN_LG })
+        .enableKeyboardOnFocus(false)
         .onChange( ()=> {
           this.updateAttractionsList()
         })

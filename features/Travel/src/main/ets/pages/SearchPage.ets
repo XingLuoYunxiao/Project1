@@ -65,8 +65,15 @@ struct SearchPage {
               .placeholderColor(Constants.COLOR_TEXT_LIGHT)
               .textFont({ size: Constants.FONT_CAPTION })
               .borderRadius(Constants.BORDER_RADIUS_MD)
+              .defaultFocus(true)
               .onChange((value: string) => {
                 this.searchText = value
+              })
+              .onSubmit(() => {
+                //跳转到搜索结果页面
+                this.SpotNetWork.search(this.searchText)
+                RouterModule.replacePath(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE, new Object({text: ""}))
+                //this.appPathStack.pushPathByName('AttractionTicketPage', "")
               })
 
 
@@ -128,10 +135,13 @@ struct SearchPage {
                   .borderRadius(Constants.BORDER_RADIUS)
                   .backgroundColor(Constants.COLOR_BG)
                   .margin({ right: Constants.MARGIN_MD, bottom: Constants.MARGIN_MD })
+
                   .onClick( () => {
                     this.searchText = item
-                    this.SpotNetWork.search(this.searchText);
-                    RouterModule.replacePath(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE, new Object({text: ""}))
+                    this.SpotNetWork.search(this.searchText).then(() => {
+                      RouterModule.replacePath(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONTICKETPAGE, new Object({text: ""}))
+
+                    })
                     //this.appPathStack.replacePathByName('AttractionTicketPage', "")
                   })
               })

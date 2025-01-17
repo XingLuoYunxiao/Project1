@@ -1,4 +1,4 @@
-import { BuilderNameConstants, RouterModule } from "routermodule"
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule"
 import { spotComment } from "../model/spotComment"
 import { promptAction } from "@kit.ArkUI"
 import { Spot } from "../model/Spot"
@@ -72,7 +72,7 @@ export struct SpotDetailComment {
       if (parentId === -1) {
         this.commentService.postComment(this.commentInput, this.spot.id, this.userId, -1)
         this.commentService.reset()
-        this.commentService.loadMoreComments(this.spot.id)
+        await this.commentService.loadMoreComments(this.spot.id)
       } else if(parentId){
         this.commentService.postComment(this.commentInput, this.spot.id, this.userId, parentId)
 
@@ -87,6 +87,11 @@ export struct SpotDetailComment {
     } else {
       promptAction.showToast({ message: '评论失败[景点未定义]', duration: 2000 })
     }
+    /*//重新进入该页面
+    setTimeout(()=>{
+      RouterModule.replacePath(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_SPOTDETAILCOMMENT, new Object({ spot: this.spot }))
+    },500)*/
+
   }
 
   @Builder

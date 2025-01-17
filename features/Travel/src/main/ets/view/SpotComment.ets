@@ -131,11 +131,7 @@ export struct SpotComment {
         .fontColor(Color.Gray)
         .margin({ top: 16, bottom: 16 })
         .onClick(() => {
-          buildRouterModel(
-            RouterNameConstants.ENTRY_HAP,
-            BuilderNameConstants.TRAVEL_SPOTDETAILCOMMENT,
-            new Object({ spot: this.spot })
-          )
+          buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_SPOTDETAILCOMMENT, new Object({ spot: this.spot }))
         })
 
       // 评论输入区域

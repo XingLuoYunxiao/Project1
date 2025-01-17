@@ -1,6 +1,39 @@
 {
-  "schemaVersion": 110,
+  "schemaVersion": 127,
   "permissions": [
+    {
+      "permissions": [
+        {
+          "role": "World",
+          "rights": [
+            "Read"
+          ]
+        },
+        {
+          "role": "Authenticated",
+          "rights": [
+            "Read"
+          ]
+        },
+        {
+          "role": "Creator",
+          "rights": [
+            "Read",
+            "Upsert",
+            "Delete"
+          ]
+        },
+        {
+          "role": "Administrator",
+          "rights": [
+            "Read",
+            "Upsert",
+            "Delete"
+          ]
+        }
+      ],
+      "objectTypeName": "User"
+    },
     {
       "permissions": [
         {
@@ -486,12 +519,55 @@
           ]
         }
       ],
+      "objectTypeName": "Good"
+    },
+    {
+      "permissions": [
+        {
+          "role": "World",
+          "rights": [
+            "Read"
+          ]
+        },
+        {
+          "role": "Authenticated",
+          "rights": [
+            "Read"
+          ]
+        },
+        {
+          "role": "Creator",
+          "rights": [
+            "Read",
+            "Upsert",
+            "Delete"
+          ]
+        },
+        {
+          "role": "Administrator",
+          "rights": [
+            "Read",
+            "Upsert",
+            "Delete"
+          ]
+        }
+      ],
       "objectTypeName": "Writer"
     }
   ],
   "objectTypes": [
     {
-      "indexes": [],
+      "indexes": [
+        {
+          "indexName": "id",
+          "indexList": [
+            {
+              "fieldName": "id",
+              "sortType": "DESC"
+            }
+          ]
+        }
+      ],
       "objectTypeName": "BrowsingHistory",
       "fields": [
         {
@@ -686,6 +762,44 @@
         {
           "isNeedEncrypt": false,
           "fieldName": "uid",
+          "notNull": false,
+          "isSensitive": false,
+          "belongPrimaryKey": false,
+          "fieldType": "String"
+        },
+        {
+          "isNeedEncrypt": false,
+          "fieldName": "time",
+          "notNull": false,
+          "isSensitive": false,
+          "belongPrimaryKey": false,
+          "fieldType": "String"
+        }
+      ]
+    },
+    {
+      "indexes": [],
+      "objectTypeName": "User",
+      "fields": [
+        {
+          "isNeedEncrypt": false,
+          "fieldName": "userId",
+          "notNull": true,
+          "isSensitive": false,
+          "belongPrimaryKey": true,
+          "fieldType": "String"
+        },
+        {
+          "isNeedEncrypt": false,
+          "fieldName": "userName",
+          "notNull": false,
+          "isSensitive": false,
+          "belongPrimaryKey": false,
+          "fieldType": "String"
+        },
+        {
+          "isNeedEncrypt": false,
+          "fieldName": "userPhoto",
           "notNull": false,
           "isSensitive": false,
           "belongPrimaryKey": false,
@@ -1029,6 +1143,14 @@
           "isSensitive": false,
           "belongPrimaryKey": false,
           "fieldType": "String"
+        },
+        {
+          "isNeedEncrypt": false,
+          "fieldName": "time",
+          "notNull": false,
+          "isSensitive": false,
+          "belongPrimaryKey": false,
+          "fieldType": "String"
         }
       ]
     },
@@ -1117,7 +1239,17 @@
       ]
     },
     {
-      "indexes": [],
+      "indexes": [
+        {
+          "indexName": "Cid",
+          "indexList": [
+            {
+              "fieldName": "id",
+              "sortType": "ASC"
+            }
+          ]
+        }
+      ],
       "objectTypeName": "Collection",
       "fields": [
         {
@@ -1152,6 +1284,28 @@
           "notNull": true,
           "isSensitive": false,
           "defaultValue": "spot",
+          "belongPrimaryKey": false,
+          "fieldType": "String"
+        }
+      ]
+    },
+    {
+      "indexes": [],
+      "objectTypeName": "Good",
+      "fields": [
+        {
+          "isNeedEncrypt": false,
+          "fieldName": "itemId",
+          "notNull": true,
+          "isSensitive": false,
+          "belongPrimaryKey": true,
+          "fieldType": "Long"
+        },
+        {
+          "isNeedEncrypt": false,
+          "fieldName": "userId",
+          "notNull": false,
+          "isSensitive": false,
           "belongPrimaryKey": false,
           "fieldType": "String"
         }
