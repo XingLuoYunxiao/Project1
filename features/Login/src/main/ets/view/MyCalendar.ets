@@ -1,4 +1,5 @@
 import { CalendarData, CalendarStyle, CalendarType, ColorType, Day, MyTime } from '../model/CalendarModel'
+import { MineViewModel } from "../service/MineViewModel";
 @Component
 export struct MyCalendar {
     @State private month: number = 1; // 当前月份
@@ -9,6 +10,7 @@ export struct MyCalendar {
     @State private todayMoth: number = new Date().getMonth()+1;
     @State private todayYear: number = new Date().getFullYear();
     @State @Watch("setWeek") private date: number = 0; // 当前选中日期
+    @State mineViewModel:MineViewModel=MineViewModel.getInstance();
 
     private weeks: string[] = ["日", "一", "二", "三", "四", "五", "六"];
     private months: string[] = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
@@ -144,7 +146,7 @@ export struct MyCalendar {
             this.nextMouth(true)
           }
           this.date = day.dayNum;
-
+          this.mineViewModel.reset();
           this.onCalendarClick(new Date(this.year, this.month-1, this.date+1))
         })
 

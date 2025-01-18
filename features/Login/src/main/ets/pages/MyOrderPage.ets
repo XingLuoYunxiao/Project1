@@ -81,18 +81,22 @@ export struct MyOrderPage {
                 }else{
                   this.listData(this.orderListData)
                 }
-              }.scrollBar(BarState.Off)
-              .edgeEffect(EdgeEffect.Spring)
+              }
+              .edgeEffect(EdgeEffect.None)
+              .scrollBar(BarState.Off)
             }
             .tabBar('全部订单')
             TabContent() {
               Scroll() {
                 this.listData(this.waitListData)
-              }.scrollBar(BarState.Off)
-              .edgeEffect(EdgeEffect.Spring)
+              }
+              .edgeEffect(EdgeEffect.None)
+              .scrollBar(BarState.Off)
             }
             .tabBar('待使用')
-          }.barHeight(Constants.BAR_HEIGHT_PAGE)
+          }
+          .layoutWeight(1)
+          .barHeight(Constants.BAR_HEIGHT_PAGE)
         }
         .padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE,top:Constants.PADDING_PAGE})
         .width('100%')

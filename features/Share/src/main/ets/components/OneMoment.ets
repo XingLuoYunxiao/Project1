@@ -33,10 +33,10 @@ export struct OneMoment {
     if(isGood){
       this.good=$r('app.media.good')
     }
-    this.shareViewModel.getUserinfo(this.moment.userId).then((info)=>{
-      this.userPhoto=info.userPhoto
-      this.userName=info.userName
-    })
+    // this.shareViewModel.getUserinfo(this.moment.userId).then((info)=>{
+    //   this.userPhoto=info.userPhoto
+    //   this.userName=info.userName
+    // })
   }
 
   dialogController: CustomDialogController= new CustomDialogController({
@@ -77,14 +77,14 @@ export struct OneMoment {
     Column() {
       Row() {
         //发表用户的头像
-        Image(this.userPhoto)
+        Image(this.moment.userphoto)
           .autoResize(false)
           .width($r('app.integer.publish_multimedia_updates_user_image_width'))
           .height($r('app.integer.publish_multimedia_updates_user_image_height'))
           .borderRadius($r('app.integer.publish_multimedia_updates_user_image_border_radius'))
         Column() {
           //发表用户的用户名
-          Text(this.userName)
+          Text(this.moment.username)
             .fontSize($r('app.integer.publish_multimedia_updates_useName_fontSize'))
             .fontColor($r('app.color.publish_multimedia_updates_title_font_color'))
             .lineHeight($r('app.integer.publish_multimedia_updates_useName_line_height'))
