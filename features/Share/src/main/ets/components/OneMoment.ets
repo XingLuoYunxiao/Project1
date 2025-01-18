@@ -23,6 +23,7 @@ export struct OneMoment {
   @State userName:string=''
   @State good:Resource=$r("app.media.publish_multimedia_updates_ic_thumbsup")
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
+  @State showgood:number=this.moment.good
 
   aboutToReuse(params: Record<string, Object>): void {
     this.moment = params.moment as FriendMomentAdd;
@@ -167,7 +168,7 @@ export struct OneMoment {
           })
         ImageText({
           imageStr: this.good as Resource,
-          text: $r('app.string.publish_multimedia_updates_thumbs_up')
+          text: this.showgood.toString()
         })
           .margin({ left:60})
           .onClick(() => {
@@ -177,10 +178,12 @@ export struct OneMoment {
             //未点赞
             if(this.good.id==$r("app.media.publish_multimedia_updates_ic_thumbsup").id){
               this.good=$r('app.media.good')
+              this.showgood+=1
               this.shareViewModel.updateGood(this.moment.id.toString(),1)
               this.shareViewModel.goodUpdate(good,true)
             }else {
               this.good=$r("app.media.publish_multimedia_updates_ic_thumbsup")
+              this.showgood-=1
               this.shareViewModel.updateGood(this.moment.id.toString(),-1)
               this.shareViewModel.goodUpdate(good,false)
             }
