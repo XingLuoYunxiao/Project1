@@ -29,6 +29,7 @@ export class MineViewModel{
   pageNum: number = 1;
   none:number=0
   datetime:Date=new Date()
+  defaultPhoto:string="https://tse3-mm.cn.bing.net/th/id/OIP-C.VMyV_ymHWH14JQ3RPoezwgHaFj?rs=1&pid=ImgDetMain"
 
   private static instance: MineViewModel = new MineViewModel();
 
@@ -69,16 +70,21 @@ export class MineViewModel{
               hilog.error(0, '初次修改信息失败', JSON.stringify(e));
             })
           this.personName = initname
-          this.personPhoto = "https://tse3-mm.cn.bing.net/th/id/OIP-C.VMyV_ymHWH14JQ3RPoezwgHaFj?rs=1&pid=ImgDetMain"
+          // this.personPhoto是拿来能直接用的
+          this.personPhoto = this.defaultPhoto
           const userInfo=new User()
           userInfo.setUserId(this.personUid)
           userInfo.setUserName(this.personName)
-          userInfo.setUserPhoto(this.personPhoto)
+          // userInfo.setUserPhoto(this.personPhoto)
+          userInfo.setUserPhoto(this.personUid)
           this.userModel.addUser(userInfo)
+          await this.uploaddefault(this.personUid,this.defaultPhoto)
+          console.log('默认1'+this.defaultPhoto)
         }else{
           const info=await this.getUserinfo(this.personUid)
-            this.personPhoto=info.userPhoto
-            this.personName=info.userName
+          this.personPhoto=await this.getuserUrl(info.userPhoto)
+          // this.personPhoto=info.userPhoto
+          this.personName=info.userName
         }
         lpreferencesUtil.putPreferenceValue('UserInfoPreference','personUid',this.personUid)
         lpreferencesUtil.putPreferenceValue('UserInfoPreference','personPhoto',this.personPhoto)
@@ -100,9 +106,32 @@ export class MineViewModel{
     })
   }
 
+  //在云存储获取头像
+  async getuserUrl(img:string): Promise<string>{
+    return await this.userModel.getuserUrl(img)
+  }
+
+  //上传用户头像到云存储
+  async uploaddefault(uid:string,defaulturi:string){
+    console.log('默认2'+defaulturi)
+    await this.userModel.uploaddefault(uid,defaulturi)
+  }
+
+  // async upload(uid:string): Promise<string>{
+  //   const res=await this.userModel.upload(uid)
+  //   return res.photoUris[0]
+  // }
+
   //修改用户信息
   async userupdate(info:string,uid:string,type:number){
-    await this.userModel.updateUser(info,uid,type)
+    if(type==0){
+      await this.userModel.updateUser(info,uid)
+    }else {
+      //删除云存储
+      await this.userModel.deletecloud(`share/comment/${uid}.png`)
+      //上传到云存储
+      this.userModel.upload(uid,info)
+    }
   }
 
   reset(){
@@ -154,23 +183,22 @@ export class MineViewModel{
         const spotresult: Array<HistoryAdd> = [];
         const poemresult: Array<HistoryAdd> = [];
         for (let index = 0; index < value.length; index++) {
-          const cur = value[index] as BrowsingHistory
+          const cur = value[index]
           if(index==9){
             this.datetime=cur.viewTime
           }
             if(cur.type=='spot'){
               const spots=await this.userModel.getspotData(cur.spotId)
               const img= await this.userModel.getUrl(spots[0].imageUrl)
-              const pushdata=new HistoryAdd(cur.id,cur.spotId,cur.viewTime,cur.viewCount,cur.type,cur.userId,cur.poemId,spots[0].name,img,false)
-              spotresult.push(pushdata)
+              spotresult.push(new HistoryAdd(cur.id,cur.spotId,cur.viewTime,cur.viewCount,cur.type,cur.userId,cur.poemId,spots[0].name,img,false))
               // this.historyspotListData.notifyDataReload()
             }else{
               const poem=await this.userModel.getpoemData(cur.spotId)
               poemresult.push(new HistoryAdd(cur.id,cur.spotId,cur.viewTime,cur.viewCount,cur.type,cur.userId,cur.poemId,poem[0].title,poem[0].writer,false))
             }
-          if(spotresult.length<10){
-            this.none=1
-          }
+        }
+        if(spotresult.length<10){
+          this.none=1
         }
         this.historyspotListData.appendArrayData(spotresult)
         this.historypoemListData.appendArrayData(poemresult)

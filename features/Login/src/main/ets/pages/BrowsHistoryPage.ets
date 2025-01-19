@@ -45,7 +45,7 @@ export struct BrowsHistoryPage {
   @Builder
   bottomDelete(){
     Row(){
-      CheckboxGroup({ group: 'checkboxGroup' })
+      CheckboxGroup({ group: 'checkboxGrou' })
         .checkboxShape(CheckBoxShape.CIRCLE)
         .selectedColor(Color.Blue)
         .onChange((itemName: CheckboxGroupResult) => {
@@ -57,6 +57,13 @@ export struct BrowsHistoryPage {
               cur.isChoose=true
             }
           }
+          if(itemName.status==SelectStatus.None){
+            // this.deletecount=0
+            for (let index = this.historyspotListData.totalCount()-1; index >= 0; index--) {
+              const cur=this.historyspotListData.getData(index)
+              cur.isChoose=false
+            }
+          }
         })
         .mark({
           strokeColor:Color.White,
@@ -66,8 +73,7 @@ export struct BrowsHistoryPage {
         .unselectedColor(Color.Gray)
       Text('全选')
       Blank()
-      Button('清空全部')
-      Button(`删除${this.deletecount}`).onClick(()=>{
+      Button(`删除 (${this.deletecount})`).onClick(()=>{
         for (let index = this.historyspotListData.totalCount()-1; index >= 0; index--) {
           const cur=this.historyspotListData.getData(index)
           if(cur.isChoose==true){
@@ -140,18 +146,19 @@ export struct BrowsHistoryPage {
           .justifyContent(FlexAlign.SpaceBetween)
 
           MyCalendar({onCalendarClick: (item: Date): Promise<void> => this.mineViewModel.historyDeal(this.personUid,item)})
-          Tabs() {
-            TabContent() {
               Column() {
                 List({space:Constants.SMALL_SPACE}) {
                   LazyForEach(this.historyspotListData, (history: HistoryAdd) => {
                     ListItem() {
                       Row() {
-                          Checkbox({ name:history.spotname, group: 'checkboxGroup' })
+                          Checkbox({ name:history.spotname, group: 'checkboxGrou' })
+                            .select(history.isChoose)
                             .onChange((isChecked: boolean) => {
                               if (isChecked) {
                                 this.deletecount++
-                              }else this.deletecount--
+                              }else {
+                                this.deletecount--
+                              }
                               history.isChoose=isChecked
                             })
                             .mark({
@@ -191,40 +198,6 @@ export struct BrowsHistoryPage {
                 })
                 .scrollBar(BarState.Off)
               }.height('100%')
-            }.tabBar('遗迹景点')
-
-            TabContent() {
-              Column() {
-                List({space:Constants.SMALL_SPACE}) {
-                  LazyForEach(this.historypoemListData, (history: HistoryAdd) => {
-                    ListItem() {
-                      Row() {
-                        if (this.manage == '退出管理') {
-                          Checkbox()
-                            .select(this.isChecked)
-                            .onChange((isChecked: boolean) => {
-                              history.isChoose = isChecked
-                            })
-                        }
-                        CollectHistoryItem({ item: history })
-                          // .onClick(()=>{
-                          //   this.mineViewModel.taskPoolExecuteQuery(history.spotname).then((res) => {
-                          //     if(res.length !== 0){
-                          //       buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:res[0]}))
-                          //     }
-                          //   })
-                          // })
-                      }
-                    }.onClick(()=>{
-
-                    })
-                  }, (history: HistoryAdd) => JSON.stringify(history))
-                }.scrollBar(BarState.Off)
-              }
-            }.tabBar('诗词歌赋')
-          }
-          .layoutWeight(1)
-          .barHeight(Constants.BAR_HEIGHT_PAGE)
         }.padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE,top:Constants.PADDING_PAGE})
         this.bottomDelete()
       }.alignContent(Alignment.Bottom)

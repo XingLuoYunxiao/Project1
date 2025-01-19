@@ -46,15 +46,6 @@ export struct InfoMessagePage {
     .justifyContent(FlexAlign.Center)
   }
 
-aboutToAppear(): void {
-  // this.mineViewModel.getUserinfo(this.personUid).then((val)=>{
-  //   this.personName=val[0].userName
-  //   this.personPhoto=val[0].userPhoto
-  // })
-  // AppStorage.setOrCreate('personName',this.personName)
-  // AppStorage.setOrCreate('personPhoto',this.personPhoto)
-  // AppStorage.setOrCreate('personUid',this.personUid)
-}
 
   build() {
     Navigation(this.loginPathStack) {
@@ -91,12 +82,16 @@ aboutToAppear(): void {
                   // }).catch((e:AGCError)=>{
                   //   console.log('接口还是有问题',e.code,e.message)
                   // })
+                  console.log(PhotoSelectResult.photoUris[0],'饿')
                   this.mineViewModel.userupdate(PhotoSelectResult.photoUris[0],this.personUid,1).then(
                     async (val)=>{
-                      this.mineViewModel.getUserinfo(this.personUid).then((info)=>{
-                        this.personPhoto=info.userPhoto
-                        lpreferencesUtil.putPreferenceValue('UserInfoPreference','personPhoto',info.userPhoto)
+                      this.mineViewModel.getUserinfo(this.personUid).then(async (info)=>{
+                        this.mineViewModel.getuserUrl(info.userPhoto).then((val)=>{
+                          this.personPhoto=val
+                          lpreferencesUtil.putPreferenceValue('UserInfoPreference','personPhoto',val)
+                        })
                       })
+
                   })
                 }).catch((err: BusinessError) => {
                   console.error(`PhotoViewPicker.select失败,err: ${err.code}, ${err.message}`);
@@ -159,32 +154,33 @@ aboutToAppear(): void {
         .width('95%')
 
         //其他功能
-        Column(){
-            ForEach(FUNCTION_PATHS,(item:functionItem,index)=>{
-              ListItem(){
-                if(index>3){
-                  Row(){
-                    Image(item.img).width(30).margin({right:6})
-                    Text(item.title)
-                    Blank()
-                    Image(item.icon).width(40)
-                  }.width('100%')
-                }
-              }.onClick(()=>{
-                buildRouterModel(RouterNameConstants.ENTRY_HAP, item.turnname)
-              })
-            })
-        }
-        .padding({left:$r('app.float.xl_padding_margin'),right:$r('app.float.xl_padding_margin'),top:$r('app.float.md_padding_margin'),bottom:$r('app.float.md_padding_margin')})
-        .width('100%')
-        .backgroundColor(Color.White)
+        // Column(){
+        //     ForEach(FUNCTION_PATHS,(item:functionItem,index)=>{
+        //       ListItem(){
+        //         if(index>3){
+        //           Row(){
+        //             Image(item.img).width(30).margin({right:6})
+        //             Text(item.title)
+        //             Blank()
+        //             Image(item.icon).width(40)
+        //           }.width('100%')
+        //         }
+        //       }.onClick(()=>{
+        //         buildRouterModel(RouterNameConstants.ENTRY_HAP, item.turnname)
+        //       })
+        //     })
+        // }
+        // .padding({left:$r('app.float.xl_padding_margin'),right:$r('app.float.xl_padding_margin'),top:$r('app.float.md_padding_margin'),bottom:$r('app.float.md_padding_margin')})
+        // .width('100%')
+        // .backgroundColor(Color.White)
 
         //推荐流
         WaterFlow(){
           LazyForEach(this.spotDataSource,(item:Spot,index:number)=>{
             FlowItem() {
               MineWaterflow({listitem:item})
-            }.onClick(()=>{
+            }
+            .onClick(()=>{
               buildRouterModel(RouterNameConstants.ENTRY_HAP, BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE,new Object({item:item}))
             })
             // .onAppear(() => {
@@ -202,6 +198,7 @@ aboutToAppear(): void {
         .rowsGap(5)
         .width('100%')
         .padding($r('app.float.lg_padding_margin'))
+        .layoutWeight(1)
         .backgroundColor(Color.White)
       }
       .backgroundColor($r('app.color.app_background_color'))
@@ -275,8 +272,6 @@ const FUNCTION_PATHS: functionItem[]=[
   new functionItem($r('app.media.history'), "浏览记录",BuilderNameConstants.LOGIN_BROWSHISTORYPAGE),
   new functionItem($r('app.media.order'), "我的订单",BuilderNameConstants.LOGIN_MYORDER),
   new functionItem($r('app.media.knowledge'), "知识等级",BuilderNameConstants.LOGIN_KNOWLEDGEPAGE),
-  new functionItem($r('app.media.message'),"古韵天地",'Message',$r('app.media.ic_arrow')),
-  new functionItem($r('app.media.privacy'),"隐私",BuilderNameConstants.LOGIN_PRIVACYPAGE,$r('app.media.ic_arrow')),
-  new functionItem($r('app.media.advice'),"意见",BuilderNameConstants.LOGIN_ADVICEPAGE,$r('app.media.ic_arrow')),
-  // new functionItem($r('app.media.account'),"分享",'SharePage',$r('app.media.ic_arrow'))
+  // new functionItem($r('app.media.privacy'),"隐私",BuilderNameConstants.LOGIN_PRIVACYPAGE,$r('app.media.ic_arrow')),
+  // new functionItem($r('app.media.advice'),"意见",BuilderNameConstants.LOGIN_ADVICEPAGE,$r('app.media.ic_arrow')),
 ];

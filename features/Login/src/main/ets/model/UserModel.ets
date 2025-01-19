@@ -8,9 +8,13 @@ import { cloudCommon, cloudFunction } from '@kit.CloudFoundationKit';
 import { BusinessError, request } from '@kit.BasicServicesKit';
 import auth from "@hw-agconnect/auth";
 import { cloudStorage } from '@kit.CloudFoundationKit';
-
+import { fileIo as fs } from '@kit.CoreFileKit';
 import { Params } from "travel/src/main/ets/model/FuncParams";
 import { User } from "./User";
+import { photoAccessHelper } from "@kit.MediaLibraryKit";
+import { common } from "@kit.AbilityKit";
+import { buffer } from "@kit.ArkTS";
+import { fileUri } from '@kit.CoreFileKit';
 
 
 let bucket: cloudStorage.StorageBucket = cloudStorage.bucket();
@@ -90,14 +94,13 @@ export class UserModel{
   }
 
   //修改用户信息
-  async updateUser(info:string,uid:string,type:number){
+  async updateUser(info:string,uid:string){
     cloudFunction.call({
       name: 'get-hiscol-data',
       data:{
         table:'updateUser',
         info:info,
         uid:uid,
-        updatedata:type
       }
     }).then((value: cloudFunction.FunctionResult) => {
       console.info(`成功更新 ${JSON.stringify(value.result)}`);
@@ -148,6 +151,134 @@ export class UserModel{
     })
   }
 
+  uploaddefault(uid:string,defaulturi:string){
+    let context = getContext(this) as common.UIAbilityContext;
+    const filePath = context.filesDir + "/1.png";
+    const fin=fileUri.getUriFromPath(filePath);
+    console.info('download complete'+fin+filePath);
+    let url = defaulturi;
+    try {
+      request.downloadFile(context, { url: url, filePath: filePath}).then((downloadTask: request.DownloadTask) => {
+        downloadTask.on('complete', () => {
+          console.info('download complete');
+          let file = fs.openSync(filePath, fs.OpenMode.READ_WRITE);
+          let arrayBuffer = new ArrayBuffer(1024);
+          let readLen = fs.readSync(file.fd, arrayBuffer);
+          let buf = buffer.from(arrayBuffer, 0, readLen);
+          console.info(`content of File: ${buf.toString()}`);
+          fs.closeSync(file);
+        })
+        downloadTask.getTaskInfo().then((info)=>{
+          const final=info.fileName
+          console.log('终于'+final)
+        })
+      }).catch((err: BusinessError) => {
+        console.error(`downLoadFileTask failed, code is ${err.code}, message is ${err.message}`);
+      });
+    } catch (error) {
+      console.error(`downLoadFileTask failed, code is ${error.code}, message is ${error.message}`);
+    }
+
+    // console.log('默认3'+defaulturi+uid)
+    //file://media/Photo/16/IMG_1734618404_013/IMG_013.jpg
+        let fileri =fin;
+        console.info(`pick file1 ${fileri}`);
+        let file = uid
+        let cacheFile = `${Date.now()}.png`;
+        let cacheFilePath = getContext().cacheDir + '/' + cacheFile;
+        let fileName = `share/comment/${file}.png`;
+        // 将选中文件copy至cache目录下，文件名为cacheFile
+        try {
+          let srcFile = fs.openSync(fileri);
+          let dstFile = fs.openSync(cacheFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+          fs.copyFileSync(srcFile.fd, dstFile.fd);
+          fs.closeSync(srcFile);
+          fs.closeSync(dstFile);
+        } catch (e) {
+          console.info(`copy file 失败 ${e.message}`);
+          return;
+        }
+
+        // 上传至云存储默认实例
+        bucket.uploadFile(getContext(this), {
+          localPath: cacheFile, // 本地文件路径，context.cacheDir目录下的文件
+          cloudPath: fileName,    // 云侧路径
+        }).then((task: request.agent.Task) => {
+          task.on('progress', (progress) => {
+            console.info(`on progress ${JSON.stringify(progress)}`);
+          });
+          task.on('completed', (progress) => {
+            console.info(`on completed ${JSON.stringify(progress)}`);
+          });
+          task.on('failed', (progress) => {
+            console.error(`on failed ${JSON.stringify(progress)}`);
+          });
+          task.on('response', (response) => {
+            console.info(`on response ${JSON.stringify(response)}`);
+          });
+
+          // start task
+          task.start((err: BusinessError) => {
+            if (err) {
+              console.error(`Failed to start the uploadFile task, Code: ${err.code}, message: ${err.message}`);
+            } else {
+              console.info(`Succeeded in starting a uploadFile task.`);
+            }
+          });
+        }).catch((err: BusinessError) => {
+          console.error(`uploadFile failed, Code: ${err.code}, message: ${err.message}`);
+        });
+  }
+
+  upload(uid:string,info:string) {
+        let fileUri = info;
+        let file = uid;
+        let cacheFile = `${Date.now()}.png`;
+        let cacheFilePath = getContext().cacheDir + '/' + cacheFile;
+        let fileName = `share/comment/${file}.png`;
+        // 将选中文件copy至cache目录下，文件名为cacheFile
+        try {
+          let srcFile = fs.openSync(fileUri);
+          let dstFile = fs.openSync(cacheFilePath, fs.OpenMode.READ_WRITE | fs.OpenMode.CREATE);
+          fs.copyFileSync(srcFile.fd, dstFile.fd);
+          fs.closeSync(srcFile);
+          fs.closeSync(dstFile);
+        } catch (e) {
+          console.info(`copy file failed ${e.message}`);
+          return;
+        }
+
+        // 上传至云存储默认实例
+        bucket.uploadFile(getContext(this), {
+          localPath: cacheFile, // 本地文件路径，context.cacheDir目录下的文件
+          cloudPath: fileName,    // 云侧路径
+        }).then((task: request.agent.Task) => {
+          task.on('progress', (progress) => {
+            console.info(`on progress ${JSON.stringify(progress)}`);
+          });
+          task.on('completed', (progress) => {
+            console.info(`on completed ${JSON.stringify(progress)}`);
+          });
+          task.on('failed', (progress) => {
+            console.error(`on failed ${JSON.stringify(progress)}`);
+          });
+          task.on('response', (response) => {
+            console.info(`on response ${JSON.stringify(response)}`);
+          });
+
+          // start task
+          task.start((err: BusinessError) => {
+            if (err) {
+              console.error(`Failed to start the uploadFile task, Code: ${err.code}, message: ${err.message}`);
+            } else {
+              console.info(`Succeeded in starting a uploadFile task.`);
+            }
+          });
+        }).catch((err: BusinessError) => {
+          console.error(`uploadFile failed, Code: ${err.code}, message: ${err.message}`);
+        });
+  }
+
   getUrl(img:string):Promise<string> {
     return new Promise((resolve,reject)=>{
       bucket.getDownloadURL(`travel/spot/${img}.png`).then((downloadURL: string) => {
@@ -158,6 +289,26 @@ export class UserModel{
         console.error(`getDownloadURL failed, Code: ${err.code}, message: ${err.message}`);
       });
     })
+  }
+
+  getuserUrl(img:string):Promise<string> {
+    return new Promise((resolve,reject)=>{
+      bucket.getDownloadURL(`share/comment/${img}.png`).then((downloadURL: string) => {
+        resolve(downloadURL)
+        console.info(`getDownloadURL: ${downloadURL}`);
+      }).catch((err: BusinessError) => {
+        resolve('')
+        console.error(`getDownloadURL failed, Code: ${err.code}, message: ${err.message}`);
+      });
+    })
+  }
+
+  deletecloud(cloudPath:string){
+    bucket.deleteFile(cloudPath).then(() => {
+      console.info('delete file success.');
+    }).catch((err: BusinessError) => {
+      console.error(`delete file failed! Code: ${err.code}, message: ${err.message}`);
+    });
   }
 
   async getpoemData(poemid:number): Promise<Poem[]>{

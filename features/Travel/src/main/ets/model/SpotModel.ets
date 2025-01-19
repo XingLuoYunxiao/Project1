@@ -13,6 +13,7 @@ export class SpotModel {
   //获取景点数据
   public getAllSpotData(): Promise<Spot[]> {
     // 初始化
+    // 初始化
     return new Promise(async (resolve, reject) => {
       try{
         let params: Params = {
