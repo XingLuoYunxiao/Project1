@@ -129,8 +129,6 @@ export struct CollectionPage {
           .width('100%')
           .height(Constants.TOP_HEIGHT_PAGE)
           .justifyContent(FlexAlign.SpaceBetween)
-          Tabs(){
-            TabContent(){
               Column(){
                 Search({placeholder:'请输入关键字'})
                   .onSubmit((val)=>{
@@ -159,33 +157,6 @@ export struct CollectionPage {
               if(this.manage=='退出管理'){
                 this.bottomDelete()
               }
-            }.tabBar('遗迹景点')
-            TabContent(){
-              Column(){
-                Scroll(){
-                  Column(){
-                    LazyForEach(this.collectpoemListData,(poem:CollectionAdd)=>{
-                      ListItem(){
-                        Row({space:Constants.MIDDLE_SPACE}){
-                          Text(`《${poem.spotname}》`).fontSize(16)
-                          Text(poem.spot_img).fontSize(16)
-                        }
-                        .justifyContent(FlexAlign.Start)
-                        .width('100%')
-                        .height(80)
-                        .padding({left:$r('app.float.sm_padding_margin')})
-                        .margin($r('app.float.sm_padding_margin'))
-                        .borderRadius(8)
-                        .backgroundColor($r('app.color.dialog_background_blue'))
-                      }.onClick(()=>{
-
-                      })
-                    },(poem:CollectionAdd)=>JSON.stringify(poem))
-                  }
-                }.scrollBar(BarState.Off)
-              }.height('100%')
-            }.tabBar('诗词歌赋')
-          }.barHeight(Constants.BAR_HEIGHT_PAGE)
         }
         .padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE,top:Constants.PADDING_PAGE})
         .backgroundColor($r('app.color.page_background_grey'))
@@ -269,7 +240,6 @@ export struct CollectionPage {
         }
       }
       .cachedCount(50)
-      .edgeEffect(EdgeEffect.None)
       .onReachEnd(()=>{
         if(this.collectspotListData.totalCount()){
           this.isLoading=true
@@ -281,6 +251,7 @@ export struct CollectionPage {
           })
         }
       })
+      .edgeEffect(EdgeEffect.None)
       .height('100%')
       .scrollBar(BarState.Off)
   }

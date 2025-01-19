@@ -71,10 +71,16 @@ export struct OrderItem {
       Row() {
         Text('更多')
         Blank()
-        Button('评价').onClick(()=>{
+        Button('评价')
+          .width(60)
+          .fontSize(12)
+          .onClick(()=>{
           this.dialogController.open()
         })
+          .margin({right:5})
         Button('再来一单')
+          .width(80)
+          .fontSize(12)
       }.width('100%')
     }.borderRadius(20)
     .backgroundColor(Color.White)

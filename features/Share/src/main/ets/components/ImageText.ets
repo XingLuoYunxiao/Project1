@@ -20,7 +20,7 @@
 @Component
 export struct ImageText {
   @Prop imageStr: Resource;
-  text: string | Resource = '';
+  @Prop text: string | Resource;
 
   build() {
     Row() {

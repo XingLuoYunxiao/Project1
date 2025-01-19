@@ -43,7 +43,9 @@ export class ShareViewModel{
       //遍历的每一项
       const cur=value[index]
       const img=await this.sharedata.getUrl(cur.image)
-      result.push(new FriendMomentAdd(cur.id,cur.userId,cur.text,img,cur.good,cur.location,cur.userPhoto,cur.userName,cur.time))
+      const info = await this.getUserinfo(cur.userId)
+      const photo=await this.getuserUrl(info.userPhoto)
+      result.push(new FriendMomentAdd(cur.id,cur.userId,cur.text,img,cur.good,cur.location,photo,info.userName,cur.time))
     }
     if(result.length<5){
       this.none=1
@@ -60,8 +62,8 @@ export class ShareViewModel{
     for (let index = 0; index < value.length; index++) {
       //每条评论
       const cur=value[index]
-      this.getUserinfo(cur.uid).then((info)=>{
-        const photo=info.userPhoto as string
+      this.getUserinfo(cur.uid).then(async (info)=>{
+        const photo=await this.getuserUrl(info.userPhoto as string)
         const name=info.userName as string
         this.commentList.pushData(new CommentAdd(cur.id,cur.momentid,cur.text,cur.image,photo,name,cur.time))
       })
@@ -115,6 +117,11 @@ export class ShareViewModel{
   async upload(uid:string,time:string): Promise<string>{
     const res=await this.sharedata.upload(uid,time)
     return res.photoUris[0]
+  }
+
+  //在云存储获取头像
+  async getuserUrl(img:string): Promise<string>{
+    return await this.sharedata.getuserUrl(img)
   }
 
   //使用taskPool执行查询任务（收藏查询）

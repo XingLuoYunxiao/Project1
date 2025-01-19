@@ -87,6 +87,18 @@ export class Sharedata{
     })
   }
 
+  getuserUrl(img:string):Promise<string> {
+    return new Promise((resolve,reject)=>{
+      bucket.getDownloadURL(`share/comment/${img}.png`).then((downloadURL: string) => {
+        resolve(downloadURL)
+        console.info(`getDownloadURL: ${downloadURL}`);
+      }).catch((err: BusinessError) => {
+        resolve('')
+        console.error(`getDownloadURL failed, Code: ${err.code}, message: ${err.message}`);
+      });
+    })
+  }
+
   // 只初始化一次云存储实例
   upload(uid:string,time:string):Promise<photoAccessHelper.PhotoSelectResult> {
     // 使用photoAccessHelper选择指定的文件

@@ -23,6 +23,7 @@ export struct OneMoment {
   @State userName:string=''
   @State good:Resource=$r("app.media.publish_multimedia_updates_ic_thumbsup")
   @State shareViewModel:ShareViewModel=ShareViewModel.getInstance();
+  @State showgood:number=this.moment.good
 
   aboutToReuse(params: Record<string, Object>): void {
     this.moment = params.moment as FriendMomentAdd;
@@ -33,10 +34,10 @@ export struct OneMoment {
     if(isGood){
       this.good=$r('app.media.good')
     }
-    this.shareViewModel.getUserinfo(this.moment.userId).then((info)=>{
-      this.userPhoto=info.userPhoto
-      this.userName=info.userName
-    })
+    // this.shareViewModel.getUserinfo(this.moment.userId).then((info)=>{
+    //   this.userPhoto=info.userPhoto
+    //   this.userName=info.userName
+    // })
   }
 
   dialogController: CustomDialogController= new CustomDialogController({
@@ -77,14 +78,14 @@ export struct OneMoment {
     Column() {
       Row() {
         //发表用户的头像
-        Image(this.userPhoto)
+        Image(this.moment.userphoto)
           .autoResize(false)
           .width($r('app.integer.publish_multimedia_updates_user_image_width'))
           .height($r('app.integer.publish_multimedia_updates_user_image_height'))
           .borderRadius($r('app.integer.publish_multimedia_updates_user_image_border_radius'))
         Column() {
           //发表用户的用户名
-          Text(this.userName)
+          Text(this.moment.username)
             .fontSize($r('app.integer.publish_multimedia_updates_useName_fontSize'))
             .fontColor($r('app.color.publish_multimedia_updates_title_font_color'))
             .lineHeight($r('app.integer.publish_multimedia_updates_useName_line_height'))
@@ -167,7 +168,7 @@ export struct OneMoment {
           })
         ImageText({
           imageStr: this.good as Resource,
-          text: $r('app.string.publish_multimedia_updates_thumbs_up')
+          text: this.showgood.toString()
         })
           .margin({ left:60})
           .onClick(() => {
@@ -177,10 +178,12 @@ export struct OneMoment {
             //未点赞
             if(this.good.id==$r("app.media.publish_multimedia_updates_ic_thumbsup").id){
               this.good=$r('app.media.good')
+              this.showgood+=1
               this.shareViewModel.updateGood(this.moment.id.toString(),1)
               this.shareViewModel.goodUpdate(good,true)
             }else {
               this.good=$r("app.media.publish_multimedia_updates_ic_thumbsup")
+              this.showgood-=1
               this.shareViewModel.updateGood(this.moment.id.toString(),-1)
               this.shareViewModel.goodUpdate(good,false)
             }
