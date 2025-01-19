@@ -157,6 +157,8 @@ export default struct AttractionTicketPage {
 
 
   async updateAttractionsList() {
+    if(this.spotNetWork.searchLoadingStatus === LoadingStatus.SUCCESS)
+      return
     this.spotNetWork.allLoadingStatus = LoadingStatus.LOADING
     //遍历所有景点，将所有符合条件的景点插入到currentAttractions中,不符合则删除
     if(!judgeLoadData(this.currentCity, this.currentCategory)){

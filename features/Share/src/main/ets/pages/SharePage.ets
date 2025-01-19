@@ -153,5 +153,6 @@ export struct SharePage {
       }
       .padding({left:Constants.PADDING_PAGE,right:Constants.PADDING_PAGE})
       .hideTitleBar(true)
+      .mode(NavigationMode.Stack);
   }
 }
