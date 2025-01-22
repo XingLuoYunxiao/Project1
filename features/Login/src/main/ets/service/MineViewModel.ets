@@ -226,7 +226,7 @@ export class MineViewModel{
   //使用taskPool执行查询任务（收藏查询）
   async taskPoolExecuteQuery(condition:string): Promise<Array<Spot>> {
     try {
-      //创建任务
+      //创建任务  
       let task: taskPool.Task = new taskPool.Task(queryCollection, condition); // query函数调用 需使用装饰器@Concurrent
       let result: Array<Spot> = await taskPool.execute(task) as Array<Spot>;
       return result;

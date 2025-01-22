@@ -5,6 +5,7 @@ import { SpotNetFunc } from '../service/SpotNetFunc';
 import { BreakpointConstants, BreakpointType, LoadingStatus, LocationUtil } from 'utils';
 import { PreferenceUtil } from "utils";
 import { router } from '@kit.ArkUI';
+import { TravelSkeletonView } from '../view/TravelSkeletonView';
 
 
 @Component
@@ -97,12 +98,6 @@ export struct TravelStartPage {
         }
 
           if (this.loadAllState === LoadingStatus.SUCCESS) {
-            // 附近景点
-            /*Text('附近景点')
-              .fontSize(20)
-              .fontWeight(FontWeight.Bold)
-              .margin({ top: 20, left: 10, bottom: 10 })
-              .fontColor('#444444');*/
             ListItem(){
               NearbyAttraction()
                 .width('100%')
@@ -110,10 +105,7 @@ export struct TravelStartPage {
             }
           } else {
             ListItem(){
-              Text('加载中...')
-                .fontSize(18)
-                .fontColor('#aaaaaa')
-                .alignSelf(ItemAlign.Center);
+              TravelSkeletonView()
             }
           }
 

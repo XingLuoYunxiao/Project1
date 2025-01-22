@@ -1,0 +1,24 @@
+{
+  "color": [
+    {
+      "name": "color_1",
+      "value": "#ff0000"
+    },
+    {
+      "name": "skeleton_color_deep",
+      "value": "#1A000000"
+    },
+    {
+      "name": "skeleton_color_medium",
+      "value": "#FFF2F3F4"
+    },
+    {
+      "name": "skeleton_color_light",
+      "value": "#FFECECEC"
+    },
+    {
+      "name": "skeleton_color",
+      "value": "#ECECEC"
+    }
+  ]
+}

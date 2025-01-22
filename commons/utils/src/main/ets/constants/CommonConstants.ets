@@ -36,6 +36,13 @@ export class CommonConstants {
 
   static readonly WINDOW_UTIL: string = 'windowUtil';
 
-
+  static readonly SKELETON_ANIMATION: AnimateParam = {
+    duration: 400,
+    tempo: 0.6,
+    curve: Curve.EaseInOut,
+    delay: 200,
+    iterations: -1,
+    playMode: PlayMode.Alternate
+  }
 
 }
