@@ -21,8 +21,6 @@ struct Index {
   @StorageLink('currentHeightBreakpoint') currentHeightBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
   @StorageLink('currentWidthBreakpoint') currentWidthBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
 
-
-  private tabsController: TabsController = new TabsController();
   private breakpointSystem: BreakpointSystem = new BreakpointSystem(); // 断点系统实例
 
   async aboutToAppear(): Promise<void> {
@@ -32,7 +30,7 @@ struct Index {
       this.appPathStack = new NavPathStack();
       AppStorage.setOrCreate('isHideBar', false);
     }
-   RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
+    RouterModule.createRouter(RouterNameConstants.ENTRY_HAP, this.appPathStack)
 
     const personUid=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personUid','')
     const personPhoto=await lpreferencesUtil.getPreferenceValue('UserInfoPreference','personPhoto','')
@@ -44,11 +42,17 @@ struct Index {
 
   }
 
+  /**
+   * 在界面即将消失时调用，用于清理资源或取消订阅
+   */
   aboutToDisappear(): void {
+    // 获取WindowUtil的实例，可能未初始化所以可能是undefined
     let windowUtil: WindowUtil | undefined = WindowUtil.getInstance();
+    // 如果WindowUtil实例不存在，则直接返回，无需执行后续操作
     if (windowUtil === undefined) {
       return;
     }
+    // 取消对窗口大小变化事件的监听，以避免内存泄漏
     windowUtil.offWindowSizeChange();
   }
 

@@ -79,6 +79,16 @@ struct TabItem {
           { width: $r('app.float.tab_big_img_width'), height: $r('app.float.tab_big_img_height') } :
           { width: $r('app.float.tab_img_size'), height: $r('app.float.tab_img_size') })
         .margin({ top: this.index === -1 ? $r('app.float.tab_margin') : 0 })
+        .offset({
+          y: (this.selectedIndex === this.index ) ?
+          5 : 0
+        })// TODO：知识点：组件的某些通用属性变化时，可以通过属性动画animation实现过渡效果。动画效果是tabBar的图片向上偏移一小段距离
+        .animation({
+          duration: 400,
+          curve: Curve.Ease,
+          iterations: 1,
+          playMode: PlayMode.Normal
+        })
       Text(TabsInfo[this.index].title)
         .fontSize($r('app.float.tab_font_size'))
         .margin({ top: $r('app.float.tab_title_margin') })

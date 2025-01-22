@@ -40,7 +40,6 @@ export class CommentService{
     }
   }
 
-  //TODO 新发的顶级评论不能回复，因为没有id
   async loadMoreComments(spotId: number): Promise<void> {
     try {
       /* const moreComments = await this.spotNetWork.getSpotComments(

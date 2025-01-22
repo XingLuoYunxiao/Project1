@@ -12,9 +12,6 @@ import { classificationList } from '../service/ClassficationData';
 import { promptAction } from '@kit.ArkUI';
 
 
-
-
-//TODO 小bug，点太快进入该页面会获取不到数据
 @Component
 export default struct AttractionTicketPage {
   @Consume('appPathStack') appPathStack: NavPathStack
