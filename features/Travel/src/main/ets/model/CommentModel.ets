@@ -4,6 +4,13 @@ import Constants from '../constants/Constants'
 import { cloudFunction } from '@kit.CloudFoundationKit'
 import { spotComment } from './spotComment'
 import { promptAction } from '@kit.ArkUI'
+import { BusinessError } from '@kit.BasicServicesKit'
+
+export interface  User{
+  userId: string
+  userName?: string
+  userPhoto?: string
+}
 
 
 //并发查询评论数据
@@ -49,4 +56,21 @@ export async function addCommentData(comment: spotComment): Promise<void> {
   } catch (e) {
     Logger.error(Constants.COMMENT_TAG, 'SpotModel loadComments failed', e);
   }
+}
+
+export async function getUserData(userid: string): Promise<User[]> {
+  return new Promise((resolve, reject) => {
+    cloudFunction.call({
+      name: 'get-hiscol-data',
+      data: {
+        personUid: userid,
+        table: 'userQuery'
+      }
+    }).then((value: cloudFunction.FunctionResult) => {
+      resolve(JSON.parse(JSON.stringify(value.result)).data as User[])
+      console.info(`成功666 ${JSON.stringify(value.result)}`);
+    }).catch((err: BusinessError) => {
+      console.error(`Failed to call the function, Code: ${err.code}, message: ${err.message}`);
+    })
+  })
 }

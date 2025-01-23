@@ -67,7 +67,6 @@ struct TabItem {
   @Prop index: number
   @Prop selectedIndex: number;
   @StorageLink('currentWidthBreakpoint') currentWidthBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
-
   onChange: (index: number) => void = () => {
   };
 

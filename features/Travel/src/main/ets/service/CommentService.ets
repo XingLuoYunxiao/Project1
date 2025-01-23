@@ -2,7 +2,12 @@ import { LazyDataSource, LoadingStatus } from "utils"
 import { spotComment } from "../model/spotComment"
 import { promptAction } from "@kit.ArkUI"
 import { taskpool as taskPool } from '@kit.ArkTS'
-import { addCommentData, loadCommentsData } from "../model/CommentModel"
+import { addCommentData, getUserData, loadCommentsData, User } from "../model/CommentModel"
+import { cloudStorage } from "@kit.CloudFoundationKit"
+import { BusinessError } from "@kit.BasicServicesKit"
+
+let bucket: cloudStorage.StorageBucket = cloudStorage.bucket(); // 将启动异步任务查询云侧默认实例
+
 
 @Observed
 export class CommentService{
@@ -116,6 +121,36 @@ export class CommentService{
       promptAction.showToast({ message: '发送评论失败', duration: 2000 })
     }
   }
+
+  //在云存储获取头像
+  async getUserUrl(img:string): Promise<string>{
+    return await this.getCloudUserUrl(img)
+  }
+
+  getCloudUserUrl(img:string):Promise<string> {
+    return new Promise((resolve,reject)=>{
+      bucket.getDownloadURL(`share/comment/${img}.png`).then((downloadURL: string) => {
+        resolve(downloadURL)
+        console.info(`getDownloadURL: ${downloadURL}`);
+      }).catch((err: BusinessError) => {
+        resolve('')
+        console.error(`getDownloadURL failed, Code: ${err.code}, message: ${err.message}`);
+      });
+    })
+  }
+
+  // 获取用户信息
+  //获取用户信息
+  async getUserinfo(userid:string):Promise<User>{
+    return new Promise((resolve,reject)=>{
+      getUserData(userid).then(
+        ((value:User[])=>{
+          resolve(value[0]) ;
+        })
+      );
+    })
+  }
+
 
   //重置
   reset(){

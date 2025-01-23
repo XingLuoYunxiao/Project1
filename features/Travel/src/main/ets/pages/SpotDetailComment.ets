@@ -4,11 +4,10 @@ import { promptAction } from "@kit.ArkUI"
 import { Spot } from "../model/Spot"
 import { CommentService } from "../service/CommentService"
 import { BreakpointConstants, LoadingStatus } from "utils"
-
+import { User } from "../model/CommentModel"
 
 // 时间格式化方法
-export function
-formatTime(timeStr: string): string {
+export function formatTime(timeStr: string): string {
   try {
     const date = new Date(timeStr);
     const year = date.getFullYear();
@@ -36,20 +35,76 @@ export struct SpotDetailComment {
   @State selectedTopComment: spotComment | null = null
   @State commentInput: string = ''
   @State isReplySheetShow: boolean = false
-  // 新增：用于跟踪回复数量的响应式状态
+
+  // 新增：用于存储用户信息和照片URL的映射
+  @StorageLink('userInfoMap') userInfoMap: Map<string, User> = new Map()
+  @StorageLink('userPhotoUrlMap') userPhotoUrlMap: Map<string, string> = new Map()
+
+  @State name: string = ''
+  @State photo: string = ''
   @State replyCountMap: Map<number, number> = new Map()
 
   @StorageLink('currentWidthBreakpoint') currentWidthBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
 
 
+  // 获取用户头像URL的方法
+  async getUserUrl(img: string): Promise<string> {
+    // 如果已经缓存，直接返回
+    if (this.userPhotoUrlMap.has(img)) {
+      return this.userPhotoUrlMap.get(img)!;
+    }
+
+    try {
+      const downloadURL = await this.commentService.getCloudUserUrl(img);
+      if (downloadURL) {
+        this.userPhotoUrlMap.set(img, downloadURL);
+        return downloadURL;
+      }
+    } catch (error) {
+      console.error('Failed to get user photo URL:', error);
+    }
+
+    return '';
+  }
+
+
+  // 异步获取并缓存用户信息
+  async fetchUserInfo(userId: string): Promise<User | null> {
+    // 如果已经缓存，直接返回
+    if (this.userInfoMap.has(userId)) {
+      return this.userInfoMap.get(userId)!;
+    }
+
+    // 获取用户信息
+    const userInfo = await this.commentService.getUserinfo(userId);
+
+    if (userInfo) {
+      // 缓存用户信息
+      this.userInfoMap.set(userId, userInfo);
+      return userInfo;
+    }
+
+    return null;
+  }
+
   async aboutToAppear(): Promise<void> {
-    if( this.spot === undefined){
+    if (this.spot === undefined) {
       this.spot = JSON.parse(JSON.stringify(this.value)).spot as Spot
     }
 
     if (this.spot && this.spot.id) {
-      await this.commentService.loadMoreComments(this.spot.id).then(() => {
+      await this.commentService.loadMoreComments(this.spot.id).then(async () => {
         this.comments = this.commentService.comments
+
+        // 预加载顶层评论的用户信息和头像
+        for (let comment of this.commentService.topComments) {
+          if (comment.userId) {
+            const userInfo = await this.fetchUserInfo(comment.userId.toString());
+            if (userInfo?.userPhoto) {
+              await this.getUserUrl(userInfo.userPhoto);
+            }
+          }
+        }
 
         // 初始化回复数量映射
         this.commentService.topComments.forEach(comment => {
@@ -108,14 +163,18 @@ export struct SpotDetailComment {
           ForEach(this.commentService.getReplies(this.selectedTopComment?.id!, this.spot!.id!), (reply: spotComment) => {
             ListItem() {
               Row() {
-                Image(this.currentUserAvatar)
+                // 使用缓存的用户头像URL
+                Image(this.userPhotoUrlMap.get(
+                  this.userInfoMap.get(reply.userId?.toString() || '')?.userPhoto || ''
+                ) || this.currentUserAvatar)
                   .width(40)
                   .height(40)
                   .borderRadius(20)
                   .margin({ right: 10 })
 
                 Column() {
-                  Text(reply.userId?.toString() || '')
+                  // 显示用户名
+                  Text(this.userInfoMap.get(reply.userId?.toString() || '')?.userName || '匿名用户')
                     .fontSize(14)
                     .fontWeight(FontWeight.Medium)
 
@@ -207,14 +266,18 @@ export struct SpotDetailComment {
             ListItem() {
               Column() {
                 Row() {
-                  Image(this.personPhoto)
+                  // 使用缓存的用户头像URL
+                  Image(this.userPhotoUrlMap.get(
+                    this.userInfoMap.get(comment.userId?.toString() || '')?.userPhoto || ''
+                  ) || this.currentUserAvatar)
                     .width(40)
                     .height(40)
                     .borderRadius(20)
                     .margin({ right: 10 })
 
                   Column() {
-                    Text(this.userName?.toString() || '')
+                    // 显示用户名
+                    Text(this.userInfoMap.get(comment.userId?.toString() || '')?.userName || '匿名用户')
                       .fontSize(16)
                       .fontWeight(FontWeight.Medium)
 

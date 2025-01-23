@@ -33,18 +33,20 @@ export default class EntryAbility extends UIAbility {
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onCreate');
     this.initAgc()
     let atManager = abilityAccessCtrl.createAtManager();
-    try {
-      await atManager.requestPermissionsFromUser(this.context,
-        ['ohos.permission.INTERNET', 'ohos.permission.LOCATION', 'ohos.permission.APPROXIMATELY_LOCATION'])
-        .then((data) => {
-          hilog.info(domain, TAG, `data: ${JSON.stringify(data)}`);
-        })
-        .catch((err: BusinessError) => {
-          hilog.error(domain, TAG, `err: ${JSON.stringify(err)}`);
-        })
-    } catch (err) {
-      hilog.error(domain, TAG, `catch err->${JSON.stringify(err)}`);
-    }
+    setTimeout(async () => {
+      try {
+        await atManager.requestPermissionsFromUser(this.context,
+          ['ohos.permission.INTERNET', 'ohos.permission.LOCATION', 'ohos.permission.APPROXIMATELY_LOCATION'])
+          .then((data) => {
+            hilog.info(domain, TAG, `data: ${JSON.stringify(data)}`);
+          })
+          .catch((err: BusinessError) => {
+            hilog.error(domain, TAG, `err: ${JSON.stringify(err)}`);
+          })
+      } catch (err) {
+        hilog.error(domain, TAG, `catch err->${JSON.stringify(err)}`);
+      }
+    }, 1000)
 
   }
 

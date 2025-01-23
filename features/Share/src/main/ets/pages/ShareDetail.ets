@@ -24,7 +24,7 @@ struct ShareDetail {
     this.shareViewModel.commentDeal(this.everymoment.id.toString()).then((val)=>{
       this.count=this.shareViewModel.count
     })
-    this.shareViewModel.getUserinfo(this.everymoment.userId).then(async (info)=>{
+    this.shareViewModel.getUserinfo(this.everymoment.userId).then(async (info)=>{23
       this.userPhoto=await this.shareViewModel.getuserUrl(info.userPhoto)
       this.userName=info.userName
     })
