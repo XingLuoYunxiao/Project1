@@ -19,6 +19,10 @@
     {
       "name": "skeleton_color",
       "value": "#ECECEC"
+    },
+    {
+      "name": "activity_color",
+      "value": "#FF007DFF"
     }
   ]
 }

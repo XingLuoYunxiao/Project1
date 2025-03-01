@@ -1,7 +1,6 @@
-import { Location } from "utils";
-import { TravelPlan } from "../service/TravelPlan";
-import { ISpot } from "./ISpot";
-import { cloudDatabase } from "@kit.CloudFoundationKit";
+import { Location } from 'utils';
+import { ISpot } from './ISpot';
+import { cloudDatabase } from '@kit.CloudFoundationKit';
 
 
 @Observed

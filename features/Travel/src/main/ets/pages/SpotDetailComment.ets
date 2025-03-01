@@ -1,10 +1,10 @@
-import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule"
-import { spotComment } from "../model/spotComment"
-import { promptAction } from "@kit.ArkUI"
-import { Spot } from "../model/Spot"
-import { CommentService } from "../service/CommentService"
-import { BreakpointConstants, LoadingStatus } from "utils"
-import { User } from "../model/CommentModel"
+import { BuilderNameConstants, RouterModule } from 'routermodule'
+import { spotComment } from '../model/spotComment'
+import { promptAction } from '@kit.ArkUI'
+import { Spot } from '../model/Spot'
+import { CommentService } from '../service/CommentService'
+import { BreakpointConstants } from 'utils'
+import { User } from '../model/CommentModel'
 
 // 时间格式化方法
 export function formatTime(timeStr: string): string {

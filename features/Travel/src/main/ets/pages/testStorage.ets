@@ -1,6 +1,5 @@
 import { cloudStorage } from '@kit.CloudFoundationKit';
 import { BusinessError, request } from '@kit.BasicServicesKit';
-import { BuilderNameConstants, RouterModule } from 'routermodule';
 
 let storageBucket: cloudStorage.StorageBucket = cloudStorage.bucket();
 

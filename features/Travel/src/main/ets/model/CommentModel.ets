@@ -68,7 +68,7 @@ export async function getUserData(userid: string): Promise<User[]> {
       }
     }).then((value: cloudFunction.FunctionResult) => {
       resolve(JSON.parse(JSON.stringify(value.result)).data as User[])
-      console.info(`成功666 ${JSON.stringify(value.result)}`);
+      console.info(`成功 ${JSON.stringify(value.result)}`);
     }).catch((err: BusinessError) => {
       console.error(`Failed to call the function, Code: ${err.code}, message: ${err.message}`);
     })

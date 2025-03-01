@@ -1,8 +1,7 @@
-import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
-import Constants from '../constants/Constants'
-import { Spot } from '../model/Spot'
-import { Want } from '@kit.AbilityKit';
-import { common } from '@kit.AbilityKit';
+import { BuilderNameConstants, RouterModule } from 'routermodule';
+import Constants from '../constants/Constants';
+import { Spot } from '../model/Spot';
+import { common, Want } from '@kit.AbilityKit';
 import { SpotNetFunc } from '../service/SpotNetFunc';
 import { promptAction } from '@kit.ArkUI';
 import { CloudStorageService } from '../service/CloudStorageService';
@@ -31,10 +30,13 @@ struct AttractionDetailPage {
     //获取路由参数
     this.spot = JSON.parse(JSON.stringify(this.value)).item as Spot
     //this.spot = this.appPathStack.getParamByName('AttractionDetailPage')[0] as Spot;
-    if( this.spot && this.spot.imageUrl)
-      this.cloudService.getTravelSpotURL(this.spot.imageUrl).then(url => {
-        this.url = url
-      })
+    //先尝试从缓存中获取
+    if( SpotNetFunc.cacheImgMap.has(this.spot.imageUrl!)){
+      this.url = SpotNetFunc.cacheImgMap.get(this.spot.imageUrl!)
+    }else if( this.spot && this.spot.imageUrl)
+    this.cloudService.getTravelSpotURL(this.spot.imageUrl).then(url => {
+      this.url = url
+    })
     //TODO 收藏状态和Login不同步问题,卸载应用后，会出现该页面收藏丢失的情况, 这里可以使用多线程来解决景点的查询匹配问题
     this.spotNetWork.getCollection().then(() => {
       if(  this.spot && this.spot.id && this.spotNetWork.collection.indexOf(this.spot.id) > 0){

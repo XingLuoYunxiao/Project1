@@ -1,4 +1,12 @@
 import router from '@ohos.router'
+import { Spot } from 'travel'
+import { SpotNetFunc } from 'travel/src/main/ets/service/SpotNetFunc'
+import { LocationUtil } from 'utils'
+import { cloudFunction } from '@kit.CloudFoundationKit'
+import { hilog } from '@kit.PerformanceAnalysisKit'
+import { Params } from '../common/Params'
+
+const domain = 0x1111
 /*
 * 广告页面
 * */
@@ -10,6 +18,75 @@ struct AdvertisingPage {
   /**
    * 跳转到 APP 首页面
    */
+
+  async aboutToAppear(){
+    let cityName = (await LocationUtil.getInstance().getCityName()).substring(0, 2)
+    this.functionPreload(cityName).then( (data:Spot[]) => {
+      SpotNetFunc.getInstance().spots = data
+    })
+  }
+  //预加载
+  async functionPreload(cityName:string): Promise<Spot[]> {
+    return new Promise((resolve, reject) => {
+      try{
+        let params: Params = {
+          type: 'query',
+          filter: [
+            {cityName: cityName},
+            {category: '全部分类'}
+          ],
+        }
+        let res =  cloudFunction.call({
+          name: 'get-spot-data',
+          data: params,
+          //timeout: 3 * 1000, // 获取缓存数据的超时时间
+          //loadMode: cloudFunction.LoadMode.PRELOAD   // 获取缓存数据必须设置为PRELOAD
+        })
+        res.then((data: cloudFunction.FunctionResult) => { // 接口调用成功处理缓存的应用数据
+          hilog.info(0x0000, 'testTag', 'get preload cache successfully');
+          let spots = data.result
+          resolve(JSON.parse(JSON.stringify(spots)).data as Spot[])
+        }).catch((err: Error) => {
+          hilog.error(0x0000, 'testTag', 'fail to get preload cache: %{public}s', err.message);
+          resolve(this.functionNormal(cityName)); // 使用普通方式获取应用数据
+        });
+      }catch (error){
+        hilog.error(domain, 'SpotModel getSpotDataByCondition failed', error);
+        reject(error)
+      }
+    })
+  }
+
+  functionNormal(cityName:string): Promise<Spot[]>{
+    return new Promise((resolve, reject) => {
+      try{
+        let params: Params = {
+          type: 'query',
+          filter: [
+            {cityName: cityName},
+            {category: '全部分类'}
+          ],
+        }
+        let res =  cloudFunction.call({
+          name: 'get-spot-data',
+          data: params,
+          timeout: 1 * 5000, // 获取缓存数据的超时时间
+          loadMode: cloudFunction.LoadMode.NORMAL   // 默认为NORMAL, 接口会调用云函数从云服务器获取应用数据
+        })
+        res.then((data: cloudFunction.FunctionResult) => { // 接口调用成功处理缓存的应用数据
+          hilog.info(0x0000, 'testTag', 'get preload cache successfully');
+          let spots = data.result
+          resolve(JSON.parse(JSON.stringify(spots)).data as Spot[])
+        }).catch((err: Error) => {
+          hilog.error(0x0000, 'testTag', 'fail to get preload cache: %{public}s', err.message);
+        });
+      }catch (error){
+        hilog.error(domain, 'SpotModel getSpotDataByCondition failed', error);
+        reject(error)
+      }
+    })
+  }
+
   jumpToAppHomePage() {
     router.replaceUrl({
       url: 'pages/Index'

@@ -50,6 +50,9 @@
         "name":"ohos.permission.WRITE_CALENDAR",
         "reason": "$string:Harmony_calendar_permission_reason",
         "usedScene":{}
+      },
+      {
+        "name": "ohos.permission.GET_NETWORK_INFO" // 如果使用PathPreference的'cellular'模式，则需要额外申请此权限
       }
     ],
     "name": "default",

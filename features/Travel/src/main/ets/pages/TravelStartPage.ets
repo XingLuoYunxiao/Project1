@@ -2,9 +2,7 @@ import { Classification } from '../view/Classficiation';
 import { NearbyAttraction } from '../view/NearbyAttraction';
 import { SearchHeader } from '../view/SearchHeader';
 import { SpotNetFunc } from '../service/SpotNetFunc';
-import { BreakpointConstants, BreakpointType, LoadingStatus, LocationUtil } from 'utils';
-import { PreferenceUtil } from "utils";
-import { router } from '@kit.ArkUI';
+import { BreakpointConstants, BreakpointType, LoadingStatus, PreferenceUtil } from 'utils';
 import { TravelSkeletonView } from '../view/TravelSkeletonView';
 
 
@@ -15,21 +13,25 @@ export struct TravelStartPage {
   @State spotNetWork: SpotNetFunc = SpotNetFunc.getInstance();
   @State loadAllState: string = LoadingStatus.OFF;
   PreferenceUtil: PreferenceUtil = PreferenceUtil.getInstance()
-  @State swiperImage: Resource[] = [ $r('app.media.swiper_xian'), $r('app.media.swiper_hangzhou'), $r('app.media.swiper_other1')]
-
+  @State swiperImage: Resource[] =
+    [$r('app.media.swiper_xian'), $r('app.media.swiper_hangzhou'), $r('app.media.swiper_other1')]
   @StorageLink('currentHeightBreakpoint') currentHeightBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
   @StorageLink('currentWidthBreakpoint') currentWidthBreakpoint: string = BreakpointConstants.BREAKPOINT_LG;
 
   async aboutToAppear(): Promise<void> {
     this.loadAllState = LoadingStatus.LOADING;
-    await this.spotNetWork.getNearbySpots()
-      .then((data) => {
-        this.loadAllState = LoadingStatus.SUCCESS;
-        this.spotNetWork.spots = data
-      })
-      .catch(() => {
-        this.loadAllState = LoadingStatus.FAILED;
-      });
+    if (this.spotNetWork.spots.length > 0) {
+      this.loadAllState = LoadingStatus.SUCCESS;
+    } else {
+      await this.spotNetWork.getNearbySpots()
+        .then((data) => {
+          this.loadAllState = LoadingStatus.SUCCESS;
+          this.spotNetWork.spots = data
+        })
+        .catch(() => {
+          this.loadAllState = LoadingStatus.FAILED;
+        });
+    }
   }
 
   build() {
@@ -37,8 +39,8 @@ export struct TravelStartPage {
       // 搜索栏
       SearchHeader();
 
-      List(){
-        ListItem(){
+      List() {
+        ListItem() {
           // 顶部轮播图
           Swiper() {
             ForEach(this.swiperImage, (item: Resource) => {
@@ -60,6 +62,7 @@ export struct TravelStartPage {
               .padding({ right: $r('app.float.md_padding_margin') })
               .aspectRatio(2.4)
               .width('100%')
+
               //.height('20%');
             });
           }
@@ -83,8 +86,9 @@ export struct TravelStartPage {
             }).getValue(this.currentWidthBreakpoint)
           })
         }
-        ListItem(){
-          Column(){
+
+        ListItem() {
+          Column() {
             // 旅游分类
             /*Text('热门分类')
               .fontSize(20)
@@ -97,17 +101,43 @@ export struct TravelStartPage {
           }
         }
 
-          if (this.loadAllState === LoadingStatus.SUCCESS) {
-            ListItem(){
+        if (this.loadAllState === LoadingStatus.SUCCESS) {
+          if(this.spotNetWork.spots && this.spotNetWork.spots.length > 0){
+            ListItem() {
               NearbyAttraction()
                 .width('100%')
                 .layoutWeight(1);
             }
-          } else {
-            ListItem(){
-              TravelSkeletonView()
+          }else{
+            ListItem() {
+              Column() {
+                Text('很抱歉，当前区域暂时没有景点信息')
+                  .fontSize(20)
+                  .fontWeight(FontWeight.Bold)
+                  .margin({ left: 10 })
+                  .fontColor('#444444');
+              }
+              .width("100%")
+              .height("100%")
             }
           }
+        } else if (this.loadAllState === LoadingStatus.LOADING) {
+          ListItem() {
+            TravelSkeletonView()
+          }
+        } else{
+          ListItem() {
+            Column() {
+              Text('加载失败，请检查网络')
+                .fontSize(20)
+                .fontWeight(FontWeight.Bold)
+                .margin({ left: 10 })
+                .fontColor('#444444');
+            }
+            .width("100%")
+            .height("100%")
+          }
+        }
 
         // .width('100%')
         // .layoutWeight(1)
@@ -120,13 +150,10 @@ export struct TravelStartPage {
       .height('100%')
       .width('100%')
 
-
     }
     .hideTitleBar(true)
     .mode(NavigationMode.Stack);
   }
-
-
 }
 
 

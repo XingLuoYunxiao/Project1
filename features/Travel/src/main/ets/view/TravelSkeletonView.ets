@@ -1,5 +1,5 @@
-import { BreakpointConstants, BreakpointType, CommonConstants } from "utils";
-import { NearbySpotLoadingSkeleton } from "./NearbySpotLoadingSkeleton";
+import { BreakpointConstants, BreakpointType, CommonConstants } from 'utils';
+import { NearbySpotLoadingSkeleton } from './NearbySpotLoadingSkeleton';
 
 const NEARBY_VISIBLE_LENGTH = 10
 

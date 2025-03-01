@@ -1,5 +1,5 @@
-import { LocationUtil } from "utils";
-import { cities, City, CityTab, cityTabs } from "../../service/CategoryData";
+import { LocationUtil } from 'utils';
+import { cities, City, CityTab, cityTabs } from '../../service/CategoryData';
 
 
 @CustomDialog
@@ -27,19 +27,26 @@ export struct CityPickerDialog {
                     .fontSize(22)
                     .margin({ top: 10, bottom: 10 })
                   if (this.locationUtil.currentCityName !== undefined) {
-                    Text(this.locationUtil.currentCityName)
-                      .fontSize(20)
-                      .margin({ top: 10, bottom: 10 })
-                      .width('25%')
-                      .height(60)
-                      .border({ width: 0.5, color: Color.Green })
-                      .borderRadius(8)
-                      .textAlign(TextAlign.Center)
-                      .onClick(() => {
-                        this.confirm(cities.find(city => this.locationUtil.currentCityName?.includes(city.cityName))!);
-                        this.update();
-                        this.controller.close();
-                      })
+                    Row() {
+                      Image($r('app.media.location_icon'))
+                        .width(24)
+                        .width(24)
+                        .padding({ right: 2})
+                      Text(this.locationUtil.currentCityName)
+                        .fontSize(20)
+                        //.width('25%')
+                        .height(60)
+                        .textAlign(TextAlign.Center)
+                        .onClick(() => {
+                          this.confirm(cities.find(city => this.locationUtil.currentCityName?.includes(city.cityName))!);
+                          this.update();
+                          this.controller.close();
+                        })
+                    }
+                    .margin({ top: 10, bottom: 10 })
+                    .padding({left: 10, right: 10})
+                    .border({ width: 0.5, color: Color.Green })
+                    .borderRadius(8)
                   } else {
                     Row() {
                       Image($r('app.media.refresh_icon'))

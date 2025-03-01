@@ -139,7 +139,6 @@ export class CommentService{
     })
   }
 
-  // 获取用户信息
   //获取用户信息
   async getUserinfo(userid:string):Promise<User>{
     return new Promise((resolve,reject)=>{

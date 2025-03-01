@@ -1,5 +1,5 @@
-import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule"
-import { BreakpointConstants } from "utils";
+import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from 'routermodule';
+import { BreakpointConstants } from 'utils';
 
 @Component
 export struct SearchHeader {

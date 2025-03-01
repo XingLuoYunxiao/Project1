@@ -1,4 +1,4 @@
-import Constants from "../constants/Constants"
+import Constants from '../constants/Constants'
 
 @Component
 export struct NearbySpotLoadingSkeleton{

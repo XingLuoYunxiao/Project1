@@ -1,6 +1,6 @@
-import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule";
-import { BreakpointConstants } from "utils";
-import { classification, classificationList, classificationListPhone, colorList } from "../service/ClassficationData";
+import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from 'routermodule';
+import { BreakpointConstants } from 'utils';
+import { classification, classificationList, classificationListPhone, colorList } from '../service/ClassficationData';
 
 
 @Component

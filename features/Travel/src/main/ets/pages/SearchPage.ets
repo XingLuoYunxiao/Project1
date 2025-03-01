@@ -1,4 +1,4 @@
-import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule'
+import { BuilderNameConstants, RouterModule, RouterNameConstants } from 'routermodule'
 import { PreferenceUtil } from 'utils'
 import Constants from '../constants/Constants'
 import { SpotNetFunc } from '../service/SpotNetFunc'

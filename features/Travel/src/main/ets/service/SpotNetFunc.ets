@@ -38,6 +38,8 @@ export class SpotNetFunc{
   nearbyLoadingStatus: LoadingStatus = LoadingStatus.OFF;
   //是否还有数据
   isHasMore: boolean = true;
+  //缓存图片地址
+  static cacheImgMap: Map<string, string>  = new Map();
 
   //分页
   pageNum: number = 1;
@@ -46,17 +48,17 @@ export class SpotNetFunc{
   isRefresh: boolean = false;
 
   //当前位置经纬度
-  private currentUserLocation: Location = { latitude: 0, longitude: 0}
+  currentUserLocation: Location  = this.locationUtil.currentLocation!
   isInitSpots: boolean = false;
 
   private constructor() {
     this.spotModel = new SpotModel();
     if( this.locationUtil.currentLocation !== undefined){
-      this.currentUserLocation = this.locationUtil.currentLocation;
+      this.locationUtil.currentLocation! = this.locationUtil.currentLocation;
     }else{
       this.locationUtil.getCurrentLocation().then(() => {
         if (this.locationUtil.currentLocation !== undefined){
-          this.currentUserLocation = this.locationUtil.currentLocation
+          this.locationUtil.currentLocation! = this.locationUtil.currentLocation
         }
       }
       )
@@ -101,7 +103,7 @@ export class SpotNetFunc{
   public getNearbySpots(): Promise<Spot[]> {
     return new Promise(async (resolve, reject) => {
       try{
-        let cityName = (await this.locationUtil.getCityName()).substring(0, 1)
+        let cityName = (await this.locationUtil.getCityName()).substring(0, 2)
         let data = await this.spotModel.getSpotDataByCityName([cityName])
         resolve(data);
       }catch (e){
@@ -192,7 +194,7 @@ export class SpotNetFunc{
     }
     this.spots.map(spot => {
     if(spot !== undefined && spot.latitude !== undefined && spot.longitude !== undefined && spot.id != undefined){
-        let distance = this.calculateDistance(this.currentUserLocation, {latitude: spot.latitude, longitude: spot.longitude});
+        let distance = this.calculateDistance(this.locationUtil.currentLocation!, {latitude: spot.latitude, longitude: spot.longitude});
         this.spotDistanceMap.set(spot.id.toString(), distance.toFixed(2));
       }
     })
@@ -203,22 +205,22 @@ export class SpotNetFunc{
     this.nearbyLoadingStatus = LoadingStatus.LOADING;
 
     // 确保定位信息已获取
-    if (this.currentUserLocation.latitude === 0 && this.currentUserLocation.longitude === 0) {
+    if (this.locationUtil.currentLocation!.latitude === 0 && this.locationUtil.currentLocation!.longitude === 0) {
       await this.locationUtil.getCurrentLocation();  // 等待定位完成
     }
 
     // 获取成功后再进行景点加载
-    if (this.currentUserLocation.latitude !== 0 && this.currentUserLocation.longitude !== 0) {
+    if (this.locationUtil.currentLocation!.latitude !== 0 && this.locationUtil.currentLocation!.longitude !== 0) {
       try {
         //this.spots = await this.spotModel.getAllSpotData();
         //this.allSpotsDataSource.pushArrayData(this.spots);
         const maxDistance = Number(this.maxDistance.slice(0, -2));
         this.nearbySpots = this.spots.filter(spot =>
-          this.calculateDistance(this.currentUserLocation, {latitude: spot.latitude!, longitude: spot.longitude!}) <= maxDistance
+          this.calculateDistance(this.locationUtil.currentLocation!, {latitude: spot.latitude!, longitude: spot.longitude!}) <= maxDistance
         );
         this.nearbySpots.sort((a, b) => {
-          const distanceA = this.calculateDistance(this.currentUserLocation, {latitude: a.latitude!, longitude:a.longitude!});
-          const distanceB = this.calculateDistance(this.currentUserLocation,{latitude: b.latitude!, longitude: b.longitude!});
+          const distanceA = this.calculateDistance(this.locationUtil.currentLocation!, {latitude: a.latitude!, longitude:a.longitude!});
+          const distanceB = this.calculateDistance(this.locationUtil.currentLocation!,{latitude: b.latitude!, longitude: b.longitude!});
           return (distanceA - distanceB);
         });
         this.nearbyLoadingStatus = LoadingStatus.SUCCESS;
@@ -273,6 +275,8 @@ export class SpotNetFunc{
     })
 
   }
+
+
 
   public async updateAttractionsList( currentCity: City, currentCategory: string[]) : Promise<LazyDataSource<Spot>> {
     //根据currentCategory[2]判断字段是否排序
@@ -355,7 +359,7 @@ export class SpotNetFunc{
       const maxDistance = Number(currentCategory[1].slice(0, -2));
 
       currentAttractions = currentAttractions.filter((spot) => {
-        const distance = this.calculateDistance(this.currentUserLocation, {latitude: spot.latitude!, longitude: spot.longitude!});
+        const distance = this.calculateDistance(this.locationUtil.currentLocation!, {latitude: spot.latitude!, longitude: spot.longitude!});
         return distance <= maxDistance; // 返回布尔值，距离小于等于指定值的景点会被保留
       });
     }else{
@@ -376,8 +380,8 @@ export class SpotNetFunc{
           break;
         case '最近距离':
           currentAttractions.sort((a, b) => {
-            const distanceA = this.calculateDistance(this.currentUserLocation, {latitude: a.latitude!, longitude:a.longitude!});
-            const distanceB = this.calculateDistance(this.currentUserLocation, {latitude: b.latitude!, longitude: b.longitude!});
+            const distanceA = this.calculateDistance(this.locationUtil.currentLocation!, {latitude: a.latitude!, longitude:a.longitude!});
+            const distanceB = this.calculateDistance(this.locationUtil.currentLocation!, {latitude: b.latitude!, longitude: b.longitude!});
             return (distanceA - distanceB)
           });
           break;

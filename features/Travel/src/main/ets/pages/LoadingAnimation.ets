@@ -1,5 +1,5 @@
-import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
-import { LoadParams } from "./FamousPlacePage"; // 导入LoadParams类型，用于接收路径参数
+import { BuilderNameConstants, RouterModule, RouterNameConstants } from 'routermodule';
+import { LoadParams } from './FamousPlacePage'; // 导入LoadParams类型，用于接收路径参数
 
 @Component
 export struct LoadingAnimation {  // 定义LoadingAnimation组件

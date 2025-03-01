@@ -1,13 +1,11 @@
-import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from "routermodule"
-import { BreakpointConstants, BreakpointType, LoadingStatus, LocationUtil } from "utils"
-import Logger from "utils/src/main/ets/utils/Logger"
-import Constants from "../constants/Constants"
-import { Spot } from "../model/Spot"
-import { CloudStorageService } from "../service/CloudStorageService"
-import { SpotNetFunc } from "../service/SpotNetFunc"
-import { NearbyItem } from "./NearbyItem"
-import { promptAction } from "@kit.ArkUI"
-import { Classification } from "./Classficiation"
+import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from 'routermodule'
+import { BreakpointConstants, BreakpointType, LoadingStatus, LocationUtil } from 'utils'
+import Logger from 'utils/src/main/ets/utils/Logger'
+import Constants from '../constants/Constants'
+import { Spot } from '../model/Spot'
+import { SpotNetFunc } from '../service/SpotNetFunc'
+import { NearbyItem } from './NearbyItem'
+import { promptAction } from '@kit.ArkUI'
 
 @Component
 export struct NearbyAttraction {
@@ -24,10 +22,14 @@ export struct NearbyAttraction {
   private readonly RETRY_INTERVAL: number = 1000 // 1 second
   private count: number = 0 // 记录尝试次数
 
+  async aboutToAppear(): Promise<void> {
+    await this.getCurrentCityName()
+  }
+
   async loadData(): Promise<void> {
     try {
       await this.spotNetWork.loadNearbyAttractions()
-      await this.spotNetWork.getAllDistance()
+      this.spotNetWork.getAllDistance()
       this.spotDistanceMap = this.spotNetWork.spotDistanceMap
 
       // 如果获取成功，清除定时任务
@@ -48,10 +50,7 @@ export struct NearbyAttraction {
     }
   }
 
-  async aboutToAppear(): Promise<void> {
-    this.loadData()
-    this.getCurrentCityName()
-  }
+
 
   aboutToDisappear(): void {
     //清除定时任务
@@ -61,16 +60,14 @@ export struct NearbyAttraction {
     }
   }
 
-  getCurrentCityName(): void {
-    this.locationUtil.getCityName().then(cityName => {
-      this.currentCityName = cityName
-      this.CityNameJudge = true
-    })
+  async getCurrentCityName(): Promise<void> {
+    this.currentCityName = await this.locationUtil.getCityName()
+    this.CityNameJudge = true
+    this.loadData()
   }
 
   build() {
-    if ((this.spotNetWork.nearbyLoadingStatus === LoadingStatus.LOADING) ||
-      this.spotNetWork.nearbyLoadingStatus === LoadingStatus.OFF) {
+    if ((this.spotNetWork.nearbyLoadingStatus !== LoadingStatus.SUCCESS)) {
       LoadingProgress()
         .width(30)
         .height(30)

@@ -1,9 +1,9 @@
-import { Spot } from "./Spot";
-import Logger from "utils/src/main/ets/utils/Logger";
-import { cloudFunction } from "@kit.CloudFoundationKit";
-import { OrderBy, Params } from "./FuncParams";
-import { BusinessError } from "@kit.BasicServicesKit";
-import { promptAction } from "@kit.ArkUI";
+import { Spot } from './Spot';
+import Logger from 'utils/src/main/ets/utils/Logger';
+import { cloudFunction } from '@kit.CloudFoundationKit';
+import { OrderBy, Params } from './FuncParams';
+import { BusinessError } from '@kit.BasicServicesKit';
+import { promptAction } from '@kit.ArkUI';
 
 const TAG = '[SpotModel]';
 

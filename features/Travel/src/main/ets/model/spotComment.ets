@@ -1,4 +1,4 @@
-import { cloudDatabase } from "@kit.CloudFoundationKit"
+import { cloudDatabase } from '@kit.CloudFoundationKit'
 
 export class spotComment extends cloudDatabase.DatabaseObject{
   public id: number | undefined

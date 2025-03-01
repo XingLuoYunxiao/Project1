@@ -1,5 +1,5 @@
-import { CategoryItem } from "../../service/CategoryData";
-import Constants from "../../constants/Constants";
+import { CategoryItem } from '../../service/CategoryData';
+import Constants from '../../constants/Constants';
 
 @CustomDialog
 export struct CategoryDialog {

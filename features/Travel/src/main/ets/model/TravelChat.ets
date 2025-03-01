@@ -1,4 +1,4 @@
-import { IChat, Info } from 'uicomponents'
+import { IChat, Info } from 'uicomponents';
 import { http } from '@kit.NetworkKit';
 import { util } from '@kit.ArkTS';
 import { StreamResponse2 } from 'utils';
@@ -14,7 +14,7 @@ export class TravelChat extends IChat {
   private static travelPassword:string = 'MvZBmiYOGqZwMwImGcDs:RnzZhRIwimchQTzsnMss'
   private static useTravelModel:string = 'generalv3.5';
   private static travelUrl:string = 'https://spark-api-open.xf-yun.com/v1/chat/completions';
-  private static travelTemplate = '请按照下面模板回答(纯文本格式)，路线需要具体（根据该景点，给出至少10个该景点的具体内部景点的游玩路线，入口和出口根据实际路径给出）：\n' +
+  private static travelTemplate = '请按照下面模板回答(纯文本格式)，路线需要具体，推荐路径需要有理由（根据该景点，给出至少10个该景点的具体内部景点的游玩路线，入口和出口根据实际路径给出）：\n' +
     '路线方案\n' +
     '路线方案一：入口名称->具体景点->具体景点->具体景点->具体景点->具体景点->具体景点->具体景点->...->出口名称\n' +
     '路线方案二：\n' +
@@ -25,7 +25,7 @@ export class TravelChat extends IChat {
     '对比方案二：\n' +
     '对比方案三：\n' +
     '\n' +
-    '推荐路径 方案：'
+    '推荐路径 方案：（这里是具体理由）'
 
   constructor(id: number, messages: Array<Info>) {
     super();

@@ -10,9 +10,8 @@
     },
     {
       "name": "EntryAbility_label",
-     "value": "HMOS Basic"
-    }
-    ,
+      "value": "HMOS Basic"
+    },
     {
       "name": "tab_travel",
       "value": "首页"
@@ -44,8 +43,8 @@
     {
       "name": "fuzzy_location_permission",
       "value": "允许应用获取设备模糊位置信息"
-    }
-  ,{
+    },
+    {
       "name": "reason",
       "value": "save"
     },
@@ -56,6 +55,30 @@
     {
       "name": "Harmony_calendar_permission_reason",
       "value": "日程申请需要权限"
+    },
+    {
+      "name": "DefaultFormAbility_desc",
+      "value": "form_description"
+    },
+    {
+      "name": "DefaultFormAbility_label",
+      "value": "form_label"
+    },
+    {
+      "name": "widget_desc",
+      "value": "This is a service widget."
+    },
+    {
+      "name": "widget_display_name",
+      "value": "widget"
+    },
+    {
+      "name": "card_list_title",
+      "value": "Title"
+    },
+    {
+      "name": "card_list_content",
+      "value": "Introduction"
     }
   ]
 }

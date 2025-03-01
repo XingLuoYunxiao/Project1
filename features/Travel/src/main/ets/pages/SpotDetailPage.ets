@@ -1,12 +1,11 @@
-import { TextReaderManager } from "utils"
-import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
-import Constants from "../constants/Constants";
-import { Params, TravelPlan } from "../service/TravelPlan";
-import { TipsDialog } from "@kit.ArkUI";
-import { Spot } from "../model/Spot";
-import { custom } from "../service/TravelChatsService";
-import { TravelChatsService } from "../service/TravelChatsService";
-import { lvMarkdownIn } from "@luvi/lv-markdown-in";
+import { TextReaderManager } from 'utils';
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
+import Constants from '../constants/Constants';
+import { Params, TravelPlan } from '../service/TravelPlan';
+import { TipsDialog } from '@kit.ArkUI';
+import { Spot } from '../model/Spot';
+import { custom, TravelChatsService } from '../service/TravelChatsService';
+import { lvMarkdownIn } from '@luvi/lv-markdown-in';
 
 @Component
 export struct SpotDetailPage {

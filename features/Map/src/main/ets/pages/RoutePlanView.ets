@@ -290,9 +290,7 @@ export struct RouterPlanView {
             RouterModule.pop(RouterNameConstants.ENTRY_HAP);
             this.mapController?.clear()
           })
-
         }
-
       }
       else {
         Column() {

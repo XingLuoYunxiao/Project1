@@ -1,27 +1,24 @@
 import { hilog } from '@kit.PerformanceAnalysisKit';
-import { BusinessError, request } from '@kit.BasicServicesKit'
+import { BusinessError } from '@kit.BasicServicesKit';
 import { buffer } from '@kit.ArkTS';
 import auth from '@hw-agconnect/auth';
 import { initialize } from '@hw-agconnect/hmcore';
-import { AppUtil } from "utils/src/main/ets/puraUtils/AppUtil"
-import { PreferencesUtil } from "utils/src/main/ets/puraUtils/PreferencesUtil"
-import { EXP } from "culture/src/main/ets/model/EXP"
-import { LogUtil } from "utils/src/main/ets/puraUtils/LogUtil"
-import lpreferencesUtil from 'login/src/main/ets/common/utils/PreferenceUtil'
-import {abilityAccessCtrl,AbilityConstant, common, PermissionRequestResult, Permissions, UIAbility, Want } from '@kit.AbilityKit';
-import { display, window } from '@kit.ArkUI';
-import { KeyboardAvoidMode } from '@kit.ArkUI';
-import { WindowUtil } from 'utils'
+import { AppUtil } from 'utils/src/main/ets/puraUtils/AppUtil';
+import lpreferencesUtil from 'login/src/main/ets/common/utils/PreferenceUtil';
+import { abilityAccessCtrl, AbilityConstant, UIAbility, Want } from '@kit.AbilityKit';
+import { display, KeyboardAvoidMode, window } from '@kit.ArkUI';
+import { LocationUtil, WindowUtil } from 'utils';
 
 const TAG: string = 'EntryAbility';
 const domain = 0x0011; //定位模块
+
 
 export default class EntryAbility extends UIAbility {
   private windowObj?: window.Window;
 
 
   async onCreate(want: Want, launchParam: AbilityConstant.LaunchParam): Promise<void> {
-    await lpreferencesUtil.loadPreference(this.context,'UserInfoPreference')
+    await lpreferencesUtil.loadPreference(this.context, 'UserInfoPreference')
 
     // 初始化方法,缓存全局变量
     AppUtil.init(this.context);
@@ -37,7 +34,7 @@ export default class EntryAbility extends UIAbility {
       try {
         await atManager.requestPermissionsFromUser(this.context,
           ['ohos.permission.INTERNET', 'ohos.permission.LOCATION', 'ohos.permission.APPROXIMATELY_LOCATION'])
-          .then((data) => {
+          .then(async (data) => {
             hilog.info(domain, TAG, `data: ${JSON.stringify(data)}`);
           })
           .catch((err: BusinessError) => {
@@ -47,7 +44,6 @@ export default class EntryAbility extends UIAbility {
         hilog.error(domain, TAG, `catch err->${JSON.stringify(err)}`);
       }
     }, 1000)
-
   }
 
   async initAgc() {
@@ -62,7 +58,6 @@ export default class EntryAbility extends UIAbility {
   }
 
   onWindowStageCreate(windowStage: window.WindowStage): void {
-
     // 将经验首选项初始化为[],方便之后取出后直接解析成数组
     // let EXPString: string = PreferencesUtil.getSync("EXP", "") as string;
     // if (EXPString === '') {
@@ -91,7 +86,6 @@ export default class EntryAbility extends UIAbility {
       windowUtil.setMainWindowPortrait();
     }
     windowStage.loadContent('pages/LauncherPage', (err, data) => {
-
       //设置软键盘为压缩模式,避让组件
       windowStage.getMainWindowSync().getUIContext().setKeyboardAvoidMode(KeyboardAvoidMode.RESIZE);
 
@@ -164,6 +158,8 @@ export default class EntryAbility extends UIAbility {
     // Ability has back to background
     hilog.info(0x0000, 'testTag', '%{public}s', 'Ability onBackground');
   }
+
+
 }
 
 function requestFullScreen(windowStage: window.WindowStage, context: Context): void {

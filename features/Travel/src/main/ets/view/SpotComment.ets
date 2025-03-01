@@ -1,10 +1,10 @@
-import { spotComment } from "../model/spotComment"
-import { promptAction, Router } from "@kit.ArkUI"
-import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule"
-import { Spot } from "../model/Spot"
-import { CommentService } from "../service/CommentService"
-import { formatTime } from "../pages/SpotDetailComment"
-import { User } from "../model/CommentModel"
+import { spotComment } from '../model/spotComment'
+import { promptAction } from '@kit.ArkUI'
+import { BuilderNameConstants, buildRouterModel, RouterNameConstants } from 'routermodule'
+import { Spot } from '../model/Spot'
+import { CommentService } from '../service/CommentService'
+import { formatTime } from '../pages/SpotDetailComment'
+import { User } from '../model/CommentModel'
 
 @Component
 export struct SpotComment {

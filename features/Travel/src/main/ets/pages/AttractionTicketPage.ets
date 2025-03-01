@@ -30,8 +30,7 @@ export default struct AttractionTicketPage {
   @State currentSubCategory: CategoryItem | null = null;
   @State currentAttractions: LazyDataSource<Spot> = this.spotNetWork.allSpotsDataSource;
   @State value: object = new Object()
-
-
+  @State isRefresh: boolean = false
 
   async aboutToAppear(): Promise<void> {
     //let category = this.appPathStack.getParamByName('AttractionTicketPage')[0] as string
@@ -48,7 +47,6 @@ export default struct AttractionTicketPage {
     this.spotNetWork.reset()
     this.currentCategory = ['全部景点', '位置距离', '综合排序', '筛选']
   }
-
 
 
   cityPickerController: CustomDialogController = new CustomDialogController({
@@ -151,11 +149,9 @@ export default struct AttractionTicketPage {
     .backgroundColor(Color.White)
   }
 
-
-
   async updateAttractionsList() {
-    if(this.spotNetWork.searchLoadingStatus === LoadingStatus.SUCCESS)
-      return
+    /*if(this.spotNetWork.searchLoadingStatus === LoadingStatus.SUCCESS)
+      return*/
     this.spotNetWork.allLoadingStatus = LoadingStatus.LOADING
     //遍历所有景点，将所有符合条件的景点插入到currentAttractions中,不符合则删除
     if(!judgeLoadData(this.currentCity, this.currentCategory)){
@@ -186,6 +182,7 @@ export default struct AttractionTicketPage {
     }
     // 更新 lastCityName
     this.lastCityName = this.currentCity.cityName
+
   }
 
   @Builder itemFoot(){
@@ -248,34 +245,57 @@ export default struct AttractionTicketPage {
         .width(Constants.FULL_WIDTH)
         .height(Constants.CATEGORY_HEIGHT)
 
-        WaterFlow({footer: this.itemFoot()}){
-          LazyForEach(this.currentAttractions, (item: Spot, index: number) => {
-            FlowItem() {
-              AttractionCard({ item: item })
-                .reuseId("attraction")
-            }
-            .onClick(() => {
-              if( item.id && this.personUid != ''){
-                this.spotNetWork.addBrowse(item.id, this.personUid);
-              }else{
-                promptAction.showToast({message: '请先登录'})
+        Refresh({refreshing: $$this.isRefresh, promptText: '拼尽全力加载中'}){
+          WaterFlow({footer: this.itemFoot()}){
+            LazyForEach(this.currentAttractions, (item: Spot, index: number) => {
+              FlowItem() {
+                AttractionCard({ item: item })
+                  .reuseId("attraction")
               }
-              buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item:item}))
-              //this.appPathStack.pushPathByName('AttractionDetailPage', item)
+              .onClick(() => {
+                if( item.id && this.personUid != ''){
+                  this.spotNetWork.addBrowse(item.id, this.personUid);
+                }else{
+                  promptAction.showToast({message: '请先登录'})
+                }
+                buildRouterModel(RouterNameConstants.ENTRY_HAP,  BuilderNameConstants.TRAVEL_ATTRACTIONDETAILPAGE, new Object({item:item}))
+                //this.appPathStack.pushPathByName('AttractionDetailPage', item)
+              })
+              //触底加载数据
+              /*.onAppear(async () => {
+                if( this.spotNetWork.searchLoadingStatus !== LoadingStatus.LOADING && index + 5 == this.spotNetWork.allSpotsDataSource.totalCount()){
+                  await this.updateAttractionsList()
+                }
+              })*/
+            }, (item: Spot, index: number) => {
+              let id = item.name + index.toString()  + item.id?.toString()
+              //console.log('ReuseId : ', id)
+              return id
             })
-            //触底加载数据
-            /*.onAppear(async () => {
-              if( this.spotNetWork.searchLoadingStatus !== LoadingStatus.LOADING && index + 5 == this.spotNetWork.allSpotsDataSource.totalCount()){
-                await this.updateAttractionsList()
-              }
-            })*/
-          }, (item: Spot) => item.name)
-        }
-        .onReachEnd(async () => {
+          }
+          .onReachEnd(async () => {
             await this.updateAttractionsList()
 
+          })
+          .scrollBar(BarState.On)
+        }
+        .pullToRefresh(true)
+        .onStateChange( (val) => {
+          if( val === RefreshStatus.Refresh){
+            //this.spotNetWork.pageNum
+            if( this.spotNetWork.isHasMore === false){
+              this.spotNetWork.pageNum = 1
+              this.spotNetWork.isHasMore = true
+            }
+            this.currentAttractions.clear()
+            this.updateAttractionsList()
+          }
         })
-        .scrollBar(BarState.On)
+        .onRefreshing(() => {
+          if( this.spotNetWork.searchLoadingStatus !== LoadingStatus.LOADING){
+            this.isRefresh = false;
+          }
+        })
 
 /*
         List() {

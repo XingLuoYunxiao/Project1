@@ -1,12 +1,12 @@
 import "map/src/main/ets/pages/MapViewPage";
-import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from "routermodule";
-import { LazyDataSource, LoadingStatus } from "utils";
-import Constants from "../constants/Constants";
-import { otherItemList } from "../model/Attraction";
-import { Spot } from "../model/Spot";
-import { SpotNetFunc } from "../service/SpotNetFunc";
-import { CloudStorageService } from "../service/CloudStorageService";
-import { promptAction } from "@kit.ArkUI";
+import { BuilderNameConstants, buildRouterModel, RouterModule, RouterNameConstants } from 'routermodule';
+import { LazyDataSource, LoadingStatus } from 'utils';
+import Constants from '../constants/Constants';
+import { otherItemList } from '../model/Attraction';
+import { Spot } from '../model/Spot';
+import { SpotNetFunc } from '../service/SpotNetFunc';
+import { CloudStorageService } from '../service/CloudStorageService';
+import { promptAction } from '@kit.ArkUI';
 
 //评分数组，最高10分
 const scoreList: number[] = [9.7, 10.0, 8.8, 9.5, 9.2, 9.9, 9.0];

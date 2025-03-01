@@ -108,6 +108,9 @@ export class LocationUtil {
   async getCityName(): Promise<string> {
     if( this.currentLocation === undefined)
       await this.getCurrentLocation()
+    else if(this.currentCityName !== undefined){
+      return this.currentCityName!
+    }
     return new Promise(async ( resolve, reject) => {
       let address:string = await this.getAddress(this.currentLocation!)
       this.currentCityName = address
@@ -121,7 +124,6 @@ export class LocationUtil {
     })
   }
 
-  //TODO 可以优化
   //导航模块需要的地图服务
   async getLocation(mapController?: map.MapComponentController): Promise<geoLocationManager.Location> {
     let promise = geoLocationManager.getCurrentLocation();

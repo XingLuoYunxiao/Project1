@@ -65,7 +65,6 @@ export struct IdiomWaterFlowPage {
   build() {
     NavDestination() {
       Column() {
-
         WaterFlow() {
           LazyForEach(this.data, (item: realIdiom, index: number) => {
             FlowItem() {
@@ -73,11 +72,9 @@ export struct IdiomWaterFlowPage {
                 Text(item.word)
                   .fontSize(16)
               }
-
             }
             .onAppear(() => {
               // 即将触底时提前增加数据
-
               this.count++
               if (this.count === CommonConstants.fetchNumber - 3) {
                 this.fetchData()

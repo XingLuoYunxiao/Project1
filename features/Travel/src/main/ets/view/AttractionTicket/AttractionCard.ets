@@ -1,8 +1,10 @@
-import Constants from "../../constants/Constants";
-import { Spot } from "../../model/Spot";
-import { CloudStorageService } from "../../service/CloudStorageService";
+import Constants from '../../constants/Constants';
+import { Spot } from '../../model/Spot';
+import { CloudStorageService } from '../../service/CloudStorageService';
+import { SpotNetFunc } from '../../service/SpotNetFunc';
 
-//@Reusable
+
+@Reusable
 @Component
 export struct AttractionCard {
   @State item: Spot = new Spot()
@@ -15,17 +17,26 @@ export struct AttractionCard {
       this.cloudService.getTravelSpotURL(this.item.imageUrl).then(url => {
         this.url = url
         this.isLoading = true
+        SpotNetFunc.cacheImgMap.set(this.item.imageUrl!, url)
       })
   }
 
-  //组件复用
-  /*aboutToReuse(params: Record<string, object>): void {
-    this.item = params.item as Spot;
+  aboutToRecycle(): void {
+    this.isLoading = false
+  }
 
-  }*/
+
+  //组件复用
+  aboutToReuse(params: Record<string, object>): void {
+    this.item = params.item as Spot;
+    if( SpotNetFunc.cacheImgMap.has(this.item.imageUrl!)){
+      this.url = SpotNetFunc.cacheImgMap.get(this.item.imageUrl!)
+      this.isLoading = true
+    }
+  }
 
   build() {
-    if( this.item !== undefined){
+    if( this.item !== undefined &&  this.isLoading === true){
       Row() {
         Image(this.url == undefined ? $r(`${this.item.imageUrl}`) : this.url)
           .width(160)
