@@ -1,8 +1,1 @@
-#### 端云一体化开发在线文档：
-<<<<<<< HEAD
-https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/agc-harmonyos-clouddev-view-0000001700053733-V5
-=======
-https://developer.huawei.com/consumer/cn/doc/harmonyos-guides-V5/agc-harmonyos-clouddev-view-0000001700053733-V5
-
-merge test
->>>>>>> origin/main
+基于鸿蒙生态的原生旅游应用，具有大多著名景点浏览、搜索、历史记录、景点多级评论、结合 AI 生成、旅游计划、3D 地图路径等功能，还具有诗词歌赋浏览、飞花令等文化传承内容，以及朋友圈、点赞评论、注册登录、景点收藏、浏览足迹等功能。
